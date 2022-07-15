@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">常用web环境优化 - 一个曾经的小码农...</title><meta name="Description" content="常用web环境优化"><meta property="og:title" content="常用web环境优化" />
+<meta property="og:description" content="常用web环境优化" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-28T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo.png"/>
+
+<meta name="twitter:title" content="常用web环境优化"/>
+<meta name="twitter:description" content="常用web环境优化"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/starting/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "常用web环境优化",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2020\/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96\/"
+        },"genre": "posts","keywords": "linux, 优化, nginx, php, 解决方案","wordcount":  9163 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2020\/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96\/","datePublished": "2020-11-18T00:00:00+00:00","dateModified": "2022-06-28T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                    "@type": "Person",
+                    "name": "0x5c0f"
+                }],"description": "常用web环境优化"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-tomcat-服务调优">1. tomcat 服务调优</a>
+      <ul>
+        <li><a href="#11-安全优化">1.1. 安全优化</a></li>
+        <li><a href="#12-性能优化">1.2. 性能优化</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-tmpfs-一种基于内存的文件系统">2. tmpfs 一种基于内存的文件系统</a></li>
+    <li><a href="#3-nginx-优化">3. nginx 优化</a>
+      <ul>
+        <li><a href="#31-版本号隐藏">3.1. 版本号隐藏</a></li>
+        <li><a href="#32-更改nginx默认用户">3.2. 更改nginx默认用户</a></li>
+        <li><a href="#33-优化wroker进程数">3.3. 优化wroker进程数</a></li>
+        <li><a href="#34-nginx-事件模型优化">3.4. Nginx 事件模型优化</a></li>
+        <li><a href="#35-nginx-worker-进程最大打开文件数">3.5. Nginx worker 进程最大打开文件数</a></li>
+        <li><a href="#36-nginx-服务器域名hash表大小">3.6. Nginx 服务器域名hash表大小</a></li>
+        <li><a href="#37-开启高效的文件传输模式">3.7. 开启高效的文件传输模式</a></li>
+        <li><a href="#38-超时连接优化">3.8. 超时连接优化</a>
+          <ul>
+            <li><a href="#381-作用">3.8.1. 作用</a></li>
+            <li><a href="#382-问题">3.8.2. 问题</a></li>
+            <li><a href="#383-建议">3.8.3. 建议</a></li>
+            <li><a href="#384-配置">3.8.4. 配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#39-动态参数引擎fastcgi">3.9. 动态参数引擎fastcgi</a></li>
+        <li><a href="#310-gzip">3.10. gzip</a>
+          <ul>
+            <li><a href="#3101-优点">3.10.1. 优点</a></li>
+            <li><a href="#3102-需要和不需要压缩的对象">3.10.2. 需要和不需要压缩的对象</a></li>
+            <li><a href="#3103-配置">3.10.3. 配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#311-nginx-expires-缓存">3.11. nginx expires 缓存</a>
+          <ul>
+            <li><a href="#3111-优点">3.11.1. 优点</a></li>
+            <li><a href="#3112-缺点">3.11.2. 缺点</a></li>
+            <li><a href="#3113-配置">3.11.3. 配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#312-nginx-日志">3.12. nginx 日志</a>
+          <ul>
+            <li><a href="#3121-切割示例">3.12.1. 切割示例</a></li>
+            <li><a href="#3122-不记录不需要的日志">3.12.2. 不记录不需要的日志</a></li>
+            <li><a href="#3123-访问日志权限设置">3.12.3. 访问日志权限设置</a></li>
+          </ul>
+        </li>
+        <li><a href="#313-nginx-站点目录及文件url控制">3.13. nginx 站点目录及文件URL控制</a>
+          <ul>
+            <li><a href="#3131-根据文件扩展名限制程序和文件访问">3.13.1. 根据文件扩展名限制程序和文件访问</a></li>
+            <li><a href="#3132-限制网站来源ip访问">3.13.2. 限制网站来源IP访问</a></li>
+            <li><a href="#3133-配置nginx禁止非法域名解析">3.13.3. 配置nginx禁止非法域名解析</a></li>
+          </ul>
+        </li>
+        <li><a href="#314-防盗链">3.14. 防盗链</a>
+          <ul>
+            <li><a href="#3141-解决方案">3.14.1. 解决方案</a></li>
+          </ul>
+        </li>
+        <li><a href="#315-错误页面优雅显示">3.15. 错误页面优雅显示</a></li>
+        <li><a href="#316-站点目录权限优化">3.16. 站点目录权限优化</a></li>
+        <li><a href="#317-防爬虫优化">3.17. 防爬虫优化</a>
+          <ul>
+            <li><a href="#3171-robotstxt-机器人协议">3.17.1. robots.txt 机器人协议</a></li>
+            <li><a href="#3172-nginx-防爬虫优化配置">3.17.2. nginx 防爬虫优化配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#318-nginx-限制http请求方法">3.18. nginx 限制http请求方法</a></li>
+        <li><a href="#319-使用cdn做网站内容加速">3.19. 使用cdn做网站内容加速</a></li>
+        <li><a href="#320-网站架构优化">3.20. 网站架构优化</a>
+          <ul>
+            <li><a href="#3201-为网站程序解耦">3.20.1. 为网站程序解耦</a></li>
+          </ul>
+        </li>
+        <li><a href="#321-nginx-监牢模式">3.21. nginx 监牢模式</a>
+          <ul>
+            <li><a href="#3211-nginx-服务降权解决方案">3.21.1. nginx 服务降权解决方案</a></li>
+          </ul>
+        </li>
+        <li><a href="#322-控制nginx并发连接数">3.22. 控制nginx并发连接数</a></li>
+        <li><a href="#323-控制-nginx请求">3.23. 控制 nginx请求</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-php-优化">4. php 优化</a>
+      <ul>
+        <li><a href="#41-php-参数调优">4.1. php 参数调优</a>
+          <ul>
+            <li><a href="#411-phpini-安全参数调优">4.1.1. php.ini 安全参数调优</a></li>
+            <li><a href="#412-phpini-优化参数调优">4.1.2. php.ini 优化参数调优</a></li>
+            <li><a href="#413-phpini-安全优化">4.1.3. php.ini 安全优化</a></li>
+            <li><a href="#414-php-session-会话保持">4.1.4. php session 会话保持</a></li>
+          </ul>
+        </li>
+        <li><a href="#42-php-fpm-调优">4.2. php-fpm 调优</a>
+          <ul>
+            <li><a href="#421-php-fpmconf-调优">4.2.1. php-fpm.conf 调优</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">常用web环境优化</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-18">2020-11-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9163 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 19 分钟&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-tomcat-服务调优">1. tomcat 服务调优</a>
+      <ul>
+        <li><a href="#11-安全优化">1.1. 安全优化</a></li>
+        <li><a href="#12-性能优化">1.2. 性能优化</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-tmpfs-一种基于内存的文件系统">2. tmpfs 一种基于内存的文件系统</a></li>
+    <li><a href="#3-nginx-优化">3. nginx 优化</a>
+      <ul>
+        <li><a href="#31-版本号隐藏">3.1. 版本号隐藏</a></li>
+        <li><a href="#32-更改nginx默认用户">3.2. 更改nginx默认用户</a></li>
+        <li><a href="#33-优化wroker进程数">3.3. 优化wroker进程数</a></li>
+        <li><a href="#34-nginx-事件模型优化">3.4. Nginx 事件模型优化</a></li>
+        <li><a href="#35-nginx-worker-进程最大打开文件数">3.5. Nginx worker 进程最大打开文件数</a></li>
+        <li><a href="#36-nginx-服务器域名hash表大小">3.6. Nginx 服务器域名hash表大小</a></li>
+        <li><a href="#37-开启高效的文件传输模式">3.7. 开启高效的文件传输模式</a></li>
+        <li><a href="#38-超时连接优化">3.8. 超时连接优化</a>
+          <ul>
+            <li><a href="#381-作用">3.8.1. 作用</a></li>
+            <li><a href="#382-问题">3.8.2. 问题</a></li>
+            <li><a href="#383-建议">3.8.3. 建议</a></li>
+            <li><a href="#384-配置">3.8.4. 配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#39-动态参数引擎fastcgi">3.9. 动态参数引擎fastcgi</a></li>
+        <li><a href="#310-gzip">3.10. gzip</a>
+          <ul>
+            <li><a href="#3101-优点">3.10.1. 优点</a></li>
+            <li><a href="#3102-需要和不需要压缩的对象">3.10.2. 需要和不需要压缩的对象</a></li>
+            <li><a href="#3103-配置">3.10.3. 配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#311-nginx-expires-缓存">3.11. nginx expires 缓存</a>
+          <ul>
+            <li><a href="#3111-优点">3.11.1. 优点</a></li>
+            <li><a href="#3112-缺点">3.11.2. 缺点</a></li>
+            <li><a href="#3113-配置">3.11.3. 配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#312-nginx-日志">3.12. nginx 日志</a>
+          <ul>
+            <li><a href="#3121-切割示例">3.12.1. 切割示例</a></li>
+            <li><a href="#3122-不记录不需要的日志">3.12.2. 不记录不需要的日志</a></li>
+            <li><a href="#3123-访问日志权限设置">3.12.3. 访问日志权限设置</a></li>
+          </ul>
+        </li>
+        <li><a href="#313-nginx-站点目录及文件url控制">3.13. nginx 站点目录及文件URL控制</a>
+          <ul>
+            <li><a href="#3131-根据文件扩展名限制程序和文件访问">3.13.1. 根据文件扩展名限制程序和文件访问</a></li>
+            <li><a href="#3132-限制网站来源ip访问">3.13.2. 限制网站来源IP访问</a></li>
+            <li><a href="#3133-配置nginx禁止非法域名解析">3.13.3. 配置nginx禁止非法域名解析</a></li>
+          </ul>
+        </li>
+        <li><a href="#314-防盗链">3.14. 防盗链</a>
+          <ul>
+            <li><a href="#3141-解决方案">3.14.1. 解决方案</a></li>
+          </ul>
+        </li>
+        <li><a href="#315-错误页面优雅显示">3.15. 错误页面优雅显示</a></li>
+        <li><a href="#316-站点目录权限优化">3.16. 站点目录权限优化</a></li>
+        <li><a href="#317-防爬虫优化">3.17. 防爬虫优化</a>
+          <ul>
+            <li><a href="#3171-robotstxt-机器人协议">3.17.1. robots.txt 机器人协议</a></li>
+            <li><a href="#3172-nginx-防爬虫优化配置">3.17.2. nginx 防爬虫优化配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#318-nginx-限制http请求方法">3.18. nginx 限制http请求方法</a></li>
+        <li><a href="#319-使用cdn做网站内容加速">3.19. 使用cdn做网站内容加速</a></li>
+        <li><a href="#320-网站架构优化">3.20. 网站架构优化</a>
+          <ul>
+            <li><a href="#3201-为网站程序解耦">3.20.1. 为网站程序解耦</a></li>
+          </ul>
+        </li>
+        <li><a href="#321-nginx-监牢模式">3.21. nginx 监牢模式</a>
+          <ul>
+            <li><a href="#3211-nginx-服务降权解决方案">3.21.1. nginx 服务降权解决方案</a></li>
+          </ul>
+        </li>
+        <li><a href="#322-控制nginx并发连接数">3.22. 控制nginx并发连接数</a></li>
+        <li><a href="#323-控制-nginx请求">3.23. 控制 nginx请求</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-php-优化">4. php 优化</a>
+      <ul>
+        <li><a href="#41-php-参数调优">4.1. php 参数调优</a>
+          <ul>
+            <li><a href="#411-phpini-安全参数调优">4.1.1. php.ini 安全参数调优</a></li>
+            <li><a href="#412-phpini-优化参数调优">4.1.2. php.ini 优化参数调优</a></li>
+            <li><a href="#413-phpini-安全优化">4.1.3. php.ini 安全优化</a></li>
+            <li><a href="#414-php-session-会话保持">4.1.4. php session 会话保持</a></li>
+          </ul>
+        </li>
+        <li><a href="#42-php-fpm-调优">4.2. php-fpm 调优</a>
+          <ul>
+            <li><a href="#421-php-fpmconf-调优">4.2.1. php-fpm.conf 调优</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>前言<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">一篇包含tomcat、nginx、php、mysql的相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。</div>
+        </div>
+    </div>
+<h1 id="1-tomcat-服务调优" class="headerLink">
+    <a href="#1-tomcat-%e6%9c%8d%e5%8a%a1%e8%b0%83%e4%bc%98" class="header-mark"></a>1. tomcat 服务调优</h1><ul>
+<li><code>tomcat: 8.5.59</code></li>
+</ul>
+<h2 id="11-安全优化" class="headerLink">
+    <a href="#11-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>1.1. 安全优化</h2><ul>
+<li>
+<p>降权启动</p>
+<ul>
+<li>新建普通用户，切换到普通用户，启动<code>tomcat</code></li>
+</ul>
+</li>
+<li>
+<p><code>telnet</code>管理端口保护</p>
+<ul>
+<li>修改配置文件<code>/pathto/tomcat/conf/server.xml</code>,22行左右的<code>&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;</code> <code>8005</code>端口和<code>SHUTDOWN</code>(区分大小写)关键字,防止<code>tomcat</code>被远程关闭</li>
+</ul>
+</li>
+<li>
+<p><code>ajp</code> 连接端口保护</p>
+<ul>
+<li><code>ajp</code> 是<code>apache</code>和<code>tomcat</code>相互沟通的一个渠道，如果不使用，可以注释掉或者修改端口 <code>/pathto/tomcat/conf/server.xml: 123 </code>。</li>
+</ul>
+</li>
+<li>
+<p>禁用管理端</p>
+<ul>
+<li>一般管理端用于测试使用,正式使用需要删除<code>/pathto/tomcat/webapps</code>下所有目录,新建的站点放到该目录的<code>ROOT</code>下即可,另删除<code>/pathto/tomcat/conf/tomcat-users.xml</code>下关于角色的配置(或者删掉这个文件,似乎也没有什么影响)。</li>
+</ul>
+</li>
+<li>
+<p>文件访问列表控制</p>
+<ul>
+<li><code>web.xml: 121</code> 配置<code>listings</code>值为<code>false</code>， 默认<code>false</code></li>
+</ul>
+</li>
+<li>
+<p>隐藏版本信息</p>
+<ul>
+<li>可修改<code>conf/web.xml</code>中关于<code>error-page</code>的相关配置(实际上个人在<code>5.8</code>中好像没有找到这块的),也可以修改站点中<code>WEB-INF/web.xml</code>中的错误页</li>
+</ul>
+</li>
+<li>
+<p>访问控制限制</p>
+<ul>
+<li><code>conf/server.xml: Host</code> 下添加<code>&lt;Valve className=&quot;org.apache.catalina.valves.RemoteAddrValve&quot; allow=&quot;10.0.2.*&quot;/&gt;</code></li>
+</ul>
+</li>
+<li>
+<p>启动脚本权限修正<code>744</code></p>
+</li>
+<li>
+<p>应用自动部署</p>
+<ul>
+<li><code>conf/server.xml: 158</code> 修改参数<code>unpackWARs</code>和<code>autoDeploy</code>: <code>&lt;Host name=&quot;localhost&quot; appBase=&quot;webapps&quot; unpackWARs=&quot;false&quot; autoDeploy=&quot;false&quot;&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="12-性能优化" class="headerLink">
+    <a href="#12-%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96" class="header-mark"></a>1.2. 性能优化</h2><ul>
+<li>
+<p>屏蔽dns查询</p>
+<ul>
+<li><code>enableLookups=&quot;false&quot;</code>: <code>69 : /pathto/tomcat/conf/server.xml</code>(配置默认端口那儿)</li>
+</ul>
+</li>
+<li>
+<p>jvm 调优</p>
+<ul>
+<li><code>JAVA_OPTS=</code>根据监控协调参数。</li>
+</ul>
+</li>
+<li>
+<p>启用<code>nio2</code>(conf/server.xml)
+<em><strong>Nio2启用后zabbix带有的模板监控会出现大量的监控项无效，Object or attribute not found. 此问题暂时还未找到解决方案</strong></em></p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&lt;Connector executor=&#34;tomcatThreadPool&#34; port=&#34;8080&#34; enableLookups=&#34;false&#34; 
+</span></span><span class="line"><span class="cl">        protocol=&#34;org.apache.coyote.http11.Http11Nio2Protocol&#34;
+</span></span><span class="line"><span class="cl">        connectionTimeout=&#34;20000&#34;
+</span></span><span class="line"><span class="cl">        redirectPort=&#34;8443&#34; /&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="2-tmpfs-一种基于内存的文件系统" class="headerLink">
+    <a href="#2-tmpfs-%e4%b8%80%e7%a7%8d%e5%9f%ba%e4%ba%8e%e5%86%85%e5%ad%98%e7%9a%84%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" class="header-mark"></a>2. tmpfs 一种基于内存的文件系统</h1><p>可用于挂载临时文件存放目录,挂载后操作目录相当于直接操作内存，umount后挂载目录数据会被直接清空。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mount -t tmpfs -o <span class="nv">size</span><span class="o">=</span>1024M tmpfs /mnt/usb02 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="3-nginx-优化" class="headerLink">
+    <a href="#3-nginx-%e4%bc%98%e5%8c%96" class="header-mark"></a>3. nginx 优化</h1><blockquote>
+<p>记录一篇同僚文章: <a href="http://www.z-dig.com/nginx-optimization-25.html" target="_blank" rel="noopener noreffer"><del>http://www.z-dig.com/nginx-optimization-25.html</del></a></p>
+</blockquote>
+<p>nginx 规则匹配优先级: <code>=</code> &gt; <code>完整路径</code> &gt; <code>^~</code> &gt; <code>~|~*</code> &gt; <code>部分起始路径</code> &gt; <code>/</code> <br>
+<span id="30"></span></p>
+<details>
+<summary style="font-size:18px;color:blue">防止SQL注入、XSS攻击的实践配置方法</summary>
+<blockquote>
+<p>原文接入: <a href="https://www.imydl.tech/lnmp/762.html" target="_blank" rel="noopener noreffer">https://www.imydl.tech/lnmp/762.html</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_method</span> !~* GET<span class="p">|</span>POST<span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 444<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#使用444错误代码可以更加减轻服务器负载压力。</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#防止SQL注入</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~* <span class="o">(</span><span class="se">\$</span><span class="p">|</span><span class="s1">&#39;|--|[+|(%20)]union[+|(%20)]|[+|(%20)]insert[+|(%20)]|[+|(%20)]drop[+|(%20)]|[+|(%20)]truncate[+|(%20)]|[+|(%20)]update[+|(%20)]|[+|(%20)]from[+|(%20)]|[+|(%20)]grant[+|(%20)]|[+|(%20)]exec[+|(%20)]|[+|(%20)]where[+|(%20)]|[+|(%20)]select[+|(%20)]|[+|(%20)]and[+|(%20)]|[+|(%20)]or[+|(%20)]|[+|(%20)]count[+|(%20)]|[+|(%20)]exec[+|(%20)]|[+|(%20)]chr[+|(%20)]|[+|(%20)]mid[+|(%20)]|[+|(%20)]like[+|(%20)]|[+|(%20)]iframe[+|(%20)]|[\&lt;|%3c]script[\&gt;|%3e]|javascript|alert|webscan|dbappsecurity|style|confirm\(|innerhtml|innertext)(.*)$) { return 555; }
+</span></span></span><span class="line"><span class="cl"><span class="s1"> if ($uri ~* (/~).*) { return 501; }
+</span></span></span><span class="line"><span class="cl"><span class="s1"> if ($uri ~* (\\x.)) { return 501; }
+</span></span></span><span class="line"><span class="cl"><span class="s1">#防止SQL注入 
+</span></span></span><span class="line"><span class="cl"><span class="s1"> if ($query_string ~* &#34;[;&#39;</span>&lt;&gt;<span class="o">]</span>.*<span class="s2">&#34;) { return 509; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~ &#34;</span> <span class="s2">&#34;) { return 509; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~ (\/\.+)) { return 509; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~ (\.+\/)) { return 509; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> 
+</span></span></span><span class="line"><span class="cl"><span class="s2"> #if (</span><span class="nv">$uri</span><span class="s2"> ~* (insert|select|delete|update|count|master|truncate|declare|exec|\*|\&#39;)(.*)</span>$<span class="s2"> ) { return 503; }
+</span></span></span><span class="line"><span class="cl"><span class="s2">#防止SQL注入
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">(</span>cost<span class="se">\(</span><span class="o">)</span><span class="p">|</span><span class="o">(</span>concat<span class="se">\(</span><span class="o">)</span><span class="s2">&#34;) { return 504; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>union<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>and<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="k">select</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>or<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>delete<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>update<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>insert<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span><span class="o">(</span>&lt;<span class="p">|</span>%3C<span class="o">)</span>.*script.*<span class="o">(</span>&gt;<span class="p">|</span>%3E<span class="o">)</span><span class="s2">&#34;) { return 505; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>GLOBALS<span class="o">(=</span><span class="p">|</span><span class="se">\[</span><span class="p">|</span><span class="se">\%</span><span class="o">[</span>0-9A-Z<span class="o">]{</span>0,2<span class="o">})</span><span class="s2">&#34;) { return 505; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>_REQUEST<span class="o">(=</span><span class="p">|</span><span class="se">\[</span><span class="p">|</span><span class="se">\%</span><span class="o">[</span>0-9A-Z<span class="o">]{</span>0,2<span class="o">})</span><span class="s2">&#34;) { return 505; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>proc/self/environ<span class="s2">&#34;) { return 505; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>mosConfig_<span class="o">[</span>a-zA-Z_<span class="o">]{</span>1,21<span class="o">}(=</span><span class="p">|</span><span class="se">\%</span>3D<span class="o">)</span><span class="s2">&#34;) { return 505; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>base64_<span class="o">(</span>en<span class="p">|</span>de<span class="o">)</span>code<span class="se">\(</span>.*<span class="se">\)</span><span class="s2">&#34;) { return 505; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span><span class="o">[</span>a-zA-Z0-9_<span class="o">]=</span>http://<span class="s2">&#34;) { return 506; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span><span class="o">[</span>a-zA-Z0-9_<span class="o">]=(</span><span class="se">\.\.</span>//?<span class="o">)</span>+<span class="s2">&#34;) { return 506; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span><span class="o">[</span>a-zA-Z0-9_<span class="o">]=</span>/<span class="o">([</span>a-z0-9_.<span class="o">]</span>//?<span class="o">)</span>+<span class="s2">&#34;) { return 506; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>b<span class="o">(</span>ultram<span class="p">|</span>unicauca<span class="p">|</span>valium<span class="p">|</span>viagra<span class="p">|</span>vicodin<span class="p">|</span>xanax<span class="p">|</span>ypxaieo<span class="o">)</span>b<span class="s2">&#34;) { return 507; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>b<span class="o">(</span>erections<span class="p">|</span>hoodia<span class="p">|</span>huronriveracres<span class="p">|</span>impotence<span class="p">|</span>levitra<span class="p">|</span>libido<span class="o">)</span>b<span class="s2">&#34;) {return 507; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>b<span class="o">(</span>ambien<span class="p">|</span>bluespill<span class="p">|</span>cialis<span class="p">|</span>cocaine<span class="p">|</span>ejaculation<span class="p">|</span>erectile<span class="o">)</span>b<span class="s2">&#34;) { return 507; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>b<span class="o">(</span>lipitor<span class="p">|</span>phentermin<span class="p">|</span>pro<span class="o">[</span>sz<span class="o">]</span>ac<span class="p">|</span>sandyauer<span class="p">|</span>tramadol<span class="p">|</span>troyhamby<span class="o">)</span>b<span class="s2">&#34;) { return 507; }
+</span></span></span><span class="line"><span class="cl"><span class="s2">#这里大家根据自己情况添加删减上述判断参数，cURL、wget这类的屏蔽有点儿极端了，但要“宁可错杀一千，不可放过一个”。
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* YisouSpider|ApacheBench|WebBench|Jmeter|JoeDog|Havij|GetRight|TurnitinBot|GrabNet|masscan|mail2000|github|wget|curl|Java|python) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2">#同上，大家根据自己站点实际情况来添加删减下面的屏蔽拦截参数。
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Go-Ahead-Got-It<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>GetWeb!<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Go!Zilla<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Download Demon<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Indy Library<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>libwww-perl<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Nmap Scripting Engine<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>~17ce.com<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>WebBench*<span class="s2">&#34;) { return 508; }
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>spider<span class="s2">&#34;) { return 508; } #这个会影响国内某些搜索引擎爬虫，比如：搜狗
+</span></span></span><span class="line"><span class="cl"><span class="s2">#拦截各恶意请求的UA，可以通过分析站点日志文件或者waf日志作为参考配置。
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_referer</span><span class="s2"> ~* 17ce.com) { return 509; }
+</span></span></span><span class="line"><span class="cl"><span class="s2">#拦截17ce.com站点测速节点的请求，所以明月一直都说这些测速网站的数据仅供参考不能当真的。
+</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_referer</span><span class="s2"> ~* WebBench*&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 509<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#拦截WebBench或者类似压力测试工具，其他工具只需要更换名称即可。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+<h2 id="31-版本号隐藏" class="headerLink">
+    <a href="#31-%e7%89%88%e6%9c%ac%e5%8f%b7%e9%9a%90%e8%97%8f" class="header-mark"></a>3.1. 版本号隐藏</h2><ol>
+<li>修改文件: 修改<code>nginx.conf</code>,在<code>http</code>标签中添加<code>server_tokens off;</code>参数,然后<code>reload</code></li>
+<li>编译修改:
+<ul>
+<li>修改<code>nginx</code>源码文件<code>/pathto/nginx-x.xx.x/src/core/nginx.h</code>,<code>nginx</code>版本号参数<code>NGINX_VERSION</code>，软件名称 <code>NGINX_VAR</code>，<code>NGINX_VER</code></li>
+<li>修改<code>nginx</code>源码文件<code>49: /pathto/nginx-x.xx.x/src/http/ngx_http_header_filter_module.c</code> ,值 <code>Server: xxxx</code>（curl 显示的页面）</li>
+<li>修改<code>nginx</code>源码文件<code>36: /pathto/nginx-x.xx.x/src/http/ngx_http_special_response.c</code>,值 <code>&lt;hr&gt;&lt;center&gt;xxxx&lt;/center&gt;</code>(错误页面:例如502)</li>
+<li>正常编译安装</li>
+</ul>
+</li>
+</ol>
+<h2 id="32-更改nginx默认用户" class="headerLink">
+    <a href="#32-%e6%9b%b4%e6%94%b9nginx%e9%bb%98%e8%ae%a4%e7%94%a8%e6%88%b7" class="header-mark"></a>3.2. 更改nginx默认用户</h2><ol>
+<li>修改配置文件: <code>/pathto/nginx/conf/nginx.conf</code>,值 <code>user nobody</code> 为 <code>user &lt;user&gt; &lt;group&gt;</code>;</li>
+<li>编译时指定默认用户: <code>--user=&lt;user&gt; --group=&lt;group&gt;</code></li>
+</ol>
+<h2 id="33-优化wroker进程数" class="headerLink">
+    <a href="#33-%e4%bc%98%e5%8c%96wroker%e8%bf%9b%e7%a8%8b%e6%95%b0" class="header-mark"></a>3.3. 优化wroker进程数</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># main</span>
+</span></span><span class="line"><span class="cl">worker_processes  8<span class="p">;</span>
+</span></span><span class="line"><span class="cl">worker_cpu_affinity <span class="m">0001</span> <span class="m">0010</span> <span class="m">0100</span> <span class="m">1000</span> <span class="m">0001</span> <span class="m">0010</span> <span class="m">0100</span> 1000<span class="p">;</span>  <span class="c1"># 掩码形式 分别代表1-8核</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="34-nginx-事件模型优化" class="headerLink">
+    <a href="#34-nginx-%e4%ba%8b%e4%bb%b6%e6%a8%a1%e5%9e%8b%e4%bc%98%e5%8c%96" class="header-mark"></a>3.4. Nginx 事件模型优化</h2><p>nginx是异步的网络io模型，epoll 工作模型是高性能高并发的设置。</p>
+<ol>
+<li>修改配置文件: <code>/pathto/nginx/conf/nginx.conf</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># main
+</span></span><span class="line"><span class="cl">events {
+</span></span><span class="line"><span class="cl">    use epoll;
+</span></span><span class="line"><span class="cl">    # 开启的时候,将会对多个Nginx进程接受连接进行序列化,防止多个进程对连接的争抢,当服务器连接数不多时,开启这个参数会让负载有一定程度的降低. 但是当服务器的吞吐量很大时,为了效率,需要关闭. 并且关闭这个参数的时候也可以让请求在多个worker间的分配更均衡(默认关闭 off)
+</span></span><span class="line"><span class="cl">    # accept_mutex on; 
+</span></span><span class="line"><span class="cl">    multi_accept on;    # 告诉nginx收到一个新连接通知后接受尽可能多的连接，默认是on
+</span></span><span class="line"><span class="cl">    worker_connections 65535; # 单个worker的连接数(并发等于 worker_connections * worker_processes )
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="35-nginx-worker-进程最大打开文件数" class="headerLink">
+    <a href="#35-nginx-worker-%e8%bf%9b%e7%a8%8b%e6%9c%80%e5%a4%a7%e6%89%93%e5%bc%80%e6%96%87%e4%bb%b6%e6%95%b0" class="header-mark"></a>3.5. Nginx worker 进程最大打开文件数</h2><ol>
+<li><code>main</code>标签下设置<code>worker_rlimit_nofile 65535</code> ，值可为系统优化后设置的<code>ulimit -HSn</code>的结果 。</li>
+</ol>
+<h2 id="36-nginx-服务器域名hash表大小" class="headerLink">
+    <a href="#36-nginx-%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%9f%9f%e5%90%8dhash%e8%a1%a8%e5%a4%a7%e5%b0%8f" class="header-mark"></a>3.6. Nginx 服务器域名hash表大小</h2><p>: main</p>
+<ol>
+<li>参数1: <code>server_names_hash_max_size 512;</code> 设置存放域名(server_names)的最大hash表大小</li>
+<li>参数2: <code>server_names_hash_bucket_size 128;</code> 此设置与<code>server_names_hash_max_size</code>共同控制保存服务器域名的hash表.</li>
+</ol>
+<h2 id="37-开启高效的文件传输模式" class="headerLink">
+    <a href="#37-%e5%bc%80%e5%90%af%e9%ab%98%e6%95%88%e7%9a%84%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93%e6%a8%a1%e5%bc%8f" class="header-mark"></a>3.7. 开启高效的文件传输模式</h2><p>; http/server/location/if in location</p>
+<ol>
+<li><code>sendfile on;</code>, 作用于两个文件描述符之间的数据拷贝函数，这个拷贝操作是在内核中的。</li>
+<li><code>tcp_nopush on;</code>,允许把http response header和文件的开始放在一个文件里面发布，积极的作用是减少网络报文段的数量。</li>
+<li><code>tcp_nodelay on;</code>, 提升io性能，默认情况下数据发送时，内核并不会马上发送，可能会等待更多的字节组成一个数据包，这样可以提高I/O性能，但是，每次只发送很少字节的业务场景，使用tcp_nodelay功能，等待时间会比较长.(高并发建议使用)</li>
+</ol>
+<h2 id="38-超时连接优化" class="headerLink">
+    <a href="#38-%e8%b6%85%e6%97%b6%e8%bf%9e%e6%8e%a5%e4%bc%98%e5%8c%96" class="header-mark"></a>3.8. 超时连接优化</h2><h3 id="381-作用" class="headerLink">
+    <a href="#381-%e4%bd%9c%e7%94%a8" class="header-mark"></a>3.8.1. 作用</h3><ol>
+<li>设置将无用的连接尽快超时,可以保护服务器的系统资源(cpu、内存、磁盘)</li>
+<li>当连接很多时，及时断掉那些已经建立好但又长时间不做事的连接, 以减少其占用的服务器资源，应为服务器维护连接也是要消耗资源的。</li>
+<li>有时黑客或恶意用户攻击网站，就会不断的和服务器建立多个连接，消耗连接数，但啥也不干，只是持续建立连接，这就会大量消耗服务器的资源，此时就应该及时断掉这些恶意占用资源的连接。</li>
+<li>LNMP环境中，如果用户请求了动态服务，则Nginx就会建立连接请求fastcgi服务以及mysql服务，此时这个Nginx连接就要设定一个超时时间，在用户容忍的是就按内反回数据，或者在多等一会后端服务器返回数据，具体的策略要具体业务分析。</li>
+</ol>
+<h3 id="382-问题" class="headerLink">
+    <a href="#382-%e9%97%ae%e9%a2%98" class="header-mark"></a>3.8.2. 问题</h3><ol>
+<li>超时时间若设置太短，并发很大的时候，就会导致服务器无法瞬间响应用户请求，导致体验下降 。</li>
+</ol>
+<h3 id="383-建议" class="headerLink">
+    <a href="#383-%e5%bb%ba%e8%ae%ae" class="header-mark"></a>3.8.3. 建议</h3><ol>
+<li>php 网站建议短连接，php程序建立连接消耗的资源和时间少</li>
+<li>java网站建议长连接，java程序建立连接消耗的资源和时间多(连接重用，连接池..)</li>
+</ol>
+<h3 id="384-配置" class="headerLink">
+    <a href="#384-%e9%85%8d%e7%bd%ae" class="header-mark"></a>3.8.4. 配置</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># http/server</span>
+</span></span><span class="line"><span class="cl">keepalive_timeout 60<span class="p">;</span> <span class="c1"># 默认60秒 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># keepalive_time 可以使客户端到服务器端已经建立的连接一直工作而不退出，当服务器有持续请求的时候，keep-alive会使用正在建立的连接提供服务，从而避免服务器重新建立新的连接处理请求。 此参数生效需激活tcp_nodelay选项 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">client_header_timeout 15<span class="p">;</span> <span class="c1"># 用于设置读取客户端请求头数据的超时时间，此处的数值15单位是秒，为经验参考值。如果超过此事件客户端还没有发送完整的header数据，服务端将返回 408错误 ，指定一个时间可以防止客户端利用http协议进行攻击 。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">client_body_timeout 15<span class="p">;</span> <span class="c1"># 用于设置读取客户端请求主体的超时时间，这个超时仅仅为两次成功的读取操作之间的一个超时，非请求整个主体数据的超时时间，如果在这个超时时间内，客户端没有发送任何数据，则服务端返回 408 。 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">send_timeout 25<span class="p">;</span> <span class="c1"># 设置服务器端传送http响应信息到客户端的超时时间(服务端发给客户端)，这个超时时间仅仅为两次成功握手后的一个超时，非请求整个响应数据的超时时间，如果这个超时时间内，客户端没有接受任何数据，连接将会被关闭。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上传文件大小 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">client_max_body_size 8m<span class="p">;</span>  <span class="c1"># 上传文件大小，超过设置值反会413错误.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="39-动态参数引擎fastcgi" class="headerLink">
+    <a href="#39-%e5%8a%a8%e6%80%81%e5%8f%82%e6%95%b0%e5%bc%95%e6%93%8efastcgi" class="header-mark"></a>3.9. 动态参数引擎fastcgi</h2><table>
+<thead>
+<tr>
+<th>Nginx Fastcgi参数(http)</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fastcgi_connect_timeout</td>
+<td>表示Nginx服务器和后端FastCGI服务器连接的超时时间，默认60s,这个参数通常设置不要超过75s，因为建立的连接诶越多消耗的资源就越多。(Nginx请求php服务器多少时间内要拿到数据，否则断开连接502)</td>
+</tr>
+<tr>
+<td>fastcgi_send_timeout</td>
+<td>设置Nginx允许FastCGI服务端返回数据的超时时间，即在规定时间之内后端服务器必须传完所有数据，否则Nginx将断开这个连接,默认60s(PHP需要在多少时间内将数据全部发送完成给nginx，否则断开)</td>
+</tr>
+<tr>
+<td>fastcgi_read_timeout</td>
+<td>设置Nginx从FastCGI服务端读取响应信息的超时时间，表示连接成功建立后，Nginx等待后端服务器的响应时间，是Nginx已经进入后端的排队之中等候处理的时间。</td>
+</tr>
+<tr>
+<td>fastcgi_buffer_size</td>
+<td>这个是Nginx fastcgi的缓冲区大小参数，设定用来读取从fastcgi服务端收到的第一部分响应信息的缓冲区大小，这里的第一部分通常会包含一个小的响应头部，默认情况下大小是由fastcgi_buffers 指定的一个缓冲区的大小</td>
+</tr>
+<tr>
+<td>fastcgi_buffers</td>
+<td>设定用来读取从Fastcgi服务端收到响应信息的缓冲区大小，已经缓冲区的数量。默认值：`fastcg_buffers 8 4</td>
+</tr>
+<tr>
+<td>fastcgi_busy_buffers_size</td>
+<td>用于设置系统很繁忙的时候可以使用的fastcgi_buffers大小，官方推荐的大小为<code>fastcgi_buffers *2 </code>，默认值 `fastcgi_busy_buffers_size 8k</td>
+</tr>
+<tr>
+<td>fastcgi_temp_file_write_size</td>
+<td>fastcgi临时文件的大小，可设置128-256k</td>
+</tr>
+<tr>
+<td>fastcgi_cache xxxx</td>
+<td>表示开启fastcgi缓存并为其指定一个名称，开启缓存非常有用，可以有效的降低cpu负载，并且防止502错误的发生，但是开启缓存也有可能会引起其他问题，要根据具体情况来选择。</td>
+</tr>
+<tr>
+<td>fastcgi_cache_path</td>
+<td>例:<code>fastcgi_cache_path /data/ngx_fcgi_cache levels=2:2 keys_zone=ngx_fcgi_cache:521min active=1d max_size=40g</code> ,fastcgi_cache缓存目录，可以设置hash层级，比如2:2会生成256×256个子目录，keys_zone是这个缓存空间的名字，cache是用多少内存(这样热门的内容nginx直接存放内存，提高访问速度)，inactive表示默认失效的时间，max_size 表示最多用多少硬盘空间。需要注意的是fastcgi_cache缓存是先写在fastcgi_temp_path，在转移到fastcgi_cache_path，所以这两个目录最好是放在同一分区</td>
+</tr>
+<tr>
+<td>fastcgi_cache_valid</td>
+<td>例: <code>fastcgi_cache_valid 200 302 1h;</code>当状态码是200、302时候缓存一小时;<code>fastcgi_cache_valid 301 1d;</code> 当状态码是301时缓存一天;<code>fastcgi_cache_valid any 1m;</code> 当状态码是其他的时候缓存1分钟</td>
+</tr>
+<tr>
+<td>fastcgi_cache_min_uses</td>
+<td>设置请求几次响应被缓存  例: <code>fastcgi_cache_min_uses 1;</code> 表示1次请求即被缓存</td>
+</tr>
+<tr>
+<td>fastcgi_cache_use_stale</td>
+<td>定义那些情况下使用过期缓存 例:<code>fastcgi_cache_use_stale error timeout invalid_header http_500;</code></td>
+</tr>
+<tr>
+<td>fastcgi_cache_key</td>
+<td>例: <code>fastcgi_cache_key $request_method://$host$request_uri; fastcgi_cache_key http://$host$request_uri;</code> 定义fastcgi_cache的key，示例中就以请求的URI作为缓存的key，Nginx回去这个key的md5作为缓存文件，如果设置了缓存hash目录，nginx会从后向前取相应的位数作为目录。注意 一定要加上$request_method 作为cache key，否则如果HEAD类型的先请求会导致后面的GET请求返回为空。</td>
+</tr>
+</tbody>
+</table>
+<p>示例配置:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># fastcgi 缓冲区 和 超时时间 (http标签)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fastcgi_send_timeout</span> <span class="mi">240</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_read_timeout</span> <span class="mi">240</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_buffer_size</span> <span class="mi">64k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_buffers</span> <span class="mi">4</span> <span class="mi">64k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_busy_buffers_size</span> <span class="mi">128k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_temp_file_write_size</span> <span class="mi">128k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_temp_path</span> <span class="s">/opt/nginxssl/fastcgi_temp/tmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_cache_path</span> <span class="s">/opt/nginxssl/fastcgi_temp/cache</span> <span class="s">levels=2:2</span> <span class="s">keys_zone=cache:128m</span> <span class="s">inactive=1d</span> <span class="s">max_size=6g</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#fastcgi 缓存 (server标签)	 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">fastcgi_cache</span> <span class="s">cache</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_cache_valid</span> <span class="mi">200</span> <span class="s">1h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_cache_valid</span> <span class="mi">301</span> <span class="s">1d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_cache_valid</span> <span class="s">any</span> <span class="mi">1m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_cache_min_uses</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_cache_use_stale</span> <span class="s">error</span> <span class="s">timeout</span> <span class="s">invalid_header</span> <span class="s">http_500</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fastcgi_cache_key</span> <span class="s">http://</span><span class="nv">$host$request_uri</span><span class="p">;</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="310-gzip" class="headerLink">
+    <a href="#310-gzip" class="header-mark"></a>3.10. gzip</h2><h3 id="3101-优点" class="headerLink">
+    <a href="#3101-%e4%bc%98%e7%82%b9" class="header-mark"></a>3.10.1. 优点</h3><ul>
+<li>提升网站用户体验,提升网站用户访问速度</li>
+<li>节约网站宽带成本</li>
+</ul>
+<h3 id="3102-需要和不需要压缩的对象" class="headerLink">
+    <a href="#3102-%e9%9c%80%e8%a6%81%e5%92%8c%e4%b8%8d%e9%9c%80%e8%a6%81%e5%8e%8b%e7%bc%a9%e7%9a%84%e5%af%b9%e8%b1%a1" class="header-mark"></a>3.10.2. 需要和不需要压缩的对象</h3><ul>
+<li>纯文本内容压缩比很高，因此纯文本的内容最好要压缩(例如: html、js、css、xml、shtml等)</li>
+<li>被压缩的纯文本必须要大于1kb，否则由于压缩算法的原因，可能导致压缩反而是文件增大</li>
+<li>图片、视频(流媒体)等文件尽量不要压缩，因为这些文件大多都是经过压缩的，如果在压缩可能不会减少太多，或者可能增大，而在压缩还会消耗大量的cpu、内存资源</li>
+</ul>
+<h3 id="3103-配置" class="headerLink">
+    <a href="#3103-%e9%85%8d%e7%bd%ae" class="header-mark"></a>3.10.3. 配置</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gzip on</code></td>
+<td>开启gzip压缩功能</td>
+</tr>
+<tr>
+<td><code>gzip_min_length 1k</code></td>
+<td>设置允许压缩页面的最小字节数，页面字节数从header头的Content-Length中获取，默认0，表示不管页面多大都进行压缩</td>
+</tr>
+<tr>
+<td><code>gzip_buffers 4 16k</code></td>
+<td>压缩区缓冲区大小，表示申请4个单位为16k的内存作为压缩结果流缓存，默认值是申请与原始数据大小相同的内存空间来存储gzip压缩结果</td>
+</tr>
+<tr>
+<td><code>gzip_http_version 1.1</code></td>
+<td>压缩版本，默认1.1，比如说前端访问的并不一定是用户，可能是cdn，这个时候就需要加一个版本，先大部分都支持gzip解压，设置默认即可</td>
+</tr>
+<tr>
+<td><code>gzip_comp_level 2;</code></td>
+<td>用来指定压缩比例，1 压缩最小，处理速度最快;9压缩比例最大，传输快，但处理速度慢，也比较消耗cpu资源</td>
+</tr>
+<tr>
+<td><code>gzip_types text/plan application/x-javascript</code></td>
+<td>指定需要压缩的文件类型</td>
+</tr>
+<tr>
+<td><code>gzip_vary on;</code></td>
+<td>vary header 支持，该选项可以让前端的缓存服务器缓存gzip压缩的页面，(让缓存服务器继续缓存，而不是解压，只有在浏览器的时候在解压)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="311-nginx-expires-缓存" class="headerLink">
+    <a href="#311-nginx-expires-%e7%bc%93%e5%ad%98" class="header-mark"></a>3.11. nginx expires 缓存</h2><h3 id="3111-优点" class="headerLink">
+    <a href="#3111-%e4%bc%98%e7%82%b9" class="header-mark"></a>3.11.1. 优点</h3><ul>
+<li>expires 可以降低网站的宽带，节约成本</li>
+<li>加快用户访问网站的速度，提升用户体验</li>
+<li>减少服务器访问量，降低服务器压力，节约服务器成本</li>
+</ul>
+<h3 id="3112-缺点" class="headerLink">
+    <a href="#3112-%e7%bc%ba%e7%82%b9" class="header-mark"></a>3.11.2. 缺点</h3><ul>
+<li>当网站被缓存的页面存在更新时，用户看到的可能还是旧的数据
+<ul>
+<li>解决方案:
+<ol>
+<li>缩短经常修改页面的缓存时间</li>
+<li>对于经常修改的页面文件名进行添加，或加上版本号，这样前端cdn以及用户端需要重新更新缓存内容</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3113-配置" class="headerLink">
+    <a href="#3113-%e9%85%8d%e7%bd%ae" class="header-mark"></a>3.11.3. 配置</h3><p>如果配置后导致前端无法正常访问，有可能是因为server标签中没有指定root目录有关<br>
+示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># server / http 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">location</span> <span class="p">~</span> <span class="sr">.*\.(gif|jpg|jpeg|png|bmp|swf)</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">expires</span> <span class="s">6d</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="312-nginx-日志" class="headerLink">
+    <a href="#312-nginx-%e6%97%a5%e5%bf%97" class="header-mark"></a>3.12. nginx 日志</h2><h3 id="3121-切割示例" class="headerLink">
+    <a href="#3121-%e5%88%87%e5%89%b2%e7%a4%ba%e4%be%8b" class="header-mark"></a>3.12.1. 切割示例</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># 40 23 * * * /bin/bash /opt/sh/cut_nginx_all.sh &gt;&gt; /dev/null 2&gt;&amp;1 </span>
+</span></span><span class="line"><span class="cl"><span class="nv">time</span><span class="o">=</span><span class="sb">`</span>date +<span class="s2">&#34;%Y-%m-%d&#34;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="nv">log_path</span><span class="o">=</span><span class="s2">&#34;/opt/nginxssl/logs&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">pid_path</span><span class="o">=</span><span class="s2">&#34;/opt/nginxssl/logs/nginx.pid&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">new_dir</span><span class="o">=</span><span class="s2">&#34;/opt/logs/nginxlogs&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx web 日志 (www.log) ，以空格隔开，无需后缀 </span>
+</span></span><span class="line"><span class="cl"><span class="nv">logs_names</span><span class="o">=(</span>www www1<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="nv">$new_dir</span>
+</span></span><span class="line"><span class="cl"><span class="nv">num</span><span class="o">=</span><span class="si">${#</span><span class="nv">logs_names</span><span class="p">[@]</span><span class="si">}</span> 
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span>i&lt;num <span class="p">;</span>i++<span class="o">))</span><span class="p">;</span><span class="k">do</span>
+</span></span><span class="line"><span class="cl">  mv <span class="si">${</span><span class="nv">log_path</span><span class="si">}</span>/<span class="si">${</span><span class="nv">logs_names</span><span class="p">[i]</span><span class="si">}</span>.log <span class="si">${</span><span class="nv">new_dir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">logs_names</span><span class="p">[i]</span><span class="si">}</span>_<span class="si">${</span><span class="nv">time</span><span class="si">}</span>.log
+</span></span><span class="line"><span class="cl">  tar czf <span class="si">${</span><span class="nv">logs_names</span><span class="p">[i]</span><span class="si">}</span>_<span class="si">${</span><span class="nv">time</span><span class="si">}</span>.tar.gz <span class="si">${</span><span class="nv">logs_names</span><span class="p">[i]</span><span class="si">}</span>_<span class="si">${</span><span class="nv">time</span><span class="si">}</span>.log
+</span></span><span class="line"><span class="cl">  rm <span class="si">${</span><span class="nv">logs_names</span><span class="p">[i]</span><span class="si">}</span>_<span class="si">${</span><span class="nv">time</span><span class="si">}</span>.log
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/opt/nginxssl/sbin/nginx -s reopen
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3122-不记录不需要的日志" class="headerLink">
+    <a href="#3122-%e4%b8%8d%e8%ae%b0%e5%bd%95%e4%b8%8d%e9%9c%80%e8%a6%81%e7%9a%84%e6%97%a5%e5%bf%97" class="header-mark"></a>3.12.2. 不记录不需要的日志</h3><ol>
+<li>在实际工作中，对于负载均衡器的健康检查节点或某些特定文件(如图片、js、css等)的日志，一般不需要记录下来，因为在PV时是按照页面计算的。而且日志写入太频繁会大量消耗磁盘IO，降低服务器性能.
+<ul>
+<li>网络流量度量术语
+<ol>
+<li>独立(公网)ip数: 指的是不同IP地址的计算机访问网站时被计算的总次数。独立IP书是衡量网站流量的一个重要指标。一般一天内相同IP地址的客户端访问网站页面只被计算为一次，记录独立IP的时间可以为一天或一个月，目前通常标准为一天;</li>
+<li>PV 访问量: 即Page View 页面浏览，即页面浏览量或点击量，不管客户端是不是相同，也不管ip是不是相同，用户每次访问一个网站页面都会被计算一个PV。具体度量方法就是从客户浏览器发出一个对web服务器的请求，web服务器接到这个请求后，将该请求对应的一个网页发给浏览器，就产生了一个pv。但是只要这个请求发送给了浏览器，无论这个页面是否完全打开(或下载完成)，那么都会被(服务器日志)计数为一个PV，一般为了防止用户快速刷PV，都是把PV的统计程序放在页面的最下面。</li>
+<li>UV 独立访客数: 同一个客户端(PC或移动端) 访问网站被计算为一个访客，一天内相同的客户端访问同一个网站只计算一次UV，UV一般是以客户端Cookie等计算作为统计依据，实际统计会有误差。一台客户端可能忽悠多人使用的情况，因此，UV实际上并不一定是独立的自然人访问。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>配置方法:<br>
+这里的location标签匹配不记录日志的元素扩展名，然后关掉了日志。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="p">~</span> <span class="sr">.*\.(js|jpg|JPG|jpeg|JPEG|css|bmp|gif|GIF)$</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">access_log</span> <span class="no">off</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3123-访问日志权限设置" class="headerLink">
+    <a href="#3123-%e8%ae%bf%e9%97%ae%e6%97%a5%e5%bf%97%e6%9d%83%e9%99%90%e8%ae%be%e7%bd%ae" class="header-mark"></a>3.12.3. 访问日志权限设置</h3><ul>
+<li>限制用户及组为root , 修改目录权限 600 ,nginx访问日志的权限即使是root，nginx也是可以读取的</li>
+</ul>
+<h2 id="313-nginx-站点目录及文件url控制" class="headerLink">
+    <a href="#313-nginx-%e7%ab%99%e7%82%b9%e7%9b%ae%e5%bd%95%e5%8f%8a%e6%96%87%e4%bb%b6url%e6%8e%a7%e5%88%b6" class="header-mark"></a>3.13. nginx 站点目录及文件URL控制</h2><h3 id="3131-根据文件扩展名限制程序和文件访问" class="headerLink">
+    <a href="#3131-%e6%a0%b9%e6%8d%ae%e6%96%87%e4%bb%b6%e6%89%a9%e5%b1%95%e5%90%8d%e9%99%90%e5%88%b6%e7%a8%8b%e5%ba%8f%e5%92%8c%e6%96%87%e4%bb%b6%e8%ae%bf%e9%97%ae" class="header-mark"></a>3.13.1. 根据文件扩展名限制程序和文件访问</h3><ul>
+<li>示例:</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="p">~</span> <span class="sr">^/image/.*\.(php|php5|sh|pl|py)$</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">location</span> <span class="p">~</span> <span class="sr">^/static/.*\.(php|php5|sh|pl|py)$</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">location</span> <span class="p">~</span> <span class="sr">^/data/(attachment|avatar)/.*\.(php|php5)$</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3132-限制网站来源ip访问" class="headerLink">
+    <a href="#3132-%e9%99%90%e5%88%b6%e7%bd%91%e7%ab%99%e6%9d%a5%e6%ba%90ip%e8%ae%bf%e9%97%ae" class="header-mark"></a>3.13.2. 限制网站来源IP访问</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="p">~</span> <span class="sr">^/admin/</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">allow</span> <span class="s">xx.xx.xx.xx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">allow</span> <span class="s">xx.xx.xx.xx/xx</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    deny xx.xx.xx.xx;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">deny</span> <span class="s">all</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用if来限制客户端ip</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s">(</span><span class="nv">$remote_addr</span> <span class="p">=</span> <span class="mi">10</span><span class="s">.0.0.7</span> <span class="s">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">return</span> <span class="mi">403</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s">(</span><span class="nv">$remote_addr</span> <span class="p">=</span> <span class="s">xx.xx.xx.xx</span> <span class="s">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">set</span> <span class="nv">$allow_access_root</span> <span class="s">&#39;true&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3133-配置nginx禁止非法域名解析" class="headerLink">
+    <a href="#3133-%e9%85%8d%e7%bd%aenginx%e7%a6%81%e6%ad%a2%e9%9d%9e%e6%b3%95%e5%9f%9f%e5%90%8d%e8%a7%a3%e6%9e%90" class="header-mark"></a>3.13.3. 配置nginx禁止非法域名解析</h3><ol>
+<li>问题： 如何防止用户IP访问网站(恶意域名解析，也相当于ip访问网站)<br>
+解决：让使用ip访问网站的用户，或者恶意解析域名的用户，收到501错误。(需要放到所有server之前)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span> <span class="s">default_server</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">_</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">return</span> <span class="mi">501</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="314-防盗链" class="headerLink">
+    <a href="#314-%e9%98%b2%e7%9b%97%e9%93%be" class="header-mark"></a>3.14. 防盗链</h2><h3 id="3141-解决方案" class="headerLink">
+    <a href="#3141-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" class="header-mark"></a>3.14.1. 解决方案</h3><ol>
+<li>根据<code>http_referer</code>实现防盗链
+示例:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># server 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">location</span> <span class="p">~</span><span class="sr">*</span> <span class="s">^.+\.(jpg|png|swf|flv)</span>$ <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">valid_referers</span> <span class="s">none</span> <span class="s">bloked</span> <span class="s">*.example.com</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">if</span> <span class="s">(</span><span class="nv">$invalid_referer</span><span class="s">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="c1">#rewrite ^/ https://www.example.com/daolian.png;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="kn">return</span> <span class="mi">403</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>根据<code>cookie</code>防盗链</li>
+</ol>
+<h2 id="315-错误页面优雅显示" class="headerLink">
+    <a href="#315-%e9%94%99%e8%af%af%e9%a1%b5%e9%9d%a2%e4%bc%98%e9%9b%85%e6%98%be%e7%a4%ba" class="header-mark"></a>3.15. 错误页面优雅显示</h2><p>示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># error_page 可以多行，每行对应一个状态码 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">error_page</span>  <span class="mi">500</span> <span class="mi">502</span> <span class="mi">503</span> <span class="mi">504</span> <span class="mi">404</span>  <span class="s">/50x_error.html</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若集群，建议选择域名跳转，统一分配
+</span></span></span><span class="line"><span class="cl"><span class="c1"># error_page  500 502 503 504 404  http://www.example.com/erro_page;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>fastcgi_intercept_errors on;</code> 默认 <code>off</code> ,这个指令指定的是是否传递 <code>4xx</code>和 <code>5xx</code>信息到客户端，或允许<code>nginx</code> 使用<code>error_page</code>处理错误信息。</p>
+<h2 id="316-站点目录权限优化" class="headerLink">
+    <a href="#316-%e7%ab%99%e7%82%b9%e7%9b%ae%e5%bd%95%e6%9d%83%e9%99%90%e4%bc%98%e5%8c%96" class="header-mark"></a>3.16. 站点目录权限优化</h2><p>目录权限<code>755</code>,文件权限<code>644</code>，用户及组<code>root</code>，用户上传目录<code>nginx</code>服务用户.(减少文件上传目录权限)</p>
+<h2 id="317-防爬虫优化" class="headerLink">
+    <a href="#317-%e9%98%b2%e7%88%ac%e8%99%ab%e4%bc%98%e5%8c%96" class="header-mark"></a>3.17. 防爬虫优化</h2><h3 id="3171-robotstxt-机器人协议" class="headerLink">
+    <a href="#3171-robotstxt-%e6%9c%ba%e5%99%a8%e4%ba%ba%e5%8d%8f%e8%ae%ae" class="header-mark"></a>3.17.1. robots.txt 机器人协议</h3><p>网站通过robots(网站根目录存放robots.txt)协议告诉搜索引擎哪些页面可以抓取，那些页面不能抓取。
+示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">User-agent: *</span>
+</span></span><span class="line"><span class="cl"><span class="na">Disallow: /</span>
+</span></span><span class="line"><span class="cl"><span class="na">Sitemap: https://www.example.com/sitemap.xml</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3172-nginx-防爬虫优化配置" class="headerLink">
+    <a href="#3172-nginx-%e9%98%b2%e7%88%ac%e8%99%ab%e4%bc%98%e5%8c%96%e9%85%8d%e7%bd%ae" class="header-mark"></a>3.17.2. nginx 防爬虫优化配置</h3><p>示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># server|location 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="s">(</span><span class="nv">$http_user_agent</span> <span class="p">~</span><span class="sr">*</span> <span class="s">&#34;LWP::Simple|BBBike|wget&#34;)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">return</span> <span class="mi">403</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="318-nginx-限制http请求方法" class="headerLink">
+    <a href="#318-nginx-%e9%99%90%e5%88%b6http%e8%af%b7%e6%b1%82%e6%96%b9%e6%b3%95" class="header-mark"></a>3.18. nginx 限制http请求方法</h2><p>示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># 屏蔽非GET|HEAD|POST的请求方法 
+</span></span></span><span class="line"><span class="cl"><span class="c1"># server|location 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="s">!~</span> <span class="s">^(GET|HEAD|POST)</span>$ <span class="s">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">return</span> <span class="mi">501</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="319-使用cdn做网站内容加速" class="headerLink">
+    <a href="#319-%e4%bd%bf%e7%94%a8cdn%e5%81%9a%e7%bd%91%e7%ab%99%e5%86%85%e5%ae%b9%e5%8a%a0%e9%80%9f" class="header-mark"></a>3.19. 使用cdn做网站内容加速</h2><p>cdn全国或全球的分布式缓存集群</p>
+<h2 id="320-网站架构优化" class="headerLink">
+    <a href="#320-%e7%bd%91%e7%ab%99%e6%9e%b6%e6%9e%84%e4%bc%98%e5%8c%96" class="header-mark"></a>3.20. 网站架构优化</h2><h3 id="3201-为网站程序解耦" class="headerLink">
+    <a href="#3201-%e4%b8%ba%e7%bd%91%e7%ab%99%e7%a8%8b%e5%ba%8f%e8%a7%a3%e8%80%a6" class="header-mark"></a>3.20.1. 为网站程序解耦</h3><p>指的是把一堆程序代码按照业务用途分开，然后提供服务。例如: 注册登陆、上传、下载、浏览列表、商品内容页面、订单支付等都应该是独立的程序服务。</p>
+<h2 id="321-nginx-监牢模式" class="headerLink">
+    <a href="#321-nginx-%e7%9b%91%e7%89%a2%e6%a8%a1%e5%bc%8f" class="header-mark"></a>3.21. nginx 监牢模式</h2><h3 id="3211-nginx-服务降权解决方案" class="headerLink">
+    <a href="#3211-nginx-%e6%9c%8d%e5%8a%a1%e9%99%8d%e6%9d%83%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" class="header-mark"></a>3.21.1. nginx 服务降权解决方案</h3><p>解决方案:</p>
+<ul>
+<li>给<code>nginx</code> 服务降权，用普通用户(假设普通用户为<code>www</code> )跑<code>nginx</code> 服务，给开发和运维设置普通用户帐号，将开发和运维的帐号设置为与<code>www</code> 同组即可管理<code>nginx</code>，该方案解决了<code>nginx</code>管理问题，防止<code>root</code>分配权限过大。</li>
+<li>开发人员使用普通用户即可管理<code>nginx</code> 服务及站点下的程序和日志。</li>
+<li>采取项目负责制度，即谁负责的项目维护出了问题就是谁负责。</li>
+</ul>
+<h2 id="322-控制nginx并发连接数" class="headerLink">
+    <a href="#322-%e6%8e%a7%e5%88%b6nginx%e5%b9%b6%e5%8f%91%e8%bf%9e%e6%8e%a5%e6%95%b0" class="header-mark"></a>3.22. 控制nginx并发连接数</h2><p>示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># 定义 
+</span></span></span><span class="line"><span class="cl"><span class="c1"># http 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">limit_conn_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=addr:10m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#使用(seerver/location)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">limit_conn</span> <span class="s">addr</span> <span class="mi">1</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="323-控制-nginx请求" class="headerLink">
+    <a href="#323-%e6%8e%a7%e5%88%b6-nginx%e8%af%b7%e6%b1%82" class="header-mark"></a>3.23. 控制 nginx请求</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="c1"># 定义 
+</span></span></span><span class="line"><span class="cl"><span class="c1"># http 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">limit_req_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=one</span><span class="p">;</span><span class="k">10m</span> <span class="s">rate=1r/s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#使用(seerver/location)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">limit_req</span> <span class="s">zone=one</span> <span class="s">burst=5</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="4-php-优化" class="headerLink">
+    <a href="#4-php-%e4%bc%98%e5%8c%96" class="header-mark"></a>4. php 优化</h1><h2 id="41-php-参数调优" class="headerLink">
+    <a href="#41-php-%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98" class="header-mark"></a>4.1. php 参数调优</h2><p><code>php.ini-development</code>与<code>php.ini-production</code>的区别是日志的开启与隐藏</p>
+<h3 id="411-phpini-安全参数调优" class="headerLink">
+    <a href="#411-phpini-%e5%ae%89%e5%85%a8%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98" class="header-mark"></a>4.1.1. php.ini 安全参数调优</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">; 打开安全模式(防止system()函数可调用系统命令)，5.5以上已无该参数</span>
+</span></span><span class="line"><span class="cl"><span class="na">safe_mode</span> <span class="o">=</span> <span class="s">On</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; safe_mode 打开时，safe_mode_gid被关闭，那么php脚本能够对文件进行访问，而且同组的用户也能狗对文件进行访问。设置off进行关闭,5.5以上已无该参数</span>
+</span></span><span class="line"><span class="cl"><span class="na">safe_mode_gid</span> <span class="o">=</span> <span class="s">Off</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 关闭危险函数(phpinfo,passthru,exec,shell_exec,system,popen,proc_open,proc_get_status,chroot,scandir,chgrp,chown,readdir,ls_dir,ini_set,ini_alter,ini_restore,dl,pfsockopen,fsocket,openlog,syslog,readlink,symlink,popepassthru,stream_socket_server,rmdir,chmod,closedir,opendir,dir,fileperms,copy,delfile),默认无限制</span>
+</span></span><span class="line"><span class="cl"><span class="na">disable_functions</span> <span class="o">=</span> <span class="s">phpinfo</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 关闭php版本信息(默认On) </span>
+</span></span><span class="line"><span class="cl"><span class="na">expose_php</span> <span class="o">=</span> <span class="s">Off </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 关闭注册全局变量,5.5以上已无该参数  </span>
+</span></span><span class="line"><span class="cl"><span class="na">register_globals</span> <span class="o">=</span> <span class="s">Off</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 防止sql注入(打开后自动把用户体检对sql的查询进行转换,例如把&#39;转换为\),默认Off,5.5以上已无该参数</span>
+</span></span><span class="line"><span class="cl"><span class="na">magic_quotes_gpc</span> <span class="o">=</span> <span class="s">On </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 错误信息输出控制,默认On </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 建议在关闭display_errors后能够把错误信息记录下来，便于查找服务器运行的原因: </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; log_errors = On </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; error_log = /var/log/php_error.log </span>
+</span></span><span class="line"><span class="cl"><span class="na">display_errors</span> <span class="o">=</span> <span class="s">Off</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="412-phpini-优化参数调优" class="headerLink">
+    <a href="#412-phpini-%e4%bc%98%e5%8c%96%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98" class="header-mark"></a>4.1.2. php.ini 优化参数调优</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">; 每个脚本最大允许执行时间(s),0 表示没有限制 </span>
+</span></span><span class="line"><span class="cl"><span class="na">max_execution_time</span> <span class="o">=</span> <span class="s">30 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 每个脚本使用的最大内存,要能够使用该指令编译时必须启用 --enable-memory-limit 选项 </span>
+</span></span><span class="line"><span class="cl"><span class="na">memory_limit</span> <span class="o">=</span> <span class="s">128M </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 每个脚本等待输入数据的最长时间 ,-1 表示不限制 </span>
+</span></span><span class="line"><span class="cl"><span class="na">max_input_time</span> <span class="o">=</span> <span class="s">60 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 上传文件的最大许可 </span>
+</span></span><span class="line"><span class="cl"><span class="na">upload_max_filesize</span> <span class="o">=</span> <span class="s">2M </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 最大上传的文件数量(可同时上传多少个文件),默认20</span>
+</span></span><span class="line"><span class="cl"><span class="na">max_file_uploads</span> <span class="o">=</span> <span class="s">20 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; http post 数据的大小 (请求包的大小)，默认8M</span>
+</span></span><span class="line"><span class="cl"><span class="na">post_max_size</span> <span class="o">=</span> <span class="s">8M </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="413-phpini-安全优化" class="headerLink">
+    <a href="#413-phpini-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>4.1.3. php.ini 安全优化</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">; 禁止打开远程地址,默认On</span>
+</span></span><span class="line"><span class="cl"><span class="na">allow_url_fopen</span> <span class="o">=</span> <span class="s">Off </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 防止nginx文件类型错误解析漏洞,默认1 </span>
+</span></span><span class="line"><span class="cl"><span class="na">cgi.fix_pathinfo</span> <span class="o">=</span> <span class="s">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="414-php-session-会话保持" class="headerLink">
+    <a href="#414-php-session-%e4%bc%9a%e8%af%9d%e4%bf%9d%e6%8c%81" class="header-mark"></a>4.1.4. php session 会话保持</h3><p>集群环境，一般会将session存放于memcache中，多个集群节点连接同一个memcache，保证用户session处于在线状态<br>
+php.ini 修改</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">; 调整php session 信息存放类型,默认文件 files  </span>
+</span></span><span class="line"><span class="cl"><span class="na">session.save_handler</span> <span class="o">=</span> <span class="s">memcache  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; session 保存位置,默认tmp </span>
+</span></span><span class="line"><span class="cl"><span class="na">session.save_path</span> <span class="o">=</span> <span class="s">&#34;tcp://10.0.0.18:11211&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="42-php-fpm-调优" class="headerLink">
+    <a href="#42-php-fpm-%e8%b0%83%e4%bc%98" class="header-mark"></a>4.2. php-fpm 调优</h2><h3 id="421-php-fpmconf-调优" class="headerLink">
+    <a href="#421-php-fpmconf-%e8%b0%83%e4%bc%98" class="header-mark"></a>4.2.1. php-fpm.conf 调优</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">; 打开进程pid</span>
+</span></span><span class="line"><span class="cl"><span class="na">pid</span> <span class="o">=</span> <span class="s">run/php-fpm.pid</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 打开php-fpm 进程错误日志 </span>
+</span></span><span class="line"><span class="cl"><span class="na">error_log</span> <span class="o">=</span> <span class="s">log/php-fpm.log </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 错误日志级别 ， 默认notice </span>
+</span></span><span class="line"><span class="cl"><span class="na">log_level</span> <span class="o">=</span> <span class="s">error </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 最大的php-fpm进程数量(静态),默认128  </span>
+</span></span><span class="line"><span class="cl"><span class="na">process.max</span> <span class="o">=</span> <span class="s">128 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 文件描述符，默认1024</span>
+</span></span><span class="line"><span class="cl"><span class="na">rlimit_files</span> <span class="o">=</span> <span class="s">10240</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 表示在emergency_restart_interval时间内，出现SIGEGV或者SIGBUS错误的php-cgi进程数如果超过了</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; emergency_restart_threshold个，则php-cgi就会优雅重启</span>
+</span></span><span class="line"><span class="cl"><span class="na">emergency_restart_interval</span> <span class="o">=</span> <span class="s">60s</span>
+</span></span><span class="line"><span class="cl"><span class="na">emergency_restart_threshold</span> <span class="o">=</span> <span class="s">60</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 池定义 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 与nginx用户一样 </span>
+</span></span><span class="line"><span class="cl"><span class="k">[www]</span>
+</span></span><span class="line"><span class="cl"><span class="na">user</span> <span class="o">=</span> <span class="s">www</span>
+</span></span><span class="line"><span class="cl"><span class="na">group</span> <span class="o">=</span> <span class="s">www</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 监听</span>
+</span></span><span class="line"><span class="cl"><span class="na">listen</span> <span class="o">=</span> <span class="s">127.0.0.1:9000 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 控制允许访问的客户端</span>
+</span></span><span class="line"><span class="cl"><span class="na">listen.allowed_clients</span> <span class="o">=</span> <span class="s">127.0.0.1 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 进程模式,默认动态,开启后需配合pm.max_children，pm.start_servers，pm.min_spare_servers，pm.max_spare_servers参数进行设置  </span>
+</span></span><span class="line"><span class="cl"><span class="na">pm</span> <span class="o">=</span> <span class="s">dynamic</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 同一时间，最大可创建的子进程的数量(静态模式下由此参数固定进程数)</span>
+</span></span><span class="line"><span class="cl"><span class="na">pm.max_children</span> <span class="o">=</span> <span class="s">300</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 设置启动时创建的子进程数目</span>
+</span></span><span class="line"><span class="cl"><span class="na">pm.start_servers</span> <span class="o">=</span> <span class="s">20 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; pm.*_spare_servers 设置空闲服务进程的最低/最大数目</span>
+</span></span><span class="line"><span class="cl"><span class="na">pm.min_spare_servers</span> <span class="o">=</span> <span class="s">20 </span>
+</span></span><span class="line"><span class="cl"><span class="na">pm.max_spare_servers</span> <span class="o">=</span> <span class="s">300 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 进程的超时时间，当进程不提供服务后，多少秒关闭,默认10s</span>
+</span></span><span class="line"><span class="cl"><span class="na">pm.process_idle_timeout</span> <span class="o">=</span> <span class="s">10s</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 一个子进程处理多少个请求后退出，默认 0  </span>
+</span></span><span class="line"><span class="cl"><span class="na">pm.max_requests</span> <span class="o">=</span> <span class="s">10240 </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-28</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/" data-title="常用web环境优化"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E4%BC%98%E5%8C%96/">优化</a>,&nbsp;<a href="/tags/nginx/">nginx</a>,&nbsp;<a href="/tags/php/">php</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" class="prev" rel="prev" title="常用命令收集"><i class="fas fa-angle-left fa-fw"></i>常用命令收集</a>
+            <a href="/2022/starting/" class="next" rel="next" title="Starting">Starting<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

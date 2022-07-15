@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">windows 本地安全策略设置 - 一个曾经的小码农...</title><meta name="Description" content="Ipsec"><meta property="og:title" content="windows 本地安全策略设置" />
+<meta property="og:description" content="Ipsec" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2022/ipsec/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-24T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo.png"/>
+
+<meta name="twitter:title" content="windows 本地安全策略设置"/>
+<meta name="twitter:description" content="Ipsec"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/ipsec/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "windows 本地安全策略设置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/ipsec\/"
+        },"genre": "posts","keywords": "bat, ipsec, windows, scripts","wordcount":  4360 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2022\/ipsec\/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-24T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                    "@type": "Person",
+                    "name": "0x5c0f"
+                }],"description": "Ipsec"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#开机临时关闭本地安全策略防止配置出错导致无法登录">开机临时关闭本地安全策略(防止配置出错，导致无法登录)</a></li>
+    <li><a href="#本地安全策略初始化设置脚本">本地安全策略初始化设置脚本</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">windows 本地安全策略设置</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/"><i class="far fa-folder fa-fw"></i>那些年的收藏</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/"><i class="far fa-list-alt fa-fw"></i>那些年的收藏</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4360 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#开机临时关闭本地安全策略防止配置出错导致无法登录">开机临时关闭本地安全策略(防止配置出错，导致无法登录)</a></li>
+    <li><a href="#本地安全策略初始化设置脚本">本地安全策略初始化设置脚本</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="开机临时关闭本地安全策略防止配置出错导致无法登录" class="headerLink">
+    <a href="#%e5%bc%80%e6%9c%ba%e4%b8%b4%e6%97%b6%e5%85%b3%e9%97%ad%e6%9c%ac%e5%9c%b0%e5%ae%89%e5%85%a8%e7%ad%96%e7%95%a5%e9%98%b2%e6%ad%a2%e9%85%8d%e7%bd%ae%e5%87%ba%e9%94%99%e5%af%bc%e8%87%b4%e6%97%a0%e6%b3%95%e7%99%bb%e5%bd%95" class="header-mark"></a>开机临时关闭本地安全策略(防止配置出错，导致无法登录)</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl">netsh ipsec static set policy name=我的规则 assign=n
+</span></span><span class="line"><span class="cl">ping 127.0 -n 300 <span class="p">&gt;</span>nul <span class="mi">2</span><span class="p">&gt;</span>nul
+</span></span><span class="line"><span class="cl">netsh ipsec static set policy name=我的规则 assign=y
+</span></span><span class="line"><span class="cl">net start  PolicyAgent</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="本地安全策略初始化设置脚本" class="headerLink">
+    <a href="#%e6%9c%ac%e5%9c%b0%e5%ae%89%e5%85%a8%e7%ad%96%e7%95%a5%e5%88%9d%e5%a7%8b%e5%8c%96%e8%ae%be%e7%bd%ae%e8%84%9a%e6%9c%ac" class="header-mark"></a>本地安全策略初始化设置脚本</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
+</span></span><span class="line"><span class="cl"><span class="k">title</span> DD-IP策略设置
+</span></span><span class="line"><span class="cl"><span class="k">color</span> 0A
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 				  一般配置为<span class="s2">&#34;1&#34;</span>和<span class="s2">&#34;7&#34;</span>即可 
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>                  设置ipsec前首先要关闭系统防火墙。
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>                  windows2003可以停止服务，但是2008下只能关闭，不能停止服务
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>                  确认之后按任意键继续
+</span></span><span class="line"><span class="cl"><span class="k">pause</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="k">cls</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 1 公网服务器基本配置(包含vpn及基本端口)
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 2 服务器添加(10.0.0.0/8)
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 3 lefux机房内部服务器基本配置
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 4 邮件服务器
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 5 VPN服务器
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 6 DNS服务器
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 7 添加本机IP段
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 8 FTP对外规则
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 10 激活策略
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> q 退出
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="k">/p</span> <span class="nv">convert</span><span class="p">=</span>请选择    
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;1&#34;</span> <span class="k">goto</span> <span class="nl">a</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;2&#34;</span> <span class="k">goto</span> <span class="nl">b</span><span class="c1"> </span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;3&#34;</span> <span class="k">goto</span> <span class="nl">c</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;4&#34;</span> <span class="k">goto</span> <span class="nl">d</span><span class="c1"> </span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;5&#34;</span> <span class="k">goto</span> <span class="nl">e</span><span class="c1"> </span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;6&#34;</span> <span class="k">goto</span> <span class="nl">f</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;7&#34;</span> <span class="k">goto</span> <span class="nl">g</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;8&#34;</span> <span class="k">goto</span> <span class="nl">h</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;10&#34;</span> <span class="k">goto</span> <span class="nl">i</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;q&#34;</span> <span class="k">goto</span> <span class="nl">ext</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 亲，你的选择无效，你只能选择1-11 或者 q才可以哟，再试试吧！
+</span></span><span class="line"><span class="cl">ping -n 5 127.0.0.1  <span class="p">&gt;</span> null
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>.
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">a</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> lefux和dd服务器ip策略基本配置（无10段）
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立一个名字叫“我的规则”的安全策略先</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add policy name=我的规则
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立2条操作动作</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filteraction name=Permit action=permit
+</span></span><span class="line"><span class="cl">netsh ipsec static add filteraction name=Block action=block
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:对外端口访问规则</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=80port description=<span class="s2">&#34;与其他服务器80端口的交互&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=any dstaddr=me dstport=80 protocol=TCP description=<span class="s2">&#34;允许其他服务器访问本机80端口&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=any dstaddr=me dstport=443 protocol=TCP description=<span class="s2">&#34;允许其他服务器访问本机443端口&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:允许本机访问其他服务器特定的端口，如果没有这条就只能访问信任IP</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=80 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器80&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=443 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器443端口&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=53 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器DNS端口&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=53 protocol=UDP description=<span class="s2">&#34;允许本机访问其他服务器DNS端口&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any protocol=ICMP description=<span class="s2">&#34;允许本机ping其他服务器&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=25 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器25&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=110 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器的110端口，110端口是为POP3（邮件协议3）服务开放的&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=143 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器143端口，143端口主要是用于IMAP）&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=465 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器465端口，465端口是为SMTPS(SMTP-over-SSL)协议服务开放的&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=995 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器995端口，995端口是为POP3S(POP3-over-SSL)协议服务开放的&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=993 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器993端口，993端口是为IMAPS(IMAP-over-SSL)协议服务开放的&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=123 protocol=UDP description=<span class="s2">&#34;windows时间更新&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=123 protocol=TCP description=&#34;windows时间更新&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=80port policy=我的规则 filterlist=80port  filteraction=Permit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立信任IP规则</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=AllowIP description=<span class="s2">&#34;信任IP&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:重庆机房IP</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=203.93.97.98 srcmask=255.255.255.255  dstaddr=me description=<span class="s2">&#34;化龙桥联通IP&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=203.93.97.100 srcmask=255.255.255.255  dstaddr=me description=<span class="s2">&#34;化龙桥联通IP&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=203.93.97.114 srcmask=255.255.255.255  dstaddr=me description=<span class="s2">&#34;化龙桥联通IP&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:-----------------------------------其他外网服务器-------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:VPN服务器</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=3.1.63.40  dstaddr=me description=<span class="s2">&#34;新加坡silk&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=AllowIP policy=我的规则 filterlist=AllowIP filteraction=Permit
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立一条拒绝所有IP访问规则</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=DenyIP description=<span class="s2">&#34;拒绝所有IP&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:拒绝所有IP地址访问本机--进限制</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=DenyIP srcaddr=any dstaddr=me description=<span class="s2">&#34;拒绝所有IP访问&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:拒绝本机访问其他IP---出限制</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:netsh ipsec static add filter filterlist=DenyIP srcaddr=me dstaddr=any description=&#34;拒绝访问所有IP&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:规则集合</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=DenyIP policy=我的规则 filterlist=DenyIP filteraction=Block
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">b</span>
+</span></span><span class="line"><span class="cl"><span class="k">title</span> 为有内网ip需求的服务器添加10段IP
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=me dstaddr=10.0.0.0  dstmask=255.0.0.0 description=<span class="s2">&#34;10.0.0.0/8&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">c</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> lefux机房内部服务器基本配置
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立一个名字叫“我的规则”的安全策略先</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add policy name=我的规则
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立2条操作动作</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filteraction name=Permit action=permit
+</span></span><span class="line"><span class="cl">netsh ipsec static add filteraction name=Block action=block
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:对外端口访问规则</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=80port description=<span class="s2">&#34;与其他服务器80端口的交互&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=any dstaddr=me dstport=80 protocol=TCP description=<span class="s2">&#34;允许其他服务器访问本机80端口&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=any dstaddr=me dstport=443 protocol=TCP description=<span class="s2">&#34;允许其他服务器访问本机443端口&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:允许本机访问其他服务器的端口，如果没有这条就只能访问信任IP</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=80 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器80&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=443 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器443端口&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=53 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器DNS端口&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=53 protocol=UDP description=<span class="s2">&#34;允许本机访问其他服务器DNS端口&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any protocol=ICMP description=<span class="s2">&#34;允许本机ping其他服务器&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=25 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器25&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=110 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器110&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=143 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器143&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=465 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器465&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=995 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器995&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=993 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器993&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=123 protocol=UDP description=<span class="s2">&#34;windows时间更新&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=123 protocol=TCP description=&#34;windows时间更新&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=80port policy=我的规则 filterlist=80port  filteraction=Permit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立信任IP规则</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=AllowIP description=<span class="s2">&#34;信任IP&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:重庆机房IP</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=172.16.80.0 srcmask=255.255.255.0 dstaddr=me description=<span class="s2">&#34;允许80段访问&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=172.16.110.0 srcmask=255.255.255.0 dstaddr=me description=<span class="s2">&#34;允许110段访问&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:-----------------------------------其他外网服务器-------------------------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:VPN服务器</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=3.1.63.40  dstaddr=me description=<span class="s2">&#34;新加坡silk&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=AllowIP policy=我的规则 filterlist=AllowIP filteraction=Permit
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立一条拒绝所有IP访问规则</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=DenyIP description=<span class="s2">&#34;拒绝所有IP&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:拒绝所有IP地址访问本机--进限制</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=DenyIP srcaddr=any dstaddr=me description=<span class="s2">&#34;拒绝所有IP访问&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:拒绝本机访问其他IP---出限制</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:netsh ipsec static add filter filterlist=DenyIP srcaddr=me dstaddr=any description=&#34;拒绝访问所有IP&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:规则集合</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=DenyIP policy=我的规则 filterlist=DenyIP filteraction=Block
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">d</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 邮件服务器配置
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=Mail description=<span class="s2">&#34;邮件端口规则&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=Mail srcaddr=any dstaddr=me dstport=25 protocol=TCP description=<span class="s2">&#34;SMTP&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=Mail srcaddr=any dstaddr=me dstport=110 protocol=TCP description=<span class="s2">&#34;POP3&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=Mail srcaddr=any dstaddr=me dstport=143 protocol=TCP description=<span class="s2">&#34;IMAP&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=Mail srcaddr=any dstaddr=me dstport=3000 protocol=TCP description=<span class="s2">&#34;MDaemon-wordclient&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=Mail srcaddr=any dstaddr=me dstport=10000 protocol=TCP description=<span class="s2">&#34;MDaemon-admin&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=Mail srcaddr=me dstaddr=any dstport=25 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器25&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=Mail srcaddr=me dstaddr=any dstport=110 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器110&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=Mail srcaddr=me dstaddr=any dstport=143 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器143&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=465 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器465&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=995 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器995&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=993 protocol=TCP description=<span class="s2">&#34;允许本机访问其他服务器993&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=Mail policy=我的规则 filterlist=Mail  filteraction=Permit
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">e</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:--VPN服务器----IP策略-----</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=VPN description=<span class="s2">&#34;VPN&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=VPN srcaddr=any dstaddr=me dstport=1723 protocol=TCP description=<span class="s2">&#34;pptp&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=VPN srcaddr=any dstaddr=me protocol=47 description=<span class="s2">&#34;gre协议&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=VPN policy=我的规则 filterlist=VPN  filteraction=Permit
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=22 protocol=TCP description=<span class="s2">&#34;SSH--22&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=3389 protocol=TCP description=<span class="s2">&#34;RDP3389&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=8080 protocol=TCP description=<span class="s2">&#34;tomcat8080&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=3306 protocol=TCP description=<span class="s2">&#34;mysql3306&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=5900 protocol=TCP description=<span class="s2">&#34;vnc5900&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=80port srcaddr=me dstaddr=any dstport=21 protocol=TCP description=<span class="s2">&#34;ftp21&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">f</span>
+</span></span><span class="line"><span class="cl">ehco 配置dns服务器端口
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=DNS description=<span class="s2">&#34;DNS&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=DNS srcaddr=any dstaddr=me dstport=53 protocol=TCP description=<span class="s2">&#34;DNS-TCP&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=DNS srcaddr=any dstaddr=me dstport=53 protocol=UDP description=<span class="s2">&#34;DNS-UDP&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=DNS policy=我的规则 filterlist=DNS  filteraction=Permit
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">g</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 添加本机IP段
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="k">/p</span> <span class="nv">ipre</span><span class="p">=</span>请输入ip段(如10.42.1.0)
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=me dstaddr=<span class="nv">%ipre%</span> dstmask=255.255.255.0  description=<span class="s2">&#34;local&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=<span class="nv">%ipre%</span> dstaddr=me dstmask=255.255.255.0  description=<span class="s2">&#34;local&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">h</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> ftp 规则添加（注意:默认是所有IP,如果需要只允许指定ip访问请修改源目标IP为具体IP，由于被动问题，清设置ftp被动端口
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 打开ftp界面，设置--passive mode setting -选中use custom port fange-10000-10000 ）  
+</span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=ftp description=<span class="s2">&#34;ftp规则&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=ftp srcaddr=any dstaddr=me dstport=20 protocol=TCP description=<span class="s2">&#34;ftp&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=ftp srcaddr=any dstaddr=me dstport=21 protocol=TCP description=<span class="s2">&#34;ftp&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=ftp srcaddr=any dstaddr=me dstport=10000 protocol=TCP description=<span class="s2">&#34;ftp pav&#34;</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add rule name=ftp policy=我的规则 filterlist=ftp  filteraction=Permit
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">i</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 激活策略</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static set policy name=我的规则 assign=y
+</span></span><span class="line"><span class="cl">sc config PolicyAgent start= demand
+</span></span><span class="line"><span class="cl">net start PolicyAgent
+</span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">ext</span>
+</span></span><span class="line"><span class="cl">exit</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-24</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/ipsec/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/ipsec/" data-title="windows 本地安全策略设置"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/bat/">bat</a>,&nbsp;<a href="/tags/ipsec/">ipsec</a>,&nbsp;<a href="/tags/windows/">windows</a>,&nbsp;<a href="/tags/scripts/">scripts</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/" class="prev" rel="prev" title="windows安装优化"><i class="fas fa-angle-left fa-fw"></i>windows安装优化</a>
+            <a href="/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/" class="next" rel="next" title="Umask码权限对照表">Umask码权限对照表<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">定制rpm包 - 一个曾经的小码农...</title><meta name="Description" content="定制rpm包"><meta property="og:title" content="定制rpm包" />
+<meta property="og:description" content="定制rpm包" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2022/%E5%AE%9A%E5%88%B6rpm%E5%8C%85/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-23T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo.png"/>
+
+<meta name="twitter:title" content="定制rpm包"/>
+<meta name="twitter:description" content="定制rpm包"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/%E5%AE%9A%E5%88%B6rpm%E5%8C%85/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "定制rpm包",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E5%AE%9A%E5%88%B6rpm%E5%8C%85\/"
+        },"genre": "posts","keywords": "linux, fpm, rpm, 解决方案","wordcount":  1030 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E5%AE%9A%E5%88%B6rpm%E5%8C%85\/","datePublished": "2022-06-23T00:00:00+00:00","dateModified": "2022-06-23T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                    "@type": "Person",
+                    "name": "0x5c0f"
+                }],"description": "定制rpm包"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-fpm-打包工具">1. FPM 打包工具</a>
+      <ul>
+        <li><a href="#11-支持的源类型包">1.1. 支持的源类型包</a></li>
+        <li><a href="#12-支持的目标类型包">1.2. 支持的目标类型包</a></li>
+        <li><a href="#13-fpm安装">1.3. FPM安装</a></li>
+        <li><a href="#14-fpm参数">1.4. FPM参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-使用实例实战定制nginx的rpm包">2. 使用实例–实战定制nginx的RPM包</a>
+      <ul>
+        <li><a href="#21-安装nginx">2.1. 安装nginx</a></li>
+        <li><a href="#22-定制rpm安装后前执行脚本">2.2. 定制rpm安装后(前)执行脚本</a></li>
+        <li><a href="#23-打包">2.3. 打包</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">定制rpm包</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-23">2022-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-23">2022-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1030 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-fpm-打包工具">1. FPM 打包工具</a>
+      <ul>
+        <li><a href="#11-支持的源类型包">1.1. 支持的源类型包</a></li>
+        <li><a href="#12-支持的目标类型包">1.2. 支持的目标类型包</a></li>
+        <li><a href="#13-fpm安装">1.3. FPM安装</a></li>
+        <li><a href="#14-fpm参数">1.4. FPM参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-使用实例实战定制nginx的rpm包">2. 使用实例–实战定制nginx的RPM包</a>
+      <ul>
+        <li><a href="#21-安装nginx">2.1. 安装nginx</a></li>
+        <li><a href="#22-定制rpm安装后前执行脚本">2.2. 定制rpm安装后(前)执行脚本</a></li>
+        <li><a href="#23-打包">2.3. 打包</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition quote open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-quote-right fa-fw"></i>本文参照以下引用实践编写<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><blockquote>
+<p><a href="https://www.zyops.com/autodeploy-rpm/" target="_blank" rel="noopener noreffer">https://www.zyops.com/autodeploy-rpm/</a></p>
+</blockquote>
+</div>
+        </div>
+    </div>
+<h1 id="1-fpm-打包工具" class="headerLink">
+    <a href="#1-fpm-%e6%89%93%e5%8c%85%e5%b7%a5%e5%85%b7" class="header-mark"></a>1. FPM 打包工具</h1><p>FPM的作者是jordansissel<br>
+FPM的github：</p>
+<blockquote>
+<p><a href="https://github.com/jordansissel/fpm" target="_blank" rel="noopener noreffer">https://github.com/jordansissel/fpm</a></p>
+</blockquote>
+<p>FPM功能简单说就是将一种类型的包转换成另一种类型，其具体工功能实现实际上是对于rpmbuild命令的一个封装</p>
+<h2 id="11-支持的源类型包" class="headerLink">
+    <a href="#11-%e6%94%af%e6%8c%81%e7%9a%84%e6%ba%90%e7%b1%bb%e5%9e%8b%e5%8c%85" class="header-mark"></a>1.1. 支持的源类型包</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>dir</td>
+<td>将目录打包成所需要的类型，可以用于源码编译安装的软件包</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>rpm</td>
+<td>对rpm进行转换</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>gem</td>
+<td>对rubygem包进行转换</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>python</td>
+<td>将python模块打包成相应的类型</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-支持的目标类型包" class="headerLink">
+    <a href="#12-%e6%94%af%e6%8c%81%e7%9a%84%e7%9b%ae%e6%a0%87%e7%b1%bb%e5%9e%8b%e5%8c%85" class="header-mark"></a>1.2. 支持的目标类型包</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>rpm</td>
+<td>转换为rpm包</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>deb</td>
+<td>转换为deb包</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>solaris</td>
+<td>转换为solaris包</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>puppet</td>
+<td>转换为puppet模块</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-fpm安装" class="headerLink">
+    <a href="#13-fpm%e5%ae%89%e8%a3%85" class="header-mark"></a>1.3. FPM安装</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># fpm是ruby写的，因此系统环境需要ruby，且ruby版本号大于1.8.5。  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装ruby模块  </span>
+</span></span><span class="line"><span class="cl">yum -y install ruby rubygems ruby-devel  
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看当前使用的rubygems仓库    </span>
+</span></span><span class="line"><span class="cl">gem sources list   
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加阿里云的Rubygems仓库，外国的源慢，移除原生的Ruby仓库  </span>
+</span></span><span class="line"><span class="cl">gem sources --add http://mirrors.aliyun.com/rubygems/ --remove http://rubygems.org/  
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装fpm，gem从rubygem仓库安装软件类似yum从yum仓库安装软件。首先安装低版本的json，高版本的json需要ruby2.0以上，然后安装低版本的fpm，够用。  </span>
+</span></span><span class="line"><span class="cl">gem install json -v 1.8.3  
+</span></span><span class="line"><span class="cl">gem install fpm -v 1.3.3  
+</span></span><span class="line"><span class="cl"><span class="c1"># 上面的2步安装仅适合CentOS6系统，CentOS7系统一步搞定，即gem install fpm  </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="14-fpm参数" class="headerLink">
+    <a href="#14-fpm%e5%8f%82%e6%95%b0" class="header-mark"></a>1.4. FPM参数</h2><p>详细使用见fpm –help<br>
+常用参数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-s          指定源类型
+</span></span><span class="line"><span class="cl">-t          指定目标类型，即想要制作为什么包
+</span></span><span class="line"><span class="cl">-n          指定包的名字
+</span></span><span class="line"><span class="cl">-v          指定包的版本号
+</span></span><span class="line"><span class="cl">-C          指定打包的相对路径  Change directory to here before searching forfiles
+</span></span><span class="line"><span class="cl">-d          指定依赖于哪些包
+</span></span><span class="line"><span class="cl">-f          第二次打包时目录下如果有同名安装包存在，则覆盖它
+</span></span><span class="line"><span class="cl">-p          输出的安装包的目录，不想放在当前目录下就需要指定
+</span></span><span class="line"><span class="cl">--post-install      软件包安装完成之后所要运行的脚本；同--after-install
+</span></span><span class="line"><span class="cl">--pre-install       软件包安装完成之前所要运行的脚本；同--before-install
+</span></span><span class="line"><span class="cl">--post-uninstall    软件包卸载完成之后所要运行的脚本；同--after-remove
+</span></span><span class="line"><span class="cl">--pre-uninstall     软件包卸载完成之前所要运行的脚本；同--before-remove
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="2-使用实例实战定制nginx的rpm包" class="headerLink">
+    <a href="#2-%e4%bd%bf%e7%94%a8%e5%ae%9e%e4%be%8b%e5%ae%9e%e6%88%98%e5%ae%9a%e5%88%b6nginx%e7%9a%84rpm%e5%8c%85" class="header-mark"></a>2. 使用实例–实战定制nginx的RPM包</h1><h2 id="21-安装nginx" class="headerLink">
+    <a href="#21-%e5%ae%89%e8%a3%85nginx" class="header-mark"></a>2.1. 安装nginx</h2><h2 id="22-定制rpm安装后前执行脚本" class="headerLink">
+    <a href="#22-%e5%ae%9a%e5%88%b6rpm%e5%ae%89%e8%a3%85%e5%90%8e%e5%89%8d%e6%89%a7%e8%a1%8c%e8%84%9a%e6%9c%ac" class="header-mark"></a>2.2. 定制rpm安装后(前)执行脚本</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># vim /opt/sh/nginx.rpm.sh</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定但不创建主目录是为了规划ftp虚拟帐号用的</span>
+</span></span><span class="line"><span class="cl">useradd nginx -M -s /sbin/nologin -d /var/ftproot 
+</span></span><span class="line"><span class="cl">ln -s /opt/nginx-1.14.2/ /opt/nginxssl 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="23-打包" class="headerLink">
+    <a href="#23-%e6%89%93%e5%8c%85" class="header-mark"></a>2.3. 打包</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># fpm -s dir -t rpm --description &#39;nginx&#39; -n nginx -v 1.14.2 -d &#39;pcre-devel,openssl-devel&#39; --post-install /opt/sh/nginx.rpm.sh -C /opt/nginx-1.6.2/ -f /opt/nginx-1.6.2/  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装好的，复制完整结构内容到一个目录，打包那个目录内的内容是一样的效果 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># such as: fpm -s dir -t rpm --description &#34;badvpn binary for fc32, Source: https://github.com/ambrop72/badvpn &#34; --rpm-summary &#39;badvpn&#39; --url &#39;https://tools.0x5c0f.cc&#39; --license &#39;3-clause BSD license&#39; --iteration fc32 -m 0x5c0f --vendor mail@0x5c0f.cc -n badvpn -v &#39;1.999.130-v1.0&#39; -C . </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl">no value <span class="k">for</span> epoch is set, defaulting to nil <span class="o">{</span>:level<span class="o">=</span>&gt;:warn<span class="o">}</span>
+</span></span><span class="line"><span class="cl">no value <span class="k">for</span> epoch is set, defaulting to nil <span class="o">{</span>:level<span class="o">=</span>&gt;:warn<span class="o">}</span>
+</span></span><span class="line"><span class="cl">Created package <span class="o">{</span>:path<span class="o">=</span>&gt;<span class="s2">&#34;nginx-1.14.2-1.x86_64.rpm&#34;</span><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@oldboy ~<span class="o">]</span><span class="c1"># ll -h nginx-1.14.2-1.x86_64.rpm </span>
+</span></span><span class="line"><span class="cl">-rw-r--r-- <span class="m">1</span> root root 6.7M Nov  <span class="m">1</span> 10:02 nginx-1.14.2-1.x86_64.rpm
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-23</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/%E5%AE%9A%E5%88%B6rpm%E5%8C%85/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/%E5%AE%9A%E5%88%B6rpm%E5%8C%85/" data-title="定制rpm包"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/fpm/">fpm</a>,&nbsp;<a href="/tags/rpm/">rpm</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="prev" rel="prev" title="Php运维故障记录"><i class="fas fa-angle-left fa-fw"></i>Php运维故障记录</a>
+            <a href="/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/" class="next" rel="next" title="Nginx反向代理jenkins">Nginx反向代理jenkins<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

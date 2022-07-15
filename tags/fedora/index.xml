@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>fedora - 标签 - 一个曾经的小码农...</title>
+        <link>https://blog.0x5c0f.cc/tags/fedora/</link>
+        <description>fedora - 标签 - 一个曾经的小码农...</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/fedora/" rel="self" type="application/rss+xml" /><item>
+    <title>Fedora视频桌面</title>
+    <link>https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</link>
+    <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</guid>
+    <description><![CDATA[fedora 唯美桌面 想了一下，网络上关于fedora桌面的美化似乎还是很少的,这对于我大fedora发展似乎是很不利的，凭什么ubuntu就可以有那么]]></description>
+</item><item>
+    <title>FEDORA优化</title>
+    <link>https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/</link>
+    <pubDate>Mon, 28 Feb 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/</guid>
+    <description><![CDATA[前言 以下的一些优化应该是我还在用fedora26的时候记录的，虽然现在我已经都更新到33了，不过这些优化还是有点用的，可以参考着改, 后续遇到]]></description>
+</item></channel>
+</rss>

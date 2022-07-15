@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Python 函数相关(一) - 一个曾经的小码农...</title><meta name="Description" content="函数相关"><meta property="og:title" content="Python 函数相关(一)" />
+<meta property="og:description" content="函数相关" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2022/%E5%87%BD%E6%95%B0%E4%B8%80/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-24T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo.png"/>
+
+<meta name="twitter:title" content="Python 函数相关(一)"/>
+<meta name="twitter:description" content="函数相关"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/%E5%87%BD%E6%95%B0%E4%B8%80/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/%E5%87%BD%E6%95%B0%E4%BA%8C/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python 函数相关(一)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E5%87%BD%E6%95%B0%E4%B8%80\/"
+        },"genre": "posts","keywords": "linux, python","wordcount":  3169 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E5%87%BD%E6%95%B0%E4%B8%80\/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-24T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                    "@type": "Person",
+                    "name": "0x5c0f"
+                }],"description": "函数相关"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-函数参数释义">1. 函数参数释义</a></li>
+    <li><a href="#2-函数即变量">2. 函数即&quot;变量&quot;</a></li>
+    <li><a href="#3-高阶函数">3. 高阶函数</a></li>
+    <li><a href="#4-嵌套函数">4. 嵌套函数</a></li>
+    <li><a href="#5-装饰器">5. 装饰器</a></li>
+    <li><a href="#6-生成器">6. 生成器</a>
+      <ul>
+        <li><a href="#61-生成器创建">6.1. 生成器创建</a></li>
+        <li><a href="#62-生成器调用">6.2. 生成器调用</a></li>
+        <li><a href="#63-生成器模拟多线程运行示例协程">6.3. 生成器模拟多线程运行示例(协程)</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-构造函数和析构函数">7. 构造函数和析构函数</a></li>
+    <li><a href="#8-私有属性和私有方法">8. 私有属性和私有方法</a></li>
+    <li><a href="#9-迭代iterable">9. 迭代(Iterable)</a></li>
+    <li><a href="#10-迭代器iterator">10. 迭代器(Iterator)</a></li>
+    <li><a href="#11-内置函数">11. 内置函数</a></li>
+    <li><a href="#12-序列化与反序列化picklejson">12. 序列化与反序列化(pickle、json)</a>
+      <ul>
+        <li><a href="#121-序列化------指将python对象序列化为一个字节流以便将它保存到一个文件存储到数据库或者通过网络传输它">12.1. 序列化:      指将Python对象序列化为一个字节流，以便将它保存到一个文件、存储到数据库或者通过网络传输它。</a></li>
+        <li><a href="#122-反序列化----指从一个对象文件中读取序列化数据将其反序列化之后返回一个对象">12.2. 反序列化:    指从一个对象文件中读取序列化数据，将其反序列化之后返回一个对象</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python 函数相关(一)</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3169 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-函数参数释义">1. 函数参数释义</a></li>
+    <li><a href="#2-函数即变量">2. 函数即&quot;变量&quot;</a></li>
+    <li><a href="#3-高阶函数">3. 高阶函数</a></li>
+    <li><a href="#4-嵌套函数">4. 嵌套函数</a></li>
+    <li><a href="#5-装饰器">5. 装饰器</a></li>
+    <li><a href="#6-生成器">6. 生成器</a>
+      <ul>
+        <li><a href="#61-生成器创建">6.1. 生成器创建</a></li>
+        <li><a href="#62-生成器调用">6.2. 生成器调用</a></li>
+        <li><a href="#63-生成器模拟多线程运行示例协程">6.3. 生成器模拟多线程运行示例(协程)</a></li>
+      </ul>
+    </li>
+    <li><a href="#7-构造函数和析构函数">7. 构造函数和析构函数</a></li>
+    <li><a href="#8-私有属性和私有方法">8. 私有属性和私有方法</a></li>
+    <li><a href="#9-迭代iterable">9. 迭代(Iterable)</a></li>
+    <li><a href="#10-迭代器iterator">10. 迭代器(Iterator)</a></li>
+    <li><a href="#11-内置函数">11. 内置函数</a></li>
+    <li><a href="#12-序列化与反序列化picklejson">12. 序列化与反序列化(pickle、json)</a>
+      <ul>
+        <li><a href="#121-序列化------指将python对象序列化为一个字节流以便将它保存到一个文件存储到数据库或者通过网络传输它">12.1. 序列化:      指将Python对象序列化为一个字节流，以便将它保存到一个文件、存储到数据库或者通过网络传输它。</a></li>
+        <li><a href="#122-反序列化----指从一个对象文件中读取序列化数据将其反序列化之后返回一个对象">12.2. 反序列化:    指从一个对象文件中读取序列化数据，将其反序列化之后返回一个对象</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="1-函数参数释义" class="headerLink">
+    <a href="#1-%e5%87%bd%e6%95%b0%e5%8f%82%e6%95%b0%e9%87%8a%e4%b9%89" class="header-mark"></a>1. 函数参数释义</h1><ol>
+<li>必选参数<br>
+函数定义时,定义了接收变量,那么在函数调用时就必须传递该参数值</li>
+<li>默认参数<br>
+在函数定义时,可为需要接受值的参数设置一个默认值,若函数调用时,该参数未传入值时,则使用默认值</li>
+<li>可变参数
+<ul>
+<li><code>*args</code>(关键字参数) : 可向函数中传递0个或多个参数(类似String&hellip;args),内部变量若为<code>*args</code>,结果将为元组,独立值将会顺序接收</li>
+<li><code>**kwargs</code>(命名关键字参数) : 可向函数中以键值对的形式传递0个或多个参数,内部变量若为<code>**kwargs</code>,结果将为字典,独立值将会顺序接收</li>
+</ul>
+</li>
+<li>组合参数<br>
+用必选参数、默认参数、可变参数、关键字参数和命名关键字参数，这5种参数可组合使用,但参数传递顺序必须是: 必选参数、默认参数、可变参数、命名关键字参数和关键字参数。</li>
+</ol>
+<h1 id="2-函数即变量" class="headerLink">
+    <a href="#2-%e5%87%bd%e6%95%b0%e5%8d%b3%e5%8f%98%e9%87%8f" class="header-mark"></a>2. 函数即&quot;变量&quot;</h1><h1 id="3-高阶函数" class="headerLink">
+    <a href="#3-%e9%ab%98%e9%98%b6%e5%87%bd%e6%95%b0" class="header-mark"></a>3. 高阶函数</h1><p>一个变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数</p>
+<h1 id="4-嵌套函数" class="headerLink">
+    <a href="#4-%e5%b5%8c%e5%a5%97%e5%87%bd%e6%95%b0" class="header-mark"></a>4. 嵌套函数</h1><p>一个函数中可以包含另一个函数</p>
+<h1 id="5-装饰器" class="headerLink">
+    <a href="#5-%e8%a3%85%e9%a5%b0%e5%99%a8" class="header-mark"></a>5. 装饰器</h1><ol>
+<li>示例代码1:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;装饰器函数参数调用层 : &#34;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;装饰器函数调用函数参数 : &#34;</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">demo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@wrapper</span>  <span class="c1"># 注入?</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 函数即变量</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#@test == {</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    test2=test(test1);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#调用</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    test2(11, a=&#34;01&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#}  == { test1 = test(test1) }</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;计算结果 y : </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">calc</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="s2">&#34;01&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;=======================&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="s2">&#34;01&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>示例代码2:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">ltype</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;装饰器参数传递层 wrapper: &#34;</span><span class="p">,</span><span class="n">ltype</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">demo</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;装饰器函数传递层 demo: &#34;</span><span class="p">,</span> <span class="n">ltype</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">A</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;装饰器调用函数参数传递层 A : &#34;</span><span class="p">,</span>  <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span><span class="n">ltype</span><span class="p">,</span><span class="n">func</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;装饰器参数传递值 ltype :&#34;</span><span class="p">,</span> <span class="n">ltype</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">A</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">demo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@wrapper</span><span class="p">(</span><span class="n">ltype</span><span class="o">=</span><span class="s2">&#34;Add&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">z</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">calc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;123&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="6-生成器" class="headerLink">
+    <a href="#6-%e7%94%9f%e6%88%90%e5%99%a8" class="header-mark"></a>6. 生成器</h1><p>在<code>python</code>中, 一边循环,一边计算的机制,就叫做生成器.<br>
+生成器不会第一时间将所有结果生成出来,他只会在循环到(调用)的时候才会生成需要的值,因此对于生成器产生的值是不允许切片的,另外,他每次调用也仅仅只保留当前正在被调用的这个值<br>
+生成器定义, 对于列表生成式将<code>[]</code> 替换为 <code>()</code>,创建出来的结果就是一个生成器 ,对于函数,包含了<code>yelid</code>变量(可用于模拟多线程)的就是一个生成器.</p>
+<h2 id="61-生成器创建" class="headerLink">
+    <a href="#61-%e7%94%9f%e6%88%90%e5%99%a8%e5%88%9b%e5%bb%ba" class="header-mark"></a>6.1. 生成器创建</h2><p>示例1:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 列表创建</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 列表生成式创建 </span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="p">(</span> <span class="n">i</span><span class="o">*</span><span class="mi">2</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># arr = &lt;generator object &lt;genexpr&gt; at 0x7fa19c4b9570&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>示例2:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 菲波拉契数列</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0 1 1 2 3 5 8 13 21 34 ...</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="nb">max</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">n</span><span class="p">,</span> <span class="n">a</span> <span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="nb">max</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">b</span>
+</span></span><span class="line"><span class="cl">        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;None&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">fib</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># fib(100) = &lt;generator object fib at 0x7efc212447c8&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># fi = fib(10)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(next(fi))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(fi.__next__())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 相关解释</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. yield 可以看成一个return但也有不同,当循环每次执行到此处的时候,他会返回结果值并暂停此次循环,以等待下一次的调用</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 等式 a,b = b, a+b 并不等于</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># {</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  a = b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#  b = a+b</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># }</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 实际等于</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># t = (a, a+b)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># a = t[0]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># b = t[1]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 关于函数的return</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 由于生成生成器的调用必须使用__next__()来进行,而数据的生成大部分的时候都将会有最终的结果,而__next__()的时候是不会知道下一个值是否真正的存在,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 此时__next__()就将会抛出一个程序异常,而这个异常的值就是return返回的值 .</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="62-生成器调用" class="headerLink">
+    <a href="#62-%e7%94%9f%e6%88%90%e5%99%a8%e8%b0%83%e7%94%a8" class="header-mark"></a>6.2. 生成器调用</h2><p>生成器的调用, 在2.7中使用的是 <code>next(arr)</code>, 3.x中使用的是<code>arr.__next__()</code>,不过<code>next(arr)</code> 在3.x同样也可以使用</p>
+<h2 id="63-生成器模拟多线程运行示例协程" class="headerLink">
+    <a href="#63-%e7%94%9f%e6%88%90%e5%99%a8%e6%a8%a1%e6%8b%9f%e5%a4%9a%e7%ba%bf%e7%a8%8b%e8%bf%90%e8%a1%8c%e7%a4%ba%e4%be%8b%e5%8d%8f%e7%a8%8b" class="header-mark"></a>6.3. 生成器模拟多线程运行示例(协程)</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">work</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> 准备开始工作 !&#34;</span> <span class="o">%</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">things</span> <span class="o">=</span> <span class="k">yield</span> <span class="n">name</span>     <span class="c1"># yield 后面可跟一个值,该值为send()调用后返回结果  </span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%d</span><span class="s2"> 号文件已经收到了 , </span><span class="si">%s</span><span class="s2"> 打开了电脑, 开始工作 !&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">things</span><span class="p">,</span><span class="n">name</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">time</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">people</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w1</span> <span class="o">=</span> <span class="n">work</span><span class="p">(</span><span class="s2">&#34;用户1&#34;</span><span class="p">)</span>      <span class="c1"># 函数调用仅代表创出    w1 = work(&#34;用户1&#34;)      # 函数调用仅代表创出建一个生成器 </span>
+</span></span><span class="line"><span class="cl"><span class="n">建一个生成器</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">w2</span> <span class="o">=</span> <span class="n">work</span><span class="p">(</span><span class="s2">&#34;用户2&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">w1</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>           <span class="c1"># 只有在调用的时候才会进行第一次next,从而暂停到 yield 处 </span>
+</span></span><span class="line"><span class="cl">    <span class="n">w2</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">num</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> 号工作任务文件来了 ! &#34;</span> <span class="o">%</span> <span class="n">num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ww1</span> <span class="o">=</span> <span class="n">w1</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ww2</span> <span class="o">=</span> <span class="n">w2</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;ww1: </span><span class="si">%s</span><span class="s2">, ww2: </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">ww1</span><span class="p">,</span><span class="n">ww2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">people</span><span class="p">()</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="7-构造函数和析构函数" class="headerLink">
+    <a href="#7-%e6%9e%84%e9%80%a0%e5%87%bd%e6%95%b0%e5%92%8c%e6%9e%90%e6%9e%84%e5%87%bd%e6%95%b0" class="header-mark"></a>7. 构造函数和析构函数</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 构造函数__init(self)__, 用于类被实例化时候使用，通常用于初始化实例变量 ,每个类必须有一个构造函数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 析构函数__del(self)__, 一般用于在实例被销毁、释放的时候调用，通常用于一些收尾工作，比如数据库链接，打开的临时文件等</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Demo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="mi">000</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;del: &#34;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;函数关闭&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">Demo</span><span class="p">(</span><span class="s2">&#34;Tname&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="o">.</span><span class="n">c</span> <span class="o">=</span> <span class="mi">111</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="o">.</span><span class="n">c1</span> <span class="o">=</span> <span class="mi">222</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">c1</span> <span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="8-私有属性和私有方法" class="headerLink">
+    <a href="#8-%e7%a7%81%e6%9c%89%e5%b1%9e%e6%80%a7%e5%92%8c%e7%a7%81%e6%9c%89%e6%96%b9%e6%b3%95" class="header-mark"></a>8. 私有属性和私有方法</h1><p>在<code>Python</code>类中以<code>__</code>开头的变量为私有变量(属性)，以<code>__</code>开头的函数为私有函数(方法),他们在类的外部不可查，不可被调用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Demo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__c</span> <span class="o">=</span> <span class="mi">111</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">__age</span> <span class="o">=</span> <span class="mi">123</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__b</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;hello&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">Demo</span><span class="p">(</span><span class="s2">&#34;Tname&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">__c</span><span class="p">,</span>  <span class="n">d</span><span class="o">.</span><span class="n">__age</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Traceback (most recent call last):
+</span></span></span><span class="line"><span class="cl"><span class="s2">  File &#34;/home/cxd/Projects/node/Python/python.project/practice_script/1.py&#34;, line 13, in &lt;module&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    print(d.__c,  d.__age)
+</span></span></span><span class="line"><span class="cl"><span class="s2">AttributeError: &#39;Demo&#39; object has no attribute &#39;__c&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="o">.</span><span class="n">__b</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">Traceback (most recent call last):
+</span></span></span><span class="line"><span class="cl"><span class="s2">  File &#34;/home/cxd/Projects/node/Python/python.project/practice_script/1.py&#34;, line 22, in &lt;module&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    d.__b()
+</span></span></span><span class="line"><span class="cl"><span class="s2">AttributeError: &#39;Demo&#39; object has no attribute &#39;__b&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="9-迭代iterable" class="headerLink">
+    <a href="#9-%e8%bf%ad%e4%bb%a3iterable" class="header-mark"></a>9. 迭代(Iterable)</h1><p>从某个地方（比如一个列表）取出一个元素的过程。当我们使用一个循环来遍历某个东西时，这个过程本身就叫迭代</p>
+<ol>
+<li>判断对象是否可迭代(对象):</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">([],</span> <span class="n">Iterable</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">((</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)),</span> <span class="n">Iterable</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="10-迭代器iterator" class="headerLink">
+    <a href="#10-%e8%bf%ad%e4%bb%a3%e5%99%a8iterator" class="header-mark"></a>10. 迭代器(Iterator)</h1><p>可以被next()函数调用并不断返回下一个值的对象被成为迭代器<br>
+生成器一定是一个迭代器,但迭代器不一定是一个生成器(生成器可能是一个列表或其他不能被<code>next()</code>的可迭代对象,)</p>
+<ol>
+<li>判断对象是否是一个迭代器(对象):</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterator</span>
+</span></span><span class="line"><span class="cl"><span class="nb">isinstance</span><span class="p">([],</span> <span class="n">Iterator</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">isinstance</span><span class="p">(</span><span class="nb">iter</span><span class="p">([]),</span> <span class="n">Iterator</span><span class="p">)</span>  <span class="c1">## 通过函数 iter() 可将列表等迭代对象变成迭代器 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span><span class="line"><span class="cl"><span class="nb">isinstance</span><span class="p">((</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)),</span> <span class="n">Iterator</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="11-内置函数" class="headerLink">
+    <a href="#11-%e5%86%85%e7%bd%ae%e5%87%bd%e6%95%b0" class="header-mark"></a>11. 内置函数</h1><blockquote>
+<p>详见官方文档 : <a href="https://docs.python.org/zh-cn/3.7/library/functions.html" target="_blank" rel="noopener noreffer">https://docs.python.org/zh-cn/3.7/library/functions.html</a></p>
+</blockquote>
+<blockquote>
+<p>Map，Filter 和 Reduce <a href="https://eastlakeside.gitbooks.io/interpy-zh/content/Map_n_Filter/" target="_blank" rel="noopener noreffer">https://eastlakeside.gitbooks.io/interpy-zh/content/Map_n_Filter/</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 判断可迭代对象内值是否全部为真(非0都为真),是:true 否:false</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">all</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 判断可迭代对象内值是否至少有一个为真,是:true 否:false</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">any</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将10进制转换为二进制 </span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="nb">bin</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="nb">bin</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0b1 0b10 0b100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 返回一个新的 bytes 数组。 bytearray 类是一个可变序列，包含范围为 0 &lt;= x &lt; 256 的整数。它有可变序列大部分常见的方法，见 可变序列类型 的描述；同时有 bytes 类型的大部分方法，参见 bytes 和 bytearray 操作。</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arr</span> <span class="o">=</span> <span class="nb">bytearray</span><span class="p">(</span><span class="s2">&#34;abc&#34;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;arr=</span><span class="si">%s</span><span class="s2">, arr[0] = </span><span class="si">%s</span><span class="s2"> ,arr[1] = </span><span class="si">%s</span><span class="s2"> ,arr[2] = </span><span class="si">%s</span><span class="s2"> &#34;</span>  <span class="o">%</span><span class="p">(</span> <span class="n">arr</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># arr = bytearray(b&#39;abc&#39;), arr[0] = 97, arr[1] = 98, arr[2] = 99</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;arr=</span><span class="si">%s</span><span class="s2">, arr[0] = </span><span class="si">%s</span><span class="s2"> ,arr[1] = </span><span class="si">%s</span><span class="s2"> ,arr[2] = </span><span class="si">%s</span><span class="s2"> &#34;</span>  <span class="o">%</span><span class="p">(</span> <span class="n">arr</span><span class="p">,</span> <span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># arr = bytearray(b&#39;dbc&#39;), arr[0] = 100, arr[1] = 98, arr[2] = 99</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 判断对象是否可被调用,是:true 否:false (即判断对象是否为一个函数或类或者说是是否可以在对象后面加上()进行调用)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">callable</span><span class="p">(</span><span class="nb">dir</span><span class="p">))</span>        <span class="c1"># dir 是一个函数,因此可以 dir()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># True </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将字符串转换为可执行的代码 (自动化 ?)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">str</span><span class="o">=</span><span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">    def demo():
+</span></span></span><span class="line"><span class="cl"><span class="s2">        print(&#34;hello word&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">    demo()
+</span></span></span><span class="line"><span class="cl"><span class="s2">    &#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test</span> <span class="o">=</span> <span class="nb">compile</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="s2">&#34;exec&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exec</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># hello word</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从 iterable 对象中过滤出 function 中返回真的那些元素, (结果返回一个生成器) </span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># filter(function,iterable)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 0 1 2 3 4 </span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将 iterable 中的值通过 function 进行处理从而返回处理结果 , (结果返回一个生成器) </span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># filter(function,iterable)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 0 2 4 6 8</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>   
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建不可遍集合 </span>
+</span></span><span class="line"><span class="cl"><span class="n">arr</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取可迭代对象的中的最大值</span>
+</span></span><span class="line"><span class="cl"><span class="nb">max</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># max(1,2,3,4,5)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将可迭代对象进行排序</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">arr1</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">4</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">7</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">8</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">11</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="mi">5</span><span class="p">:</span><span class="mi">51</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">arr1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># [1, 2, 3, 4, 5, 7, 8, 11]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">arr1</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># [(1, 1), (2, 4), (3, 5), (4, 3), (5, 51), (7, 6), (8, 22), (11, 3)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">arr1</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># [(1, 1), (4, 3), (11, 3), (2, 4), (3, 5), (7, 6), (8, 22), (5, 51)]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">arr2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># [1, 2, 3, 4, 5, 8, 9]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># zip 合并可迭代对象,以最小长度显示合并后的长度 </span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">c</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">c</span> <span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1"># (1, &#39;a&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (2, &#39;b&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (3, &#39;c&#39;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (4, &#39;d&#39;)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="12-序列化与反序列化picklejson" class="headerLink">
+    <a href="#12-%e5%ba%8f%e5%88%97%e5%8c%96%e4%b8%8e%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96picklejson" class="header-mark"></a>12. 序列化与反序列化(pickle、json)</h1><h2 id="121-序列化------指将python对象序列化为一个字节流以便将它保存到一个文件存储到数据库或者通过网络传输它" class="headerLink">
+    <a href="#121-%e5%ba%8f%e5%88%97%e5%8c%96------%e6%8c%87%e5%b0%86python%e5%af%b9%e8%b1%a1%e5%ba%8f%e5%88%97%e5%8c%96%e4%b8%ba%e4%b8%80%e4%b8%aa%e5%ad%97%e8%8a%82%e6%b5%81%e4%bb%a5%e4%be%bf%e5%b0%86%e5%ae%83%e4%bf%9d%e5%ad%98%e5%88%b0%e4%b8%80%e4%b8%aa%e6%96%87%e4%bb%b6%e5%ad%98%e5%82%a8%e5%88%b0%e6%95%b0%e6%8d%ae%e5%ba%93%e6%88%96%e8%80%85%e9%80%9a%e8%bf%87%e7%bd%91%e7%bb%9c%e4%bc%a0%e8%be%93%e5%ae%83" class="header-mark"></a>12.1. 序列化:      指将Python对象序列化为一个字节流，以便将它保存到一个文件、存储到数据库或者通过网络传输它。</h2><h2 id="122-反序列化----指从一个对象文件中读取序列化数据将其反序列化之后返回一个对象" class="headerLink">
+    <a href="#122-%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96----%e6%8c%87%e4%bb%8e%e4%b8%80%e4%b8%aa%e5%af%b9%e8%b1%a1%e6%96%87%e4%bb%b6%e4%b8%ad%e8%af%bb%e5%8f%96%e5%ba%8f%e5%88%97%e5%8c%96%e6%95%b0%e6%8d%ae%e5%b0%86%e5%85%b6%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96%e4%b9%8b%e5%90%8e%e8%bf%94%e5%9b%9e%e4%b8%80%e4%b8%aa%e5%af%b9%e8%b1%a1" class="header-mark"></a>12.2. 反序列化:    指从一个对象文件中读取序列化数据，将其反序列化之后返回一个对象</h2></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-24</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/%E5%87%BD%E6%95%B0%E4%B8%80/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/%E5%87%BD%E6%95%B0%E4%B8%80/" data-title="Python 函数相关(一)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/python/">python</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2022/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" class="prev" rel="prev" title="Python 基础语法"><i class="fas fa-angle-left fa-fw"></i>Python 基础语法</a>
+            <a href="/2022/%E5%87%BD%E6%95%B0%E4%BA%8C/" class="next" rel="next" title="Python 函数相关(二)">Python 函数相关(二)<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

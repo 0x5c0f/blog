@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Mysql 日志管理 - 一个曾经的小码农...</title><meta name="Description" content="Mysql 日志管理"><meta property="og:title" content="Mysql 日志管理" />
+<meta property="og:description" content="Mysql 日志管理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-28T00:00:00+00:00" />
+
+<meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" /><meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" /><meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/" /><meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/" /><meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/mysql%E5%AE%89%E8%A3%85/" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo.png"/>
+
+<meta name="twitter:title" content="Mysql 日志管理"/>
+<meta name="twitter:description" content="Mysql 日志管理"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Mysql 日志管理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86\/"
+        },"genre": "posts","keywords": "linux, mysql","wordcount":  1439 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86\/","datePublished": "2022-06-28T00:00:00+00:00","dateModified": "2022-06-28T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                    "@type": "Person",
+                    "name": "0x5c0f"
+                }],"description": "Mysql 日志管理"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-mysql-日志管理">1. Mysql 日志管理</a>
+      <ul>
+        <li><a href="#11-类型">1.1. 类型</a></li>
+        <li><a href="#12-错误日志">1.2. 错误日志</a></li>
+        <li><a href="#13-常规日志">1.3. 常规日志</a></li>
+        <li><a href="#14-二进制日志binlog">1.4. 二进制日志(binlog)</a></li>
+        <li><a href="#15-binlog-管理">1.5. binlog 管理</a></li>
+        <li><a href="#16-慢日志管理---mycnf-中配置无顺序要求">1.6. 慢日志管理   (my.cnf 中配置无顺序要求)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Mysql 日志管理</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a>&nbsp;<a href="/series/mysql/"><i class="far fa-list-alt fa-fw"></i>mysql</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1439 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-mysql-日志管理">1. Mysql 日志管理</a>
+      <ul>
+        <li><a href="#11-类型">1.1. 类型</a></li>
+        <li><a href="#12-错误日志">1.2. 错误日志</a></li>
+        <li><a href="#13-常规日志">1.3. 常规日志</a></li>
+        <li><a href="#14-二进制日志binlog">1.4. 二进制日志(binlog)</a></li>
+        <li><a href="#15-binlog-管理">1.5. binlog 管理</a></li>
+        <li><a href="#16-慢日志管理---mycnf-中配置无顺序要求">1.6. 慢日志管理   (my.cnf 中配置无顺序要求)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="1-mysql-日志管理" class="headerLink">
+    <a href="#1-mysql-%e6%97%a5%e5%bf%97%e7%ae%a1%e7%90%86" class="header-mark"></a>1. Mysql 日志管理</h1><h2 id="11-类型" class="headerLink">
+    <a href="#11-%e7%b1%bb%e5%9e%8b" class="header-mark"></a>1.1. 类型</h2><table>
+<thead>
+<tr>
+<th>日志文件</th>
+<th>选项</th>
+<th>文件名(表名称)</th>
+<th>程序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>错误</td>
+<td><code>--log-error</code></td>
+<td><code>host_name.err</code></td>
+<td><code>N/A</code></td>
+</tr>
+<tr>
+<td>常规</td>
+<td><code>--general_log</code></td>
+<td><code>host_name.log</code><br/><code>general_log</code></td>
+<td><code>N/A</code></td>
+</tr>
+<tr>
+<td>慢(速)查询</td>
+<td><code>--slow_query_log</code><br/><code>--long_query_time</code></td>
+<td><code>host_name-show.log</code><br/><code>show_log</code></td>
+<td><code>mysqldumpslow</code></td>
+</tr>
+<tr>
+<td>二进制</td>
+<td><code>--log-bin</code><br/><code>--expire-logs-days</code></td>
+<td><code>host_name-bin.000001</code></td>
+<td><code>mysqlbinlog</code></td>
+</tr>
+<tr>
+<td>审计</td>
+<td><code>--audit_log</code><br/><code>--audit_log_file</code></td>
+<td><code>audit.log</code></td>
+<td><code>N/A</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-错误日志" class="headerLink">
+    <a href="#12-%e9%94%99%e8%af%af%e6%97%a5%e5%bf%97" class="header-mark"></a>1.2. 错误日志</h2><ul>
+<li>配置方法:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[mysqld]</span>
+</span></span><span class="line"><span class="cl"><span class="na">log-error</span><span class="o">=</span><span class="s">/var/log/mysql/mysql.log</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>查看方法
+<ul>
+<li><code>mysql&gt; show variables like '%log_error%</code></li>
+</ul>
+</li>
+<li>作用
+<ul>
+<li>记录<code>mysql</code>数据库的一般状态及报错信息,是我们对于数据库常规报错处理的常用日志</li>
+</ul>
+</li>
+</ul>
+<h2 id="13-常规日志" class="headerLink">
+    <a href="#13-%e5%b8%b8%e8%a7%84%e6%97%a5%e5%bf%97" class="header-mark"></a>1.3. 常规日志</h2><ul>
+<li>配置方法</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[mysqld]</span>
+</span></span><span class="line"><span class="cl"><span class="na">general_log</span><span class="o">=</span><span class="s">on</span>
+</span></span><span class="line"><span class="cl"><span class="na">general_log_file</span><span class="o">=</span><span class="s">/var/log/mysql/server2.log</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查看方法
+<ul>
+<li><code>show variables like '%gen%'</code></li>
+</ul>
+</li>
+<li>作用
+<ul>
+<li>记录<code>mysql</code>所有执行成功的语句,可以作审计用,但很少开启</li>
+</ul>
+</li>
+</ul>
+<h2 id="14-二进制日志binlog" class="headerLink">
+    <a href="#14-%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%97%a5%e5%bf%97binlog" class="header-mark"></a>1.4. 二进制日志(binlog)</h2><ul>
+<li>
+<p>二进制日志会记录已提交的数据,以<code>event</code>的形式记录到二进制文件中,其常用的记录格式有:</p>
+<ul>
+<li>
+<p><code>row</code>: 行模式,即数据行的变化过程,将某一个值修改到另一个值的过程(建议及常用模式)     TODO: mysql 配置文件中是否区分大小写(这个需要根据官方建议核查)</p>
+</li>
+<li>
+<p><code>statement</code>: 语句模式,直接记录执行过的语句,其优点是记录的数据好分析,数据量级小,比如批量修改,缺点就是记录函数(如:<code>now()</code>)类操作不是特别准确(默认模式<code>show variables like '%binlog_format%' </code>);</p>
+</li>
+<li>
+<p><code>mixed</code>: 以上两种的混合模式</p>
+</li>
+</ul>
+</li>
+<li>
+<p>开启、关闭及记录格式</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[mysqld]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启</span>
+</span></span><span class="line"><span class="cl"><span class="na">log-bin</span> <span class="o">=</span> <span class="s">/data/mysql56/3307/data/mysql-bin/mysql-bin</span>
+</span></span><span class="line"><span class="cl"><span class="na">binlog_format</span> <span class="o">=</span> <span class="s">row</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭注释上面两个配置即可 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 临时关闭 set sql_log_bin=0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令行修改 set global binlog_format = &#39;row&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>sync_binlog</code> 值为<code>1</code>时，每次事务提交时就向磁盘进行写入</li>
+</ul>
+<h2 id="15-binlog-管理" class="headerLink">
+    <a href="#15-binlog-%e7%ae%a1%e7%90%86" class="header-mark"></a>1.5. binlog 管理</h2><p><code>pos</code>: 开始位置号
+<code>End_log_pos</code>: 结束位置号</p>
+<ul>
+<li>查看当前所有二进制日志可用信息: <code>show binary logs; </code></li>
+<li>当前正在使用的<code>binlog</code>日志: <code>show master status</code></li>
+<li>查看二进制日志中记录的事件: <code>show binlog events in 'mysql-bin.000002';</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">+------------------+-----+-------------+-----------+-------------+---------------------------------------+
+</span></span><span class="line"><span class="cl">| Log_name         | Pos | Event_type  | Server_id | End_log_pos | Info                                  |
+</span></span><span class="line"><span class="cl">+------------------+-----+-------------+-----------+-------------+---------------------------------------+
+</span></span><span class="line"><span class="cl">| mysql-bin.000004 | 4   | Format_desc | 10        | 120         | Server ver: 5.6.50-log, Binlog ver: 4 |
+</span></span><span class="line"><span class="cl">| mysql-bin.000004 | 120 | Query       | 10        | 192         | BEGIN                                 |
+</span></span><span class="line"><span class="cl">| mysql-bin.000004 | 192 | Table_map   | 10        | 248         | table_id: 72 (test.test_table)        |
+</span></span><span class="line"><span class="cl">| mysql-bin.000004 | 248 | Write_rows  | 10        | 292         | table_id: 72 flags: STMT_END_F        |
+</span></span><span class="line"><span class="cl">| mysql-bin.000004 | 292 | Xid         | 10        | 323         | COMMIT /* xid=36 */                   |
+</span></span><span class="line"><span class="cl">+------------------+-----+-------------+-----------+-------------+---------------------------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>查看二进制文件内容(<code>mysqlbinlog</code>可能不会识别<code>default-character-set=utf8</code>这个指令,报错为<code>unknown variable</code>,解决指定参数<code>--no-defaults</code>)    TODO: unknown variable &lsquo;default-character-set=utf8&rsquo;(这个不识别就不识别吧,具体不是很清楚,也没有咨询到解决方案)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看binlog内容(仅包含DDL操作) </span>
+</span></span><span class="line"><span class="cl">$&gt; /opt/mysql56/bin/mysqlbinlog --no-defaults /data/mysql56/3307/data/mysql-bin/mysql-bin/mysql-bin.000004
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看binlog详细内容(注释中包含大概的详细语句)  </span>
+</span></span><span class="line"><span class="cl">$&gt; /opt/mysql56/bin/mysqlbinlog --no-defaults --base64-output<span class="o">=</span>decode-rows -v mysql-bin.000004 
+</span></span><span class="line"><span class="cl"><span class="c1"># @1: 代表第一列 @2: 代表第二列 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">### INSERT INTO `test`.`test_table`</span>
+</span></span><span class="line"><span class="cl"><span class="c1">### SET</span>
+</span></span><span class="line"><span class="cl"><span class="c1">###   @1=6</span>
+</span></span><span class="line"><span class="cl"><span class="c1">###   @2=&#39;333&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># at 292</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 范围截取 </span>
+</span></span><span class="line"><span class="cl">$&gt; /opt/mysql56/bin/mysqlbinlog --no-defaults --start-position<span class="o">=</span><span class="m">192</span> --stop-position<span class="o">=</span><span class="m">323</span> --base64-output<span class="o">=</span>decode-rows -v ./data/mysql-bin/mysql-bin.000004
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 导出为数据库可恢复文件(恢复执行 source ./binlog.sql) </span>
+</span></span><span class="line"><span class="cl">$&gt; /opt/mysql56/bin/mysqlbinlog --no-defaults --start-position<span class="o">=</span><span class="m">192</span> --stop-position<span class="o">=</span><span class="m">323</span> ./data/mysql-bin/mysql-bin.000004 &gt; ./binlog.sql 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 刷新日志(重新生成一个binlog日志)  </span>
+</span></span><span class="line"><span class="cl">mysql&gt; flush logs<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置二进制日志保存天数,默认永久保留(建议永久保留) </span>
+</span></span><span class="line"><span class="cl">mysql&gt; <span class="nb">set</span> global <span class="nv">expire_logs_days</span> <span class="o">=</span> 90<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 手动删除(删除3天前)</span>
+</span></span><span class="line"><span class="cl">mysql&gt; purge binary logs before now<span class="o">()</span> - interval <span class="m">3</span> day<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除到那个日志文件 </span>
+</span></span><span class="line"><span class="cl">mysql&gt; purge binary logs to <span class="s1">&#39;mysql-bin.000020&#39;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="16-慢日志管理---mycnf-中配置无顺序要求" class="headerLink">
+    <a href="#16-%e6%85%a2%e6%97%a5%e5%bf%97%e7%ae%a1%e7%90%86---mycnf-%e4%b8%ad%e9%85%8d%e7%bd%ae%e6%97%a0%e9%a1%ba%e5%ba%8f%e8%a6%81%e6%b1%82" class="header-mark"></a>1.6. 慢日志管理   (my.cnf 中配置无顺序要求)</h2><ul>
+<li>
+<p><code>show variables like '%slow%'</code></p>
+</li>
+<li>
+<p><code>show variables like '%long%</code></p>
+</li>
+<li>
+<p><code>show variables like '%indexes%'</code></p>
+</li>
+<li>
+<p>查询</p>
+<ol>
+<li>是将<code>mysql</code>服务中影响数据库性能的相关sql语句记录到日志文件中</li>
+<li>通过对这些特殊的sql语句分析,改进以达到提高数据库性能的目的</li>
+</ol>
+</li>
+<li>
+<p>设置</p>
+<ol>
+<li><code>long_query_time</code>: 设定慢查询的阀值,超出设定值的sql即被记录到慢查询日志,缺省值为<code>10s</code></li>
+<li><code>show_query_log</code> : 指定是否开启慢查询日志</li>
+<li><code>slow_query_log_file</code>: 指定慢日志文件存放位置,可以为空,系统会给一个缺省的文件<code>host_name-slow.log</code></li>
+<li><code>min_examined_row_limit</code>: 查询检查返回少于改参数指定行的sql不会记录到慢查询日志</li>
+<li><code>log_queries_not_using_indexes</code>: 不使用索引的慢查询日志是否记录到索引</li>
+</ol>
+</li>
+<li>
+<p><code>mysqldumpslow</code>(扩展命令 <code>mysqlsla</code>、<code>pt-query-diagest percona-toolkit</code>)<br>
+导出<code>host_name-slow.log</code>日志中执行次数最多的前10条数据
+<code>mysqldumpslow -s c -t 10 host_name-slow.log </code></p>
+</li>
+<li>
+<p>导出<code>host_name-slow.log</code>日志中平均执行时间的前10条数据
+<code>mysqldumpslow -s at -t 10 host_name-slow.log</code></p>
+</li>
+</ul>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-28</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" data-title="Mysql 日志管理"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/mysql/">mysql</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/" class="prev" rel="prev" title="Fedora视频桌面"><i class="fas fa-angle-left fa-fw"></i>Fedora视频桌面</a>
+            <a href="/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" class="next" rel="next" title="Mysql 存储引擎">Mysql 存储引擎<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">windows安装优化 - 一个曾经的小码农...</title><meta name="Description" content="安装优化"><meta property="og:title" content="windows安装优化" />
+<meta property="og:description" content="安装优化" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-24T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo.png"/>
+
+<meta name="twitter:title" content="windows安装优化"/>
+<meta name="twitter:description" content="安装优化"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/ipsec/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "windows安装优化",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96\/"
+        },"genre": "posts","keywords": "linux, windows","wordcount":  1439 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96\/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-24T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                    "@type": "Person",
+                    "name": "0x5c0f"
+                }],"description": "安装优化"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-系统安全">1. 系统安全</a>
+      <ul>
+        <li><a href="#11-修改服务器名按项目取名">1.1. 修改服务器名：按项目取名。</a></li>
+        <li><a href="#12-调整性能设置">1.2. 调整性能设置：</a></li>
+        <li><a href="#13-允许-dump-file-的产生">1.3. 允许 dump file 的产生：</a></li>
+        <li><a href="#14-禁用-netbois">1.4. 禁用 NETBOIS:</a></li>
+        <li><a href="#15-禁止设置网卡为-disable">1.5. 禁止设置网卡为 Disable</a></li>
+        <li><a href="#16-iis-安装后修改站点日志目录">1.6. IIS 安装后修改站点日志目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-用户安全">2. 用户安全</a></li>
+    <li><a href="#3-本地安全策略设置">3. 本地安全策略设置</a>
+      <ul>
+        <li><a href="#31-本地安全策略设置">3.1. 本地安全策略设置</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-禁用以下的服务">4. 禁用以下的服务</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">windows安装优化</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1439 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-系统安全">1. 系统安全</a>
+      <ul>
+        <li><a href="#11-修改服务器名按项目取名">1.1. 修改服务器名：按项目取名。</a></li>
+        <li><a href="#12-调整性能设置">1.2. 调整性能设置：</a></li>
+        <li><a href="#13-允许-dump-file-的产生">1.3. 允许 dump file 的产生：</a></li>
+        <li><a href="#14-禁用-netbois">1.4. 禁用 NETBOIS:</a></li>
+        <li><a href="#15-禁止设置网卡为-disable">1.5. 禁止设置网卡为 Disable</a></li>
+        <li><a href="#16-iis-安装后修改站点日志目录">1.6. IIS 安装后修改站点日志目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-用户安全">2. 用户安全</a></li>
+    <li><a href="#3-本地安全策略设置">3. 本地安全策略设置</a>
+      <ul>
+        <li><a href="#31-本地安全策略设置">3.1. 本地安全策略设置</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-禁用以下的服务">4. 禁用以下的服务</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="1-系统安全" class="headerLink">
+    <a href="#1-%e7%b3%bb%e7%bb%9f%e5%ae%89%e5%85%a8" class="header-mark"></a>1. 系统安全</h1><p>显示电脑图标到桌面: <code>rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0</code>
+开始文件夹: <code>shell:startup</code>
+本地安全策略: <code>secpol.msc</code><br>
+计算机管理: <code>compmgmt.msc</code></p>
+<h2 id="11-修改服务器名按项目取名" class="headerLink">
+    <a href="#11-%e4%bf%ae%e6%94%b9%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%90%8d%e6%8c%89%e9%a1%b9%e7%9b%ae%e5%8f%96%e5%90%8d" class="header-mark"></a>1.1. 修改服务器名：按项目取名。</h2><ul>
+<li>右键点击我的电脑-高级-计算机名-更改。英文: <code>my computer - proterties - Advanced system settings - Computer Name - Change</code></li>
+</ul>
+<h2 id="12-调整性能设置" class="headerLink">
+    <a href="#12-%e8%b0%83%e6%95%b4%e6%80%a7%e8%83%bd%e8%ae%be%e7%bd%ae" class="header-mark"></a>1.2. 调整性能设置：</h2><ul>
+<li>右键点击我的电脑-高级-性能中，选中“设置为最佳性能”英文: <code>my computer - proterties-Advanced - Performance-setting -Visual Effects (Adjust for best performance)</code>；</li>
+<li>数据执行保护设置为“只为关键的<code>windows</code>程序保护”。</li>
+</ul>
+<h2 id="13-允许-dump-file-的产生" class="headerLink">
+    <a href="#13-%e5%85%81%e8%ae%b8-dump-file-%e7%9a%84%e4%ba%a7%e7%94%9f" class="header-mark"></a>1.3. 允许 dump file 的产生：</h2><ul>
+<li>右键点击我的电脑-高级-启动和故障恢复-写入调试信息 设置成“最小化记录模式”。英文版操作：右击 <code>My Computer-Advanced-Startup and recovery-write debugging infomation设置成“small…”</code>。</li>
+</ul>
+<h2 id="14-禁用-netbois" class="headerLink">
+    <a href="#14-%e7%a6%81%e7%94%a8-netbois" class="header-mark"></a>1.4. 禁用 NETBOIS:</h2><p>网络连接属性-tcpip 属性-高级-wins-NetBios 设置 “禁用 Tcp/ip 上的 NetBios”选项</p>
+<h2 id="15-禁止设置网卡为-disable" class="headerLink">
+    <a href="#15-%e7%a6%81%e6%ad%a2%e8%ae%be%e7%bd%ae%e7%bd%91%e5%8d%a1%e4%b8%ba-disable" class="header-mark"></a>1.5. 禁止设置网卡为 Disable</h2><ul>
+<li>运行<code>gpedit.msc</code>- 用户配置-管理模板-网络-网络连接下的&quot;启用/禁用 LAN 链接的能力(<code>Ability to Enable/Disable a LAN connection</code>)&ldquo;设置为<code>Disabled </code></li>
+<li>设置&quot;为管理员启用<code>windows2000</code>网路连接设置(<code>Enable Windows2000 Network Connections settings for Administrators</code>)&rdquo; 选项为<code>Enabled </code></li>
+</ul>
+<h2 id="16-iis-安装后修改站点日志目录" class="headerLink">
+    <a href="#16-iis-%e5%ae%89%e8%a3%85%e5%90%8e%e4%bf%ae%e6%94%b9%e7%ab%99%e7%82%b9%e6%97%a5%e5%bf%97%e7%9b%ae%e5%bd%95" class="header-mark"></a>1.6. IIS 安装后修改站点日志目录</h2><h1 id="2-用户安全" class="headerLink">
+    <a href="#2-%e7%94%a8%e6%88%b7%e5%ae%89%e5%85%a8" class="header-mark"></a>2. 用户安全</h1><p><code>netplwiz</code>用户名修改,安全策略里面也有设置方法</p>
+<ul>
+<li>禁用<code>Guest</code>账号(设置复杂密码)</li>
+<li>限制不必要的用户(如<code>aspnet</code>,<code>sqldebugger</code>等)</li>
+<li>把系统<code>Administrator</code>账号改名</li>
+<li>创建名称为<code>Administrator</code>陷阱用户  (正确设置描述信息,不给任何权限)</li>
+<li>建立一个备用管理员帐户。</li>
+<li>不让系统显示上次登录的用户名(后面本地策略中有)</li>
+<li>通过<code>reg</code>脚本设置开机前 5 分钟自动登录</li>
+</ul>
+<h1 id="3-本地安全策略设置" class="headerLink">
+    <a href="#3-%e6%9c%ac%e5%9c%b0%e5%ae%89%e5%85%a8%e7%ad%96%e7%95%a5%e8%ae%be%e7%bd%ae" class="header-mark"></a>3. 本地安全策略设置</h1><h2 id="31-本地安全策略设置" class="headerLink">
+    <a href="#31-%e6%9c%ac%e5%9c%b0%e5%ae%89%e5%85%a8%e7%ad%96%e7%95%a5%e8%ae%be%e7%bd%ae" class="header-mark"></a>3.1. 本地安全策略设置</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">gpedit.msc-计算机配置-windows设置-安全设置
+</span></span><span class="line"><span class="cl">本地策略-审核策略
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">推荐的要审核的项目是：
+</span></span><span class="line"><span class="cl">策略更改     成功 失败
+</span></span><span class="line"><span class="cl">登录事件     成功 失败
+</span></span><span class="line"><span class="cl">对象访问     失败
+</span></span><span class="line"><span class="cl">过程追踪     无
+</span></span><span class="line"><span class="cl">目录服务访问 失败
+</span></span><span class="line"><span class="cl">特权使用     失败
+</span></span><span class="line"><span class="cl">系统事件     成功 失败
+</span></span><span class="line"><span class="cl">账户登录事件 成功 失败
+</span></span><span class="line"><span class="cl">账户管理     无
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">英文版：
+</span></span><span class="line"><span class="cl">Audit account logon events       Success,Failure
+</span></span><span class="line"><span class="cl">Audit account management         No auditing
+</span></span><span class="line"><span class="cl">Audit directory service access   Failure
+</span></span><span class="line"><span class="cl">Audit logon event                Success,Failure
+</span></span><span class="line"><span class="cl">Audit object access              Failure
+</span></span><span class="line"><span class="cl">Audit polic change		   Success,Failure
+</span></span><span class="line"><span class="cl">Audit privilege use              Failure
+</span></span><span class="line"><span class="cl">Audit process tracking           No auditing
+</span></span><span class="line"><span class="cl">Audit system events              Success,Failure
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">本地策略—&gt;用户权限分配
+</span></span><span class="line"><span class="cl">关闭系统(shut down the system)：
+</span></span><span class="line"><span class="cl">只有Administrators组、其它全部删除。 
+</span></span><span class="line"><span class="cl">通过终端服务允许登陆(Allow log on through Terminal services)：
+</span></span><span class="line"><span class="cl">只加入Administrators,Remote Desktop Users组，其他全部删除。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">C、本地策略——&gt;安全选项
+</span></span><span class="line"><span class="cl">交互式登陆：不显示上次的用户名　　　　　　　启用
+</span></span><span class="line"><span class="cl">网络访问：不允许SAM帐户和共享的匿名枚举　 	启用
+</span></span><span class="line"><span class="cl">网络访问：不允许为网络身份验证储存凭证　　　启用
+</span></span><span class="line"><span class="cl">网络访问：可匿名访问的共享　　　　　　　　　全部删除
+</span></span><span class="line"><span class="cl">网络访问：可匿名访问的命名管道　　　　　　　全部删除
+</span></span><span class="line"><span class="cl">网络访问：可远程访问的注册表路径　　　　　　全部删除 
+</span></span><span class="line"><span class="cl">网络访问：可远程访问的注册表路径和子路径　　全部删除 
+</span></span><span class="line"><span class="cl">帐户：重命名系统管理员帐户　　　　　　　　重命名一个帐户（比如administrator改成lefux,不一定是lefux问清楚再改，改后最好重启一下服务器）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">英文版本：
+</span></span><span class="line"><span class="cl">Interactive logon:Do not display last user name    Enabled
+</span></span><span class="line"><span class="cl">Network access:Do not allow anonymous enumeration of SAM accounts and share  Enabled
+</span></span><span class="line"><span class="cl">Network access:Do not allow
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="4-禁用以下的服务" class="headerLink">
+    <a href="#4-%e7%a6%81%e7%94%a8%e4%bb%a5%e4%b8%8b%e7%9a%84%e6%9c%8d%e5%8a%a1" class="header-mark"></a>4. 禁用以下的服务</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Computer Browser；Portable Media Serial Number Service
+</span></span><span class="line"><span class="cl">Distributed File System<span class="p">;</span> Windows Audio<span class="p">;</span> Alert
+</span></span><span class="line"><span class="cl">Distributed linktracking client：
+</span></span><span class="line"><span class="cl">Error reporting service：
+</span></span><span class="line"><span class="cl">FTP Publishing Service
+</span></span><span class="line"><span class="cl">Messenger
+</span></span><span class="line"><span class="cl">Indexing Service
+</span></span><span class="line"><span class="cl">Microsoft Serch：
+</span></span><span class="line"><span class="cl">NT LM Security support provide：
+</span></span><span class="line"><span class="cl">server
+</span></span><span class="line"><span class="cl">PrintSpooler：
+</span></span><span class="line"><span class="cl">Remote Desktop Help Session Manager：
+</span></span><span class="line"><span class="cl">Remote Registry<span class="p">;</span> Routing and Remote Access
+</span></span><span class="line"><span class="cl">Workstation <span class="o">(</span>美国服务器不要关<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>经测试可以关闭的其他服务也可以关</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-24</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/" data-title="windows安装优化"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/windows/">windows</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" class="prev" rel="prev" title="Windows命令收集"><i class="fas fa-angle-left fa-fw"></i>Windows命令收集</a>
+            <a href="/2022/ipsec/" class="next" rel="next" title="windows 本地安全策略设置">windows 本地安全策略设置<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

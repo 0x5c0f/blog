@@ -1,0 +1,77 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>linux - 标签 - 一个曾经的小码农...</title>
+        <link>https://blog.0x5c0f.cc/tags/linux/</link>
+        <description>linux - 标签 - 一个曾经的小码农...</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>常用web环境优化</title>
+    <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
+    <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</guid>
+    <description><![CDATA[前言 一篇包含tomcat、nginx、php、mysql的相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。 1. tomcat 服务调]]></description>
+</item><item>
+    <title>常用命令收集</title>
+    <link>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
+    <pubDate>Tue, 23 Jul 2019 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
+    <description><![CDATA[收集了一些常用和有趣的命令]]></description>
+</item><item>
+    <title>Shellscript相关</title>
+    <link>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</link>
+    <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
+    <description><![CDATA[1. shell 脚本执行的几种方法 bash(sh) /path/script.sh 赋予执行权限 /path/script.sh 或 ./scripts.sh source script.sh 或 . script.sh 在此方法中执行,子 shell 中定义的变量,可在父 shell 中调用(其他方式父 shell 不能直接调用子 shell 的变量)]]></description>
+</item><item>
+    <title>那些好用的工具收集</title>
+    <link>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</link>
+    <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</guid>
+    <description><![CDATA[收集的一些感觉挺好用的工具]]></description>
+</item><item>
+    <title>HTTP响应码</title>
+    <link>https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/</link>
+    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/</guid>
+    <description><![CDATA[HTTP响应码分类 https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status 常见状态码 一些常见HTTP状态码为： 200 – 服务器成功返回网页 404 – 请求的网页不存在 503 – 服务不可用 常见HTTP状态码大全 1xx]]></description>
+</item><item>
+    <title>Netstat命令</title>
+    <link>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</link>
+    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
+    <description><![CDATA[netstat 命令netstat列含义： Proto: 协议名（tcp协议或者udp协议) recv-Q: 网络接收队列 表示收到的数据已经在本地接收缓冲，但是还有多少没有被进程取走，]]></description>
+</item><item>
+    <title>OSI七层模型</title>
+    <link>https://blog.0x5c0f.cc/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</link>
+    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</guid>
+    <description><![CDATA[<p>OSI 模型是从上往下的，越底层越接近硬件，越往上越接近软件，这七层模型分别是物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
+<ul>
+<li><code>物理层</code>: 在媒体上传输比特，提供机械的和电气的规约</li>
+<li><code>数据链路层</code>: 将分组数据封装成帧，提供节点到节点方式的传输</li>
+<li><code>网络层</code>: 将分组从源端传送到目的端，提供网络互联</li>
+<li><code>传输层</code>: 提供可靠的端到端的报文传输和差错控制</li>
+<li><code>会话层</code>: 建立、管理和终止会话</li>
+<li><code>表示层</code>: 对数据进行转换、加密和压缩</li>
+<li><code>应用层</code>: 程序及接口</li>
+</ul>]]></description>
+</item><item>
+    <title>持续集成</title>
+    <link>https://blog.0x5c0f.cc/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</link>
+    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</guid>
+    <description><![CDATA[持续集成 什么是DevOpsDevOps 是一个框架，是一种理论方法，并不是一套工具，他包括一系列的基本原则和实践。其核心价值着重于更快速的交付]]></description>
+</item><item>
+    <title>磁盘管理(半草稿)</title>
+    <link>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</guid>
+    <description><![CDATA[磁盘管理磁盘的最小存储单位是扇区，大小为0.5kb(512Bytes)，多个连续的扇区称之为块 操作系统文件存取的最小单位是块(block)，]]></description>
+</item><item>
+    <title>系统管理</title>
+    <link>https://blog.0x5c0f.cc/2022/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
+    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
+    <description><![CDATA[1. 进程与线程 进程: 一个程序的执行实例，也就是正在执行的程序 线程: 在一个程序里的一个执行路线就叫做线程 2. ps 命令-f : 显示UID、PID、PPI]]></description>
+</item></channel>
+</rss>
