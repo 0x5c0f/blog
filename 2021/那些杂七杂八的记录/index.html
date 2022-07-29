@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  6086 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  6312 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2022-02-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -172,7 +172,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6086 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6312 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
@@ -954,11 +954,13 @@
 </table>
 <h1 id="nginx-反向代理后端服务器部分资源出现502错误" class="headerLink">
     <a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e5%90%8e%e7%ab%af%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%83%a8%e5%88%86%e8%b5%84%e6%ba%90%e5%87%ba%e7%8e%b0502%e9%94%99%e8%af%af" class="header-mark"></a>nginx 反向代理后端服务器，部分资源出现502错误</h1><p>问题描述: 后端是<code>dotnet</code>应用，反向代理时候域名请求页面部分<code>css</code>/<code>js</code>资源返回<code>502</code>错误。直接请求报错的<code>css</code>/<code>js</code>又是正常的，前端绕过<code>nginx</code>直接访问<code>dotnet</code>所有返回又是正常的。只有经过<code>nginx</code>会出现该问题。
-解决方案:</p>
+解决过程：</p>
 <ul>
-<li>网上搜索到的一个解决方案，说的是<code>header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502</code>，这个问题提出的解决是，增大<code>proxy_buffer_size</code>/<code>proxy_buffers</code>/<code>proxy_busy_buffers_size</code>,但实际上这个方案 <em><strong>并未解决</strong></em> 我的问题。</li>
-<li>我的解决方案是,参考了官方文档<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive" target="_blank" rel="noopener noreffer"><code>https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</code></a>,调整了<code>upstream</code>中<code>keepalive</code>,我原来设置的是<code>2</code>,现调整为<code>16</code>,并设置了<code>Connection &quot;Keep-Alive&quot;;</code>(这个设置是为了保持<code>http/1.0</code>持久链接，官方不建议使用此参数，但我这边<code>websokcet</code>和<code>http/1.0</code>,单独设置一个并没有效果，所以两个都设置了)。 然后问题解决。</li>
+<li>网上搜索到很多的解决方案，这一个感觉有点用，但<em><strong>并没有解决我的问题</strong></em>,说的是<code>header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502</code>，这个问题提出的解决是，增大<code>proxy_buffer_size</code>/<code>proxy_buffers</code>/<code>proxy_busy_buffers_size</code>,不过还是记录下，毕竟不是每个问题原因都一样。</li>
+<li>这是我当时参考的第二个方案,根据官方文档<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive" target="_blank" rel="noopener noreffer"><code>https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</code></a>,调整了<code>upstream</code>中<code>keepalive</code>,我原来设置的是<code>2</code>,现调整为<code>16</code>,并设置了<code>Connection &quot;Keep-Alive&quot;;</code>(这个设置是为了保持<code>http/1.0</code>持久链接，官方不建议使用此参数，但我这边<code>websokcet</code>和<code>http/1.0</code>,单独设置一个并没有效果，所以两个都设置了)。这个方案当时解决了一部分的问题。但根本并未得到解决。</li>
+<li>然后最终的方案，重启应用服务器，问题完全解决！！！</li>
 </ul>
+<p>原因分析：突然不知道怎么下笔了，反正就是系统tcp连接过多，最开始体现就是出现大量的<code>CLOSE_WAIT</code>,当时重启了对应占用的程序，清理一些连接，出现一定的好转，但也仅仅出现了好转，后面可能由于某些原因，导致重启应用也无法解决了，最后重启服务器，问题完全解决。 应该不是每个人都是这个原因，不过可以参考下。</p>
 <p><strong>虽然一直在使用<code>nginx</code>，但对于这些更深度的东西还是一点都不清楚，不知道这个问题记录的是否正确，但根据第二个方案已经解决了我的问题</strong></p>
 <h1 id="linux-下挂载-esxi-的-vmfs-文件系统" class="headerLink">
     <a href="#linux-%e4%b8%8b%e6%8c%82%e8%bd%bd-esxi-%e7%9a%84-vmfs-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" class="header-mark"></a>linux 下挂载 esxi 的 vmfs 文件系统</h1><p><code>vmfs</code> 是<code>esxi</code>的文件系统,物理机使用<code>esxi</code>虚拟化后硬盘的文件格式就是这个. <code>linux</code>下可以直接将其挂在到本地

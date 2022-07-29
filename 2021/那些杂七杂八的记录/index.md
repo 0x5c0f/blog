@@ -370,9 +370,13 @@ $> rdesktop-vrdp -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=
 
 # nginx 反向代理后端服务器，部分资源出现502错误 
 问题描述: 后端是`dotnet`应用，反向代理时候域名请求页面部分`css`/`js`资源返回`502`错误。直接请求报错的`css`/`js`又是正常的，前端绕过`nginx`直接访问`dotnet`所有返回又是正常的。只有经过`nginx`会出现该问题。
-解决方案:
-  - 网上搜索到的一个解决方案，说的是`header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502`，这个问题提出的解决是，增大`proxy_buffer_size`/`proxy_buffers`/`proxy_busy_buffers_size`,但实际上这个方案 ***并未解决*** 我的问题。
-  - 我的解决方案是,参考了官方文档[`https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive),调整了`upstream`中`keepalive`,我原来设置的是`2`,现调整为`16`,并设置了`Connection "Keep-Alive";`(这个设置是为了保持`http/1.0`持久链接，官方不建议使用此参数，但我这边`websokcet`和`http/1.0`,单独设置一个并没有效果，所以两个都设置了)。 然后问题解决。
+解决过程：
+  - 网上搜索到很多的解决方案，这一个感觉有点用，但***并没有解决我的问题***,说的是`header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502`，这个问题提出的解决是，增大`proxy_buffer_size`/`proxy_buffers`/`proxy_busy_buffers_size`,不过还是记录下，毕竟不是每个问题原因都一样。
+  - 这是我当时参考的第二个方案,根据官方文档[`https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive),调整了`upstream`中`keepalive`,我原来设置的是`2`,现调整为`16`,并设置了`Connection "Keep-Alive";`(这个设置是为了保持`http/1.0`持久链接，官方不建议使用此参数，但我这边`websokcet`和`http/1.0`,单独设置一个并没有效果，所以两个都设置了)。这个方案当时解决了一部分的问题。但根本并未得到解决。
+  - 然后最终的方案，重启应用服务器，问题完全解决！！！
+
+原因分析：突然不知道怎么下笔了，反正就是系统tcp连接过多，最开始体现就是出现大量的`CLOSE_WAIT`,当时重启了对应占用的程序，清理一些连接，出现一定的好转，但也仅仅出现了好转，后面可能由于某些原因，导致重启应用也无法解决了，最后重启服务器，问题完全解决。 应该不是每个人都是这个原因，不过可以参考下。
+
 
 **虽然一直在使用`nginx`，但对于这些更深度的东西还是一点都不清楚，不知道这个问题记录的是否正确，但根据第二个方案已经解决了我的问题**  
 
