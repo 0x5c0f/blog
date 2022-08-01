@@ -20,3 +20,10 @@ $> docker network rm net-host
 
 ## docker 容器内无法访问远程服务器网络
 当前记录问题产生原因可能是由于上述的`DOCKER-USER`规则链丢失处理后而产生的新的问题，部署为`docker-compose`，解决先是`down`容器，然后重启`docker`，再重新`up`容器。后测试容器内网络访问正常。
+
+# docker 网络桥联网络无法访问物理机网络问题  
+ - 当容器以桥连模式启动时是无法访问物理主机网络的,此时需要手动配置下防火墙信任容器的桥连网卡流量 
+ ```bash
+  # 如容器启动后的网卡为 br-3630aa8a433b ,则防火墙添加下 
+  $> iptables -A INPUT -i br-3630aa8a433b -j ACCEPT
+ ```

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">服务器运维故障记录 - 一个曾经的小码农...</title><meta name="Description" content="服务器运维故障记录"><meta property="og:title" content="服务器运维故障记录" />
+<meta property="og:description" content="服务器运维故障记录" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-08-01T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo.png"/>
+
+<meta name="twitter:title" content="服务器运维故障记录"/>
+<meta name="twitter:description" content="服务器运维故障记录"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "服务器运维故障记录",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/"
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3429 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2022-08-01T00:00:00+00:00","dateModified": "2022-08-01T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                    "@type": "Person",
+                    "name": "0x5c0f"
+                }],"description": "服务器运维故障记录"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_transparent.png"
+        data-srcset="/icons/logo_transparent.png, /icons/logo_transparent.png 1.5x, /icons/logo_transparent.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_transparent.png"
+        title="/icons/logo_transparent.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mysql--errcode-24---too-many-open-files">Mysql  Errcode: 24 - Too many open files</a></li>
+    <li><a href="#禅道bug管理系统">禅道bug管理系统</a></li>
+    <li><a href="#nginx-代理php产生的一些故障">nginx 代理php产生的一些故障</a></li>
+    <li><a href="#zabbix-自动发现异常错误">zabbix 自动发现异常错误</a></li>
+    <li><a href="#nginx-伪静态无效问题">nginx 伪静态无效问题</a></li>
+    <li><a href="#nginx-反向代理后端服务器部分资源出现502错误">nginx 反向代理后端服务器，部分资源出现502错误</a></li>
+    <li><a href="#nginx-反向代理-cdn回源多层nginx出现-502503504-等异常">nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">服务器运维故障记录</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3429 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mysql--errcode-24---too-many-open-files">Mysql  Errcode: 24 - Too many open files</a></li>
+    <li><a href="#禅道bug管理系统">禅道bug管理系统</a></li>
+    <li><a href="#nginx-代理php产生的一些故障">nginx 代理php产生的一些故障</a></li>
+    <li><a href="#zabbix-自动发现异常错误">zabbix 自动发现异常错误</a></li>
+    <li><a href="#nginx-伪静态无效问题">nginx 伪静态无效问题</a></li>
+    <li><a href="#nginx-反向代理后端服务器部分资源出现502错误">nginx 反向代理后端服务器，部分资源出现502错误</a></li>
+    <li><a href="#nginx-反向代理-cdn回源多层nginx出现-502503504-等异常">nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="mysql--errcode-24---too-many-open-files" class="headerLink">
+    <a href="#mysql--errcode-24---too-many-open-files" class="header-mark"></a>Mysql  Errcode: 24 - Too many open files</h1><blockquote>
+<p><a href="https://blog.csdn.net/weixin_36343850/article/details/86293700" target="_blank" rel="noopener noreffer">https://blog.csdn.net/weixin_36343850/article/details/86293700</a></p>
+</blockquote>
+<p>原因：打开文件数量太多，超出了<code>open_files_limit</code>这个参数的限制，在一个表中有多个分区的时候，这种情况更容易发生。<br>
+解决方法：</p>
+<ul>
+<li>查看 <code>open_files_limit</code>参数, 使用<code>show variables like '%open%';</code>就可以看到了</li>
+<li>修改 <code>open_files_limit</code>参数<br>
+在网上找了很多资料，有的说直接在<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>文件中的<code>[mysqld]</code>部分添加<code>open_files_limit</code>参数，比如<code>open_files_limit=102400</code>，并且在<code>/etc/security/limits.conf</code> 添加<code>mysql soft nofile 102400</code>和<code>mysql hard nofile 102400</code>这两个参数然后重启<code>MySQL</code>，但是发现不能生效。</li>
+<li>以下方法可用：
+<ul>
+<li>在文件<code>/etc/systemd/system/multi-user.target.wants/mysql.service</code>(也有可能是<code>/etc/systemd/system/mysql.service</code>这个文件)最后添加<code>LimitNOFILE=102400</code></li>
+</ul>
+</li>
+<li>然后执行<code>systemctl daemon-reload</code>，接着再重启<code>mysql</code>服务<code>sudo service mysql restart</code>,可以看到已经修改成功了</li>
+</ul>
+<h1 id="禅道bug管理系统" class="headerLink">
+    <a href="#%e7%a6%85%e9%81%93bug%e7%ae%a1%e7%90%86%e7%b3%bb%e7%bb%9f" class="header-mark"></a>禅道bug管理系统</h1><ol>
+<li>这个部署遇到的一个坑就是<code>php</code>打死获取不到<code>session</code>的位置<br>
+打开调试日志方式是将<code>my.cnf</code> 中<code>debug</code>设置为<code>true</code><br>
+实际错误体现是 <code>ERROR: 您访问的域名 xxx.xxx.xxx 没有对应的公司。</code><br>
+我的解决方案是 代码目录整体权限设置为<code>777</code>,然后删除掉<code>my.cnf</code>进行重装,重装后在目录权限调整为正常权限即可.</li>
+<li>安装完成后，首页出现无限循环重定向，手动将<code>my.php</code>中<code>PATH_INFO</code>修改为<code>GET</code>，或在<code>nginx</code>传入变量<code>PATH_INFO</code>值<code>$request_uri;</code></li>
+</ol>
+<h1 id="nginx-代理php产生的一些故障" class="headerLink">
+    <a href="#nginx-%e4%bb%a3%e7%90%86php%e4%ba%a7%e7%94%9f%e7%9a%84%e4%b8%80%e4%ba%9b%e6%95%85%e9%9a%9c" class="header-mark"></a>nginx 代理php产生的一些故障</h1><p>记录一个<code>nginx</code> 代理 <code>php</code> 产生的问题,问题已经解决了,但是似乎还是没有找到根本原因,<strong>若有了解的,请一定解惑一二</strong>, 以下记录下处理过程 .</p>
+<ul>
+<li>
+<p>问题产生过程:</p>
+<ul>
+<li>A服务器代码迁移到B机器上,代码是<code>rsync</code>直接同步的,然后B运行的时候就出问题了,根据调试发现,无论访问什么(html/js/css)都会跳转到首页,实际应该是都会经过<code>php</code>解析(我发誓A和B的环境配置是一模一样的!A可以正常运行.), <code>php</code>框架为<code>opencart</code> .</li>
+</ul>
+</li>
+<li>
+<p>浏览器访问表现以下错误:</p>
+<ul>
+<li><code>Resource interpreted as Stylesheet but transferred with MIME type text/html</code></li>
+<li><code>ERR_CONNECTION_REFUSED</code></li>
+</ul>
+</li>
+<li>
+<p>处理过程 :</p>
+<ul>
+<li>问题实际上是头一天发生的,经过多方调试发现,实际上通过域名访问任何资源均会跳转到首页,访问<code>php</code>资源则会出现无法加载<code>js/css</code>等静态资源全部都是<code>MIME</code>类型问题,<code>nginx</code>强行给<code>css/js</code>等资源设置一个<code>content-type</code>前端也无法识别正确,另外也测试过网上提供的多方解决方案,仍然无法得到解决 .</li>
+<li>第二天, 保持原有<code>nginx</code>配置 , 我给对应站点首页的<code>index.php</code>代码中加入了<code>echo 123; exit();</code>进行测试,访问发现可正常断开,此时在访问根下的静态<code>html</code>测试文件,发现可以正常访问了,此时删除<code>echo 123; exit();</code>,重新访问<code>index.php</code>,发现(js/css)静态资源被升级为<code>https</code>访问,此时我给相关域名配置上证书,然后访问就正常了!!!</li>
+</ul>
+</li>
+<li>
+<p>原因分析:</p>
+<ul>
+<li>站点缓存(这个可能性最大),<code>opencart</code>框架实际上<code>session</code>是存储到数据库中的,估计很多的<code>cache</code>也是存于数据中的,而今天解决的时间也恰好距离我最后一次同步一天的样子.</li>
+<li><code>nginx</code> 配置域名过多,导致配置混乱. B服务器的<code>nginx</code>实际上已经配置了很多个域名,<code>php</code>解析的<code>SCRIPT_FILENAME</code> 我使用的是<code>$document_root</code>,最后一次修改我也将<code>$document_root</code>修改为了具体的路径,不知道会不会是这个原因产生的.</li>
+</ul>
+</li>
+</ul>
+<h1 id="zabbix-自动发现异常错误" class="headerLink">
+    <a href="#zabbix-%e8%87%aa%e5%8a%a8%e5%8f%91%e7%8e%b0%e5%bc%82%e5%b8%b8%e9%94%99%e8%af%af" class="header-mark"></a>zabbix 自动发现异常错误</h1><ul>
+<li>具体错误表现</li>
+</ul>
+<ol>
+<li><code>Cannot create item: item with the same key &quot;domain.status[{#DOMAIN_NAME},http_code]&quot; already exists.</code></li>
+<li><code>Cannot accurately apply filter: no value received for macro &quot;{#DOMAINNAME}&quot;.</code></li>
+</ol>
+<ul>
+<li>解决方案
+<ul>
+<li>这个是特么的自动发现脚本返回值的<code>key</code>必须用<code>{}</code>括起来,不然你即使是<code>json</code>格式他也不会认, 网上那些这个抄那个的坑货就只知道变量要大写，还有个坑告诉我要使用宏,用了宏就是第二个问题,不用第一个，这我是记得很清楚，宏并不是必定要有的啊，我以前写也基本没有加过。 我特么也是蠢了，写了这么多的自动发现，居然没有注意要括起来。</li>
+</ul>
+</li>
+</ul>
+<h1 id="nginx-伪静态无效问题" class="headerLink">
+    <a href="#nginx-%e4%bc%aa%e9%9d%99%e6%80%81%e6%97%a0%e6%95%88%e9%97%ae%e9%a2%98" class="header-mark"></a>nginx 伪静态无效问题</h1><ul>
+<li>具体错误体现
+拿到<code>apache</code>的<code>.htaccess</code>文件后，通过<a href="https://www.winginx.com/en/htaccess" target="_blank" rel="noopener noreffer"><code>https://www.winginx.com/en/htaccess</code></a>转换为了<code>nginx</code>可用的规则，但加入后访问跳转一直是<code>404</code>,经检查<code>location</code>是定位成功了的，但就是访问不了</li>
+<li>解决方案:</li>
+</ul>
+<ol>
+<li>后续开发提供了另一个伪静态配置,所有<code>rewrite</code>是放在<code>if</code>指令中(<code>!-e $request_filename</code>)，然后就可以了。我对比了下，两者的差异就是，一个是放在了<code>location</code>中，定位了每一个<code>rewrite</code>所在的位置。还有就是放在<code>if</code>中的<code>rewrite</code>的匹配规则是用引号括起来了的。具体原因暂时还是每搞清楚。后续出现需测试下引号是否有影响.</li>
+</ol>
+<h1 id="nginx-反向代理后端服务器部分资源出现502错误" class="headerLink">
+    <a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e5%90%8e%e7%ab%af%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%83%a8%e5%88%86%e8%b5%84%e6%ba%90%e5%87%ba%e7%8e%b0502%e9%94%99%e8%af%af" class="header-mark"></a>nginx 反向代理后端服务器，部分资源出现502错误</h1><p>问题描述: 后端是<code>dotnet</code>应用，反向代理时候域名请求页面部分<code>css</code>/<code>js</code>资源返回<code>502</code>错误。直接请求报错的<code>css</code>/<code>js</code>又是正常的，前端绕过<code>nginx</code>直接访问<code>dotnet</code>所有返回又是正常的。只有经过<code>nginx</code>会出现该问题。
+解决过程：</p>
+<ul>
+<li>网上搜索到很多的解决方案，这一个感觉有点用，但<em><strong>并没有解决我的问题</strong></em>,说的是<code>header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502</code>，这个问题提出的解决是，增大<code>proxy_buffer_size</code>/<code>proxy_buffers</code>/<code>proxy_busy_buffers_size</code>,不过还是记录下，毕竟不是每个问题原因都一样。</li>
+<li>这是我当时参考的第二个方案,根据官方文档<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive" target="_blank" rel="noopener noreffer"><code>https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</code></a>,调整了<code>upstream</code>中<code>keepalive</code>,我原来设置的是<code>2</code>,现调整为<code>16</code>,并设置了<code>Connection &quot;Keep-Alive&quot;;</code>(这个设置是为了保持<code>http/1.0</code>持久链接，官方不建议使用此参数，但我这边<code>websokcet</code>和<code>http/1.0</code>,单独设置一个并没有效果，所以两个都设置了)。这个方案当时解决了一部分的问题。但根本并未得到解决。</li>
+<li>然后最终的方案，重启应用服务器，问题完全解决！！！</li>
+</ul>
+<p>原因分析：突然不知道怎么下笔了，反正就是系统tcp连接过多，最开始体现就是出现大量的<code>CLOSE_WAIT</code>,当时重启了对应占用的程序，清理一些连接，出现一定的好转，但也仅仅出现了好转，后面可能由于某些原因，导致重启应用也无法解决了，最后重启服务器，问题完全解决。 应该不是每个人都是这个原因，不过可以参考下。</p>
+<h1 id="nginx-反向代理-cdn回源多层nginx出现-502503504-等异常" class="headerLink">
+    <a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86-cdn%e5%9b%9e%e6%ba%90%e5%a4%9a%e5%b1%82nginx%e5%87%ba%e7%8e%b0-502503504-%e7%ad%89%e5%bc%82%e5%b8%b8" class="header-mark"></a>nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</h1><p>在我的部署模式中，很多时候都是<code>docker</code>与实际应用环境混合部署(多环境，单节点)，大多的结构是 <code>docker</code>运行程序环境，<code>nginx</code>反向代理到<code>docker</code>暴露的端口，从而实现应用的正常访问。我这次遇到的这个问题，最开始的时候我以为是<code>cdn</code>的问题，因为当时我没有通过<code>cdn</code>直达服务器的时候访问都是正常的，然后通过<code>cdn</code>后，页面大多数请求就都出现了<code>502</code>等状态，这个时候我联系了运营商，他们说回源链接被断开了，是不是服务器上有相关安全策略，仔细的想了下，服务器上除了开启了<code>iptables</code>外，并没有其他的安全设置，正没有头绪的时候，突然想到<code>docker</code>需要依赖<code>iptables</code>转发，是不是这个原因导致防火墙又有问题了(因为之前我调整iptables的时候，导致过docker容器无法连接网络😥)，于是我把防火墙一关，然后<code>cdn</code>回源就正常了。 后续的处理，我关闭了服务器防火墙设置，重启了<code>docker</code>，重建了容器(防止容器网络出现问题，同时让<code>docker</code>重新创建自己的规则链)。对外的防火墙采用云防火墙现在公网流入流量。上面其他记录的故障中，估计也有这个原因导致的，但是不知道怎么调好了。(TODO:// 一个人运维好难，有点啥问题都不知道该找谁讨论下，全靠自己摸索)</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-08-01</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" data-title="服务器运维故障记录"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/" class="prev" rel="prev" title="HTTP响应码"><i class="fas fa-angle-left fa-fw"></i>HTTP响应码</a>
+            <a href="/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" class="next" rel="next" title="那些好用的工具收集">那些好用的工具收集<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a4931ca88ca04fbba70fbff0bba230da"}'></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

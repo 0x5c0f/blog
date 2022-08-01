@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2020\/docker%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, docker, 解决方案","wordcount":  404 ,
+        },"genre": "posts","keywords": "linux, docker, 解决方案","wordcount":  499 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2020\/docker%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2020-07-19T00:00:00+00:00","dateModified": "2022-07-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -135,13 +135,14 @@
         <li><a href="#docker-容器内无法访问远程服务器网络">docker 容器内无法访问远程服务器网络</a></li>
       </ul>
     </li>
+    <li><a href="#docker-网络桥联网络无法访问物理机网络问题">docker 网络桥联网络无法访问物理机网络问题</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Docker运维故障记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a>&nbsp;<a href="/series/docker/"><i class="far fa-list-alt fa-fw"></i>docker</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-19">2020-07-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-07-01">2022-07-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 404 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-19">2020-07-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-07-01">2022-07-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 499 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
@@ -159,6 +160,7 @@
         <li><a href="#docker-容器内无法访问远程服务器网络">docker 容器内无法访问远程服务器网络</a></li>
       </ul>
     </li>
+    <li><a href="#docker-网络桥联网络无法访问物理机网络问题">docker 网络桥联网络无法访问物理机网络问题</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h2 id="docker-centos7-镜像-systemctl-报错--failed-to-get-d-bus-connection-operation-not-permitted" class="headerLink">
@@ -193,7 +195,21 @@
 </div>
 </div><h2 id="docker-容器内无法访问远程服务器网络" class="headerLink">
     <a href="#docker-%e5%ae%b9%e5%99%a8%e5%86%85%e6%97%a0%e6%b3%95%e8%ae%bf%e9%97%ae%e8%bf%9c%e7%a8%8b%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%bd%91%e7%bb%9c" class="header-mark"></a>docker 容器内无法访问远程服务器网络</h2><p>当前记录问题产生原因可能是由于上述的<code>DOCKER-USER</code>规则链丢失处理后而产生的新的问题，部署为<code>docker-compose</code>，解决先是<code>down</code>容器，然后重启<code>docker</code>，再重新<code>up</code>容器。后测试容器内网络访问正常。</p>
+<h1 id="docker-网络桥联网络无法访问物理机网络问题" class="headerLink">
+    <a href="#docker-%e7%bd%91%e7%bb%9c%e6%a1%a5%e8%81%94%e7%bd%91%e7%bb%9c%e6%97%a0%e6%b3%95%e8%ae%bf%e9%97%ae%e7%89%a9%e7%90%86%e6%9c%ba%e7%bd%91%e7%bb%9c%e9%97%ae%e9%a2%98" class="header-mark"></a>docker 网络桥联网络无法访问物理机网络问题</h1><ul>
+<li>当容器以桥连模式启动时是无法访问物理主机网络的,此时需要手动配置下防火墙信任容器的桥连网卡流量</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"> <span class="c1"># 如容器启动后的网卡为 br-3630aa8a433b ,则防火墙添加下 </span>
+</span></span><span class="line"><span class="cl"> $&gt; iptables -A INPUT -i br-3630aa8a433b -j ACCEPT
+</span></span></code></pre></td></tr></table>
 </div>
+</div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
