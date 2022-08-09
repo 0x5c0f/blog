@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3287 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3440 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2022-02-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -159,13 +159,14 @@
       </ul>
     </li>
     <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
+    <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3287 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3440 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
@@ -208,6 +209,7 @@
       </ul>
     </li>
     <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
+    <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition note open">
@@ -858,6 +860,55 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装后挂载  </span>
 </span></span><span class="line"><span class="cl">vmfs-fuse /dev/sdc1 /mnt/sdc 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="cp-mv-进度条补丁" class="headerLink">
+    <a href="#cp-mv-%e8%bf%9b%e5%ba%a6%e6%9d%a1%e8%a1%a5%e4%b8%81" class="header-mark"></a>cp mv 进度条补丁</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 注意尽量不要使用 root 用户操作</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载coreutils</span>
+</span></span><span class="line"><span class="cl">$ wget http://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz
+</span></span><span class="line"><span class="cl">$ tar -xJf coreutils-8.32.tar.xz
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> coreutils-8.32/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载 github 上的补丁</span>
+</span></span><span class="line"><span class="cl">$ wget https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.8-8.32.patch
+</span></span><span class="line"><span class="cl"><span class="c1"># 打补丁，实现进度条显示</span>
+</span></span><span class="line"><span class="cl">$ patch -p1 -i advcpmv-0.8-8.32.patch
+</span></span><span class="line"><span class="cl">patching file src/copy.c
+</span></span><span class="line"><span class="cl">patching file src/copy.h
+</span></span><span class="line"><span class="cl">patching file src/cp.c
+</span></span><span class="line"><span class="cl">patching file src/mv.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 编译安装</span>
+</span></span><span class="line"><span class="cl">$ ./configure
+</span></span><span class="line"><span class="cl">$ make
+</span></span><span class="line"><span class="cl"><span class="c1"># 将打补丁生成的cp和mv命令的二进制文件复制到bin目录下</span>
+</span></span><span class="line"><span class="cl">$ sudo cp src/cp /usr/local/bin/cp
+</span></span><span class="line"><span class="cl">$ sudo cp src/mv /usr/local/bin/mv
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

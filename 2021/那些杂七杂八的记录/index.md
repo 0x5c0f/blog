@@ -326,3 +326,27 @@ $> rdesktop-vrdp -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=
 vmfs-fuse /dev/sdc1 /mnt/sdc 
 ```
 
+# cp mv 进度条补丁
+```bash
+# 注意尽量不要使用 root 用户操作
+# 下载coreutils
+$ wget http://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz
+$ tar -xJf coreutils-8.32.tar.xz
+$ cd coreutils-8.32/
+
+# 下载 github 上的补丁
+$ wget https://raw.githubusercontent.com/jarun/advcpmv/master/advcpmv-0.8-8.32.patch
+# 打补丁，实现进度条显示
+$ patch -p1 -i advcpmv-0.8-8.32.patch
+patching file src/copy.c
+patching file src/copy.h
+patching file src/cp.c
+patching file src/mv.c
+
+# 编译安装
+$ ./configure
+$ make
+# 将打补丁生成的cp和mv命令的二进制文件复制到bin目录下
+$ sudo cp src/cp /usr/local/bin/cp
+$ sudo cp src/mv /usr/local/bin/mv
+```
