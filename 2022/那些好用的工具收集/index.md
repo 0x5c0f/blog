@@ -31,10 +31,9 @@
 [root@01 ~]#  yum install inxi -y
 ```
 # 6. linux Script 终端记录神器  
-> [https://blog.csdn.net/ouyang_peng/article/details/78818492#22-script%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C](https://blog.csdn.net/ouyang_peng/article/details/78818492#22-script%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C)  
+> [https://asciinema.org/](https://asciinema.org/)  
 ```bash
-# 默认已安装
-[root@01 ~]# yum install util-linux
+[root@01 ~]# pip3 install asciinema
 ```
 # 7. linux 文件加密与解密工具 
 > [https://linux.cn/article-10632-1.html](https://linux.cn/article-10632-1.html)  
