@@ -4,7 +4,7 @@
         <link>https://blog.0x5c0f.cc/authors/admin/</link>
         <description>admin - 作者 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 01 Aug 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/authors/admin/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 22 Aug 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/authors/admin/" rel="self" type="application/rss+xml" /><item>
     <title>Starting</title>
     <link>https://blog.0x5c0f.cc/2022/starting/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
@@ -34,6 +34,12 @@
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                     <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[收集的一些感觉挺好用的工具]]></description>
+</item><item>
+    <title>Linux性能测试之性能测试指标(转载)</title>
+    <link>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/</link>
+    <pubDate>Mon, 22 Aug 2022 00:00:00 &#43;0000</pubDate><author>
+                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/</guid>
+    <description><![CDATA[Linux 性能测试之性能测试指标详解(原文) https://blog.csdn.net/u010521062/article/details/115908166 前言 性能测试指标是衡量系统性能的评价标准，常用的系统性能测试指标包括：响应时间、并发用户/并发、点击率]]></description>
 </item><item>
     <title>服务器运维故障记录</title>
     <link>https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</link>
@@ -67,11 +73,5 @@
 <li><code>表示层</code>: 对数据进行转换、加密和压缩</li>
 <li><code>应用层</code>: 程序及接口</li>
 </ul>]]></description>
-</item><item>
-    <title>持续集成</title>
-    <link>https://blog.0x5c0f.cc/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</link>
-    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</guid>
-    <description><![CDATA[持续集成 什么是DevOpsDevOps 是一个框架，是一种理论方法，并不是一套工具，他包括一系列的基本原则和实践。其核心价值着重于更快速的交付]]></description>
 </item></channel>
 </rss>
