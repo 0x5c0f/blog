@@ -115,3 +115,15 @@ DefaultSession=gnome-xorg.desktop
 firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -p gre -j ACCEPT 
 firewall-cmd --permanent --direct --add-rule ipv6 filter INPUT 0 -p gre -j ACCEPT 
 ```
+
+# 13. fedora 升级到指定版本
+```bash
+## 更新系统
+$> sudo dnf upgrade --refresh
+## 安装dnf-plugin-system-upgrade包
+$> sudo dnf install dnf-plugin-system-upgrade
+## 下载最新的 Fedora 更新包
+$> sudo dnf system-upgrade download --releasever=35
+## 重启升级
+$> sudo dnf system-upgrade reboot
+```

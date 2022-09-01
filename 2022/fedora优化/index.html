@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2022\/fedora%E4%BC%98%E5%8C%96\/"
-        },"genre": "posts","keywords": "linux, fedora","wordcount":  1447 ,
+        },"genre": "posts","keywords": "linux, fedora","wordcount":  1534 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/fedora%E4%BC%98%E5%8C%96\/","datePublished": "2022-02-28T00:00:00+00:00","dateModified": "2022-06-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -138,14 +138,15 @@
     <li><a href="#10-fedora-32-启用-docker">10. fedora 32 启用 docker</a></li>
     <li><a href="#11-fedora-33-下修改wayland桌面为x11">11. fedora 33 下修改Wayland桌面为x11</a></li>
     <li><a href="#12-fedora-无法连接pptp已解决">12. fedora 无法连接pptp(已解决)</a></li>
+    <li><a href="#13-fedora-升级到指定版本">13. fedora 升级到指定版本</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">FEDORA优化</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/"><i class="far fa-folder fa-fw"></i>那些有用没用的</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-28">2022-02-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-22">2022-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1447 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-02-28">2022-02-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-22">2022-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1534 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -166,6 +167,7 @@
     <li><a href="#10-fedora-32-启用-docker">10. fedora 32 启用 docker</a></li>
     <li><a href="#11-fedora-33-下修改wayland桌面为x11">11. fedora 33 下修改Wayland桌面为x11</a></li>
     <li><a href="#12-fedora-无法连接pptp已解决">12. fedora 无法连接pptp(已解决)</a></li>
+    <li><a href="#13-fedora-升级到指定版本">13. fedora 升级到指定版本</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition info open">
@@ -377,6 +379,29 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT <span class="m">0</span> -p gre -j ACCEPT 
 </span></span><span class="line"><span class="cl">firewall-cmd --permanent --direct --add-rule ipv6 filter INPUT <span class="m">0</span> -p gre -j ACCEPT 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="13-fedora-升级到指定版本" class="headerLink">
+    <a href="#13-fedora-%e5%8d%87%e7%ba%a7%e5%88%b0%e6%8c%87%e5%ae%9a%e7%89%88%e6%9c%ac" class="header-mark"></a>13. fedora 升级到指定版本</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 更新系统</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo dnf upgrade --refresh
+</span></span><span class="line"><span class="cl"><span class="c1">## 安装dnf-plugin-system-upgrade包</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo dnf install dnf-plugin-system-upgrade
+</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新的 Fedora 更新包</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo dnf system-upgrade download --releasever<span class="o">=</span><span class="m">35</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 重启升级</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo dnf system-upgrade reboot
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>
