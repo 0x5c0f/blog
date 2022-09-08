@@ -131,6 +131,7 @@ nfs.disable: on
 ```
 
 #### 3.3.1.4. 挂载  
+`/etc/fstab`: `localhost:/store1 /mnt glusterfs defaults,_netdev 0 0`
 ```bash
 # 以glusterfs的形式挂载(node1可以是任意一个节点的名称或ip，另外还有一种是nfs形式挂载，但该方法挂载未测试成功过，
 # 此处就不说明了，如果有遇到过同样问题并解决了，欢迎指出)
@@ -281,7 +282,6 @@ Filesystem         Size  Used Avail Use% Mounted on
 # 数据测试：用dd写入(dd if=/dev/zero bs=1M count=5 of=/mnt/5M.file)一个5M大小的文件到挂载目录，结果挂载目录文件占用大小5M，
 # 实际node1 目录文件大小2.5M占用, 实际node2 目录文件大小2.5M占用
 ```
-
 
 # 4. 优化
 

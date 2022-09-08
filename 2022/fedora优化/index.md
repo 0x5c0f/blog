@@ -19,6 +19,7 @@ $> sudo dnf install gnome-tweak-tool
 ### Topicons plus git  
 ### Drop down terminal
 ### Clipboard indicator 
+### Bottompanel(将任务栏放到下面,与windows list 和 Dash to panel 扩展冲突)
 
 
 ## 扩展字体修正
