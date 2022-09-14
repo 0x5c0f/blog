@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2019\/nginx-location\/"
-        },"genre": "posts","keywords": "linux, nginx","wordcount":  1504 ,
+        },"genre": "posts","keywords": "linux, nginx","wordcount":  2426 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2019\/nginx-location\/","datePublished": "2019-02-04T00:00:00+00:00","dateModified": "2019-02-04T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -142,8 +142,9 @@
         </li>
         <li><a href="#25-nginx-rewrite">2.5. nginx Rewrite</a>
           <ul>
-            <li><a href="#251-rewrite-语法">2.5.1. rewrite 语法</a></li>
-            <li><a href="#252-rewrite-应用场景">2.5.2. rewrite 应用场景</a></li>
+            <li><a href="#251-rewrite-全局变量">2.5.1. Rewrite 全局变量</a></li>
+            <li><a href="#252-rewrite-语法">2.5.2. rewrite 语法</a></li>
+            <li><a href="#253-rewrite-应用场景">2.5.3. rewrite 应用场景</a></li>
           </ul>
         </li>
       </ul>
@@ -154,8 +155,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1504 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2426 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -180,8 +181,9 @@
         </li>
         <li><a href="#25-nginx-rewrite">2.5. nginx Rewrite</a>
           <ul>
-            <li><a href="#251-rewrite-语法">2.5.1. rewrite 语法</a></li>
-            <li><a href="#252-rewrite-应用场景">2.5.2. rewrite 应用场景</a></li>
+            <li><a href="#251-rewrite-全局变量">2.5.1. Rewrite 全局变量</a></li>
+            <li><a href="#252-rewrite-语法">2.5.2. rewrite 语法</a></li>
+            <li><a href="#253-rewrite-应用场景">2.5.3. rewrite 应用场景</a></li>
           </ul>
         </li>
       </ul>
@@ -339,27 +341,27 @@ log_format  name    string &hellip;;</p>
 </thead>
 <tbody>
 <tr>
-<td>/</td>
+<td><code>/                     </code></td>
 <td><code>http://www.example.com/</code></td>
 <td>configuration A</td>
 </tr>
 <tr>
-<td>/index.html</td>
+<td><code>/index.html           </code></td>
 <td><code>http://www.example.com/</code></td>
 <td>configuration B</td>
 </tr>
 <tr>
-<td>/documents/index.html</td>
+<td><code>/documents/index.html </code></td>
 <td><code>http://www.example.com/documents/index.html</code></td>
 <td>configuration C</td>
 </tr>
 <tr>
-<td>/images/1.jpg</td>
+<td><code>/images/1.jpg         </code></td>
 <td><code>http://www.example.com/images/1.jpg</code></td>
 <td>configuration D</td>
 </tr>
 <tr>
-<td>/ducoments/1.jpg</td>
+<td><code>/ducoments/1.jpg      </code></td>
 <td><code>http://www.example.com/documents/1.jpg</code></td>
 <td>configuration E</td>
 </tr>
@@ -457,19 +459,19 @@ log_format  name    string &hellip;;</p>
 <td>匹配常规字符串，不做正则匹配检查</td>
 </tr>
 <tr>
-<td>`location ~ .(gif</td>
-<td>JPG</td>
+<td><code>location ~ \.(gif|JPG|jpeg)$ {</code></td>
+<td>区分大小写的正则匹配</td>
 </tr>
 <tr>
-<td>`location ~* .(gif</td>
-<td>jpg</td>
+<td><code>location ~* \.(gif|jpg|jpeg)$ {</code></td>
+<td>不区分大小写的正则匹配</td>
 </tr>
 <tr>
 <td><code>location /document/ { </code></td>
 <td>匹配常规字符串，如果有正则则优先匹配正则</td>
 </tr>
 <tr>
-<td><code>location / { </code></td>
+<td><code>location / {</code></td>
 <td>所有location都不匹配后的默认匹配规则</td>
 </tr>
 </tbody>
@@ -477,8 +479,151 @@ log_format  name    string &hellip;;</p>
 <p>注: 优先级为： <code>=</code> &gt; <code>完整路径</code> &gt; <code>^~</code> &gt; <code>~|~*</code> &gt; <code>部分起始路径</code> &gt; <code>/</code></p>
 <h2 id="25-nginx-rewrite" class="headerLink">
     <a href="#25-nginx-rewrite" class="header-mark"></a>2.5. nginx Rewrite</h2><p>用于实现伪静态，URL改写，必须安装PCRE的软件的支持，nginx编译默认安装Rewrite模块</p>
-<h3 id="251-rewrite-语法" class="headerLink">
-    <a href="#251-rewrite-%e8%af%ad%e6%b3%95" class="header-mark"></a>2.5.1. rewrite 语法</h3><div class="highlight"><div class="chroma">
+<h3 id="251-rewrite-全局变量" class="headerLink">
+    <a href="#251-rewrite-%e5%85%a8%e5%b1%80%e5%8f%98%e9%87%8f" class="header-mark"></a>2.5.1. Rewrite 全局变量</h3><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$remote_addr</code></td>
+<td>获取客户端ip</td>
+</tr>
+<tr>
+<td><code>$binary_remote_addr</code></td>
+<td>客户端ip（二进制)</td>
+</tr>
+<tr>
+<td><code>$remote_port</code></td>
+<td>客户端port，如：50472</td>
+</tr>
+<tr>
+<td><code>$remote_user</code></td>
+<td>已经经过Auth Basic Module验证的用户名</td>
+</tr>
+<tr>
+<td><code>$host</code></td>
+<td>请求主机头字段，否则为服务器名称，如:blog.sakmon.com</td>
+</tr>
+<tr>
+<td><code>$request</code></td>
+<td>用户请求信息，如：GET ?a=1&amp;b=2 HTTP/1.1</td>
+</tr>
+<tr>
+<td><code>$request_filename</code></td>
+<td>当前请求的文件的路径名，由root或alias和URI request组合而成，如：/2013/81.html</td>
+</tr>
+<tr>
+<td><code>$status</code></td>
+<td>请求的响应状态码,如:200</td>
+</tr>
+<tr>
+<td><code>$body_bytes_sent</code></td>
+<td>响应时送出的body字节数数量。即使连接中断，这个数据也是精确的,如：40</td>
+</tr>
+<tr>
+<td><code>$content_length</code></td>
+<td>等于请求行的“Content_Length”的值</td>
+</tr>
+<tr>
+<td><code>$content_type</code></td>
+<td>等于请求行的“Content_Type”的值</td>
+</tr>
+<tr>
+<td><code>$http_referer</code></td>
+<td>引用地址</td>
+</tr>
+<tr>
+<td><code>$http_user_agent</code></td>
+<td>客户端agent信息,如：Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36</td>
+</tr>
+<tr>
+<td><code>$args</code></td>
+<td>与$query_string相同 等于当中URL的参数(GET)，如a=1&amp;b=2</td>
+</tr>
+<tr>
+<td><code>$document_uri</code></td>
+<td>与$uri相同 这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html</td>
+</tr>
+<tr>
+<td><code>$document_root</code></td>
+<td>针对当前请求的根路径设置值</td>
+</tr>
+<tr>
+<td><code>$hostname</code></td>
+<td>如：centos53.localdomain</td>
+</tr>
+<tr>
+<td><code>$http_cookie</code></td>
+<td>客户端cookie信息</td>
+</tr>
+<tr>
+<td><code>$cookie_COOKIE</code></td>
+<td>cookie COOKIE变量的值</td>
+</tr>
+<tr>
+<td><code>$is_args</code></td>
+<td>如果有$args参数，这个变量等于”?”，否则等于”&quot;，空值，如?</td>
+</tr>
+<tr>
+<td><code>$limit_rate</code></td>
+<td>这个变量可以限制连接速率，0表示不限速</td>
+</tr>
+<tr>
+<td><code>$query_string</code></td>
+<td>与$args相同 等于当中URL的参数(GET)，如a=1&amp;b=2</td>
+</tr>
+<tr>
+<td><code>$request_body</code></td>
+<td>记录POST过来的数据信息</td>
+</tr>
+<tr>
+<td><code>$request_body_file</code></td>
+<td>客户端请求主体信息的临时文件名</td>
+</tr>
+<tr>
+<td><code>$request_method</code></td>
+<td>客户端请求的动作，通常为GET或POST,如：GET</td>
+</tr>
+<tr>
+<td><code>$request_uri</code></td>
+<td>包含请求参数的原始URI，不包含主机名，如：/2013/81.html?a=1&amp;b=2</td>
+</tr>
+<tr>
+<td><code>$scheme</code></td>
+<td>HTTP方法（如http，https）,如：http</td>
+</tr>
+<tr>
+<td><code>$uri</code></td>
+<td>这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html</td>
+</tr>
+<tr>
+<td><code>$request_completion</code></td>
+<td>如果请求结束，设置为OK. 当请求未结束或如果该请求不是请求链串的最后一个时，为空(Empty)，如：OK</td>
+</tr>
+<tr>
+<td><code>$server_protocol</code></td>
+<td>请求使用的协议，通常是HTTP/1.0或HTTP/1.1，如：HTTP/1.1</td>
+</tr>
+<tr>
+<td><code>$server_addr</code></td>
+<td>服务器IP地址，在完成一次系统调用后可以确定这个值</td>
+</tr>
+<tr>
+<td><code>$server_name</code></td>
+<td>服务器名称，如：blog.sakmon.com</td>
+</tr>
+<tr>
+<td><code>$server_port</code></td>
+<td>请求到达服务器的端口号,如：80</td>
+</tr>
+</tbody>
+</table>
+<h3 id="252-rewrite-语法" class="headerLink">
+    <a href="#252-rewrite-%e8%af%ad%e6%b3%95" class="header-mark"></a>2.5.2. rewrite 语法</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -527,8 +672,8 @@ log_format  name    string &hellip;;</p>
 </tr>
 </tbody>
 </table>
-<h3 id="252-rewrite-应用场景" class="headerLink">
-    <a href="#252-rewrite-%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" class="header-mark"></a>2.5.2. rewrite 应用场景</h3><ol>
+<h3 id="253-rewrite-应用场景" class="headerLink">
+    <a href="#253-rewrite-%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" class="header-mark"></a>2.5.3. rewrite 应用场景</h3><ol>
 <li>可以调整用户浏览的URL，看起来更规范。(别名)</li>
 <li>让动态的url地址伪装成静态地址提供服务(伪静态)，可以让搜索引擎收录网站内容让用户体验更好</li>
 <li>网站更换域名后，让旧的域名访问跳转到新的域名上。</li>
