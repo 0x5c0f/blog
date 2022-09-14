@@ -373,3 +373,10 @@ ping www.baidu.com -c 1 -w 1 | sed '1{s/[^(]*(//;s/).*//;q}'
 sudo -u zabbix curl --unix-socket /var/run/docker.sock --no-buffer -XGET v1.24/_ping
 ```
 
+# 分段压缩 
+```bash
+# 压缩
+$> tar czf - /pathto/dir01 /pathto/dir02 |split -d -b 2G - file.tgz.
+# 解压
+$> cat file.tgz* | tar xz 
+```
