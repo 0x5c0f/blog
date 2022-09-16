@@ -36,9 +36,9 @@
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2022-08-01T00:00:00+00:00","dateModified": "2022-08-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
-                    "@type": "Person",
-                    "name": "0x5c0f"
-                }],"description": "服务器运维故障记录"
+                        "@type": "Person",
+                        "name": "admin"                    
+                    }],"description": "服务器运维故障记录"
     }
     </script></head>
 
@@ -162,7 +162,7 @@
 </nav></div>
             </div><div class="content" id="content"><h1 id="mysql--errcode-24---too-many-open-files" class="headerLink">
     <a href="#mysql--errcode-24---too-many-open-files" class="header-mark"></a>Mysql  Errcode: 24 - Too many open files</h1><blockquote>
-<p><a href="https://blog.csdn.net/weixin_36343850/article/details/86293700" target="_blank" rel="noopener noreffer">https://blog.csdn.net/weixin_36343850/article/details/86293700</a></p>
+<p><a href="https://blog.csdn.net/weixin_36343850/article/details/86293700" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/weixin_36343850/article/details/86293700</a></p>
 </blockquote>
 <p>原因：打开文件数量太多，超出了<code>open_files_limit</code>这个参数的限制，在一个表中有多个分区的时候，这种情况更容易发生。<br>
 解决方法：</p>
@@ -234,7 +234,7 @@
 <h1 id="nginx-伪静态无效问题" class="headerLink">
     <a href="#nginx-%e4%bc%aa%e9%9d%99%e6%80%81%e6%97%a0%e6%95%88%e9%97%ae%e9%a2%98" class="header-mark"></a>nginx 伪静态无效问题</h1><ul>
 <li>具体错误体现
-拿到<code>apache</code>的<code>.htaccess</code>文件后，通过<a href="https://www.winginx.com/en/htaccess" target="_blank" rel="noopener noreffer"><code>https://www.winginx.com/en/htaccess</code></a>转换为了<code>nginx</code>可用的规则，但加入后访问跳转一直是<code>404</code>,经检查<code>location</code>是定位成功了的，但就是访问不了</li>
+拿到<code>apache</code>的<code>.htaccess</code>文件后，通过<a href="https://www.winginx.com/en/htaccess" target="_blank" rel="noopener noreferrer"><code>https://www.winginx.com/en/htaccess</code></a>转换为了<code>nginx</code>可用的规则，但加入后访问跳转一直是<code>404</code>,经检查<code>location</code>是定位成功了的，但就是访问不了</li>
 <li>解决方案:</li>
 </ul>
 <ol>
@@ -245,7 +245,7 @@
 解决过程：</p>
 <ul>
 <li>网上搜索到很多的解决方案，这一个感觉有点用，但<em><strong>并没有解决我的问题</strong></em>,说的是<code>header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502</code>，这个问题提出的解决是，增大<code>proxy_buffer_size</code>/<code>proxy_buffers</code>/<code>proxy_busy_buffers_size</code>,不过还是记录下，毕竟不是每个问题原因都一样。</li>
-<li>这是我当时参考的第二个方案,根据官方文档<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive" target="_blank" rel="noopener noreffer"><code>https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</code></a>,调整了<code>upstream</code>中<code>keepalive</code>,我原来设置的是<code>2</code>,现调整为<code>16</code>,并设置了<code>Connection &quot;Keep-Alive&quot;;</code>(这个设置是为了保持<code>http/1.0</code>持久链接，官方不建议使用此参数，但我这边<code>websokcet</code>和<code>http/1.0</code>,单独设置一个并没有效果，所以两个都设置了)。这个方案当时解决了一部分的问题。但根本并未得到解决。</li>
+<li>这是我当时参考的第二个方案,根据官方文档<a href="https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive" target="_blank" rel="noopener noreferrer"><code>https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</code></a>,调整了<code>upstream</code>中<code>keepalive</code>,我原来设置的是<code>2</code>,现调整为<code>16</code>,并设置了<code>Connection &quot;Keep-Alive&quot;;</code>(这个设置是为了保持<code>http/1.0</code>持久链接，官方不建议使用此参数，但我这边<code>websokcet</code>和<code>http/1.0</code>,单独设置一个并没有效果，所以两个都设置了)。这个方案当时解决了一部分的问题。但根本并未得到解决。</li>
 <li>然后最终的方案，重启应用服务器，问题完全解决！！！</li>
 </ul>
 <p>原因分析：突然不知道怎么下笔了，反正就是系统tcp连接过多，最开始体现就是出现大量的<code>CLOSE_WAIT</code>,当时重启了对应占用的程序，清理一些连接，出现一定的好转，但也仅仅出现了好转，后面可能由于某些原因，导致重启应用也无法解决了，最后重启服务器，问题完全解决。 应该不是每个人都是这个原因，不过可以参考下。</p>
@@ -283,7 +283,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp">渝ICP备2020011834号-2</span></div>
             <div class="footer-line"></div>

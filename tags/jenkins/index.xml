@@ -8,7 +8,7 @@
     <title>Nginx反向代理jenkins</title>
     <link>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</guid>
     <description><![CDATA[参考文献 : https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy 以下为个人解决方案 : jenkins 配置: 添加启动参数 --prefix=/jenkins，docker启动添加环境变量JENKINS_OPTS]]></description>
 </item></channel>
 </rss>

@@ -33,13 +33,13 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D\/"
-        },"genre": "posts","keywords": "linux, mysql, 解决方案","wordcount":  2224 ,
+        },"genre": "posts","keywords": "linux, mysql, 解决方案","wordcount":  2430 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D\/","datePublished": "2022-06-28T00:00:00+00:00","dateModified": "2022-06-28T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
-                    "@type": "Person",
-                    "name": "0x5c0f"
-                }],"description": "备份与恢复"
+                        "@type": "Person",
+                        "name": "admin"                    
+                    }],"description": "备份与恢复"
     }
     </script></head>
 
@@ -147,7 +147,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a>&nbsp;<a href="/series/mysql/"><i class="far fa-list-alt fa-fw"></i>mysql</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2224 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2430 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
@@ -360,6 +360,16 @@
 <li>对于<code>myisam</code>表实现自动说表拷贝文件</li>
 </ol>
 <p><code>xtrabackup</code> 安装使用:</p>
+<ul>
+<li>XtraBackup 2.4/8.0 版本区别</li>
+<li>通过查到可知 XtraBackup 2.4 与 8.0 版本备份记录信息有如下不同点：
+<ul>
+<li>2.4 备份生成的 xtrabackup_binlog_info 文件记录的 GTID 信息是准确的，但是备份恢复后 show master status 显示的 GTID 是不准确的；</li>
+<li>8.0 备份的实例中只有 InnoDB 表时，xtrabackup_binlog_info 文件记录的 GTID 信息不一定是准确的，但是备份恢复后 show master status 显示的 GTID 是准确的；</li>
+<li>8.0 备份的实例中有非 InnoDB 表时，xtrabackup_binlog_info 文件记录的 GTID 信息是准确的，备份恢复后 show master status 显示的 GTID 也是准确的</li>
+</ul>
+</li>
+</ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -509,7 +519,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1">### 4. 复制全备中该删除表的*.ibd文件到mysql对应目录下,注意修正权限 </span>
 </span></span><span class="line"><span class="cl">$&gt; cp /data/backup/full/&lt;database_name&gt;/&lt;table_name&gt;.ibd /path/data/&lt;database_name&gt;/&lt;table_name&gt;.ibd
 </span></span><span class="line"><span class="cl"><span class="c1">### 5. 重新连接表空间数据文件 </span>
-</span></span><span class="line"><span class="cl">mysql&gt; alter table &lt;table_name&gt; inport tablespace<span class="p">;</span> 
+</span></span><span class="line"><span class="cl">mysql&gt; alter table &lt;table_name&gt; import tablespace<span class="p">;</span> 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>
@@ -544,7 +554,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp">渝ICP备2020011834号-2</span></div>
             <div class="footer-line"></div>

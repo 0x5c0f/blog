@@ -8,7 +8,7 @@
     <title>Tomcat安装及优化</title>
     <link>https://blog.0x5c0f.cc/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</guid>
     <description><![CDATA[/etc/profile java 1 2 3 export JAVA_HOME=/opt/jdk1.8.0_271 export PATH=$JAVA_HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar tomcat 1 export TOMCAT_HOME=/opt/tomcat-8.5.59 日志 catalina.out 为主要日志文件，会随着时间不断增加 catalina.$(date +&quot;%Y-%m-%d&quot;).log 为catalina.out的每日切割文件(实际好像不是，tomca]]></description>
 </item></channel>
 </rss>

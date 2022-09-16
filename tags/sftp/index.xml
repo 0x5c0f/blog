@@ -8,7 +8,7 @@
     <title>Chroot系统</title>
     <link>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Wed, 23 Sep 2020 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
     <description><![CDATA[chroot系统正常来说针对于文件共享的sftp应该是以用户为单位来做的,但这儿我却用的是组,这个其实是我测试用用户来做从来没有成功过，只能]]></description>
 </item></channel>
 </rss>

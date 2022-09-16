@@ -36,9 +36,9 @@
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2022-06-22T00:00:00+00:00","dateModified": "2022-06-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
-                    "@type": "Person",
-                    "name": "0x5c0f"
-                }],"description": "Php运维故障记录"
+                        "@type": "Person",
+                        "name": "admin"                    
+                    }],"description": "Php运维故障记录"
     }
     </script></head>
 
@@ -173,7 +173,7 @@
 </div>
 </div><h1 id="2-request_terminate_timeout的值如果设置为0或者过长的时间可能会引起file_get_contents的资源问题" class="headerLink">
     <a href="#2-request_terminate_timeout%e7%9a%84%e5%80%bc%e5%a6%82%e6%9e%9c%e8%ae%be%e7%bd%ae%e4%b8%ba0%e6%88%96%e8%80%85%e8%bf%87%e9%95%bf%e7%9a%84%e6%97%b6%e9%97%b4%e5%8f%af%e8%83%bd%e4%bc%9a%e5%bc%95%e8%b5%b7file_get_contents%e7%9a%84%e8%b5%84%e6%ba%90%e9%97%ae%e9%a2%98" class="header-mark"></a>2. request_terminate_timeout的值如果设置为0或者过长的时间，可能会引起file_get_contents的资源问题。</h1><blockquote>
-<p><a href="http://www.cnblogs.com/argb/p/3604340.html" target="_blank" rel="noopener noreffer">http://www.cnblogs.com/argb/p/3604340.html</a></p>
+<p><a href="http://www.cnblogs.com/argb/p/3604340.html" target="_blank" rel="noopener noreferrer">http://www.cnblogs.com/argb/p/3604340.html</a></p>
 </blockquote>
 <p>如果<code>file_get_contents</code>请求的远程资源如果反应过慢，<code>file_get_contents</code>就会一直卡在那里不会超时。我们知道<code>php.ini</code> 里面<code>max_execution_time</code> 可以设置 <code>PHP</code> 脚本的最大执行时间，但是，在 <code>php-cgi(php-fpm)</code> 中，该参数不会起效。真正能够控制 <code>PHP</code> 脚本最大执行时间的是 <code>php-fpm.conf</code> 配置文件中的<code>request_terminate_timeout</code>参数。</p>
 <p><code>request_terminate_timeout</code>默认值为 0 秒，也就是说，PHP 脚本会一直执行下去。这样，当所有的 <code>php-cgi</code> 进程都卡在 <code>file_get_contents()</code> 函数时，这台 <code>Nginx+PHP</code> 的 <code>WebServer</code> 已经无法再处理新的 PHP 请求了，Nginx 将给用户返回“502 Bad Gateway”。修改该参数，设置一个 PHP 脚本最大执行时间是必要的，但是，治标不治本。例如改成 30s，如果发生 <code>file_get_contents()</code> 获取网页内容较慢的情况，这就意味着 150 个 php-cgi 进程，每秒钟只能处理 5 个请求，<code>WebServer</code> 同样很难避免”502 Bad Gateway”。<strong>解决办法是<code>request_terminate_timeout</code>设置为10s或者一个合理的值，或者给<code>file_get_contents</code>加一个超时参数。</strong></p>
@@ -252,7 +252,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp">渝ICP备2020011834号-2</span></div>
             <div class="footer-line"></div>

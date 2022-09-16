@@ -36,9 +36,9 @@
         "url": "https:\/\/blog.0x5c0f.cc\/2019\/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump\/","datePublished": "2019-09-09T00:00:00+00:00","dateModified": "2022-06-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
-                    "@type": "Person",
-                    "name": "0x5c0f"
-                }],"description": "介绍在Linux命令行中使用tcpdump"
+                        "@type": "Person",
+                        "name": "admin"                    
+                    }],"description": "介绍在Linux命令行中使用tcpdump"
     }
     </script></head>
 
@@ -176,9 +176,9 @@
         </div>
         <div class="details-content">
             <div class="admonition-content"><p>介绍在Linux命令行中使用tcpdump<br>
-文章原文来源 <a href="https://opensource.com" target="_blank" rel="noopener noreffer">opensource.com</a>, 由本站翻译发布用于个人搜集。</p>
+文章原文来源 <a href="https://opensource.com" target="_blank" rel="noopener noreferrer">opensource.com</a>, 由本站翻译发布用于个人搜集。</p>
 <blockquote>
-<p><a href="https://opensource.com/article/18/10/introduction-tcpdump" target="_blank" rel="noopener noreffer">https://opensource.com/article/18/10/introduction-tcpdump</a></p>
+<p><a href="https://opensource.com/article/18/10/introduction-tcpdump" target="_blank" rel="noopener noreferrer">https://opensource.com/article/18/10/introduction-tcpdump</a></p>
 </blockquote>
 </div>
         </div>
@@ -408,7 +408,7 @@ The next field is the window size win 309, which represents the number of bytes 
 <p>该字段也可以是这些值的组合，例如用于<code>SYN-ACK</code>分组的<code>[S.]</code>。<br>
 接下来是数据包中包含的数据的序列号。对于捕获的第一个包，这是一个绝对值。随后的数据包使用一个相对号，以便更容易跟踪。在这个例子中，序列是<code>seq 196:568</code>，这意味着这个包包含这个流的<code>196</code>到<code>568</code>字节。<br>
 然后是<code>Ack</code>编号:<code>Ack 1</code>。在本例中，它是1，因为这是发送数据的一方。对于接收数据的端，此字段表示此流上的下一个预期字节(数据)。例如，这个流中的下一个包的<code>Ack</code>号将是<code>568</code>。<br>
-下一个字段是窗口大小<code>win 309</code>，它表示接收缓冲区中可用的字节数，然后是<code>TCP</code>选项，如<code>MSS</code>(最大段大小)或窗口大小。有关TCP协议选项的详细信息，请参阅<a href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml" target="_blank" rel="noopener noreffer">传输控制协议(TCP)参数</a>。<br>
+下一个字段是窗口大小<code>win 309</code>，它表示接收缓冲区中可用的字节数，然后是<code>TCP</code>选项，如<code>MSS</code>(最大段大小)或窗口大小。有关TCP协议选项的详细信息，请参阅<a href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml" target="_blank" rel="noopener noreferrer">传输控制协议(TCP)参数</a>。<br>
 最后，我们有数据包长度，长度<code>372</code>，它表示负载数据的长度，以字节为单位。长度是序号中最后一个字节和第一个字节之间的差。<br>
 现在，让我们学习如何过滤数据包以缩小结果范围，并使特定问题的故障排除变得更容易。</p>
 <h1 id="4-过滤数据包" class="headerLink">
@@ -899,7 +899,7 @@ The next field is the window size win 309, which represents the number of bytes 
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp">渝ICP备2020011834号-2</span></div>
             <div class="footer-line"></div>

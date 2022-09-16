@@ -8,7 +8,7 @@
     <title>Haproxy部署与常用操作</title>
     <link>https://blog.0x5c0f.cc/2019/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</link>
     <pubDate>Fri, 12 Apr 2019 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</guid>
     <description><![CDATA[本文参考以下内容, 由本站重新整理验证发布 https://zhang.ge/5125.html https://www.kancloud.cn/tuna_dai_/day01/369367 1. 简介 HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是]]></description>
 </item></channel>
 </rss>

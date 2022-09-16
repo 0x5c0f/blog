@@ -8,7 +8,7 @@
     <title>Netstat命令</title>
     <link>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
     <description><![CDATA[netstat 命令netstat列含义： Proto: 协议名（tcp协议或者udp协议) recv-Q: 网络接收队列 表示收到的数据已经在本地接收缓冲，但是还有多少没有被进程取走，]]></description>
 </item></channel>
 </rss>

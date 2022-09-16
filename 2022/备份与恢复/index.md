@@ -114,6 +114,12 @@ mysql> flush logs;
 
 
 `xtrabackup` 安装使用:
+- XtraBackup 2.4/8.0 版本区别  
+- 通过查到可知 XtraBackup 2.4 与 8.0 版本备份记录信息有如下不同点：  
+  - 2.4 备份生成的 xtrabackup_binlog_info 文件记录的 GTID 信息是准确的，但是备份恢复后 show master status 显示的 GTID 是不准确的；
+  - 8.0 备份的实例中只有 InnoDB 表时，xtrabackup_binlog_info 文件记录的 GTID 信息不一定是准确的，但是备份恢复后 show master status 显示的 GTID 是准确的；
+  - 8.0 备份的实例中有非 InnoDB 表时，xtrabackup_binlog_info 文件记录的 GTID 信息是准确的，备份恢复后 show master status 显示的 GTID 也是准确的
+
 ```bash
 # 
 $> wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.21/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.21-1.el7.x86_64.rpm
@@ -187,7 +193,7 @@ mysql> alter table <table_name> discard tablespace;
 ### 4. 复制全备中该删除表的*.ibd文件到mysql对应目录下,注意修正权限 
 $> cp /data/backup/full/<database_name>/<table_name>.ibd /path/data/<database_name>/<table_name>.ibd
 ### 5. 重新连接表空间数据文件 
-mysql> alter table <table_name> inport tablespace; 
+mysql> alter table <table_name> import tablespace; 
 ```
 
 

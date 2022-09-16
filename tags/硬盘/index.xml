@@ -8,7 +8,7 @@
     <title>磁盘管理(半草稿)</title>
     <link>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</guid>
     <description><![CDATA[磁盘管理磁盘的最小存储单位是扇区，大小为0.5kb(512Bytes)，多个连续的扇区称之为块 操作系统文件存取的最小单位是块(block)，]]></description>
 </item></channel>
 </rss>

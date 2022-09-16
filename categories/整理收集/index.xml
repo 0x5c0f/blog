@@ -8,61 +8,61 @@
     <title>Linux性能指标之cpu上下文切换</title>
     <link>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/</link>
     <pubDate>Thu, 01 Sep 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/</guid>
     <description><![CDATA[透过现象看本质 CPU上下文切换 https://blog.csdn.net/qq_34556414/article/details/107094209 CPU上下文切换是保证Linux系统正常工作的一个核心功能，按照不同场景，可以分为进程上下文切换、线程上下文]]></description>
 </item><item>
     <title>Linux性能测试之性能测试指标(转载)</title>
     <link>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/</link>
     <pubDate>Mon, 22 Aug 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/</guid>
     <description><![CDATA[Linux 性能测试之性能测试指标详解(原文) https://blog.csdn.net/u010521062/article/details/115908166 前言 性能测试指标是衡量系统性能的评价标准，常用的系统性能测试指标包括：响应时间、并发用户/并发、点击率]]></description>
 </item><item>
     <title>HTTP响应码</title>
     <link>https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/</guid>
     <description><![CDATA[HTTP响应码分类 https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status 常见状态码 一些常见HTTP状态码为： 200 – 服务器成功返回网页 404 – 请求的网页不存在 503 – 服务不可用 常见HTTP状态码大全 1xx]]></description>
 </item><item>
     <title>Umask码权限对照表</title>
     <link>https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/</guid>
     <description><![CDATA[Umask码权限对照表,方便查询，不用在去计算了]]></description>
 </item><item>
     <title>Centos7修改网卡名称</title>
     <link>https://blog.0x5c0f.cc/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</guid>
     <description><![CDATA[信息 CentOS 7的默认网卡和设备名称都是随机的，根据需要有时候需要修改网卡为以eth开头的。以下整理了两种比较靠谱的。 1. 安装过程中修改在加载镜像后出]]></description>
 </item><item>
     <title>TCP/IP 协议概述</title>
     <link>https://blog.0x5c0f.cc/2022/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/</guid>
     <description><![CDATA[引用 两张动图-彻底明白TCP的三次握手与四次挥手]]></description>
 </item><item>
     <title>访问一个网页的全过程</title>
     <link>https://blog.0x5c0f.cc/2022/%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</guid>
     <description><![CDATA[引言 思考：请尽可能详细的写出从浏览器地址栏输入https://www.taobao.com之后到返回首页内容的整个过程中的交互细节。 这是我刚]]></description>
 </item><item>
     <title>日志切割工具Logrotate详解</title>
     <link>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7logrotate%E8%AF%A6%E8%A7%A3/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7logrotate%E8%AF%A6%E8%A7%A3/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7logrotate%E8%AF%A6%E8%A7%A3/</guid>
     <description><![CDATA[Logrotate 程序是一个日志文件管理工具。用于分割日志文件，压缩转存、删除旧的日志文件，并创建新的日志文件 https://cloud.tencent.com/developer/article/1681716]]></description>
 </item><item>
     <title>Cobbler无人值守安装</title>
     <link>https://blog.0x5c0f.cc/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/</link>
     <pubDate>Sun, 19 Jan 2020 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/</guid>
     <description><![CDATA[文章来源 https://www.linuxprobe.com/cobbler-installation-server.html 1. Cobbler 运行流程 Server 端： 第一步：启动 Cobbler 服务 第二步：进行 Cobbler 错误检查，执行 Cobbler check 命令 第三步：进行配置同步，执行 Cobbler sync 命令 第四步：复制相关启动文件]]></description>
 </item><item>
     <title>介绍在Linux命令行中使用tcpdump</title>
     <link>https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/</link>
     <pubDate>Mon, 09 Sep 2019 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/</guid>
     <description><![CDATA[引用 介绍在Linux命令行中使用tcpdump 文章原文来源 opensource.com, 由本站翻译发布用于个人搜集。 https://opensource.com/article/18/10/introduction-tcpdump tcpdump是一个功能强大、功能多样的工具，包括]]></description>
 </item></channel>
 </rss>

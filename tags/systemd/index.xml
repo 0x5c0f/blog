@@ -8,13 +8,13 @@
     <title>NFS部署及autofs替代</title>
     <link>https://blog.0x5c0f.cc/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/</link>
     <pubDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/</guid>
     <description><![CDATA[nfs 服务 部署 1 $&gt; yum install nfs-utils rpcbind &amp;&amp; mkdir /nfsshare &amp;&amp; chown nfsnobody. nfsshare 配置文件说明 /etc/exports 用于管理贡献相关配置的文件 内容格式: NFS共享目录 NFS客户端地址(参数1、参数2&hel]]></description>
 </item><item>
     <title>Systemctl之systemd自定义系统服务</title>
     <link>https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</link>
     <pubDate>Tue, 20 Aug 2019 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</guid>
     <description><![CDATA[以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接 http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html 1. [Unit]Unit 定义启动顺序与依赖关系 单元(Unit)是 Systemd 的最小]]></description>
 </item></channel>
 </rss>

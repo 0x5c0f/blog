@@ -8,7 +8,7 @@
     <title>Keepalive安装配置</title>
     <link>https://blog.0x5c0f.cc/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
     <pubDate>Thu, 19 Nov 2020 00:00:00 &#43;0000</pubDate><author>
-                    <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
     <description><![CDATA[安装前需检查反项代理是否正常 yum install keepalived 配置文件说明 /etc/keepalived/keepalived.conf主备节点配置基本一致,需修改的仅]]></description>
 </item></channel>
 </rss>
