@@ -350,3 +350,18 @@ $ make
 $ sudo cp src/cp /usr/local/bin/cp
 $ sudo cp src/mv /usr/local/bin/mv
 ```
+
+# 更改docker容器中的时间而不影响宿主机 
+```bash
+$> git clone https://github.com/wolfcw/libfaketime.git
+$> cd libfaketime
+$> make 
+$> docker cp ./src/libfaketime.so.1 centos:/usr/lib/
+$> docker exec -it centos bash 
+# 修改为指定时间
+$>> export LD_PRELOAD=/usr/lib/libfaketime.so.1 FAKETIME="2020-05-01 00:01:00"
+# 修改为几天后 
+$>> export LD_PRELOAD=/usr/lib/libfaketime.so.1 FAKETIME="+2d"
+# 恢复 
+$>> export LD_PRELOAD=
+```
