@@ -172,7 +172,7 @@ $> innobackupex --incremental --no-timestamp --incremental-basedir=/data/backup/
 
 ## 停止数据库 
 
-## 数据恢复  --redo-only: 只将以提交的数据进行合并(除了最后一次不加外,每一次都需要添加)     TODO: 如果一个月一次全备份,在月末的时候挂掉了,是不是需要将月末的增量一直要合并到月初去? 
+## 数据恢复  --redo-only: 只将以提交的数据进行合并(除了最后一次不加外,每一次都需要添加)
 $> innobackupex --apply-log --redo-only /data/backup/full/
 $> innobackupex --apply-log --redo-only --incremental-dir=/data/backup/inc1 /data/backup/full
 $> innobackupex --apply-log --incremental-dir=/data/backup/inc2 /data/backup/full
