@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3522 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3566 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2022-02-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -161,13 +161,14 @@
     <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
     <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
     <li><a href="#更改docker容器中的时间而不影响宿主机">更改docker容器中的时间而不影响宿主机</a></li>
+    <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3522 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3566 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
@@ -212,6 +213,7 @@
     <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
     <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
     <li><a href="#更改docker容器中的时间而不影响宿主机">更改docker容器中的时间而不影响宿主机</a></li>
+    <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition warning open">
@@ -940,6 +942,17 @@
 </span></span><span class="line"><span class="cl">$&gt;&gt; <span class="nb">export</span> <span class="nv">LD_PRELOAD</span><span class="o">=</span>/usr/lib/libfaketime.so.1 <span class="nv">FAKETIME</span><span class="o">=</span><span class="s2">&#34;+2d&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 恢复 </span>
 </span></span><span class="line"><span class="cl">$&gt;&gt; <span class="nb">export</span> <span class="nv">LD_PRELOAD</span><span class="o">=</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="ubuntudebian切换shelldashbash" class="headerLink">
+    <a href="#ubuntudebian%e5%88%87%e6%8d%a2shelldashbash" class="header-mark"></a>ubuntu/debian切换shell（dash/bash）</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; dpkg-reconfigure dash
+</span></span><span class="line"><span class="cl"><span class="c1"># 弹出窗口选择 &lt;No&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

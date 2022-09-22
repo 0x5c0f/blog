@@ -365,3 +365,9 @@ $>> export LD_PRELOAD=/usr/lib/libfaketime.so.1 FAKETIME="+2d"
 # 恢复 
 $>> export LD_PRELOAD=
 ```
+
+# ubuntu/debian切换shell（dash/bash）
+```bash
+$> dpkg-reconfigure dash
+# 弹出窗口选择 <No>
+```
