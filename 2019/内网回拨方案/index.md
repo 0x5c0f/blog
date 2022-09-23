@@ -71,7 +71,7 @@ $> vim /usr/local/bin/badvpn-control # 注意执行权限
 ################################################# 
 #   author      0x5c0f 
 #   date        2019-08-13 
-#   email       1269505840@qq.com 
+#   email       mail@0x5c0f.cc 
 #   web         blog.0x5c0f.cc 
 #   version     1.0.0
 #   last update 2019-08-13
