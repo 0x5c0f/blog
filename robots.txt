@@ -7,8 +7,8 @@ Disallow: /
 User-agent: YodaoBot
 Disallow: /
 
-User-agent: Baiduspider
-Disallow: /
+# User-agent: Baiduspider
+# Disallow: /
 
 User-agent: *
 Allow: /
