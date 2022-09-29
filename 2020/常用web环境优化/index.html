@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2020\/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96\/"
-        },"genre": "posts","keywords": "linux, 优化, nginx, php, 解决方案","wordcount":  9163 ,
+        },"genre": "posts","keywords": "linux, 优化, nginx, php, 解决方案","wordcount":  9034 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2020\/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96\/","datePublished": "2020-11-18T00:00:00+00:00","dateModified": "2022-06-28T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -232,7 +232,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-18">2020-11-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9163 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-18">2020-11-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9034 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 19 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
@@ -357,7 +357,7 @@
             <i class="icon fas fa-info-circle fa-fw"></i>前言<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">一篇包含tomcat、nginx、php、mysql的相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。</div>
+            <div class="admonition-content">一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。</div>
         </div>
     </div>
 <h1 id="1-tomcat-服务调优" class="headerLink">
@@ -462,16 +462,10 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="3-nginx-优化" class="headerLink">
-    <a href="#3-nginx-%e4%bc%98%e5%8c%96" class="header-mark"></a>3. nginx 优化</h1><blockquote>
-<p>记录一篇同僚文章: <a href="http://www.z-dig.com/nginx-optimization-25.html" target="_blank" rel="noopener noreferrer"><del>http://www.z-dig.com/nginx-optimization-25.html</del></a></p>
-</blockquote>
-<p>nginx 规则匹配优先级: <code>=</code> &gt; <code>完整路径</code> &gt; <code>^~</code> &gt; <code>~|~*</code> &gt; <code>部分起始路径</code> &gt; <code>/</code> <br>
+    <a href="#3-nginx-%e4%bc%98%e5%8c%96" class="header-mark"></a>3. nginx 优化</h1><p>nginx 规则匹配优先级: <code>=</code> &gt; <code>完整路径</code> &gt; <code>^~</code> &gt; <code>~|~*</code> &gt; <code>部分起始路径</code> &gt; <code>/</code> <br>
 <span id="30"></span></p>
 <details>
 <summary style="font-size:18px;color:blue">防止SQL注入、XSS攻击的实践配置方法</summary>
-<blockquote>
-<p>原文接入: <a href="https://www.imydl.tech/lnmp/762.html" target="_blank" rel="noopener noreferrer">https://www.imydl.tech/lnmp/762.html</a></p>
-</blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -527,61 +521,99 @@
 </span><span class="lnt">51
 </span><span class="lnt">52
 </span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_method</span> !~* GET<span class="p">|</span>POST<span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 444<span class="p">;</span> <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#使用444错误代码可以更加减轻服务器负载压力。</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#防止SQL注入</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~* <span class="o">(</span><span class="se">\$</span><span class="p">|</span><span class="s1">&#39;|--|[+|(%20)]union[+|(%20)]|[+|(%20)]insert[+|(%20)]|[+|(%20)]drop[+|(%20)]|[+|(%20)]truncate[+|(%20)]|[+|(%20)]update[+|(%20)]|[+|(%20)]from[+|(%20)]|[+|(%20)]grant[+|(%20)]|[+|(%20)]exec[+|(%20)]|[+|(%20)]where[+|(%20)]|[+|(%20)]select[+|(%20)]|[+|(%20)]and[+|(%20)]|[+|(%20)]or[+|(%20)]|[+|(%20)]count[+|(%20)]|[+|(%20)]exec[+|(%20)]|[+|(%20)]chr[+|(%20)]|[+|(%20)]mid[+|(%20)]|[+|(%20)]like[+|(%20)]|[+|(%20)]iframe[+|(%20)]|[\&lt;|%3c]script[\&gt;|%3e]|javascript|alert|webscan|dbappsecurity|style|confirm\(|innerhtml|innertext)(.*)$) { return 555; }
-</span></span></span><span class="line"><span class="cl"><span class="s1"> if ($uri ~* (/~).*) { return 501; }
-</span></span></span><span class="line"><span class="cl"><span class="s1"> if ($uri ~* (\\x.)) { return 501; }
-</span></span></span><span class="line"><span class="cl"><span class="s1">#防止SQL注入 
-</span></span></span><span class="line"><span class="cl"><span class="s1"> if ($query_string ~* &#34;[;&#39;</span>&lt;&gt;<span class="o">]</span>.*<span class="s2">&#34;) { return 509; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~ &#34;</span> <span class="s2">&#34;) { return 509; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~ (\/\.+)) { return 509; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~ (\.+\/)) { return 509; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> 
-</span></span></span><span class="line"><span class="cl"><span class="s2"> #if (</span><span class="nv">$uri</span><span class="s2"> ~* (insert|select|delete|update|count|master|truncate|declare|exec|\*|\&#39;)(.*)</span>$<span class="s2"> ) { return 503; }
-</span></span></span><span class="line"><span class="cl"><span class="s2">#防止SQL注入
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">(</span>cost<span class="se">\(</span><span class="o">)</span><span class="p">|</span><span class="o">(</span>concat<span class="se">\(</span><span class="o">)</span><span class="s2">&#34;) { return 504; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>union<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>and<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="k">select</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>or<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>delete<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>update<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$request_uri</span><span class="s2"> ~* &#34;</span><span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span>insert<span class="o">[</span>+<span class="p">|</span><span class="o">(</span>%20<span class="o">)]</span><span class="s2">&#34;) { return 504; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span><span class="o">(</span>&lt;<span class="p">|</span>%3C<span class="o">)</span>.*script.*<span class="o">(</span>&gt;<span class="p">|</span>%3E<span class="o">)</span><span class="s2">&#34;) { return 505; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>GLOBALS<span class="o">(=</span><span class="p">|</span><span class="se">\[</span><span class="p">|</span><span class="se">\%</span><span class="o">[</span>0-9A-Z<span class="o">]{</span>0,2<span class="o">})</span><span class="s2">&#34;) { return 505; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>_REQUEST<span class="o">(=</span><span class="p">|</span><span class="se">\[</span><span class="p">|</span><span class="se">\%</span><span class="o">[</span>0-9A-Z<span class="o">]{</span>0,2<span class="o">})</span><span class="s2">&#34;) { return 505; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>proc/self/environ<span class="s2">&#34;) { return 505; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>mosConfig_<span class="o">[</span>a-zA-Z_<span class="o">]{</span>1,21<span class="o">}(=</span><span class="p">|</span><span class="se">\%</span>3D<span class="o">)</span><span class="s2">&#34;) { return 505; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>base64_<span class="o">(</span>en<span class="p">|</span>de<span class="o">)</span>code<span class="se">\(</span>.*<span class="se">\)</span><span class="s2">&#34;) { return 505; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span><span class="o">[</span>a-zA-Z0-9_<span class="o">]=</span>http://<span class="s2">&#34;) { return 506; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span><span class="o">[</span>a-zA-Z0-9_<span class="o">]=(</span><span class="se">\.\.</span>//?<span class="o">)</span>+<span class="s2">&#34;) { return 506; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span><span class="o">[</span>a-zA-Z0-9_<span class="o">]=</span>/<span class="o">([</span>a-z0-9_.<span class="o">]</span>//?<span class="o">)</span>+<span class="s2">&#34;) { return 506; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>b<span class="o">(</span>ultram<span class="p">|</span>unicauca<span class="p">|</span>valium<span class="p">|</span>viagra<span class="p">|</span>vicodin<span class="p">|</span>xanax<span class="p">|</span>ypxaieo<span class="o">)</span>b<span class="s2">&#34;) { return 507; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>b<span class="o">(</span>erections<span class="p">|</span>hoodia<span class="p">|</span>huronriveracres<span class="p">|</span>impotence<span class="p">|</span>levitra<span class="p">|</span>libido<span class="o">)</span>b<span class="s2">&#34;) {return 507; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>b<span class="o">(</span>ambien<span class="p">|</span>bluespill<span class="p">|</span>cialis<span class="p">|</span>cocaine<span class="p">|</span>ejaculation<span class="p">|</span>erectile<span class="o">)</span>b<span class="s2">&#34;) { return 507; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$query_string</span><span class="s2"> ~ &#34;</span>b<span class="o">(</span>lipitor<span class="p">|</span>phentermin<span class="p">|</span>pro<span class="o">[</span>sz<span class="o">]</span>ac<span class="p">|</span>sandyauer<span class="p">|</span>tramadol<span class="p">|</span>troyhamby<span class="o">)</span>b<span class="s2">&#34;) { return 507; }
-</span></span></span><span class="line"><span class="cl"><span class="s2">#这里大家根据自己情况添加删减上述判断参数，cURL、wget这类的屏蔽有点儿极端了，但要“宁可错杀一千，不可放过一个”。
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* YisouSpider|ApacheBench|WebBench|Jmeter|JoeDog|Havij|GetRight|TurnitinBot|GrabNet|masscan|mail2000|github|wget|curl|Java|python) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2">#同上，大家根据自己站点实际情况来添加删减下面的屏蔽拦截参数。
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Go-Ahead-Got-It<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>GetWeb!<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Go!Zilla<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Download Demon<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Indy Library<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>libwww-perl<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>Nmap Scripting Engine<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>~17ce.com<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>WebBench*<span class="s2">&#34;) { return 508; }
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_user_agent</span><span class="s2"> ~* &#34;</span>spider<span class="s2">&#34;) { return 508; } #这个会影响国内某些搜索引擎爬虫，比如：搜狗
-</span></span></span><span class="line"><span class="cl"><span class="s2">#拦截各恶意请求的UA，可以通过分析站点日志文件或者waf日志作为参考配置。
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_referer</span><span class="s2"> ~* 17ce.com) { return 509; }
-</span></span></span><span class="line"><span class="cl"><span class="s2">#拦截17ce.com站点测速节点的请求，所以明月一直都说这些测速网站的数据仅供参考不能当真的。
-</span></span></span><span class="line"><span class="cl"><span class="s2"> if (</span><span class="nv">$http_referer</span><span class="s2"> ~* WebBench*&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 509<span class="p">;</span> <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#拦截WebBench或者类似压力测试工具，其他工具只需要更换名称即可。</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~* <span class="s2">&#34;(\$|&#39;|--|[+|(%20|%2F)]union[+|(%20|%2F)]|[+|(%20|%2F)]insert[+|(%20|%2F)]|[+|(%20|%2F)]drop[+|(%20|%2F)]|[+|(%20|%2F)]truncate[+|(%20|%2F)]|[+|(%20|%2F)]update[+|(%20|%2F)]|[+|(%20|%2F)]from[+|(%20|%2F)]|[+|(%20|%2F)]grant[+|(%20|%2F)]|[+|(%20|%2F)]exec[+|(%20|%2F)]|[+|(%20|%2F)]where[+|(%20|%2F)]|[+|(%20|%2F)]select[+|(%20|%2F)]|[+|(%20|%2F)]and[+|(%20|%2F)]|[+|(%20|%2F)]or[+|(%20|%2F)]|[+|(%20|%2F)]count[+|(%20|%2F)]|[+|(%20|%2F)]exec[+|(%20|%2F)]|[+|(%20|%2F)]chr[+|(%20|%2F)]|[+|(%20|%2F)]mid[+|(%20|%2F)]|[+|(%20|%2F)]like[+|(%20|%2F)]|[+|(%20|%2F)]iframe[+|(%20|%2F)]|[\&lt;|%3C]script[\&gt;|%3E]|javascript|alert|webscan|dbappsecurity|style|confirm\(|innerhtml|innertext)(.*)</span>$<span class="s2">&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 555<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$uri</span> ~* <span class="s2">&#34;(/~).*&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 501<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$uri</span> ~* <span class="s2">&#34;(\\x.)&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 501<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~* <span class="s2">&#34;[;&#39;&lt;&gt;].*&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 509<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~ <span class="s2">&#34; &#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 509<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~ <span class="s2">&#34;(\/\.+)&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 509<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~ <span class="s2">&#34;(\.+\/)&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 509<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sql 注入</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># if ($uri ~* &#34;(insert|select|delete|update|count|master|truncate|declare|exec|\*|\&#39;)(.*)$&#34; ) { return 508; }</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;concat.*\(&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;union.*select.*\(&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;union.*all.*select.*&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~* <span class="s2">&#34;(cost\()|(concat\()&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~* <span class="s2">&#34;[+|(%20|%2F)]union[+|(%20|%2F)]&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~* <span class="s2">&#34;[+|(%20|%2F)]and[+|(%20|%2F)]&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~* <span class="s2">&#34;[+|(%20|%2F)]select[+|(%20|%2F)]&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~* <span class="s2">&#34;[+|(%20|%2F)]or[+|(%20|%2F)]&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~* <span class="s2">&#34;[+|(%20|%2F)]delete[+|(%20|%2F)]&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~* <span class="s2">&#34;[+|(%20|%2F)]update[+|(%20|%2F)]&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$request_uri</span> ~* <span class="s2">&#34;[+|(%20|%2F)]insert[+|(%20|%2F)]&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 常见漏洞利用</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;(&lt;|%3C).*script.*(&gt;|%3E)&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;GLOBALS(=|\[|\%[0-9A-Z]{0,2})&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;_REQUEST(=|\[|\%[0-9A-Z]{0,2})&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;proc/self/environ&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;mosConfig_[a-zA-Z_]{1,21}(=|\%3D)&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;base64_(en|de)code\(.*\)&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 垃圾邮件字段</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;\b(ultram|unicauca|valium|viagra|vicodin|xanax|ypxaieo)\b&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 507<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;\b(erections|hoodia|huronriveracres|impotence|levitra|libido)\b&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 507<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;\b(ambien|bluespill|cialis|cocaine|ejaculation|erectile)\b&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 507<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;\b(lipitor|phentermin|pro[sz]ac|sandyauer|tramadol|troyhamby)\b&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 507<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 文件注入</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;[a-zA-Z0-9_]=http://&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 444<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;[a-zA-Z0-9_]=(\.\.//?)+&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 444<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$query_string</span> ~ <span class="s2">&#34;[a-zA-Z0-9_]=/([a-z0-9_.]//?)+&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 444<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># if ($http_user_agent ~* &#34;spider&#34;) { return 508; } </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#if ($http_user_agent ~ &#34;Wget&#34;) {</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    return 508;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># if ($http_user_agent ~* &#34;~17ce.com&#34;) { return 508; }</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~* <span class="s2">&#34;(YisouSpider|ApacheBench|Jmeter|JoeDog|Havij|masscan|mail2000|github|Java|python)&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~* <span class="s2">&#34;WebBench*&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~* <span class="s2">&#34;Nmap Scripting Engine&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~* <span class="s2">&#34;Indy Library&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;^</span>$<span class="s2">&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;libwww-perl&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;GetRight&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;GetWeb!&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;Go!Zilla&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;Download Demon&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;Go-Ahead-Got-It&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;TurnitinBot&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="nv">$http_user_agent</span> ~ <span class="s2">&#34;GrabNet&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> 508<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">location ~* <span class="s2">&#34;(&amp;pws=0|_vti_|\(null\)|\{\$itemURL\}|echo(.*)kae|boot\.ini|etc/passwd|eval\(|self/environ|(wp-)?config\.|cgi-|muieblack)&#34;</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">location ~* <span class="s2">&#34;/(^</span>$<span class="s2">|mobiquo|phpinfo|shell|sqlpatch|thumb|thumb_editor|thumbopen|timthumb|webshell|config|configuration)\.php&#34;</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">location ~* <span class="s2">&#34;(&#39;|\&#34;)(.*)(drop|insert|md5|select|union)&#34;</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">location ~* <span class="s2">&#34;(https?|ftp|php):/&#34;</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">location ~* <span class="s2">&#34;(=&#39;|=%27|/&#39;/?).&#34;</span> <span class="o">{</span> <span class="k">return</span> 403<span class="p">;</span> <span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -649,8 +681,8 @@
 <h2 id="36-nginx-服务器域名hash表大小" class="headerLink">
     <a href="#36-nginx-%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%9f%9f%e5%90%8dhash%e8%a1%a8%e5%a4%a7%e5%b0%8f" class="header-mark"></a>3.6. Nginx 服务器域名hash表大小</h2><p>: main</p>
 <ol>
-<li>参数1: <code>server_names_hash_max_size 512;</code> 设置存放域名(server_names)的最大hash表大小</li>
-<li>参数2: <code>server_names_hash_bucket_size 128;</code> 此设置与<code>server_names_hash_max_size</code>共同控制保存服务器域名的hash表.</li>
+<li>参数1: <code>server_names_hash_max_size 512;</code> 设置存放域名(server_names)的最大hash表大小(如果nginx发出消息 应首选增大 max size)</li>
+<li>参数2: <code>server_names_hash_bucket_size 64;</code> 此设置与<code>server_names_hash_max_size</code>共同控制保存服务器域名的hash表.</li>
 </ol>
 <h2 id="37-开启高效的文件传输模式" class="headerLink">
     <a href="#37-%e5%bc%80%e5%90%af%e9%ab%98%e6%95%88%e7%9a%84%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93%e6%a8%a1%e5%bc%8f" class="header-mark"></a>3.7. 开启高效的文件传输模式</h2><p>; http/server/location/if in location</p>

@@ -2,7 +2,7 @@
 
 
 {{< admonition type=info title="前言" open=true >}}
-一篇包含tomcat、nginx、php、mysql的相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。  
+一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。  
 {{< /admonition >}}
 
 # 1. tomcat 服务调优  
@@ -59,68 +59,84 @@ mount -t tmpfs -o size=1024M tmpfs /mnt/usb02
 
 # 3. nginx 优化
 
-> 记录一篇同僚文章:&emsp;[~~http://www.z-dig.com/nginx-optimization-25.html~~](http://www.z-dig.com/nginx-optimization-25.html)
-
 nginx 规则匹配优先级: `=` > `完整路径` > `^~` > `~|~*` > `部分起始路径` > `/`    
 <span id="30"></span>
 <details>
 <summary style="font-size:18px;color:blue">防止SQL注入、XSS攻击的实践配置方法</summary>
 
-> 原文接入:&emsp;[https://www.imydl.tech/lnmp/762.html](https://www.imydl.tech/lnmp/762.html)
 ```bash
 if ($request_method !~* GET|POST) { return 444; }
 #使用444错误代码可以更加减轻服务器负载压力。
-#防止SQL注入
-if ($query_string ~* (\$|'|--|[+|(%20)]union[+|(%20)]|[+|(%20)]insert[+|(%20)]|[+|(%20)]drop[+|(%20)]|[+|(%20)]truncate[+|(%20)]|[+|(%20)]update[+|(%20)]|[+|(%20)]from[+|(%20)]|[+|(%20)]grant[+|(%20)]|[+|(%20)]exec[+|(%20)]|[+|(%20)]where[+|(%20)]|[+|(%20)]select[+|(%20)]|[+|(%20)]and[+|(%20)]|[+|(%20)]or[+|(%20)]|[+|(%20)]count[+|(%20)]|[+|(%20)]exec[+|(%20)]|[+|(%20)]chr[+|(%20)]|[+|(%20)]mid[+|(%20)]|[+|(%20)]like[+|(%20)]|[+|(%20)]iframe[+|(%20)]|[\<|%3c]script[\>|%3e]|javascript|alert|webscan|dbappsecurity|style|confirm\(|innerhtml|innertext)(.*)$) { return 555; }
- if ($uri ~* (/~).*) { return 501; }
- if ($uri ~* (\\x.)) { return 501; }
-#防止SQL注入 
- if ($query_string ~* "[;'<>].*") { return 509; }
- if ($request_uri ~ " ") { return 509; }
- if ($request_uri ~ (\/\.+)) { return 509; }
- if ($request_uri ~ (\.+\/)) { return 509; }
- 
- #if ($uri ~* (insert|select|delete|update|count|master|truncate|declare|exec|\*|\')(.*)$ ) { return 503; }
-#防止SQL注入
- if ($request_uri ~* "(cost\()|(concat\()") { return 504; }
- if ($request_uri ~* "[+|(%20)]union[+|(%20)]") { return 504; }
- if ($request_uri ~* "[+|(%20)]and[+|(%20)]") { return 504; }
- if ($request_uri ~* "[+|(%20)]select[+|(%20)]") { return 504; }
- if ($request_uri ~* "[+|(%20)]or[+|(%20)]") { return 504; }
- if ($request_uri ~* "[+|(%20)]delete[+|(%20)]") { return 504; }
- if ($request_uri ~* "[+|(%20)]update[+|(%20)]") { return 504; }
- if ($request_uri ~* "[+|(%20)]insert[+|(%20)]") { return 504; }
- if ($query_string ~ "(<|%3C).*script.*(>|%3E)") { return 505; }
- if ($query_string ~ "GLOBALS(=|\[|\%[0-9A-Z]{0,2})") { return 505; }
- if ($query_string ~ "_REQUEST(=|\[|\%[0-9A-Z]{0,2})") { return 505; }
- if ($query_string ~ "proc/self/environ") { return 505; }
- if ($query_string ~ "mosConfig_[a-zA-Z_]{1,21}(=|\%3D)") { return 505; }
- if ($query_string ~ "base64_(en|de)code\(.*\)") { return 505; }
- if ($query_string ~ "[a-zA-Z0-9_]=http://") { return 506; }
- if ($query_string ~ "[a-zA-Z0-9_]=(\.\.//?)+") { return 506; }
- if ($query_string ~ "[a-zA-Z0-9_]=/([a-z0-9_.]//?)+") { return 506; }
- if ($query_string ~ "b(ultram|unicauca|valium|viagra|vicodin|xanax|ypxaieo)b") { return 507; }
- if ($query_string ~ "b(erections|hoodia|huronriveracres|impotence|levitra|libido)b") {return 507; }
- if ($query_string ~ "b(ambien|bluespill|cialis|cocaine|ejaculation|erectile)b") { return 507; }
- if ($query_string ~ "b(lipitor|phentermin|pro[sz]ac|sandyauer|tramadol|troyhamby)b") { return 507; }
-#这里大家根据自己情况添加删减上述判断参数，cURL、wget这类的屏蔽有点儿极端了，但要“宁可错杀一千，不可放过一个”。
- if ($http_user_agent ~* YisouSpider|ApacheBench|WebBench|Jmeter|JoeDog|Havij|GetRight|TurnitinBot|GrabNet|masscan|mail2000|github|wget|curl|Java|python) { return 508; }
-#同上，大家根据自己站点实际情况来添加删减下面的屏蔽拦截参数。
- if ($http_user_agent ~* "Go-Ahead-Got-It") { return 508; }
- if ($http_user_agent ~* "GetWeb!") { return 508; }
- if ($http_user_agent ~* "Go!Zilla") { return 508; }
- if ($http_user_agent ~* "Download Demon") { return 508; }
- if ($http_user_agent ~* "Indy Library") { return 508; }
- if ($http_user_agent ~* "libwww-perl") { return 508; }
- if ($http_user_agent ~* "Nmap Scripting Engine") { return 508; }
- if ($http_user_agent ~* "~17ce.com") { return 508; }
- if ($http_user_agent ~* "WebBench*") { return 508; }
- if ($http_user_agent ~* "spider") { return 508; } #这个会影响国内某些搜索引擎爬虫，比如：搜狗
-#拦截各恶意请求的UA，可以通过分析站点日志文件或者waf日志作为参考配置。
- if ($http_referer ~* 17ce.com) { return 509; }
-#拦截17ce.com站点测速节点的请求，所以明月一直都说这些测速网站的数据仅供参考不能当真的。
- if ($http_referer ~* WebBench*") { return 509; }
-#拦截WebBench或者类似压力测试工具，其他工具只需要更换名称即可。
+if ($query_string ~* "(\$|'|--|[+|(%20|%2F)]union[+|(%20|%2F)]|[+|(%20|%2F)]insert[+|(%20|%2F)]|[+|(%20|%2F)]drop[+|(%20|%2F)]|[+|(%20|%2F)]truncate[+|(%20|%2F)]|[+|(%20|%2F)]update[+|(%20|%2F)]|[+|(%20|%2F)]from[+|(%20|%2F)]|[+|(%20|%2F)]grant[+|(%20|%2F)]|[+|(%20|%2F)]exec[+|(%20|%2F)]|[+|(%20|%2F)]where[+|(%20|%2F)]|[+|(%20|%2F)]select[+|(%20|%2F)]|[+|(%20|%2F)]and[+|(%20|%2F)]|[+|(%20|%2F)]or[+|(%20|%2F)]|[+|(%20|%2F)]count[+|(%20|%2F)]|[+|(%20|%2F)]exec[+|(%20|%2F)]|[+|(%20|%2F)]chr[+|(%20|%2F)]|[+|(%20|%2F)]mid[+|(%20|%2F)]|[+|(%20|%2F)]like[+|(%20|%2F)]|[+|(%20|%2F)]iframe[+|(%20|%2F)]|[\<|%3C]script[\>|%3E]|javascript|alert|webscan|dbappsecurity|style|confirm\(|innerhtml|innertext)(.*)$") { return 555; }
+
+if ($uri ~* "(/~).*") { return 501; }
+if ($uri ~* "(\\x.)") { return 501; }
+
+if ($query_string ~* "[;'<>].*") { return 509; }
+if ($request_uri ~ " ") { return 509; }
+if ($request_uri ~ "(\/\.+)") { return 509; }
+if ($request_uri ~ "(\.+\/)") { return 509; }
+
+# sql 注入
+# if ($uri ~* "(insert|select|delete|update|count|master|truncate|declare|exec|\*|\')(.*)$" ) { return 508; }
+if ($query_string ~ "concat.*\(") { return 508; }
+if ($query_string ~ "union.*select.*\(") { return 508; }
+if ($query_string ~ "union.*all.*select.*") { return 508; }
+if ($request_uri ~* "(cost\()|(concat\()") { return 508; }
+
+if ($request_uri ~* "[+|(%20|%2F)]union[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]and[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]select[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]or[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]delete[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]update[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]insert[+|(%20|%2F)]") { return 508; }
+
+## 常见漏洞利用
+if ($query_string ~ "(<|%3C).*script.*(>|%3E)") { return 403; }
+if ($query_string ~ "GLOBALS(=|\[|\%[0-9A-Z]{0,2})") { return 403; }
+if ($query_string ~ "_REQUEST(=|\[|\%[0-9A-Z]{0,2})") { return 403; }
+if ($query_string ~ "proc/self/environ") { return 403; }
+if ($query_string ~ "mosConfig_[a-zA-Z_]{1,21}(=|\%3D)") { return 403; }
+if ($query_string ~ "base64_(en|de)code\(.*\)") { return 403; }
+
+# 垃圾邮件字段
+if ($query_string ~ "\b(ultram|unicauca|valium|viagra|vicodin|xanax|ypxaieo)\b") { return 507; }
+if ($query_string ~ "\b(erections|hoodia|huronriveracres|impotence|levitra|libido)\b") { return 507; }
+if ($query_string ~ "\b(ambien|bluespill|cialis|cocaine|ejaculation|erectile)\b") { return 507; }
+if ($query_string ~ "\b(lipitor|phentermin|pro[sz]ac|sandyauer|tramadol|troyhamby)\b") { return 507; }
+
+## 文件注入
+if ($query_string ~ "[a-zA-Z0-9_]=http://") { return 444; }
+if ($query_string ~ "[a-zA-Z0-9_]=(\.\.//?)+") { return 444; }
+if ($query_string ~ "[a-zA-Z0-9_]=/([a-z0-9_.]//?)+") { return 444; }
+
+# if ($http_user_agent ~* "spider") { return 508; } 
+#if ($http_user_agent ~ "Wget") {
+#    return 508;
+#}
+# if ($http_user_agent ~* "~17ce.com") { return 508; }
+
+if ($http_user_agent ~* "(YisouSpider|ApacheBench|Jmeter|JoeDog|Havij|masscan|mail2000|github|Java|python)") { return 508; }
+
+if ($http_user_agent ~* "WebBench*") { return 508; }
+if ($http_user_agent ~* "Nmap Scripting Engine") { return 508; }
+if ($http_user_agent ~* "Indy Library") { return 508; }
+if ($http_user_agent ~ "^$") { return 508; }
+if ($http_user_agent ~ "libwww-perl") { return 508; }
+if ($http_user_agent ~ "GetRight") { return 508; }
+if ($http_user_agent ~ "GetWeb!") { return 508; }
+if ($http_user_agent ~ "Go!Zilla") { return 508; }
+if ($http_user_agent ~ "Download Demon") { return 508; }
+if ($http_user_agent ~ "Go-Ahead-Got-It") { return 508; }
+if ($http_user_agent ~ "TurnitinBot") { return 508; }
+if ($http_user_agent ~ "GrabNet") { return 508; }
+
+location ~* "(&pws=0|_vti_|\(null\)|\{\$itemURL\}|echo(.*)kae|boot\.ini|etc/passwd|eval\(|self/environ|(wp-)?config\.|cgi-|muieblack)" { return 403; }
+location ~* "/(^$|mobiquo|phpinfo|shell|sqlpatch|thumb|thumb_editor|thumbopen|timthumb|webshell|config|configuration)\.php" { return 403; }
+location ~* "('|\")(.*)(drop|insert|md5|select|union)" { return 403; }
+location ~* "(https?|ftp|php):/" { return 403; }
+location ~* "(='|=%27|/'/?)." { return 403; }
 ```
 </details>
 
@@ -162,8 +178,8 @@ events {
 
 ## 3.6. Nginx 服务器域名hash表大小  
 : main  
-1. 参数1: `server_names_hash_max_size 512;` 设置存放域名(server_names)的最大hash表大小  
-2. 参数2: `server_names_hash_bucket_size 128;` 此设置与`server_names_hash_max_size`共同控制保存服务器域名的hash表.  
+1. 参数1: `server_names_hash_max_size 512;` 设置存放域名(server_names)的最大hash表大小(如果nginx发出消息 应首选增大 max size)  
+2. 参数2: `server_names_hash_bucket_size 64;` 此设置与`server_names_hash_max_size`共同控制保存服务器域名的hash表.  
 
 ## 3.7. 开启高效的文件传输模式  
 ; http/server/location/if in location 

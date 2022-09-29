@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3496 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3492 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2022-08-01T00:00:00+00:00","dateModified": "2022-08-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -141,7 +141,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3496 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3492 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span>
                         <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
                     </span>&nbsp;</div>
@@ -171,10 +171,10 @@
 <ul>
 <li>查看 <code>open_files_limit</code>参数, 使用<code>show variables like '%open%';</code>就可以看到了</li>
 <li>修改 <code>open_files_limit</code>参数<br>
-在网上找了很多资料，有的说直接在<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>文件中的<code>[mysqld]</code>部分添加<code>open_files_limit</code>参数，比如<code>open_files_limit=102400</code>，并且在<code>/etc/security/limits.conf</code> 添加<code>mysql soft nofile 102400</code>和<code>mysql hard nofile 102400</code>这两个参数然后重启<code>MySQL</code>，但是发现不能生效。</li>
+在网上找了很多资料，有的说直接在<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>文件中的<code>[mysqld]</code>部分添加<code>open_files_limit</code>参数，比如<code>open_files_limit=10240</code>，并且在<code>/etc/security/limits.conf</code> 添加<code>mysql soft nofile 10240</code>和<code>mysql hard nofile 10240</code>这两个参数然后重启<code>MySQL</code>，但是发现不能生效。</li>
 <li>以下方法可用：
 <ul>
-<li>在文件<code>/etc/systemd/system/multi-user.target.wants/mysql.service</code>(也有可能是<code>/etc/systemd/system/mysql.service</code>这个文件)最后添加<code>LimitNOFILE=102400</code></li>
+<li>在文件<code>/etc/systemd/system/multi-user.target.wants/mysql.service</code>(也有可能是<code>/etc/systemd/system/mysql.service</code>这个文件)最后添加<code>LimitNOFILE=10240</code></li>
 </ul>
 </li>
 <li>然后执行<code>systemctl daemon-reload</code>，接着再重启<code>mysql</code>服务<code>sudo service mysql restart</code>,可以看到已经修改成功了</li>

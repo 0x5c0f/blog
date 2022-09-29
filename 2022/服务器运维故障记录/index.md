@@ -8,9 +8,9 @@
 解决方法： 
 - 查看 `open_files_limit`参数, 使用`show variables like '%open%';`就可以看到了   
 - 修改 `open_files_limit`参数  
- 在网上找了很多资料，有的说直接在`/etc/mysql/mysql.conf.d/mysqld.cnf`文件中的`[mysqld]`部分添加`open_files_limit`参数，比如`open_files_limit=102400`，并且在`/etc/security/limits.conf` 添加`mysql soft nofile 102400`和`mysql hard nofile 102400`这两个参数然后重启`MySQL`，但是发现不能生效。  
+ 在网上找了很多资料，有的说直接在`/etc/mysql/mysql.conf.d/mysqld.cnf`文件中的`[mysqld]`部分添加`open_files_limit`参数，比如`open_files_limit=10240`，并且在`/etc/security/limits.conf` 添加`mysql soft nofile 10240`和`mysql hard nofile 10240`这两个参数然后重启`MySQL`，但是发现不能生效。  
 - 以下方法可用： 
-  - 在文件`/etc/systemd/system/multi-user.target.wants/mysql.service`(也有可能是`/etc/systemd/system/mysql.service`这个文件)最后添加`LimitNOFILE=102400`  
+  - 在文件`/etc/systemd/system/multi-user.target.wants/mysql.service`(也有可能是`/etc/systemd/system/mysql.service`这个文件)最后添加`LimitNOFILE=10240`  
 - 然后执行`systemctl daemon-reload`，接着再重启`mysql`服务`sudo service mysql restart`,可以看到已经修改成功了  
 
 # 禅道bug管理系统 
