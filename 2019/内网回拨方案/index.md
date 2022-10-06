@@ -1,5 +1,6 @@
 # 内网回拨方案
 
+<!--more-->
 
 {{< admonition type=info title="前言" open=true >}}
 &emsp;&emsp;记录本篇内容实际上是希望有人能知道有`badvpn_tun2socks` 这个东西可以将`socks`转化为`vpn`, 或者只有我不知道这个东西了。  
