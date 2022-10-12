@@ -9,6 +9,8 @@
     <link>https://blog.0x5c0f.cc/2022/starting/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/starting/</guid>
-    <description><![CDATA[第一篇文章当然是hello world了 1 echo &#34;hello world !&#34;]]></description>
+    <description><![CDATA[<blockquote>
+<p>第一篇文章当然是<code>hello world</code>了</p>
+</blockquote>]]></description>
 </item></channel>
 </rss>
