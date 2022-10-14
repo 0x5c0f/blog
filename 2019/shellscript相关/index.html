@@ -10,7 +10,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-05-31T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-05-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-10-14T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -32,8 +32,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2019\/shellscript%E7%9B%B8%E5%85%B3\/"
-        },"genre": "posts","keywords": "linux, shellscript","wordcount":  5244 ,
-        "url": "https:\/\/blog.0x5c0f.cc\/2019\/shellscript%E7%9B%B8%E5%85%B3\/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2019-05-31T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, shellscript","wordcount":  5381 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2019\/shellscript%E7%9B%B8%E5%85%B3\/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2022-10-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -206,7 +206,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-31">2019-05-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-05-31">2019-05-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5244 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-31">2019-05-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-10-14">2022-10-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5381 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="leancloud_visitors" data-flag-title="Shellscript相关">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="comment_count" data-flag-title="Shellscript相关">
@@ -296,15 +296,7 @@
     <li><a href="#20-那些很神奇的操作">20. 那些很神奇的操作</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><div class="details admonition warning open">
-                <div class="details-summary admonition-title">
-                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
-                </div>
-                <div class="details-content">
-                    <div class="admonition-content">
-                        本文最后更新于 <span class="timeago" datetime="2019-05-31T00:00:00" title="May 31, 2019">2019-05-31</span>，文中内容可能已过时。</div>
-                </div>
-            </div><h1 id="1-shell-脚本执行的几种方法" class="headerLink">
+            </div><div class="content" id="content"><h1 id="1-shell-脚本执行的几种方法" class="headerLink">
     <a href="#1-shell-%e8%84%9a%e6%9c%ac%e6%89%a7%e8%a1%8c%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>1. shell 脚本执行的几种方法</h1><ul>
 <li>
 <p><code>bash(sh) /path/script.sh</code></p>
@@ -532,6 +524,10 @@
 <tr>
 <td><code>${value:+word}</code></td>
 <td>如果<code>value</code>存在且非<code>null</code>,则返回<code>word</code>,否则返回<code>null</code>.例<code>res=${value:+word}</code>,如果<code>value</code>已经定义, 则<code>res</code>的值为<code>word</code>,如果<code>value</code>值未定义,则<code>res</code>值为<code>null(空)</code></td>
+</tr>
+<tr>
+<td><code>${value:?message}</code></td>
+<td>如果变量<code>value</code>存在且非<code>null</code>，则返回变量<code>value</code>的值，否则返回信息<code>bash: value: message</code>,例 <code>echo ${value:?is null}</code>,如果<code>value</code>值已定义，则返回<code>value</code>定义值,否者返回 <code>bash: value: is null</code>,退出状态码为<code>1</code></td>
 </tr>
 </tbody>
 </table>
@@ -1136,6 +1132,8 @@
 <li><code>-n</code> 不会执行脚本,仅仅检查语法是否有问题,并给出错误提示</li>
 <li><code>-v</code> 在执行脚本是时候,先将脚本的内容输出到屏幕上,然后执行脚本,也会提示错误信息,相当于先 cat 了</li>
 <li><code>-x</code> 将执行的脚本内容即输出显示到屏幕上面</li>
+<li><code>-e</code> 令脚本在发生错误时退出而不是继续运行</li>
+<li><code>-u</code> 检查是否使用了未赋值的变量</li>
 </ul>
 <h2 id="162-分段调试" class="headerLink">
     <a href="#162-%e5%88%86%e6%ae%b5%e8%b0%83%e8%af%95" class="header-mark"></a>16.2. 分段调试</h2><ul>
@@ -1378,7 +1376,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2019-05-31</span>
+                <span>更新于 2022-10-14</span>
             </div>
             <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
         </div>

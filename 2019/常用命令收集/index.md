@@ -380,3 +380,8 @@ $> tar czf - /pathto/dir01 /pathto/dir02 |split -d -b 2G - file.tgz.
 # 解压
 $> cat file.tgz* | tar xz 
 ```
+
+# 临时移动工作路径执行命令
+```
+$> (cd /some/other/dir && other-command)
+```
