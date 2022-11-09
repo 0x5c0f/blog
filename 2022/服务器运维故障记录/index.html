@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3492 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3628 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2022-08-01T00:00:00+00:00","dateModified": "2022-08-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -135,14 +135,15 @@
     <li><a href="#nginx-反向代理后端服务器部分资源出现502错误">nginx 反向代理后端服务器，部分资源出现502错误</a></li>
     <li><a href="#nginx-反向代理-cdn回源多层nginx出现-502503504-等异常">nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</a></li>
     <li><a href="#nginx-emerg-location-xxxxxxxx-cannot-be-inside-the-exact-location-faviconico-in-xxxxxx">nginx: [emerg] location &ldquo;<xxxxxxxx>&rdquo; cannot be inside the exact location &ldquo;/favicon.ico&rdquo; in xxxxxx</a></li>
+    <li><a href="#iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2">IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">服务器运维故障记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3492 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;<span id="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="服务器运维故障记录">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3628 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="服务器运维故障记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="服务器运维故障记录">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"></span>&nbsp;条评论
@@ -164,9 +165,18 @@
     <li><a href="#nginx-反向代理后端服务器部分资源出现502错误">nginx 反向代理后端服务器，部分资源出现502错误</a></li>
     <li><a href="#nginx-反向代理-cdn回源多层nginx出现-502503504-等异常">nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</a></li>
     <li><a href="#nginx-emerg-location-xxxxxxxx-cannot-be-inside-the-exact-location-faviconico-in-xxxxxx">nginx: [emerg] location &ldquo;<xxxxxxxx>&rdquo; cannot be inside the exact location &ldquo;/favicon.ico&rdquo; in xxxxxx</a></li>
+    <li><a href="#iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2">IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="mysql--errcode-24---too-many-open-files" class="headerLink">
+            </div><div class="content" id="content"><div class="details admonition note open">
+                <div class="details-summary admonition-title">
+                    <i class="icon fas fa-pencil-alt fa-fwnote"></i>注意<i class="details-icon fas fa-angle-right fa-fw"></i>
+                </div>
+                <div class="details-content">
+                    <div class="admonition-content">
+                        本文最后更新于 <span class="timeago" datetime="2022-08-01T00:00:00" title="August 1, 2022">2022-08-01</span>，文中内容可能已过时。</div>
+                </div>
+            </div><h1 id="mysql--errcode-24---too-many-open-files" class="headerLink">
     <a href="#mysql--errcode-24---too-many-open-files" class="header-mark"></a>Mysql  Errcode: 24 - Too many open files</h1><blockquote>
 <p><a href="https://blog.csdn.net/weixin_36343850/article/details/86293700" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/weixin_36343850/article/details/86293700</a></p>
 </blockquote>
@@ -259,7 +269,32 @@
     <a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86-cdn%e5%9b%9e%e6%ba%90%e5%a4%9a%e5%b1%82nginx%e5%87%ba%e7%8e%b0-502503504-%e7%ad%89%e5%bc%82%e5%b8%b8" class="header-mark"></a>nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</h1><p>在我的部署模式中，很多时候都是<code>docker</code>与实际应用环境混合部署(多环境，单节点)，大多的结构是 <code>docker</code>运行程序环境，<code>nginx</code>反向代理到<code>docker</code>暴露的端口，从而实现应用的正常访问。我这次遇到的这个问题，最开始的时候我以为是<code>cdn</code>的问题，因为当时我没有通过<code>cdn</code>直达服务器的时候访问都是正常的，然后通过<code>cdn</code>后，页面大多数请求就都出现了<code>502</code>等状态，这个时候我联系了运营商，他们说回源链接被断开了，是不是服务器上有相关安全策略，仔细的想了下，服务器上除了开启了<code>iptables</code>外，并没有其他的安全设置，正没有头绪的时候，突然想到<code>docker</code>需要依赖<code>iptables</code>转发，是不是这个原因导致防火墙又有问题了(因为之前我调整iptables的时候，导致过docker容器无法连接网络😥)，于是我把防火墙一关，然后<code>cdn</code>回源就正常了。 后续的处理，我关闭了服务器防火墙设置，重启了<code>docker</code>，重建了容器(防止容器网络出现问题，同时让<code>docker</code>重新创建自己的规则链)。对外的防火墙采用云防火墙现在公网流入流量。上面其他记录的故障中，估计也有这个原因导致的，但是不知道怎么调好了。(TODO:// 一个人运维好难，有点啥问题都不知道该找谁讨论下，全靠自己摸索)</p>
 <h1 id="nginx-emerg-location-xxxxxxxx-cannot-be-inside-the-exact-location-faviconico-in-xxxxxx" class="headerLink">
     <a href="#nginx-emerg-location-xxxxxxxx-cannot-be-inside-the-exact-location-faviconico-in-xxxxxx" class="header-mark"></a>nginx: [emerg] location &ldquo;<xxxxxxxx>&rdquo; cannot be inside the exact location &ldquo;/favicon.ico&rdquo; in xxxxxx</h1><p>我这边遇到的此类问题多数为在<code>location =/xxx {</code>下继续<code>include</code>了<code>location</code> ,清除后解决</p>
+<h1 id="iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2" class="headerLink">
+    <a href="#iis%e4%bd%8e%e7%89%88%e6%9c%ac%e6%9c%aa%e6%98%a0%e5%b0%84-webresourceaxd-%e6%96%87%e4%bb%b6%e5%af%bc%e8%87%b4%e7%9b%b8%e5%85%b3%e5%9b%be%e7%89%87%e6%88%96js%e7%ad%89%e6%97%a0%e6%b3%95%e6%ad%a3%e5%b8%b8%e5%8a%a0%e8%bd%bd-%e5%a4%9a%e5%87%ba%e7%8e%b0%e5%9c%b0%e7%89%88%e6%9c%ac%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%8a%e5%bd%93%e5%89%8d%e8%ae%b0%e5%bd%95server-2008-r2" class="header-mark"></a>IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</h1><ul>
+<li>处理:
+配置编辑器 &ndash;&gt; <code>system.web/httpHandlers/</code> &ndash;&gt; 点击 <code>Count</code> 右侧的小点展开, 然后添加<code>Path:WebResource.axd</code>、<code>type: System.Web.Handlers.AssemblyResourceLoader</code>,  <code>validate: True</code> , <code>verb: GET</code> ，完成后关闭</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;system.web&gt;</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;httpHandlers&gt;</span>
+</span></span><span class="line"><span class="cl">           <span class="nt">&lt;add</span> <span class="na">path=</span><span class="s">&#34;WebResource.axd&#34;</span> <span class="na">verb=</span><span class="s">&#34;GET&#34;</span> <span class="na">type=</span><span class="s">&#34;System.Web.Handlers.AssemblyResourceLoader&#34;</span> <span class="na">validate=</span><span class="s">&#34;True&#34;</span> <span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;tpHandlers&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;/system.web&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

@@ -65,3 +65,17 @@
 
 # nginx: [emerg] location "<xxxxxxxx>" cannot be inside the exact location "/favicon.ico" in xxxxxx
 我这边遇到的此类问题多数为在`location =/xxx {`下继续`include`了`location` ,清除后解决
+
+
+# IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)
+- 处理: 
+配置编辑器 --> `system.web/httpHandlers/` --> 点击 `Count` 右侧的小点展开, 然后添加`Path:WebResource.axd`、`type: System.Web.Handlers.AssemblyResourceLoader`,  `validate: True` , `verb: GET` ，完成后关闭   
+```xml
+<configuration>
+   <system.web>
+       <httpHandlers>
+           <add path="WebResource.axd" verb="GET" type="System.Web.Handlers.AssemblyResourceLoader" validate="True" />
+       <tpHandlers>
+   </system.web>
+</configuration>
+```
