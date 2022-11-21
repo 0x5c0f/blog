@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3566 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3661 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2022-02-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -162,13 +162,14 @@
     <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
     <li><a href="#更改docker容器中的时间而不影响宿主机">更改docker容器中的时间而不影响宿主机</a></li>
     <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
+    <li><a href="#openvpn-指定路由配置">openvpn 指定路由配置</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3566 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-02-14">2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3661 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="那些杂七杂八的记录">
@@ -218,6 +219,7 @@
     <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
     <li><a href="#更改docker容器中的时间而不影响宿主机">更改docker容器中的时间而不影响宿主机</a></li>
     <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
+    <li><a href="#openvpn-指定路由配置">openvpn 指定路由配置</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition warning open">
@@ -957,6 +959,26 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; dpkg-reconfigure dash
 </span></span><span class="line"><span class="cl"><span class="c1"># 弹出窗口选择 &lt;No&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="openvpn-指定路由配置" class="headerLink">
+    <a href="#openvpn-%e6%8c%87%e5%ae%9a%e8%b7%af%e7%94%b1%e9%85%8d%e7%bd%ae" class="header-mark"></a>openvpn 指定路由配置</h1><blockquote>
+<p><a href="https://blog.csdn.net/joshua317/article/details/120245443" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/joshua317/article/details/120245443</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 verb 3 下添加</span>
+</span></span><span class="line"><span class="cl">route-nopull    <span class="c1">#  route-nopull 配置后不会有任何网络请求走openvpn</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 当客户端加入 route-nopull 后,所有出去的访问都不从 Openvpn 出去,但可通过添加 vpn_gateway 参数使部分IP访问走 Openvpn 出去</span>
+</span></span><span class="line"><span class="cl">route 172.16.0.0 255.255.0.0  vpn_gateway           
+</span></span><span class="line"><span class="cl">route 140.143.61.12 255.255.255.255  vpn_gateway
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

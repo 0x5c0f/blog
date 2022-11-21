@@ -371,3 +371,14 @@ $>> export LD_PRELOAD=
 $> dpkg-reconfigure dash
 # 弹出窗口选择 <No>
 ```
+
+# openvpn 指定路由配置 
+> https://blog.csdn.net/joshua317/article/details/120245443  
+```bash
+# 在 verb 3 下添加
+route-nopull    #  route-nopull 配置后不会有任何网络请求走openvpn
+# 当客户端加入 route-nopull 后,所有出去的访问都不从 Openvpn 出去,但可通过添加 vpn_gateway 参数使部分IP访问走 Openvpn 出去
+route 172.16.0.0 255.255.0.0  vpn_gateway           
+route 140.143.61.12 255.255.255.255  vpn_gateway
+```
+
