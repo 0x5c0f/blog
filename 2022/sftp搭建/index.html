@@ -181,8 +181,8 @@
         </div>
     </div>
 <h1 id="前言" class="headerLink">
-    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h1><p>  文章介绍如何让<code>sftp</code>也可以实现<code>vsftpd</code>虚拟用户的功能。
-  对于运维来说，我们使用文件传输功能的时候都是优先使用<code>vsftpd</code>，而不是<code>sftp</code>,多数原因我想应该都是因为<code>vsftpd</code>具有虚拟用户的功能，这个功能在针对特定的服务来说是非常友好的。比如<code>php</code>服务降权启动时，被读取文件的文件权限问题。<br>
+    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h1><p>  文章介绍如何让<code>sftp</code>也可以实现<code>vsftpd</code>虚拟用户的功能。<br>
+  对于运维来说，我们使用文件传输功能的时候都是优先使用<code>vsftpd</code>，而不是<code>sftp</code>,多数原因我想应该都是因为<code>vsftpd</code>具有虚拟用户的功能，这个功能在针对特定的服务来说是非常友好的。比如<code>php</code>服务降权启动时，被读取文件的文件权限问题。 <br>
   上述的问题，<code>sftp</code>实际上也是可以解决，借助<code>useradd -o</code>选项实现。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
