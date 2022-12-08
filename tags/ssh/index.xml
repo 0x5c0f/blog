@@ -9,7 +9,7 @@
     <link>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Wed, 23 Sep 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
-    <description><![CDATA[chroot系统正常来说针对于文件共享的sftp应该是以用户为单位来做的,但这儿我却用的是组,这个其实是我测试用用户来做从来没有成功过，只能]]></description>
+    <description><![CDATA[以下是一片草稿，真的真的是我自己记录的。但是！我现在自己也看不懂了，我真是栓Q了，好像多了一个chroot初始没啥用 chroot系统正常来说]]></description>
 </item><item>
     <title>Ssh隧道相关</title>
     <link>https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/</link>

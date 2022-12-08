@@ -4,7 +4,7 @@
         <link>https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
         <description>解决方案 - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 01 Sep 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="self" type="application/rss+xml" /><item>
     <title>常用web环境优化</title>
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
@@ -16,6 +16,12 @@
     <pubDate>Tue, 23 Jul 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[收集了一些常用和有趣的命令]]></description>
+</item><item>
+    <title>SFTP搭建</title>
+    <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
+    <pubDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</guid>
+    <description><![CDATA[注意 本文内容仅在CentOS 7上进行测试 前言 文章介绍如何让sftp也可以实现vsftpd虚拟用户的功能。 对于运维来说，我们使用文件传输功能的]]></description>
 </item><item>
     <title>Linux性能指标之cpu上下文切换</title>
     <link>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/</link>
@@ -58,11 +64,5 @@
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/</guid>
     <description><![CDATA[1. ossec 3.3.0 编译故障 及服务端启动故障 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ## 全部依赖 yum install zlib-devel pcre2-devel make gcc sqlite-devel openssl-devel libevent-devel systemd-devel ## 下载 https://ftp.pcre.org/pub/pcre/pcre2-10.32.tar.gz 解压到 src/external 中 或者安装 pcre2-devel ## 另 编译需要依赖 openssl-devel]]></description>
-</item><item>
-    <title>Centos7修改网卡名称</title>
-    <link>https://blog.0x5c0f.cc/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</link>
-    <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</guid>
-    <description><![CDATA[信息 CentOS 7的默认网卡和设备名称都是随机的，根据需要有时候需要修改网卡为以eth开头的。以下整理了两种比较靠谱的。 1. 安装过程中修改在加载镜像后出]]></description>
 </item></channel>
 </rss>

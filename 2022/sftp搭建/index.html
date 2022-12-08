@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">SFTP搭建 - 一个曾经的小码农...</title><meta name="Description" content="SFTP搭建"><meta property="og:title" content="SFTP搭建" />
+<meta property="og:description" content="SFTP搭建" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-12-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-12-07T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"/>
+
+<meta name="twitter:title" content="SFTP搭建"/>
+<meta name="twitter:description" content="SFTP搭建"/>
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="JntZ-myKUGeiVfETNSGA-pKc8nH1tdk4njyTVEjZzTs" /><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SFTP搭建",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/sftp%E6%90%AD%E5%BB%BA\/"
+        },"genre": "posts","keywords": "linux, 解决方案, sftp","wordcount":  1751 ,
+        "url": "https:\/\/blog.0x5c0f.cc\/2022\/sftp%E6%90%AD%E5%BB%BA\/","datePublished": "2022-12-07T00:00:00+00:00","dateModified": "2022-12-07T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "0x5c0f"},"authors": [{
+                        "@type": "Person",
+                        "name": "admin"                    
+                    }],"description": "SFTP搭建"
+    }
+    </script></head>
+
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_title.png"
+        data-srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_title.png"
+        title="/icons/logo_title.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="lazyload logo"
+        data-src="/icons/logo_title.png"
+        data-srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        data-sizes="auto"
+        alt="/icons/logo_title.png"
+        title="/icons/logo_title.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#正文">正文</a>
+      <ul>
+        <li><a href="#用户创建">用户创建</a></li>
+        <li><a href="#创建sftp登陆密钥">创建sftp登陆密钥</a></li>
+        <li><a href="#修改etcsshsshd_config">修改/etc/ssh/sshd_config</a></li>
+        <li><a href="#开始测试">开始测试</a></li>
+        <li><a href="#后续">后续</a></li>
+        <li><a href="#其他问题">其他问题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SFTP搭建</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-12-07">2022-12-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-12-07">2022-12-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1751 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/2022/sftp%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="SFTP搭建">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2022/sftp%E6%90%AD%E5%BB%BA/"></span>&nbsp;次阅读
+                    </span>&nbsp;<span id="/2022/sftp%E6%90%AD%E5%BB%BA/" class="comment_count" data-flag-title="SFTP搭建">
+                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2022/sftp%E6%90%AD%E5%BB%BA/"></span>&nbsp;条评论
+                    </span>&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#前言">前言</a></li>
+    <li><a href="#正文">正文</a>
+      <ul>
+        <li><a href="#用户创建">用户创建</a></li>
+        <li><a href="#创建sftp登陆密钥">创建sftp登陆密钥</a></li>
+        <li><a href="#修改etcsshsshd_config">修改/etc/ssh/sshd_config</a></li>
+        <li><a href="#开始测试">开始测试</a></li>
+        <li><a href="#后续">后续</a></li>
+        <li><a href="#其他问题">其他问题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>注意<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><strong>本文内容仅在<code>CentOS 7</code>上进行测试</strong></div>
+        </div>
+    </div>
+<h1 id="前言" class="headerLink">
+    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h1><p>  文章介绍如何让<code>sftp</code>也可以实现<code>vsftpd</code>虚拟用户的功能。
+  对于运维来说，我们使用文件传输功能的时候都是优先使用<code>vsftpd</code>，而不是<code>sftp</code>,多数原因我想应该都是因为<code>vsftpd</code>具有虚拟用户的功能，这个功能在针对特定的服务来说是非常友好的。比如<code>php</code>服务降权启动时，被读取文件的文件权限问题。<br>
+  上述的问题，<code>sftp</code>实际上也是可以解决，借助<code>useradd -o</code>选项实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>cxd@0x5c0f ~<span class="o">][</span>0<span class="o">]</span>$ useradd --help
+</span></span><span class="line"><span class="cl">用法：useradd <span class="o">[</span>选项<span class="o">]</span> 登录名
+</span></span><span class="line"><span class="cl">      useradd -D
+</span></span><span class="line"><span class="cl">      useradd -D <span class="o">[</span>选项<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">选项：
+</span></span><span class="line"><span class="cl">  -h, --help                    显示此帮助信息并退出
+</span></span><span class="line"><span class="cl">  -k, --skel SKEL_DIR           使用此目录作为骨架目录
+</span></span><span class="line"><span class="cl">                                The skeleton directory, which contains files and directories to be copied in the user<span class="se">\&#39;</span>s home directory,
+</span></span><span class="line"><span class="cl">                                when the home directory is created by useradd.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                This option is only valid <span class="k">if</span> the -m <span class="o">(</span>or --create-home<span class="o">)</span> option is specified.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                If this option is not set, the skeleton directory is defined by the SKEL variable in
+</span></span><span class="line"><span class="cl">                                /etc/default/useradd or, by default, /etc/skel.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  -m, --create-home             创建用户的主目录
+</span></span><span class="line"><span class="cl">  -o, --non-unique              允许使用重复的 UID 创建用户
+</span></span><span class="line"><span class="cl">                                This option is only valid in combination with the -u option.
+</span></span><span class="line"><span class="cl">  -s, --shell SHELL             新账户的登录 shell
+</span></span><span class="line"><span class="cl">  -u, --uid UID                 新账户的用户 ID
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="正文" class="headerLink">
+    <a href="#%e6%ad%a3%e6%96%87" class="header-mark"></a>正文</h1><p>以下定义<code>WEBServer</code>的基础用户为<code>www</code>,以<code>php</code>为例,<code>php-fpm</code>启动进程所属则为<code>www</code>用户，那么也只能读取<code>www</code>用户所拥有操作权限的文件。</p>
+<h2 id="用户创建" class="headerLink">
+    <a href="#%e7%94%a8%e6%88%b7%e5%88%9b%e5%bb%ba" class="header-mark"></a>用户创建</h2><p>创建<code>sftp</code>登陆用户，使用<code>-o</code>选项，让当前用户保持与<code>www</code>同属主<code>UID</code>、同属组<code>GID</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; groupadd -o -g <span class="k">$(</span>id -g www<span class="k">)</span> webapp
+</span></span><span class="line"><span class="cl">$&gt; useradd -o -u <span class="k">$(</span>id -u www<span class="k">)</span> -g webapp -m -k <span class="k">$(</span>mktemp -d<span class="k">)</span> -s /bin/false webapp
+</span></span><span class="line"><span class="cl"><span class="c1"># 此帐号只是sftp使用，所有创建时候添加-k选项，不让useradd复制/etc/skel下内容</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>帐号创建成功后，可在<code>/etc/passwd</code>中看到该帐号，此时应可以看到他的所属主和属组和<code>www</code>帐号一致</p>
+<h2 id="创建sftp登陆密钥" class="headerLink">
+    <a href="#%e5%88%9b%e5%bb%basftp%e7%99%bb%e9%99%86%e5%af%86%e9%92%a5" class="header-mark"></a>创建sftp登陆密钥</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 由于ssh-keygen在创建默认密钥时无法更新此路径，因此需要主动创建该目录</span>
+</span></span><span class="line"><span class="cl">$&gt; mkdir /home/webapp/.ssh
+</span></span><span class="line"><span class="cl"><span class="c1"># 此处授权可以直接授权www:www，为了看起来更清晰，此处授权还是用创建时的用户，但无论使用的是那一个，系统显示都会是www</span>
+</span></span><span class="line"><span class="cl">$&gt; chown webapp:webapp /home/webapp/.ssh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 密钥创建</span>
+</span></span><span class="line"><span class="cl">$&gt; su - webapp -s /bin/bash -c <span class="s2">&#34;ssh-keygen -f ~/.ssh/id_rsa -t rsa -b 4096 -N &#39;&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">$&gt; su - webapp -s /bin/bash -c <span class="s2">&#34;cat ~/.ssh/id_rsa.pub &gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="修改etcsshsshd_config" class="headerLink">
+    <a href="#%e4%bf%ae%e6%94%b9etcsshsshd_config" class="header-mark"></a>修改/etc/ssh/sshd_config</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 注意此项, 网上的sftp搭建教程基本都是说需要将此项切换为, Subsystem       sftp    internal-sftp</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换后将绕过&#34;管理员可能依赖登录shell配置来阻止某些用户登录&#34;。但我们上述使用的是重复UID，所以此处不能更改</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 若更改，则会导致共用UID的用户之间可相互登陆。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 差异参见: https://serverfault.com/questions/660160/openssh-difference-between-internal-sftp-and-sftp-server</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 差异参见: http://129.226.226.195/post/21921.html</span>
+</span></span><span class="line"><span class="cl"><span class="na">Subsystem       sftp    /usr/libexec/openssh/sftp-server</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定匹配用户</span>
+</span></span><span class="line"><span class="cl"><span class="na">Match User webapp</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 用chroot将用户的根目录指向到固定位置</span>
+</span></span><span class="line"><span class="cl">    <span class="na">ChrootDirectory  /sftpdir</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># -l 指定日志收集 -f 收集内容(应该是)  internal-sftp 请参看上述连接自行参悟</span>
+</span></span><span class="line"><span class="cl">    <span class="na">ForceCommand internal-sftp -l INFO -f AUTH</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 以下其他配置自行参悟</span>
+</span></span><span class="line"><span class="cl">    <span class="na">PermitTTY no</span>
+</span></span><span class="line"><span class="cl">    <span class="na">X11Forwarding no</span>
+</span></span><span class="line"><span class="cl">    <span class="na">AllowTcpForwarding no</span>
+</span></span><span class="line"><span class="cl">    <span class="na">PasswordAuthentication no</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="开始测试" class="headerLink">
+    <a href="#%e5%bc%80%e5%a7%8b%e6%b5%8b%e8%af%95" class="header-mark"></a>开始测试</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 上述操作完成后，还需要创建一个chroot目录</span>
+</span></span><span class="line"><span class="cl">$&gt; mkdir /sftpdir 
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">echo</span> hello &gt; /sftpdir/readme.md
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意目录属主必须为root,属组可以不是，权限不能超过755 </span>
+</span></span><span class="line"><span class="cl">$&gt; chown root.root /sftpdir 
+</span></span><span class="line"><span class="cl">$&gt; chmod <span class="m">755</span> /sftpdir
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启sshd服务(重载也可以)</span>
+</span></span><span class="line"><span class="cl">$&gt; systemctl reload sshd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 登陆测试</span>
+</span></span><span class="line"><span class="cl">$&gt; sftp -i /home/webapp/.ssh/id_rsa webapp@127.0.0.1
+</span></span><span class="line"><span class="cl">The authenticity of host <span class="s1">&#39;127.0.0.1 (127.0.0.1)&#39;</span> can<span class="s1">&#39;t be established.
+</span></span></span><span class="line"><span class="cl"><span class="s1">ECDSA key fingerprint is SHA256:hQkISJWcE+gHf1WAT2bIWSwiAJRD81Bv3wZd+1vZOuU.
+</span></span></span><span class="line"><span class="cl"><span class="s1">ECDSA key fingerprint is MD5:0e:e5:1a:c7:6c:97:fb:48:95:d2:c9:86:bb:d0:7d:91.
+</span></span></span><span class="line"><span class="cl"><span class="s1">Are you sure you want to continue connecting (yes/no)? yes
+</span></span></span><span class="line"><span class="cl"><span class="s1">Warning: Permanently added &#39;</span>127.0.0.1<span class="err">&#39;</span> <span class="o">(</span>ECDSA<span class="o">)</span> to the list of known hosts.
+</span></span><span class="line"><span class="cl">Connected to 127.0.0.1.
+</span></span><span class="line"><span class="cl">sftp&gt; ls -l
+</span></span><span class="line"><span class="cl">-rw-r--r--    <span class="m">1</span> <span class="m">0</span>        <span class="m">0</span>               <span class="m">6</span> Dec  <span class="m">8</span> 06:31 readme.md
+</span></span><span class="line"><span class="cl">sftp&gt; <span class="nb">pwd</span>
+</span></span><span class="line"><span class="cl">Remote working directory: /
+</span></span><span class="line"><span class="cl">sftp&gt;  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="后续" class="headerLink">
+    <a href="#%e5%90%8e%e7%bb%ad" class="header-mark"></a>后续</h2><p>至此，<code>sftp</code>搭建完成, 当然由于 <code>/</code>目录属主为<code>root</code>,<code>sftp</code>目前只能登陆，无法上传，需要在<code>/sftpdir</code>目录下创建目录，然后授权<code>www</code>用户即可，在该目录下进行增、删、改操作。</p>
+<h2 id="其他问题" class="headerLink">
+    <a href="#%e5%85%b6%e4%bb%96%e9%97%ae%e9%a2%98" class="header-mark"></a>其他问题</h2><ul>
+<li>
+<p>为什么使用<code>sftp</code>: <code>sftp</code>使用加密传输认证信息和传输的数据，相对<code>ftp</code>而言更为安全一点.</p>
+</li>
+<li>
+<p>目录映射: 虚拟用户实现了，那该如何实现目录映射呢，软连接还是每个目录单独建一个用户？其实都不是，我们只需要借助<code>mount</code>命令的<code>bind</code>属性即可，具体使用方式请自行参悟(<a href="http://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/#mount---bind" target="_blank" rel="noopener noreferrer">http://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/#mount---bind</a>)</p>
+</li>
+<li>
+<p>帐号管理: 共<code>UID</code>帐号(<code>webapp</code>)直接删除时候基本都会有提示，如果主帐号<code>www</code>正在使用(如<code>php</code>、<code>nginx</code>)，那么删除的时候就会提示无法删除，此时我们只需要强制删除即可(<code>userdel</code>的<code>-f</code>选项)，并不会影响主帐号和其他帐号(<strong>注:这个我只在<code>CentOS 7</code>上进行过测试，理论上所有发行版是一致的</strong>)</p>
+</li>
+<li>
+<p>日志查看: <code>tail -f /var/log/secure</code></p>
+</li>
+</ul>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-12-07</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/sftp%E6%90%AD%E5%BB%BA/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/" data-title="SFTP搭建"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a>,&nbsp;<a href="/tags/sftp/">sftp</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/" class="prev" rel="prev" title="Linux性能指标之cpu上下文切换"><i class="fas fa-angle-left fa-fw"></i>Linux性能指标之cpu上下文切换</a>
+            <a href="/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" class="next" rel="next" title="那些好用的工具收集">那些好用的工具收集<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="waline" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
+    </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp">渝ICP备2020011834号-2</span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script async defer data-website-id="27ecb7ce-6f65-4ad4-880c-cfdb26623383" src="https://app.51ac.cc/umami.js"  data-domains="blog.0x5c0f.cc" ></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.1.0/alus"],"lang":"zh-cn","login":"enable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

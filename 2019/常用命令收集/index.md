@@ -385,3 +385,32 @@ $> cat file.tgz* | tar xz
 ```
 $> (cd /some/other/dir && other-command)
 ```
+
+# mount --bind 
+> 详解参见: https://www.modb.pro/db/248315
+
+```bash
+
+$> mount -o bind olddir newdir
+
+# /etc/fstab
+# ro: 只读  rw: 只写
+olddir newdir none defaults,ro,bind 0 0
+
+# systemd
+# /etc/systemd/system/sftpdir-mnt.mount
+[Unit]
+SourcePath=/etc/fstab
+Documentation=man:fstab(5) man:systemd-fstab-generator(8)
+Before=local-fs.target
+
+[Mount]
+What=olddir
+Where=newdir
+Type=none
+Options=defaults,rw,bind
+
+[Install]
+WantedBy=multi-user.target
+
+```
