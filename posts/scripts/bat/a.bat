@@ -1,16 +1,3 @@
-# windows 本地安全策略设置
-
-
-# 开机临时关闭本地安全策略(防止配置出错，导致无法登录)
-{{< highlight batch >}}
-netsh ipsec static set policy name=我的规则 assign=n
-ping 127.0 -n 300 >nul 2>nul
-netsh ipsec static set policy name=我的规则 assign=y
-net start  PolicyAgent
-{{< /highlight >}}
-
-# 本地安全策略初始化设置脚本
-{{< highlight batch >}}
 @echo off
 title DD-IP策略设置
 color 0A
@@ -42,7 +29,7 @@ if "%CONVERT%"=="7" goto g
 if "%CONVERT%"=="8" goto h
 if "%CONVERT%"=="10" goto i
 if "%CONVERT%"=="q" goto ext
-echo 亲，你的选择无效，你只能选择1-10 或者 q才可以哟，再试试吧！
+echo 亲，你的选择无效，你只能选择1-11 或者 q才可以哟，再试试吧！
 ping -n 5 127.0.0.1  > null
 echo.
 goto menu
@@ -209,4 +196,3 @@ net start PolicyAgent
 goto menu
 :ext
 exit
-{{< /highlight >}}

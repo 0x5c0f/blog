@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">windows 本地安全策略设置 - 一个曾经的小码农...</title><meta name="Description" content="Ipsec"><meta property="og:title" content="windows 本地安全策略设置" />
-<meta property="og:description" content="Ipsec" />
+    <title class="pjax-title">windows 本地安全策略设置 - 一个曾经的小码农...</title><meta name="Description" content="IPSEC"><meta property="og:title" content="windows 本地安全策略设置" />
+<meta property="og:description" content="IPSEC" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2022/ipsec/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-24T00:00:00+00:00" />
@@ -17,7 +17,7 @@
 <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"/>
 
 <meta name="twitter:title" content="windows 本地安全策略设置"/>
-<meta name="twitter:description" content="Ipsec"/>
+<meta name="twitter:description" content="IPSEC"/>
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
@@ -32,13 +32,13 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2022\/ipsec\/"
-        },"genre": "posts","keywords": "bat, ipsec, windows, scripts","wordcount":  4360 ,
+        },"genre": "posts","keywords": "bat, ipsec, windows, scripts","wordcount":  4258 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/ipsec\/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-24T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
                         "name": "admin"                    
-                    }],"description": "Ipsec"
+                    }],"description": "IPSEC"
     }
     </script></head>
 
@@ -135,7 +135,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/"><i class="far fa-folder fa-fw"></i>那些年的收藏</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/"><i class="far fa-list-alt fa-fw"></i>那些年的收藏</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4360 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4258 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/2022/ipsec/" class="leancloud_visitors" data-flag-title="windows 本地安全策略设置">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2022/ipsec/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2022/ipsec/" class="comment_count" data-flag-title="windows 本地安全策略设置">
@@ -383,15 +383,15 @@
 <pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
 </span></span><span class="line"><span class="cl"><span class="k">title</span> DD-IP策略设置
 </span></span><span class="line"><span class="cl"><span class="k">color</span> 0A
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> 				  一般配置为<span class="s2">&#34;1&#34;</span>和<span class="s2">&#34;7&#34;</span>即可 
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 				  一般配置为<span class="s2">&#34;1&#34;</span>即可(注:需要主动配置信任的远程ip)
 </span></span><span class="line"><span class="cl"><span class="k">echo</span>                  设置ipsec前首先要关闭系统防火墙。
 </span></span><span class="line"><span class="cl"><span class="k">echo</span>                  windows2003可以停止服务，但是2008下只能关闭，不能停止服务
 </span></span><span class="line"><span class="cl"><span class="k">echo</span>                  确认之后按任意键继续
 </span></span><span class="line"><span class="cl"><span class="k">pause</span>
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">menu</span>
 </span></span><span class="line"><span class="cl"><span class="k">cls</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> 1 公网服务器基本配置(包含vpn及基本端口)
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> 2 服务器添加(10.0.0.0/8)
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 1 公网服务器基本配置(基本端口)
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 2 亚马逊内网网段信任(172.31.0.0/16)
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> 3 lefux机房内部服务器基本配置
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> 4 邮件服务器
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> 5 VPN服务器
@@ -411,12 +411,12 @@
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;8&#34;</span> <span class="k">goto</span> <span class="nl">h</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;10&#34;</span> <span class="k">goto</span> <span class="nl">i</span>
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="s2">&#34;</span><span class="nv">%CONVERT%</span><span class="s2">&#34;</span><span class="o">==</span><span class="s2">&#34;q&#34;</span> <span class="k">goto</span> <span class="nl">ext</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> 亲，你的选择无效，你只能选择1-11 或者 q才可以哟，再试试吧！
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 亲，你的选择无效，你只能选择1-10 或者 q才可以哟，再试试吧！
 </span></span><span class="line"><span class="cl">ping -n 5 127.0.0.1  <span class="p">&gt;</span> null
 </span></span><span class="line"><span class="cl"><span class="k">echo</span>.
 </span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">a</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> lefux和dd服务器ip策略基本配置（无10段）
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 服务器IP策略基本配置
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立一个名字叫“我的规则”的安全策略先</span>
 </span></span><span class="line"><span class="cl">netsh ipsec static add policy name=我的规则
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立2条操作动作</span>
@@ -446,14 +446,14 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立信任IP规则</span>
 </span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=AllowIP description=<span class="s2">&#34;信任IP&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:重庆机房IP</span>
-</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=203.93.97.98 srcmask=255.255.255.255  dstaddr=me description=<span class="s2">&#34;化龙桥联通IP&#34;</span>
-</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=203.93.97.100 srcmask=255.255.255.255  dstaddr=me description=<span class="s2">&#34;化龙桥联通IP&#34;</span>
-</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=203.93.97.114 srcmask=255.255.255.255  dstaddr=me description=<span class="s2">&#34;化龙桥联通IP&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: ############### 此处添加 远程信任的访问IP ###############</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:公司网络出口ip</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: netsh ipsec static add filter filterlist=AllowIP srcaddr=xx.xx.xx.xx srcmask=255.255.255.255  dstaddr=me description=&#34;公司网络出口ip&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:-----------------------------------其他外网服务器-------------------------</span>
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:VPN服务器</span>
-</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=3.1.63.40  dstaddr=me description=<span class="s2">&#34;新加坡silk&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: netsh ipsec static add filter filterlist=AllowIP srcaddr=xx.xx.xx.xx  dstaddr=me description=&#34;中转服务器&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">netsh ipsec static add rule name=AllowIP policy=我的规则 filterlist=AllowIP filteraction=Permit
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立一条拒绝所有IP访问规则</span>
@@ -468,11 +468,12 @@
 </span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">b</span>
-</span></span><span class="line"><span class="cl"><span class="k">title</span> 为有内网ip需求的服务器添加10段IP
-</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=me dstaddr=10.0.0.0  dstmask=255.0.0.0 description=<span class="s2">&#34;10.0.0.0/8&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">title</span> 亚马逊内网网段信任(172.31.0.0/16)
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=me dstaddr=172.31.0.0  dstmask=255.255.0.0 description=<span class="s2">&#34;172.31.0.0/16&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">c</span>
-</span></span><span class="line"><span class="cl"><span class="k">echo</span> lefux机房内部服务器基本配置
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 公司内部服务器基本配置
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立一个名字叫“我的规则”的安全策略先</span>
 </span></span><span class="line"><span class="cl">netsh ipsec static add policy name=我的规则
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立2条操作动作</span>
@@ -501,13 +502,12 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立信任IP规则</span>
 </span></span><span class="line"><span class="cl">netsh ipsec static add filterlist name=AllowIP description=<span class="s2">&#34;信任IP&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:重庆机房IP</span>
-</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=172.16.80.0 srcmask=255.255.255.0 dstaddr=me description=<span class="s2">&#34;允许80段访问&#34;</span>
-</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=172.16.110.0 srcmask=255.255.255.0 dstaddr=me description=<span class="s2">&#34;允许110段访问&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:本地机房内网网段</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=172.31.10.0 srcmask=255.255.255.0 dstaddr=me description=<span class="s2">&#34;允许10段访问&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:-----------------------------------其他外网服务器-------------------------</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:VPN服务器</span>
-</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=3.1.63.40  dstaddr=me description=<span class="s2">&#34;新加坡silk&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">:中转服务器</span>
+</span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=172.31.12.10  dstaddr=me description=<span class="s2">&#34;允许中转机器&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">netsh ipsec static add rule name=AllowIP policy=我的规则 filterlist=AllowIP filteraction=Permit
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 建立一条拒绝所有IP访问规则</span>
@@ -557,7 +557,7 @@
 </span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
 </span></span><span class="line"><span class="cl"><span class="p">:</span><span class="nl">g</span>
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> 添加本机IP段
-</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="k">/p</span> <span class="nv">ipre</span><span class="p">=</span>请输入ip段(如10.42.1.0)
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="k">/p</span> <span class="nv">ipre</span><span class="p">=</span>请输入ip段(如172.16.10.0)
 </span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=me dstaddr=<span class="nv">%ipre%</span> dstmask=255.255.255.0  description=<span class="s2">&#34;local&#34;</span>
 </span></span><span class="line"><span class="cl">netsh ipsec static add filter filterlist=AllowIP srcaddr=<span class="nv">%ipre%</span> dstaddr=me dstmask=255.255.255.0  description=<span class="s2">&#34;local&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">goto</span> <span class="nl">menu</span>
