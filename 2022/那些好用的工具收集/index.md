@@ -40,3 +40,8 @@
 ```bash
 [root@01 ~]# wget -O /usr/local/bin/toplip https://2ton.com.au/standalone_binaries/toplip && chmod +x /usr/local/bin/toplip  
 ```
+
+# 8. zenity - display GTK+ dialogs( 图形界面操纵工具 )
+```bash
+$> zenity --help
+```

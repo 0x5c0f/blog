@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86\/"
-        },"genre": "posts","keywords": "linux","wordcount":  160 ,
+        },"genre": "posts","keywords": "linux","wordcount":  179 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86\/","datePublished": "2022-06-23T00:00:00+00:00","dateModified": "2022-08-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -134,13 +134,14 @@
     <li><a href="#5-linux-硬件查看神器">5. linux 硬件查看神器</a></li>
     <li><a href="#6-linux-script-终端记录神器">6. linux Script 终端记录神器</a></li>
     <li><a href="#7-linux-文件加密与解密工具">7. linux 文件加密与解密工具</a></li>
+    <li><a href="#8-zenity---display-gtk-dialogs-图形界面操纵工具-">8. zenity - display GTK+ dialogs( 图形界面操纵工具 )</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些好用的工具收集</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/"><i class="far fa-folder fa-fw"></i>那些有用没用的</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-23">2022-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-22">2022-08-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 160 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-23">2022-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-22">2022-08-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 179 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" class="leancloud_visitors" data-flag-title="那些好用的工具收集">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" class="comment_count" data-flag-title="那些好用的工具收集">
@@ -162,6 +163,7 @@
     <li><a href="#5-linux-硬件查看神器">5. linux 硬件查看神器</a></li>
     <li><a href="#6-linux-script-终端记录神器">6. linux Script 终端记录神器</a></li>
     <li><a href="#7-linux-文件加密与解密工具">7. linux 文件加密与解密工具</a></li>
+    <li><a href="#8-zenity---display-gtk-dialogs-图形界面操纵工具-">8. zenity - display GTK+ dialogs( 图形界面操纵工具 )</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition note open">
@@ -250,6 +252,15 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@01 ~<span class="o">]</span><span class="c1"># wget -O /usr/local/bin/toplip https://2ton.com.au/standalone_binaries/toplip &amp;&amp; chmod +x /usr/local/bin/toplip  </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="8-zenity---display-gtk-dialogs-图形界面操纵工具-" class="headerLink">
+    <a href="#8-zenity---display-gtk-dialogs-%e5%9b%be%e5%bd%a2%e7%95%8c%e9%9d%a2%e6%93%8d%e7%ba%b5%e5%b7%a5%e5%85%b7-" class="header-mark"></a>8. zenity - display GTK+ dialogs( 图形界面操纵工具 )</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; zenity --help
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

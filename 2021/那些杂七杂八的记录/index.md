@@ -382,3 +382,12 @@ route 172.16.0.0 255.255.0.0  vpn_gateway
 route 140.143.61.12 255.255.255.255  vpn_gateway
 ```
 
+# svg 背景透明图片
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="250px" height="269px" viewBox="0 0 250 269" enable-background="new 0 0 250 269" xml:space="preserve">  
+    <image id="image0" width="250" height="269" x="0" y="0"
+        href="data:image/png;base64,<base64 code>" />
+</svg>
+```

@@ -3,10 +3,10 @@
 
 # 1. 系统安全
 
-显示电脑图标到桌面: `rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0`
-开始文件夹: `shell:startup`
-本地安全策略: `secpol.msc`   
-计算机管理: `compmgmt.msc`
+显示电脑图标到桌面: `rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0`  
+开始文件夹: `shell:startup`  
+本地安全策略: `secpol.msc`    
+计算机管理: `compmgmt.msc`  
 
 ## 1.1. 修改服务器名：按项目取名。
 
