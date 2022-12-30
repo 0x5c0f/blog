@@ -4,7 +4,7 @@
         <link>https://blog.0x5c0f.cc/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/</link>
         <description>运维记事 - 系列 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" rel="self" type="application/rss+xml" /><item>
     <title>常用web环境优化</title>
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
@@ -22,6 +22,12 @@
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
     <description><![CDATA[1. shell 脚本执行的几种方法 bash(sh) /path/script.sh 赋予执行权限 /path/script.sh 或 ./scripts.sh source script.sh 或 . script.sh 在此方法中执行,子 shell 中定义的变量,可在父 shell 中调用(其他方式父 shell 不能直接调用子 shell 的变量)]]></description>
+</item><item>
+    <title>运维常见面试题</title>
+    <link>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+    <pubDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+    <description><![CDATA[1. 请简述OSI七层网络模型有哪些层及各自的含义 物理层：底层数据传输，比如网线、网卡标准 数据链路层：定义数据的基本格式，如何传输，如何标识。比]]></description>
 </item><item>
     <title>SFTP搭建</title>
     <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
@@ -67,11 +73,5 @@
 <li><code>表示层</code>: 对数据进行转换、加密和压缩</li>
 <li><code>应用层</code>: 程序及接口</li>
 </ul>]]></description>
-</item><item>
-    <title>持续集成</title>
-    <link>https://blog.0x5c0f.cc/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</link>
-    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</guid>
-    <description><![CDATA[持续集成 什么是DevOpsDevOps 是一个框架，是一种理论方法，并不是一套工具，他包括一系列的基本原则和实践。其核心价值着重于更快速的交付]]></description>
 </item></channel>
 </rss>

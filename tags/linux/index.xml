@@ -4,7 +4,7 @@
         <link>https://blog.0x5c0f.cc/tags/linux/</link>
         <description>linux - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/linux/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/linux/" rel="self" type="application/rss+xml" /><item>
     <title>常用web环境优化</title>
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
@@ -28,6 +28,12 @@
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[收集的一些感觉挺好用的工具]]></description>
+</item><item>
+    <title>运维常见面试题</title>
+    <link>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+    <pubDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+    <description><![CDATA[1. 请简述OSI七层网络模型有哪些层及各自的含义 物理层：底层数据传输，比如网线、网卡标准 数据链路层：定义数据的基本格式，如何传输，如何标识。比]]></description>
 </item><item>
     <title>SFTP搭建</title>
     <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
@@ -58,11 +64,5 @@
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/</guid>
     <description><![CDATA[HTTP响应码分类 https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status 常见状态码 一些常见HTTP状态码为： 200 – 服务器成功返回网页 404 – 请求的网页不存在 503 – 服务不可用 常见HTTP状态码大全 1xx]]></description>
-</item><item>
-    <title>Netstat命令</title>
-    <link>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</link>
-    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
-    <description><![CDATA[netstat 命令netstat列含义： Proto: 协议名（tcp协议或者udp协议) recv-Q: 网络接收队列 表示收到的数据已经在本地接收缓冲，但是还有多少没有被进程取走，]]></description>
 </item></channel>
 </rss>

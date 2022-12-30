@@ -4,7 +4,7 @@
         <link>https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
         <description>解决方案 - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="self" type="application/rss+xml" /><item>
     <title>常用web环境优化</title>
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
@@ -16,6 +16,12 @@
     <pubDate>Tue, 23 Jul 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[收集了一些常用和有趣的命令]]></description>
+</item><item>
+    <title>运维常见面试题</title>
+    <link>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
+    <pubDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
+    <description><![CDATA[1. 请简述OSI七层网络模型有哪些层及各自的含义 物理层：底层数据传输，比如网线、网卡标准 数据链路层：定义数据的基本格式，如何传输，如何标识。比]]></description>
 </item><item>
     <title>SFTP搭建</title>
     <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
@@ -58,11 +64,5 @@
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/</guid>
     <description><![CDATA[Umask码权限对照表,方便查询，不用在去计算了]]></description>
-</item><item>
-    <title>那些编译时出现的杂七杂八故障</title>
-    <link>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/</link>
-    <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/</guid>
-    <description><![CDATA[1. ossec 3.3.0 编译故障 及服务端启动故障 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 ## 全部依赖 yum install zlib-devel pcre2-devel make gcc sqlite-devel openssl-devel libevent-devel systemd-devel ## 下载 https://ftp.pcre.org/pub/pcre/pcre2-10.32.tar.gz 解压到 src/external 中 或者安装 pcre2-devel ## 另 编译需要依赖 openssl-devel]]></description>
 </item></channel>
 </rss>
