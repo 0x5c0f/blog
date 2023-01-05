@@ -414,3 +414,13 @@ Options=defaults,rw,bind
 WantedBy=multi-user.target
 
 ```
+
+# systemd 守护桌面程序
+```bash
+# 以最新的QQ Linux版 3.0.0 为例，fedora33 下经常崩溃，用systemd守护其运行，在QQ崩溃时自动重启QQ
+# 运行以下命令以启动systemd守护进程 
+$> /usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
+# 替换默认 /usr/share/applications/qq.desktop的执行命令 Exec=/usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
+# 日志检查，可以定位当前用户的日志看(或者 systemctl --user list-units run-*|grep qq，查询到systemd-run启动的service，直接定位)
+$> journalctl -f -u user@${UID}.service
+```
