@@ -59,6 +59,7 @@ Environment=指定当前服务运行的环境参数,该值使用key=value健值�
 EnvironmentFile=指定当前服务的环境参数文件。该文件内部的key=value键值对，可以用$key的形式，在当前配置文件中获取。 
 Type=字段定义服务启动类型
 ;Type=simple(默认值): ExecStart字段启动的进程为主进程
+;Type=exec: 类似于simple，simple表示当fork()函数返回时，即表示启动完成，而exec则表示仅在fork()和execve()函数都执行成功时，才算启动完成.
 ;Type=forking：ExecStart字段将以fork()方式启动，此时父进程将会退出，子进程将成为主进程
 ;Type=oneshot：类似于simple，但只执行一次，Systemd 会等它执行完，才启动其他服务
 ;Type=dbus：类似于simple，但会等待 D-Bus 信号后启动
