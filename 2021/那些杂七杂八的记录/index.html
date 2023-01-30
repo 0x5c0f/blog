@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3714 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  4060 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2022-12-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -164,14 +164,15 @@
     <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
     <li><a href="#openvpn-指定路由配置">openvpn 指定路由配置</a></li>
     <li><a href="#svg-背景透明图片">svg 背景透明图片</a></li>
+    <li><a href="#centos-启用zram服务器内存过低可用于替代swap">CentOS 启用zram(服务器内存过低，可用于替代swap)</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-12-19">2022-12-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3714 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-12-19">2022-12-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4060 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;条评论
@@ -222,6 +223,7 @@
     <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
     <li><a href="#openvpn-指定路由配置">openvpn 指定路由配置</a></li>
     <li><a href="#svg-背景透明图片">svg 背景透明图片</a></li>
+    <li><a href="#centos-启用zram服务器内存过低可用于替代swap">CentOS 启用zram(服务器内存过低，可用于替代swap)</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
@@ -992,6 +994,76 @@
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;image</span> <span class="na">id=</span><span class="s">&#34;image0&#34;</span> <span class="na">width=</span><span class="s">&#34;250&#34;</span> <span class="na">height=</span><span class="s">&#34;269&#34;</span> <span class="na">x=</span><span class="s">&#34;0&#34;</span> <span class="na">y=</span><span class="s">&#34;0&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="na">href=</span><span class="s">&#34;data:image/png;base64,&lt;base64 code&gt;&#34;</span> <span class="nt">/&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/svg&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="centos-启用zram服务器内存过低可用于替代swap" class="headerLink">
+    <a href="#centos-%e5%90%af%e7%94%a8zram%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%86%85%e5%ad%98%e8%bf%87%e4%bd%8e%e5%8f%af%e7%94%a8%e4%ba%8e%e6%9b%bf%e4%bb%a3swap" class="header-mark"></a>CentOS 启用zram(服务器内存过低，可用于替代swap)</h1><blockquote>
+<p><a href="https://fedoraproject.org/wiki/Changes/SwapOnZRAM" target="_blank" rel="noopener noreferrer">https://fedoraproject.org/wiki/Changes/SwapOnZRAM</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 加载内核模块 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># num_devices 是 zRAM模块的参数，zram num_devices=1 表示仅创建一个设备文件，该文件将会保存在设备目录，文件名称是 /dev/zram0。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果 num_devices 的数值不等于 1，内核将会创建多个 zram 文件 /dev/zram{0,1,2,3...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 持久化开启/加载 zRAM 模块</span>
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">echo</span> <span class="s2">&#34;zram&#34;</span> <span class="p">|</span> sudo tee -a /etc/modules-load.d/zram.conf
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">echo</span> <span class="s2">&#34;options zram num_devices=1&#34;</span> <span class="p">|</span> sudo tee -a /etc/modprobe.d/zram.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 持久化 zRAM 配置  disksize: zram(swap)大小(内存的1.5-2倍，内存大于8G，设为8G), comp_algorithm: 压缩算法(fedora 配置 lzo [lzo-rle] lz4 lz4hc 842 zstd，但centos似乎只支持lzo)</span>
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">echo</span> <span class="s1">&#39;KERNEL==&#34;zram0&#34;, ATTR{disksize}=&#34;512M&#34;, ATTR{comp_algorithm}=&#34;lzo&#34;, TAG+=&#34;systemd&#34;&#39;</span> <span class="p">|</span> sudo tee  /etc/udev/rules.d/99-zram.rules
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建systemd单元，自动挂载 zram (zram会自动叠加已经挂载的swap)</span>
+</span></span><span class="line"><span class="cl">$&gt; vim /etc/systemd/system/zram.service
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span><span class="o">=</span>Swap with zram
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>oneshot
+</span></span><span class="line"><span class="cl"><span class="nv">RemainAfterExit</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStartPre</span><span class="o">=</span>/sbin/mkswap /dev/zram0
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/sbin/swapon /dev/zram0
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStop</span><span class="o">=</span>/sbin/swapoff /dev/zram0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务器</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;512M&#34;</span> <span class="p">|</span> sudo tee /sys/block/zram0/disksize
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;lzo&#34;</span> <span class="p">|</span> sudo tee /sys/block/zram0/comp_algorithm
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

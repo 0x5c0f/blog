@@ -391,3 +391,40 @@ route 140.143.61.12 255.255.255.255  vpn_gateway
         href="data:image/png;base64,<base64 code>" />
 </svg>
 ```
+
+# CentOS 启用zram(服务器内存过低，可用于替代swap)
+> [https://fedoraproject.org/wiki/Changes/SwapOnZRAM](https://fedoraproject.org/wiki/Changes/SwapOnZRAM)   
+```bash
+# 加载内核模块 
+# num_devices 是 zRAM模块的参数，zram num_devices=1 表示仅创建一个设备文件，该文件将会保存在设备目录，文件名称是 /dev/zram0。
+# 如果 num_devices 的数值不等于 1，内核将会创建多个 zram 文件 /dev/zram{0,1,2,3...}
+
+# 持久化开启/加载 zRAM 模块
+$> echo "zram" | sudo tee -a /etc/modules-load.d/zram.conf
+$> echo "options zram num_devices=1" | sudo tee -a /etc/modprobe.d/zram.conf
+
+# 持久化 zRAM 配置  disksize: zram(swap)大小(内存的1.5-2倍，内存大于8G，设为8G), comp_algorithm: 压缩算法(fedora 配置 lzo [lzo-rle] lz4 lz4hc 842 zstd，但centos似乎只支持lzo)
+$> echo 'KERNEL=="zram0", ATTR{disksize}="512M", ATTR{comp_algorithm}="lzo", TAG+="systemd"' | sudo tee  /etc/udev/rules.d/99-zram.rules
+
+# 创建systemd单元，自动挂载 zram (zram会自动叠加已经挂载的swap)
+$> vim /etc/systemd/system/zram.service
+[Unit]
+Description=Swap with zram
+After=multi-user.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStartPre=/sbin/mkswap /dev/zram0
+ExecStart=/sbin/swapon /dev/zram0
+ExecStop=/sbin/swapoff /dev/zram0
+
+[Install]
+WantedBy=multi-user.target
+
+# 重启服务器
+echo "512M" | sudo tee /sys/block/zram0/disksize
+echo "lzo" | sudo tee /sys/block/zram0/comp_algorithm
+
+```
+

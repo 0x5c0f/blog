@@ -127,3 +127,20 @@ if %HOUR% LEQ %NINE% set HOUR=%ZERO%%TMP_HOUR%
 set CURRENT_DATE_TIME_STAMP=%YEAR%%MONTH%%DAY%%HOUR%%MINUTE%%SECOND%%MILLISECIOND%
 mkdir %CURRENT_DATE_TIME_STAMP%
 {{< /highlight >}}
+
+# 9. windows前台程序运行到后台
+```vb
+' 运行到后台
+' start.vbs 
+Set ws = CreateObject("Wscript.Shell")  
+ws.run "example.exe",vbhide
+
+'
+' 程序关闭
+' stop.vbs
+Dim Wsh
+Set Wsh = WScript.CreateObject("WScript.Shell")
+Wsh.Run "taskkill /f /im example.exe",0
+Set Wsh=NoThing
+WScript.quit
+```
