@@ -68,5 +68,5 @@ $> systemctl daemon-reload
 # 激活 automount 并加入开机启动项
 $> systemctl enable --now  mnt-other.automount
 
-# 另：automount 在centos 7下可通过fstab配置默认参数noauto,x-systemd.automount 自动创建,创建于/run/systemd/generator/下，但该数据非持久化数据，需要手动复制到/etc/systemd/system下，并添加install节点，持久化数据后移除fstab配置即可  
+# 另：automount 在centos 7下可通过fstab配置默认参数noauto,x-systemd.automount 自动创建(systemctl daemon-reload),创建于/run/systemd/generator/下   
 ```

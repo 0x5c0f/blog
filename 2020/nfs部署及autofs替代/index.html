@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2020\/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3\/"
-        },"genre": "posts","keywords": "linux, 解决方案, nfs, systemd, autofs","wordcount":  813 ,
+        },"genre": "posts","keywords": "linux, 解决方案, nfs, systemd, autofs","wordcount":  767 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2020\/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3\/","datePublished": "2020-09-17T00:00:00+00:00","dateModified": "2022-06-29T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -142,7 +142,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/"><i class="far fa-folder fa-fw"></i>那些有用没用的</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-17">2020-09-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-29">2022-06-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 813 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-17">2020-09-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-29">2022-06-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 767 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/" class="leancloud_visitors" data-flag-title="NFS部署及autofs替代">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/" class="comment_count" data-flag-title="NFS部署及autofs替代">
@@ -331,7 +331,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 激活 automount 并加入开机启动项</span>
 </span></span><span class="line"><span class="cl">$&gt; systemctl <span class="nb">enable</span> --now  mnt-other.automount
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 另：automount 在centos 7下可通过fstab配置默认参数noauto,x-systemd.automount 自动创建,创建于/run/systemd/generator/下，但该数据非持久化数据，需要手动复制到/etc/systemd/system下，并添加install节点，持久化数据后移除fstab配置即可  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 另：automount 在centos 7下可通过fstab配置默认参数noauto,x-systemd.automount 自动创建(systemctl daemon-reload),创建于/run/systemd/generator/下   </span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>
