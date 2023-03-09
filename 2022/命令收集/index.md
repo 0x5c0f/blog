@@ -144,3 +144,4 @@ Wsh.Run "taskkill /f /im example.exe",0
 Set Wsh=NoThing
 WScript.quit
 ```
+

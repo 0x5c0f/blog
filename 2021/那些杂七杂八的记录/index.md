@@ -427,4 +427,9 @@ echo "512M" | sudo tee /sys/block/zram0/disksize
 echo "lzo" | sudo tee /sys/block/zram0/comp_algorithm
 
 ```
-
+# virtualbox NAT端口映射配置
+`windows` 和 `linux`命令应一致(只测试过`windows`)，用于快速批量映射
+```shell
+# VBoxManage natnetwork modify --netname "10.0.2.0/24" --port-forward-4 "名称:协议:[主机ip]:主机端口:[虚拟机ip]:虚拟机端口"
+VBoxManage natnetwork modify --netname "10.0.2.0/24" --port-forward-4 "172.16.10.230-2222:tcp:[172.16.10.230]:2222:[10.0.2.230]:2222"
+```
