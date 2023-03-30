@@ -55,27 +55,29 @@ docker run -d --privileged --net=host -v /data/docker/ppp/chap-secrets:/etc/ppp/
 # Secrets for authentication using PAP
 # client    server      secret      acceptable local IP addresses
 stan    *           smith    *
-# 登录名、登录协议、密码、该连接上的客户端用什么 IP（* 表示随机一个 IP）
+# 用户名、远程PPTP服务器的名称(options.pptpd中的name)、密码、该连接上的客户端用什么 IP（* 表示任意）
 
 # 程序日志为/var/log/message 
 # /etc/ppp/ip-up 登陆执行
 # /etc/ppp/ip-down 退出执行
 ```
 
-
 ## 2.2. 直接创建
+一般来说，服务器都支持pptp的搭建，这儿就不说怎么检查是否支持了(注意开启net.ipv4.ip_forward)。
 ```bash
-[root@00 ~]# yum install pptpd -y
+[root@00 ~]# yum install epel-release -y
+[root@00 ~]# yum install ppp pptpd net-tools iptables-services -y
 [root@00 ~]# vim  /etc/pptpd.conf
 option /etc/ppp/pptpd-options
 #debug
 #stimeout 10
 logwtmp
-#bcrelay eth1
+#bcrelay eth0
 #delegate
 #connections 100
-localip 10.99.99.1      # 此为本地ip地址，即本地路由地址，本地映射虚拟网卡ip，不同的防火墙转发方式这个有不同的解释 http://blog.topspeedsnail.com/archives/8492; https://blog.oldboyedu.com/vpn-pptp/
-remoteip 10.99.99.100-200   # 此为分配给用户的ip段 
+localip 10.99.10.1     # 服务器虚拟网卡的地址
+remoteip 10.99.10.2-254    # 为拨入VPN的用户动态分配的IP地址池此为分配给用户的ip段 
+
 [root@00 ~]# vim /etc/ppp/pptpd-options
 name pptpd
 refuse-pap
@@ -83,32 +85,57 @@ refuse-chap
 refuse-mschap
 require-mschap-v2
 require-mppe-128
-
-# Network and Routing
-ms-dns 8.8.8.8
-ms-dns 8.8.4.4
+ms-dns 223.5.5.5
+ms-dns 223.6.6.6
 proxyarp
-nodefaultroute
-
-# Logging
-# debug
-# dump
-
-# Miscellaneous
 lock
-nobsdcomp
+nobsdcomp 
 novj
 novjccomp
 nologfd
 
 # configure firewall
-iptables -t nat -A POSTROUTING -s 10.0.10.0/24 ! -d 10.0.10.0/24 -j MASQUERADE
-iptables -A FORWARD -s 10.0.10.0/24 -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j TCPMSS --set-mss 1356
-iptables -A INPUT -i ppp+ -j ACCEPT
-iptables -A OUTPUT -o ppp+ -j ACCEPT
-iptables -A FORWARD -i ppp+ -j ACCEPT
-iptables -A FORWARD -o ppp+ -j ACCEPT
-# or iptables -t nat -A POSTROUTING -o enp0s31f6 -j MASQUERADE
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+# 
+# iptables -t nat -A POSTROUTING -s 10.99.10.0/24 ! -d 10.99.10.0/24 -j MASQUERADE
+# iptables -A FORWARD -s 10.99.10.0/24 -p tcp -m tcp --tcp-flags FIN,SYN,RST,ACK SYN -j TCPMSS --set-mss 1356
+# iptables -A INPUT -i ppp+ -j ACCEPT
+# iptables -A OUTPUT -o ppp+ -j ACCEPT
+# iptables -A FORWARD -i ppp+ -j ACCEPT
+# iptables -A FORWARD -o ppp+ -j ACCEPT
+
+## 单用户登陆实现
+##  脚本 /etc/ppp/ip-up
+##  在 exit 0 之前添加(日志之前)
+## 实现原理和日志记录差不多
+## 在用户登陆的时候，判断下是是否当前用户已经登陆，如果没有登陆，就记录下当前用户登陆的ip和用户名 echo "${5}" > .$PEERNAME.lock
+## 否则直接查询到上次登陆用户的ip所在的进程，直接kill
+
+
+# 日志记录(由于我要发送记录到日志系统，以下记录为json格式)
+########################################### 
+## 登陆日志: /etc/ppp/ip-up
+## 在脚本 exit 0 之前添加 
+# LOG_DIR="/var/log/ppp"
+# curDay=$(date +"%Y%m%d")
+# logFile="${LOG_DIR}/up-pptpd-${curDay}.log"
+
+# /usr/bin/cat >> ${logFile} <<EOF
+# {"username": "$PEERNAME", "time": "$(date -d today +%F_%T)", "device": "${1}", "clientIP": "${6}", "vpnIP": " ${4}", "assignIP": "${5}", "status": "Login", "description": "User ${PEERNAME} is connected"}
+# EOF
+
+############################################# 
+## 登出日志: /etc/ppp/ip-down
+## 在exit 0 之前添加
+# LOG_DIR="/var/log/ppp"
+# curDay=$(date +"%Y%m%d")
+# logFile="${LOG_DIR}/down-pptpd-${curDay}.log"
+
+# /usr/bin/cat >> ${logFile} <<EOF
+# {"username": "${PEERNAME}","connect time": "${CONNECT_TIME} s","bytes sent": "${BYTES_SENT} B","bytes rcvd": "${BYTES_RCVD} B","bytes sum": "$(echo "scale=2;($BYTES_SENT + $BYTES_RCVD)/1024/1024" | bc) MB","average speed":"$(echo "scale=2;($BYTES_SENT + $BYTES_RCVD)/1024/$CONNECT_TIME" | bc) KB/s","time": "$(date -d today +%F_%T)","device": "${1}","clientIP": "${6}","vpnIP": " ${4}","assignIP": "${5}","status": "Logout","description": "User ${PEERNAME} is disconnected"}
+# EOF
+
+############################################# 
 ```
 
 ## 2.3. 遇到过的故障
@@ -120,7 +147,7 @@ iptables -A FORWARD -o ppp+ -j ACCEPT
   ```
   - 方案二：执行vi /etc/ppp/ip-up命令，在/etc/ppp/ip-up文件中增加如下“ifconfig ppp0 mtu 1472”。
   ```bash
-  /etc/ppp/ip-up. ipv6to4 ${LOGDEVICE}
+  /etc/ppp/ip-up.ipv6to4 ${LOGDEVICE}
   [ -x /etc/ppp/ip-up.local ] && /etc/ppp/ip-up.local “$@”
   ifconfig ppp0 mtu 1472
   ```

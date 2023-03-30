@@ -379,6 +379,11 @@ sudo -u zabbix curl --unix-socket /var/run/docker.sock --no-buffer -XGET v1.24/_
 $> tar czf - /pathto/dir01 /pathto/dir02 |split -d -b 2G - file.tgz.
 # 解压
 $> cat file.tgz* | tar xz 
+
+# 压缩
+$> zip -s 100m -r myarchive.zip myfolder/
+# 解压
+$> unzip myarchive.zip
 ```
 
 # 临时移动工作路径执行命令

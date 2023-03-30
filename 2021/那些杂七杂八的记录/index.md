@@ -54,7 +54,6 @@ address=/www.example.com/172.16.10.10
 
 $> docker run -d -p 53:53/udp -p 53:53/tcp -p 5380:8080 -v /data/docker/dns/dnsmasq.conf:/etc/dnsmasq.conf --log-opt "max-size=100m" -e "HTTP_USER=root" -e "HTTP_PASS=root" jpillora/dnsmasq
 
-
 ```
 
 # dotnet 环境搭建 
@@ -64,7 +63,7 @@ $> yum install libgdiplus-devel libunwind icu -y
 $> wget https://packages.microsoft.com/rhel/7/prod/dotnet-sdk-2.1.200-rhel-x64.rpm
 $> yum install dotnet-sdk-2.1.200-rhel-x64.rpm -y
 $> dotnet --info
-# supervisor 管理
+# supervisor 管理 https://blog.0x5c0f.cc/2019/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86
 yum install supervisor -y
 # 前端管理样式页面 
 /usr/lib/python2.7/site-packages/supervisor/ui/status.html
@@ -433,3 +432,26 @@ echo "lzo" | sudo tee /sys/block/zram0/comp_algorithm
 # VBoxManage natnetwork modify --netname "10.0.2.0/24" --port-forward-4 "名称:协议:[主机ip]:主机端口:[虚拟机ip]:虚拟机端口"
 VBoxManage natnetwork modify --netname "10.0.2.0/24" --port-forward-4 "172.16.10.230-2222:tcp:[172.16.10.230]:2222:[10.0.2.230]:2222"
 ```
+
+## 单位换算
+```md
+- `MBytes`是`Megabytes`的缩写，表示兆字节。其中，"`M`" 代表兆（`Mega`），是一个表示数量级的单位前缀，"`Bytes`" 则代表字节。兆字节通常用于描述计算机存储容量的大小，例如硬盘、固态硬盘、内存等存储设备的容量。1 MByte 等于 1024 * 1024 字节，即 1048576 字节。
+- `MBits`是`Megabits`的缩写，意思是兆比特(`Mb`)。它表示数据传输速率的单位之一，通常用于测量网络带宽、硬件设备传输速度等。`1Mb = 1*8 = 8MBytes(8MB)`
+- `1 MB/s`(`Megabytes`/`MBytes`/`兆字节每秒`) 等于 `8 Mb/s`(`兆比特每秒`/`Megabits`/`MBits`)。
+```
+
+## mailx smtp使用ssl时，邮件发送报错 "Error in certificate: Peer’s certificate issuer is not recognized."
+```bash
+# 生成证书
+echo -n | openssl s_client -connect smtp.exmail.qq.com:465 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/mail.rc.d/qq.crt
+certutil -A -n "GeoTrust SSL CA" -t "C,," -d /etc/mail.rc.d -i /etc/mail.rc.d/qq.crt
+certutil -A -n "GeoTrust Global CA" -t "C,," -d /etc/mail.rc.d -i /etc/mail.rc.d/qq.crt
+
+# 校验证书 
+certutil -A -n "GeoTrust SSL CA - G3" -t "Pu,Pu,Pu" -d ./ -i qq.crt
+## 成功显示以下内容
+# Notice: Trust flag u is set automatically if the private key is present.
+
+# 修改 /etc/mail.rc 末尾添加,即可 set nss-config-dir=/etc/mail.rc.d 
+```
+

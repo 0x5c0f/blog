@@ -8,11 +8,34 @@
 
 # 1. 安装 
 ```bash
-[root@00 ~]# yum install supervisor -y 
+$> pip3 install supervisor
 ```
-# 2. 启动方式  
+# 配置及启动
 ```bash
-[root@00 ~]# supervisord -c /etc/supervisord.conf #(systemctl start supervisord)
+# 生成配置文件 
+$> echo_supervisord_conf > /etc/supervisord.conf
+# 创建systemd 管理脚本
+$> vim /etc/systemd/system/supervisord.service
+[Unit]
+Description=Process Monitoring and Control Daemon
+After=rc-local.service
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/supervisord -c /etc/supervisord.conf
+RuntimeDirectory=supervisor
+RuntimeDirectoryMode=755
+LimitCORE=infinity
+LimitNOFILE=65535
+LimitNPROC=65535
+
+[Install]
+WantedBy=multi-user.target
+
+# # #  
+$> systemctl daemon-reload
+$> systemctl start supervisord
+# 
 # supervisorctl status：查看所有进程的状态
 # supervisorctl stop es：停止es
 # supervisorctl start es：启动es
@@ -23,41 +46,53 @@
 # 3. 配置文件说明  
 ```ini
 # 注意安装的版本，版本不一样配置文件有差异,以下配置文件是3.1.4
-[include]
-files = supervisord.d/*.ini
 [unix_http_server]
-file=/var/run/supervisor/supervisor.sock
-[inet_http_server]
-port=*:9001
-username=xxxx
-password=xxx
+file=/tmp/supervisor.sock   ; the path to the socket file
+
+[inet_http_server]         ; inet (TCP) server disabled by default
+port=0.0.0.0:9001
+; username=<username>
+; password=<password>
+
 [supervisord]
-logfile=/var/log/supervisor/supervisord.log
-logfile_maxbytes=10MB
+logfile=/tmp/supervisord.log 
+logfile_maxbytes=50MB
 logfile_backups=10
 loglevel=info
-; directory=/data/wwwroot
-pidfile=/var/run/supervisord.pid
+pidfile=/tmp/supervisord.pid
 nodaemon=false
-minfds=1024
-minprocs=200
-[rpcinterface:supervisor] 
-; RPC2
+silent=false
+minfds=1024                  ; 这个是最少系统空闲的文件描述符，低于这个值supervisor将不会启动; default 1024
+minprocs=200                 ; 最小可用的进程描述符，低于这个值supervisor也将不会正常启动;default 200
+;directory=/tmp              ; default is not to cd during start
+;nocleanup=false             ; 为false时，启动会清除历史的子进程日志; default false
+;childlogdir=/tmp            ; 'AUTO' child log dir, default $TEMP(python -c "import tempfile;print tempfile.gettempdir()") 
+environment=TZ=Asia/Shanghai ; environment=TZ=Asia/Shanghai,TZ=Asia/Shanghai,
+
+[rpcinterface:supervisor]
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
 [supervisorctl]
-serverurl=unix:///var/run/supervisor/supervisor.sock
-[program:demo]
-command= xxx xxx        ; 这个是要运行的命令，注意: 此命令运行必须在前端，否则将无效                   
-directory=/dir          ; 这个是程序运行前先切换到的目录
-autostart=false         ; 是否在 supervisord 启动时启动
-autorestart=true        ; 子进程挂掉时候自动重启
-user=root
-stopasgroup=true
-killasgroup=true
-redirect_stderr=true
-stdout_logfile=/var/log/demo.log
-stdout_logfile_maxbytes=10MB
-stdout_logfile_backups=10
+serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
+
+; [program:theprogramname]
+; command=/bin/cat
+; directory=/tmp
+; ; process_name=example.com(80)
+; autostart=true         ; 是否在 supervisord 启动时启动
+; autorestart=true       ; 子进程挂掉时候自动重启
+; user=www
+; stopasgroup=true
+; killasgroup=true
+; redirect_stderr=true
+; stdout_logfile=/var/log/example.com.log 
+; stdout_logfile_maxbytes=50MB
+; stdout_logfile_backups=10
+; ; environment=TZ=Asia/Shanghai 
+; ; exitcodes=CODE1,CODE2    ; 允许的进程退出码。以","分隔，默认为0,2。
+
+[include]
+files = /etc/supervisord.d/*.ini
 ```
 ## 3.1. 配置参数说明
 

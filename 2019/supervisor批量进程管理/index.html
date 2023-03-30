@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2019\/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/"
-        },"genre": "posts","keywords": "linux","wordcount":  6554 ,
+        },"genre": "posts","keywords": "linux","wordcount":  6798 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2019\/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/","datePublished": "2019-02-21T00:00:00+00:00","dateModified": "2019-02-21T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -128,7 +128,7 @@
         <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-安装">1. 安装</a></li>
-    <li><a href="#2-启动方式">2. 启动方式</a></li>
+    <li><a href="#配置及启动">配置及启动</a></li>
     <li><a href="#3-配置文件说明">3. 配置文件说明</a>
       <ul>
         <li><a href="#31-配置参数说明">3.1. 配置参数说明</a></li>
@@ -140,7 +140,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-21">2019-02-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-02-21">2019-02-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6554 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-21">2019-02-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-02-21">2019-02-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6798 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 14 分钟&nbsp;<span id="/2019/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="leancloud_visitors" data-flag-title="Supervisor批量进程管理">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2019/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="comment_count" data-flag-title="Supervisor批量进程管理">
@@ -156,7 +156,7 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-安装">1. 安装</a></li>
-    <li><a href="#2-启动方式">2. 启动方式</a></li>
+    <li><a href="#配置及启动">配置及启动</a></li>
     <li><a href="#3-配置文件说明">3. 配置文件说明</a>
       <ul>
         <li><a href="#31-配置参数说明">3.1. 配置参数说明</a></li>
@@ -183,22 +183,68 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># yum install supervisor -y </span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; pip3 install supervisor
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="2-启动方式" class="headerLink">
-    <a href="#2-%e5%90%af%e5%8a%a8%e6%96%b9%e5%bc%8f" class="header-mark"></a>2. 启动方式</h1><div class="highlight"><div class="chroma">
+</div><h1 id="配置及启动" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%ae%e5%8f%8a%e5%90%af%e5%8a%a8" class="header-mark"></a>配置及启动</h1><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># supervisord -c /etc/supervisord.conf #(systemctl start supervisord)</span>
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成配置文件 </span>
+</span></span><span class="line"><span class="cl">$&gt; echo_supervisord_conf &gt; /etc/supervisord.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建systemd 管理脚本</span>
+</span></span><span class="line"><span class="cl">$&gt; vim /etc/systemd/system/supervisord.service
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span><span class="o">=</span>Process Monitoring and Control Daemon
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>rc-local.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>forking
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/supervisord -c /etc/supervisord.conf
+</span></span><span class="line"><span class="cl"><span class="nv">RuntimeDirectory</span><span class="o">=</span>supervisor
+</span></span><span class="line"><span class="cl"><span class="nv">RuntimeDirectoryMode</span><span class="o">=</span><span class="m">755</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LimitCORE</span><span class="o">=</span>infinity
+</span></span><span class="line"><span class="cl"><span class="nv">LimitNOFILE</span><span class="o">=</span><span class="m">65535</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LimitNPROC</span><span class="o">=</span><span class="m">65535</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># # #  </span>
+</span></span><span class="line"><span class="cl">$&gt; systemctl daemon-reload
+</span></span><span class="line"><span class="cl">$&gt; systemctl start supervisord
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
 </span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl status：查看所有进程的状态</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl stop es：停止es</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl start es：启动es</span>
@@ -246,44 +292,68 @@
 </span><span class="lnt">34
 </span><span class="lnt">35
 </span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 注意安装的版本，版本不一样配置文件有差异,以下配置文件是3.1.4</span>
-</span></span><span class="line"><span class="cl"><span class="k">[include]</span>
-</span></span><span class="line"><span class="cl"><span class="na">files</span> <span class="o">=</span> <span class="s">supervisord.d/*.ini</span>
 </span></span><span class="line"><span class="cl"><span class="k">[unix_http_server]</span>
-</span></span><span class="line"><span class="cl"><span class="na">file</span><span class="o">=</span><span class="s">/var/run/supervisor/supervisor.sock</span>
-</span></span><span class="line"><span class="cl"><span class="k">[inet_http_server]</span>
-</span></span><span class="line"><span class="cl"><span class="na">port</span><span class="o">=</span><span class="s">*:9001</span>
-</span></span><span class="line"><span class="cl"><span class="na">username</span><span class="o">=</span><span class="s">xxxx</span>
-</span></span><span class="line"><span class="cl"><span class="na">password</span><span class="o">=</span><span class="s">xxx</span>
+</span></span><span class="line"><span class="cl"><span class="na">file</span><span class="o">=</span><span class="s">/tmp/supervisor.sock   ; the path to the socket file</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">[inet_http_server]         ; inet (TCP) server disabled by default</span>
+</span></span><span class="line"><span class="cl"><span class="na">port</span><span class="o">=</span><span class="s">0.0.0.0:9001</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; username=&lt;username&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; password=&lt;password&gt;</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">[supervisord]</span>
-</span></span><span class="line"><span class="cl"><span class="na">logfile</span><span class="o">=</span><span class="s">/var/log/supervisor/supervisord.log</span>
-</span></span><span class="line"><span class="cl"><span class="na">logfile_maxbytes</span><span class="o">=</span><span class="s">10MB</span>
+</span></span><span class="line"><span class="cl"><span class="na">logfile</span><span class="o">=</span><span class="s">/tmp/supervisord.log </span>
+</span></span><span class="line"><span class="cl"><span class="na">logfile_maxbytes</span><span class="o">=</span><span class="s">50MB</span>
 </span></span><span class="line"><span class="cl"><span class="na">logfile_backups</span><span class="o">=</span><span class="s">10</span>
 </span></span><span class="line"><span class="cl"><span class="na">loglevel</span><span class="o">=</span><span class="s">info</span>
-</span></span><span class="line"><span class="cl"><span class="c1">; directory=/data/wwwroot</span>
-</span></span><span class="line"><span class="cl"><span class="na">pidfile</span><span class="o">=</span><span class="s">/var/run/supervisord.pid</span>
+</span></span><span class="line"><span class="cl"><span class="na">pidfile</span><span class="o">=</span><span class="s">/tmp/supervisord.pid</span>
 </span></span><span class="line"><span class="cl"><span class="na">nodaemon</span><span class="o">=</span><span class="s">false</span>
-</span></span><span class="line"><span class="cl"><span class="na">minfds</span><span class="o">=</span><span class="s">1024</span>
-</span></span><span class="line"><span class="cl"><span class="na">minprocs</span><span class="o">=</span><span class="s">200</span>
-</span></span><span class="line"><span class="cl"><span class="na">[rpcinterface:supervisor] </span>
-</span></span><span class="line"><span class="cl"><span class="c1">; RPC2</span>
+</span></span><span class="line"><span class="cl"><span class="na">silent</span><span class="o">=</span><span class="s">false</span>
+</span></span><span class="line"><span class="cl"><span class="na">minfds</span><span class="o">=</span><span class="s">1024                  ; 这个是最少系统空闲的文件描述符，低于这个值supervisor将不会启动; default 1024</span>
+</span></span><span class="line"><span class="cl"><span class="na">minprocs</span><span class="o">=</span><span class="s">200                 ; 最小可用的进程描述符，低于这个值supervisor也将不会正常启动;default 200</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;directory=/tmp              ; default is not to cd during start</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;nocleanup=false             ; 为false时，启动会清除历史的子进程日志; default false</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;childlogdir=/tmp            ; &#39;AUTO&#39; child log dir, default $TEMP(python -c &#34;import tempfile;print tempfile.gettempdir()&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="na">environment</span><span class="o">=</span><span class="s">TZ=Asia/Shanghai ; environment=TZ=Asia/Shanghai,TZ=Asia/Shanghai,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[rpcinterface:supervisor]</span>
 </span></span><span class="line"><span class="cl"><span class="na">supervisor.rpcinterface_factory</span> <span class="o">=</span> <span class="s">supervisor.rpcinterface:make_main_rpcinterface</span>
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">[supervisorctl]</span>
-</span></span><span class="line"><span class="cl"><span class="na">serverurl</span><span class="o">=</span><span class="s">unix:///var/run/supervisor/supervisor.sock</span>
-</span></span><span class="line"><span class="cl"><span class="k">[program:demo]</span>
-</span></span><span class="line"><span class="cl"><span class="na">command</span><span class="o">=</span> <span class="s">xxx xxx        ; 这个是要运行的命令，注意: 此命令运行必须在前端，否则将无效                   </span>
-</span></span><span class="line"><span class="cl"><span class="na">directory</span><span class="o">=</span><span class="s">/dir          ; 这个是程序运行前先切换到的目录</span>
-</span></span><span class="line"><span class="cl"><span class="na">autostart</span><span class="o">=</span><span class="s">false         ; 是否在 supervisord 启动时启动</span>
-</span></span><span class="line"><span class="cl"><span class="na">autorestart</span><span class="o">=</span><span class="s">true        ; 子进程挂掉时候自动重启</span>
-</span></span><span class="line"><span class="cl"><span class="na">user</span><span class="o">=</span><span class="s">root</span>
-</span></span><span class="line"><span class="cl"><span class="na">stopasgroup</span><span class="o">=</span><span class="s">true</span>
-</span></span><span class="line"><span class="cl"><span class="na">killasgroup</span><span class="o">=</span><span class="s">true</span>
-</span></span><span class="line"><span class="cl"><span class="na">redirect_stderr</span><span class="o">=</span><span class="s">true</span>
-</span></span><span class="line"><span class="cl"><span class="na">stdout_logfile</span><span class="o">=</span><span class="s">/var/log/demo.log</span>
-</span></span><span class="line"><span class="cl"><span class="na">stdout_logfile_maxbytes</span><span class="o">=</span><span class="s">10MB</span>
-</span></span><span class="line"><span class="cl"><span class="na">stdout_logfile_backups</span><span class="o">=</span><span class="s">10</span>
+</span></span><span class="line"><span class="cl"><span class="na">serverurl</span><span class="o">=</span><span class="s">unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">; [program:theprogramname]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; command=/bin/cat</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; directory=/tmp</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; ; process_name=example.com(80)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; autostart=true         ; 是否在 supervisord 启动时启动</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; autorestart=true       ; 子进程挂掉时候自动重启</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; user=www</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; stopasgroup=true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; killasgroup=true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; redirect_stderr=true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; stdout_logfile=/var/log/example.com.log </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; stdout_logfile_maxbytes=50MB</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; stdout_logfile_backups=10</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; ; environment=TZ=Asia/Shanghai </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; ; exitcodes=CODE1,CODE2    ; 允许的进程退出码。以&#34;,&#34;分隔，默认为0,2。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[include]</span>
+</span></span><span class="line"><span class="cl"><span class="na">files</span> <span class="o">=</span> <span class="s">/etc/supervisord.d/*.ini</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="31-配置参数说明" class="headerLink">
