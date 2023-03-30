@@ -23,8 +23,7 @@ After=rc-local.service
 [Service]
 Type=forking
 ExecStart=/usr/bin/supervisord -c /etc/supervisord.conf
-RuntimeDirectory=supervisor
-RuntimeDirectoryMode=755
+
 LimitCORE=infinity
 LimitNOFILE=65535
 LimitNPROC=65535
