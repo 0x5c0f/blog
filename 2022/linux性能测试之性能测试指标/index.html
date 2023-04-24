@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -5,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">Linux性能测试之性能测试指标(转载) - 一个曾经的小码农...</title><meta name="Description" content="Linux性能测试之性能测试指标"><meta property="og:title" content="Linux性能测试之性能测试指标(转载)" />
+    <title>Linux性能测试之性能测试指标(转载) - 一个曾经的小码农...</title><meta name="Description" content="Linux性能测试之性能测试指标"><meta property="og:title" content="Linux性能测试之性能测试指标(转载)" />
 <meta property="og:description" content="Linux性能测试之性能测试指标" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"/><meta property="article:section" content="posts" />
@@ -21,7 +23,7 @@
 <meta name="application-name" content="DoIt">
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="JntZ-myKUGeiVfETNSGA-pKc8nH1tdk4njyTVEjZzTs" /><script type="application/ld+json">
     {
@@ -32,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2022\/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  4707 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  4789 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87\/","datePublished": "2022-08-22T00:00:00+00:00","dateModified": "2022-08-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -40,41 +42,44 @@
                         "name": "admin"                    
                     }],"description": "Linux性能测试之性能测试指标"
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
             <a href="/" title="一个曾经的小码农..."><img
-        class="lazyload logo"
-        data-src="/icons/logo_title.png"
-        data-srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        data-sizes="auto"
+        class="logo"
+        loading="lazy"
+        src="/icons/logo_title.png"
+        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        sizes="auto"
         alt="/icons/logo_title.png"
-        title="/icons/logo_title.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        title="/icons/logo_title.png" ><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                 </a></div>
         </div>
@@ -84,12 +89,13 @@
         <div class="header-wrapper">
             <div class="header-title">
                 <a href="/" title="一个曾经的小码农..."><img
-        class="lazyload logo"
-        data-src="/icons/logo_title.png"
-        data-srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        data-sizes="auto"
+        class="logo"
+        loading="lazy"
+        src="/icons/logo_title.png"
+        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        sizes="auto"
         alt="/icons/logo_title.png"
-        title="/icons/logo_title.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+        title="/icons/logo_title.png" ><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -98,20 +104,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -148,11 +154,11 @@
     </li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux性能测试之性能测试指标(转载)</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux性能测试之性能测试指标(转载)</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/"><i class="far fa-folder fa-fw"></i>整理收集</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-22">2022-08-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-22">2022-08-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4707 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-22">2022-08-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-22">2022-08-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4789 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" class="leancloud_visitors" data-flag-title="Linux性能测试之性能测试指标(转载)">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" class="comment_count" data-flag-title="Linux性能测试之性能测试指标(转载)">
@@ -216,7 +222,11 @@
     <a href="#1-%e7%b3%bb%e7%bb%9f%e6%80%a7%e8%83%bd%e6%b5%8b%e8%af%95%e6%8c%87%e6%a0%87" class="header-mark"></a>1. 系统性能测试指标</h1><h2 id="11-响应时间" class="headerLink">
     <a href="#11-%e5%93%8d%e5%ba%94%e6%97%b6%e9%97%b4" class="header-mark"></a>1.1. 响应时间</h2><p>  响应时间是指某个请求或操作从发出到接收到反馈所消耗的时间，包括应用服务器（客户端）处理时间、网络传输时间以及数据库服务器处理时间。比如一个页面从点击/输入到完全加载的时间；完成一次增加、删除、修改或者查询动作的事务响应时间等。</p>
 <p>  一个请求在网络上的传输往往要经历多个网络节点才能到达目标服务器，我们假设请求经历了三个网络节点的传输时间B1、B2、B3，客户端的处理时间为A，服务器的响应时间为C。则一次请求的完整路径可以描述为下图：</p>
-<div class="mermaid" id="id-1"></div><p>客户端从发出请求到接收到服务器反馈的完整链路时间为<code>A—&gt;B1—&gt;B2—&gt;B3—&gt;C</code>（节点处理时间都包括接收和发送两个过程）。<br>
+<pre class="mermaid">graph RL;
+    
+服务器C -->|反馈|节点B3-->节点B2-->节点B1-->|反馈|客户端A
+客户端A -->|请求| 节点B1-->节点B2-->节点B3-->|请求|服务器C
+</pre><p>客户端从发出请求到接收到服务器反馈的完整链路时间为<code>A—&gt;B1—&gt;B2—&gt;B3—&gt;C</code>（节点处理时间都包括接收和发送两个过程）。<br>
 则请求的响应时间为：
 <code>响应时间=A+B1+B2+B3+C</code></p>
 <h2 id="12-并发" class="headerLink">
@@ -299,10 +309,11 @@
 <li>命令：#top //top工具间隔3s会动态滚动更新一次数据<br>
 <a class="lightgallery" href="/images/top_cpu.png" title="/images/top_cpu.png" data-thumbnail="/images/top_cpu.png">
             <img
-                class="lazyload"
-                data-src="/images/top_cpu.png"
-                data-srcset="/images/top_cpu.png, /images/top_cpu.png 1.5x, /images/top_cpu.png 2x"
-                data-sizes="auto"
+                
+                loading="lazy"
+                src="/images/top_cpu.png"
+                srcset="/images/top_cpu.png, /images/top_cpu.png 1.5x, /images/top_cpu.png 2x"
+                sizes="auto"
                 alt="/images/top_cpu.png">
         </a>
 <table>
@@ -371,10 +382,11 @@
 <li>命令：#top<br>
 <a class="lightgallery" href="/images/top_mem.png" title="/images/top_mem.png" data-thumbnail="/images/top_mem.png">
             <img
-                class="lazyload"
-                data-src="/images/top_mem.png"
-                data-srcset="/images/top_mem.png, /images/top_mem.png 1.5x, /images/top_mem.png 2x"
-                data-sizes="auto"
+                
+                loading="lazy"
+                src="/images/top_mem.png"
+                srcset="/images/top_mem.png, /images/top_mem.png 1.5x, /images/top_mem.png 2x"
+                sizes="auto"
                 alt="/images/top_mem.png">
         </a><br>
 在性能测试中，经常会用到系统已用内存、物理已用内存、系统内存占用率以及物理内存占用率这几个指标，它们的计算公式如下：<br>
@@ -397,10 +409,11 @@
 <p>uptime<br>
 <a class="lightgallery" href="/images/uptime.png" title="/images/uptime.png" data-thumbnail="/images/uptime.png">
         <img
-            class="lazyload"
-            data-src="/images/uptime.png"
-            data-srcset="/images/uptime.png, /images/uptime.png 1.5x, /images/uptime.png 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="/images/uptime.png"
+            srcset="/images/uptime.png, /images/uptime.png 1.5x, /images/uptime.png 2x"
+            sizes="auto"
             alt="/images/uptime.png">
     </a></p>
 </li>
@@ -408,10 +421,11 @@
 <p>top<br>
 <a class="lightgallery" href="/images/top_load.png" title="/images/top_load.png" data-thumbnail="/images/top_load.png">
         <img
-            class="lazyload"
-            data-src="/images/top_load.png"
-            data-srcset="/images/top_load.png, /images/top_load.png 1.5x, /images/top_load.png 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="/images/top_load.png"
+            srcset="/images/top_load.png, /images/top_load.png 1.5x, /images/top_load.png 2x"
+            sizes="auto"
             alt="/images/top_load.png">
     </a></p>
 </li>
@@ -419,10 +433,11 @@
 <p>w<br>
 <a class="lightgallery" href="/images/w.png" title="/images/w.png" data-thumbnail="/images/w.png">
         <img
-            class="lazyload"
-            data-src="/images/w.png"
-            data-srcset="/images/w.png, /images/w.png 1.5x, /images/w.png 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="/images/w.png"
+            srcset="/images/w.png, /images/w.png 1.5x, /images/w.png 2x"
+            sizes="auto"
             alt="/images/w.png">
     </a></p>
 </li>
@@ -462,10 +477,11 @@
 <p>命令：#<code>iostat –x –k 2 3</code> //每隔2S输出磁盘IO的使用情况，共采样3
 <a class="lightgallery" href="/images/iostat.png" title="/images/iostat.png" data-thumbnail="/images/iostat.png">
         <img
-            class="lazyload"
-            data-src="/images/iostat.png"
-            data-srcset="/images/iostat.png, /images/iostat.png 1.5x, /images/iostat.png 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="/images/iostat.png"
+            srcset="/images/iostat.png, /images/iostat.png 1.5x, /images/iostat.png 2x"
+            sizes="auto"
             alt="/images/iostat.png">
     </a> </p>
 <table>
@@ -549,7 +565,7 @@
             <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
                     </span></div>
             <div class="post-info-share">
-                <span><a href="#" onclick="return false;" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" data-title="Linux性能测试之性能测试指标(转载)"><i class="fab fa-evernote fa-fw"></i></a></span>
+                <span><a href="#" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" data-title="Linux性能测试之性能测试指标(转载)"><i class="fab fa-evernote fa-fw"></i></a></span>
             </div>
         </div>
     </div>
@@ -565,11 +581,11 @@
             <a href="/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/" class="next" rel="next" title="Linux性能指标之cpu上下文切换">Linux性能指标之cpu上下文切换<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="waline" class="comment"></div><noscript>
-        Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
-    </noscript></div></article></div>
+                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
+            </noscript></div></article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp">渝ICP备2020011834号-2</span></div>
             <div class="footer-line"></div>
@@ -582,10 +598,11 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script async defer data-website-id="27ecb7ce-6f65-4ad4-880c-cfdb26623383" src="https://app.51ac.cc/umami.js"  data-domains="blog.0x5c0f.cc" ></script></div>
-
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.1.0/alus"],"lang":"zh-cn","login":"enable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","id-1":"graph RL;\n    \n服务器C --\u003e|反馈|节点B3--\u003e节点B2--\u003e节点B1--\u003e|反馈|客户端A\n客户端A --\u003e|请求| 节点B1--\u003e节点B2--\u003e节点B3--\u003e|请求|服务器C","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"mermaid":true,"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/lib/mermaid/mermaid.min.js" defer></script><script type="text/javascript" src="/js/mermaid.min.js" defer></script><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><link rel="stylesheet" href="/lib/mermaid/mermaid.min.css"></div>
+    </div><script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, theme: (window.theme === 'dark' ? 'dark' : 'default') });
+</script><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.1.0/alus"],"lang":"zh-cn","login":"enable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script async defer data-website-id="27ecb7ce-6f65-4ad4-880c-cfdb26623383" src="https://app.51ac.cc/umami.js"   data-domains="blog.0x5c0f.cc" ></script></div>
 </body>
 
 </html>

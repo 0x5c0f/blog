@@ -113,8 +113,10 @@ DefaultSession=gnome-xorg.desktop
 # 12. fedora 无法连接pptp(已解决) 
 原因是防火墙需要开启gre协议放行,以下是firewalld配置，可能linux用户都有这种情况,若其他类型vpn也出现无法连接情况，可能也是这个原因   
 ```bash
-firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -p gre -j ACCEPT 
-firewall-cmd --permanent --direct --add-rule ipv6 filter INPUT 0 -p gre -j ACCEPT 
+$> firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 0 -p gre -j ACCEPT 
+$> firewall-cmd --permanent --direct --add-rule ipv6 filter INPUT 0 -p gre -j ACCEPT 
+
+# 如果上述配置仍然无效,那么你可能需要在连接高级中勾选"使用点到点加密(MPPE)(P)"选项
 ```
 
 # 13. fedora 升级到指定版本

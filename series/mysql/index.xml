@@ -45,7 +45,7 @@
     <link>https://blog.0x5c0f.cc/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</guid>
-    <description><![CDATA[Mysql程序模型 技巧 mysql程序模型 连接层 TCP/IP或Socket的连接方式 验证用户名密码 连接线程: 接收sql语句,返回执行结果 SQL]]></description>
+    <description><![CDATA[Mysql程序模型 技巧]]></description>
 </item><item>
     <title>Mysql管理</title>
     <link>https://blog.0x5c0f.cc/2022/mysql%E7%AE%A1%E7%90%86/</link>

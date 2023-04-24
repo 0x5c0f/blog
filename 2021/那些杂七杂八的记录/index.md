@@ -90,31 +90,6 @@ $> clamscan -ri /data --remove  -l /var/log/clamscan.log
 
 ```
 
-# acme.sh 管理免费域名证书 
-此处说明两个注意一点设置的`DNS API`密钥的获取，`cloudflare`和`腾讯云`, 其他可直接参看官方说明 [https://github.com/acmesh-official/acme.sh/wiki/dnsapi](https://github.com/acmesh-official/acme.sh/wiki/dnsapi)  
-- `cloudflare`：解析的需要创建API 令牌, API令牌权限需要创建 `区域.区域`和`区域.DNS`，区域资源为`所有区域`或者`帐号的所有区域` , 另外需要的`CF_Account_ID`是`url`中包含的那`32`位的字符串.
-```bash
-# cloudflare 
-$> curl  https://get.acme.sh | sh
-
-$> export CF_Token="xxxxx"
-$> export CF_Account_ID="xxxxxx"
-
-$> acme.sh --issue -d example.com -d '*.example.com' --dns dns_cf
-```
-
-- 腾讯云：腾讯云实际上需要使用的是`dnspod` 的 `id` 和 `token`他们两个是共用的，可以直接用腾讯云帐号登录`dnspod`,进去后获取到`id` 和 `token` 就行了
-```bash
-# 腾讯云
-$> curl  https://get.acme.sh | sh
-
-$> export DP_Id="xxxxx"
-$> export DP_Key="xxxxx"
-
-$> acme.sh --issue -d example.com -d '*.example.com' --dns dns_dp
-```
-
-
 # linux 合并文件系统 margerfs 
 >[https://wzyboy.im/post/1148.html](https://wzyboy.im/post/1148.html)
 
@@ -454,4 +429,11 @@ certutil -A -n "GeoTrust SSL CA - G3" -t "Pu,Pu,Pu" -d ./ -i qq.crt
 
 # 修改 /etc/mail.rc 末尾添加,即可 set nss-config-dir=/etc/mail.rc.d 
 ```
+
+## jenkins 设置国内插件源 
+```ini
+# 阿里云源: https://mirrors.aliyun.com/jenkins/updates/update-center.json
+Jenkins管理界面中打开“Manage Plugins”（管理插件），然后选择“Advanced”（高级选项）标签页，在“Update Site”下拉列表中添加上述地址，并单击“Apply”（应用）按钮即可
+```
+
 

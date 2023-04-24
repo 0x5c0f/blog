@@ -44,22 +44,6 @@ SHELL_DIR=$(cd `dirname $0`; pwd)
  tail -f www.log |grep --color -E 'pattern|$'
 ```
 
-# 证书生成
-
-```bash
-## 自签证书
-openssl req -newkey rsa:2048 -x509 -nodes -days 3560 -out server.crt -keyout server.key
-
-## ssl key ，csr 生成
-openssl req -new -newkey rsa:2048 -nodes -keyout server.key -out server.csr
-
-https://blog.csdn.net/cy_cai/article/details/54632671
-
-#CA合并
-#厂商提供的cer文件，全部合并为后缀为pem的文件，并将域的cer放在文件最前面,cat 在后面
-#nginx导入key和pem即可
-```
-
 # openssl 通过证书加密解密大文件
 
 ```bash
@@ -428,4 +412,82 @@ $> /usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
 # 替换默认 /usr/share/applications/qq.desktop的执行命令 Exec=/usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
 # 日志检查，可以定位当前用户的日志看(或者 systemctl --user list-units run-*|grep qq，查询到systemd-run启动的service，直接定位)
 $> journalctl -f -u user@${UID}.service
+```
+
+# 证书相关操作 
+```bash
+#CA合并
+#厂商提供的cer文件，全部合并为后缀为pem的文件，并将域的cer放在文件最前面,crt 在后面
+#nginx导入key和pem即可
+
+## 查看远程证书相关信息  
+$> echo | openssl s_client -connect tools.example.com:443 2>&- | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > remote-cert.pem \
+        && openssl x509 -in remote-cert.pem -text \
+        && rm remote-cert.pem
+#     查看证书到期时间       
+#     && openssl x509 -in remote-cert.pem -enddate -noout      
+
+## 
+$> openssl s_client -showcerts -connect tools.example.com:443 </dev/null | openssl x509 -inform PEM -noout -text     
+
+##  CA证书取消密码
+$> openssl rsa -in <ca-private-key-file> -out <ca-private-key-file>.enc
+##  CA证书添加密码
+$> openssl rsa -des3 -in <ca-private-key-file> -out <ca-private-key-file>.enc
+
+# 证书生成 
+## 创建ca私钥
+$> openssl genrsa -des3 -out ca.key 4096
+
+## 创建ca证书
+### /C=CN：证书持有者所在国家的两字母代码
+### /ST=CQ：证书持有者所在省/直辖市/自治区的名称或缩写
+### /O=example：证书持有者的组织或公司名称
+### /CN=example：证书持有者的通用名称（Common Name），一般为服务器的域名或客户端的用户名
+### /emailAddress=mail@example.com：证书持有者的电子邮件地址。
+$> openssl req -utf8 -x509 -new -nodes -key ca.key -sha512 -days 18250 -out ca.pem -subj "/C=CN/ST=CQ/O=example/CN=example/emailAddress=mail@example.com"
+
+# 创建服务器私钥
+$> openssl genrsa -out server.key 4096
+
+# 创建域名csr
+$> openssl req -new -key server.key -out server.csr -subj "/C=CN/ST=CQ/O=0x5c0f/CN=example.com/emailAddress=mail@example.com"
+
+
+# 创建扩展
+$> cat > server.ext <<EOF
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+extendedKeyUsage = serverAuth, clientAuth, codeSigning
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = *.example.com
+DNS.2 = *.example.cn
+DNS.3 = localhost
+IP.1 = 127.0.0.1
+EOF
+
+# 生成域名证书
+$> openssl x509 -req -in server.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out server.crt -days 1825 -sha512 -extfile server.ext
+```
+
+# linux 端口转发
+```bash
+# linux 下端口转发
+$> echo 1 >/proc/sys/net/ipv4/ip_forward
+
+$> iptables -t nat -A POSTROUTING -j MASQUERADE
+$> iptables -A FORWARD -i [内网网卡名称] -j ACCEPT
+$> iptables -t nat -A POSTROUTING -s [内网网段] -o [外网网卡名称] -j MASQUERADE
+$> iptables -t nat -A PREROUTING -p tcp -m tcp --dport [外网端口] -j DNAT --to-destination [内网地址]:[内网端口]
+```
+
+# linux 查询cpu占用过高的php-fpm进程,正在执行的php脚本或者处理的事
+```bash
+# 1. 通过top找到正在消耗 CPU 的 php-fpm 进程的 PID 
+# 2. 使用 strace 命令跟踪该进程：
+$> strace -p <PID> -e trace=open,execve,stat
+# 3. 在输出中查找正在执行的 PHP 脚本
+$> strace -p <PID> -e trace=open,execve,stat 2>&1 | grep '\.php'
 ```

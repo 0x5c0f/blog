@@ -1,0 +1,26 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>windows - 分类 - 一个曾经的小码农...</title>
+        <link>https://blog.0x5c0f.cc/categories/windows/</link>
+        <description>windows - 分类 - 一个曾经的小码农...</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/windows/" rel="self" type="application/rss+xml" /><item>
+    <title>常用的BAT脚本语法</title>
+    <link>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[我们在日常工作中常常会遇到一些需要重复进行的工作，又或者我们的项目在转交客户时需要去简化配置过程 这时我们就需要使用到一些自动化部署操作，我们]]></description>
+</item><item>
+    <title>windows安装优化</title>
+    <link>https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/</link>
+    <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/</guid>
+    <description><![CDATA[1. 系统安全显示电脑图标到桌面: rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0 开始文件夹: shell:startup 本地安全策略: secpol.msc 计算机管理: compmgmt.msc 1.1. 修改服务器名：按项目取名。 右键点击我的电脑-高级-计算机名]]></description>
+</item><item>
+    <title>Windows命令收集</title>
+    <link>https://blog.0x5c0f.cc/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
+    <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
+    <description><![CDATA[1. windows 服务安装卸载 1 2 3 4 :: 注意空格 sc create &#34;Memcached_11233&#34; start= auto binPath= &#34;D:\box\memcached\memcached.exe -d runservice -m 128 -c 512 -p 11233 -l 127.0.0.1&#34; DisplayName= &#34;Memcached_11233&#34; ---- sc delete Memcached_11233 2. 删除windows\temp 5天前以sess*开头的文件 1]]></description>
+</item></channel>
+</rss>

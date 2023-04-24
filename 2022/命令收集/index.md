@@ -15,16 +15,23 @@ forfiles /p "C:\Windows\Temp" /s /d -5 /m sess* /c "cmd /c del /f /q /s @path"
 ```
 
 # 3. windows 端口转发  
-```batch
+```bat
 :: 转发不生效需先安装 ipv6 
 C:\> netsh interface ipv6 install
-## 转发本机ip端口 到其他服务器ip端口
+
+:: 转发本机ip端口 到其他服务器ip端口
+:: netsh interface portproxy add v4tov4 listenaddress=[外网IP] listenport=[外网端口] connectaddress=[内网IP] connectport=[内网端口]
 C:\> netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=10055 connectaddress=10.42.0.58 connectport=10050
-## 查看已设置的转发 
+
+:: 查看已设置的转发 
 C:\> netsh interface portproxy show all
-## 删除端口转发
+
+:: 删除端口转发
+:: netsh interface portproxy delete v4tov4 listenaddress=[外网IP] listenport=[外网端口]
 C:\> netsh interface portproxy delete v4tov4 listenaddress=0.0.0.0 listenport=10055
+
 ```
+
 # 4. 修改ntp同步频率
 ```batch
 regedit:

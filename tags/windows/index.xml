@@ -4,7 +4,13 @@
         <link>https://blog.0x5c0f.cc/tags/windows/</link>
         <description>windows - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/windows/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/windows/" rel="self" type="application/rss+xml" /><item>
+    <title>常用的BAT脚本语法</title>
+    <link>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+    <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+    <description><![CDATA[我们在日常工作中常常会遇到一些需要重复进行的工作，又或者我们的项目在转交客户时需要去简化配置过程 这时我们就需要使用到一些自动化部署操作，我们]]></description>
+</item><item>
     <title>IIS命令操作</title>
     <link>https://blog.0x5c0f.cc/2022/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>

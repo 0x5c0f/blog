@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -6,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">一个曾经的小码农...</title><meta name="Description" content=""><meta property="og:title" content="一个曾经的小码农..." />
+    <title>一个曾经的小码农...</title><meta name="Description" content=""><meta property="og:title" content="一个曾经的小码农..." />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"/>
@@ -20,7 +22,7 @@
 <meta name="apple-mobile-web-app-title" content="DoIt">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="一个曾经的小码农...">
-    <link rel="feed" href="/index.xml" type="application/rss+xml" title="一个曾经的小码农..."><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="一个曾经的小码农..."><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><meta name="google-site-verification" content="JntZ-myKUGeiVfETNSGA-pKc8nH1tdk4njyTVEjZzTs" /><script type="application/ld+json">
     {
@@ -31,41 +33,44 @@
                 "name": "0x5c0f"
             },"name": "一个曾经的小码农..."
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
             <a href="/" title="一个曾经的小码农..."><img
-        class="lazyload logo"
-        data-src="/icons/logo_title.png"
-        data-srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        data-sizes="auto"
+        class="logo"
+        loading="lazy"
+        src="/icons/logo_title.png"
+        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        sizes="auto"
         alt="/icons/logo_title.png"
-        title="/icons/logo_title.png"><span id="desktop-header-typeit" class="typeit"></span></a>
+        title="/icons/logo_title.png" ><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                 </a></div>
         </div>
@@ -75,12 +80,13 @@
         <div class="header-wrapper">
             <div class="header-title">
                 <a href="/" title="一个曾经的小码农..."><img
-        class="lazyload logo"
-        data-src="/icons/logo_title.png"
-        data-srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        data-sizes="auto"
+        class="logo"
+        loading="lazy"
+        src="/icons/logo_title.png"
+        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        sizes="auto"
         alt="/icons/logo_title.png"
-        title="/icons/logo_title.png"><span id="mobile-header-typeit" class="typeit"></span></a>
+        title="/icons/logo_title.png" ><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -89,20 +95,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -115,26 +121,34 @@
 </div>
 <main class="main">
             <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="文章"><img
-        class="lazyload"
-        data-src="/icons/logo_avatar.png"
-        data-srcset="/icons/logo_avatar.png, /icons/logo_avatar.png 1.5x, /icons/logo_avatar.png 2x"
-        data-sizes="auto"
+        
+        loading="eager"
+        src="/icons/logo_avatar.png"
+        srcset="/icons/logo_avatar.png, /icons/logo_avatar.png 1.5x, /icons/logo_avatar.png 2x"
+        sizes="auto"
         alt="/icons/logo_avatar.png"
-        title="/icons/logo_avatar.png" height="6rem" width="6rem"></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/0x5c0f" title="GitHub" target="_blank" rel="noopener noreferrer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="mailto:mail@0x5c0f.cc" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
+        title="/icons/logo_avatar.png" height="100"   width="100" ></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/0x5c0f" title="GitHub" target="_blank" rel="noopener noreferrer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="mailto:mail@0x5c0f.cc" title="Email" rel=" me"><i class="far fa-envelope fa-fw"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/2022/ipsec/">windows 本地安全策略设置</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-24">2022-06-24</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/"><i class="far fa-folder fa-fw"></i>那些年的收藏</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/"><i class="far fa-list-alt fa-fw"></i>那些年的收藏</a></span></div><div class="content">开机临时关闭本地安全策略(防止配置出错，导致无法登录) 1 2 3 4 netsh ipsec static set policy name=我的规则 assign=n ping 127.0 -n 300 &gt;nul 2&gt;nul netsh ipsec static set policy name=我的规则 assign=y net start PolicyAgent</div><div class="post-footer">
+        <a href="/2022/ipsec/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/bat/">bat</a>,&nbsp;<a href="/tags/ipsec/">ipsec</a>,&nbsp;<a href="/tags/windows/">windows</a>,&nbsp;<a href="/tags/scripts/">scripts</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/">windows安装优化</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-24">2022-06-24</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div><div class="content">1. 系统安全显示电脑图标到桌面: rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0 开始文件夹: shell:startup 本地安全策略: secpol.msc 计算机管理: compmgmt.msc 1.1. 修改服务器名：按项目取名。 右键点击我的电脑-高级-计算机名</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-24">2022-06-24</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>windows</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div><div class="content">1. 系统安全显示电脑图标到桌面: rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0 开始文件夹: shell:startup 本地安全策略: secpol.msc 计算机管理: compmgmt.msc 1.1. 修改服务器名：按项目取名。 右键点击我的电脑-高级-计算机名</div><div class="post-footer">
         <a href="/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/windows/">windows</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/windows/">windows</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">Windows命令收集</a>
     </h1><div class="post-meta">
         <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-24">2022-06-24</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div><div class="content">1. windows 服务安装卸载 1 2 3 4 :: 注意空格 sc create &#34;Memcached_11233&#34; start= auto binPath= &#34;D:\box\memcached\memcached.exe -d runservice -m 128 -c 512 -p 11233 -l 127.0.0.1&#34; DisplayName= &#34;Memcached_11233&#34; ---- sc delete Memcached_11233 2. 删除windows\temp 5天前以sess*开头的文件 1</div><div class="post-footer">
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-24">2022-06-24</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/windows/"><i class="far fa-folder fa-fw"></i>windows</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div><div class="content">1. windows 服务安装卸载 1 2 3 4 :: 注意空格 sc create &#34;Memcached_11233&#34; start= auto binPath= &#34;D:\box\memcached\memcached.exe -d runservice -m 128 -c 512 -p 11233 -l 127.0.0.1&#34; DisplayName= &#34;Memcached_11233&#34; ---- sc delete Memcached_11233 2. 删除windows\temp 5天前以sess*开头的文件 1</div><div class="post-footer">
         <a href="/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/windows/">windows</a></div></div>
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/windows/">windows</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/2022/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/">禁止windows服务</a>
     </h1><div class="post-meta">
@@ -156,13 +170,6 @@
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-24">2022-06-24</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div><div class="content">1. 文件操作 文件读取指针概念 当python 使用open().read()读取文件时,是按行从上向下读取,当他读取一行时,会给那行设置一个下标(</div><div class="post-footer">
         <a href="/2022/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/python/">python</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/">Centos7修改网卡名称</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-23">2022-06-23</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/"><i class="far fa-folder fa-fw"></i>整理收集</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div><div class="content">信息 CentOS 7的默认网卡和设备名称都是随机的，根据需要有时候需要修改网卡为以eth开头的。以下整理了两种比较靠谱的。 1. 安装过程中修改在加载镜像后出</div><div class="post-footer">
-        <a href="/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -198,7 +205,7 @@
                 </li></ul></div></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.100.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp">渝ICP备2020011834号-2</span></div>
             <div class="footer-line"></div>
@@ -211,10 +218,8 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script async defer data-website-id="27ecb7ce-6f65-4ad4-880c-cfdb26623383" src="https://app.51ac.cc/umami.js"  data-domains="blog.0x5c0f.cc" ></script></div>
-
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","id-1":"我看到的世界，你们、看不到!","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"id-1":["id-1"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","id-1":"我看到的世界，你们、看不到!","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"id-1":["id-1"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script async defer data-website-id="27ecb7ce-6f65-4ad4-880c-cfdb26623383" src="https://app.51ac.cc/umami.js"   data-domains="blog.0x5c0f.cc" ></script></div>
 </body>
 
 </html>
