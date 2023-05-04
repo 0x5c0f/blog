@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  4449 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  5194 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2023-03-30T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -177,14 +177,18 @@
         <li><a href="#jenkins-设置国内插件源">jenkins 设置国内插件源</a></li>
       </ul>
     </li>
+    <li><a href="#etcsysconfignetwork-scripts-为空">/etc/sysconfig/network-scripts 为空</a></li>
+    <li><a href="#双网卡优先级配置">双网卡优先级配置</a></li>
+    <li><a href="#网卡连接后执行某个脚本">网卡连接后执行某个脚本</a></li>
+    <li><a href="#网卡配置文件固定路由设置">网卡配置文件固定路由设置</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30">2023-03-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4449 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30">2023-03-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5194 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;条评论
@@ -242,6 +246,10 @@
         <li><a href="#jenkins-设置国内插件源">jenkins 设置国内插件源</a></li>
       </ul>
     </li>
+    <li><a href="#etcsysconfignetwork-scripts-为空">/etc/sysconfig/network-scripts 为空</a></li>
+    <li><a href="#双网卡优先级配置">双网卡优先级配置</a></li>
+    <li><a href="#网卡连接后执行某个脚本">网卡连接后执行某个脚本</a></li>
+    <li><a href="#网卡配置文件固定路由设置">网卡配置文件固定路由设置</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
@@ -1099,6 +1107,84 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 阿里云源: https://mirrors.aliyun.com/jenkins/updates/update-center.json</span>
 </span></span><span class="line"><span class="cl"><span class="na">Jenkins管理界面中打开“Manage Plugins”（管理插件），然后选择“Advanced”（高级选项）标签页，在“Update Site”下拉列表中添加上述地址，并单击“Apply”（应用）按钮即可</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="etcsysconfignetwork-scripts-为空" class="headerLink">
+    <a href="#etcsysconfignetwork-scripts-%e4%b8%ba%e7%a9%ba" class="header-mark"></a>/etc/sysconfig/network-scripts 为空</h1><ul>
+<li>本来 <code>/etc/sysconfig/network-scripts</code> 下是有网卡的配置文件的，我不知道是做了什么事情(我记得只是在调路由表)，在操作了几次后，我就发现我的网卡配置文件都没了，但是网络连接却是正常的，后面经多方资料查询，发现是<code>NetworkManager</code>，他会自动管理网卡，而由他管理的话，那么就可能不再需要<code>/etc/sysconfig/network-scripts/</code>下的配置文件了。他的默认配置文件是在<code>/etc/NetworkManager/system-connections</code>下</li>
+<li>如何继续使用<code>/etc/sysconfig/network-scripts</code>下的配置文件来继续管理网卡呢</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; sudo vi /etc/NetworkManager/NetworkManager.conf
+</span></span><span class="line"><span class="cl"><span class="o">[</span>main<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">plugins</span><span class="o">=</span>ifcfg-rh
+</span></span><span class="line"><span class="cl"><span class="c1"># plugins 的值可以是以下几种：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果plugins没有显式配置该选项，则NetworkManager将默认启用一组预安装的插件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ifcfg-rh：用于读取和解析CentOS、RHEL等发行版相关的网卡配置文件。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># keyfile：用于从/etc/NetworkManager/system-connections目录中读取网络连接配置信息。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># dhcp：用于与DHCP服务器进行通信，并获取IP地址、子网掩码、DNS服务器等网络参数。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># wifi：用于管理Wi-Fi连接，并搜索可用的Wi-Fi热点。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ibft、team、bridge 等等</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>ifcfg-rh<span class="o">]</span>
+</span></span><span class="line"><span class="cl">wifi.scan-rand-mac-address<span class="o">=</span>no
+</span></span><span class="line"><span class="cl"><span class="c1"># 用于控制系统在扫描Wi-Fi网络时是否使用随机MAC地址。具体来说，如果将该选项设置为“no”，则系统会使用真实的MAC地址扫描Wi-Fi网络。</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="双网卡优先级配置" class="headerLink">
+    <a href="#%e5%8f%8c%e7%bd%91%e5%8d%a1%e4%bc%98%e5%85%88%e7%ba%a7%e9%85%8d%e7%bd%ae" class="header-mark"></a>双网卡优先级配置</h1><ul>
+<li>网卡配置文件中 添加<code>IPV4_ROUTE_METRIC</code>参数，值越低，优先级越高</li>
+</ul>
+<h1 id="网卡连接后执行某个脚本" class="headerLink">
+    <a href="#%e7%bd%91%e5%8d%a1%e8%bf%9e%e6%8e%a5%e5%90%8e%e6%89%a7%e8%a1%8c%e6%9f%90%e4%b8%aa%e8%84%9a%e6%9c%ac" class="header-mark"></a>网卡连接后执行某个脚本</h1><ul>
+<li>脚本存放位置: <code>/etc/NetworkManager/dispatcher.d</code></li>
+</ul>
+<h1 id="网卡配置文件固定路由设置" class="headerLink">
+    <a href="#%e7%bd%91%e5%8d%a1%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%9b%ba%e5%ae%9a%e8%b7%af%e7%94%b1%e8%ae%be%e7%bd%ae" class="header-mark"></a>网卡配置文件固定路由设置</h1><ol>
+<li>关闭网卡自动路由功能</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/sysconfig/network-scripts/ifcfg-enp0s31f6</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PEERROUTES</span><span class="o">=</span>no
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>添加固定路由</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/sysconfig/network-scripts/route-enp0s31f6</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ADDRESS0</span><span class="o">=</span>172.16.0.0 <span class="c1"># 目标地址</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NETMASK0</span><span class="o">=</span>255.255.0.0 <span class="c1"># 子网掩码</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GATEWAY0</span><span class="o">=</span>&lt;172.16.31.1&gt; 
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

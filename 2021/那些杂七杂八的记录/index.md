@@ -436,4 +436,42 @@ certutil -A -n "GeoTrust SSL CA - G3" -t "Pu,Pu,Pu" -d ./ -i qq.crt
 Jenkins管理界面中打开“Manage Plugins”（管理插件），然后选择“Advanced”（高级选项）标签页，在“Update Site”下拉列表中添加上述地址，并单击“Apply”（应用）按钮即可
 ```
 
+# /etc/sysconfig/network-scripts 为空
+- 本来 `/etc/sysconfig/network-scripts` 下是有网卡的配置文件的，我不知道是做了什么事情(我记得只是在调路由表)，在操作了几次后，我就发现我的网卡配置文件都没了，但是网络连接却是正常的，后面经多方资料查询，发现是`NetworkManager`，他会自动管理网卡，而由他管理的话，那么就可能不再需要`/etc/sysconfig/network-scripts/`下的配置文件了。他的默认配置文件是在`/etc/NetworkManager/system-connections`下
+- 如何继续使用`/etc/sysconfig/network-scripts`下的配置文件来继续管理网卡呢
+```bash
+$> sudo vi /etc/NetworkManager/NetworkManager.conf
+[main]
+plugins=ifcfg-rh
+# plugins 的值可以是以下几种：
+# 如果plugins没有显式配置该选项，则NetworkManager将默认启用一组预安装的插件
+# ifcfg-rh：用于读取和解析CentOS、RHEL等发行版相关的网卡配置文件。
+# keyfile：用于从/etc/NetworkManager/system-connections目录中读取网络连接配置信息。
+# dhcp：用于与DHCP服务器进行通信，并获取IP地址、子网掩码、DNS服务器等网络参数。
+# wifi：用于管理Wi-Fi连接，并搜索可用的Wi-Fi热点。
+# ibft、team、bridge 等等
 
+[ifcfg-rh]
+wifi.scan-rand-mac-address=no
+# 用于控制系统在扫描Wi-Fi网络时是否使用随机MAC地址。具体来说，如果将该选项设置为“no”，则系统会使用真实的MAC地址扫描Wi-Fi网络。
+```
+
+# 双网卡优先级配置  
+- 网卡配置文件中 添加`IPV4_ROUTE_METRIC`参数，值越低，优先级越高
+
+# 网卡连接后执行某个脚本  
+- 脚本存放位置: `/etc/NetworkManager/dispatcher.d`
+
+# 网卡配置文件固定路由设置 
+1. 关闭网卡自动路由功能
+```bash
+# /etc/sysconfig/network-scripts/ifcfg-enp0s31f6
+PEERROUTES=no
+```
+2. 添加固定路由
+```bash
+# /etc/sysconfig/network-scripts/route-enp0s31f6
+ADDRESS0=172.16.0.0 # 目标地址
+NETMASK0=255.255.0.0 # 子网掩码
+GATEWAY0=<172.16.31.1> 
+```
