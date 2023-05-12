@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  5194 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  6301 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2023-03-30T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -181,14 +181,17 @@
     <li><a href="#双网卡优先级配置">双网卡优先级配置</a></li>
     <li><a href="#网卡连接后执行某个脚本">网卡连接后执行某个脚本</a></li>
     <li><a href="#网卡配置文件固定路由设置">网卡配置文件固定路由设置</a></li>
+    <li><a href="#acmesh-证书安装---reloadcmd无效问题">acme.sh 证书安装 <code>--reloadcmd</code>无效问题</a></li>
+    <li><a href="#openai-api接口反向代理实现国内直接使用">openai api接口反向代理实现国内直接使用</a></li>
+    <li><a href="#云安全组配置规范">云安全组配置规范</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30">2023-03-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5194 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30">2023-03-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6301 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;条评论
@@ -250,6 +253,9 @@
     <li><a href="#双网卡优先级配置">双网卡优先级配置</a></li>
     <li><a href="#网卡连接后执行某个脚本">网卡连接后执行某个脚本</a></li>
     <li><a href="#网卡配置文件固定路由设置">网卡配置文件固定路由设置</a></li>
+    <li><a href="#acmesh-证书安装---reloadcmd无效问题">acme.sh 证书安装 <code>--reloadcmd</code>无效问题</a></li>
+    <li><a href="#openai-api接口反向代理实现国内直接使用">openai api接口反向代理实现国内直接使用</a></li>
+    <li><a href="#云安全组配置规范">云安全组配置规范</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
@@ -1187,7 +1193,163 @@
 </span></span><span class="line"><span class="cl"><span class="nv">GATEWAY0</span><span class="o">=</span>&lt;172.16.31.1&gt; 
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div>
+</div><h1 id="acmesh-证书安装---reloadcmd无效问题" class="headerLink">
+    <a href="#acmesh-%e8%af%81%e4%b9%a6%e5%ae%89%e8%a3%85---reloadcmd%e6%97%a0%e6%95%88%e9%97%ae%e9%a2%98" class="header-mark"></a>acme.sh 证书安装 <code>--reloadcmd</code>无效问题</h1><p>一般来说，我们在使用自动续签证书的时候，需要让<code>acme.sh</code>更新证书后自动重载一下<code>nginx</code>,但是我们的<code>nginx</code>基本都是自编译的，所以得使用<code>acme.sh</code>的<code>--reloadcmd</code>参数，但实际上在初始化时候如果你没有指定<code>--reloadcmd</code>,那么第一次部署后即使你在更新的自动任务中添加<code>--reloadcmd</code>也是无效的，这个时候可以直接修改配置证书的配置文件<code>/root/.acme.sh/example.com/example.com.conf</code>，在里面添加一行<code>Le_ReloadCmd='/usr/bin/systemctl restart nginx.service'</code>就可以了。当然，也可以在初始安装证书的时候添加<code>--reloadcmd</code>参数，他会给你自动加入这个参数到配置文件中.</p>
+<h1 id="openai-api接口反向代理实现国内直接使用" class="headerLink">
+    <a href="#openai-api%e6%8e%a5%e5%8f%a3%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e5%ae%9e%e7%8e%b0%e5%9b%bd%e5%86%85%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8" class="header-mark"></a>openai api接口反向代理实现国内直接使用</h1><ul>
+<li><code>nginx</code> 反向代理设置(仅示例)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">server {
+</span></span><span class="line"><span class="cl">    listen 80;
+</span></span><span class="line"><span class="cl">    listen 443 ssl http2;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    server_name api.example.com;
+</span></span><span class="line"><span class="cl">    #  ssl 相关配置
+</span></span><span class="line"><span class="cl">    include conf.d/api.example.com.ssl;
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    access_log logs/api.example.com.log main;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    add_header Access-Control-Allow-Origin *;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    location / {
+</span></span><span class="line"><span class="cl">        default_type &#39;application/json&#39;;
+</span></span><span class="line"><span class="cl">        return 200 &#39;{&#34;status&#34;: &#34;ok&#34;}&#39;;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    location /v1 {
+</span></span><span class="line"><span class="cl">        proxy_pass https://api.openai.com;
+</span></span><span class="line"><span class="cl">        proxy_ssl_server_name on;
+</span></span><span class="line"><span class="cl">        proxy_set_header Host api.openai.com;
+</span></span><span class="line"><span class="cl">        proxy_set_header X-Real-IP $remote_addr;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>利用<code>cloudflare</code>的<code>Workers</code>来实现
+<ul>
+<li>登陆后在左侧栏中，选择<code>Workers</code>,点击<code>创建服务</code>,输入一个看着顺眼的服务名,选择<code>http处理程序</code>,然后点击<code>创建服务</code>.然后点击右上角<code>快速编辑</code>,在左侧框中填入一下代码，保存部署即可。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">TELEGRAPH_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api.openai.com&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;fetch&#39;</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nx">event</span><span class="p">.</span><span class="nx">respondWith</span><span class="p">(</span><span class="nx">handleRequest</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">request</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">handleRequest</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">URL</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">url</span><span class="p">.</span><span class="nx">host</span> <span class="o">=</span> <span class="nx">TELEGRAPH_URL</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^https?:\/\//</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">modifiedRequest</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Request</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">headers</span>: <span class="kt">request.headers</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">method</span>: <span class="kt">request.method</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">body</span>: <span class="kt">request.body</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">redirect</span><span class="o">:</span> <span class="s1">&#39;follow&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">modifiedRequest</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">modifiedResponse</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Response</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 添加允许跨域访问的响应头
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">modifiedResponse</span><span class="p">.</span><span class="nx">headers</span><span class="p">.</span><span class="kr">set</span><span class="p">(</span><span class="s1">&#39;Access-Control-Allow-Origin&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="nx">modifiedResponse</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>上诉步骤完成后，配置工作基本就算完成了，<code>cloudflare</code>会有一个默认的域名，但由于某些原因，可能访问效果不是很好，不过自定义域名可以解决，具体配置在<code>触发器</code>中。此处可以定义你自己想要设定的域名，不过，要定义自定义域名，你的域名<code>ns</code>需要指定到<code>cloudflare</code>中，后续内容自行研究。</li>
+</ul>
+</li>
+</ul>
+<h1 id="云安全组配置规范" class="headerLink">
+    <a href="#%e4%ba%91%e5%ae%89%e5%85%a8%e7%bb%84%e9%85%8d%e7%bd%ae%e8%a7%84%e8%8c%83" class="header-mark"></a>云安全组配置规范</h1><p>不同的云厂商他的云策略是有差异的，阿里云的云安全组是以优先级来判定的规则先后的(1-100)数字越小，优先级越高。腾讯云为顺序判定，与iptables类似，从上向下。亚马逊无要求，默认拒绝所有流量。需主动配置内外网策略(未详细测试)</p>
+<p>云策略规则部署规范(以阿里云为例)</p>
+<ol>
+<li>默认放行所有公网出流量(此项默认，可不做修改。优先级:1 )</li>
+<li>添加优先级<strong>最低的</strong>入口流量限制(所有协议。优先级: 100)</li>
+<li>添加所有常用的可信端口(如:80、443。优先级: 90)</li>
+<li>添加受信ip(如: 公司、监控机、堡垒机等IP。优先级: 1-50)</li>
+</ol>
+<p>注意事项:</p>
+<ol>
+<li>建议每个受信组单独建立一个安全组，方便管理。</li>
+<li>建议配合云策略和服务器防火墙共同使用。</li>
+</ol>
+</div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

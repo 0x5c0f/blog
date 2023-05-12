@@ -475,3 +475,87 @@ ADDRESS0=172.16.0.0 # 目标地址
 NETMASK0=255.255.0.0 # 子网掩码
 GATEWAY0=<172.16.31.1> 
 ```
+
+# acme.sh 证书安装 `--reloadcmd`无效问题
+一般来说，我们在使用自动续签证书的时候，需要让`acme.sh`更新证书后自动重载一下`nginx`,但是我们的`nginx`基本都是自编译的，所以得使用`acme.sh`的`--reloadcmd`参数，但实际上在初始化时候如果你没有指定`--reloadcmd`,那么第一次部署后即使你在更新的自动任务中添加`--reloadcmd`也是无效的，这个时候可以直接修改配置证书的配置文件`/root/.acme.sh/example.com/example.com.conf`，在里面添加一行`Le_ReloadCmd='/usr/bin/systemctl restart nginx.service'`就可以了。当然，也可以在初始安装证书的时候添加`--reloadcmd`参数，他会给你自动加入这个参数到配置文件中.
+
+# openai api接口反向代理实现国内直接使用
+- `nginx` 反向代理设置(仅示例) 
+```conf
+server {
+    listen 80;
+    listen 443 ssl http2;
+    
+    server_name api.example.com;
+    #  ssl 相关配置
+    include conf.d/api.example.com.ssl;
+    
+
+    access_log logs/api.example.com.log main;
+
+    add_header Access-Control-Allow-Origin *;
+
+    location / {
+        default_type 'application/json';
+        return 200 '{"status": "ok"}';
+    }
+
+    location /v1 {
+        proxy_pass https://api.openai.com;
+        proxy_ssl_server_name on;
+        proxy_set_header Host api.openai.com;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+}
+
+```
+- 利用`cloudflare`的`Workers`来实现
+    - 登陆后在左侧栏中，选择`Workers`,点击`创建服务`,输入一个看着顺眼的服务名,选择`http处理程序`,然后点击`创建服务`.然后点击右上角`快速编辑`,在左侧框中填入一下代码，保存部署即可。
+    ```ts
+        const TELEGRAPH_URL = 'https://api.openai.com';
+
+
+    addEventListener('fetch', event => {
+    event.respondWith(handleRequest(event.request))
+    })
+
+
+    async function handleRequest(request) {
+    const url = new URL(request.url);
+    url.host = TELEGRAPH_URL.replace(/^https?:\/\//, '');
+
+
+    const modifiedRequest = new Request(url.toString(), {
+        headers: request.headers,
+        method: request.method,
+        body: request.body,
+        redirect: 'follow'
+    });
+
+
+    const response = await fetch(modifiedRequest);
+    const modifiedResponse = new Response(response.body, response);
+
+
+    // 添加允许跨域访问的响应头
+    modifiedResponse.headers.set('Access-Control-Allow-Origin', '*');
+
+
+    return modifiedResponse;
+    }
+    ```
+    - 上诉步骤完成后，配置工作基本就算完成了，`cloudflare`会有一个默认的域名，但由于某些原因，可能访问效果不是很好，不过自定义域名可以解决，具体配置在`触发器`中。此处可以定义你自己想要设定的域名，不过，要定义自定义域名，你的域名`ns`需要指定到`cloudflare`中，后续内容自行研究。
+
+# 云安全组配置规范 
+不同的云厂商他的云策略是有差异的，阿里云的云安全组是以优先级来判定的规则先后的(1-100)数字越小，优先级越高。腾讯云为顺序判定，与iptables类似，从上向下。亚马逊无要求，默认拒绝所有流量。需主动配置内外网策略(未详细测试)
+
+云策略规则部署规范(以阿里云为例)
+1. 默认放行所有公网出流量(此项默认，可不做修改。优先级:1 )
+2. 添加优先级**最低的**入口流量限制(所有协议。优先级: 100)
+3. 添加所有常用的可信端口(如:80、443。优先级: 90)
+4. 添加受信ip(如: 公司、监控机、堡垒机等IP。优先级: 1-50)
+
+注意事项: 
+1. 建议每个受信组单独建立一个安全组，方便管理。
+2. 建议配合云策略和服务器防火墙共同使用。
