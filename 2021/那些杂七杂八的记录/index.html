@@ -1197,8 +1197,8 @@
     <a href="#acmesh-%e8%af%81%e4%b9%a6%e5%ae%89%e8%a3%85---reloadcmd%e6%97%a0%e6%95%88%e9%97%ae%e9%a2%98" class="header-mark"></a>acme.sh 证书安装 <code>--reloadcmd</code>无效问题</h1><p>一般来说，我们在使用自动续签证书的时候，需要让<code>acme.sh</code>更新证书后自动重载一下<code>nginx</code>,但是我们的<code>nginx</code>基本都是自编译的，所以得使用<code>acme.sh</code>的<code>--reloadcmd</code>参数，但实际上在初始化时候如果你没有指定<code>--reloadcmd</code>,那么第一次部署后即使你在更新的自动任务中添加<code>--reloadcmd</code>也是无效的，这个时候可以直接修改配置证书的配置文件<code>/root/.acme.sh/example.com/example.com.conf</code>，在里面添加一行<code>Le_ReloadCmd='/usr/bin/systemctl restart nginx.service'</code>就可以了。当然，也可以在初始安装证书的时候添加<code>--reloadcmd</code>参数，他会给你自动加入这个参数到配置文件中.</p>
 <h1 id="openai-api接口反向代理实现国内直接使用" class="headerLink">
     <a href="#openai-api%e6%8e%a5%e5%8f%a3%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e5%ae%9e%e7%8e%b0%e5%9b%bd%e5%86%85%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8" class="header-mark"></a>openai api接口反向代理实现国内直接使用</h1><ul>
-<li><code>nginx</code> 反向代理设置(仅示例)</li>
-</ul>
+<li>
+<p><code>nginx</code> 反向代理设置(仅示例)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1232,11 +1232,11 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">server {
 </span></span><span class="line"><span class="cl">    listen 80;
 </span></span><span class="line"><span class="cl">    listen 443 ssl http2;
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    server_name api.example.com;
 </span></span><span class="line"><span class="cl">    #  ssl 相关配置
 </span></span><span class="line"><span class="cl">    include conf.d/api.example.com.ssl;
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    access_log logs/api.example.com.log main;
 </span></span><span class="line"><span class="cl">
@@ -1257,8 +1257,9 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>利用<code>cloudflare</code>的<code>Workers</code>来实现
+</div></li>
+<li>
+<p>利用<code>cloudflare</code>的<code>Workers</code>来实现</p>
 <ul>
 <li>登陆后在左侧栏中，选择<code>Workers</code>,点击<code>创建服务</code>,输入一个看着顺眼的服务名,选择<code>http处理程序</code>,然后点击<code>创建服务</code>.然后点击右上角<code>快速编辑</code>,在左侧框中填入一下代码，保存部署即可。</li>
 </ul>

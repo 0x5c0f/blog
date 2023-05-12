@@ -481,35 +481,35 @@ GATEWAY0=<172.16.31.1>
 
 # openai api接口反向代理实现国内直接使用
 - `nginx` 反向代理设置(仅示例) 
-```conf
-server {
-    listen 80;
-    listen 443 ssl http2;
-    
-    server_name api.example.com;
-    #  ssl 相关配置
-    include conf.d/api.example.com.ssl;
-    
+    ```conf
+    server {
+        listen 80;
+        listen 443 ssl http2;
+        
+        server_name api.example.com;
+        #  ssl 相关配置
+        include conf.d/api.example.com.ssl;
+        
 
-    access_log logs/api.example.com.log main;
+        access_log logs/api.example.com.log main;
 
-    add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Origin *;
 
-    location / {
-        default_type 'application/json';
-        return 200 '{"status": "ok"}';
+        location / {
+            default_type 'application/json';
+            return 200 '{"status": "ok"}';
+        }
+
+        location /v1 {
+            proxy_pass https://api.openai.com;
+            proxy_ssl_server_name on;
+            proxy_set_header Host api.openai.com;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+
     }
 
-    location /v1 {
-        proxy_pass https://api.openai.com;
-        proxy_ssl_server_name on;
-        proxy_set_header Host api.openai.com;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-
-}
-
-```
+    ```
 
 
 - 利用`cloudflare`的`Workers`来实现
