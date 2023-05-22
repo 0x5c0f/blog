@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2020\/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, java, 解决方案","wordcount":  309 ,
+        },"genre": "posts","keywords": "linux, java, 解决方案","wordcount":  428 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2020\/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2020-07-19T00:00:00+00:00","dateModified": "2020-07-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -134,13 +134,14 @@
         <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-sunsecurityvalidatorvalidatorexception-pkix-path-building-failed-sunsecurityprovidercertpathsuncertpathbuilderexception-unable-to-find-valid-certification-path-to-requested-target">1. sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target;</a></li>
+    <li><a href="#2-nginx-反向代理-springboot-容器应用浏览器访问时静态资源间接性502">2. <code>nginx</code> 反向代理 <code>Springboot</code> 容器应用，浏览器访问时静态资源间接性502</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Java运维故障记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-19">2020-07-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-07-19">2020-07-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 309 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-19">2020-07-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-07-19">2020-07-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 428 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/2020/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="Java运维故障记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2020/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2020/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="Java运维故障记录">
@@ -156,6 +157,7 @@
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-sunsecurityvalidatorvalidatorexception-pkix-path-building-failed-sunsecurityprovidercertpathsuncertpathbuilderexception-unable-to-find-valid-certification-path-to-requested-target">1. sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target;</a></li>
+    <li><a href="#2-nginx-反向代理-springboot-容器应用浏览器访问时静态资源间接性502">2. <code>nginx</code> 反向代理 <code>Springboot</code> 容器应用，浏览器访问时静态资源间接性502</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition warning open">
@@ -223,7 +225,28 @@
 </span></span><span class="line"><span class="cl">Successfully connected
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div>
+</div><h1 id="2-nginx-反向代理-springboot-容器应用浏览器访问时静态资源间接性502" class="headerLink">
+    <a href="#2-nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86-springboot-%e5%ae%b9%e5%99%a8%e5%ba%94%e7%94%a8%e6%b5%8f%e8%a7%88%e5%99%a8%e8%ae%bf%e9%97%ae%e6%97%b6%e9%9d%99%e6%80%81%e8%b5%84%e6%ba%90%e9%97%b4%e6%8e%a5%e6%80%a7502" class="header-mark"></a>2. <code>nginx</code> 反向代理 <code>Springboot</code> 容器应用，浏览器访问时静态资源间接性502</h1><ul>
+<li>第一种情况: cookie携带的header泰斗，请求头数据过大</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># nginx 调整一下参数 </span>
+</span></span><span class="line"><span class="cl"><span class="na">proxy_buffer_size 64k;</span>
+</span></span><span class="line"><span class="cl"><span class="na">proxy_buffers 32 32k;</span>
+</span></span><span class="line"><span class="cl"><span class="na">proxy_busy_buffers_size 128k;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第二种情况: 防火墙问题，重置就好了(有容器的服务器一定不要开防火墙,不然各种问题)</li>
+</ul>
+</div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

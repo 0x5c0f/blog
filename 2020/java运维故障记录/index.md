@@ -31,3 +31,13 @@ $ java -jar SSLPing.jar visa.vippay.org 443
 Successfully connected
 ```
 
+# 2. `nginx` 反向代理 `Springboot` 容器应用，浏览器访问时静态资源间接性502
+- 第一种情况: cookie携带的header泰斗，请求头数据过大
+```ini
+# nginx 调整一下参数 
+proxy_buffer_size 64k;
+proxy_buffers 32 32k;
+proxy_busy_buffers_size 128k;
+```
+
+- 第二种情况: 防火墙问题，重置就好了(有容器的服务器一定不要开防火墙,不然各种问题)

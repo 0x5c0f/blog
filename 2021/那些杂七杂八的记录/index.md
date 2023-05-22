@@ -515,7 +515,7 @@ GATEWAY0=<172.16.31.1>
 - 利用`cloudflare`的`Workers`来实现
     - 登陆后在左侧栏中，选择`Workers`,点击`创建服务`,输入一个看着顺眼的服务名,选择`http处理程序`,然后点击`创建服务`.然后点击右上角`快速编辑`,在左侧框中填入一下代码，保存部署即可。
     ```ts
-        const TELEGRAPH_URL = 'https://api.openai.com';
+    const TELEGRAPH_URL = 'https://api.openai.com';
 
 
     addEventListener('fetch', event => {

@@ -130,3 +130,11 @@ $> sudo dnf system-upgrade download --releasever=35
 ## 重启升级
 $> sudo dnf system-upgrade reboot
 ```
+
+# 14. fedora下登陆密钥环未被解锁问题
+- 默认情况下，系统安装后，密钥环密码和基础帐号安装时候的密码一致，这个东西个人电脑感觉没什么用，可以通过以下方式进行取消
+```bash
+# fedora 下默认是没有安装seahorse的(本来我原来也没有找到解决方案，无意间测试ubuntu才发现这个)
+$> sudo dnf install seahorse
+# 活动栏中找到"密码和密钥"(及"seahorse"), 打开后找到登陆, 右键登陆，设置为空密码即可。
+```
