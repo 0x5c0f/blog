@@ -45,7 +45,7 @@
     <link>https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/</link>
     <pubDate>Mon, 28 Feb 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/</guid>
-    <description><![CDATA[前言 1 ***目前已更新到fedora 38*** 2. 安装鼠标右键“在终端中打开”，33中默认好像已经有了 1 [root@cxd ~]$ sudo dnf install nautilus-open-terminal 3. 安装 GNOME-tweak-tool 1 2 3 4 5 6 7 8 9 10 11 12 13]]></description>
+    <description><![CDATA[前言 以下的一些优化应该是我还在用fedora26的时候记录的，虽然现在我已经都更新到33了，不过这些优化还是有点用的，可以参考着改, 后续遇到]]></description>
 </item><item>
     <title>PPTP相关</title>
     <link>https://blog.0x5c0f.cc/2021/pptp%E7%9B%B8%E5%85%B3/</link>
