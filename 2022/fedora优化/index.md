@@ -2,7 +2,8 @@
 
 
 {{< admonition type=info title="前言" open=true >}}
-***以下的一些优化应该是我还在用`fedora26`的时候记录的，虽然现在我已经都更新到`33`了，不过这些优化还是有点用的，可以参考着改, 后续遇到的问题我也在慢慢更新上来***   
+~~~以下的一些优化应该是我还在用`fedora26`的时候记录的，虽然现在我已经都更新到`33`了，不过这些优化还是有点用的，可以参考着改, 后续遇到的问题我也在慢慢更新上来~~~  
+***目前已更新到fedora 38***
 {{< /admonition >}}
 
 # 2. 安装鼠标右键“在终端中打开”，33中默认好像已经有了 
@@ -15,10 +16,11 @@ $> sudo dnf install gnome-tweak-tool
 ## 扩展库安装
 ### Dash to dock (可选:Dash to panel)
 ### system-monitor 
-### Recent(Item)s 
-### Topicons plus git  
-### Drop down terminal
-### Clipboard indicator 
+### Recent(Item)s (fedora 38 已无，暂为找到替代方案)
+### Topicons plus git(fedora 38 已无,切换为 AppIndicator and KStatusNotifierItem Support)
+### Drop down terminal(fedora 38 已无)
+### Clipboard indicator(可以切换为 Pano) 
+### Todo.txt 
 ### Bottompanel(将任务栏放到下面,与windows list 和 Dash to panel 扩展冲突)
 
 
@@ -35,8 +37,8 @@ $> sudo dnf install flameshot  # 火焰截图,很好用,拥有win下面截图软
 $> sudo dnf install audacity   # 声音处理工具,实际好像没啥用   
 $> sudo dnf install peek       # gif 图像录制工具 
 $> sudo dnf install inkscape       # 矢量图画画工具 
+$> sudo dnf install sleek      # todo 任务(https://github.com/ransome1/sleek)
 $> sudo dnf install libreoffice-langpack-zh-Hans.x86_64   # libreoffice的中文语言包 
-$> sudo pip3 install qtodotxt    # 任务列表
 $> sudo pip3 install bpython
 # https://linux.cn/article-11434-1.html
 # sudo dnf install SDL2 android-tools # 安卓投屏工具 
@@ -47,7 +49,11 @@ $> sudo pip3 install bpython
 ```bash
 $> 
 $> sudo dnf install fcitx fcitx-{ui-light,qt{4,5},table,gtk{2,3},table-chinese,configtool,sunpinyin}
-$> 
+$> sudo vim /etc/profile.d/fcitx.sh
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+# 开机启动项 添加fcitx ，然后重启
 ```
 
 # 6. `fedroa`下多`jdk`切换方案  
