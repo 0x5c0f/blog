@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  6301 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  6400 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2023-03-30T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -185,14 +185,16 @@
     <li><a href="#acmesh-证书安装---reloadcmd无效问题">acme.sh 证书安装 <code>--reloadcmd</code>无效问题</a></li>
     <li><a href="#openai-api接口反向代理实现国内直接使用">openai api接口反向代理实现国内直接使用</a></li>
     <li><a href="#云安全组配置规范">云安全组配置规范</a></li>
+    <li><a href="#webmin-密码修改">webmin 密码修改</a></li>
+    <li><a href="#记录一个nginx-反代规则">记录一个nginx 反代规则</a></li>
+    <li><a href="#debian-pull-镜像-408-错误">debian pull 镜像 408 错误</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30">2023-03-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6301 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30">2023-03-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6400 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;条评论
@@ -257,6 +259,9 @@
     <li><a href="#acmesh-证书安装---reloadcmd无效问题">acme.sh 证书安装 <code>--reloadcmd</code>无效问题</a></li>
     <li><a href="#openai-api接口反向代理实现国内直接使用">openai api接口反向代理实现国内直接使用</a></li>
     <li><a href="#云安全组配置规范">云安全组配置规范</a></li>
+    <li><a href="#webmin-密码修改">webmin 密码修改</a></li>
+    <li><a href="#记录一个nginx-反代规则">记录一个nginx 反代规则</a></li>
+    <li><a href="#debian-pull-镜像-408-错误">debian pull 镜像 408 错误</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
@@ -1351,7 +1356,45 @@
 <li>建议每个受信组单独建立一个安全组，方便管理。</li>
 <li>建议配合云策略和服务器防火墙共同使用。</li>
 </ol>
+<h1 id="webmin-密码修改" class="headerLink">
+    <a href="#webmin-%e5%af%86%e7%a0%81%e4%bf%ae%e6%94%b9" class="header-mark"></a>webmin 密码修改</h1><ul>
+<li><code>/usr/libexec/webmin/changepass.pl /etc/webmin &lt;user&gt; &lt;passwd&gt;</code></li>
+</ul>
+<h1 id="记录一个nginx-反代规则" class="headerLink">
+    <a href="#%e8%ae%b0%e5%bd%95%e4%b8%80%e4%b8%aanginx-%e5%8f%8d%e4%bb%a3%e8%a7%84%e5%88%99" class="header-mark"></a>记录一个nginx 反代规则</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 请求 以 /example 开头的uri，反向代理到 http://127.0.0.1:8081/example 下</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">location ~ ^/example<span class="o">(</span>$<span class="p">|</span>/<span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    proxy_pass http://127.0.0.1:8081<span class="nv">$request_uri</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header Host <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header X-Real-IP <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="debian-pull-镜像-408-错误" class="headerLink">
+    <a href="#debian-pull-%e9%95%9c%e5%83%8f-408-%e9%94%99%e8%af%af" class="header-mark"></a>debian pull 镜像 408 错误</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 不知道原因,解决方案如下</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 参考地址: https://stackoverflow.com/questions/38386809/docker-error-http-408-response-body-invalid-character-looking-for-beginnin</span>
+</span></span><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> dev eth0 mtu <span class="m">1450</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -1383,7 +1426,7 @@
             </noscript></div></article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.112.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.112.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp">渝ICP备2020011834号-2</span></div>
             <div class="footer-line"></div>

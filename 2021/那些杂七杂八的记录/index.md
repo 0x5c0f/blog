@@ -561,3 +561,25 @@ GATEWAY0=<172.16.31.1>
 注意事项: 
 1. 建议每个受信组单独建立一个安全组，方便管理。
 2. 建议配合云策略和服务器防火墙共同使用。
+
+# webmin 密码修改 
+- `/usr/libexec/webmin/changepass.pl /etc/webmin <user> <passwd>` 
+
+# 记录一个nginx 反代规则
+```sh
+# 请求 以 /example 开头的uri，反向代理到 http://127.0.0.1:8081/example 下
+
+location ~ ^/example($|/) {
+    proxy_pass http://127.0.0.1:8081$request_uri;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+}
+
+```
+
+# debian pull 镜像 408 错误
+```bash
+# 不知道原因,解决方案如下
+# 参考地址: https://stackoverflow.com/questions/38386809/docker-error-http-408-response-body-invalid-character-looking-for-beginnin
+sudo ip link set dev eth0 mtu 1450
+```
