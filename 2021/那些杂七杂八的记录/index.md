@@ -549,6 +549,25 @@ GATEWAY0=<172.16.31.1>
     ```
     - 上诉步骤完成后，配置工作基本就算完成了，`cloudflare`会有一个默认的域名，但由于某些原因，可能访问效果不是很好，不过自定义域名可以解决，具体配置在`触发器`中。此处可以定义你自己想要设定的域名，不过，要定义自定义域名，你的域名`ns`需要指定到`cloudflare`中，后续内容自行研究。
 
+- `vercel` 反代`openai`
+```json
+// vercel.json -- cmd: vercel
+{
+    "rewrites": [
+        { "source": "/", "destination": "https://api.openai.com" },
+        {
+            "source": "/:match*",
+            "destination": "https://api.openai.com/:match*"
+        }
+    ],
+    "github": {
+        "silent": true
+    }
+}
+```
+
+
+
 # 云安全组配置规范 
 不同的云厂商他的云策略是有差异的，阿里云的云安全组是以优先级来判定的规则先后的(1-100)数字越小，优先级越高。腾讯云为顺序判定，与iptables类似，从上向下。亚马逊无要求，默认拒绝所有流量。需主动配置内外网策略(未详细测试)
 
@@ -582,4 +601,10 @@ location ~ ^/example($|/) {
 # 不知道原因,解决方案如下
 # 参考地址: https://stackoverflow.com/questions/38386809/docker-error-http-408-response-body-invalid-character-looking-for-beginnin
 sudo ip link set dev eth0 mtu 1450
+```
+
+# 在bash脚本中使用别名(alias)的方式
+```bash
+# 打开alias支持
+shopt -s expand_aliases
 ```

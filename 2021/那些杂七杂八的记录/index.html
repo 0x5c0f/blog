@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  6400 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  6486 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2023-03-30T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -188,13 +188,14 @@
     <li><a href="#webmin-密码修改">webmin 密码修改</a></li>
     <li><a href="#记录一个nginx-反代规则">记录一个nginx 反代规则</a></li>
     <li><a href="#debian-pull-镜像-408-错误">debian pull 镜像 408 错误</a></li>
+    <li><a href="#在bash脚本中使用别名alias的方式">在bash脚本中使用别名(alias)的方式</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30">2023-03-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6400 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30">2023-03-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6486 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="那些杂七杂八的记录">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"></span>&nbsp;条评论
@@ -262,9 +263,18 @@
     <li><a href="#webmin-密码修改">webmin 密码修改</a></li>
     <li><a href="#记录一个nginx-反代规则">记录一个nginx 反代规则</a></li>
     <li><a href="#debian-pull-镜像-408-错误">debian pull 镜像 408 错误</a></li>
+    <li><a href="#在bash脚本中使用别名alias的方式">在bash脚本中使用别名(alias)的方式</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
+            </div><div class="content" id="content"><div class="details admonition note open">
+                <div class="details-summary admonition-title">
+                    <i class="icon fas fa-pencil-alt fa-fwnote"></i>注意<i class="details-icon fas fa-angle-right fa-fw"></i>
+                </div>
+                <div class="details-content">
+                    <div class="admonition-content">
+                        本文最后更新于 <span class="timeago" datetime="2023-03-30T00:00:00" title="March 30, 2023">2023-03-30</span>，文中内容可能已过时。</div>
+                </div>
+            </div><h1 id="gnupg-加密与解密" class="headerLink">
     <a href="#gnupg-%e5%8a%a0%e5%af%86%e4%b8%8e%e8%a7%a3%e5%af%86" class="header-mark"></a>GnuPG 加密与解密</h1><h2 id="gpg-对称加密" class="headerLink">
     <a href="#gpg-%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="header-mark"></a>gpg 对称加密</h2><p>加密:  <code>gpg -c &lt;file&gt;</code>， 输入两次加密密码，完成后生成文件<code>&lt;file&gt;.gpg</code>(加密后源文件保留)<br>
 解密:  <code>gpg &lt;file&gt;.gpg</code>, 输入加密密码,正确后生成文件<code>&lt;file&gt;</code>(解密后加密文件保留)</p>
@@ -1341,8 +1351,43 @@
 <li>上诉步骤完成后，配置工作基本就算完成了，<code>cloudflare</code>会有一个默认的域名，但由于某些原因，可能访问效果不是很好，不过自定义域名可以解决，具体配置在<code>触发器</code>中。此处可以定义你自己想要设定的域名，不过，要定义自定义域名，你的域名<code>ns</code>需要指定到<code>cloudflare</code>中，后续内容自行研究。</li>
 </ul>
 </li>
+<li>
+<p><code>vercel</code> 反代<code>openai</code></p>
+</li>
 </ul>
-<h1 id="云安全组配置规范" class="headerLink">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="c1">// vercel.json -- cmd: vercel
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;rewrites&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span> <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="nt">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;https://api.openai.com&#34;</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="s2">&#34;/:match*&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;destination&#34;</span><span class="p">:</span> <span class="s2">&#34;https://api.openai.com/:match*&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;github&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;silent&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="云安全组配置规范" class="headerLink">
     <a href="#%e4%ba%91%e5%ae%89%e5%85%a8%e7%bb%84%e9%85%8d%e7%bd%ae%e8%a7%84%e8%8c%83" class="header-mark"></a>云安全组配置规范</h1><p>不同的云厂商他的云策略是有差异的，阿里云的云安全组是以优先级来判定的规则先后的(1-100)数字越小，优先级越高。腾讯云为顺序判定，与iptables类似，从上向下。亚马逊无要求，默认拒绝所有流量。需主动配置内外网策略(未详细测试)</p>
 <p>云策略规则部署规范(以阿里云为例)</p>
 <ol>
@@ -1392,6 +1437,17 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 不知道原因,解决方案如下</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 参考地址: https://stackoverflow.com/questions/38386809/docker-error-http-408-response-body-invalid-character-looking-for-beginnin</span>
 </span></span><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> dev eth0 mtu <span class="m">1450</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="在bash脚本中使用别名alias的方式" class="headerLink">
+    <a href="#%e5%9c%a8bash%e8%84%9a%e6%9c%ac%e4%b8%ad%e4%bd%bf%e7%94%a8%e5%88%ab%e5%90%8dalias%e7%9a%84%e6%96%b9%e5%bc%8f" class="header-mark"></a>在bash脚本中使用别名(alias)的方式</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 打开alias支持</span>
+</span></span><span class="line"><span class="cl"><span class="nb">shopt</span> -s expand_aliases
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>
