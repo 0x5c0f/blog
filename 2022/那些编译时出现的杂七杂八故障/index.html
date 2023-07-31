@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  394 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  468 ,
         "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C\/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-28T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -139,13 +139,14 @@
     <li><a href="#3-python-37x-zipimportzipimporterror-cant-decompress-data-zlib-not-available">3. python 3.7.x zipimport.ZipImportError: can&rsquo;t decompress data; zlib not available</a></li>
     <li><a href="#4-python-37x--modulenotfounderror-no-module-named-_ctypes">4. python 3.7.x  ModuleNotFoundError: No module named &lsquo;_ctypes&rsquo;</a></li>
     <li><a href="#5-python-37x-sslerrorcant-connect-to-https-url-because-the-ssl-module-is-not-available">5. python 3.7.x &lsquo;SSLError(&ldquo;Can&rsquo;t connect to HTTPS URL because the SSL module is not available.&rdquo;)&rsquo;</a></li>
+    <li><a href="#6-python-3x-errors-like--could-not-import-runpy-module-operations-as-following">6. python 3.x &rsquo;errors like : “Could not import runpy module”, operations as following:'</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些编译时出现的杂七杂八故障</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 394 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/" class="leancloud_visitors" data-flag-title="那些编译时出现的杂七杂八故障">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-24">2022-06-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 468 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/" class="leancloud_visitors" data-flag-title="那些编译时出现的杂七杂八故障">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/" class="comment_count" data-flag-title="那些编译时出现的杂七杂八故障">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/"></span>&nbsp;条评论
@@ -164,6 +165,7 @@
     <li><a href="#3-python-37x-zipimportzipimporterror-cant-decompress-data-zlib-not-available">3. python 3.7.x zipimport.ZipImportError: can&rsquo;t decompress data; zlib not available</a></li>
     <li><a href="#4-python-37x--modulenotfounderror-no-module-named-_ctypes">4. python 3.7.x  ModuleNotFoundError: No module named &lsquo;_ctypes&rsquo;</a></li>
     <li><a href="#5-python-37x-sslerrorcant-connect-to-https-url-because-the-ssl-module-is-not-available">5. python 3.7.x &lsquo;SSLError(&ldquo;Can&rsquo;t connect to HTTPS URL because the SSL module is not available.&rdquo;)&rsquo;</a></li>
+    <li><a href="#6-python-3x-errors-like--could-not-import-runpy-module-operations-as-following">6. python 3.x &rsquo;errors like : “Could not import runpy module”, operations as following:'</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition warning open">
@@ -259,6 +261,19 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#  Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by &#39;SSLError(&#34;Can&#39;t connect to HTTPS URL because the SSL module is not available.&#34;)&#39;: /simple/request/</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 先安装，在加上`--with-ssl`编译安装，可加上--enable-optimizations ，让python运行得更快</span>
 </span></span><span class="line"><span class="cl">yum install openssl-devel -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="6-python-3x-errors-like--could-not-import-runpy-module-operations-as-following" class="headerLink">
+    <a href="#6-python-3x-errors-like--could-not-import-runpy-module-operations-as-following" class="header-mark"></a>6. python 3.x &rsquo;errors like : “Could not import runpy module”, operations as following:'</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. gcc 需要升级到8.x + </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 取消 --enable-optimizations 参数 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 另: python 3.x 编译需要依赖openssl 1.1.1 ./config --prefix=/pathto/openssl &amp;&amp; make &amp;&amp; make install</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

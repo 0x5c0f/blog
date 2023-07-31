@@ -46,3 +46,10 @@ yum install libffi-devel -y
 yum install openssl-devel -y
 ```
 
+# 6. python 3.x 'errors like : “Could not import runpy module”, operations as following:'
+```bash
+# 1. gcc 需要升级到8.x + 
+# 2. 取消 --enable-optimizations 参数 
+# 另: python 3.x 编译需要依赖openssl 1.1.1 ./config --prefix=/pathto/openssl && make && make install
+```
+

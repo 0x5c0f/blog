@@ -7,7 +7,7 @@
 
 ```bash
 make PREFIX=/opt/redis-5.0.10 install 
-mkdir -p /opt/redis-5.0.10/{data,logs}
+mkdir -p /opt/redis-5.0.10/{data,logs,etc}
 ```
 
 ## 1.1. 配置文件额外修改以下参数(多少个节点，多少个独立配置文件)
