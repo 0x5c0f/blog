@@ -246,15 +246,11 @@ $> s3fs s3空间名 /mnt/s3fs -o passwd_file=/mnt/.passwd-s3fs -o url=http://s3-
 sudo -u zabbix curl --unix-socket /var/run/docker.sock --no-buffer -XGET v1.24/_ping
 ```
 
-# rdesktop-vrdp 远程桌面工具安装
-- rdesktop-vrdp 是 viralbox的一个很好用的远程桌面工具，没有独立包，可从virtualbox下分离出来单独使用 
+# rdesktop 远程桌面工具安装
+- rdesktop 用于linux下的rdp工具，还是非常好用的 
 ```
-$> sudo dnf install liblzf
-$> rpm2cpio VirtualBox-server-6.1.28-1.fc33.x86_64.rpm |cpio -div
-$> cp ./usr/bin/rdesktop-vrdp /usr/local/bin/
-$> cp -v ./usr/lib64/virtualbox/VBoxRT.so /usr/lib64/
-$> ldconfig
-$> rdesktop-vrdp -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=/tmp/ -u administrator <server_ip>:<port> -p<password>
+$> sudo dnf install rdesktop
+$> rdesktop -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=/tmp/ -u administrator <server_ip>:<port> -p<password>
 ```
 
 # Umask 计算方法 
@@ -607,4 +603,13 @@ sudo ip link set dev eth0 mtu 1450
 ```bash
 # 打开alias支持
 shopt -s expand_aliases
+```
+
+## rabbitmq ssl 证书配置
+> https://www.cnblogs.com/hellxz/p/15776987.html
+```bash
+# ssl-server: 
+sh make_server_cert.sh rabbitmq-server <server_passwd>
+# ssl-client:
+sh create_client_cert.sh rabbitmq-client <client_passwd>
 ```

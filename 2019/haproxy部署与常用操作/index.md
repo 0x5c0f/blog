@@ -262,16 +262,17 @@ listen tcptest
 
 - **haproxy.init.sh**   
 ```bash
-#!/bin/bash
-#################################################
-#   author      0x5c0f(初版作者https://zhang.ge/5125.html)
-#   date        2019-04-11 收集整理
-#   email       mail@0x5c0f.cc
-#   web         blog.0x5c0f.cc
-#   version     1.0
-#   last update 2019-04-11
-#   descript    Use : haproxy.init.sh -h
-#################################################
+#!/bin/sh
+#
+# chkconfig: - 85 15
+# description: HAProxy is a TCP/HTTP reverse proxy which is particularly suited \
+#              for high availability environments.
+# processname: haproxy
+# config: /opt/haproxy/etc/haproxy.cfg
+# pidfile: /opt/haproxy/haproxy.pid
+
+# Script Author: 0x5c0f(初版作者https://zhang.ge/5125.html)
+# Version: 2004060600
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
