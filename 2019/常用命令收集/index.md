@@ -491,3 +491,17 @@ $> strace -p <PID> -e trace=open,execve,stat
 # 3. 在输出中查找正在执行的 PHP 脚本
 $> strace -p <PID> -e trace=open,execve,stat 2>&1 | grep '\.php'
 ```
+
+# 查询当前目录下 `md5` 相同的文件 
+```bash
+$> find . -type f -exec md5sum {} + | sort | uniq -w32 -dD
+# uniq -w32 -dD：找到重复的MD5哈希，并只打印重复的行
+```
+
+# 查询当前目录下 `md5` 等于某个值并删除/移动
+```bash
+# 删除
+$> find . -type f -exec md5sum {} + | grep 'your_md5_value' | cut -d ' ' -f 2- | xargs rm
+# 移动
+$> find . -type f -exec md5sum {} + | grep 'your_md5_value' | cut -d ' ' -f 2- | xargs -I {} mv {} /path/to/destination/
+```

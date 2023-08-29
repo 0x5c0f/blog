@@ -79,3 +79,32 @@
    </system.web>
 </configuration>
 ```
+
+# IIS 如何修改文件上传限制
+要修改IIS中的文件上传限制，可以按照以下步骤操作：
+1. 打开IIS管理器（`Internet Information Services Manager`）。
+2. 在左侧导航栏中，展开服务器节点，并找到您要修改的站点。单击该站点。
+3. 在右侧窗口中，双击“配置编辑器”图标。
+4. 在“配置编辑器”窗口中，选择“`system.webServer/Security/requestFiltering`”节点。
+5. 在右侧窗口中，查找并编辑以下设置来修改文件上传限制：
+   - `maxAllowedContentLength`：此设置用于限制请求内容的最大大小。以字节为单位。例如，如果要将上传文件大小限制为100MB，则将其设置为104857600（100MB * 1024KB * 1024B）。
+   - `maxRequestLength`：此设置用于限制请求的最大大小。以KB为单位。例如，如果要将上传文件大小限制为100MB，则将其设置为102400（100MB * 1024KB）。
+
+   注意：这两个设置需要同时更改，以确保文件上传限制的生效。
+
+6. 修改完上述设置后，点击“应用”按钮保存更改。
+7. 关闭“配置编辑器”窗口和IIS管理器。
+
+现在，您已成功修改了IIS中的文件上传限制。请注意，这些设置可能会对整个站点或虚拟目录产生影响，因此请确保根据需要进行适当的调整。
+```xml
+<configuration>
+    <system.webServer>
+        <security>
+            <requestFiltering>
+                <!-- 100M -->
+                <requestLimits maxAllowedContentLength="100000000" /> 
+            </requestFiltering>
+        </security>
+    </system.webServer>
+</configuration>
+```
