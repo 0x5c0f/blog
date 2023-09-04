@@ -41,3 +41,8 @@ proxy_busy_buffers_size 128k;
 ```
 
 - 第二种情况: 防火墙问题，重置就好了(有容器的服务器一定不要开防火墙,不然各种问题)
+
+# 2. cn.hutool.core.io.IORuntimeException: SSLHandshakeException: Received fatal alert: unrecognized_name
+- 问题： 开发的一个`java`程序，连接测试环境的`api`正常，但切换到正式的`api`就报错
+- 分析：可能，正式环境`https` 仅支持 `tls1.2`, 我们使用的`JDK`可能不支持
+- 解决: 升级`JDK 8u111` 到  `JDK 8u322`，就可以了(实际环境, 基础容器 `java:8u111` 切换到`openjdk:8u322`)  
