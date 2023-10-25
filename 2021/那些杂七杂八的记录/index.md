@@ -627,4 +627,3 @@ redis_memory_used_bytes / on(hostname) group_left label_replace(node_memory_MemT
 # 方法二: 
 redis_memory_used_bytes / on(hostname) group_left node_memory_MemTotal_bytes
 ```
-
