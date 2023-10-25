@@ -613,3 +613,18 @@ sh make_server_cert.sh rabbitmq-server <server_passwd>
 # ssl-client:
 sh create_client_cert.sh rabbitmq-client <client_passwd>
 ```
+
+## prometheus 不同指标计间的计算方法
+```ini
+## redis_memory_used_bytes Redis 内存使用量
+### redis_memory_used_bytes{cloudtype="阿里云", hostname="riecaeph0noo", instance="127.0.0.1:16370", job="RedisStatusMonitor", ostype="linux", services="redis"} 3322384
+## node_memory_MemTotal_bytes 系统总内存
+###  node_memory_MemTotal_bytes{cloudtype="阿里云", hostname="riecaeph0noo", instance="1.1.1.1", job="ServerStatusMonitor", ostype="linux", services="server"} 32868929536
+# 方法一: 
+## 计算 Redis 内存使用量占主机内存总和的百分比(适用指标标签不一致的情况)
+redis_memory_used_bytes / on(hostname) group_left label_replace(node_memory_MemTotal_bytes, "hostname_group", "", "hostname", "(.*)") * 100 > 90
+
+# 方法二: 
+redis_memory_used_bytes / on(hostname) group_left node_memory_MemTotal_bytes
+```
+
