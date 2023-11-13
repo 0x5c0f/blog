@@ -4,26 +4,33 @@
         <link>https://blog.0x5c0f.cc/categories/</link>
         <description>Categories - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>linux</title>
+    <link>https://blog.0x5c0f.cc/categories/linux/</link>
+    <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>0x5c0f</name>
+    </author><guid>https://blog.0x5c0f.cc/categories/linux/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>解决方案</title>
+    <link>https://blog.0x5c0f.cc/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+    <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>0x5c0f</name>
+    </author><guid>https://blog.0x5c0f.cc/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>整理收集</title>
+    <link>https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/</link>
+    <pubDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>0x5c0f</name>
+    </author><guid>https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>windows</title>
     <link>https://blog.0x5c0f.cc/categories/windows/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
     </author><guid>https://blog.0x5c0f.cc/categories/windows/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>整理收集</title>
-    <link>https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/</link>
-    <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>linux</title>
-    <link>https://blog.0x5c0f.cc/categories/linux/</link>
-    <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/categories/linux/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>运维记事</title>

@@ -4,7 +4,7 @@
         <link>https://blog.0x5c0f.cc/categories/linux/</link>
         <description>linux - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/linux/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/linux/" rel="self" type="application/rss+xml" /><item>
     <title>常用web环境优化</title>
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
@@ -29,6 +29,18 @@
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[收集的一些感觉挺好用的工具]]></description>
 </item><item>
+    <title>页面加载时间统计</title>
+    <link>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</link>
+    <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</guid>
+    <description><![CDATA[js 组件 直接保存为文件,插入到 html 末尾即可(&lt;script src=&quot;js/pcheck.js&quot;&gt;&lt;/script&gt;), 用来统计当前页面的各类加载时间然后推送到远端 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17]]></description>
+</item><item>
+    <title>内网.外网.宽带.带宽.流量.网速之间的区别与联系</title>
+    <link>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</link>
+    <pubDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</guid>
+    <description><![CDATA[带宽与宽带的区别是什么带宽是量词，指的是网速的大小，比如1Mbps的意思是一兆比特每秒，这个数值就是指带宽。 宽带是名词，说明网络的传输速率速]]></description>
+</item><item>
     <title>NGINX中变量详解</title>
     <link>https://blog.0x5c0f.cc/2023/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/</link>
     <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate><author>
@@ -52,17 +64,5 @@
     <pubDate>Thu, 01 Sep 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/</guid>
     <description><![CDATA[透过现象看本质 CPU上下文切换 https://blog.csdn.net/qq_34556414/article/details/107094209 CPU上下文切换是保证Linux系统正常工作的一个核心功能，按照不同场景，可以分为进程上下文切换、线程上下文]]></description>
-</item><item>
-    <title>Linux性能测试之性能测试指标(转载)</title>
-    <link>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/</link>
-    <pubDate>Mon, 22 Aug 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/</guid>
-    <description><![CDATA[Linux 性能测试之性能测试指标详解(原文) https://blog.csdn.net/u010521062/article/details/115908166 前言 性能测试指标是衡量系统性能的评价标准，常用的系统性能测试指标包括：响应时间、并发用户/并发、点击率]]></description>
-</item><item>
-    <title>服务器运维故障记录</title>
-    <link>https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</link>
-    <pubDate>Mon, 01 Aug 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</guid>
-    <description><![CDATA[Mysql Errcode: 24 - Too many open files https://blog.csdn.net/weixin_36343850/article/details/86293700 原因：打开文件数量太多，超出了open_files_limit这个参数的限制，在一个表中有多个分区的时候，这种情况更容易发]]></description>
 </item></channel>
 </rss>

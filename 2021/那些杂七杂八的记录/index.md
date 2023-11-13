@@ -627,3 +627,40 @@ redis_memory_used_bytes / on(hostname) group_left label_replace(node_memory_MemT
 # 方法二: 
 redis_memory_used_bytes / on(hostname) group_left node_memory_MemTotal_bytes
 ```
+
+## IIS http 强制跳转 https 
+- 此项未校验,来源于`chatgpt`
+```xml
+<configuration>
+  <system.webServer>
+    <rewrite>
+      <rules>
+        <rule name="Force HTTPS" stopProcessing="true">
+          <match url="(.*)" />
+          <conditions>
+            <add input="{HTTPS}" pattern="off" ignoreCase="true" />
+          </conditions>
+          <!-- 临时重定向 -->
+          <!-- <action type="Redirect" redirectType="Temporary" url="https://{HTTP_HOST}/{R:1}" /> -->
+          <action type="Redirect" redirectType="Permanent" url="https://{HTTP_HOST}/{R:1}" />
+        </rule>
+      </rules>
+    </rewrite>
+  </system.webServer>
+</configuration>
+```
+
+## find 文件性能提升
+```bash
+# find 查询大量文件删除时会很慢，可以用ls 配合 grep 查询需要删除的文件，然后删除
+```
+
+## 压力测试 `ab`` 命令解释 
+```bash
+# httpd-tools 
+# -n: 总共要发送的请求 
+# -c: 并发连接
+# -r: 随机数据，防止缓存
+## 例如: 50个人，每秒访问100次, 那么总共发送请求为 50 * 100 = 5000 (-n)
+$> ab -n 5000 -c 50 -r http://www.example.com/
+```

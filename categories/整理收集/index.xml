@@ -4,7 +4,13 @@
         <link>https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/</link>
         <description>整理收集 - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/" rel="self" type="application/rss+xml" /><item>
+    <title>内网.外网.宽带.带宽.流量.网速之间的区别与联系</title>
+    <link>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</link>
+    <pubDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</guid>
+    <description><![CDATA[带宽与宽带的区别是什么带宽是量词，指的是网速的大小，比如1Mbps的意思是一兆比特每秒，这个数值就是指带宽。 宽带是名词，说明网络的传输速率速]]></description>
+</item><item>
     <title>常用的BAT脚本语法</title>
     <link>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
@@ -58,11 +64,5 @@
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/</guid>
     <description><![CDATA[引用 两张动图-彻底明白TCP的三次握手与四次挥手]]></description>
-</item><item>
-    <title>访问一个网页的全过程</title>
-    <link>https://blog.0x5c0f.cc/2022/%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</link>
-    <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</guid>
-    <description><![CDATA[引言 思考：请尽可能详细的写出从浏览器地址栏输入https://www.taobao.com之后到返回首页内容的整个过程中的交互细节。 这是我刚]]></description>
 </item></channel>
 </rss>

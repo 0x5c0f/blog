@@ -4,12 +4,18 @@
         <link>https://blog.0x5c0f.cc/series/%E6%9D%82%E8%AE%B0/</link>
         <description>杂记 - 系列 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/series/%E6%9D%82%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/series/%E6%9D%82%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
     <title>那些好用的工具收集</title>
     <link>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[收集的一些感觉挺好用的工具]]></description>
+</item><item>
+    <title>内网.外网.宽带.带宽.流量.网速之间的区别与联系</title>
+    <link>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</link>
+    <pubDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</guid>
+    <description><![CDATA[带宽与宽带的区别是什么带宽是量词，指的是网速的大小，比如1Mbps的意思是一兆比特每秒，这个数值就是指带宽。 宽带是名词，说明网络的传输速率速]]></description>
 </item><item>
     <title>常用的BAT脚本语法</title>
     <link>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
@@ -58,11 +64,5 @@
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%88%9B%E5%BB%BA%E7%99%BB%E5%BD%95%E5%92%8C%E9%80%80%E5%87%BA%E7%9A%84%E8%A7%A6%E5%8F%91%E5%99%A8/</guid>
     <description><![CDATA[创建触发记录表 1 2 3 4 5 6 create table log_table( username varchar2(20 ), logon_time date, logoff_time date, address varchar2(20 ) ); 登录触发器 1 2 3 4 5 6 7 create or replace trigger tr_logon after logon on DATABASE begin INSERT INTO log_table(username,logon_time,address) values(ora_login_user, SYSDATE,ora_client_ip_address); end; / 退出触发器 1 2 3 4 5 6 7 create or]]></description>
-</item><item>
-    <title>Umask码权限对照表</title>
-    <link>https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/</link>
-    <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/</guid>
-    <description><![CDATA[Umask码权限对照表,方便查询，不用在去计算了]]></description>
 </item></channel>
 </rss>
