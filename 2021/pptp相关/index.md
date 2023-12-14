@@ -8,7 +8,6 @@
 
 # 1. linux 下 pptp 拨号 
 ```bash
-## pptp-setup 是自动配置的工具,也可不安装该工具
 $> yum install ppp pptp-setup pptpd 
 
 # 配置远程pptp连接的用户名和密码 

@@ -664,3 +664,13 @@ redis_memory_used_bytes / on(hostname) group_left node_memory_MemTotal_bytes
 ## 例如: 50个人，每秒访问100次, 那么总共发送请求为 50 * 100 = 5000 (-n)
 $> ab -n 5000 -c 50 -r http://www.example.com/
 ```
+
+## https页面加载http资源报错的方法
+解决方案: 
+1. 服务端设置`header`: `header("Content-Security-Policy: upgrade-insecure-requests");`
+2. 页面设置`meta`头: `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />`
+3. 删除链接中的协议头: `<script src='//cdn.bootcss.com/jquery/3.3.1/jquery.min.js'></script>`
+4. `nginx`添加`header`: `add_header Content-Security-Policy "upgrade-insecure-requests";`
+
+
+## mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户

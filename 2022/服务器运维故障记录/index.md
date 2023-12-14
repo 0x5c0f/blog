@@ -108,3 +108,6 @@
     </system.webServer>
 </configuration>
 ```
+
+# IIS .net 项目 post 无法提交数据
+- .net 站点 curl post请求，模拟表单提交，后端收不到数据，解决方案是把程序池的集成模式改为经典模式 

@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2019/nginx-location/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-02-04T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-02-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-05T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -34,17 +34,16 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/blog.0x5c0f.cc\/2019\/nginx-location\/"
-        },"genre": "posts","keywords": "linux, nginx","wordcount":  2426 ,
-        "url": "https:\/\/blog.0x5c0f.cc\/2019\/nginx-location\/","datePublished": "2019-02-04T00:00:00+00:00","dateModified": "2019-02-04T00:00:00+00:00","publisher": {
+            "@id": "https://blog.0x5c0f.cc/2019/nginx-location/"
+        },"genre": "posts","keywords": "linux, nginx","wordcount":  2541 ,
+        "url": "https://blog.0x5c0f.cc/2019/nginx-location/","datePublished": "2019-02-04T00:00:00+00:00","dateModified": "2023-12-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
                         "name": "admin"                    
                     }],"description": "Nginx Location"
     }
-    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
-</head>
+    </script></head>
 
 <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
@@ -152,6 +151,7 @@
             <li><a href="#251-rewrite-全局变量">2.5.1. Rewrite 全局变量</a></li>
             <li><a href="#252-rewrite-语法">2.5.2. rewrite 语法</a></li>
             <li><a href="#253-rewrite-应用场景">2.5.3. rewrite 应用场景</a></li>
+            <li><a href="#254-proxy_pass中-带-和-不带-的问题">2.5.4. proxy_pass中 <code>带\</code> 和 <code>不带\</code> 的问题</a></li>
           </ul>
         </li>
       </ul>
@@ -162,7 +162,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2426 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/2019/nginx-location/" class="leancloud_visitors" data-flag-title="Nginx Location 模块介绍">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-05">2023-12-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2541 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/2019/nginx-location/" class="leancloud_visitors" data-flag-title="Nginx Location 模块介绍">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/nginx-location/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2019/nginx-location/" class="comment_count" data-flag-title="Nginx Location 模块介绍">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2019/nginx-location/"></span>&nbsp;条评论
@@ -194,21 +194,14 @@
             <li><a href="#251-rewrite-全局变量">2.5.1. Rewrite 全局变量</a></li>
             <li><a href="#252-rewrite-语法">2.5.2. rewrite 语法</a></li>
             <li><a href="#253-rewrite-应用场景">2.5.3. rewrite 应用场景</a></li>
+            <li><a href="#254-proxy_pass中-带-和-不带-的问题">2.5.4. proxy_pass中 <code>带\</code> 和 <code>不带\</code> 的问题</a></li>
           </ul>
         </li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><div class="details admonition warning open">
-                <div class="details-summary admonition-title">
-                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
-                </div>
-                <div class="details-content">
-                    <div class="admonition-content">
-                        本文最后更新于 <span class="timeago" datetime="2019-02-04T00:00:00" title="February 4, 2019">2019-02-04</span>，文中内容可能已过时。</div>
-                </div>
-            </div><h1 id="1-前言" class="headerLink">
+            </div><div class="content" id="content"><h1 id="1-前言" class="headerLink">
     <a href="#1-%e5%89%8d%e8%a8%80" class="header-mark"></a>1. 前言</h1><p>个人整理,可参考</p>
 <h1 id="2-优化" class="headerLink">
     <a href="#2-%e4%bc%98%e5%8c%96" class="header-mark"></a>2. 优化</h1><h2 id="21-参数说明" class="headerLink">
@@ -689,13 +682,59 @@ log_format  name    string &hellip;;</p>
 <li>网站更换域名后，让旧的域名访问跳转到新的域名上。</li>
 <li>根据特殊变量、目录、客户端的信息进行URL跳转。</li>
 </ol>
+<h3 id="254-proxy_pass中-带-和-不带-的问题" class="headerLink">
+    <a href="#254-proxy_pass%e4%b8%ad-%e5%b8%a6-%e5%92%8c-%e4%b8%8d%e5%b8%a6-%e7%9a%84%e9%97%ae%e9%a2%98" class="header-mark"></a>2.5.4. proxy_pass中 <code>带\</code> 和 <code>不带\</code> 的问题</h3><p>直接看例子吧, 以下以请求 <code>http://10.0.3.10/api/values</code> 为例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 最终代理地址 http://10.0.3.10:81/values</span>
+</span></span><span class="line"><span class="cl">location /api/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">     proxy_pass http://10.0.3.10:81/<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 最终代理地址 http://10.0.3.10:81/api/values</span>
+</span></span><span class="line"><span class="cl">location /api/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">     proxy_pass http://10.0.3.10:81<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 最终代理地址 http://10.0.3.10:81/proxy/values</span>
+</span></span><span class="line"><span class="cl">location /api/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">     proxy_pass http://10.0.3.10:81/proxy/<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. 最终代理地址 http://10.0.3.10:81/proxyvalues</span>
+</span></span><span class="line"><span class="cl">location /api/ <span class="o">{</span>
+</span></span><span class="line"><span class="cl">     proxy_pass http://10.0.3.10:81/proxy<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2019-02-04</span>
+                <span>更新于 2023-12-05</span>
             </div>
             <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
         </div>

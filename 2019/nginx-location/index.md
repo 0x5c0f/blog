@@ -229,3 +229,30 @@ flag 标记说明 :
  3. 网站更换域名后，让旧的域名访问跳转到新的域名上。  
  4. 根据特殊变量、目录、客户端的信息进行URL跳转。  
 
+
+### 2.5.4. proxy_pass中 `带\` 和 `不带\` 的问题
+
+直接看例子吧, 以下以请求 `http://10.0.3.10/api/values` 为例
+```bash
+# 1. 最终代理地址 http://10.0.3.10:81/values
+location /api/ {
+     proxy_pass http://10.0.3.10:81/;
+}
+
+# 2. 最终代理地址 http://10.0.3.10:81/api/values
+location /api/ {
+     proxy_pass http://10.0.3.10:81;
+}
+
+# 3. 最终代理地址 http://10.0.3.10:81/proxy/values
+location /api/ {
+     proxy_pass http://10.0.3.10:81/proxy/;
+}
+
+# 4. 最终代理地址 http://10.0.3.10:81/proxyvalues
+location /api/ {
+     proxy_pass http://10.0.3.10:81/proxy;
+}
+
+```
+

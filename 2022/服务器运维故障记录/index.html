@@ -34,17 +34,16 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  4179 ,
-        "url": "https:\/\/blog.0x5c0f.cc\/2022\/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2022-08-01T00:00:00+00:00","dateModified": "2022-08-01T00:00:00+00:00","publisher": {
+            "@id": "https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  4236 ,
+        "url": "https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/","datePublished": "2022-08-01T00:00:00+00:00","dateModified": "2022-08-01T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
                         "name": "admin"                    
                     }],"description": "服务器运维故障记录"
     }
-    </script><script src="//instant.page/5.2.0" defer type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
-</head>
+    </script></head>
 
 <body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
@@ -144,13 +143,14 @@
     <li><a href="#nginx-emerg-location-xxxxxxxx-cannot-be-inside-the-exact-location-faviconico-in-xxxxxx">nginx: [emerg] location &ldquo;<xxxxxxxx>&rdquo; cannot be inside the exact location &ldquo;/favicon.ico&rdquo; in xxxxxx</a></li>
     <li><a href="#iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2">IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</a></li>
     <li><a href="#iis-如何修改文件上传限制">IIS 如何修改文件上传限制</a></li>
+    <li><a href="#iis-net-项目-post-无法提交数据">IIS .net 项目 post 无法提交数据</a></li>
   </ul>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">服务器运维故障记录</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4179 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="服务器运维故障记录">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4236 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="服务器运维故障记录">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="服务器运维故障记录">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"></span>&nbsp;条评论
@@ -174,6 +174,7 @@
     <li><a href="#nginx-emerg-location-xxxxxxxx-cannot-be-inside-the-exact-location-faviconico-in-xxxxxx">nginx: [emerg] location &ldquo;<xxxxxxxx>&rdquo; cannot be inside the exact location &ldquo;/favicon.ico&rdquo; in xxxxxx</a></li>
     <li><a href="#iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2">IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</a></li>
     <li><a href="#iis-如何修改文件上传限制">IIS 如何修改文件上传限制</a></li>
+    <li><a href="#iis-net-项目-post-无法提交数据">IIS .net 项目 post 无法提交数据</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><div class="details admonition warning open">
@@ -359,7 +360,11 @@
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div>
+</div><h1 id="iis-net-项目-post-无法提交数据" class="headerLink">
+    <a href="#iis-net-%e9%a1%b9%e7%9b%ae-post-%e6%97%a0%e6%b3%95%e6%8f%90%e4%ba%a4%e6%95%b0%e6%8d%ae" class="header-mark"></a>IIS .net 项目 post 无法提交数据</h1><ul>
+<li>.net 站点 curl post请求，模拟表单提交，后端收不到数据，解决方案是把程序池的集成模式改为经典模式</li>
+</ul>
+</div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
