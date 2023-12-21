@@ -674,3 +674,11 @@ $> ab -n 5000 -c 50 -r http://www.example.com/
 
 
 ## mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户
+
+## Windows IIS 反向代理配置 
+1. 前置条件 
+    - 安装 [`url-rewrite`](https://www.iis.net/downloads/microsoft/url-rewrite) 模块
+    - 安装 [`application-request-routing`](https://www.iis.net/downloads/microsoft/application-request-routing) 模块(此项安装前，必须先安装 `url-rewrite` 模块)
+2. 配置 
+    - 打开`IIS`,找到 `Application Request Routing Cache`打开，点击右侧`Server Proxy Setings`,勾选 `Enable proxy`，点击右侧`应用`即可。
+    - 打开`IIS`,选择网站, 打开 `URL Rewrite(URL 重写)`, 点击右侧`添加规则`，选择`空白规则`，模式配置`(.*)`,操作选择`重写`, 重写URL设置需要反向代理的地址, 例如: 需要代理到 `http://127.0.0.1:8080/`,则填写 `http://127.0.0.1:8080/{R:1}`，其他默认，保存即可。
