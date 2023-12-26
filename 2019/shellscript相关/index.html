@@ -12,7 +12,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-05-31T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-10-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-26T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary_large_image"/>
@@ -35,8 +35,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/"
-        },"genre": "posts","keywords": "linux, shellscript","wordcount":  5381 ,
-        "url": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2022-10-14T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, shellscript","wordcount":  5789 ,
+        "url": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2023-12-26T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -150,7 +150,7 @@
       <ul>
         <li><a href="#81-变量运算符">8.1. 变量运算符</a></li>
         <li><a href="#82-算术运算符">8.2. 算术运算符</a></li>
-        <li><a href="#83-关系运算符">8.3. 关系运算符</a></li>
+        <li><a href="#83-逻辑运算符">8.3. 逻辑运算符</a></li>
         <li><a href="#84-条件判断符">8.4. 条件判断符</a></li>
         <li><a href="#85-标准-io-重定向">8.5. 标准 I/O 重定向</a></li>
       </ul>
@@ -212,7 +212,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-31">2019-05-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-10-14">2022-10-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5381 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="leancloud_visitors" data-flag-title="Shellscript相关">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-31">2019-05-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5789 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="leancloud_visitors" data-flag-title="Shellscript相关">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="comment_count" data-flag-title="Shellscript相关">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"></span>&nbsp;条评论
@@ -243,7 +243,7 @@
       <ul>
         <li><a href="#81-变量运算符">8.1. 变量运算符</a></li>
         <li><a href="#82-算术运算符">8.2. 算术运算符</a></li>
-        <li><a href="#83-关系运算符">8.3. 关系运算符</a></li>
+        <li><a href="#83-逻辑运算符">8.3. 逻辑运算符</a></li>
         <li><a href="#84-条件判断符">8.4. 条件判断符</a></li>
         <li><a href="#85-标准-io-重定向">8.5. 标准 I/O 重定向</a></li>
       </ul>
@@ -301,15 +301,7 @@
     <li><a href="#20-那些很神奇的操作">20. 那些很神奇的操作</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><div class="details admonition warning open">
-                <div class="details-summary admonition-title">
-                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
-                </div>
-                <div class="details-content">
-                    <div class="admonition-content">
-                        本文最后更新于 <span class="timeago" datetime="2022-10-14T00:00:00" title="October 14, 2022">2022-10-14</span>，文中内容可能已过时。</div>
-                </div>
-            </div><h1 id="1-shell-脚本执行的几种方法" class="headerLink">
+            </div><div class="content" id="content"><h1 id="1-shell-脚本执行的几种方法" class="headerLink">
     <a href="#1-shell-%e8%84%9a%e6%9c%ac%e6%89%a7%e8%a1%8c%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>1. shell 脚本执行的几种方法</h1><ul>
 <li>
 <p><code>bash(sh) /path/script.sh</code></p>
@@ -616,46 +608,46 @@
     <a href="#82-%e7%ae%97%e6%9c%af%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8.2. 算术运算符</h2><table>
 <thead>
 <tr>
-<th style="text-align:center">运算符</br>(建议在<code>[]</code>以及<code>test</code>中使用的)</th>
-<th style="text-align:center">运算符</br>(建议在<code>(())</code>和<code>[[]]</code>中使用的)</th>
+<th style="text-align:center">字符串比较运算符</br>(建议在<code>[]</code>以及<code>test</code>中使用的)</th>
+<th style="text-align:center">算术运算符</br>(建议在<code>(())</code>和<code>[[]]</code>中使用的)</th>
 <th style="text-align:left">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"><code>-eq</code></td>
 <td style="text-align:center"><code>==</code>或<code>=</code></td>
+<td style="text-align:center"><code>-eq</code></td>
 <td style="text-align:left">检测 2 个数是否相等，相等返回<code>true</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>-ne</code></td>
 <td style="text-align:center"><code>!=</code></td>
+<td style="text-align:center"><code>-ne</code></td>
 <td style="text-align:left">检测 2 个数是否不相等，相等返回<code>true</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>-gt</code></td>
 <td style="text-align:center"><code>&gt;</code></td>
+<td style="text-align:center"><code>-gt</code></td>
 <td style="text-align:left">检测左边的数是否大于右边的，如果是，则返回<code>true</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>-ge</code></td>
 <td style="text-align:center"><code>&gt;=</code></td>
+<td style="text-align:center"><code>-ge</code></td>
 <td style="text-align:left">检测左边的数是否大于等于右边的，如果是，则返回<code>true</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>-lt</code></td>
 <td style="text-align:center"><code>&lt;</code></td>
+<td style="text-align:center"><code>-lt</code></td>
 <td style="text-align:left">检测左边的数是否小于右边的，如果是，则返回<code>true</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>-le</code></td>
 <td style="text-align:center"><code>&lt;=</code></td>
+<td style="text-align:center"><code>-le</code></td>
 <td style="text-align:left">检测左边的数是否小于等于右边的，如果是，则返回<code>true</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="83-关系运算符" class="headerLink">
-    <a href="#83-%e5%85%b3%e7%b3%bb%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8.3. 关系运算符</h2><table>
+<h2 id="83-逻辑运算符" class="headerLink">
+    <a href="#83-%e9%80%bb%e8%be%91%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8.3. 逻辑运算符</h2><table>
 <thead>
 <tr>
 <th style="text-align:center">运算符</br>(建议在<code>[]</code>和<code>test</code>中使用)</th>
@@ -671,8 +663,8 @@
 </tr>
 <tr>
 <td style="text-align:center"><code>-o</code></td>
-<td style="text-align:center">`</td>
-<td style="text-align:left"></td>
+<td style="text-align:center"><code>||</code></td>
+<td style="text-align:left">或运算，有一个表达式为<code>true，则返回``true</code></td>
 </tr>
 <tr>
 <td style="text-align:center"><code>-a</code></td>
@@ -1304,7 +1296,216 @@
 <p><a href="http://tldp.org/LDP/abs/html/contributed-scripts.html" target="_blank" rel="noopener noreferrer">http://tldp.org/LDP/abs/html/contributed-scripts.html</a></p>
 </blockquote>
 <h1 id="19-getops" class="headerLink">
-    <a href="#19-getops" class="header-mark"></a>19. getops</h1><div class="highlight"><div class="chroma">
+    <a href="#19-getops" class="header-mark"></a>19. getops</h1><ul>
+<li><code>example1</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 长短选项兼容</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh -h</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh -s &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh --src_dir &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh -k &lt;values&gt; </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh --key_prefix &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh -b &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh --bucket &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh -f &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh --file_type &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh --skip_fixed_strings &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh --skip_file_prefixes &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ./scripts.sh --skip_path_prefixes &lt;values&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="nb">getopts</span> <span class="s2">&#34;hs:k:b:f:-:&#34;</span> opt<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nv">$opt</span> in
+</span></span><span class="line"><span class="cl">    s<span class="o">)</span> <span class="nv">SRC_DIR</span><span class="o">=</span><span class="nv">$OPTARG</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    k<span class="o">)</span> <span class="nv">KEY_PREFIX</span><span class="o">=</span><span class="nv">$OPTARG</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    b<span class="o">)</span> <span class="nv">BUCKET</span><span class="o">=</span><span class="nv">$OPTARG</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    f<span class="o">)</span> <span class="nv">FILE_TYPE</span><span class="o">=</span><span class="nv">$OPTARG</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    h<span class="o">)</span> usage<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    -<span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="nv">$OPTARG</span> in
+</span></span><span class="line"><span class="cl">        src_dir<span class="o">)</span> <span class="nv">SRC_DIR</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        key_prefix<span class="o">)</span> <span class="nv">KEY_PREFIX</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        bucket<span class="o">)</span> <span class="nv">BUCKET</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        skip_fixed_strings<span class="o">)</span> <span class="nv">SKIP_FIXED_STRINGS</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        skip_file_prefixes<span class="o">)</span> <span class="nv">SKIP_FILE_PREFIXES</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        skip_path_prefixes<span class="o">)</span> <span class="nv">SKIP_PATH_PREFIXES</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        skip_suffixes<span class="o">)</span> <span class="nv">SKIP_SUFFIXES</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        file_type<span class="o">)</span> <span class="nv">FILE_TYPE</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        ignore_dir<span class="o">)</span> <span class="nv">IGNORE_DIR</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        check_exists<span class="o">)</span> <span class="nv">CHECK_EXISTS</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        check_hash<span class="o">)</span> <span class="nv">CHECK_HASH</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        rescan_local<span class="o">)</span> <span class="nv">RESCAN_LOCAL</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        log_level<span class="o">)</span> <span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        log_file<span class="o">)</span> <span class="nv">LOG_FILE</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        delete_on_success<span class="o">)</span> <span class="nv">DELETE_ON_SUCCESS</span><span class="o">=</span><span class="nv">$2</span><span class="p">;</span> shift<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        *<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&#34;Invalid option: --</span><span class="nv">$OPTARG</span><span class="s2">&#34;</span><span class="p">;</span> <span class="nb">exit</span> 1<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">esac</span><span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    :<span class="o">)</span> <span class="nb">echo</span> <span class="s2">&#34;Option -</span><span class="nv">$OPTARG</span><span class="s2"> requires an argument.&#34;</span><span class="p">;</span> <span class="nb">exit</span> 1<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="se">\?</span><span class="o">)</span> <span class="nb">echo</span> <span class="s2">&#34;Invalid option: -</span><span class="nv">$OPTARG</span><span class="s2">&#34;</span><span class="p">;</span> <span class="nb">exit</span> 1<span class="p">;;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>example3</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># scripts.sh -h</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># scripts.sh -a action</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># scripts.sh -a action -n step1 -n step2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># scripts.sh -a action -e &#34;var1=value1,var2=value2&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -- <span class="nv">ACTIONS</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -- <span class="nv">STEPS</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -- <span class="nv">ENV_VARS</span><span class="o">=</span><span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="nb">getopts</span> <span class="s2">&#34;ha:n:e:&#34;</span> opt<span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nv">$opt</span> in
+</span></span><span class="line"><span class="cl">    h<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        usage
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    a<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">ACTIONS</span><span class="o">=</span><span class="nv">$OPTARG</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    n<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">STEPS</span><span class="o">+=</span><span class="nv">$OPTARG</span><span class="s2">&#34; &#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    e<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">ENV_VARS</span><span class="o">=</span><span class="nv">$OPTARG</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    :<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;Option -</span><span class="nv">$OPTARG</span><span class="s2"> requires an argument.&#34;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+</span></span><span class="line"><span class="cl">        usage
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="se">\?</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;Invalid option: -</span><span class="nv">$OPTARG</span><span class="s2">&#34;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+</span></span><span class="line"><span class="cl">        usage
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">shift</span> <span class="k">$((</span>OPTIND <span class="o">-</span> <span class="m">1</span><span class="k">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将传入的key=value参数转换成环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 例如: --env key=value</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;,&#39;</span> <span class="nb">read</span> -ra ENV_ARR <span class="o">&lt;&lt;&lt;</span><span class="s2">&#34;</span><span class="nv">$ENV_VARS</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> var in <span class="s2">&#34;</span><span class="si">${</span><span class="nv">ENV_ARR</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;=&#39;</span> <span class="nb">read</span> -ra VAR_ARR <span class="o">&lt;&lt;&lt;</span><span class="s2">&#34;</span><span class="nv">$var</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">declare</span> -g <span class="s2">&#34;</span><span class="si">${</span><span class="nv">VAR_ARR</span><span class="p">[0]</span><span class="si">}</span><span class="s2">=</span><span class="si">${</span><span class="nv">VAR_ARR</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>example3</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1389,7 +1590,7 @@
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2022-10-14</span>
+                <span>更新于 2023-12-26</span>
             </div>
             <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
         </div>

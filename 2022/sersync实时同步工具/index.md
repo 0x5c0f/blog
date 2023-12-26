@@ -56,20 +56,21 @@ ________________________________________________________________
     <debug start="false"/>
     <fileSystem xfs="false"/> <!-- xfs 文件系统建议开启 -->
     <filter start="false"> <!-- start="true" 开启排除文件,默认关闭,不过开启时第一次不能进行初始同步，可能是bug，也可能本身是这么设定的  -->
-	<exclude expression="(.*)\.svn"></exclude>
-	<exclude expression="(.*)\.gz"></exclude>
-	<exclude expression="^info/*"></exclude>
-	<exclude expression="^static/*"></exclude>
+		<exclude expression="(.*)\.svn"></exclude>
+		<exclude expression="(.*)\.gz"></exclude>
+		<exclude expression="^info/*"></exclude>
+		<exclude expression="^static/*"></exclude>
+		<exclude expression="(.*)/core\.[0-9]+$"></exclude>
     </filter>
     <inotify>
-	<delete start="true"/>
-	<createFolder start="true"/>
-	<createFile start="true"/>
-	<closeWrite start="true"/>
-	<moveFrom start="true"/>
-	<moveTo start="true"/>
-	<attrib start="false"/>
-	<modify start="false"/>
+		<delete start="true"/>
+		<createFolder start="true"/>
+		<createFile start="true"/>
+		<closeWrite start="true"/>
+		<moveFrom start="true"/>
+		<moveTo start="true"/>
+		<attrib start="false"/>
+		<modify start="false"/>
     </inotify>
 
     <sersync><!-- 实际上就是rsync的命令及相关参数 -->

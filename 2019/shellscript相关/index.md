@@ -103,12 +103,12 @@ hello my linux shell
 
 # 7. 变量替换表
 
-| 运算符号            | 替换                                                                                                                                                            |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `${value:-word}`    | 如果变量`value`存在且非`null`，则返回变量的值,否则,返回`word`字符串. 例: `res=${value:-word}`,如果`value`未定义,则`res`的值为`word`                             |
-| `${value:=word}`    | 如果变量`value`存在且非`null`，则返回变量的值,否则,则设置这个变量值为`word`. 例: `res=${value:=word}`,如果`value`未定义,则`res`的值为`word`,`value`值也为`word` |
-| `${value:+word}`    | 如果`value`存在且非`null`,则返回`word`,否则返回`null`.例`res=${value:+word}`,如果`value`已经定义, 则`res`的值为`word`,如果`value`值未定义,则`res`值为`null(空)` |
-| `${value:?message}` | 如果变量`value`存在且非`null`，则返回变量`value`的值，否则返回信息`bash: value: message`,例 `echo ${value:?is null}`,如果`value`值已定义，则返回`value`定义值,否者返回 `bash: value: is null`,退出状态码为`1`|
+| 运算符号            | 替换                                                                                                                                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `${value:-word}`    | 如果变量`value`存在且非`null`，则返回变量的值,否则,返回`word`字符串. 例: `res=${value:-word}`,如果`value`未定义,则`res`的值为`word`                                                                           |
+| `${value:=word}`    | 如果变量`value`存在且非`null`，则返回变量的值,否则,则设置这个变量值为`word`. 例: `res=${value:=word}`,如果`value`未定义,则`res`的值为`word`,`value`值也为`word`                                               |
+| `${value:+word}`    | 如果`value`存在且非`null`,则返回`word`,否则返回`null`.例`res=${value:+word}`,如果`value`已经定义, 则`res`的值为`word`,如果`value`值未定义,则`res`值为`null(空)`                                               |
+| `${value:?message}` | 如果变量`value`存在且非`null`，则返回变量`value`的值，否则返回信息`bash: value: message`,例 `echo ${value:?is null}`,如果`value`值已定义，则返回`value`定义值,否者返回 `bash: value: is null`,退出状态码为`1` |
 
 # 8. 常见的运算符
 
@@ -130,22 +130,22 @@ hello my linux shell
 
 ## 8.2. 算术运算符
 
-| 运算符</br>(建议在`[]`以及`test`中使用的) | 运算符</br>(建议在`(())`和`[[]]`中使用的) | 说明                                                 |
-| :---------------------------------------: | :---------------------------------------: | :--------------------------------------------------- |
-|                   `-eq`                   |                 `==`或`=`                 | 检测 2 个数是否相等，相等返回`true`                  |
-|                   `-ne`                   |                   `!=`                    | 检测 2 个数是否不相等，相等返回`true`                |
-|                   `-gt`                   |                    `>`                    | 检测左边的数是否大于右边的，如果是，则返回`true`     |
-|                   `-ge`                   |                   `>=`                    | 检测左边的数是否大于等于右边的，如果是，则返回`true` |
-|                   `-lt`                   |                    `<`                    | 检测左边的数是否小于右边的，如果是，则返回`true`     |
-|                   `-le`                   |                   `<=`                    | 检测左边的数是否小于等于右边的，如果是，则返回`true` |
+| 字符串比较运算符</br>(建议在`[]`以及`test`中使用的) | 算术运算符</br>(建议在`(())`和`[[]]`中使用的) | 说明                                                 |
+| :-------------------------------------------------: | :-------------------------------------------: | :--------------------------------------------------- |
+|                      `==`或`=`                      |                     `-eq`                     | 检测 2 个数是否相等，相等返回`true`                  |
+|                        `!=`                         |                     `-ne`                     | 检测 2 个数是否不相等，相等返回`true`                |
+|                         `>`                         |                     `-gt`                     | 检测左边的数是否大于右边的，如果是，则返回`true`     |
+|                        `>=`                         |                     `-ge`                     | 检测左边的数是否大于等于右边的，如果是，则返回`true` |
+|                         `<`                         |                     `-lt`                     | 检测左边的数是否小于右边的，如果是，则返回`true`     |
+|                        `<=`                         |                     `-le`                     | 检测左边的数是否小于等于右边的，如果是，则返回`true` |
 
-## 8.3. 关系运算符
+## 8.3. 逻辑运算符
 
-| 运算符</br>(建议在`[]`和`test`中使用) |                                    运算符</br>(建议在`[[]]`中使用)                                     | 说明                                                                            |
-| :-----------------------------------: | :----------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------ |
-|                  `!`                  |                                                  `!`                                                   | 非运算，表达式为`true`，则返回`false`，否则返回`true`; 例: `[!false]`返回`true` |
-|                 `-o`                  | `                |                                                                                 | ` | 或运算，有一个表达式为` true，则返回``true `                                    |
-|                 `-a`                  |                                                  `&&`                                                  | 与运算，2 个表达式都为` true，才返回``true `                                    |
+| 运算符</br>(建议在`[]`和`test`中使用) | 运算符</br>(建议在`[[]]`中使用) | 说明                                                                            |
+| :-----------------------------------: | :-----------------------------: | :------------------------------------------------------------------------------ |
+|                  `!`                  |               `!`               | 非运算，表达式为`true`，则返回`false`，否则返回`true`; 例: `[!false]`返回`true` |
+|                 `-o`                  |            ``\|\|``             | 或运算，有一个表达式为` true，则返回``true `                                    |
+|                 `-a`                  |              `&&`               | 与运算，2 个表达式都为` true，才返回``true `                                    |
 
 ## 8.4. 条件判断符
 
@@ -464,7 +464,108 @@ trap -- '' SIGINT
 > [http://tldp.org/LDP/abs/html/contributed-scripts.html](http://tldp.org/LDP/abs/html/contributed-scripts.html)
 
 # 19. getops
+- `example1`
+```bash
+#!/bin/bash
 
+# 长短选项兼容
+
+# ./scripts.sh -h
+# ./scripts.sh -s <values>
+# ./scripts.sh --src_dir <values>
+# ./scripts.sh -k <values> 
+# ./scripts.sh --key_prefix <values>
+# ./scripts.sh -b <values>
+# ./scripts.sh --bucket <values>
+# ./scripts.sh -f <values>
+# ./scripts.sh --file_type <values>
+# ./scripts.sh --skip_fixed_strings <values>
+# ./scripts.sh --skip_file_prefixes <values>
+# ./scripts.sh --skip_path_prefixes <values>
+# ...
+
+while getopts "hs:k:b:f:-:" opt; do
+  case $opt in
+    s) SRC_DIR=$OPTARG;;
+    k) KEY_PREFIX=$OPTARG;;
+    b) BUCKET=$OPTARG;;
+    f) FILE_TYPE=$OPTARG;;
+    h) usage;;
+    -)
+      case $OPTARG in
+        src_dir) SRC_DIR=$2; shift;;
+        key_prefix) KEY_PREFIX=$2; shift;;
+        bucket) BUCKET=$2; shift;;
+        skip_fixed_strings) SKIP_FIXED_STRINGS=$2; shift;;
+        skip_file_prefixes) SKIP_FILE_PREFIXES=$2; shift;;
+        skip_path_prefixes) SKIP_PATH_PREFIXES=$2; shift;;
+        skip_suffixes) SKIP_SUFFIXES=$2; shift;;
+        file_type) FILE_TYPE=$2; shift;;
+        ignore_dir) IGNORE_DIR=$2; shift;;
+        check_exists) CHECK_EXISTS=$2; shift;;
+        check_hash) CHECK_HASH=$2; shift;;
+        rescan_local) RESCAN_LOCAL=$2; shift;;
+        log_level) LOG_LEVEL=$2; shift;;
+        log_file) LOG_FILE=$2; shift;;
+        delete_on_success) DELETE_ON_SUCCESS=$2; shift;;
+        *) echo "Invalid option: --$OPTARG"; exit 1;;
+      esac;;
+    :) echo "Option -$OPTARG requires an argument."; exit 1;;
+    \?) echo "Invalid option: -$OPTARG"; exit 1;;
+  esac
+done
+```
+- `example3`
+```bash
+# scripts.sh -h
+# scripts.sh -a action
+# scripts.sh -a action -n step1 -n step2
+# scripts.sh -a action -e "var1=value1,var2=value2"
+
+declare -- ACTIONS=""
+declare -- STEPS=""
+declare -- ENV_VARS=""
+
+while getopts "ha:n:e:" opt; do
+    case $opt in
+    h)
+        usage
+        exit 0
+        ;;
+    a)
+        ACTIONS=$OPTARG
+        ;;
+    n)
+        STEPS+=$OPTARG" "
+        ;;
+    e)
+        ENV_VARS=$OPTARG
+        ;;
+    :)
+        echo "Option -$OPTARG requires an argument." >&2
+        usage
+        exit 1
+        ;;
+    \?)
+        echo "Invalid option: -$OPTARG" >&2
+        usage
+        exit 1
+        ;;
+    esac
+done
+
+shift $((OPTIND - 1))
+
+# 将传入的key=value参数转换成环境变量
+# 例如: --env key=value
+IFS=',' read -ra ENV_ARR <<<"$ENV_VARS"
+for var in "${ENV_ARR[@]}"; do
+    IFS='=' read -ra VAR_ARR <<<"$var"
+    declare -g "${VAR_ARR[0]}=${VAR_ARR[1]}"
+done
+```
+
+- `example3`
 ```bash
 # 双冒号 双冒号短参数必须贴近或无参数,长参数必须等号赋值(长参数名可以不用写完)或无参数(注:无参数时变量偏移也是2位)
 # 单冒号参数可以贴近也可以不贴近,但参数必选
