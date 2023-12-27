@@ -98,8 +98,6 @@ hello my linux shell
 | `${string/#pattern/parameter}` | 在变量`string`中,使用`parameter`替换以`pattern`开头的值        |
 | `${string/%pattern/parameter}` | 在变量`string`中,使用`parameter`替换以`pattern`结尾的值        |
 
-- 字符串截取
-  > [https://blog.csdn.net/LLZK\_/article/details/66972377](https://blog.csdn.net/LLZK_/article/details/66972377)
 
 # 7. 变量替换表
 
@@ -141,7 +139,7 @@ hello my linux shell
 
 ## 8.3. 逻辑运算符
 
-| 运算符</br>(建议在`[]`和`test`中使用) | 运算符</br>(建议在`[[]]`中使用) | 说明                                                                            |
+| 运算符</br>(建议在`[[]]`中使用) | 运算符</br>(建议在`[]`和`test`中使用) | 说明                                                                            |
 | :-----------------------------------: | :-----------------------------: | :------------------------------------------------------------------------------ |
 |                  `!`                  |               `!`               | 非运算，表达式为`true`，则返回`false`，否则返回`true`; 例: `[!false]`返回`true` |
 |                 `-o`                  |            ``\|\|``             | 或运算，有一个表达式为` true，则返回``true `                                    |
