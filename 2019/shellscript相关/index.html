@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/"
-        },"genre": "posts","keywords": "linux, shellscript","wordcount":  5783 ,
+        },"genre": "posts","keywords": "linux, shellscript","wordcount":  6342 ,
         "url": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2023-12-26T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -212,7 +212,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-31">2019-05-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5783 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 12 分钟&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="leancloud_visitors" data-flag-title="Shellscript相关">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-31">2019-05-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6342 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="leancloud_visitors" data-flag-title="Shellscript相关">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"></span>&nbsp;次阅读
                     </span>&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="comment_count" data-flag-title="Shellscript相关">
                         <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"></span>&nbsp;条评论
@@ -530,7 +530,16 @@
 </tbody>
 </table>
 <h1 id="8-常见的运算符" class="headerLink">
-    <a href="#8-%e5%b8%b8%e8%a7%81%e7%9a%84%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8. 常见的运算符</h1><h2 id="81-变量运算符" class="headerLink">
+    <a href="#8-%e5%b8%b8%e8%a7%81%e7%9a%84%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8. 常见的运算符</h1><p>在Shell脚本中，<code>[]</code>和<code>[[]]</code>都用于条件测试，但它们之间存在一些重要的差异</p>
+<ul>
+<li><strong>兼容性</strong>：<code>[]</code>是POSIX标准的测试语句，因此它在所有POSIX兼容的shell中都可以使用，包括bash、dash、ksh等。而<code>[[]]</code>是bash的扩展，只能在bash和一些兼容bash的shell中使用，如zsh。</li>
+<li><strong>排序</strong>：在<code>[[]]</code>中，你可以使用<code>&lt;</code>和<code>&gt;</code>来比较字符串的字典序。例如，<code>[[ &quot;abc&quot; &lt; &quot;def&quot; ]]</code>会返回真。而在<code>[]</code>中，这样的比较会导致语法错误。</li>
+<li><strong>逻辑操作符</strong>：在<code>[]</code>中，你需要使用<code>-a</code>和<code>-o</code>来表示逻辑与和逻辑或。例如，<code>[ &quot;$a&quot; -eq 1 -a &quot;$b&quot; -eq 2 ]</code>。而在<code>[[]]</code>中，你可以使用更直观的<code>&amp;&amp;</code>和<code>||</code>。例如，<code>[[ &quot;$a&quot; -eq 1 &amp;&amp; &quot;$b&quot; -eq 2 ]]</code>。</li>
+<li><strong>字符串匹配</strong>：在<code>[[]]</code>中，<code>==</code>右边的字符串会被视为模式，而在<code>[]</code>中，它只是一个普通的字符串。例如，<code>[[ &quot;$a&quot; == a* ]]</code>会检查<code>$a</code>是否以<code>a</code>开头，而<code>[ &quot;$a&quot; == a* ]</code>会检查<code>$a</code>是否等于字符串<code>a*</code>。</li>
+<li><strong>正则匹配</strong>：<code>[[]]</code>支持使用<code>=~</code>进行正则表达式匹配。例如，<code>[[ &quot;$a&quot; =~ ^a.* ]]</code>会检查<code>$a</code>是否以<code>a</code>开头。而<code>[]</code>不支持正则表达式。</li>
+<li><strong>变量引用</strong>：在<code>[]</code>中，如果一个变量未定义，那么它会被视为一个空字符串，除非你用双引号引起来。例如，如果<code>$a</code>未定义，那么<code>[ $a == &quot;&quot; ]</code>会导致语法错误，而<code>[ &quot;$a&quot; == &quot;&quot; ]</code>则不会。而在<code>[[]]</code>中，即使变量未定义，也不需要引号。</li>
+</ul>
+<h2 id="81-变量运算符" class="headerLink">
     <a href="#81-%e5%8f%98%e9%87%8f%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8.1. 变量运算符</h2><table>
 <thead>
 <tr>
@@ -601,8 +610,8 @@
     <a href="#82-%e7%ae%97%e6%9c%af%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8.2. 算术运算符</h2><table>
 <thead>
 <tr>
-<th style="text-align:center">字符串比较运算符</br>(建议在<code>[]</code>以及<code>test</code>中使用的)</th>
-<th style="text-align:center">算术运算符</br>(建议在<code>(())</code>和<code>[[]]</code>中使用的)</th>
+<th style="text-align:center">字符串比较运算符</br>(建议在<code>(())</code>和<code>[[]]</code>中使用的)</th>
+<th style="text-align:center">算术运算符</br>(建议在<code>[]</code>以及<code>test</code>中使用的)</th>
 <th style="text-align:left">说明</th>
 </tr>
 </thead>
@@ -655,13 +664,13 @@
 <td style="text-align:left">非运算，表达式为<code>true</code>，则返回<code>false</code>，否则返回<code>true</code>; 例: <code>[!false]</code>返回<code>true</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>-o</code></td>
 <td style="text-align:center"><code>||</code></td>
+<td style="text-align:center"><code>-o</code></td>
 <td style="text-align:left">或运算，有一个表达式为<code>true，则返回``true</code></td>
 </tr>
 <tr>
-<td style="text-align:center"><code>-a</code></td>
 <td style="text-align:center"><code>&amp;&amp;</code></td>
+<td style="text-align:center"><code>-a</code></td>
 <td style="text-align:left">与运算，2 个表达式都为<code>true，才返回``true</code></td>
 </tr>
 </tbody>
