@@ -620,12 +620,16 @@ sh create_client_cert.sh rabbitmq-client <client_passwd>
 ### redis_memory_used_bytes{cloudtype="阿里云", hostname="riecaeph0noo", instance="127.0.0.1:16370", job="RedisStatusMonitor", ostype="linux", services="redis"} 3322384
 ## node_memory_MemTotal_bytes 系统总内存
 ###  node_memory_MemTotal_bytes{cloudtype="阿里云", hostname="riecaeph0noo", instance="1.1.1.1", job="ServerStatusMonitor", ostype="linux", services="server"} 32868929536
+
 # 方法一: 
 ## 计算 Redis 内存使用量占主机内存总和的百分比(适用指标标签不一致的情况)
+
 redis_memory_used_bytes / on(hostname) group_left label_replace(node_memory_MemTotal_bytes, "hostname_group", "", "hostname", "(.*)") * 100 > 90
 
 # 方法二: 
+
 redis_memory_used_bytes / on(hostname) group_left node_memory_MemTotal_bytes
+
 ```
 
 ## IIS http 强制跳转 https 
@@ -676,9 +680,17 @@ $> ab -n 5000 -c 50 -r http://www.example.com/
 ## mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户
 
 ## Windows IIS 反向代理配置 
+
+> [https://github.com/axllent/mailpit/issues/131](https://github.com/axllent/mailpit/issues/131)
 1. 前置条件 
     - 安装 [`url-rewrite`](https://www.iis.net/downloads/microsoft/url-rewrite) 模块
     - 安装 [`application-request-routing`](https://www.iis.net/downloads/microsoft/application-request-routing) 模块(此项安装前，必须先安装 `url-rewrite` 模块)
 2. 配置 
     - 打开`IIS`,找到 `Application Request Routing Cache`打开，点击右侧`Server Proxy Setings`,勾选 `Enable proxy`，点击右侧`应用`即可。
     - 打开`IIS`,选择网站, 打开 `URL Rewrite(URL 重写)`, 点击右侧`添加规则`，选择`空白规则`，模式配置`(.*)`,操作选择`重写`, 重写URL设置需要反向代理的地址, 例如: 需要代理到 `http://127.0.0.1:8080/`,则填写 `http://127.0.0.1:8080/{R:1}`，其他默认，保存即可。
+
+## 亚马逊存储桶  
+1. 创建存储桶(可公有访问权限)  
+2. 设置"对象所有权"为`ACL已启用`  
+3. 设置"对象所有权"为`存储桶拥有者优先`。  
+4. 将 `此存储桶的“屏蔽公共访问权限”设置`取消`阻止所有公开访问`勾选，只勾选`阻止通过新公有存储桶策略或接入点策略授予的存储桶和对象公有访问`和`阻止通过任何公有存储桶策略或接入点策略对存储桶和对象的公有和跨账户访问`，其他默认即可  
