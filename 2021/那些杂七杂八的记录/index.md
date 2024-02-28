@@ -503,6 +503,23 @@ GATEWAY0=<172.16.31.1>
             proxy_set_header X-Real-IP $remote_addr;
         }
 
+        location ~ /openai/(.*) {
+            proxy_pass https://api.openai.com/$1$is_args$args;
+            proxy_set_header Host api.openai.com;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            # 如果响应是流式的
+            proxy_set_header Connection '';
+            proxy_http_version 1.1;
+            chunked_transfer_encoding off;
+            proxy_buffering off;
+            proxy_cache off;
+            # 如果响应是一般的
+            proxy_buffer_size 128k;
+            proxy_buffers 4 256k;
+            proxy_busy_buffers_size 256k;
+        }
+
     }
 
     ```
@@ -694,3 +711,8 @@ $> ab -n 5000 -c 50 -r http://www.example.com/
 2. 设置"对象所有权"为`ACL已启用`  
 3. 设置"对象所有权"为`存储桶拥有者优先`。  
 4. 将 `此存储桶的“屏蔽公共访问权限”设置`取消`阻止所有公开访问`勾选，只勾选`阻止通过新公有存储桶策略或接入点策略授予的存储桶和对象公有访问`和`阻止通过任何公有存储桶策略或接入点策略对存储桶和对象的公有和跨账户访问`，其他默认即可  
+
+## gnome-shell 终端设置 title 
+```bash
+$> export PROMPT_COMMAND='echo -ne "\033]0; ${USER}@${HOSTNAME} \007"'
+```

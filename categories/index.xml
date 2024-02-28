@@ -5,7 +5,7 @@
         <description>Categories - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
             <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/" rel="self" type="application/rss+xml" /><item>
-    <title>linux</title>
+    <title>Linux</title>
     <link>https://blog.0x5c0f.cc/categories/linux/</link>
     <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
@@ -26,7 +26,7 @@
     </author><guid>https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>windows</title>
+    <title>Windows</title>
     <link>https://blog.0x5c0f.cc/categories/windows/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
@@ -54,7 +54,7 @@
     </author><guid>https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/</guid>
     <description><![CDATA[]]></description>
 </item><item>
-    <title>other</title>
+    <title>Other</title>
     <link>https://blog.0x5c0f.cc/categories/other/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>

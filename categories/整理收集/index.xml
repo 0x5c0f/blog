@@ -51,7 +51,7 @@
     <link>https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/</guid>
-    <description><![CDATA[Umask码权限对照表,方便查询，不用在去计算了]]></description>
+    <description><![CDATA[Umask 码权限对照表 umask file dir 000 666 777 001 666 776 002 664 775 003 664 774 004 662 773 005 662 772 006 660 771 007 660 770 010 666 767 011 666 766 012 664 765 013 664 764 014 662 763 015 662 762 016 660 761 017 660 760 020 646 757 021 646 756 022 644 755 023 644 754]]></description>
 </item><item>
     <title>Centos7修改网卡名称</title>
     <link>https://blog.0x5c0f.cc/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</link>

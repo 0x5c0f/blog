@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>rsync - 标签 - 一个曾经的小码农...</title>
+        <title>Rsync - 标签 - 一个曾经的小码农...</title>
         <link>https://blog.0x5c0f.cc/tags/rsync/</link>
-        <description>rsync - 标签 - 一个曾经的小码农...</description>
+        <description>Rsync - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
             <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/rsync/" rel="self" type="application/rss+xml" /><item>
     <title>Sersync实时同步工具</title>

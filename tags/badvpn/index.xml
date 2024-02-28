@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>badvpn - 标签 - 一个曾经的小码农...</title>
+        <title>Badvpn - 标签 - 一个曾经的小码农...</title>
         <link>https://blog.0x5c0f.cc/tags/badvpn/</link>
-        <description>badvpn - 标签 - 一个曾经的小码农...</description>
+        <description>Badvpn - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
             <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Tue, 13 Aug 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/badvpn/" rel="self" type="application/rss+xml" /><item>
     <title>内网回拨方案</title>
     <link>https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/</link>
     <pubDate>Tue, 13 Aug 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/</guid>
-    <description><![CDATA[跨境内网回拨加速方案]]></description>
+    <description><![CDATA[前言 记录本篇内容实际上是希望有人能知道有badvpn_tun2socks 这个东西可以将socks转化为vpn, 或者只有我不知道这个东西了。 需]]></description>
 </item></channel>
 </rss>
