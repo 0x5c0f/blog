@@ -295,6 +295,9 @@ cat /sys/class/dmi/id/product_name
 ```bash
 # echo $((RANDOM % (max - min) + min))
 echo $((RANDOM % (99 - 80) + 80))
+
+# shuf -i min-max -n 1
+shuf -i 0-8 -n 1
 ```
 
 # linux 将时间戳转换为时间

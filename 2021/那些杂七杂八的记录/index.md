@@ -572,10 +572,7 @@ GATEWAY0=<172.16.31.1>
             "source": "/:match*",
             "destination": "https://api.openai.com/:match*"
         }
-    ],
-    "github": {
-        "silent": true
-    }
+    ]
 }
 ```
 

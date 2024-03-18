@@ -1,13 +1,15 @@
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noodp" />
-    <title>介绍在Linux命令行中使用tcpdump - 一个曾经的小码农...</title><meta name="Description" content="介绍在Linux命令行中使用tcpdump"><meta property="og:title" content="介绍在Linux命令行中使用tcpdump" />
+    <title>介绍在Linux命令行中使用tcpdump - 一个曾经的小码农...</title><meta
+  name="Description"
+  content="介绍在Linux命令行中使用tcpdump"
+/><meta property="og:title" content="介绍在Linux命令行中使用tcpdump" />
 <meta property="og:description" content="介绍在Linux命令行中使用tcpdump" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png" /><meta property="article:section" content="posts" />
@@ -19,13 +21,57 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png" /><meta name="twitter:title" content="介绍在Linux命令行中使用tcpdump"/>
 <meta name="twitter:description" content="介绍在Linux命令行中使用tcpdump"/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta
+  name="application-name"
+  content="DoIt"
+/>
+<meta
+  name="apple-mobile-web-app-title"
+  content="DoIt"
+/>
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" /><link rel="next" href="https://blog.0x5c0f.cc/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/" />
-<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+<meta name="theme-color" content="#f8f8f8" /><meta name="msapplication-TileColor" content="#da532c" /><link rel="icon" href="/icons/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" /><link rel="canonical" href="https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" /><link rel="next" href="https://blog.0x5c0f.cc/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/" />
+<link
+      rel="stylesheet"
+      href="/css/main.css"
+      
+    /><link
+      rel="stylesheet"
+      href="/lib/normalize/normalize.min.css"
+      
+    /><link
+      rel="stylesheet"
+      href="/css/color.css"
+      
+    /><link
+      rel="stylesheet"
+      href="/css/style.min.css"
+      
+    /><link
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+      href="/lib/fontawesome-free/all.min.css"
+      
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="/lib/fontawesome-free/all.min.css"
+        
+    /></noscript><link
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+      href="/lib/animate/animate.min.css"
+      
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="/lib/animate/animate.min.css"
+        
+    /></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -34,17 +80,20 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/"
-        },"genre": "posts","keywords": "linux, tcpdump","wordcount":  6155 ,
+        },"genre": "posts","keywords": "linux, tcpdump","wordcount":  6156 ,
         "url": "https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/","datePublished": "2019-09-09T00:00:00+00:00","dateModified": "2022-06-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
-                        "name": "admin"                    
+                        "name": "admin"
                     }],"description": "介绍在Linux命令行中使用tcpdump"
     }
     </script></head>
 
-<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+  <body
+    header-desktop="auto"
+    header-mobile="auto"
+  ><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
@@ -55,78 +104,187 @@
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="一个曾经的小码农..."><img
-        class="logo"
-        loading="lazy"
-        src="/icons/logo_title.png"
-        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        title="/icons/logo_title.png" ><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
-        </div>
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><img
+    class="logo"
+    loading="lazy"
+    src="/icons/logo_title.png"
+    srcset="/icons/logo_title.png,
+        /icons/logo_title.png 1.5x,
+        /icons/logo_title.png 2x"
+    title="/icons/logo_title.png"
+    
+    
+  /><span id="desktop-header-typeit" class="typeit"></span></a>
     </div>
+    <div class="menu">
+      <div class="menu-inner"><a
+            class="menu-item"
+            href="/posts/"
+            
+          > 文章
+            </a><a
+            class="menu-item"
+            href="/tags/"
+            
+          > 标签
+            </a><a
+            class="menu-item"
+            href="/categories/"
+            
+          > 分类
+            </a><a
+            class="menu-item"
+            href="/series/"
+            
+          > 系列
+            </a><a
+            class="menu-item"
+            href="/about/"
+            
+          > About
+            </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <input
+              type="text"
+              placeholder="搜索文章标题或内容..."
+              id="search-input-desktop"
+            />
+            <a
+              href="javascript:void(0);"
+              class="search-button search-toggle"
+              id="search-toggle-desktop"
+              title="搜索"
+            >
+              <i class="fas fa-search fa-fw"></i>
+            </a>
+            <a
+              href="javascript:void(0);"
+              class="search-button search-clear"
+              id="search-clear-desktop"
+              title="清空"
+            >
+              <i class="fas fa-times-circle fa-fw"></i>
+            </a>
+            <span
+              class="search-button search-loading"
+              id="search-loading-desktop"
+            >
+              <i class="fas fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </span><a
+            href="javascript:void(0);"
+            class="menu-item theme-switch"
+            title="切换主题"
+          >
+            <i class="fas fa-adjust fa-fw"></i>
+          </a></div>
+    </div>
+  </div>
 </header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="一个曾经的小码农..."><img
-        class="logo"
-        loading="lazy"
-        src="/icons/logo_title.png"
-        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        title="/icons/logo_title.png" ><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><img
+    class="logo"
+    loading="lazy"
+    src="/icons/logo_title.png"
+    srcset="/icons/logo_title.png,
+        /icons/logo_title.png 1.5x,
+        /icons/logo_title.png 2x"
+    title="/icons/logo_title.png"
+    
+    
+  /><span id="mobile-header-typeit" class="typeit"></span></a>
+      </div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
     </div>
+    <div class="menu" id="menu-mobile"><div class="search-wrapper">
+          <div class="search mobile" id="search-mobile">
+            <input
+              type="text"
+              placeholder="搜索文章标题或内容..."
+              id="search-input-mobile"
+            />
+            <a
+              href="javascript:void(0);"
+              class="search-button search-toggle"
+              id="search-toggle-mobile"
+              title="搜索"
+            >
+              <i class="fas fa-search fa-fw"></i>
+            </a>
+            <a
+              href="javascript:void(0);"
+              class="search-button search-clear"
+              id="search-clear-mobile"
+              title="清空"
+            >
+              <i class="fas fa-times-circle fa-fw"></i>
+            </a>
+            <span
+              class="search-button search-loading"
+              id="search-loading-mobile"
+            >
+              <i class="fas fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </div>
+          <a
+            href="javascript:void(0);"
+            class="search-cancel"
+            id="search-cancel-mobile"
+          >
+            取消
+          </a>
+        </div><a
+          class="menu-item"
+          href="/posts/"
+          title=""
+          
+        >文章</a><a
+          class="menu-item"
+          href="/tags/"
+          title=""
+          
+        >标签</a><a
+          class="menu-item"
+          href="/categories/"
+          title=""
+          
+        >分类</a><a
+          class="menu-item"
+          href="/series/"
+          title=""
+          
+        >系列</a><a
+          class="menu-item"
+          href="/about/"
+          title=""
+          
+        >About</a><a
+          href="javascript:void(0);"
+          class="menu-item theme-switch"
+          title="切换主题"
+        >
+          <i class="fas fa-adjust fa-fw"></i>
+        </a></div>
+  </div>
 </header>
 <div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+  <div id="search-dropdown-desktop"></div>
 </div>
 <div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
+  <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><div class="toc" id="toc-auto">
-        <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+        <div class="container"><div class="toc" id="toc-auto">
+      <h2 class="toc-title">目录</h2>
+      <div
+        class="toc-contentalways-active"
+        id="toc-content-auto"
+      ><nav id="TableOfContents">
   <ul>
     <li><a href="#1-在linux上安装">1. 在Linux上安装</a></li>
     <li><a href="#2-使用tcpdump捕获数据包">2. 使用tcpdump捕获数据包</a></li>
@@ -142,23 +300,58 @@
     <li><a href="#6-将捕获保存到文件">6. 将捕获保存到文件</a></li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">介绍在Linux命令行中使用tcpdump</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/"><i class="far fa-folder fa-fw"></i>整理收集</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-09-09">2019-09-09</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-22">2022-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6155 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" class="leancloud_visitors" data-flag-title="介绍在Linux命令行中使用tcpdump">
-                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/"></span>&nbsp;次阅读
-                    </span>&nbsp;<span id="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" class="comment_count" data-flag-title="介绍在Linux命令行中使用tcpdump">
-                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/"></span>&nbsp;条评论
-                    </span>&nbsp;<span>
-                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
-                    </span>&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    </div><script>
+        document
+          .getElementsByTagName("main")[0]
+          .setAttribute("autoTOC", "true");
+      </script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">
+      介绍在Linux命令行中使用tcpdump
+    </h1><div class="post-meta">
+      <div class="post-meta-line">
+        <span class="post-author"><span class="author"><span class="author fas fa-user-circle fa-fw"></span><span class="screen-reader-text">  </span><a href="https://blog.0x5c0f.cc/authors/admin">0x5c0f</a></span>
+        </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/"><i class="far fa-folder fa-fw"></i>整理收集</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+      <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
+            datetime="2019-09-09"
+            >2019-09-09</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-22"
+              >2022-06-22</time
+            >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
+          >&nbsp;约 6156 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 13 分钟&nbsp;<span
+            id="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/"
+            class="leancloud_visitors"
+            data-flag-title="介绍在Linux命令行中使用tcpdump"
+          >
+            <i class="far fa-eye fa-fw"></i>&nbsp;<span
+              class="leancloud-visitors-count waline-pageview-count"
+              data-path="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/"
+            ></span
+            >&nbsp;次阅读 </span
+          >&nbsp;<span
+            id="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/"
+            class="comment_count"
+            data-flag-title="介绍在Linux命令行中使用tcpdump"
+          >
+            <i class="far fa-comments fa-fw"></i>&nbsp;<span
+              class="waline-comment-count"
+              id="waline-comment-count"
+              data-path="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/"
+            ></span
+            >&nbsp;条评论 </span
+          >&nbsp;<span>
+            <i class="fas fa-balance-scale fa-fw"></i
+            >&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp; </span
+          >&nbsp;</div>
+    </div><div
+        class="details toc"
+        id="toc-static"
+        kept=""
+      >
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fas fa-angle-right"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-在linux上安装">1. 在Linux上安装</a></li>
     <li><a href="#2-使用tcpdump捕获数据包">2. 使用tcpdump捕获数据包</a></li>
@@ -174,27 +367,59 @@
     <li><a href="#6-将捕获保存到文件">6. 将捕获保存到文件</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><div class="details admonition warning open">
-                <div class="details-summary admonition-title">
-                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
-                </div>
-                <div class="details-content">
-                    <div class="admonition-content">
-                        本文最后更新于 <span class="timeago" datetime="2022-06-22T00:00:00" title="June 22, 2022">2022-06-22</span>，文中内容可能已过时。</div>
-                </div>
-            </div><div class="details admonition quote open">
+      </div><div class="content" id="content"><div class="details admonition warning open">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-quote-right fa-fw"></i>引用<i class="details-icon fas fa-angle-right fa-fw"></i>
+          <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i
+            class="details-icon fas fa-angle-right fa-fw"
+          ></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content"><p>介绍在Linux命令行中使用tcpdump<br>
-文章原文来源 <a href="https://opensource.com" target="_blank" rel="noopener noreferrer">opensource.com</a>, 由本站翻译发布用于个人搜集。</p>
+          <div class="admonition-content">
+            本文最后更新于 <span
+              class="timeago"
+              datetime="2022-06-22T00:00:00"
+              title="June 22, 2022"
+            >2022-06-22</span
+            >，文中内容可能已过时。</div>
+        </div>
+      </div><div
+    class="details admonition quote
+      open
+    "
+  >
+    <div class="details-summary admonition-title">
+      <i
+        class="icon fas fa-quote-right fa-fw"
+      ></i
+      >引用<i
+        class="details-icon fas fa-angle-right fa-fw"
+      ></i>
+    </div>
+    <div class="details-content">
+      <div class="admonition-content"><p>介绍在Linux命令行中使用tcpdump<br>
+文章原文来源 <a
+  href="https://opensource.com"
+  
+     target="_blank"
+  
+  rel="noopener noreferrer"
+  
+>opensource.com</a>
+, 由本站翻译发布用于个人搜集。</p>
 <blockquote>
-<p><a href="https://opensource.com/article/18/10/introduction-tcpdump" target="_blank" rel="noopener noreferrer">https://opensource.com/article/18/10/introduction-tcpdump</a></p>
+<p><a
+  href="https://opensource.com/article/18/10/introduction-tcpdump"
+  
+     target="_blank"
+  
+  rel="noopener noreferrer"
+  
+>https://opensource.com/article/18/10/introduction-tcpdump</a>
+</p>
 </blockquote>
 </div>
-        </div>
     </div>
+  </div>
 <p><code>tcpdump</code>是一个功能强大、功能多样的工具，包括许多选项和过滤器，可以在各种情况下使用。由于它是一个命令行工具，所以最好在没有<code>GUI</code>的远程服务器或设备上运行，以便收集可以稍后分析的数据。它也可以在后台启动，或者使用<code>cron</code>之类的工具作为计划作业启动。</p>
 <p>在本文中，我们将介绍一些<code>tcpdump</code>最常见的功能。</p>
 <h1 id="1-在linux上安装" class="headerLink">
@@ -420,7 +645,15 @@ The next field is the window size win 309, which represents the number of bytes 
 <p>该字段也可以是这些值的组合，例如用于<code>SYN-ACK</code>分组的<code>[S.]</code>。<br>
 接下来是数据包中包含的数据的序列号。对于捕获的第一个包，这是一个绝对值。随后的数据包使用一个相对号，以便更容易跟踪。在这个例子中，序列是<code>seq 196:568</code>，这意味着这个包包含这个流的<code>196</code>到<code>568</code>字节。<br>
 然后是<code>Ack</code>编号:<code>Ack 1</code>。在本例中，它是1，因为这是发送数据的一方。对于接收数据的端，此字段表示此流上的下一个预期字节(数据)。例如，这个流中的下一个包的<code>Ack</code>号将是<code>568</code>。<br>
-下一个字段是窗口大小<code>win 309</code>，它表示接收缓冲区中可用的字节数，然后是<code>TCP</code>选项，如<code>MSS</code>(最大段大小)或窗口大小。有关TCP协议选项的详细信息，请参阅<a href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml" target="_blank" rel="noopener noreferrer">传输控制协议(TCP)参数</a>。<br>
+下一个字段是窗口大小<code>win 309</code>，它表示接收缓冲区中可用的字节数，然后是<code>TCP</code>选项，如<code>MSS</code>(最大段大小)或窗口大小。有关TCP协议选项的详细信息，请参阅<a
+  href="https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml"
+  
+     target="_blank"
+  
+  rel="noopener noreferrer"
+  
+>传输控制协议(TCP)参数</a>
+。<br>
 最后，我们有数据包长度，长度<code>372</code>，它表示负载数据的长度，以字节为单位。长度是序号中最后一个字节和第一个字节之间的差。<br>
 现在，让我们学习如何过滤数据包以缩小结果范围，并使特定问题的故障排除变得更容易。</p>
 <h1 id="4-过滤数据包" class="headerLink">
@@ -881,54 +1114,184 @@ The next field is the window size win 309, which represents the number of bytes 
 <code>Wireshark</code>的一个优点是它可以读取<code>tcpdump</code>捕获的<code>.pcap</code>文件。您可以使用<code>tcpdump</code>在没有<code>GUI</code>的远程机器中捕获数据包，并使用<code>Wireshark</code>分析结果文件，但这是另一个主题。</p>
 </div>
 
-        <div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-06-22</span>
-            </div>
-            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span><a class="link-to-mardown" href=/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
-                    </span></div>
-            <div class="post-info-share"><button title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" data-title="介绍在Linux命令行中使用tcpdump"><span class="fab fa-evernote fa-fw"></span></button></div>
-        </div>
+    <div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span>更新于 2022-06-22</span>
+      </div>
+      <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/tcpdump/">Tcpdump</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a
+                class="link-to-mardown"
+                href=/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/index.md
+                target="_blank"
+                rel="noopener noreferrer"
+              >阅读原始文档</a>
+            </span></div>
+      <div class="post-info-share"><button
+      title="分享到 Evernote"
+      data-sharer="evernote"
+      data-url="https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/"
+      data-title="介绍在Linux命令行中使用tcpdump"
+    ><span class="fab fa-evernote fa-fw"></span></button></div>
     </div>
+  </div>
 
-    <div class="post-nav"><a href="/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" class="prev" rel="prev" title="Systemctl之systemd自定义系统服务"><i class="fas fa-angle-left fa-fw"></i>Systemctl之systemd自定义系统服务</a>
-            <a href="/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/" class="next" rel="next" title="Cobbler无人值守安装">Cobbler无人值守安装<i class="fas fa-angle-right fa-fw"></i></a></div>
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/tcpdump/">Tcpdump</a></section>
+    <section>
+      <span
+        ><a href="javascript:void(0);" onclick="window.history.back();"
+          >返回</a
+        ></span
+      >&nbsp;|&nbsp;<span
+        ><a href="/">主页</a></span
+      >
+    </section>
+  </div>
+
+  <div class="post-nav"><a
+        href="/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/"
+        class="prev"
+        rel="prev"
+        title="Systemctl之systemd自定义系统服务"
+        ><i class="fas fa-angle-left fa-fw"></i>Systemctl之systemd自定义系统服务</a
+      >
+      <a
+        href="/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/"
+        class="next"
+        rel="next"
+        title="Cobbler无人值守安装"
+        >Cobbler无人值守安装<i class="fas fa-angle-right fa-fw"></i
+      ></a></div>
 </div>
 <div id="comments"><div id="waline" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
             </noscript></div></article></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>fetch("https://api.myip.la").then(response => response.text()).then(data => document.getElementById("show-ip").innerHTML = data);</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.123.4">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
-                    <span class="icp">渝ICP备2020011834号-2</span></div>
-            <div class="footer-line"></div>
-            <div class="footer-line">
-            </div>
-        </div></footer></div>
+      </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>fetch("https://api.myip.la").then(response => response.text()).then(data => document.getElementById("show-ip").innerHTML = data);</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.123.4">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
+            >&nbsp;<a
+              href="https://tools.0x5c0f.cc"
+              target="_blank"
+              rel="noopener noreferrer"
+              >0x5c0f</a
+            ></span
+          >&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+          <span class="icp">渝ICP备2020011834号-2</span></div>
+      <div class="footer-line"></div>
+      <div class="footer-line"></div>
+    </div></footer></div>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.1.0/alus"],"lang":"zh-cn","login":"enable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
+    <div id="fixed-buttons"><a
+        href="#back-to-top"
+        id="back-to-top-button"
+        class="fixed-button"
+        title="回到顶部"
+      >
+        <i class="fas fa-arrow-up fa-fw"></i>
+      </a><a
+        href="#"
+        id="view-comments"
+        class="fixed-button"
+        title="查看评论"
+      >
+        <i class="fas fa-comment fa-fw"></i>
+      </a>
+    </div><div class="assets"><link
+      rel="stylesheet"
+      href="/lib/waline/waline.min.css"
+      
+    /><link
+      rel="stylesheet"
+      href="/lib/katex/katex.min.css"
+      
+    /><link
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+      href="/lib/katex/copy-tex.min.css"
+      
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="/lib/katex/copy-tex.min.css"
+        
+    /></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"enable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script
+    type="text/javascript"
+    src="/lib/waline/waline.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/js/waline.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/clipboard/clipboard.min.js"
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/sharer/sharer.min.js"
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/typeit/typeit.min.js"
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script><script type="text/javascript">
             window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', 'G-06MPV27KSD');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
+        </script><script
+    type="text/javascript"
+    src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD"
+    async
+  ></script></div>
 </body>
-
 </html>

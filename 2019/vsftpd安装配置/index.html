@@ -1,13 +1,15 @@
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noodp" />
-    <title>Vsftpd安装配置 - 一个曾经的小码农...</title><meta name="Description" content="Vsftpd安装配置"><meta property="og:title" content="Vsftpd安装配置" />
+    <title>Vsftpd安装配置 - 一个曾经的小码农...</title><meta
+  name="Description"
+  content="Vsftpd安装配置"
+/><meta property="og:title" content="Vsftpd安装配置" />
 <meta property="og:description" content="Vsftpd安装配置" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png" /><meta property="article:section" content="posts" />
@@ -19,13 +21,57 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png" /><meta name="twitter:title" content="Vsftpd安装配置"/>
 <meta name="twitter:description" content="Vsftpd安装配置"/>
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
+<meta
+  name="application-name"
+  content="DoIt"
+/>
+<meta
+  name="apple-mobile-web-app-title"
+  content="DoIt"
+/>
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/iptables%E5%B8%B8%E7%94%A8/" />
-<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+<meta name="theme-color" content="#f8f8f8" /><meta name="msapplication-TileColor" content="#da532c" /><link rel="icon" href="/icons/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" /><link rel="canonical" href="https://blog.0x5c0f.cc/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/iptables%E5%B8%B8%E7%94%A8/" />
+<link
+      rel="stylesheet"
+      href="/css/main.css"
+      
+    /><link
+      rel="stylesheet"
+      href="/lib/normalize/normalize.min.css"
+      
+    /><link
+      rel="stylesheet"
+      href="/css/color.css"
+      
+    /><link
+      rel="stylesheet"
+      href="/css/style.min.css"
+      
+    /><link
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+      href="/lib/fontawesome-free/all.min.css"
+      
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="/lib/fontawesome-free/all.min.css"
+        
+    /></noscript><link
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+      href="/lib/animate/animate.min.css"
+      
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="/lib/animate/animate.min.css"
+        
+    /></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -39,12 +85,15 @@
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
-                        "name": "admin"                    
+                        "name": "admin"
                     }],"description": "Vsftpd安装配置"
     }
     </script></head>
 
-<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+  <body
+    header-desktop="auto"
+    header-mobile="auto"
+  ><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
@@ -55,78 +104,187 @@
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="一个曾经的小码农..."><img
-        class="logo"
-        loading="lazy"
-        src="/icons/logo_title.png"
-        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        title="/icons/logo_title.png" ><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
-        </div>
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><img
+    class="logo"
+    loading="lazy"
+    src="/icons/logo_title.png"
+    srcset="/icons/logo_title.png,
+        /icons/logo_title.png 1.5x,
+        /icons/logo_title.png 2x"
+    title="/icons/logo_title.png"
+    
+    
+  /><span id="desktop-header-typeit" class="typeit"></span></a>
     </div>
+    <div class="menu">
+      <div class="menu-inner"><a
+            class="menu-item"
+            href="/posts/"
+            
+          > 文章
+            </a><a
+            class="menu-item"
+            href="/tags/"
+            
+          > 标签
+            </a><a
+            class="menu-item"
+            href="/categories/"
+            
+          > 分类
+            </a><a
+            class="menu-item"
+            href="/series/"
+            
+          > 系列
+            </a><a
+            class="menu-item"
+            href="/about/"
+            
+          > About
+            </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <input
+              type="text"
+              placeholder="搜索文章标题或内容..."
+              id="search-input-desktop"
+            />
+            <a
+              href="javascript:void(0);"
+              class="search-button search-toggle"
+              id="search-toggle-desktop"
+              title="搜索"
+            >
+              <i class="fas fa-search fa-fw"></i>
+            </a>
+            <a
+              href="javascript:void(0);"
+              class="search-button search-clear"
+              id="search-clear-desktop"
+              title="清空"
+            >
+              <i class="fas fa-times-circle fa-fw"></i>
+            </a>
+            <span
+              class="search-button search-loading"
+              id="search-loading-desktop"
+            >
+              <i class="fas fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </span><a
+            href="javascript:void(0);"
+            class="menu-item theme-switch"
+            title="切换主题"
+          >
+            <i class="fas fa-adjust fa-fw"></i>
+          </a></div>
+    </div>
+  </div>
 </header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="一个曾经的小码农..."><img
-        class="logo"
-        loading="lazy"
-        src="/icons/logo_title.png"
-        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        title="/icons/logo_title.png" ><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><img
+    class="logo"
+    loading="lazy"
+    src="/icons/logo_title.png"
+    srcset="/icons/logo_title.png,
+        /icons/logo_title.png 1.5x,
+        /icons/logo_title.png 2x"
+    title="/icons/logo_title.png"
+    
+    
+  /><span id="mobile-header-typeit" class="typeit"></span></a>
+      </div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
     </div>
+    <div class="menu" id="menu-mobile"><div class="search-wrapper">
+          <div class="search mobile" id="search-mobile">
+            <input
+              type="text"
+              placeholder="搜索文章标题或内容..."
+              id="search-input-mobile"
+            />
+            <a
+              href="javascript:void(0);"
+              class="search-button search-toggle"
+              id="search-toggle-mobile"
+              title="搜索"
+            >
+              <i class="fas fa-search fa-fw"></i>
+            </a>
+            <a
+              href="javascript:void(0);"
+              class="search-button search-clear"
+              id="search-clear-mobile"
+              title="清空"
+            >
+              <i class="fas fa-times-circle fa-fw"></i>
+            </a>
+            <span
+              class="search-button search-loading"
+              id="search-loading-mobile"
+            >
+              <i class="fas fa-spinner fa-fw fa-spin"></i>
+            </span>
+          </div>
+          <a
+            href="javascript:void(0);"
+            class="search-cancel"
+            id="search-cancel-mobile"
+          >
+            取消
+          </a>
+        </div><a
+          class="menu-item"
+          href="/posts/"
+          title=""
+          
+        >文章</a><a
+          class="menu-item"
+          href="/tags/"
+          title=""
+          
+        >标签</a><a
+          class="menu-item"
+          href="/categories/"
+          title=""
+          
+        >分类</a><a
+          class="menu-item"
+          href="/series/"
+          title=""
+          
+        >系列</a><a
+          class="menu-item"
+          href="/about/"
+          title=""
+          
+        >About</a><a
+          href="javascript:void(0);"
+          class="menu-item theme-switch"
+          title="切换主题"
+        >
+          <i class="fas fa-adjust fa-fw"></i>
+        </a></div>
+  </div>
 </header>
 <div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+  <div id="search-dropdown-desktop"></div>
 </div>
 <div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
+  <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-            <div class="container"><div class="toc" id="toc-auto">
-        <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+        <div class="container"><div class="toc" id="toc-auto">
+      <h2 class="toc-title">目录</h2>
+      <div
+        class="toc-contentalways-active"
+        id="toc-content-auto"
+      ><nav id="TableOfContents">
   <ul>
     <li><a href="#1-安装-vsftpd">1. 安装 vsftpd</a>
       <ul>
@@ -162,23 +320,58 @@
     </li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Vsftpd安装配置</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><span class='author'><span class="author fas fa-user-circle fa-fw"></span><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-03-05">2019-03-05</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-27">2022-06-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5005 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="leancloud_visitors" data-flag-title="Vsftpd安装配置">
-                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"></span>&nbsp;次阅读
-                    </span>&nbsp;<span id="/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="comment_count" data-flag-title="Vsftpd安装配置">
-                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"></span>&nbsp;条评论
-                    </span>&nbsp;<span>
-                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
-                    </span>&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    </div><script>
+        document
+          .getElementsByTagName("main")[0]
+          .setAttribute("autoTOC", "true");
+      </script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">
+      Vsftpd安装配置
+    </h1><div class="post-meta">
+      <div class="post-meta-line">
+        <span class="post-author"><span class="author"><span class="author fas fa-user-circle fa-fw"></span><span class="screen-reader-text">  </span><a href="https://blog.0x5c0f.cc/authors/admin">0x5c0f</a></span>
+        </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+      <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
+            datetime="2019-03-05"
+            >2019-03-05</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-27"
+              >2022-06-27</time
+            >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
+          >&nbsp;约 5005 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 10 分钟&nbsp;<span
+            id="/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"
+            class="leancloud_visitors"
+            data-flag-title="Vsftpd安装配置"
+          >
+            <i class="far fa-eye fa-fw"></i>&nbsp;<span
+              class="leancloud-visitors-count waline-pageview-count"
+              data-path="/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"
+            ></span
+            >&nbsp;次阅读 </span
+          >&nbsp;<span
+            id="/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"
+            class="comment_count"
+            data-flag-title="Vsftpd安装配置"
+          >
+            <i class="far fa-comments fa-fw"></i>&nbsp;<span
+              class="waline-comment-count"
+              id="waline-comment-count"
+              data-path="/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"
+            ></span
+            >&nbsp;条评论 </span
+          >&nbsp;<span>
+            <i class="fas fa-balance-scale fa-fw"></i
+            >&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp; </span
+          >&nbsp;</div>
+    </div><div
+        class="details toc"
+        id="toc-static"
+        kept=""
+      >
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fas fa-angle-right"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-安装-vsftpd">1. 安装 vsftpd</a>
       <ul>
@@ -214,23 +407,45 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><div class="details admonition warning open">
-                <div class="details-summary admonition-title">
-                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
-                </div>
-                <div class="details-content">
-                    <div class="admonition-content">
-                        本文最后更新于 <span class="timeago" datetime="2022-06-27T00:00:00" title="June 27, 2022">2022-06-27</span>，文中内容可能已过时。</div>
-                </div>
-            </div><div class="details admonition note open">
+      </div><div class="content" id="content"><div class="details admonition warning open">
         <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>注意<i class="details-icon fas fa-angle-right fa-fw"></i>
+          <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i
+            class="details-icon fas fa-angle-right fa-fw"
+          ></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">文章于最后提交日修改过一次，但没有测试，不知道有没有改错</div>
+          <div class="admonition-content">
+            本文最后更新于 <span
+              class="timeago"
+              datetime="2022-06-27T00:00:00"
+              title="June 27, 2022"
+            >2022-06-27</span
+            >，文中内容可能已过时。</div>
         </div>
+      </div><div
+    class="details admonition note
+      open
+    "
+  >
+    <div class="details-summary admonition-title">
+      <i
+        class="icon fas fa-pencil-alt fa-fw"
+      ></i
+      >注意<i
+        class="details-icon fas fa-angle-right fa-fw"
+      ></i>
     </div>
-<p>包含虚拟用户和本地用户配置，另还有一个<a href="#1" rel=""><code>pure-ftp</code></a>,据说配置便捷不过没有用过<br>
+    <div class="details-content">
+      <div class="admonition-content">文章于最后提交日修改过一次，但没有测试，不知道有没有改错</div>
+    </div>
+  </div>
+<p>包含虚拟用户和本地用户配置，另还有一个<a
+  href="#1"
+  
+  rel=""
+  
+><code>pure-ftp</code></a>
+,据说配置便捷不过没有用过<br>
 此篇内容就是完全的一个个人记录了，其他人估计是看不懂的。<br>
 基础环境:</p>
 <ul>
@@ -622,7 +837,15 @@
 </div>
 </div><h1 id="3-此处记录下pure-ftp的相关信息以备查验" class="headerLink">
     <a href="#3-%e6%ad%a4%e5%a4%84%e8%ae%b0%e5%bd%95%e4%b8%8bpure-ftp%e7%9a%84%e7%9b%b8%e5%85%b3%e4%bf%a1%e6%81%af%e4%bb%a5%e5%a4%87%e6%9f%a5%e9%aa%8c" class="header-mark"></a>3. 此处记录下pure-ftp的相关信息,以备查验</h1><blockquote>
-<p><a href="https://github.com/jedisct1/pure-ftpd" target="_blank" rel="noopener noreferrer">https://github.com/jedisct1/pure-ftpd</a></p>
+<p><a
+  href="https://github.com/jedisct1/pure-ftpd"
+  
+     target="_blank"
+  
+  rel="noopener noreferrer"
+  
+>https://github.com/jedisct1/pure-ftpd</a>
+</p>
 </blockquote>
 <h2 id="31-编译参数" class="headerLink">
     <a href="#31-%e7%bc%96%e8%af%91%e5%8f%82%e6%95%b0" class="header-mark"></a>3.1. 编译参数</h2><div class="highlight"><div class="chroma">
@@ -1216,54 +1439,184 @@
 </div>
 </div></div>
 
-        <div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-06-27</span>
-            </div>
-            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span><a class="link-to-mardown" href=/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
-                    </span></div>
-            <div class="post-info-share"><button title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" data-title="Vsftpd安装配置"><span class="fab fa-evernote fa-fw"></span></button></div>
-        </div>
+    <div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span>更新于 2022-06-27</span>
+      </div>
+      <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/ftp/">Ftp</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
+    <div class="post-info-line">
+      <div class="post-info-md"><span><a
+                class="link-to-mardown"
+                href=/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/index.md
+                target="_blank"
+                rel="noopener noreferrer"
+              >阅读原始文档</a>
+            </span></div>
+      <div class="post-info-share"><button
+      title="分享到 Evernote"
+      data-sharer="evernote"
+      data-url="https://blog.0x5c0f.cc/2019/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"
+      data-title="Vsftpd安装配置"
+    ><span class="fab fa-evernote fa-fw"></span></button></div>
     </div>
+  </div>
 
-    <div class="post-nav"><a href="/2019/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/" class="prev" rel="prev" title="Php安装维护"><i class="fas fa-angle-left fa-fw"></i>Php安装维护</a>
-            <a href="/2019/iptables%E5%B8%B8%E7%94%A8/" class="next" rel="next" title="Iptables常用">Iptables常用<i class="fas fa-angle-right fa-fw"></i></a></div>
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/ftp/">Ftp</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
+    <section>
+      <span
+        ><a href="javascript:void(0);" onclick="window.history.back();"
+          >返回</a
+        ></span
+      >&nbsp;|&nbsp;<span
+        ><a href="/">主页</a></span
+      >
+    </section>
+  </div>
+
+  <div class="post-nav"><a
+        href="/2019/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/"
+        class="prev"
+        rel="prev"
+        title="Php安装维护"
+        ><i class="fas fa-angle-left fa-fw"></i>Php安装维护</a
+      >
+      <a
+        href="/2019/iptables%E5%B8%B8%E7%94%A8/"
+        class="next"
+        rel="next"
+        title="Iptables常用"
+        >Iptables常用<i class="fas fa-angle-right fa-fw"></i
+      ></a></div>
 </div>
 <div id="comments"><div id="waline" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
             </noscript></div></article></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>fetch("https://api.myip.la").then(response => response.text()).then(data => document.getElementById("show-ip").innerHTML = data);</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.123.4">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://tools.0x5c0f.cc" target="_blank" rel="noopener noreferrer">0x5c0f</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
-                    <span class="icp">渝ICP备2020011834号-2</span></div>
-            <div class="footer-line"></div>
-            <div class="footer-line">
-            </div>
-        </div></footer></div>
+      </main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>fetch("https://api.myip.la").then(response => response.text()).then(data => document.getElementById("show-ip").innerHTML = data);</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.123.4">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
+            >&nbsp;<a
+              href="https://tools.0x5c0f.cc"
+              target="_blank"
+              rel="noopener noreferrer"
+              >0x5c0f</a
+            ></span
+          >&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
+          <span class="icp">渝ICP备2020011834号-2</span></div>
+      <div class="footer-line"></div>
+      <div class="footer-line"></div>
+    </div></footer></div>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.1.0/alus"],"lang":"zh-cn","login":"enable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
+    <div id="fixed-buttons"><a
+        href="#back-to-top"
+        id="back-to-top-button"
+        class="fixed-button"
+        title="回到顶部"
+      >
+        <i class="fas fa-arrow-up fa-fw"></i>
+      </a><a
+        href="#"
+        id="view-comments"
+        class="fixed-button"
+        title="查看评论"
+      >
+        <i class="fas fa-comment fa-fw"></i>
+      </a>
+    </div><div class="assets"><link
+      rel="stylesheet"
+      href="/lib/waline/waline.min.css"
+      
+    /><link
+      rel="stylesheet"
+      href="/lib/katex/katex.min.css"
+      
+    /><link
+      rel="preload"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+      href="/lib/katex/copy-tex.min.css"
+      
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="/lib/katex/copy-tex.min.css"
+        
+    /></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"enable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script
+    type="text/javascript"
+    src="/lib/waline/waline.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/js/waline.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/tablesort/tablesort.min.js"
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/clipboard/clipboard.min.js"
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/sharer/sharer.min.js"
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/typeit/typeit.min.js"
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/katex/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/katex/auto-render.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/katex/copy-tex.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/lib/katex/mhchem.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/js/katex.min.js"
+    
+      defer
+    
+  ></script><script
+    type="text/javascript"
+    src="/js/theme.min.js"
+    
+      defer
+    
+  ></script><script type="text/javascript">
             window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', 'G-06MPV27KSD');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
+        </script><script
+    type="text/javascript"
+    src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD"
+    async
+  ></script></div>
 </body>
-
 </html>
