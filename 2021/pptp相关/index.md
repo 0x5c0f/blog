@@ -4,6 +4,7 @@
 {{< admonition type=note title="前言" open=true >}}
 - 本来是不想整理这篇内容的，gre协议在国内限制实际上已经很严格，所以现在使用也已经并不多了，虽然不多，但作为一个运维这玩意有时候又需要，很容易忘记，想了想还是记录一个。  
 - 以下测试在腾讯云的主机上和`aws`的`lightsail`的主机上是不能拨号成功的,但在`aws`的`EC2`上是可以拨号成功的,很奇怪,pptp服务器日志显示的是说由于防火墙限制了gre协议包导致的。  
+- 本内容为运维记事，切勿用于非法用途。
 {{< /admonition >}}
 
 # 1. linux 下 pptp 拨号 
@@ -45,7 +46,7 @@ $> route add -host <需要代理的ip> gw <pptp启动后的默认网关路由ip>
 ```
 
 
-# 2. pptp 搭建示例 
+# 2. pptp 创建示例 
 ## 2.1. docker 创建
 ```bash
 docker run -d --privileged --net=host -v /data/docker/ppp/chap-secrets:/etc/ppp/chap-secrets mobtitude/vpn-pptp
@@ -188,7 +189,7 @@ export https_proxy=https://127.0.0.1:8118
 ```
 
 修改后使配置生效`source /etc/profile`  
-执行`curl -I http://www.google.com` 看是否成功
+执行`curl -I http://api.myip.la/json` 看看IP是否切换成功
 
 备注：如果不需要代理，需要把`profile`中变量注释，重新`source /etc/profile`  
 
@@ -207,7 +208,5 @@ export https_proxy=https://127.0.0.1:8118
     4. `random_chain` 随机使用代理　（`chain_len` 是配置每次用的代理个数）
 - 默认行修改或添加自己的`socks5  127.0.0.1 1080`地址 
 - 使用:  
-  - `proxychains4 curl -I www.google.com`   
-  - `proxychains4 curl api.ip.la`  
-
+  - `proxychains4 curl -I http://api.myip.la/json`   
 

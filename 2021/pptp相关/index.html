@@ -80,7 +80,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2021/pptp%E7%9B%B8%E5%85%B3/"
-        },"genre": "posts","keywords": "linux, 解决方案, pptp, shadowsocks, proxychains","wordcount":  2267 ,
+        },"genre": "posts","keywords": "linux, 解决方案, pptp, shadowsocks, proxychains","wordcount":  2287 ,
         "url": "https://blog.0x5c0f.cc/2021/pptp%E7%9B%B8%E5%85%B3/","datePublished": "2021-06-27T00:00:00+00:00","dateModified": "2023-03-30T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -287,7 +287,7 @@
       ><nav id="TableOfContents">
   <ul>
     <li><a href="#1-linux-下-pptp-拨号">1. linux 下 pptp 拨号</a></li>
-    <li><a href="#2-pptp-搭建示例">2. pptp 搭建示例</a>
+    <li><a href="#2-pptp-创建示例">2. pptp 创建示例</a>
       <ul>
         <li><a href="#21-docker-创建">2.1. docker 创建</a></li>
         <li><a href="#22-直接创建">2.2. 直接创建</a></li>
@@ -315,7 +315,7 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-03-30"
               >2023-03-30</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 2267 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 2287 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 5 分钟&nbsp;<span
             id="/2021/pptp%E7%9B%B8%E5%85%B3/"
             class="leancloud_visitors"
@@ -353,7 +353,7 @@
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-linux-下-pptp-拨号">1. linux 下 pptp 拨号</a></li>
-    <li><a href="#2-pptp-搭建示例">2. pptp 搭建示例</a>
+    <li><a href="#2-pptp-创建示例">2. pptp 创建示例</a>
       <ul>
         <li><a href="#21-docker-创建">2.1. docker 创建</a></li>
         <li><a href="#22-直接创建">2.2. 直接创建</a></li>
@@ -397,6 +397,7 @@
       <div class="admonition-content"><ul>
 <li>本来是不想整理这篇内容的，gre协议在国内限制实际上已经很严格，所以现在使用也已经并不多了，虽然不多，但作为一个运维这玩意有时候又需要，很容易忘记，想了想还是记录一个。</li>
 <li>以下测试在腾讯云的主机上和<code>aws</code>的<code>lightsail</code>的主机上是不能拨号成功的,但在<code>aws</code>的<code>EC2</code>上是可以拨号成功的,很奇怪,pptp服务器日志显示的是说由于防火墙限制了gre协议包导致的。</li>
+<li>本内容为运维记事，切勿用于非法用途。</li>
 </ul>
 </div>
     </div>
@@ -476,8 +477,8 @@
 </span></span><span class="line"><span class="cl">$&gt; route add -host &lt;需要代理的ip&gt; gw &lt;pptp启动后的默认网关路由ip&gt;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="2-pptp-搭建示例" class="headerLink">
-    <a href="#2-pptp-%e6%90%ad%e5%bb%ba%e7%a4%ba%e4%be%8b" class="header-mark"></a>2. pptp 搭建示例</h1><h2 id="21-docker-创建" class="headerLink">
+</div><h1 id="2-pptp-创建示例" class="headerLink">
+    <a href="#2-pptp-%e5%88%9b%e5%bb%ba%e7%a4%ba%e4%be%8b" class="header-mark"></a>2. pptp 创建示例</h1><h2 id="21-docker-创建" class="headerLink">
     <a href="#21-docker-%e5%88%9b%e5%bb%ba" class="header-mark"></a>2.1. docker 创建</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -746,7 +747,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>修改后使配置生效<code>source /etc/profile</code><br>
-执行<code>curl -I http://www.google.com</code> 看是否成功</p>
+执行<code>curl -I http://api.myip.la/json</code> 看看IP是否切换成功</p>
 <p>备注：如果不需要代理，需要把<code>profile</code>中变量注释，重新<code>source /etc/profile</code></p>
 <h1 id="5-终端代理-proxychains" class="headerLink">
     <a href="#5-%e7%bb%88%e7%ab%af%e4%bb%a3%e7%90%86-proxychains" class="header-mark"></a>5. 终端代理 proxychains</h1><p>此处源码编译安装的使用方式略有不同,注意查看帮助即可<br>
@@ -780,8 +781,7 @@
 <li>默认行修改或添加自己的<code>socks5  127.0.0.1 1080</code>地址</li>
 <li>使用:
 <ul>
-<li><code>proxychains4 curl -I www.google.com</code></li>
-<li><code>proxychains4 curl api.ip.la</code></li>
+<li><code>proxychains4 curl -I http://api.myip.la/json</code></li>
 </ul>
 </li>
 </ul>
@@ -855,7 +855,7 @@
             ></span
           >&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
           <span class="icp"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br" />
-          <span class="icp"><a href="http://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div>
+          <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div>
       <div class="footer-line"></div>
       <div class="footer-line"></div>
     </div></footer></div>
