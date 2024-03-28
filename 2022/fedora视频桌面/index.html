@@ -14,7 +14,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-24T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-06-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-03-25T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary_large_image" />
@@ -79,8 +79,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/"
-        },"genre": "posts","keywords": "linux, fedora","wordcount":  1641 ,
-        "url": "https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-24T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, fedora","wordcount":  1605 ,
+        "url": "https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2024-03-25T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -303,10 +303,10 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2022-06-24"
             >2022-06-24</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-24"
-              >2022-06-24</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-25"
+              >2024-03-25</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 1641 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 1605 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 4 分钟&nbsp;<span
             id="/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/"
             class="leancloud_visitors"
@@ -348,22 +348,7 @@
     <li><a href="#视频壁纸">视频壁纸</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><div class="details admonition warning open">
-        <div class="details-summary admonition-title">
-          <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i
-            class="details-icon fas fa-angle-right fa-fw"
-          ></i>
-        </div>
-        <div class="details-content">
-          <div class="admonition-content">
-            本文最后更新于 <span
-              class="timeago"
-              datetime="2022-06-24T00:00:00"
-              title="June 24, 2022"
-            >2022-06-24</span
-            >，文中内容可能已过时。</div>
-        </div>
-      </div><h1 id="fedora-唯美桌面" class="headerLink">
+      </div><div class="content" id="content"><h1 id="fedora-唯美桌面" class="headerLink">
     <a href="#fedora-%e5%94%af%e7%be%8e%e6%a1%8c%e9%9d%a2" class="header-mark"></a>fedora 唯美桌面</h1><p>  想了一下，网络上关于<code>fedora</code>桌面的美化似乎还是很少的,这对于我大<code>fedora</code>发展似乎是很不利的，凭什么<code>ubuntu</code>就可以有那么多的好东西。</p>
 <p>目前正常来说，我们能做的似乎只有简单的修改下壁纸，我记得不知道是那个<code>fedora</code>版本，在设置里面就是可以直接设置壁纸轮换的，但是现在似乎没有这个功能了(至少<code>fedora 32</code>是不能直接设置轮换了),不过可以通过另外的方式解决。这就是下面要说的第一种美化。</p>
 <h1 id="壁纸轮换" class="headerLink">
@@ -502,12 +487,11 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-32.noarch.rpm
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; sudo dnf install https://mirrors.ustc.edu.cn/rpmfusion/free/fedora/rpmfusion-free-release-38.noarch.rpm
 </span></span><span class="line"><span class="cl">$&gt; sudo dnf install mplayer
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>xwinwrap</code> 这个实际上只有<code>ubuntu</code>有安装包，不过在<code>32</code>上面可以直接把<code>ubuntu</code>的包直接解压也可以拿到这个程序。</p>
-<p>源码位置:</p>
+</div><p>源码位置:</p>
 <blockquote>
 <p><a
   href="https://github.com/ujjwal96/xwinwrap#installing"
@@ -519,19 +503,26 @@
 >https://github.com/ujjwal96/xwinwrap#installing</a>
 </p>
 </blockquote>
-<p><code>deb</code>下载:</p>
-<blockquote>
-<p><a
-  href="https://launchpadlibrarian.net/350345007/xwinwrap_0.3.2git20171223_amd64.deb"
-  
-     target="_blank"
-  
-  rel="noopener noreferrer"
-  
->xwinwrap_0.3.2git20171223_amd64.deb</a>
-</p>
-</blockquote>
-<p>无论你是从那儿下载的，提取文件，然后将<code>xwinwrap</code>复制到<code>/usr/local/bin/</code>下，并赋执行权限即可。</p>
+<p>安装编译:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; git clone https://github.com/r00tdaemon/xwinwrap.git
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">cd</span> xwinwrap
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># fedora 38 </span>
+</span></span><span class="line"><span class="cl">$&gt; sudo dnf install libX11-devel libXext-devel libXrender-devel libXrandr-dev gcc -y
+</span></span><span class="line"><span class="cl">$&gt; make 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将编译后产生的文件<code>xwinwrap</code>复制到<code>/usr/local/bin/</code>下，并赋执行权限即可。</p>
 <p><code>supervisord</code> 可以不安装，不装的话<code>xwinwrap</code>支持直接以守护进程形式运行。</p>
 <p>以上环境准备完成。下面简述下我的配置。 <br>
 <code>xwinwrap</code>启动方式(实际命令说明不做说明了，自己<code>-h</code>就了解了，东西不多)</p>
@@ -540,7 +531,7 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; /usr/local/bin/xwinwrap -ni -o <span class="m">1</span> -fdt -fs -s -st -sp -b -nf -- mplayer -framedrop -nosound -loop <span class="m">0</span> -wid WID -quiet /home/cxd/.backgrounds/stars/00000.mp4
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; /usr/local/bin/xwinwrap -ni -o <span class="m">1</span> -fdt -fs -s -st -sp -b -nf -- mplayer -nolirc -framedrop -nosound -loop <span class="m">0</span> -wid WID -quiet /home/cxd/.backgrounds/stars/00000.mp4
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上命令终端执行后实际上桌面就已经可以看到效果了</p>
@@ -585,7 +576,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2022-06-24</span>
+        <span>更新于 2024-03-25</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>

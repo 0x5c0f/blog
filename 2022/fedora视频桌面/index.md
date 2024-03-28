@@ -75,26 +75,31 @@ $> sudo ln -s /home/cxd/.backgrounds/stars.xml /usr/share/gnome-background-prope
   
 `mplayer`需要启用`rpmfusion`库，安装完后直接`dnf`安装就可以了    
 ```bash
-$> sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-32.noarch.rpm
+$> sudo dnf install https://mirrors.ustc.edu.cn/rpmfusion/free/fedora/rpmfusion-free-release-38.noarch.rpm
 $> sudo dnf install mplayer
 ```
-
-`xwinwrap` 这个实际上只有`ubuntu`有安装包，不过在`32`上面可以直接把`ubuntu`的包直接解压也可以拿到这个程序。  
 
 源码位置:   
 >[https://github.com/ujjwal96/xwinwrap#installing](https://github.com/ujjwal96/xwinwrap#installing)  
 
-`deb`下载:  
->[xwinwrap_0.3.2git20171223_amd64.deb](https://launchpadlibrarian.net/350345007/xwinwrap_0.3.2git20171223_amd64.deb)  
+安装编译: 
+```bash
+$> git clone https://github.com/r00tdaemon/xwinwrap.git
+$> cd xwinwrap
 
-无论你是从那儿下载的，提取文件，然后将`xwinwrap`复制到`/usr/local/bin/`下，并赋执行权限即可。  
+# fedora 38 
+$> sudo dnf install libX11-devel libXext-devel libXrender-devel libXrandr-dev gcc -y
+$> make 
+```
+
+将编译后产生的文件`xwinwrap`复制到`/usr/local/bin/`下，并赋执行权限即可。  
 
 `supervisord` 可以不安装，不装的话`xwinwrap`支持直接以守护进程形式运行。  
 
 以上环境准备完成。下面简述下我的配置。    
 `xwinwrap`启动方式(实际命令说明不做说明了，自己`-h`就了解了，东西不多)  
 ```bash
-$> /usr/local/bin/xwinwrap -ni -o 1 -fdt -fs -s -st -sp -b -nf -- mplayer -framedrop -nosound -loop 0 -wid WID -quiet /home/cxd/.backgrounds/stars/00000.mp4
+$> /usr/local/bin/xwinwrap -ni -o 1 -fdt -fs -s -st -sp -b -nf -- mplayer -nolirc -framedrop -nosound -loop 0 -wid WID -quiet /home/cxd/.backgrounds/stars/00000.mp4
 ```
 以上命令终端执行后实际上桌面就已经可以看到效果了  
 
