@@ -199,6 +199,13 @@ taskset -c 0,1,2,3 /etc/init.d/mysql start
 install -b -m 777 /dev/null file.txt
 ```
 
+# 创建一个具有特定权限的目录
+
+```bash
+# install -d -o <用户名> -g <用户组> -m <权限> <目标地址>
+install -d -o www -g www -m 755  /run/php-fpm
+```
+
 # 通过 sshfs 远程挂载目录
 
 ```bash
@@ -379,10 +386,8 @@ $> (cd /some/other/dir && other-command)
 ```
 
 # mount --bind 
-> 详解参见: https://www.modb.pro/db/248315
-
 ```bash
-
+# 将 olddir 绑定到  newdir
 $> mount -o bind olddir newdir
 
 # /etc/fstab
