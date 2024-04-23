@@ -144,3 +144,11 @@ $> sudo dnf system-upgrade reboot
 $> sudo dnf install seahorse
 # 活动栏中找到"密码和密钥"(及"seahorse"), 打开后找到登陆, 右键登陆，设置为空密码即可。
 ```
+
+# 15. `flatpak` 应用如何挂载指定目录到应用环境中 
+- 以 [`微信(Universal)`](https://flathub.org/zh-Hans/apps/com.tencent.WeChat) 为例, 由于`flatpak`默认的沙盒保护机制，只有部分目录映射到了沙盒中。根据作者[`(web1n)`](https://github.com/web1n)打包的仓库[`issue #14`](https://github.com/web1n/wechat-universal-flatpak/issues/14)可有多种解决方案，本站仅记录一种，其他请直接查看[`issue #14`](https://github.com/web1n/wechat-universal-flatpak/issues/14)。
+```bash
+# 安装 Flatseal 
+## https://flathub.org/apps/com.github.tchx84.Flatseal 
+$> flatpak install flathub com.github.tchx84.Flatseal
+```

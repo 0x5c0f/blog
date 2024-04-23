@@ -1,27 +1,18 @@
 # 持续集成和自动化部署
 
 
-<div class="details admonition info open">
-    <div class="details-summary admonition-title">
-        <i class="icon fas fa-info-circle fa-fw"></i>自动化部署流程设计<i class="details-icon fas fa-angle-right fa-fw"></i>
-    </div>
-    <div class="details-content">
-        <div class="admonition-content">
-            <ol>
-                <li>获取代码</li>
-                <li>编译(可选)</li>
-                <li>配置文件更新</li>
-                <li>打包(加快传输)</li>
-                <li>SCP到服务器</li>
-                <li>将目标服务器移出集群</li>
-                <li>解压</li>
-                <li>更新wwwroot</li>
-                <li>scp 差异文件</li>
-                <li>重启</li>
-            </ol>
-        </div>
-    </div>
-</div>
+{{< admonition type=info title="自动化部署流程设计" open=true >}}
+1. 获取代码  
+2. 编译(可选)  
+3. 配置文件更新  
+4. 打包(加快传输)  
+5. SCP到服务器  
+6. 将目标服务器移出集群  
+7. 解压  
+8. 更新wwwroot  
+9. scp 差异文件  
+10. 重启 
+{{< /admonition >}}
 
 
 # 1. gitlab 
