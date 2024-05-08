@@ -53,3 +53,12 @@ yum install openssl-devel -y
 # 另: python 3.x 编译需要依赖openssl 1.1.1 ./config --prefix=/pathto/openssl && make && make install
 ```
 
+# 7. python 3.x 'ModuleNotFoundError: No module named '_bz2''
+```bash
+yum install bzip2-devel -y
+```
+
+# 8. python 3.x 'ModuleNotFoundError: No module named '_lzma''
+```bash
+sudo yum install xz-devel
+```

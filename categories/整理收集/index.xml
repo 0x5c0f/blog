@@ -4,7 +4,13 @@
         <link>https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/</link>
         <description>整理收集 - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 08 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux 性能基准测试工具及测试方法</title>
+    <link>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[graph TB A[Linux 性能基准/测试] --> B[CPU] A --> C[内存] A --> D[磁盘 IO] A --> E[文件 IO] A --> F[网络] A --> G[应用程序] B --> H[Super_Pi 测试单线程性能] B --> I[sysbench 测试多线程性]]></description>
+</item><item>
     <title>内网.外网.宽带.带宽.流量.网速之间的区别与联系</title>
     <link>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</link>
     <pubDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</pubDate><author>
@@ -58,11 +64,5 @@
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/</guid>
     <description><![CDATA[信息 CentOS 7的默认网卡和设备名称都是随机的，根据需要有时候需要修改网卡为以eth开头的。以下整理了两种比较靠谱的。 1. 安装过程中修改在加载镜像后出]]></description>
-</item><item>
-    <title>TCP/IP 协议概述</title>
-    <link>https://blog.0x5c0f.cc/2022/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/</link>
-    <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/</guid>
-    <description><![CDATA[引用 两张动图-彻底明白TCP的三次握手与四次挥手]]></description>
 </item></channel>
 </rss>

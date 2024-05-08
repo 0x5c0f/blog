@@ -152,3 +152,9 @@ $> sudo dnf install seahorse
 ## https://flathub.org/apps/com.github.tchx84.Flatseal 
 $> flatpak install flathub com.github.tchx84.Flatseal
 ```
+
+# 16. fedroa 取消关机时候提示`安装挂起的软件更新`的默认勾选  
+```bash
+# https://discussion.fedoraproject.org/t/disable-gnome-software-update-notifications/78209/2 
+$> gsettings set org.gnome.software allow-updates false
+```

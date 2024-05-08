@@ -79,7 +79,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  468 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  494 ,
         "url": "https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-28T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -291,6 +291,8 @@
     <li><a href="#4-python-37x--modulenotfounderror-no-module-named-_ctypes">4. python 3.7.x  ModuleNotFoundError: No module named &lsquo;_ctypes&rsquo;</a></li>
     <li><a href="#5-python-37x-sslerrorcant-connect-to-https-url-because-the-ssl-module-is-not-available">5. python 3.7.x &lsquo;SSLError(&ldquo;Can&rsquo;t connect to HTTPS URL because the SSL module is not available.&rdquo;)&rsquo;</a></li>
     <li><a href="#6-python-3x-errors-like--could-not-import-runpy-module-operations-as-following">6. python 3.x &rsquo;errors like : “Could not import runpy module”, operations as following:'</a></li>
+    <li><a href="#7-python-3x-modulenotfounderror-no-module-named-_bz2">7. python 3.x &lsquo;ModuleNotFoundError: No module named &lsquo;_bz2&rsquo;&rsquo;</a></li>
+    <li><a href="#8-python-3x-modulenotfounderror-no-module-named-_lzma">8. python 3.x &lsquo;ModuleNotFoundError: No module named &lsquo;_lzma&rsquo;&rsquo;</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -309,7 +311,7 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28"
               >2022-06-28</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 468 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 494 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 1 分钟&nbsp;<span
             id="/2022/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/"
             class="leancloud_visitors"
@@ -352,6 +354,8 @@
     <li><a href="#4-python-37x--modulenotfounderror-no-module-named-_ctypes">4. python 3.7.x  ModuleNotFoundError: No module named &lsquo;_ctypes&rsquo;</a></li>
     <li><a href="#5-python-37x-sslerrorcant-connect-to-https-url-because-the-ssl-module-is-not-available">5. python 3.7.x &lsquo;SSLError(&ldquo;Can&rsquo;t connect to HTTPS URL because the SSL module is not available.&rdquo;)&rsquo;</a></li>
     <li><a href="#6-python-3x-errors-like--could-not-import-runpy-module-operations-as-following">6. python 3.x &rsquo;errors like : “Could not import runpy module”, operations as following:'</a></li>
+    <li><a href="#7-python-3x-modulenotfounderror-no-module-named-_bz2">7. python 3.x &lsquo;ModuleNotFoundError: No module named &lsquo;_bz2&rsquo;&rsquo;</a></li>
+    <li><a href="#8-python-3x-modulenotfounderror-no-module-named-_lzma">8. python 3.x &lsquo;ModuleNotFoundError: No module named &lsquo;_lzma&rsquo;&rsquo;</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><div class="details admonition warning open">
@@ -467,6 +471,24 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. gcc 需要升级到8.x + </span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 2. 取消 --enable-optimizations 参数 </span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 另: python 3.x 编译需要依赖openssl 1.1.1 ./config --prefix=/pathto/openssl &amp;&amp; make &amp;&amp; make install</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="7-python-3x-modulenotfounderror-no-module-named-_bz2" class="headerLink">
+    <a href="#7-python-3x-modulenotfounderror-no-module-named-_bz2" class="header-mark"></a>7. python 3.x &lsquo;ModuleNotFoundError: No module named &lsquo;_bz2&rsquo;&rsquo;</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install bzip2-devel -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="8-python-3x-modulenotfounderror-no-module-named-_lzma" class="headerLink">
+    <a href="#8-python-3x-modulenotfounderror-no-module-named-_lzma" class="header-mark"></a>8. python 3.x &lsquo;ModuleNotFoundError: No module named &lsquo;_lzma&rsquo;&rsquo;</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo yum install xz-devel
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

@@ -4,18 +4,24 @@
         <link>https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/</link>
         <description>那些有用没用的 - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 08 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/" rel="self" type="application/rss+xml" /><item>
     <title>那些好用的工具收集</title>
     <link>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[1. 文件内容搜索工具(ag) 1 2 3 # 类似于grep [root@01 ~]# yum install the_silver_searcher [root@01 ~]# ag &#34;hello&#34; ./example 2. mysql 命令补全工具，可替代mysql命令 https://github.com/dbcli 1 2 [root@01 ~]# pip install -U mycli [root@01 ~]# mycli 3. 多线程下]]></description>
 </item><item>
+    <title>Linux 性能基准测试工具及测试方法</title>
+    <link>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[graph TB A[Linux 性能基准/测试] --> B[CPU] A --> C[内存] A --> D[磁盘 IO] A --> E[文件 IO] A --> F[网络] A --> G[应用程序] B --> H[Super_Pi 测试单线程性能] B --> I[sysbench 测试多线程性]]></description>
+</item><item>
     <title>Fedora视频桌面</title>
     <link>https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</guid>
-    <description><![CDATA[fedora 唯美桌面 想了一下，网络上关于fedora桌面的美化似乎还是很少的,这对于我大fedora发展似乎是很不利的，凭什么ubuntu就可以有那么]]></description>
+    <description><![CDATA[- 想了一下，网络上关于fedora桌面的美化似乎还是很少的,这对于我大fedora发展似乎是很不利的，凭什么ubuntu就可以有那么多的好东]]></description>
 </item><item>
     <title>Gb2312Unicode对照表</title>
     <link>https://blog.0x5c0f.cc/2022/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/</link>
@@ -58,11 +64,5 @@
     <pubDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/</guid>
     <description><![CDATA[nfs 服务 部署 1 $&gt; yum install nfs-utils rpcbind &amp;&amp; mkdir /nfsshare &amp;&amp; chown nfsnobody. nfsshare 配置文件说明 /etc/exports 用于管理贡献相关配置的文件 内容格式: NFS共享目录 NFS客户端地址(参数1、参数2&hel]]></description>
-</item><item>
-    <title>Systemctl之systemd自定义系统服务</title>
-    <link>https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</link>
-    <pubDate>Tue, 20 Aug 2019 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</guid>
-    <description><![CDATA[以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接 http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html 1. [Unit]Unit 定义启动顺序与依赖关系 单元(Unit)是 Systemd 的最小]]></description>
 </item></channel>
 </rss>

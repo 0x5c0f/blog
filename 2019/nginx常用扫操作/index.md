@@ -34,9 +34,10 @@ if ($is_matched = "01"){
 
 ```ini
 # http 
-map $http_x_forwarded_for  $client_real_ip {
-	""  $remote_addr;
-	~^(?P<firstAddr>[0-9\.]+),?.*$  $firstAddr;
+map $http_x_forwarded_for $client_real_ip {
+	"" $remote_addr;
+	# fix: 兼容ipv6
+	~^(?P<firstAddr>[0-9a-fA-F:.]+),?.*$ $firstAddr;
 }
 
 set $is_allow 0;

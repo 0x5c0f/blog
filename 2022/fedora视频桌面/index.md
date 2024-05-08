@@ -1,7 +1,7 @@
 # Fedora视频桌面
 
 
-# fedora 唯美桌面  
+# -
 &emsp;&emsp;想了一下，网络上关于`fedora`桌面的美化似乎还是很少的,这对于我大`fedora`发展似乎是很不利的，凭什么`ubuntu`就可以有那么多的好东西。  
 
 目前正常来说，我们能做的似乎只有简单的修改下壁纸，我记得不知道是那个`fedora`版本，在设置里面就是可以直接设置壁纸轮换的，但是现在似乎没有这个功能了(至少`fedora 32`是不能直接设置轮换了),不过可以通过另外的方式解决。这就是下面要说的第一种美化。 
@@ -60,6 +60,12 @@ $> vim /home/cxd/.backgrounds/stars.xml
 $> sudo ln -s /home/cxd/.backgrounds/stars.xml /usr/share/gnome-background-properties/stars.xml # 不行的话直接copy到后面的那个目录里面区就可以了
 ```
 这个配置文件是用来接入系统的，如果你没有分离两个`/usr`和`/home`的话，直接做个软链接应该就可以了，或者直接`copy`到`/usr/share/gnome-background-properties/`里面区也行。 一般上面两步处理完就可以直接在`设置 > 背景` 就可以看到你刚刚配置的那个轮换壁纸了，如果看不到，你可以注销登陆或者`alt+f2`然后输入 `r` 重启 `gnome`也可以。  
+
+&emsp;&emsp;***实际上关于壁纸轮换还有个骚操作，就是用定时任务***
+```bash
+$> 0 */5 * * * /bin/bash -c 'DISPLAY=:0 GSETTINGS_BACKEND=dconf /usr/bin/gsettings set org.gnome.desktop.background picture-uri "file:///home/<User>/.local/share/backgrounds/0$(shuf -i 0-8 -n 1).png"'
+## 需要注意的事，这个切换时间不能太短，否则容易导致桌面崩溃 
+```
 
 
 # 视频壁纸  

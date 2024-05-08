@@ -14,7 +14,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/" /><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-06-24T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-03-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-04-26T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary_large_image" />
@@ -79,8 +79,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/"
-        },"genre": "posts","keywords": "linux, fedora","wordcount":  1605 ,
-        "url": "https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2024-03-25T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, fedora","wordcount":  1674 ,
+        "url": "https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2024-04-26T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -285,7 +285,7 @@
         id="toc-content-auto"
       ><nav id="TableOfContents">
   <ul>
-    <li><a href="#fedora-唯美桌面">fedora 唯美桌面</a></li>
+    <li><a href="#-">-</a></li>
     <li><a href="#壁纸轮换">壁纸轮换</a></li>
     <li><a href="#视频壁纸">视频壁纸</a></li>
   </ul>
@@ -303,10 +303,10 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2022-06-24"
             >2022-06-24</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-03-25"
-              >2024-03-25</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-04-26"
+              >2024-04-26</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 1605 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 1674 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 4 分钟&nbsp;<span
             id="/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/"
             class="leancloud_visitors"
@@ -343,13 +343,13 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#fedora-唯美桌面">fedora 唯美桌面</a></li>
+    <li><a href="#-">-</a></li>
     <li><a href="#壁纸轮换">壁纸轮换</a></li>
     <li><a href="#视频壁纸">视频壁纸</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><h1 id="fedora-唯美桌面" class="headerLink">
-    <a href="#fedora-%e5%94%af%e7%be%8e%e6%a1%8c%e9%9d%a2" class="header-mark"></a>fedora 唯美桌面</h1><p>  想了一下，网络上关于<code>fedora</code>桌面的美化似乎还是很少的,这对于我大<code>fedora</code>发展似乎是很不利的，凭什么<code>ubuntu</code>就可以有那么多的好东西。</p>
+      </div><div class="content" id="content"><h1 id="-" class="headerLink">
+    <a href="#-" class="header-mark"></a>-</h1><p>  想了一下，网络上关于<code>fedora</code>桌面的美化似乎还是很少的,这对于我大<code>fedora</code>发展似乎是很不利的，凭什么<code>ubuntu</code>就可以有那么多的好东西。</p>
 <p>目前正常来说，我们能做的似乎只有简单的修改下壁纸，我记得不知道是那个<code>fedora</code>版本，在设置里面就是可以直接设置壁纸轮换的，但是现在似乎没有这个功能了(至少<code>fedora 32</code>是不能直接设置轮换了),不过可以通过另外的方式解决。这就是下面要说的第一种美化。</p>
 <h1 id="壁纸轮换" class="headerLink">
     <a href="#%e5%a3%81%e7%ba%b8%e8%bd%ae%e6%8d%a2" class="header-mark"></a>壁纸轮换</h1><p>  壁纸轮换实际上在32中默认不能直接设置了(忘记了以前是不是可以)，但是如果你仔细的话，在设置那儿你可以看到有一个壁纸不一样，那个壁纸右下角有一个表一样的小图标，那个就是一个轮换壁纸，虽然不能直接设置轮换，但gnome仍然是支持的，那个壁纸的配置文件是<code>/usr/share/backgrounds/gnome/adwaita-timed.xml</code>,具体引用配置文件的地方是<code>/usr/share/gnome-background-properties/adwaita.xml</code>,因此我们只需要按照他的格式配置一个就可以实现壁纸轮换的功能了。</p>
@@ -457,7 +457,18 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个配置文件是用来接入系统的，如果你没有分离两个<code>/usr</code>和<code>/home</code>的话，直接做个软链接应该就可以了，或者直接<code>copy</code>到<code>/usr/share/gnome-background-properties/</code>里面区也行。 一般上面两步处理完就可以直接在<code>设置 &gt; 背景</code> 就可以看到你刚刚配置的那个轮换壁纸了，如果看不到，你可以注销登陆或者<code>alt+f2</code>然后输入 <code>r</code> 重启 <code>gnome</code>也可以。</p>
-<h1 id="视频壁纸" class="headerLink">
+<p>  <em><strong>实际上关于壁纸轮换还有个骚操作，就是用定时任务</strong></em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; <span class="m">0</span> */5 * * * /bin/bash -c <span class="s1">&#39;DISPLAY=:0 GSETTINGS_BACKEND=dconf /usr/bin/gsettings set org.gnome.desktop.background picture-uri &#34;file:///home/&lt;User&gt;/.local/share/backgrounds/0$(shuf -i 0-8 -n 1).png&#34;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 需要注意的事，这个切换时间不能太短，否则容易导致桌面崩溃 </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="视频壁纸" class="headerLink">
     <a href="#%e8%a7%86%e9%a2%91%e5%a3%81%e7%ba%b8" class="header-mark"></a>视频壁纸</h1><blockquote>
 <p><a
   href="https://www.linuxuprising.com/2019/05/livestream-wallpaper-for-your-gnome.html"
@@ -576,7 +587,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2024-03-25</span>
+        <span>更新于 2024-04-26</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>

