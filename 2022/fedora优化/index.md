@@ -158,3 +158,6 @@ $> flatpak install flathub com.github.tchx84.Flatseal
 # https://discussion.fedoraproject.org/t/disable-gnome-software-update-notifications/78209/2 
 $> gsettings set org.gnome.software allow-updates false
 ```
+
+# 17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题
+- 在系统中的`键盘`-`键盘快捷键`-`导航` 中，将`切换应用程序`的快捷键删了，将`切换窗口`快捷键改为`alt+tab`即可解决 

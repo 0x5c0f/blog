@@ -1,8 +1,6 @@
 # 常用命令收集
 
 
-<!--more-->
-
 引入一个更为专业的命令收集站点 :
 
 > [https://www.commandlinefu.com/commands/browse](https://www.commandlinefu.com/commands/browse)

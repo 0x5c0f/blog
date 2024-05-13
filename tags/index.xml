@@ -1,78 +1,78 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Tags - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/</link>
+        <link>http://localhost:1313/tags/</link>
         <description>Tags - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 08 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 08 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/" rel="self" type="application/rss+xml" /><item>
     <title>Linux</title>
-    <link>https://blog.0x5c0f.cc/tags/linux/</link>
+    <link>http://localhost:1313/tags/linux/</link>
     <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/linux/</guid>
+    </author><guid>http://localhost:1313/tags/linux/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>解决方案</title>
-    <link>https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+    <link>http://localhost:1313/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
     <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+    </author><guid>http://localhost:1313/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>优化</title>
-    <link>https://blog.0x5c0f.cc/tags/%E4%BC%98%E5%8C%96/</link>
+    <link>http://localhost:1313/tags/%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/%E4%BC%98%E5%8C%96/</guid>
+    </author><guid>http://localhost:1313/tags/%E4%BC%98%E5%8C%96/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Javascript</title>
-    <link>https://blog.0x5c0f.cc/tags/javascript/</link>
+    <link>http://localhost:1313/tags/javascript/</link>
     <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/javascript/</guid>
+    </author><guid>http://localhost:1313/tags/javascript/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Scripts</title>
-    <link>https://blog.0x5c0f.cc/tags/scripts/</link>
+    <link>http://localhost:1313/tags/scripts/</link>
     <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/scripts/</guid>
+    </author><guid>http://localhost:1313/tags/scripts/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Bat</title>
-    <link>https://blog.0x5c0f.cc/tags/bat/</link>
+    <link>http://localhost:1313/tags/bat/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/bat/</guid>
+    </author><guid>http://localhost:1313/tags/bat/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Windows</title>
-    <link>https://blog.0x5c0f.cc/tags/windows/</link>
+    <link>http://localhost:1313/tags/windows/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/windows/</guid>
+    </author><guid>http://localhost:1313/tags/windows/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>转发内容</title>
-    <link>https://blog.0x5c0f.cc/tags/%E8%BD%AC%E5%8F%91%E5%86%85%E5%AE%B9/</link>
+    <link>http://localhost:1313/tags/%E8%BD%AC%E5%8F%91%E5%86%85%E5%AE%B9/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/%E8%BD%AC%E5%8F%91%E5%86%85%E5%AE%B9/</guid>
+    </author><guid>http://localhost:1313/tags/%E8%BD%AC%E5%8F%91%E5%86%85%E5%AE%B9/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Nginx</title>
-    <link>https://blog.0x5c0f.cc/tags/nginx/</link>
+    <link>http://localhost:1313/tags/nginx/</link>
     <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/nginx/</guid>
+    </author><guid>http://localhost:1313/tags/nginx/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Sftp</title>
-    <link>https://blog.0x5c0f.cc/tags/sftp/</link>
+    <link>http://localhost:1313/tags/sftp/</link>
     <pubDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</pubDate><author>
         <name>0x5c0f</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/sftp/</guid>
+    </author><guid>http://localhost:1313/tags/sftp/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

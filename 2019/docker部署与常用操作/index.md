@@ -1,4 +1,4 @@
-# Docker部署与常用操作
+# Docker 部署与常用操作
 
 
 &emsp;&emsp;Docker 是通过内核虚拟化技术(namespaces及cgroups等)来提供容器的资源隔离与安全保障等.由于docker通过操作系统层的虚拟化实现隔离,所以Dociker容器在运行时,不需要虚拟机(VM)额外的操作系统开销,提高资源利用率.  
@@ -288,6 +288,11 @@ CMD ["nginx"]
 ### 5.2.2. 构建镜像  
 ```bash
 [root@00 Dockerfile]# docker build -t nginx_f:v2 .
+# 构建时候可以通过 --build-arg 来指定运行时候的环境变量 
+# docker build --build-arg "HTTP_PROXY=http://proxy.example.com:8080/" \
+#   --build-arg "HTTPS_PROXY=http://proxy.example.com:8080/" \
+#   --build-arg "NO_PROXY=localhost,127.0.0.1,.example.com" -t nginx_f:v2 .
+
 Sending build context to Docker daemon  3.072kB
 Step 1/8 : FROM centos
 ........
@@ -297,6 +302,7 @@ Successfully tagged nginx_f:v2
 REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
 nginx_f              v2                  955bbe2213cc        34 seconds ago      357MB
 ```
+
 ### 5.2.3. 启动镜像
 ```bash
 [root@00 Dockerfile]# docker run -d -p 88:80 nginx_f:v2 

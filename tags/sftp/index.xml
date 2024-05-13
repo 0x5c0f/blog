@@ -1,20 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Sftp - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/sftp/</link>
+        <link>http://localhost:1313/tags/sftp/</link>
         <description>Sftp - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/sftp/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/sftp/" rel="self" type="application/rss+xml" /><item>
     <title>SFTP搭建</title>
-    <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
+    <link>http://localhost:1313/2022/sftp%E6%90%AD%E5%BB%BA/</link>
     <pubDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/sftp%E6%90%AD%E5%BB%BA/</guid>
     <description><![CDATA[注意 本文内容仅在CentOS 7上进行测试 前言 文章介绍如何让sftp也可以实现vsftpd虚拟用户的功能。 对于运维来说，我们使用文件传输功能的]]></description>
 </item><item>
     <title>Chroot系统</title>
-    <link>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</link>
+    <link>http://localhost:1313/2020/chroot%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Wed, 23 Sep 2020 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
     <description><![CDATA[以下是一片草稿，真的真的是我自己记录的。但是！我现在自己也看不懂了，我真是栓Q了，好像多了一个chroot初始没啥用 chroot系统正常来说]]></description>
 </item></channel>
 </rss>
