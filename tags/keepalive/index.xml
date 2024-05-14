@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Keepalive - 标签 - 一个曾经的小码农...</title>
-        <link>http://localhost:1313/tags/keepalive/</link>
+        <link>https://blog.0x5c0f.cc/tags/keepalive/</link>
         <description>Keepalive - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 19 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/keepalive/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 19 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/keepalive/" rel="self" type="application/rss+xml" /><item>
     <title>Keepalive安装配置</title>
-    <link>http://localhost:1313/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
+    <link>https://blog.0x5c0f.cc/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
     <pubDate>Thu, 19 Nov 2020 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
     <description><![CDATA[安装前需检查反项代理是否正常 yum install keepalived 配置文件说明 /etc/keepalived/keepalived.conf主备节点配置基本一致,需修改的仅]]></description>
 </item></channel>
 </rss>

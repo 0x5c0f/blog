@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Graylog - 标签 - 一个曾经的小码农...</title>
-        <link>http://localhost:1313/tags/graylog/</link>
+        <link>https://blog.0x5c0f.cc/tags/graylog/</link>
         <description>Graylog - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 13 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/graylog/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 13 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/graylog/" rel="self" type="application/rss+xml" /><item>
     <title>Graylog多节点部署</title>
-    <link>http://localhost:1313/2020/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</link>
+    <link>https://blog.0x5c0f.cc/2020/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</link>
     <pubDate>Thu, 13 Aug 2020 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2020/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</guid>
     <description><![CDATA[以下记录下graylog多节点部署的过程。附带一个几个日志搜集的配置方法。 此次部署是也是采用dokcer加物理机器混合部署的，各个核心组件均]]></description>
 </item></channel>
 </rss>

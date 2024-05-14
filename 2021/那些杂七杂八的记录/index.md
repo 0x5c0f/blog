@@ -715,6 +715,65 @@ $> ab -n 5000 -c 50 -r http://www.example.com/
 3. 设置"对象所有权"为`存储桶拥有者优先`。  
 4. 将 `此存储桶的“屏蔽公共访问权限”设置`取消`阻止所有公开访问`勾选，只勾选`阻止通过新公有存储桶策略或接入点策略授予的存储桶和对象公有访问`和`阻止通过任何公有存储桶策略或接入点策略对存储桶和对象的公有和跨账户访问`，其他默认即可  
 
+### 存储桶规则创建及示例 
+- 存储桶策略
+    ```json
+    // 此策略是为授权 cloudfront 可访问 S3 特定存储桶的所有读取权限(通过此方法设定的可以不受存储桶默认文件权限限制。根据上述存储桶规则创建内容，默认上传权限是不允许公网读的)
+    // CDN 创建时候设置 
+    // Origin domain:  (<存储桶名>.s3.<区域名>.amazonaws.com)  
+    // 来源访问: 来源访问控制设置 - Create new OAC
+    // 其他参数默认即可 
+    // 以下json可以在cdn创建成功后，通过提示窗口直接复制，然后添加到 存储桶-权限-存储桶策略 中
+    {
+        "Version": "2008-10-17",
+        "Id": "PolicyForCloudFrontPrivateContent",
+        "Statement": [
+            {
+                "Sid": "AllowCloudFrontServicePrincipal",
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": "cloudfront.amazonaws.com"
+                },
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::<存储桶名>/*",
+                "Condition": {
+                    "StringEquals": {
+                        "AWS:SourceArn": "CND创建成功后的arn"
+                    }
+                }
+            }
+        ]
+    }
+    ```
+
+- 访问控制列表(ACL): 这个权限控制我测试发现似乎只是控制程序用户是否可以操作存储桶内容的。    
+- s3fs 挂载: 
+    ```bash
+    ## https://github.com/s3fs-fuse/s3fs-fuse
+    ## 注意: 启用OAC的需要使用 sigv4 才能正常连接 
+    $> vim /etc/fstab 
+    s3fs#<存储桶名> <挂载到的目录> fuse auto,_netdev,sigv4,allow_other,passwd_file=/etc/sysconfig/passwd-s3fs,endpoint=ap-east-1,use_path_request_style,url=https://s3.ap-east-1.amazonaws.com 0 0
+    ```
+
+## 亚马逊用户策略
+```json
+// 以下策略用于控制仅限操作特定的存储桶 
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::<存储桶名>/*"
+            ]
+        }
+    ]
+}
+```
+
 ## gnome-shell 终端设置 title 
 ```bash
 $> export PROMPT_COMMAND='echo -ne "\033]0; ${USER}@${HOSTNAME} \007"'

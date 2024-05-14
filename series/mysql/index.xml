@@ -1,68 +1,68 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Mysql - 系列 - 一个曾经的小码农...</title>
-        <link>http://localhost:1313/series/mysql/</link>
+        <link>https://blog.0x5c0f.cc/series/mysql/</link>
         <description>Mysql - 系列 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/series/mysql/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/series/mysql/" rel="self" type="application/rss+xml" /><item>
     <title>Mysql 备份与恢复</title>
-    <link>http://localhost:1313/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
+    <link>https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
     <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
     <description><![CDATA[mysql 备份与恢复数据更新过程，例如 update 语句 写redo log，进入 prepare阶段(xtrabackup备份最低应处于该阶段 ) 写binlog落盘 redo]]></description>
 </item><item>
     <title>Mysql 存储引擎</title>
-    <link>http://localhost:1313/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</link>
+    <link>https://blog.0x5c0f.cc/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</link>
     <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</guid>
     <description><![CDATA[1. mysql 存储引擎 1.1. 引擎分类可以表述为mysql的'文件系统', 存储引擎可以针对单表来进行设置。 mysql提供的有(最常用的InnoDB、MyIS]]></description>
 </item><item>
     <title>Mysql 日志管理</title>
-    <link>http://localhost:1313/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</link>
+    <link>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</link>
     <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</guid>
     <description><![CDATA[1. Mysql 日志管理 1.1. 类型 日志文件 选项 文件名(表名称) 程序 错误 --log-error host_name.err N/A 常规 --general_log host_name.loggeneral_log N/A 慢(速)查询 --slow_query_log--long_query_time host_name-show.logshow_log mysqldumpslow 二进制 --log-bin--expire-logs-days host_name-bin.000001 mysqlbinlog 审计 --audit_log--audit_log_file audit.log N/A 1.2. 错误日志 配置方法: 1 2 [mysqld] log-error=/var/log/mysql/mysql.log 查]]></description>
 </item><item>
     <title>Mysql Atlas高可用软件</title>
-    <link>http://localhost:1313/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</link>
+    <link>https://blog.0x5c0f.cc/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</guid>
     <description><![CDATA[Atlas 主要功能 读写分离 从库负载均衡 IP 过滤 SQL 语句黑白名单 自动分表 https://github.com/Qihoo360/Atlas 接 MHA 高可用集群后，软件也可单独使用 注意事项: Atlas 只能运行在 x64 系统上 Mysql 版本应大于 5.]]></description>
 </item><item>
     <title>Mysql MHA高可用软件</title>
-    <link>http://localhost:1313/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</link>
+    <link>https://blog.0x5c0f.cc/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</guid>
     <description><![CDATA[MHA(Master HA) 高可用软件自动主从切换工具 https://github.com/yoshinorim/mha4mysql-manager https://github.com/yoshinorim/mha4mysql-node 基础环境环境准备(1管理, 1主2从): manager: 172.16.10.10(10.0.2.10) master01: 172.16.10.25(10.0.2.25) slave01: 172.16.10.26(10.0.2.26) slave02: 172.16.10.27(10.0.2.27) 准备 关闭所有节点relay_log自动清理功能 1 2 3]]></description>
 </item><item>
     <title>Mysql安装</title>
-    <link>http://localhost:1313/2022/mysql%E5%AE%89%E8%A3%85/</link>
+    <link>https://blog.0x5c0f.cc/2022/mysql%E5%AE%89%E8%A3%85/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E5%AE%89%E8%A3%85/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E5%AE%89%E8%A3%85/</guid>
     <description><![CDATA[版本选择选择GA版本 6-12 个月的产品(对于开发来说,单数版本一般为测试版本) 编译安装 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 yum install -y ncurses-devel libaio-devel cmake openssl-devel cmake . -DCMAKE_INSTALL_PREFIX=/opt/software/mysql-5.6.48 \ -DMYSQL_DATADIR=/opt/software/mysql-server/data]]></description>
 </item><item>
     <title>Mysql程序模型(草稿)</title>
-    <link>http://localhost:1313/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</link>
+    <link>https://blog.0x5c0f.cc/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</guid>
     <description><![CDATA[Mysql程序模型 技巧]]></description>
 </item><item>
     <title>Mysql管理</title>
-    <link>http://localhost:1313/2022/mysql%E7%AE%A1%E7%90%86/</link>
+    <link>https://blog.0x5c0f.cc/2022/mysql%E7%AE%A1%E7%90%86/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E7%AE%A1%E7%90%86/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E7%AE%A1%E7%90%86/</guid>
     <description><![CDATA[用户管理 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 -- 授权语法 mysql&gt; grant &lt;权限&gt; on &lt;库名.表名&gt; to &lt;用户名&gt;@&#3]]></description>
 </item><item>
     <title>Mysql监控指标</title>
-    <link>http://localhost:1313/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/</link>
+    <link>https://blog.0x5c0f.cc/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/</guid>
     <description><![CDATA[元数据获取元数据存储于information_schema库中,其作用充当数据库元数据的中央系统信息库,使用表格形式以实现灵活的访问,另外他]]></description>
 </item><item>
     <title>Mysql密码重置</title>
-    <link>http://localhost:1313/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</link>
+    <link>https://blog.0x5c0f.cc/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</guid>
     <description><![CDATA[重置 MySQL 或 MariaDB Root 密码(在mysql停止的情况下重置mysql密码) https://linux.cn/article-9990-1.html?utm_source=index&utm_medium=moremore]]></description>
 </item></channel>
 </rss>

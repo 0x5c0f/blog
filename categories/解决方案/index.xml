@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>解决方案 - 分类 - 一个曾经的小码农...</title>
-        <link>http://localhost:1313/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+        <link>https://blog.0x5c0f.cc/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
         <description>解决方案 - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="self" type="application/rss+xml" /><item>
     <title>页面加载时间统计</title>
-    <link>http://localhost:1313/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</link>
+    <link>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</link>
     <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</guid>
     <description><![CDATA[js 组件 直接保存为文件,插入到 html 末尾即可(&lt;script src=&quot;js/pcheck.js&quot;&gt;&lt;/script&gt;), 用来统计当前页面的各类加载时间然后推送到远端 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17]]></description>
 </item></channel>
 </rss>

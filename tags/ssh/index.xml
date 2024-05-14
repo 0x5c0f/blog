@@ -1,20 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Ssh - 标签 - 一个曾经的小码农...</title>
-        <link>http://localhost:1313/tags/ssh/</link>
+        <link>https://blog.0x5c0f.cc/tags/ssh/</link>
         <description>Ssh - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 23 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/ssh/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 23 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/ssh/" rel="self" type="application/rss+xml" /><item>
     <title>Chroot系统</title>
-    <link>http://localhost:1313/2020/chroot%E7%B3%BB%E7%BB%9F/</link>
+    <link>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Wed, 23 Sep 2020 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
     <description><![CDATA[以下是一片草稿，真的真的是我自己记录的。但是！我现在自己也看不懂了，我真是栓Q了，好像多了一个chroot初始没啥用 chroot系统正常来说]]></description>
 </item><item>
     <title>Ssh隧道相关</title>
-    <link>http://localhost:1313/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/</link>
+    <link>https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/</link>
     <pubDate>Tue, 07 May 2019 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/</guid>
     <description><![CDATA[1. 记录一个草稿参考文献 : http://www.zsythink.net/archives/2450 http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/ https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html 主机定义 : serverA: 10.0.1.11 serverB: 10.0.1.12 serverC: 172.16.110.11 serverD: 172.16.110.12 2. 本地转发 命令格式 1 ssh -L &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;SSH hostname&gt; 2.1. 隧道搭建(serverA 执行) 1 2 3 4 5 6 # -L]]></description>
 </item></channel>
 </rss>
