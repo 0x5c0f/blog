@@ -90,7 +90,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  8734 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  8795 ,
         "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-05-13T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -392,7 +392,7 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-13"
               >2024-05-13</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 8734 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 8795 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 18 分钟&nbsp;<span
             id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
             class="leancloud_visitors"
@@ -717,24 +717,36 @@
 </div><h1 id="linux-sftp-搭建" class="headerLink">
     <a href="#linux-sftp-%e6%90%ad%e5%bb%ba" class="header-mark"></a>linux sftp 搭建</h1><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 编辑文件 /etc/ssh/sshd_config,末尾添加(新建的用户若仅使用sftp可以不指定可登陆的bash)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 若想要让sftp更像登陆到了服务器,可配合chroot来控制,当然也可以直接创建账号，但一般不建议</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># </span>
-</span></span><span class="line"><span class="cl">Match Group  www                          <span class="c1"># 限制某个组或者某个用户使用以下规则</span>
-</span></span><span class="line"><span class="cl">    ChrootDirectory  /data/sftp    <span class="c1"># sftp 限制登陆目录到此处</span>
-</span></span><span class="line"><span class="cl">    ForceCommand internal-sftp            <span class="c1"># 仅允许使用sftp </span>
-</span></span><span class="line"><span class="cl">    X11Forwarding no                      <span class="c1"># 禁止x11转发</span>
-</span></span><span class="line"><span class="cl">    AllowTcpForwarding no                 <span class="c1"># 禁止 tcp 转发  </span>
+</span></span><span class="line"><span class="cl">Match Group/User  www                          <span class="c1"># 限制某个组或者某个用户使用以下规则</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 仅允许使用sftp , -l INFO 表示记录 SFTP 的 INFO 级别日志。-f AUTH 指定 SFTP 鉴权日志级别为 AUTH</span>
+</span></span><span class="line"><span class="cl">    ForceCommand internal-sftp -l INFO -f AUTH 
+</span></span><span class="line"><span class="cl">    <span class="c1"># 禁止使用密码进行身份验证，只允许通过公钥认证</span>
+</span></span><span class="line"><span class="cl">    PasswordAuthentication no   
+</span></span><span class="line"><span class="cl">    <span class="c1"># 禁止 SSH 隧道功能</span>
+</span></span><span class="line"><span class="cl">    PermitTunnel no
+</span></span><span class="line"><span class="cl">    <span class="c1"># 禁止 SSH 代理转发 </span>
+</span></span><span class="line"><span class="cl">    AllowAgentForwarding no
+</span></span><span class="line"><span class="cl">    <span class="c1"># 禁止 TCP 转发</span>
+</span></span><span class="line"><span class="cl">    AllowTcpForwarding no
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="监听本地网卡上没有的ip地址" class="headerLink">

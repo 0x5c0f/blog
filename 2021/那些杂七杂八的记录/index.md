@@ -112,11 +112,17 @@ $> /etc/fstab
 # 编辑文件 /etc/ssh/sshd_config,末尾添加(新建的用户若仅使用sftp可以不指定可登陆的bash)
 # 若想要让sftp更像登陆到了服务器,可配合chroot来控制,当然也可以直接创建账号，但一般不建议
 # 
-Match Group  www                          # 限制某个组或者某个用户使用以下规则
-    ChrootDirectory  /data/sftp    # sftp 限制登陆目录到此处
-    ForceCommand internal-sftp            # 仅允许使用sftp 
-    X11Forwarding no                      # 禁止x11转发
-    AllowTcpForwarding no                 # 禁止 tcp 转发  
+Match Group/User  www                          # 限制某个组或者某个用户使用以下规则
+    # 仅允许使用sftp , -l INFO 表示记录 SFTP 的 INFO 级别日志。-f AUTH 指定 SFTP 鉴权日志级别为 AUTH
+    ForceCommand internal-sftp -l INFO -f AUTH 
+    # 禁止使用密码进行身份验证，只允许通过公钥认证
+    PasswordAuthentication no   
+    # 禁止 SSH 隧道功能
+    PermitTunnel no
+    # 禁止 SSH 代理转发 
+    AllowAgentForwarding no
+    # 禁止 TCP 转发
+    AllowTcpForwarding no
 ```
 
 # 监听本地网卡上没有的IP地址
@@ -797,6 +803,7 @@ $> sudo dnf -y install dnf-plugin-releasever-adapter --repo alinux3-plus    # �
     - 怀疑是`sni`的问题，`elb`和`cdn`这边所使用的证书都是通配符证书, 而在请求过程中，携带的`sni`只有主域名，而上述问题中请求到的最终站点，恰好又是`nginx`中配置的第一个。
 - 解决方案:
     - 为每一个`cdn`备用域名添加一个独立的`cdn` 
+
 
 # 亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)
 ```bash

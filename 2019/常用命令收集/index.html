@@ -89,7 +89,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3005 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3055 ,
         "url": "https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/","datePublished": "2019-07-23T00:00:00+00:00","dateModified": "2024-04-16T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -345,6 +345,7 @@
     <li><a href="#linux-查询cpu占用过高的php-fpm进程正在执行的php脚本或者处理的事">linux 查询cpu占用过高的php-fpm进程,正在执行的php脚本或者处理的事</a></li>
     <li><a href="#查询当前目录下-md5-相同的文件">查询当前目录下 <code>md5</code> 相同的文件</a></li>
     <li><a href="#查询当前目录下-md5-等于某个值并删除移动">查询当前目录下 <code>md5</code> 等于某个值并删除/移动</a></li>
+    <li><a href="#通过-skopeo-命令查询-docker-仓库中特定容器存在那些版本也可以用于管理">通过 <code>skopeo</code> 命令查询 <code>docker</code> 仓库中特定容器存在那些版本，也可以用于管理</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -363,8 +364,8 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-04-16"
               >2024-04-16</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 3005 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 6 分钟&nbsp;<span
+          >&nbsp;约 3055 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 7 分钟&nbsp;<span
             id="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/"
             class="leancloud_visitors"
             data-flag-title="常用命令收集"
@@ -450,6 +451,7 @@
     <li><a href="#linux-查询cpu占用过高的php-fpm进程正在执行的php脚本或者处理的事">linux 查询cpu占用过高的php-fpm进程,正在执行的php脚本或者处理的事</a></li>
     <li><a href="#查询当前目录下-md5-相同的文件">查询当前目录下 <code>md5</code> 相同的文件</a></li>
     <li><a href="#查询当前目录下-md5-等于某个值并删除移动">查询当前目录下 <code>md5</code> 等于某个值并删除/移动</a></li>
+    <li><a href="#通过-skopeo-命令查询-docker-仓库中特定容器存在那些版本也可以用于管理">通过 <code>skopeo</code> 命令查询 <code>docker</code> 仓库中特定容器存在那些版本，也可以用于管理</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><p>引入一个更为专业的命令收集站点 :</p>
@@ -1348,6 +1350,23 @@
 </span></span><span class="line"><span class="cl">$&gt; find . -type f -exec md5sum <span class="o">{}</span> + <span class="p">|</span> grep <span class="s1">&#39;your_md5_value&#39;</span> <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 2- <span class="p">|</span> xargs rm
 </span></span><span class="line"><span class="cl"><span class="c1"># 移动</span>
 </span></span><span class="line"><span class="cl">$&gt; find . -type f -exec md5sum <span class="o">{}</span> + <span class="p">|</span> grep <span class="s1">&#39;your_md5_value&#39;</span> <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 2- <span class="p">|</span> xargs -I <span class="o">{}</span> mv <span class="o">{}</span> /path/to/destination/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="通过-skopeo-命令查询-docker-仓库中特定容器存在那些版本也可以用于管理" class="headerLink">
+    <a href="#%e9%80%9a%e8%bf%87-skopeo-%e5%91%bd%e4%bb%a4%e6%9f%a5%e8%af%a2-docker-%e4%bb%93%e5%ba%93%e4%b8%ad%e7%89%b9%e5%ae%9a%e5%ae%b9%e5%99%a8%e5%ad%98%e5%9c%a8%e9%82%a3%e4%ba%9b%e7%89%88%e6%9c%ac%e4%b9%9f%e5%8f%af%e4%bb%a5%e7%94%a8%e4%ba%8e%e7%ae%a1%e7%90%86" class="header-mark"></a>通过 <code>skopeo</code> 命令查询 <code>docker</code> 仓库中特定容器存在那些版本，也可以用于管理</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询 </span>
+</span></span><span class="line"><span class="cl">$&gt; skopeo list-tags docker://hub.example.com/0x5c0f/sshx
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除</span>
+</span></span><span class="line"><span class="cl">$&gt; skopeo delete docker://hub.example.com/0x5c0f/sshx:2023121505
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

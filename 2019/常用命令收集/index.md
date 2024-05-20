@@ -511,3 +511,13 @@ $> find . -type f -exec md5sum {} + | grep 'your_md5_value' | cut -d ' ' -f 2- |
 # 移动
 $> find . -type f -exec md5sum {} + | grep 'your_md5_value' | cut -d ' ' -f 2- | xargs -I {} mv {} /path/to/destination/
 ```
+
+# 通过 `skopeo` 命令查询 `docker` 仓库中特定容器存在那些版本，也可以用于管理
+```bash
+# 查询 
+$> skopeo list-tags docker://hub.example.com/0x5c0f/sshx
+# 删除
+$> skopeo delete docker://hub.example.com/0x5c0f/sshx:2023121505
+# ...
+```
+
