@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>硬盘 - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/%E7%A1%AC%E7%9B%98/</link>
+        <link>http://localhost:1313/tags/%E7%A1%AC%E7%9B%98/</link>
         <description>硬盘 - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/%E7%A1%AC%E7%9B%98/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/%E7%A1%AC%E7%9B%98/" rel="self" type="application/rss+xml" /><item>
     <title>磁盘管理(半草稿)</title>
-    <link>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</link>
+    <link>http://localhost:1313/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</guid>
     <description><![CDATA[磁盘管理磁盘的最小存储单位是扇区，大小为0.5kb(512Bytes)，多个连续的扇区称之为块 操作系统文件存取的最小单位是块(block)，]]></description>
 </item></channel>
 </rss>

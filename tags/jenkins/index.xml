@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Jenkins - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/jenkins/</link>
+        <link>http://localhost:1313/tags/jenkins/</link>
         <description>Jenkins - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/jenkins/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/jenkins/" rel="self" type="application/rss+xml" /><item>
     <title>Nginx反向代理jenkins</title>
-    <link>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</link>
+    <link>http://localhost:1313/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</guid>
     <description><![CDATA[参考文献 : https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy 以下为个人解决方案 : jenkins 配置: 添加启动参数 --prefix=/jenkins，docker启动添加环境变量JENKINS_OPTS]]></description>
 </item></channel>
 </rss>

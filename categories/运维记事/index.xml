@@ -1,56 +1,56 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>运维记事 - 分类 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/</link>
+        <link>http://localhost:1313/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/</link>
         <description>运维记事 - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 08 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 08 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" rel="self" type="application/rss+xml" /><item>
     <title>常用web环境优化</title>
-    <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
+    <link>http://localhost:1313/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</guid>
     <description><![CDATA[前言 一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。 1. tomcat 服务调优 tomcat: 8.5.59 1.1. 安全]]></description>
 </item><item>
     <title>常用命令收集</title>
-    <link>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
+    <link>http://localhost:1313/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
     <pubDate>Tue, 23 Jul 2019 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[一些常用、有趣的命令和代码片段]]></description>
 </item><item>
     <title>Shellscript相关</title>
-    <link>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</link>
+    <link>http://localhost:1313/2019/shellscript%E7%9B%B8%E5%85%B3/</link>
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
     <description><![CDATA[1. shell 脚本执行的几种方法 bash(sh) /path/script.sh 赋予执行权限 /path/script.sh 或 ./scripts.sh source script.sh 或 . script.sh 在此方法中执行,子 shell 中定义的变量,可在父 shell 中调用(其他方式父 shell 不能直接调用子 shell 的变量)]]></description>
 </item><item>
     <title>Linux 性能基准测试工具及测试方法</title>
-    <link>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
+    <link>http://localhost:1313/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
     <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</guid>
     <description><![CDATA[graph TB A[Linux 性能基准/测试] --> B[CPU] A --> C[内存] A --> D[磁盘 IO] A --> E[文件 IO] A --> F[网络] A --> G[应用程序] B --> H[Super_Pi 测试单线程性能] B --> I[sysbench 测试多线程性]]></description>
 </item><item>
     <title>SFTP搭建</title>
-    <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
+    <link>http://localhost:1313/2022/sftp%E6%90%AD%E5%BB%BA/</link>
     <pubDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/sftp%E6%90%AD%E5%BB%BA/</guid>
     <description><![CDATA[注意 本文内容仅在CentOS 7上进行测试 前言 文章介绍如何让sftp也可以实现vsftpd虚拟用户的功能。 对于运维来说，我们使用文件传输功能的]]></description>
 </item><item>
     <title>服务器运维故障记录</title>
-    <link>https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</link>
+    <link>http://localhost:1313/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</link>
     <pubDate>Mon, 01 Aug 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</guid>
     <description><![CDATA[Mysql Errcode: 24 - Too many open files https://blog.csdn.net/weixin_36343850/article/details/86293700 原因：打开文件数量太多，超出了open_files_limit这个参数的限制，在一个表中有多个分区的时候，这种情况更容易发]]></description>
 </item><item>
     <title>Netstat命令</title>
-    <link>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</link>
+    <link>http://localhost:1313/2022/netstat%E5%91%BD%E4%BB%A4/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
     <description><![CDATA[netstat 命令netstat列含义： Proto: 协议名（tcp协议或者udp协议) recv-Q: 网络接收队列 表示收到的数据已经在本地接收缓冲，但是还有多少没有被进程取走，]]></description>
 </item><item>
     <title>OSI七层模型</title>
-    <link>https://blog.0x5c0f.cc/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</link>
+    <link>http://localhost:1313/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</guid>
     <description><![CDATA[<p>OSI 模型是从上往下的，越底层越接近硬件，越往上越接近软件，这七层模型分别是物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
 <ul>
 <li><code>物理层</code>: 在媒体上传输比特，提供机械的和电气的规约</li>
@@ -63,15 +63,15 @@
 </ul>]]></description>
 </item><item>
     <title>持续集成</title>
-    <link>https://blog.0x5c0f.cc/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</link>
+    <link>http://localhost:1313/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/</guid>
     <description><![CDATA[持续集成 什么是DevOpsDevOps 是一个框架，是一种理论方法，并不是一套工具，他包括一系列的基本原则和实践。其核心价值着重于更快速的交付]]></description>
 </item><item>
     <title>Mysql 备份与恢复</title>
-    <link>https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
+    <link>http://localhost:1313/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
     <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
     <description><![CDATA[mysql 备份与恢复数据更新过程，例如 update 语句 写redo log，进入 prepare阶段(xtrabackup备份最低应处于该阶段 ) 写binlog落盘 redo]]></description>
 </item></channel>
 </rss>

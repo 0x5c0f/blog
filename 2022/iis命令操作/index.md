@@ -12,42 +12,55 @@ echo   BackPort: Site bound port
 echo   NetVersion: .netVersion(as:v4.0)  
 echo   NetModel: Program operation mode classic (Integrated) or integrated (Classic)
 
-pause
-
 set AppCmd=C:\Windows\System32\inetsrv\appcmd.exe
-set Sitename=www.example.com admin.example.com
-:: This is the project centralized deployment directory
+set Sitename=admin.example.com www.example.com
 set SitePath=C:\weboxb\example.com
-set BackPort=80
+set BackPort=8010
 set NetVersion=v4.0
 set NetModel=Integrated
+set LogPath=D:\iislogs\
 
-:: Specify log location
-:: set LogPath=D:/iislogs/
-:: /logfile.directory:%LogPath%
+:: Confirm variable initialisation
+echo Confirming the initialisation:
+echo AppCmd=%AppCmd%
+echo Sitename=%Sitename%
+echo SitePath=%SitePath%
+echo BackPort=%BackPort%
+echo NetVersion=%NetVersion%
+echo NetModel=%NetModel%
+echo LogPath=%LogPath%
 
+pause
 
 (for %%a in (%Sitename%) do ( 
-  echo Create program pool.................
-  echo .  
-  %AppCmd% add apppool /name:%%a /managedRuntimeVersion:"v4.0" /managedPipelineMode:"Integrated"
-  echo.
-  echo Create a site directory.................
-  echo .  
+  echo Creating application pool for %%a
+  %AppCmd% add apppool /name:%%a /managedRuntimeVersion:%NetVersion% /managedPipelineMode:%NetModel%
+  if errorlevel 1 goto Error
+  
+  echo Creating site directory for %%a
   mkdir %SitePath%\%%a
-  echo.
-  echo Create a site.................
-  echo .    
+  if errorlevel 1 goto Error
+  
+  echo Creating site for %%a
   %AppCmd% add site /name:%%a /bindings:"http://%%a:%BackPort%" /physicalpath:%SitePath%\%%a
-  echo.
-  echo Associated program pool.................
-  echo .    
-  %AppCmd% set site /site.name:"%%a" /[path='/'].applicationPool:%%a
+  if errorlevel 1 goto Error
+  
+  echo Associating application pool for %%a
+  %AppCmd% set site /site.name:%%a /[path='/'].applicationPool:%%a
+  if errorlevel 1 goto Error
 
+  echo.
 ))
 
-echo The execution is complete, please check the execution result...
+echo The execution is complete, please check the execution log at %LogPath%.
+goto End
 
+:Error
+echo An error occurred. Please check the configurations and try again.
+pause
+exit
+
+:End
 pause
 {{< /highlight >}}
 

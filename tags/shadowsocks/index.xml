@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Shadowsocks - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/shadowsocks/</link>
+        <link>http://localhost:1313/tags/shadowsocks/</link>
         <description>Shadowsocks - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Sun, 27 Jun 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/shadowsocks/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Sun, 27 Jun 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/shadowsocks/" rel="self" type="application/rss+xml" /><item>
     <title>PPTP相关</title>
-    <link>https://blog.0x5c0f.cc/2021/pptp%E7%9B%B8%E5%85%B3/</link>
+    <link>http://localhost:1313/2021/pptp%E7%9B%B8%E5%85%B3/</link>
     <pubDate>Sun, 27 Jun 2021 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/pptp%E7%9B%B8%E5%85%B3/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2021/pptp%E7%9B%B8%E5%85%B3/</guid>
     <description><![CDATA[前言 本来是不想整理这篇内容的，gre协议在国内限制实际上已经很严格，所以现在使用也已经并不多了，虽然不多，但作为一个运维这玩意有时候又需要，]]></description>
 </item></channel>
 </rss>

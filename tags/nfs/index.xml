@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Nfs - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/nfs/</link>
+        <link>http://localhost:1313/tags/nfs/</link>
         <description>Nfs - 标签 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/nfs/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/nfs/" rel="self" type="application/rss+xml" /><item>
     <title>NFS部署及autofs替代</title>
-    <link>https://blog.0x5c0f.cc/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/</link>
+    <link>http://localhost:1313/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/</link>
     <pubDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2020/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/</guid>
     <description><![CDATA[nfs 服务 部署 1 $&gt; yum install nfs-utils rpcbind &amp;&amp; mkdir /nfsshare &amp;&amp; chown nfsnobody. nfsshare 配置文件说明 /etc/exports 用于管理贡献相关配置的文件 内容格式: NFS共享目录 NFS客户端地址(参数1、参数2&hel]]></description>
 </item></channel>
 </rss>

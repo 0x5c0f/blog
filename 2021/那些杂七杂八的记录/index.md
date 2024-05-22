@@ -832,3 +832,31 @@ $> sudo resize2fs /dev/nvme0n1p1
 # 网络故障记录
 - `症状`：局域网机器网络故障，时好时坏。故障时候无法`ping`通网关(无法获取响应)，但可以`ping`通同网段的其他主机，也可以与其他主机正常通信。
 - `原因`：当前主机是通过手动配置`ip`，而局域网`ip`是路由自动分配的，有其他同事在连接时候占用了当前主机配置的`ip`，从而`ip`重复导致了上诉问题。
+
+# linux 桌面环境下，绑定指定唤起协议
+- 例如 `mailto://` 唤起指定的邮件应用,下面以`he3`的`appimage`程序为例
+```bash
+# 创建一个desktop文件(~/.local/share/applications)
+$> vim ~/.local/share/applications/appimagekit-he3.desktop 
+[Desktop Entry]
+Name=He3
+Comment=He3 desktop
+
+X-AppImage-Version=5.0.4
+Exec=/opt/tools/he3/he3.appImage %U
+
+Icon=/opt/tools/he3/he3.png
+
+Terminal=false
+Type=Application
+Categories=Application;Development;
+StartupNotify=true
+# 主要是这个 MimeType, he3 即为相关协议(浏览器请求 he3:// 打开此程序)
+MimeType=x-scheme-handler/he3;
+
+# 绑定协议到指定的应用上
+$> xdg-mime default appimagekit-he3.desktop x-scheme-handler/he3
+
+# 查询已绑定的信息 
+$> xdg-mime query default x-scheme-handler/he3
+```
