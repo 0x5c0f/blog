@@ -489,6 +489,18 @@ $> iptables -t nat -A POSTROUTING -s [内网网段] -o [外网网卡名称] -j M
 $> iptables -t nat -A PREROUTING -p tcp -m tcp --dport [外网端口] -j DNAT --to-destination [内网地址]:[内网端口]
 ```
 
+# linux 下实现内网上公网
+```bash
+# 允许NAT功能和网络包的转发(eth0 为可以连接公网的网卡)
+$> iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+# 允许从内网到公网的数据包转发
+$> sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+# sudo iptables -A FORWARD -i eth1 -s 10.0.2.33 -o eth0 -j ACCEPT
+# 允许已经建立连接的流量转发
+$> sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+# sudo iptables -A FORWARD -i eth0 -d 10.0.2.33 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+```
+
 # linux 查询cpu占用过高的php-fpm进程,正在执行的php脚本或者处理的事
 ```bash
 # 1. 通过top找到正在消耗 CPU 的 php-fpm 进程的 PID 

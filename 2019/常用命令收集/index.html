@@ -17,7 +17,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2019-07-23T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-04-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-05-24T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
@@ -89,8 +89,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3055 ,
-        "url": "https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/","datePublished": "2019-07-23T00:00:00+00:00","dateModified": "2024-04-16T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3198 ,
+        "url": "https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/","datePublished": "2019-07-23T00:00:00+00:00","dateModified": "2024-05-24T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -342,6 +342,7 @@
     <li><a href="#systemd-守护桌面程序">systemd 守护桌面程序</a></li>
     <li><a href="#证书相关操作">证书相关操作</a></li>
     <li><a href="#linux-端口转发">linux 端口转发</a></li>
+    <li><a href="#linux-下实现内网上公网">linux 下实现内网上公网</a></li>
     <li><a href="#linux-查询cpu占用过高的php-fpm进程正在执行的php脚本或者处理的事">linux 查询cpu占用过高的php-fpm进程,正在执行的php脚本或者处理的事</a></li>
     <li><a href="#查询当前目录下-md5-相同的文件">查询当前目录下 <code>md5</code> 相同的文件</a></li>
     <li><a href="#查询当前目录下-md5-等于某个值并删除移动">查询当前目录下 <code>md5</code> 等于某个值并删除/移动</a></li>
@@ -361,10 +362,10 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2019-07-23"
             >2019-07-23</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-04-16"
-              >2024-04-16</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-24"
+              >2024-05-24</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 3055 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 3198 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 7 分钟&nbsp;<span
             id="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/"
             class="leancloud_visitors"
@@ -448,6 +449,7 @@
     <li><a href="#systemd-守护桌面程序">systemd 守护桌面程序</a></li>
     <li><a href="#证书相关操作">证书相关操作</a></li>
     <li><a href="#linux-端口转发">linux 端口转发</a></li>
+    <li><a href="#linux-下实现内网上公网">linux 下实现内网上公网</a></li>
     <li><a href="#linux-查询cpu占用过高的php-fpm进程正在执行的php脚本或者处理的事">linux 查询cpu占用过高的php-fpm进程,正在执行的php脚本或者处理的事</a></li>
     <li><a href="#查询当前目录下-md5-相同的文件">查询当前目录下 <code>md5</code> 相同的文件</a></li>
     <li><a href="#查询当前目录下-md5-等于某个值并删除移动">查询当前目录下 <code>md5</code> 等于某个值并删除/移动</a></li>
@@ -1309,6 +1311,29 @@
 </span></span><span class="line"><span class="cl">$&gt; iptables -t nat -A PREROUTING -p tcp -m tcp --dport <span class="o">[</span>外网端口<span class="o">]</span> -j DNAT --to-destination <span class="o">[</span>内网地址<span class="o">]</span>:<span class="o">[</span>内网端口<span class="o">]</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="linux-下实现内网上公网" class="headerLink">
+    <a href="#linux-%e4%b8%8b%e5%ae%9e%e7%8e%b0%e5%86%85%e7%bd%91%e4%b8%8a%e5%85%ac%e7%bd%91" class="header-mark"></a>linux 下实现内网上公网</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 允许NAT功能和网络包的转发(eth0 为可以连接公网的网卡)</span>
+</span></span><span class="line"><span class="cl">$&gt; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许从内网到公网的数据包转发</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo iptables -A FORWARD -i eth1 -s 10.0.2.33 -o eth0 -j ACCEPT</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许已经建立连接的流量转发</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo iptables -A FORWARD -i eth0 -d 10.0.2.33 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h1 id="linux-查询cpu占用过高的php-fpm进程正在执行的php脚本或者处理的事" class="headerLink">
     <a href="#linux-%e6%9f%a5%e8%af%a2cpu%e5%8d%a0%e7%94%a8%e8%bf%87%e9%ab%98%e7%9a%84php-fpm%e8%bf%9b%e7%a8%8b%e6%ad%a3%e5%9c%a8%e6%89%a7%e8%a1%8c%e7%9a%84php%e8%84%9a%e6%9c%ac%e6%88%96%e8%80%85%e5%a4%84%e7%90%86%e7%9a%84%e4%ba%8b" class="header-mark"></a>linux 查询cpu占用过高的php-fpm进程,正在执行的php脚本或者处理的事</h1><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1375,7 +1400,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2024-04-16</span>
+        <span>更新于 2024-05-24</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>
