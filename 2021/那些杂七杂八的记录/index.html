@@ -90,7 +90,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  8983 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  9391 ,
         "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-05-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -375,6 +375,7 @@
     <li><a href="#阿里云磁盘分区扩容">阿里云磁盘分区扩容</a></li>
     <li><a href="#网络故障记录">网络故障记录</a></li>
     <li><a href="#linux-桌面环境下绑定指定唤起协议">linux 桌面环境下，绑定指定唤起协议</a></li>
+    <li><a href="#解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题">解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -393,8 +394,8 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-22"
               >2024-05-22</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 8983 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 18 分钟&nbsp;<span
+          >&nbsp;约 9391 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 19 分钟&nbsp;<span
             id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
             class="leancloud_visitors"
             data-flag-title="那些杂七杂八的记录"
@@ -509,6 +510,7 @@
     <li><a href="#阿里云磁盘分区扩容">阿里云磁盘分区扩容</a></li>
     <li><a href="#网络故障记录">网络故障记录</a></li>
     <li><a href="#linux-桌面环境下绑定指定唤起协议">linux 桌面环境下，绑定指定唤起协议</a></li>
+    <li><a href="#解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题">解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
@@ -2266,6 +2268,64 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 查询已绑定的信息 </span>
 </span></span><span class="line"><span class="cl">$&gt; xdg-mime query default x-scheme-handler/he3
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题" class="headerLink">
+    <a href="#%e8%a7%a3%e5%86%b3-virtualbox-%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e5%ae%9a%e5%88%b6ip%e7%bd%91%e6%ae%b5%e7%9a%84%e9%97%ae%e9%a2%98%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e8%bf%9e%e6%8e%a5%e5%85%ac%e7%bd%91%e7%9a%84%e9%97%ae%e9%a2%98" class="header-mark"></a>解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</h1><p><strong>此方案只适合<code>linux</code>桌面系统，<code>windows</code>理论可参考设定</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建一个虚拟网桥</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo brctl addbr br-vbox0
+</span></span><span class="line"><span class="cl"><span class="c1"># sudo ip link add name br-vbox0 type bridge</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用网桥和物理网卡</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo ip link <span class="nb">set</span> dev br-vbox0 up
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 为网桥设置IP地址(这个ip相当于这个网段的路由)</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo ip addr add 172.31.10.1/24 dev br-vbox0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Virtualbox 创建虚拟机时候，网卡的连接方式改为桥连网卡, 然后选择创建的网桥 br-vbox0 即可(没有dhcp，需要自己手动配置服务器上的网卡信息) </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 以上步骤完成，那么配置的虚拟机网络即为仅主机模式，且可以自定义网段 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## 开始设置该模式下的主机可连接公网</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 需要iptables支持，创建步骤和 https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/#linux-%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E4%B8%8A%E5%85%AC%E7%BD%91 一致 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 物理机执行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许NAT功能和网络包的转发(wlp0s20f3 为可以连接公网的网卡)</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo iptables -t nat -A POSTROUTING -o wlp0s20f3 -j MASQUERADE
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许从内网到公网的数据包转发</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo iptables -A FORWARD -i br-vbox0 -o wlp0s20f3 -j ACCEPT
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许已经建立连接的流量转发</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo iptables -A FORWARD -i wlp0s20f3 -o br-vbox0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>

@@ -860,3 +860,34 @@ $> xdg-mime default appimagekit-he3.desktop x-scheme-handler/he3
 # 查询已绑定的信息 
 $> xdg-mime query default x-scheme-handler/he3
 ```
+
+# 解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题) 
+
+**此方案只适合`linux`桌面系统，`windows`理论可参考设定**  
+```bash
+# 创建一个虚拟网桥
+$> sudo brctl addbr br-vbox0
+# sudo ip link add name br-vbox0 type bridge
+
+# 启用网桥和物理网卡
+$> sudo ip link set dev br-vbox0 up
+
+# 为网桥设置IP地址(这个ip相当于这个网段的路由)
+$> sudo ip addr add 172.31.10.1/24 dev br-vbox0
+
+# Virtualbox 创建虚拟机时候，网卡的连接方式改为桥连网卡, 然后选择创建的网桥 br-vbox0 即可(没有dhcp，需要自己手动配置服务器上的网卡信息) 
+
+## 以上步骤完成，那么配置的虚拟机网络即为仅主机模式，且可以自定义网段 
+
+
+## 开始设置该模式下的主机可连接公网
+## 需要iptables支持，创建步骤和 https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/#linux-%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E4%B8%8A%E5%85%AC%E7%BD%91 一致 
+
+# 物理机执行
+# 允许NAT功能和网络包的转发(wlp0s20f3 为可以连接公网的网卡)
+$> sudo iptables -t nat -A POSTROUTING -o wlp0s20f3 -j MASQUERADE
+# 允许从内网到公网的数据包转发
+$> sudo iptables -A FORWARD -i br-vbox0 -o wlp0s20f3 -j ACCEPT
+# 允许已经建立连接的流量转发
+$> sudo iptables -A FORWARD -i wlp0s20f3 -o br-vbox0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+```
