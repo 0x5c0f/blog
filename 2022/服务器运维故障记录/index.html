@@ -17,7 +17,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2022-08-01T00:00:00+00:00">
-    <meta property="article:modified_time" content="2022-08-01T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-05-27T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
@@ -90,8 +90,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  4236 ,
-        "url": "https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/","datePublished": "2022-08-01T00:00:00+00:00","dateModified": "2022-08-01T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  4441 ,
+        "url": "https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/","datePublished": "2022-08-01T00:00:00+00:00","dateModified": "2024-05-27T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -307,6 +307,7 @@
     <li><a href="#iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2">IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</a></li>
     <li><a href="#iis-如何修改文件上传限制">IIS 如何修改文件上传限制</a></li>
     <li><a href="#iis-net-项目-post-无法提交数据">IIS .net 项目 post 无法提交数据</a></li>
+    <li><a href="#iis-net-项目-同项目复制一份出来重新部署就无法正常使用了">IIS .net 项目 ，同项目复制一份出来重新部署就无法正常使用了</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -322,10 +323,10 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2022-08-01"
             >2022-08-01</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-01"
-              >2022-08-01</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-27"
+              >2024-05-27</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 4236 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 4441 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 9 分钟&nbsp;<span
             id="/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"
             class="leancloud_visitors"
@@ -373,24 +374,10 @@
     <li><a href="#iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2">IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</a></li>
     <li><a href="#iis-如何修改文件上传限制">IIS 如何修改文件上传限制</a></li>
     <li><a href="#iis-net-项目-post-无法提交数据">IIS .net 项目 post 无法提交数据</a></li>
+    <li><a href="#iis-net-项目-同项目复制一份出来重新部署就无法正常使用了">IIS .net 项目 ，同项目复制一份出来重新部署就无法正常使用了</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><div class="details admonition warning open">
-        <div class="details-summary admonition-title">
-          <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i
-            class="details-icon fas fa-angle-right fa-fw"
-          ></i>
-        </div>
-        <div class="details-content">
-          <div class="admonition-content">
-            本文最后更新于 <span
-              class="timeago"
-              datetime="2022-08-01T00:00:00"
-              title="August 1, 2022"
-            >2022-08-01</span
-            >，文中内容可能已过时。</div>
-        </div>
-      </div><h1 id="mysql--errcode-24---too-many-open-files" class="headerLink">
+      </div><div class="content" id="content"><h1 id="mysql--errcode-24---too-many-open-files" class="headerLink">
     <a href="#mysql--errcode-24---too-many-open-files" class="header-mark"></a>Mysql  Errcode: 24 - Too many open files</h1><blockquote>
 <p><a
   href="https://blog.csdn.net/weixin_36343850/article/details/86293700"
@@ -593,13 +580,18 @@
     <a href="#iis-net-%e9%a1%b9%e7%9b%ae-post-%e6%97%a0%e6%b3%95%e6%8f%90%e4%ba%a4%e6%95%b0%e6%8d%ae" class="header-mark"></a>IIS .net 项目 post 无法提交数据</h1><ul>
 <li>.net 站点 curl post请求，模拟表单提交，后端收不到数据，解决方案是把程序池的集成模式改为经典模式</li>
 </ul>
+<h1 id="iis-net-项目-同项目复制一份出来重新部署就无法正常使用了" class="headerLink">
+    <a href="#iis-net-%e9%a1%b9%e7%9b%ae-%e5%90%8c%e9%a1%b9%e7%9b%ae%e5%a4%8d%e5%88%b6%e4%b8%80%e4%bb%bd%e5%87%ba%e6%9d%a5%e9%87%8d%e6%96%b0%e9%83%a8%e7%bd%b2%e5%b0%b1%e6%97%a0%e6%b3%95%e6%ad%a3%e5%b8%b8%e4%bd%bf%e7%94%a8%e4%ba%86" class="header-mark"></a>IIS .net 项目 ，同项目复制一份出来重新部署就无法正常使用了</h1><p>大致问题体现是 <code>[Exception: 未将对象引用设置到对象的实例。] FrontEndProcessor.VoiceUtils.TextToSpeech xxxx</code><br>
+产生原因: 同一服务器上面，直接复制了一份出来，被复制的站点是可以正常使用的，复制出来后的站点，相对于复制前的站点同一功能就无法正常使用了。
+解决： 经多方对比，发现问题是由于程序池设置导致，复制后的站点，程序池未开启 <code>加载用户配置文件</code>。
+总结： <code>windows</code>上应不会存在权限相关问题，因此此类问题应该优先考虑程序池</p>
 </div>
 
     <div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2022-08-01</span>
+        <span>更新于 2024-05-27</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>

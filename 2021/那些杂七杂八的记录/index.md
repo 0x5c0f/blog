@@ -824,6 +824,22 @@ $> sudo xfs_growfs -d /
 $> sudo resize2fs /dev/nvme0n1p1
 ```
 
+# 亚马逊加速器配置
+> https://docs.aws.amazon.com/zh_cn/global-accelerator/latest/dg/what-is-global-accelerator.html  
+
+`AWS Global Accelerator`可以提高全球受众使用的 `Internet` 应用程序的可用性。使用标准加速器，全球加速器将 `AWS` 全球网络的流量引导到离客户端最近的区域中的终端节点。 本节主要说明`标准加速`   
+
+- 案例: 我的服务器位于新加坡，在欧洲等其他地区访问新加坡服务器上站点很慢，正常来说，针对于站点加速应该优先使用`cdn`，但是我们的站点主要是提供`api`请求等动态的服务, 很少涉及静态资源缓存。所有选择`AWS Global Accelerator`。  
+- 创建步骤(登陆`aws`后，选择 `Global Accelerator`服务， 点击`创建加速器`): 
+    - `输入名称`： 输入`加速器名称`, `加速器类型`选择标准, 其他根据需求修改， 点击`下一步`。 
+    - `侦听器`：录入`端口`、`协议`、`客户端亲和性` ，其中`端口`为后端对应的端口(比如我是加速后端`80`，这儿填写的就是`80`，建议一个端口一个监听器)  
+    - `添加端点组`： 修改`端点组1`中的`区域`(`区域`对应的就是你需要加速的目标区域，比如我的是新加坡,这儿选择的就是新加坡`ap-southeast-1`)，其他配置默认即可。点击`下一步`。
+    - `添加端点`： 点击`添加端点`, 修改`端点类型`，你后端是什么就选择什么，`端点类型`选择过后，`端点`会自动加载已有的资源信息，其他默认。 点击`创建加速器` 即完成创建。
+
+`加速器`创建完成后会提供一个`dns`地址，将需要加速的域名直接解析上去即可。   
+ 
+`AWS Global Accelerator`的功能和`cdn`类似，但效果比`cdn`好, 费用肯定要更高一些了。他还可以实现端口转发等其他的功能，可以自行参悟。
+
 # 阿里云磁盘分区扩容
 
 > https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1  
@@ -879,6 +895,27 @@ $> sudo ip addr add 172.31.10.1/24 dev br-vbox0
 
 ## 以上步骤完成，那么配置的虚拟机网络即为仅主机模式，且可以自定义网段 
 
+### 构建一个systemd管理脚本
+$> sudo vi /etc/systemd/system/create-bridge@.service
+[Unit]
+Description=Create bridge br-vbox%i
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/brctl addbr br-vbox%i
+ExecStart=/usr/sbin/ip link set dev br-vbox%i up
+ExecStart=/usr/sbin/ip addr add 172.31.1%i.1/24 dev br-vbox%i
+ExecStop=/usr/sbin/ip link set dev br-vbox%i down
+ExecStop=/usr/sbin/brctl delbr br-vbox%i
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+$> sudo systemctl daemon-reload 
+# $> sudo systemctl <start|stop|status> create-bridge@0.service
+### 
 
 ## 开始设置该模式下的主机可连接公网
 ## 需要iptables支持，创建步骤和 https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/#linux-%E4%B8%8B%E5%AE%9E%E7%8E%B0%E5%86%85%E7%BD%91%E4%B8%8A%E5%85%AC%E7%BD%91 一致 
@@ -890,4 +927,27 @@ $> sudo iptables -t nat -A POSTROUTING -o wlp0s20f3 -j MASQUERADE
 $> sudo iptables -A FORWARD -i br-vbox0 -o wlp0s20f3 -j ACCEPT
 # 允许已经建立连接的流量转发
 $> sudo iptables -A FORWARD -i wlp0s20f3 -o br-vbox0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+```
+
+# grafana 查询错误 `[A] got error: input data must be a wide series but got type long (input refid)`
+- 这个问题是在配置`grafana`警报规则时出现的，实际上这儿添加的是表达式，而不是查询标签，统计出来的结果只能是数字(看看`prometheus`的`graph`面板 )
+
+# 通过yum安装的mysql进行升级的时候报错 `xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql` 
+这个错误多数出现在yum安装 `mysql5.6`、`5.7` 时  
+问题:  
+```bash
+warning: /var/cache/yum/x86_64/7/mysql57-community/packages/mysql-community-libs-5.7.44-1.el7.x86_64.rpm: Header V4 RSA/SHA256 Signature, key ID 3a79bd29: NOKEY
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+The GPG keys listed for the "MySQL 5.7 Community Server" repository are already installed but they are not correct for this package.
+Check that the correct key URLs are configured for this repository.
+
+Failing package is: mysql-community-libs-5.7.44-1.el7.x86_64
+GPG Keys are configured as: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql 
+```
+
+解决: 
+```bash
+# 不行就删掉原来的GPG 密钥，在重新导入
+$> rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 ```
