@@ -17,6 +17,12 @@
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[一些常用、有趣的命令和代码片段]]></description>
 </item><item>
+    <title>那些杂七杂八的记录</title>
+    <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</link>
+    <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</guid>
+    <description><![CDATA[GnuPG 加密与解密 gpg 对称加密加密: gpg -c &lt;file&gt;， 输入两次加密密码，完成后生成文件&lt;file&gt;.gpg(加密后源文件保留]]></description>
+</item><item>
     <title>Linux 性能基准测试工具及测试方法</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
     <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
@@ -58,11 +64,5 @@
     <pubDate>Mon, 01 Aug 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</guid>
     <description><![CDATA[Mysql Errcode: 24 - Too many open files https://blog.csdn.net/weixin_36343850/article/details/86293700 原因：打开文件数量太多，超出了open_files_limit这个参数的限制，在一个表中有多个分区的时候，这种情况更容易发]]></description>
-</item><item>
-    <title>Mysql 备份与恢复</title>
-    <link>https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
-    <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
-    <description><![CDATA[mysql 备份与恢复数据更新过程，例如 update 语句 写redo log，进入 prepare阶段(xtrabackup备份最低应处于该阶段 ) 写binlog落盘 redo]]></description>
 </item></channel>
 </rss>

@@ -31,11 +31,11 @@
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
     <description><![CDATA[1. shell 脚本执行的几种方法 bash(sh) /path/script.sh 赋予执行权限 /path/script.sh 或 ./scripts.sh source script.sh 或 . script.sh 在此方法中执行,子 shell 中定义的变量,可在父 shell 中调用(其他方式父 shell 不能直接调用子 shell 的变量)]]></description>
 </item><item>
-    <title>那些好用的工具收集</title>
-    <link>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</link>
-    <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/</guid>
-    <description><![CDATA[收集的一些感觉挺好用的工具]]></description>
+    <title>那些杂七杂八的记录</title>
+    <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</link>
+    <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</guid>
+    <description><![CDATA[GnuPG 加密与解密 gpg 对称加密加密: gpg -c &lt;file&gt;， 输入两次加密密码，完成后生成文件&lt;file&gt;.gpg(加密后源文件保留]]></description>
 </item><item>
     <title>主站状态</title>
     <link>https://blog.0x5c0f.cc/pagestatus/</link>
