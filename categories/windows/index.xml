@@ -4,7 +4,13 @@
         <link>https://blog.0x5c0f.cc/categories/windows/</link>
         <description>Windows - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/windows/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/windows/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux下使用tun2socks进行两地网络连接</title>
+    <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
+    <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</guid>
+    <description><![CDATA[之前写了一个关于内网回拨解决方案 , 主要是介绍在PPTP不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是badvpn, 但该仓库已]]></description>
+</item><item>
     <title>常用的BAT脚本语法</title>
     <link>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>

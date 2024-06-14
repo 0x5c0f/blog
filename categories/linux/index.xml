@@ -4,7 +4,7 @@
         <link>https://blog.0x5c0f.cc/categories/linux/</link>
         <description>Linux - 分类 - 一个曾经的小码农...</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
-            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Wed, 08 May 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/linux/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/categories/linux/" rel="self" type="application/rss+xml" /><item>
     <title>常用web环境优化</title>
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
@@ -28,6 +28,12 @@
     <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</guid>
     <description><![CDATA[GnuPG 加密与解密 gpg 对称加密加密: gpg -c &lt;file&gt;， 输入两次加密密码，完成后生成文件&lt;file&gt;.gpg(加密后源文件保留]]></description>
+</item><item>
+    <title>Linux下使用tun2socks进行两地网络连接</title>
+    <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
+    <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</guid>
+    <description><![CDATA[之前写了一个关于内网回拨解决方案 , 主要是介绍在PPTP不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是badvpn, 但该仓库已]]></description>
 </item><item>
     <title>Linux 性能基准测试工具及测试方法</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
@@ -58,11 +64,5 @@
     <pubDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
     <description><![CDATA[1. 请简述OSI七层网络模型有哪些层及各自的含义 物理层：底层数据传输，比如网线、网卡标准 数据链路层：定义数据的基本格式，如何传输，如何标识。比]]></description>
-</item><item>
-    <title>SFTP搭建</title>
-    <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
-    <pubDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</guid>
-    <description><![CDATA[注意 本文内容仅在CentOS 7上进行测试 前言 文章介绍如何让sftp也可以实现vsftpd虚拟用户的功能。 对于运维来说，我们使用文件传输功能的]]></description>
 </item></channel>
 </rss>

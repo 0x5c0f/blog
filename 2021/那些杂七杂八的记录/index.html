@@ -17,7 +17,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2021-08-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-05-30T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-14T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
@@ -39,7 +39,7 @@
   content="DoIt"
 />
 
-<meta name="theme-color" content="#f8f8f8" /><meta name="msapplication-TileColor" content="#da532c" /><link rel="icon" href="/icons/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" /><link rel="canonical" href="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" /><link rel="prev" href="https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/" />
+<meta name="theme-color" content="#f8f8f8" /><meta name="msapplication-TileColor" content="#da532c" /><link rel="icon" href="/icons/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" /><link rel="canonical" href="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/" /><link rel="prev" href="https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/" />
 <link
       rel="stylesheet"
       href="/css/main.css"
@@ -89,8 +89,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  10374 ,
-        "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-05-30T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  10532 ,
+        "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-06-14T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -378,6 +378,7 @@
     <li><a href="#解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题">解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</a></li>
     <li><a href="#grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code></a></li>
     <li><a href="#通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></a></li>
+    <li><a href="#nginx配置特定方法请求时进行密码认证">nginx配置特定方法请求时进行密码认证</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -393,11 +394,11 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2021-08-04"
             >2021-08-04</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-30"
-              >2024-05-30</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-06-14"
+              >2024-06-14</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 10374 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 21 分钟&nbsp;<span
+          >&nbsp;约 10532 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 22 分钟&nbsp;<span
             id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
             class="leancloud_visitors"
             data-flag-title="那些杂七杂八的记录"
@@ -516,6 +517,7 @@
     <li><a href="#解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题">解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</a></li>
     <li><a href="#grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code></a></li>
     <li><a href="#通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></a></li>
+    <li><a href="#nginx配置特定方法请求时进行密码认证">nginx配置特定方法请求时进行密码认证</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
@@ -2441,13 +2443,36 @@
 </span></span><span class="line"><span class="cl">$&gt; rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="nginx配置特定方法请求时进行密码认证" class="headerLink">
+    <a href="#nginx%e9%85%8d%e7%bd%ae%e7%89%b9%e5%ae%9a%e6%96%b9%e6%b3%95%e8%af%b7%e6%b1%82%e6%97%b6%e8%bf%9b%e8%a1%8c%e5%af%86%e7%a0%81%e8%ae%a4%e8%af%81" class="header-mark"></a>nginx配置特定方法请求时进行密码认证</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">    <span class="c1"># location  </span>
+</span></span><span class="line"><span class="cl">    <span class="na">auth_basic &#34;Registry realm&#34;;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 指定除 HEAD 和 OPTIONS 方法外，其他方法都需要进行用户名/密码认证 </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 注意： 此项设置在 docker registry 反向代理中可能不太适用，docker 在push的时候会先进行GET，如果GET没有要求认证</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 则 docker 在push的时候就会不在携带用户名/密码校验，从而导致推送失败</span>
+</span></span><span class="line"><span class="cl">    <span class="na">limit_except HEAD OPTIONS {</span>
+</span></span><span class="line"><span class="cl">        <span class="na">auth_basic_user_file conf.d/.htpasswd;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div></div>
 
     <div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2024-05-30</span>
+        <span>更新于 2024-06-14</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>
@@ -2482,11 +2507,11 @@
   </div>
 
   <div class="post-nav"><a
-        href="/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/"
+        href="/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/"
         class="prev"
         rel="prev"
-        title="Linux 性能基准测试工具及测试方法"
-        ><i class="fas fa-angle-left fa-fw"></i>Linux 性能基准测试工具及测试方法</a
+        title="Linux下使用tun2socks进行两地网络连接"
+        ><i class="fas fa-angle-left fa-fw"></i>Linux下使用tun2socks进行两地网络连接</a
       >
       <a
         href="/2019/shellscript%E7%9B%B8%E5%85%B3/"

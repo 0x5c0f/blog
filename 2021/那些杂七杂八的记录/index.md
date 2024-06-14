@@ -951,3 +951,15 @@ GPG Keys are configured as: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 # 不行就删掉原来的GPG 密钥，在重新导入
 $> rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 ```
+
+# nginx配置特定方法请求时进行密码认证
+```ini
+    # location  
+    auth_basic "Registry realm";
+    # 指定除 HEAD 和 OPTIONS 方法外，其他方法都需要进行用户名/密码认证 
+    # 注意： 此项设置在 docker registry 反向代理中可能不太适用，docker 在push的时候会先进行GET，如果GET没有要求认证
+    # 则 docker 在push的时候就会不在携带用户名/密码校验，从而导致推送失败
+    limit_except HEAD OPTIONS {
+        auth_basic_user_file conf.d/.htpasswd;
+    }
+```
