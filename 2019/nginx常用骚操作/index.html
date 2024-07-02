@@ -6,31 +6,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noodp" />
-    <title>Ssh隧道相关 - 一个曾经的小码农...</title><meta
+    <title>Nginx常用骚操作 - 一个曾经的小码农...</title><meta
   name="Description"
-  content="Ssh隧道相关，端口转发"
-/><meta property="og:url" content="https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/">
+  content="Nginx常用骚操作"
+/><meta property="og:url" content="https://blog.0x5c0f.cc/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/">
   <meta property="og:site_name" content="一个曾经的小码农...">
-  <meta property="og:title" content="Ssh隧道相关">
-  <meta property="og:description" content="Ssh隧道相关，端口转发">
+  <meta property="og:title" content="Nginx常用骚操作">
+  <meta property="og:description" content="Nginx常用骚操作">
   <meta property="og:locale" content="zh-CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2019-05-07T00:00:00+00:00">
-    <meta property="article:modified_time" content="2019-05-07T00:00:00+00:00">
+    <meta property="article:published_time" content="2019-05-31T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-05-31T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
-    <meta property="article:tag" content="Ssh">
+    <meta property="article:tag" content="Nginx">
+    <meta property="article:tag" content="解决方案">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/">
+      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/">
+      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">
+      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/">
+      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
+      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
+      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/">
       <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"><meta name="twitter:title" content="Ssh隧道相关">
-<meta name="twitter:description" content="Ssh隧道相关，端口转发">
+<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"><meta name="twitter:title" content="Nginx常用骚操作">
+<meta name="twitter:description" content="Nginx常用骚操作">
 <meta
   name="application-name"
   content="DoIt"
@@ -40,7 +41,7 @@
   content="DoIt"
 />
 
-<meta name="theme-color" content="#f8f8f8" /><meta name="msapplication-TileColor" content="#da532c" /><link rel="icon" href="/icons/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" /><link rel="canonical" href="https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/" />
+<meta name="theme-color" content="#f8f8f8" /><meta name="msapplication-TileColor" content="#da532c" /><link rel="icon" href="/icons/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" /><link rel="canonical" href="https://blog.0x5c0f.cc/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/%E7%9B%91%E6%8E%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" />
 <link
       rel="stylesheet"
       href="/css/main.css"
@@ -85,18 +86,18 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Ssh隧道相关",
+        "headline": "Nginx常用骚操作",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/"
-        },"genre": "posts","keywords": "linux, ssh","wordcount":  911 ,
-        "url": "https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/","datePublished": "2019-05-07T00:00:00+00:00","dateModified": "2019-05-07T00:00:00+00:00","publisher": {
+            "@id": "https://blog.0x5c0f.cc/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/"
+        },"genre": "posts","keywords": "linux, nginx, 解决方案","wordcount":  486 ,
+        "url": "https://blog.0x5c0f.cc/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2019-05-31T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
                         "name": "admin"
-                    }],"description": "Ssh隧道相关，端口转发"
+                    }],"description": "Nginx常用骚操作"
     }
     </script></head>
 
@@ -296,29 +297,19 @@
         id="toc-content-auto"
       ><nav id="TableOfContents">
   <ul>
-    <li><a href="#1-记录一个草稿">1. 记录一个草稿</a></li>
-    <li><a href="#2-本地转发">2. 本地转发</a>
+    <li>
       <ul>
-        <li><a href="#命令格式">命令格式</a></li>
-        <li><a href="#21-隧道搭建servera-执行">2.1. 隧道搭建(serverA 执行)</a></li>
-        <li><a href="#22-隧道连接servera-执行">2.2. 隧道连接(serverA 执行)</a></li>
+        <li>
+          <ul>
+            <li><a href="#nginx-if-else-实现">nginx if else 实现</a></li>
+            <li><a href="#nginx-获取cdn-ip-及-ip段访问限制">nginx 获取cdn ip 及 ip(段)访问限制</a></li>
+            <li><a href="#nginx-代理-非根目录-到根目录">nginx 代理, 非根目录 到根目录</a></li>
+            <li><a href="#nginx发布alias虚拟目录及php支持配置方法">Nginx发布Alias虚拟目录及PHP支持配置方法</a></li>
+            <li><a href="#nginx-任意域名匹配及root路径定位">Nginx 任意域名匹配及root路径定位</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#3-远程端口转发">3. 远程端口转发</a>
-      <ul>
-        <li><a href="#命令格式-1">命令格式</a></li>
-        <li><a href="#31-隧道搭建serverb-执行">3.1. 隧道搭建(serverB 执行)</a></li>
-        <li><a href="#32-隧道连接">3.2. 隧道连接</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-动态端口转发">4. 动态端口转发</a>
-      <ul>
-        <li><a href="#命令格式-2">命令格式</a></li>
-        <li><a href="#41-隧道搭建servera-执行">4.1. 隧道搭建(serverA 执行)</a></li>
-        <li><a href="#42-隧道连接-servera-执行">4.2. 隧道连接 (serverA 执行)</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-windows-端口转发">5. windows 端口转发</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -326,37 +317,37 @@
           .getElementsByTagName("main")[0]
           .setAttribute("autoTOC", "true");
       </script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">
-      Ssh隧道相关
+      Nginx常用骚操作
     </h1><div class="post-meta">
       <div class="post-meta-line">
         <span class="post-author"><span class="author"><span class="author fas fa-user-circle fa-fw"></span><span class="screen-reader-text">  </span><a href="https://blog.0x5c0f.cc/authors/admin">0x5c0f</a></span>
-        </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/"><i class="far fa-folder fa-fw"></i>那些有用没用的</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
+        </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a>&nbsp;<a href="/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/"><i class="far fa-folder fa-fw"></i>整理收集</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
-            datetime="2019-05-07"
-            >2019-05-07</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-05-07"
-              >2019-05-07</time
+            datetime="2019-05-31"
+            >2019-05-31</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-05-31"
+              >2019-05-31</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 911 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 2 分钟&nbsp;<span
-            id="/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/"
+          >&nbsp;约 486 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 1 分钟&nbsp;<span
+            id="/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/"
             class="leancloud_visitors"
-            data-flag-title="Ssh隧道相关"
+            data-flag-title="Nginx常用骚操作"
           >
             <i class="far fa-eye fa-fw"></i>&nbsp;<span
               class="leancloud-visitors-count waline-pageview-count"
-              data-path="/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/"
+              data-path="/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/"
             ></span
             >&nbsp;次阅读 </span
           >&nbsp;<span
-            id="/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/"
+            id="/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/"
             class="comment_count"
-            data-flag-title="Ssh隧道相关"
+            data-flag-title="Nginx常用骚操作"
           >
             <i class="far fa-comments fa-fw"></i>&nbsp;<span
               class="waline-comment-count"
               id="waline-comment-count"
-              data-path="/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/"
+              data-path="/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/"
             ></span
             >&nbsp;条评论 </span
           >&nbsp;<span>
@@ -374,29 +365,19 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#1-记录一个草稿">1. 记录一个草稿</a></li>
-    <li><a href="#2-本地转发">2. 本地转发</a>
+    <li>
       <ul>
-        <li><a href="#命令格式">命令格式</a></li>
-        <li><a href="#21-隧道搭建servera-执行">2.1. 隧道搭建(serverA 执行)</a></li>
-        <li><a href="#22-隧道连接servera-执行">2.2. 隧道连接(serverA 执行)</a></li>
+        <li>
+          <ul>
+            <li><a href="#nginx-if-else-实现">nginx if else 实现</a></li>
+            <li><a href="#nginx-获取cdn-ip-及-ip段访问限制">nginx 获取cdn ip 及 ip(段)访问限制</a></li>
+            <li><a href="#nginx-代理-非根目录-到根目录">nginx 代理, 非根目录 到根目录</a></li>
+            <li><a href="#nginx发布alias虚拟目录及php支持配置方法">Nginx发布Alias虚拟目录及PHP支持配置方法</a></li>
+            <li><a href="#nginx-任意域名匹配及root路径定位">Nginx 任意域名匹配及root路径定位</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
-    <li><a href="#3-远程端口转发">3. 远程端口转发</a>
-      <ul>
-        <li><a href="#命令格式-1">命令格式</a></li>
-        <li><a href="#31-隧道搭建serverb-执行">3.1. 隧道搭建(serverB 执行)</a></li>
-        <li><a href="#32-隧道连接">3.2. 隧道连接</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-动态端口转发">4. 动态端口转发</a>
-      <ul>
-        <li><a href="#命令格式-2">命令格式</a></li>
-        <li><a href="#41-隧道搭建servera-执行">4.1. 隧道搭建(serverA 执行)</a></li>
-        <li><a href="#42-隧道连接-servera-执行">4.2. 隧道连接 (serverA 执行)</a></li>
-      </ul>
-    </li>
-    <li><a href="#5-windows-端口转发">5. windows 端口转发</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><div class="details admonition warning open">
@@ -409,65 +390,127 @@
           <div class="admonition-content">
             本文最后更新于 <span
               class="timeago"
-              datetime="2019-05-07T00:00:00"
-              title="May 7, 2019"
-            >2019-05-07</span
+              datetime="2019-05-31T00:00:00"
+              title="May 31, 2019"
+            >2019-05-31</span
             >，文中内容可能已过时。</div>
         </div>
-      </div><h1 id="1-记录一个草稿" class="headerLink">
-    <a href="#1-%e8%ae%b0%e5%bd%95%e4%b8%80%e4%b8%aa%e8%8d%89%e7%a8%bf" class="header-mark"></a>1. 记录一个草稿</h1><p>参考文献 :</p>
-<blockquote>
-<p><a
-  href="http://www.zsythink.net/archives/2450"
-  
-     target="_blank"
-  
-  rel="noopener noreferrer"
-  
->http://www.zsythink.net/archives/2450</a>
-</p>
-</blockquote>
-<blockquote>
-<p><a
-  href="http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/"
-  
-     target="_blank"
-  
-  rel="noopener noreferrer"
-  
->http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/</a>
-</p>
-</blockquote>
-<blockquote>
-<p><a
-  href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html"
-  
-     target="_blank"
-  
-  rel="noopener noreferrer"
-  
->https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html</a>
-</p>
-</blockquote>
-<p>主机定义 :</p>
-<ol>
-<li>serverA: 10.0.1.11</li>
-<li>serverB: 10.0.1.12</li>
-<li>serverC: 172.16.110.11</li>
-<li>serverD: 172.16.110.12</li>
-</ol>
-<h1 id="2-本地转发" class="headerLink">
-    <a href="#2-%e6%9c%ac%e5%9c%b0%e8%bd%ac%e5%8f%91" class="header-mark"></a>2. 本地转发</h1><h2 id="命令格式" class="headerLink">
-    <a href="#%e5%91%bd%e4%bb%a4%e6%a0%bc%e5%bc%8f" class="header-mark"></a>命令格式</h2><div class="highlight"><div class="chroma">
+      </div><h3 id="nginx-if-else-实现" class="headerLink">
+    <a href="#nginx-if-else-%e5%ae%9e%e7%8e%b0" class="header-mark"></a>nginx if else 实现</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh -L &lt;<span class="nb">local</span> port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;SSH hostname&gt;
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">set $is_matched 0;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">if ($http_user_agent ~* &#34;wget&#34;) {</span>
+</span></span><span class="line"><span class="cl">  <span class="na">set $is_matched &#34;${is_matched}1&#34;;</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">if ($remote_addr ~ &#34;127.0.0.1|172.16.11.10&#34;) {</span>
+</span></span><span class="line"><span class="cl">  <span class="na">set $is_matched &#34;${is_matched}01&#34;;</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 满足条件: </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 当 </span>
+</span></span><span class="line"><span class="cl"><span class="na">http_user_agent</span> <span class="o">=</span><span class="s">= wget or remote_addr = ip </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># is_matched 值为 01 001   </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 当条件为 </span>
+</span></span><span class="line"><span class="cl"><span class="na">http_user_agent</span> <span class="o">=</span><span class="s">= wget and remote_addr = ip </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># is_matched 值为  0101 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">if ($is_matched</span> <span class="o">=</span> <span class="s">&#34;01&#34;){
+</span></span></span><span class="line"><span class="cl"><span class="s">  return 403;</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="21-隧道搭建servera-执行" class="headerLink">
-    <a href="#21-%e9%9a%a7%e9%81%93%e6%90%ad%e5%bb%baservera-%e6%89%a7%e8%a1%8c" class="header-mark"></a>2.1. 隧道搭建(serverA 执行)</h2><div class="highlight"><div class="chroma">
+</div><h3 id="nginx-获取cdn-ip-及-ip段访问限制" class="headerLink">
+    <a href="#nginx-%e8%8e%b7%e5%8f%96cdn-ip-%e5%8f%8a-ip%e6%ae%b5%e8%ae%bf%e9%97%ae%e9%99%90%e5%88%b6" class="header-mark"></a>nginx 获取cdn ip 及 ip(段)访问限制</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># http </span>
+</span></span><span class="line"><span class="cl"><span class="na">map $http_x_forwarded_for $client_real_ip {</span>
+</span></span><span class="line"><span class="cl">	<span class="na">&#34;&#34; $remote_addr;</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># fix: 兼容ipv6</span>
+</span></span><span class="line"><span class="cl">	<span class="na">~^(?P&lt;firstAddr&gt;[0-9a-fA-F:.]+),?.*$ $firstAddr;</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">set $is_allow 0;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># location,server</span>
+</span></span><span class="line"><span class="cl"><span class="na">if ( $client_real_ip ~* &#39;^(223)\.(193)\.(97)\.(.*)$&#39; ) {</span>
+</span></span><span class="line"><span class="cl">	<span class="na">set $is_allow 1;</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">if ($client_real_ip ~ &#39;172.31.11.111|127.0.0.1&#39;){</span>
+</span></span><span class="line"><span class="cl">	<span class="na">set $is_allow 1; </span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">if ( $client_real_ip ~* &#34;172\.31\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)&#34; ) {</span>
+</span></span><span class="line"><span class="cl">	<span class="na">set $is_allow 1; </span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># and 实现</span>
+</span></span><span class="line"><span class="cl"><span class="na">if ( $is_allow</span> <span class="o">=</span> <span class="s">&#34;1&#34; ){
+</span></span></span><span class="line"><span class="cl"><span class="s">	return 200;</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">return 502;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="nginx-代理-非根目录-到根目录" class="headerLink">
+    <a href="#nginx-%e4%bb%a3%e7%90%86-%e9%9d%9e%e6%a0%b9%e7%9b%ae%e5%bd%95-%e5%88%b0%e6%a0%b9%e7%9b%ae%e5%bd%95" class="header-mark"></a>nginx 代理, 非根目录 到根目录</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -475,102 +518,100 @@
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -L 表示使用本地转发建立隧道  </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># -N 表示不执行远程命令 </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># -f 表示运行到后台</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># -g 开启网关功能,serverA中的所有ip都将会被监控 </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 整段意思表示 在本地(serverA)主机上建设一个到serverB的隧道,使用本地端口转发模式,监听本地(serverA)的9022端口,当访问本地(serverA)的9022端口时,会将通信数据转发到serverB的22端口  </span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># ssh -N -f -L 9022:10.0.1.12:22 root@10.0.1.12  # ssh -N -f -L 127.0.0.1:9022:10.0.1.12:22 root@10.0.1.12 </span>
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">location /frps/ {</span>
+</span></span><span class="line"><span class="cl">  <span class="na">proxy_pass http://$host:$server_port/;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">proxy_set_header        Host $host:$server_port;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">proxy_set_header        X-Real-IP $remote_addr;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">proxy_redirect / /frps/;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">#rewrite ^/frps/(.*)$ /$1 break;</span>
+</span></span><span class="line"><span class="cl"><span class="na">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="22-隧道连接servera-执行" class="headerLink">
-    <a href="#22-%e9%9a%a7%e9%81%93%e8%bf%9e%e6%8e%a5servera-%e6%89%a7%e8%a1%8c" class="header-mark"></a>2.2. 隧道连接(serverA 执行)</h2><div class="highlight"><div class="chroma">
+</div><h3 id="nginx发布alias虚拟目录及php支持配置方法" class="headerLink">
+    <a href="#nginx%e5%8f%91%e5%b8%83alias%e8%99%9a%e6%8b%9f%e7%9b%ae%e5%bd%95%e5%8f%8aphp%e6%94%af%e6%8c%81%e9%85%8d%e7%bd%ae%e6%96%b9%e6%b3%95" class="header-mark"></a>Nginx发布Alias虚拟目录及PHP支持配置方法</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh root@127.0.0.1 -P9022 
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl">	<span class="na">location /owa {</span>
+</span></span><span class="line"><span class="cl">		<span class="na">alias /pathto/owa;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">index index.php index.html index.htm;</span>
+</span></span><span class="line"><span class="cl">	<span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="na">location ~ /owa/.+.php.*$ {</span>
+</span></span><span class="line"><span class="cl">		<span class="na">if ($fastcgi_script_name ~ /owa/(.+.php.*)$) {</span>
+</span></span><span class="line"><span class="cl">			<span class="na">set $valid_fastcgi_script_name $1;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">}</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_pass   127.0.0.1:9000;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_index  index.php;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_connect_timeout 150;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_read_timeout 150;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_send_timeout 150;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_buffer_size 256k;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_buffers 16 256k;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_busy_buffers_size 512k;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_temp_file_write_size 512k;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">fastcgi_param  SCRIPT_FILENAME  /pathto/owa/$valid_fastcgi_script_name;</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">#fastcgi_param  SCRIPT_FILENAME  /pathto/$fastcgi_script_name;</span>
+</span></span><span class="line"><span class="cl">		<span class="na">include        fastcgi_params;</span>
+</span></span><span class="line"><span class="cl">	<span class="na">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="3-远程端口转发" class="headerLink">
-    <a href="#3-%e8%bf%9c%e7%a8%8b%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91" class="header-mark"></a>3. 远程端口转发</h1><p>(内网穿透)<br>
-例如: serverB 可以连接serverC, 但serverC 不能访问serverB , serverC 和 serverD 可以相互访问,若 serverD(或serverC) 需要访问serverB的ssh服务</p>
-<h2 id="命令格式-1" class="headerLink">
-    <a href="#%e5%91%bd%e4%bb%a4%e6%a0%bc%e5%bc%8f-1" class="header-mark"></a>命令格式</h2><div class="highlight"><div class="chroma">
+</div><h3 id="nginx-任意域名匹配及root路径定位" class="headerLink">
+    <a href="#nginx-%e4%bb%bb%e6%84%8f%e5%9f%9f%e5%90%8d%e5%8c%b9%e9%85%8d%e5%8f%8aroot%e8%b7%af%e5%be%84%e5%ae%9a%e4%bd%8d" class="header-mark"></a>Nginx 任意域名匹配及root路径定位</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh -R &lt;<span class="nb">local</span> port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;SSH hostname&gt; 
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="31-隧道搭建serverb-执行" class="headerLink">
-    <a href="#31-%e9%9a%a7%e9%81%93%e6%90%ad%e5%bb%baserverb-%e6%89%a7%e8%a1%8c" class="header-mark"></a>3.1. 隧道搭建(serverB 执行)</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># -N 表示不执行远程命令 </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># -R 表示创建远程转发的ssh隧道 </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># serverB(10.0.1.12)上执行 ,将会在远程主机serverC(172.16.110.11)上生成隧道端口(9022)的监听</span>
-</span></span><span class="line"><span class="cl">ssh -N -R 9022:10.0.1.12:22 root@172.16.110.11
-</span></span><span class="line"><span class="cl"><span class="c1"># serverB(10.0.1.12)上执行 ,将会在远程主机serverC(172.16.110.11)上生成隧道端口(9023)的监听</span>
-</span></span><span class="line"><span class="cl">ssh -N -R 9023:10.0.1.11:22 root@172.16.110.11
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="32-隧道连接" class="headerLink">
-    <a href="#32-%e9%9a%a7%e9%81%93%e8%bf%9e%e6%8e%a5" class="header-mark"></a>3.2. 隧道连接</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在serverC(172.16.110.11) 上执行,将会登陆serverB(10.0.1.12)主机</span>
-</span></span><span class="line"><span class="cl">ssh root@127.0.0.1 -P9022 
-</span></span><span class="line"><span class="cl"><span class="c1"># 在serverC(172.16.110.11) 上执行,将会登陆serverA(10.0.1.11)主机</span>
-</span></span><span class="line"><span class="cl">ssh root@127.0.0.1 -P9023 
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 id="4-动态端口转发" class="headerLink">
-    <a href="#4-%e5%8a%a8%e6%80%81%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91" class="header-mark"></a>4. 动态端口转发</h1><p>有点类似<code>shadowsocks</code></p>
-<h2 id="命令格式-2" class="headerLink">
-    <a href="#%e5%91%bd%e4%bb%a4%e6%a0%bc%e5%bc%8f-2" class="header-mark"></a>命令格式</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh -D &lt;<span class="nb">local</span> port&gt; &lt;SSH Server&gt;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="41-隧道搭建servera-执行" class="headerLink">
-    <a href="#41-%e9%9a%a7%e9%81%93%e6%90%ad%e5%bb%baservera-%e6%89%a7%e8%a1%8c" class="header-mark"></a>4.1. 隧道搭建(serverA 执行)</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># ssh -N -D 9000 root@serverC # ssh -N -D 127.0.0.1:9000 root@serverC</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="42-隧道连接-servera-执行" class="headerLink">
-    <a href="#42-%e9%9a%a7%e9%81%93%e8%bf%9e%e6%8e%a5-servera-%e6%89%a7%e8%a1%8c" class="header-mark"></a>4.2. 隧道连接 (serverA 执行)</h2><p>(若<code>serverC</code>为公网ip,也可通过其ip访问公网网络)<br>
-然后通过 ProxyChains-NG或其他程序配置 socks4或socks5即可通过<code>serverC</code> 连接<code>serverC</code>同网段的其他主机(<code>serverD</code>)</p>
-<h1 id="5-windows-端口转发" class="headerLink">
-    <a href="#5-windows-%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91" class="header-mark"></a>5. windows 端口转发</h1><p><code>plink.exe</code>是<code>putty</code>的附属工具 .</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl">$<span class="p">&gt;</span> plink.exe -ssh -i sshrsa.ppk 9022:10.0.1.12:22 root@10.0.1.12  
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 这段配置的作用是 匹配任意域名，子域名(subdomain)、主域名(maindomain)、顶级域名(tld) , 子域名可有可无 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后根据匹配值 将root路径设置为 匹配到的值($host)</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">## server</span>
+</span></span><span class="line"><span class="cl">	<span class="na">server_name ~^(?:(?&lt;subdomain&gt;.+)\.)?(?&lt;maindomain&gt;[^\.]+)\.(?&lt;tld&gt;.+)$;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="na">set $root_path /data/wwwroot/$host;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="na">if (!-d $root_path){</span>
+</span></span><span class="line"><span class="cl">        <span class="na">set $root_path /data/wwwroot/www.$host;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="na">root $root_path;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></div>
@@ -579,14 +620,14 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2019-05-07</span>
+        <span>更新于 2019-05-31</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>
     <div class="post-info-line">
       <div class="post-info-md"><span><a
                 class="link-to-mardown"
-                href=/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/index.md
+                href=/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/index.md
                 target="_blank"
                 rel="noopener noreferrer"
               >阅读原始文档</a>
@@ -594,14 +635,14 @@
       <div class="post-info-share"><button
       title="分享到 Evernote"
       data-sharer="evernote"
-      data-url="https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/"
-      data-title="Ssh隧道相关"
+      data-url="https://blog.0x5c0f.cc/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/"
+      data-title="Nginx常用骚操作"
     ><span class="fab fa-evernote fa-fw"></span></button></div>
     </div>
   </div>
 
   <div class="post-info-more">
-    <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/ssh/">Ssh</a></section>
+    <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/nginx/">Nginx</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
     <section>
       <span
         ><a href="javascript:void(0);" onclick="window.history.back();"
@@ -614,18 +655,18 @@
   </div>
 
   <div class="post-nav"><a
-        href="/2019/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"
+        href="/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/"
         class="prev"
         rel="prev"
-        title="正则表达式介绍"
-        ><i class="fas fa-angle-left fa-fw"></i>正则表达式介绍</a
+        title="Ssh隧道相关"
+        ><i class="fas fa-angle-left fa-fw"></i>Ssh隧道相关</a
       >
       <a
-        href="/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/"
+        href="/2019/%E7%9B%91%E6%8E%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
         class="next"
         rel="next"
-        title="Nginx常用骚操作"
-        >Nginx常用骚操作<i class="fas fa-angle-right fa-fw"></i
+        title="监控解决方案"
+        >监控解决方案<i class="fas fa-angle-right fa-fw"></i
       ></a></div>
 </div>
 <div id="comments"><div id="waline" class="comment"></div><noscript>

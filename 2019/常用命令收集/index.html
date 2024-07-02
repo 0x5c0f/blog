@@ -17,7 +17,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2019-07-23T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-05-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-18T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
@@ -89,8 +89,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3198 ,
-        "url": "https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/","datePublished": "2019-07-23T00:00:00+00:00","dateModified": "2024-05-24T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  3236 ,
+        "url": "https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/","datePublished": "2019-07-23T00:00:00+00:00","dateModified": "2024-06-18T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -347,6 +347,7 @@
     <li><a href="#查询当前目录下-md5-相同的文件">查询当前目录下 <code>md5</code> 相同的文件</a></li>
     <li><a href="#查询当前目录下-md5-等于某个值并删除移动">查询当前目录下 <code>md5</code> 等于某个值并删除/移动</a></li>
     <li><a href="#通过-skopeo-命令查询-docker-仓库中特定容器存在那些版本也可以用于管理">通过 <code>skopeo</code> 命令查询 <code>docker</code> 仓库中特定容器存在那些版本，也可以用于管理</a></li>
+    <li><a href="#查询-docker-运行容器的-cpu-占用信息并按照-cpu-占用排序">查询 <code>docker</code> 运行容器的 <code>cpu</code> 占用信息，并按照 <code>cpu</code> 占用排序</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -362,10 +363,10 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2019-07-23"
             >2019-07-23</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-05-24"
-              >2024-05-24</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-06-18"
+              >2024-06-18</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 3198 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 3236 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 7 分钟&nbsp;<span
             id="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/"
             class="leancloud_visitors"
@@ -454,6 +455,7 @@
     <li><a href="#查询当前目录下-md5-相同的文件">查询当前目录下 <code>md5</code> 相同的文件</a></li>
     <li><a href="#查询当前目录下-md5-等于某个值并删除移动">查询当前目录下 <code>md5</code> 等于某个值并删除/移动</a></li>
     <li><a href="#通过-skopeo-命令查询-docker-仓库中特定容器存在那些版本也可以用于管理">通过 <code>skopeo</code> 命令查询 <code>docker</code> 仓库中特定容器存在那些版本，也可以用于管理</a></li>
+    <li><a href="#查询-docker-运行容器的-cpu-占用信息并按照-cpu-占用排序">查询 <code>docker</code> 运行容器的 <code>cpu</code> 占用信息，并按照 <code>cpu</code> 占用排序</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><p>引入一个更为专业的命令收集站点 :</p>
@@ -1394,13 +1396,22 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="查询-docker-运行容器的-cpu-占用信息并按照-cpu-占用排序" class="headerLink">
+    <a href="#%e6%9f%a5%e8%af%a2-docker-%e8%bf%90%e8%a1%8c%e5%ae%b9%e5%99%a8%e7%9a%84-cpu-%e5%8d%a0%e7%94%a8%e4%bf%a1%e6%81%af%e5%b9%b6%e6%8c%89%e7%85%a7-cpu-%e5%8d%a0%e7%94%a8%e6%8e%92%e5%ba%8f" class="header-mark"></a>查询 <code>docker</code> 运行容器的 <code>cpu</code> 占用信息，并按照 <code>cpu</code> 占用排序</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; watch -n <span class="m">3</span> <span class="s1">&#39;docker stats --no-stream --format &#34;table {{.Name}}\t{{.CPUPerc}}&#34; | sort -k 2 -r&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div></div>
 
     <div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2024-05-24</span>
+        <span>更新于 2024-06-18</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>

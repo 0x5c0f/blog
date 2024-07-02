@@ -17,7 +17,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2021-08-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-06-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-06-21T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
@@ -89,8 +89,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  10532 ,
-        "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-06-14T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  11020 ,
+        "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-06-21T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -379,6 +379,9 @@
     <li><a href="#grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code></a></li>
     <li><a href="#通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></a></li>
     <li><a href="#nginx配置特定方法请求时进行密码认证">nginx配置特定方法请求时进行密码认证</a></li>
+    <li><a href="#服务器资源不够导致的问题">服务器资源不够导致的问题</a></li>
+    <li><a href="#通过systemd服务配置文件修改进程优先级">通过<code>systemd</code>服务配置文件修改进程优先级</a></li>
+    <li><a href="#git-删除最近几次提交记录">git 删除最近几次提交记录</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -394,10 +397,10 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2021-08-04"
             >2021-08-04</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-06-14"
-              >2024-06-14</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-06-21"
+              >2024-06-21</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 10532 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 11020 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 22 分钟&nbsp;<span
             id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
             class="leancloud_visitors"
@@ -518,6 +521,9 @@
     <li><a href="#grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code></a></li>
     <li><a href="#通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></a></li>
     <li><a href="#nginx配置特定方法请求时进行密码认证">nginx配置特定方法请求时进行密码认证</a></li>
+    <li><a href="#服务器资源不够导致的问题">服务器资源不够导致的问题</a></li>
+    <li><a href="#通过systemd服务配置文件修改进程优先级">通过<code>systemd</code>服务配置文件修改进程优先级</a></li>
+    <li><a href="#git-删除最近几次提交记录">git 删除最近几次提交记录</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
@@ -2466,13 +2472,46 @@
 </span></span><span class="line"><span class="cl">    <span class="na">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="服务器资源不够导致的问题" class="headerLink">
+    <a href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%b5%84%e6%ba%90%e4%b8%8d%e5%a4%9f%e5%af%bc%e8%87%b4%e7%9a%84%e9%97%ae%e9%a2%98" class="header-mark"></a>服务器资源不够导致的问题</h1><p>   由于服务器上的<code>php</code>站点经常受到攻击，于是决定重新调整环境架构，给上个开源<code>waf</code>，部署一切正常，但是在站点正式运行的时，某个站点在访问一个查询页面时候，数据库的<code>cpu</code>使用率消耗疯狂上涨(几百倍)，开始以为是站点被传木马了，一直疯狂查代码，查了很久发现，结果是服务器资源不够，停了一些站点重新分配了下每个容器的资源使用后，目前看起来稳定了，2核8G内存跑了近60个<code>php</code>站点，不知道这是个什么水准的服务器，还是我太水优化不了😂😂😂。</p>
+<h1 id="通过systemd服务配置文件修改进程优先级" class="headerLink">
+    <a href="#%e9%80%9a%e8%bf%87systemd%e6%9c%8d%e5%8a%a1%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e4%bf%ae%e6%94%b9%e8%bf%9b%e7%a8%8b%e4%bc%98%e5%85%88%e7%ba%a7" class="header-mark"></a>通过<code>systemd</code>服务配置文件修改进程优先级</h1><p>   在<code>[Service]</code> 下添加 <code>Nice=-10</code>。 <code>Nice</code> 进程优先级，<code>-20</code>-<code>19</code>, 数字越小，优先级越高。 还可以直接修改已启动的进程的优先级 <code>sudo renice -n -10 -p &lt;pid&gt;</code>。可以通过<code>sudo nice -n -10 &lt;command&gt;</code> 直接在启动时指定</p>
+<h1 id="git-删除最近几次提交记录" class="headerLink">
+    <a href="#git-%e5%88%a0%e9%99%a4%e6%9c%80%e8%bf%91%e5%87%a0%e6%ac%a1%e6%8f%90%e4%ba%a4%e8%ae%b0%e5%bd%95" class="header-mark"></a>git 删除最近几次提交记录</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 重置到指定提交 </span>
+</span></span><span class="line"><span class="cl">$&gt;  git reset --hard &lt;commit id&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 重新提交当前修改内容 并提交 </span>
+</span></span><span class="line"><span class="cl">$&gt; git add . <span class="o">&amp;&amp;</span> git comm -m <span class="s1">&#39;&lt;message&gt;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 强制重新推送到远程仓库 </span>
+</span></span><span class="line"><span class="cl">$&gt; git push --force origin main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果报错，原因可能就是 远程仓库禁止 强制推送 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 错误：无法推送一些引用到 xxxxxxxxx </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 报错要修改就只能开分支然后在推送，最后其申请合并 </span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div></div>
 
     <div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2024-06-14</span>
+        <span>更新于 2024-06-21</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>

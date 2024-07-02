@@ -533,3 +533,7 @@ $> skopeo delete docker://hub.example.com/0x5c0f/sshx:2023121505
 # ...
 ```
 
+# 查询 `docker` 运行容器的 `cpu` 占用信息，并按照 `cpu` 占用排序
+```bash
+$> watch -n 3 'docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}" | sort -k 2 -r'
+```
