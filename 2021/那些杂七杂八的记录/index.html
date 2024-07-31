@@ -17,7 +17,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2021-08-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-06-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-31T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
@@ -89,8 +89,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  11020 ,
-        "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-06-21T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  11300 ,
+        "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-07-31T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -382,6 +382,10 @@
     <li><a href="#服务器资源不够导致的问题">服务器资源不够导致的问题</a></li>
     <li><a href="#通过systemd服务配置文件修改进程优先级">通过<code>systemd</code>服务配置文件修改进程优先级</a></li>
     <li><a href="#git-删除最近几次提交记录">git 删除最近几次提交记录</a></li>
+    <li><a href="#debian-12-下-root--用户无法设置中文问题"><code>debian 12</code> 下 <code>root</code>  用户，无法设置中文问题</a></li>
+    <li><a href="#debian系统下-vim打开文件后鼠标选择为可视模式问题"><code>debian</code>系统下， <code>vim</code>打开文件后鼠标选择为可视模式问题</a></li>
+    <li><a href="#nginx-添加ssl-证书后--浏览器仍然提示-不安全你与此网站之间建立的连接并非完全安全"><code>nginx</code> 添加<code>ssl</code> 证书后 ， 浏览器仍然提示 <code>不安全(你与此网站之间建立的连接并非完全安全)</code></a></li>
+    <li><a href="#共享一个我自己用的-bash-prompt">共享一个我自己用的 <code>Bash Prompt</code></a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -397,11 +401,11 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2021-08-04"
             >2021-08-04</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-06-21"
-              >2024-06-21</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-07-31"
+              >2024-07-31</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 11020 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 22 分钟&nbsp;<span
+          >&nbsp;约 11300 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 23 分钟&nbsp;<span
             id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/"
             class="leancloud_visitors"
             data-flag-title="那些杂七杂八的记录"
@@ -524,6 +528,10 @@
     <li><a href="#服务器资源不够导致的问题">服务器资源不够导致的问题</a></li>
     <li><a href="#通过systemd服务配置文件修改进程优先级">通过<code>systemd</code>服务配置文件修改进程优先级</a></li>
     <li><a href="#git-删除最近几次提交记录">git 删除最近几次提交记录</a></li>
+    <li><a href="#debian-12-下-root--用户无法设置中文问题"><code>debian 12</code> 下 <code>root</code>  用户，无法设置中文问题</a></li>
+    <li><a href="#debian系统下-vim打开文件后鼠标选择为可视模式问题"><code>debian</code>系统下， <code>vim</code>打开文件后鼠标选择为可视模式问题</a></li>
+    <li><a href="#nginx-添加ssl-证书后--浏览器仍然提示-不安全你与此网站之间建立的连接并非完全安全"><code>nginx</code> 添加<code>ssl</code> 证书后 ， 浏览器仍然提示 <code>不安全(你与此网站之间建立的连接并非完全安全)</code></a></li>
+    <li><a href="#共享一个我自己用的-bash-prompt">共享一个我自己用的 <code>Bash Prompt</code></a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
@@ -2505,13 +2513,44 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 报错要修改就只能开分支然后在推送，最后其申请合并 </span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="debian-12-下-root--用户无法设置中文问题" class="headerLink">
+    <a href="#debian-12-%e4%b8%8b-root--%e7%94%a8%e6%88%b7%e6%97%a0%e6%b3%95%e8%ae%be%e7%bd%ae%e4%b8%ad%e6%96%87%e9%97%ae%e9%a2%98" class="header-mark"></a><code>debian 12</code> 下 <code>root</code>  用户，无法设置中文问题</h1><p>   具体体现是，系统无论如何设置，终端变量始终为 <code>LANG=C</code> 和 <code>LANGUAGE=C</code>, 检查了所有设置，最后发现在<code>~/.profile</code>中，设置了这两个变量，不知道为什么要这样干，删了重载下就可以了</p>
+<h1 id="debian系统下-vim打开文件后鼠标选择为可视模式问题" class="headerLink">
+    <a href="#debian%e7%b3%bb%e7%bb%9f%e4%b8%8b-vim%e6%89%93%e5%bc%80%e6%96%87%e4%bb%b6%e5%90%8e%e9%bc%a0%e6%a0%87%e9%80%89%e6%8b%a9%e4%b8%ba%e5%8f%af%e8%a7%86%e6%a8%a1%e5%bc%8f%e9%97%ae%e9%a2%98" class="header-mark"></a><code>debian</code>系统下， <code>vim</code>打开文件后鼠标选择为可视模式问题</h1><ul>
+<li>全局修改: 编辑 <code>/usr/share/vim/vim82/defaults.vim</code> , 大概在 <code>80</code> 行: <code>if has('mouse')</code> 下，将 <code>set mouse=a</code> 改为 <code>set mouse=</code> 即可</li>
+</ul>
+<h1 id="nginx-添加ssl-证书后--浏览器仍然提示-不安全你与此网站之间建立的连接并非完全安全" class="headerLink">
+    <a href="#nginx-%e6%b7%bb%e5%8a%a0ssl-%e8%af%81%e4%b9%a6%e5%90%8e--%e6%b5%8f%e8%a7%88%e5%99%a8%e4%bb%8d%e7%84%b6%e6%8f%90%e7%a4%ba-%e4%b8%8d%e5%ae%89%e5%85%a8%e4%bd%a0%e4%b8%8e%e6%ad%a4%e7%bd%91%e7%ab%99%e4%b9%8b%e9%97%b4%e5%bb%ba%e7%ab%8b%e7%9a%84%e8%bf%9e%e6%8e%a5%e5%b9%b6%e9%9d%9e%e5%ae%8c%e5%85%a8%e5%ae%89%e5%85%a8" class="header-mark"></a><code>nginx</code> 添加<code>ssl</code> 证书后 ， 浏览器仍然提示 <code>不安全(你与此网站之间建立的连接并非完全安全)</code></h1><ul>
+<li>多数是因为混合内容，在网站页面文件中,包含了其他网站非<code>https</code>的资源</li>
+</ul>
+<h1 id="共享一个我自己用的-bash-prompt" class="headerLink">
+    <a href="#%e5%85%b1%e4%ba%ab%e4%b8%80%e4%b8%aa%e6%88%91%e8%87%aa%e5%b7%b1%e7%94%a8%e7%9a%84-bash-prompt" class="header-mark"></a>共享一个我自己用的 <code>Bash Prompt</code></h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ~/.bashrc </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># need expand scripts: add https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh to profile.d</span>
+</span></span><span class="line"><span class="cl"><span class="nv">_PS1_CMD_</span><span class="o">=</span><span class="s2">&#34;[\\[\$(tput sgr0)\\]\\[\\033[38;5;5m\\]\\u\\[\$(tput sgr0)\\]@\\[\$(tput sgr0)\\]\\[\\033[38;5;70m\\]\\h\\[\$(tput sgr0)\\] \\W]\\[\$(tput sgr0)\\]\\[\\033[38;5;77m\\]\${__GIT_BRANCH__}\\[\\033[38;5;9m\\][\\\$?]\\[\$(tput sgr0)\\]\\\\\$ \\[\$(tput sgr0)\\]&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">PROMPT_COMMAND</span><span class="si">}</span><span class="s2">; __GIT_BRANCH__=\&#34;\$(__git_ps1 &#39;(%s)&#39;)\&#34;; PS1=\&#34;</span><span class="si">${</span><span class="nv">_PS1_CMD_</span><span class="si">}</span><span class="s2">\&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># export PS1=&#34;[\[$(tput sgr0)\]\[\033[38;5;5m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;70m\]\h\[$(tput sgr0)\] \W]\[$(tput sgr0)\]\[\033[38;5;9m\][\$?]\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div></div>
 
     <div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2024-06-21</span>
+        <span>更新于 2024-07-31</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>

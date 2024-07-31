@@ -612,3 +612,12 @@ done
   echo -e "#\0041/bin/bash"
   ```
 
+# 21. 将脚本以特定用户运行 
+```bash
+# 一般放在 export PATH 之后 
+if [ "$(id -u)" -eq 0 ]; then
+  echo "Switching to www user..."
+  exec runuser -u www -- "$0" "$@"
+fi
+
+```

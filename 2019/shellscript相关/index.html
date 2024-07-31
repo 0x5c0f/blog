@@ -17,7 +17,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2019-05-31T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-12-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-07-23T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Shellscript">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
@@ -89,8 +89,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/"
-        },"genre": "posts","keywords": "linux, shellscript","wordcount":  6342 ,
-        "url": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2023-12-26T00:00:00+00:00","publisher": {
+        },"genre": "posts","keywords": "linux, shellscript","wordcount":  6388 ,
+        "url": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2024-07-23T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
@@ -368,6 +368,7 @@
     <li><a href="#18-advanced-bash-scripting-guidecontributed-scripts">18. Advanced Bash-Scripting Guide(Contributed Scripts)</a></li>
     <li><a href="#19-getops">19. getops</a></li>
     <li><a href="#20-那些很神奇的操作">20. 那些很神奇的操作</a></li>
+    <li><a href="#21-将脚本以特定用户运行">21. 将脚本以特定用户运行</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -383,10 +384,10 @@
       <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
             datetime="2019-05-31"
             >2019-05-31</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-26"
-              >2023-12-26</time
+          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-07-23"
+              >2024-07-23</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 6342 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 6388 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 13 分钟&nbsp;<span
             id="/2019/shellscript%E7%9B%B8%E5%85%B3/"
             class="leancloud_visitors"
@@ -496,24 +497,10 @@
     <li><a href="#18-advanced-bash-scripting-guidecontributed-scripts">18. Advanced Bash-Scripting Guide(Contributed Scripts)</a></li>
     <li><a href="#19-getops">19. getops</a></li>
     <li><a href="#20-那些很神奇的操作">20. 那些很神奇的操作</a></li>
+    <li><a href="#21-将脚本以特定用户运行">21. 将脚本以特定用户运行</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><div class="details admonition warning open">
-        <div class="details-summary admonition-title">
-          <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i
-            class="details-icon fas fa-angle-right fa-fw"
-          ></i>
-        </div>
-        <div class="details-content">
-          <div class="admonition-content">
-            本文最后更新于 <span
-              class="timeago"
-              datetime="2023-12-26T00:00:00"
-              title="December 26, 2023"
-            >2023-12-26</span
-            >，文中内容可能已过时。</div>
-        </div>
-      </div><h1 id="1-shell-脚本执行的几种方法" class="headerLink">
+      </div><div class="content" id="content"><h1 id="1-shell-脚本执行的几种方法" class="headerLink">
     <a href="#1-shell-%e8%84%9a%e6%9c%ac%e6%89%a7%e8%a1%8c%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>1. shell 脚本执行的几种方法</h1><ul>
 <li>
 <p><code>bash(sh) /path/script.sh</code></p>
@@ -1820,13 +1807,30 @@
 </div>
 </div></li>
 </ul>
+<h1 id="21-将脚本以特定用户运行" class="headerLink">
+    <a href="#21-%e5%b0%86%e8%84%9a%e6%9c%ac%e4%bb%a5%e7%89%b9%e5%ae%9a%e7%94%a8%e6%88%b7%e8%bf%90%e8%a1%8c" class="header-mark"></a>21. 将脚本以特定用户运行</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 一般放在 export PATH 之后 </span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="k">$(</span>id -u<span class="k">)</span><span class="s2">&#34;</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Switching to www user...&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exec</span> runuser -u www -- <span class="s2">&#34;</span><span class="nv">$0</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="nv">$@</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div></div>
 
     <div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span>更新于 2023-12-26</span>
+        <span>更新于 2024-07-23</span>
       </div>
       <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
     </div>

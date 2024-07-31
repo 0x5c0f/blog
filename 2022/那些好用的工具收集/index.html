@@ -89,7 +89,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/"
-        },"genre": "posts","keywords": "linux","wordcount":  179 ,
+        },"genre": "posts","keywords": "linux","wordcount":  299 ,
         "url": "https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/","datePublished": "2022-06-23T00:00:00+00:00","dateModified": "2022-08-22T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -303,6 +303,8 @@
     <li><a href="#6-linux-script-终端记录神器">6. linux Script 终端记录神器</a></li>
     <li><a href="#7-linux-文件加密与解密工具">7. linux 文件加密与解密工具</a></li>
     <li><a href="#8-zenity---display-gtk-dialogs-图形界面操纵工具-">8. zenity - display GTK+ dialogs( 图形界面操纵工具 )</a></li>
+    <li><a href="#9-sysdig-系统性能监控和故障诊断工具">9. <code>sysdig</code> 系统性能监控和故障诊断工具</a></li>
+    <li><a href="#10--yazi-终端文件管理工具支持文件预览">10.  <code>yazi</code> 终端文件管理工具，支持文件预览</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -321,7 +323,7 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-08-22"
               >2022-08-22</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 179 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 299 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 1 分钟&nbsp;<span
             id="/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/"
             class="leancloud_visitors"
@@ -366,6 +368,8 @@
     <li><a href="#6-linux-script-终端记录神器">6. linux Script 终端记录神器</a></li>
     <li><a href="#7-linux-文件加密与解密工具">7. linux 文件加密与解密工具</a></li>
     <li><a href="#8-zenity---display-gtk-dialogs-图形界面操纵工具-">8. zenity - display GTK+ dialogs( 图形界面操纵工具 )</a></li>
+    <li><a href="#9-sysdig-系统性能监控和故障诊断工具">9. <code>sysdig</code> 系统性能监控和故障诊断工具</a></li>
+    <li><a href="#10--yazi-终端文件管理工具支持文件预览">10.  <code>yazi</code> 终端文件管理工具，支持文件预览</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><div class="details admonition warning open">
@@ -496,7 +500,53 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; zenity --help
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div>
+</div><h1 id="9-sysdig-系统性能监控和故障诊断工具" class="headerLink">
+    <a href="#9-sysdig-%e7%b3%bb%e7%bb%9f%e6%80%a7%e8%83%bd%e7%9b%91%e6%8e%a7%e5%92%8c%e6%95%85%e9%9a%9c%e8%af%8a%e6%96%ad%e5%b7%a5%e5%85%b7" class="header-mark"></a>9. <code>sysdig</code> 系统性能监控和故障诊断工具</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## fedora 下，新版已经不支持 dkms,使用需要使用 --modern-bpf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## https://github.com/draios/sysdig/issues/2035 </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 网络宽带占用 </span>
+</span></span><span class="line"><span class="cl">$&gt; sysdig -c topprocs_net
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># CPU 占用</span>
+</span></span><span class="line"><span class="cl">$&gt; sysdig -c topprocs_cpu
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 读写量最大的文件</span>
+</span></span><span class="line"><span class="cl">$&gt; sysdig -c topfiles_bytes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看容器相关资源使用状态 </span>
+</span></span><span class="line"><span class="cl">$&gt; csysdig -vcontainers
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="10--yazi-终端文件管理工具支持文件预览" class="headerLink">
+    <a href="#10--yazi-%e7%bb%88%e7%ab%af%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86%e5%b7%a5%e5%85%b7%e6%94%af%e6%8c%81%e6%96%87%e4%bb%b6%e9%a2%84%e8%a7%88" class="header-mark"></a>10.  <code>yazi</code> 终端文件管理工具，支持文件预览</h1><blockquote>
+<p><a
+  href="https://github.com/sxyazi/yazi"
+  
+     target="_blank"
+  
+  rel="noopener noreferrer"
+  
+>https://github.com/sxyazi/yazi</a>
+</p>
+</blockquote></div>
 
     <div class="post-footer" id="post-footer">
   <div class="post-info">

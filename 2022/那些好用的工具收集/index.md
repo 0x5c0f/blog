@@ -45,3 +45,26 @@
 ```bash
 $> zenity --help
 ```
+
+# 9. `sysdig` 系统性能监控和故障诊断工具 
+```bash
+## fedora 下，新版已经不支持 dkms,使用需要使用 --modern-bpf
+## https://github.com/draios/sysdig/issues/2035 
+
+# 网络宽带占用 
+$> sysdig -c topprocs_net
+
+# CPU 占用
+$> sysdig -c topprocs_cpu
+
+# 读写量最大的文件
+$> sysdig -c topfiles_bytes
+
+# 查看容器相关资源使用状态 
+$> csysdig -vcontainers
+```
+
+# 10.  `yazi` 终端文件管理工具，支持文件预览
+> https://github.com/sxyazi/yazi
+
+
