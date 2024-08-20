@@ -23,11 +23,17 @@
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
     <description><![CDATA[1. shell 脚本执行的几种方法 bash(sh) /path/script.sh 赋予执行权限 /path/script.sh 或 ./scripts.sh source script.sh 或 . script.sh 在此方法中执行,子 shell 中定义的变量,可在父 shell 中调用(其他方式父 shell 不能直接调用子 shell 的变量)]]></description>
 </item><item>
-    <title>那些杂七杂八的记录</title>
-    <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</link>
+    <title>那些杂七杂八的记录(一)</title>
+    <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/</link>
     <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/</guid>
     <description><![CDATA[GnuPG 加密与解密 gpg 对称加密加密: gpg -c &lt;file&gt;， 输入两次加密密码，完成后生成文件&lt;file&gt;.gpg(加密后源文件保留]]></description>
+</item><item>
+    <title>那些杂七杂八的记录(二)</title>
+    <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</link>
+    <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</guid>
+    <description><![CDATA[debian 12 下 root 用户，无法设置中文问题 具体体现是，系统无论如何设置，终端变量始终为 LANG=C 和 LANGUAGE=C, 检查了所有设置，最后发现在~/.profile中，设置了这两]]></description>
 </item><item>
     <title>Linux下使用tun2socks进行两地网络连接</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
@@ -58,20 +64,5 @@
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
     <description><![CDATA[netstat 命令netstat列含义： Proto: 协议名（tcp协议或者udp协议) recv-Q: 网络接收队列 表示收到的数据已经在本地接收缓冲，但是还有多少没有被进程取走，]]></description>
-</item><item>
-    <title>OSI七层模型</title>
-    <link>https://blog.0x5c0f.cc/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</link>
-    <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</guid>
-    <description><![CDATA[<p>OSI 模型是从上往下的，越底层越接近硬件，越往上越接近软件，这七层模型分别是物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
-<ul>
-<li><code>物理层</code>: 在媒体上传输比特，提供机械的和电气的规约</li>
-<li><code>数据链路层</code>: 将分组数据封装成帧，提供节点到节点方式的传输</li>
-<li><code>网络层</code>: 将分组从源端传送到目的端，提供网络互联</li>
-<li><code>传输层</code>: 提供可靠的端到端的报文传输和差错控制</li>
-<li><code>会话层</code>: 建立、管理和终止会话</li>
-<li><code>表示层</code>: 对数据进行转换、加密和压缩</li>
-<li><code>应用层</code>: 程序及接口</li>
-</ul>]]></description>
 </item></channel>
 </rss>

@@ -23,11 +23,17 @@
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
     <description><![CDATA[1. shell 脚本执行的几种方法 bash(sh) /path/script.sh 赋予执行权限 /path/script.sh 或 ./scripts.sh source script.sh 或 . script.sh 在此方法中执行,子 shell 中定义的变量,可在父 shell 中调用(其他方式父 shell 不能直接调用子 shell 的变量)]]></description>
 </item><item>
-    <title>那些杂七杂八的记录</title>
-    <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</link>
+    <title>那些杂七杂八的记录(一)</title>
+    <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/</link>
     <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/</guid>
     <description><![CDATA[GnuPG 加密与解密 gpg 对称加密加密: gpg -c &lt;file&gt;， 输入两次加密密码，完成后生成文件&lt;file&gt;.gpg(加密后源文件保留]]></description>
+</item><item>
+    <title>那些杂七杂八的记录(二)</title>
+    <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</link>
+    <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</guid>
+    <description><![CDATA[debian 12 下 root 用户，无法设置中文问题 具体体现是，系统无论如何设置，终端变量始终为 LANG=C 和 LANGUAGE=C, 检查了所有设置，最后发现在~/.profile中，设置了这两]]></description>
 </item><item>
     <title>Linux下使用tun2socks进行两地网络连接</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
@@ -58,11 +64,5 @@
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
     <description><![CDATA[我们在日常工作中常常会遇到一些需要重复进行的工作，又或者我们的项目在转交客户时需要去简化配置过程 这时我们就需要使用到一些自动化部署操作，我们]]></description>
-</item><item>
-    <title>NGINX中变量详解</title>
-    <link>https://blog.0x5c0f.cc/2023/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/</link>
-    <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/</guid>
-    <description><![CDATA[以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接 http://www.hangdaowangluo.com/archives/754 http Croe模块 - - $http_user_agent 客户端UA信息 $http_cookie 客户端COOKIE $cookie_name]]></description>
 </item></channel>
 </rss>
