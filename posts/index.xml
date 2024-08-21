@@ -41,7 +41,7 @@
     <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</link>
     <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</guid>
-    <description><![CDATA[debian 12 下 root 用户，无法设置中文问题 具体体现是，系统无论如何设置，终端变量始终为 LANG=C 和 LANGUAGE=C, 检查了所有设置，最后发现在~/.profile中，设置了这两]]></description>
+    <description><![CDATA[debian 12 下 ROOTN 用户，无法设置中文问题 具体体现是，系统无论如何设置，终端变量始终为 LANG=C 和 LANGUAGE=C, 检查了所有设置，最后发现在~/.profile中，设置了这两]]></description>
 </item><item>
     <title>Linux下使用tun2socks进行两地网络连接</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
