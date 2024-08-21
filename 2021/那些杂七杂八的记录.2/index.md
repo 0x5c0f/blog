@@ -45,4 +45,4 @@ export PROMPT_COMMAND="${PROMPT_COMMAND}; __GIT_BRANCH__=\"\$(__git_ps1 '(%s)')\
     1. 选择 `存储`，选择`控制器: IDE`，右键添加`cloud-init`源, 就是下载的那个`seed.img`或者自己创建的(*需要先注册到`Virtualbox`，这个步骤在测试时候发现不做似乎没什么影响，只是进去后使用的是下载镜像默认的帐号名密码，`Alibaba Cloud Linux 3`的是`alinux:aliyun`,这个在阿里云文档中手动生成配置文件中可以看到*)。  
     2. 选择 `存储` , 选择 `控制器: SATA`, 在右侧设置中将`型号`改为`virtio-scsi`(***这个步骤是必须的***),  然后`右键`添加硬盘, 选择下载的`aliyun_3_x64_20G_nocloud_alibase_20240528.vhd`(*同样需要先注册到`Virtualbox`*)。 
     3. 选择 `网络`，`连接方式`根据自己情况调整，`高级`中`控制芯片`修改为 `准虚拟化网络(virtio-net)`, 然后确定修改。 
-    4. 最后正常启动虚拟机即可. 
+    4. 最后正常启动虚拟机即可.  
