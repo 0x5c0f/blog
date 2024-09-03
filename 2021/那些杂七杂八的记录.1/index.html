@@ -89,7 +89,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  11020 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  11167 ,
         "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-07-31T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -400,8 +400,8 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-07-31"
               >2024-07-31</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 11020 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 22 分钟&nbsp;<span
+          >&nbsp;约 11167 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 23 分钟&nbsp;<span
             id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/"
             class="leancloud_visitors"
             data-flag-title="那些杂七杂八的记录(一)"
@@ -2248,7 +2248,55 @@
 >https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1</a>
 </p>
 </blockquote>
-<h1 id="网络故障记录" class="headerLink">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 确认分区信息</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo fdisk -lu
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 扩容分区</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 命令参数中的 /dev/vdb 和 1 之间需要空格分隔，1是分区编号, 是需要扩容的盘。</span>
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">type</span> growpart <span class="o">||</span> sudo yum install -y cloud-utils-growpart
+</span></span><span class="line"><span class="cl">$&gt; sudo yum update cloud-utils-growpart
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">type</span> sgdisk <span class="o">||</span> sudo yum install -y gdisk
+</span></span><span class="line"><span class="cl">$&gt; sudo <span class="nv">LC_ALL</span><span class="o">=</span>en_US.UTF-8 growpart /dev/vdb <span class="m">1</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 扩容盘</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## xfs 扩容 ,  /mnt 是挂载的目录 </span>
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">type</span> xfs_growfs <span class="o">||</span> sudo yum install -y xfsprogs
+</span></span><span class="line"><span class="cl">$&gt; sudo xfs_growfs /mnt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## ext 扩容</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo resize2fs /dev/vdb1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">########################################## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 裸盘扩容 </span>
+</span></span><span class="line"><span class="cl">$&gt; sudo resize2fs /dev/vdc 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="网络故障记录" class="headerLink">
     <a href="#%e7%bd%91%e7%bb%9c%e6%95%85%e9%9a%9c%e8%ae%b0%e5%bd%95" class="header-mark"></a>网络故障记录</h1><ul>
 <li><code>症状</code>：局域网机器网络故障，时好时坏。故障时候无法<code>ping</code>通网关(无法获取响应)，但可以<code>ping</code>通同网段的其他主机，也可以与其他主机正常通信。</li>
 <li><code>原因</code>：当前主机是通过手动配置<code>ip</code>，而局域网<code>ip</code>是路由自动分配的，有其他同事在连接时候占用了当前主机配置的<code>ip</code>，从而<code>ip</code>重复导致了上诉问题。</li>

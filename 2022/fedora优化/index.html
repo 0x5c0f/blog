@@ -90,7 +90,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/"
-        },"genre": "posts","keywords": "linux, fedora","wordcount":  2215 ,
+        },"genre": "posts","keywords": "linux, fedora","wordcount":  2352 ,
         "url": "https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/","datePublished": "2022-02-28T00:00:00+00:00","dateModified": "2024-04-30T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -312,6 +312,7 @@
     <li><a href="#15-flatpak-应用如何挂载指定目录到应用环境中">15. <code>flatpak</code> 应用如何挂载指定目录到应用环境中</a></li>
     <li><a href="#16-fedroa-取消关机时候提示安装挂起的软件更新的默认勾选">16. fedroa 取消关机时候提示<code>安装挂起的软件更新</code>的默认勾选</a></li>
     <li><a href="#17-gnome-桌面-alttab-切换窗口浏览器多窗口被视为同一组的问题">17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题</a></li>
+    <li><a href="#18-fedora-38-没有声音音频设置">18. fedora 38 没有声音/音频设置</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -330,7 +331,7 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-04-30"
               >2024-04-30</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 2215 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;约 2352 字&nbsp;<i class="far fa-clock fa-fw"></i
           >&nbsp;预计阅读 5 分钟&nbsp;<span
             id="/2022/fedora%E4%BC%98%E5%8C%96/"
             class="leancloud_visitors"
@@ -383,6 +384,7 @@
     <li><a href="#15-flatpak-应用如何挂载指定目录到应用环境中">15. <code>flatpak</code> 应用如何挂载指定目录到应用环境中</a></li>
     <li><a href="#16-fedroa-取消关机时候提示安装挂起的软件更新的默认勾选">16. fedroa 取消关机时候提示<code>安装挂起的软件更新</code>的默认勾选</a></li>
     <li><a href="#17-gnome-桌面-alttab-切换窗口浏览器多窗口被视为同一组的问题">17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题</a></li>
+    <li><a href="#18-fedora-38-没有声音音频设置">18. fedora 38 没有声音/音频设置</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><div class="details admonition note open">
@@ -753,6 +755,19 @@
 </div><h1 id="17-gnome-桌面-alttab-切换窗口浏览器多窗口被视为同一组的问题" class="headerLink">
     <a href="#17-gnome-%e6%a1%8c%e9%9d%a2-alttab-%e5%88%87%e6%8d%a2%e7%aa%97%e5%8f%a3%e6%b5%8f%e8%a7%88%e5%99%a8%e5%a4%9a%e7%aa%97%e5%8f%a3%e8%a2%ab%e8%a7%86%e4%b8%ba%e5%90%8c%e4%b8%80%e7%bb%84%e7%9a%84%e9%97%ae%e9%a2%98" class="header-mark"></a>17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题</h1><ul>
 <li>在系统中的<code>键盘</code>-<code>键盘快捷键</code>-<code>导航</code> 中，将<code>切换应用程序</code>的快捷键删了，将<code>切换窗口</code>快捷键改为<code>alt+tab</code>即可解决</li>
+</ul>
+<h1 id="18-fedora-38-没有声音音频设置" class="headerLink">
+    <a href="#18-fedora-38-%e6%b2%a1%e6%9c%89%e5%a3%b0%e9%9f%b3%e9%9f%b3%e9%a2%91%e8%ae%be%e7%bd%ae" class="header-mark"></a>18. fedora 38 没有声音/音频设置</h1><ul>
+<li><code>OP</code>电脑体现是, 系统设置里面没有声音设置(应该是看不到输入和输出的设备管理)，蓝牙连接声音传递正常，但无法加减音量, 耳机线连接异常</li>
+<li>解决方案: 注释掉 <code>/etc/pulse/default.pa: 110</code> 中 <code>load-module module-suspend-on-idle</code> , 然后<code>pulseaudio -k</code>、<code>pulseaudio --start</code> 一下(重启应该也可以), 具体可以看一下 <a
+  href="https://discussion.fedoraproject.org/t/no-sound-audio-in-fedora-38/81903"
+  
+     target="_blank"
+  
+  rel="noopener noreferrer"
+  
+><code>https://discussion.fedoraproject.org/t/no-sound-audio-in-fedora-38/81903</code></a>
+</li>
 </ul>
 </div>
 

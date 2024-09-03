@@ -844,6 +844,30 @@ $> sudo resize2fs /dev/nvme0n1p1
 
 > https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1  
 
+```bash
+# 确认分区信息
+$> sudo fdisk -lu
+
+# 扩容分区
+## 命令参数中的 /dev/vdb 和 1 之间需要空格分隔，1是分区编号, 是需要扩容的盘。
+$> type growpart || sudo yum install -y cloud-utils-growpart
+$> sudo yum update cloud-utils-growpart
+$> type sgdisk || sudo yum install -y gdisk
+$> sudo LC_ALL=en_US.UTF-8 growpart /dev/vdb 1 
+
+# 扩容盘
+## xfs 扩容 ,  /mnt 是挂载的目录 
+$> type xfs_growfs || sudo yum install -y xfsprogs
+$> sudo xfs_growfs /mnt
+
+## ext 扩容
+$> sudo resize2fs /dev/vdb1
+
+########################################## 
+## 裸盘扩容 
+$> sudo resize2fs /dev/vdc 
+```
+
 
 # 网络故障记录
 - `症状`：局域网机器网络故障，时好时坏。故障时候无法`ping`通网关(无法获取响应)，但可以`ping`通同网段的其他主机，也可以与其他主机正常通信。

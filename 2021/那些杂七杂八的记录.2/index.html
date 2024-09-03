@@ -89,7 +89,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  1056 ,
+        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  1683 ,
         "url": "https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-07-31T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
@@ -307,6 +307,7 @@
         <li><a href="#虚拟机创建和配置">虚拟机创建和配置</a></li>
       </ul>
     </li>
+    <li><a href="#pve-添加额外菜单-监控组件">PVE 添加额外菜单-监控组件</a></li>
   </ul>
 </nav></div>
     </div><script>
@@ -325,8 +326,8 @@
           >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-07-31"
               >2024-07-31</time
             >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 1056 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 3 分钟&nbsp;<span
+          >&nbsp;约 1683 字&nbsp;<i class="far fa-clock fa-fw"></i
+          >&nbsp;预计阅读 4 分钟&nbsp;<span
             id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/"
             class="leancloud_visitors"
             data-flag-title="那些杂七杂八的记录(二)"
@@ -374,6 +375,7 @@
         <li><a href="#虚拟机创建和配置">虚拟机创建和配置</a></li>
       </ul>
     </li>
+    <li><a href="#pve-添加额外菜单-监控组件">PVE 添加额外菜单-监控组件</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><h1 id="debian-12-下-rootn--用户无法设置中文问题" class="headerLink">
@@ -464,6 +466,16 @@
 >https://fairysen.com/742.html#toc-head-6</a>
 </p>
 </blockquote>
+<ol>
+<li>创建<code>虚拟机</code>, <code>操作系统</code>设置，选择 <code>不使用任何介质</code></li>
+<li><code>系统</code> 设置将 <code>SCSI控制器</code> 调整为 <code>VirtIO SCSI</code>, 机器可以设置为<code>q35</code>也可以默认</li>
+<li><code>磁盘</code> 设置删除掉所有的默认即可, 最后完成创建</li>
+<li>完成创建后, 登陆到 <code>PVE</code> 主机上面，使用命令<code>qm importdisk 100 aliyun_3_x64_20G_nocloud_alibase_20240528.qcow2 local-lvm</code> 将 <code>qcow2</code> 导入到虚拟机中，<code>100</code>为虚拟机的<code>VM ID</code>, <code>local-lvm</code>是要存储的位置， 没有 <code>qm</code> 命令，安装下 <code>cloud-init</code> 软件包</li>
+<li>导入完成后， 在<code>硬件</code>里面可以看到一个 <code>未使用的磁盘0</code>, 然后<code>双击</code>编辑, 一般默认即可(<code>总线/设备</code>调整为<code>SCSI</code>)</li>
+<li>在 <code>选项</code> 中，选择 <code>引导顺序</code>，将添加的那块磁盘设为第一启动项</li>
+<li>在 <code>Cloud-init</code> 中，设置下 <code>用户名 / 密码</code></li>
+<li>启动虚拟机</li>
+</ol>
 <h1 id="virtualbox-中使用-cloud-系统镜像快速创建虚拟机" class="headerLink">
     <a href="#virtualbox-%e4%b8%ad%e4%bd%bf%e7%94%a8-cloud-%e7%b3%bb%e7%bb%9f%e9%95%9c%e5%83%8f%e5%bf%ab%e9%80%9f%e5%88%9b%e5%bb%ba%e8%99%9a%e6%8b%9f%e6%9c%ba" class="header-mark"></a>Virtualbox 中使用 Cloud 系统镜像快速创建虚拟机</h1><p>  以<a
   href="https://mirrors.aliyun.com/alinux/3/image/"
@@ -514,11 +526,138 @@
 <li>选择 <code>存储</code>，选择<code>控制器: IDE</code>，右键添加<code>cloud-init</code>源, 就是下载的那个<code>seed.img</code>或者自己创建的(<em>需要先注册到<code>Virtualbox</code>，这个步骤在测试时候发现不做似乎没什么影响，只是进去后使用的是下载镜像默认的帐号名密码，<code>Alibaba Cloud Linux 3</code>的是<code>alinux:aliyun</code>,这个在阿里云文档中手动生成配置文件中可以看到</em>)。</li>
 <li>选择 <code>存储</code> , 选择 <code>控制器: SATA</code>, 在右侧设置中将<code>型号</code>改为<code>virtio-scsi</code>(<em><strong>这个步骤是必须的</strong></em>),  然后<code>右键</code>添加硬盘, 选择下载的<code>aliyun_3_x64_20G_nocloud_alibase_20240528.vhd</code>(<em>同样需要先注册到<code>Virtualbox</code></em>)。</li>
 <li>选择 <code>网络</code>，<code>连接方式</code>根据自己情况调整，<code>高级</code>中<code>控制芯片</code>修改为 <code>准虚拟化网络(virtio-net)</code>, 然后确定修改。</li>
-<li>最后正常启动虚拟机即可.</li>
+<li>最后正常启动虚拟机即可(注意： 第一次启动可能会比较慢，多等待一些时间就可以了， 启动后注意先配置好网络).</li>
 </ol>
 </li>
 </ul>
+<h1 id="pve-添加额外菜单-监控组件" class="headerLink">
+    <a href="#pve-%e6%b7%bb%e5%8a%a0%e9%a2%9d%e5%a4%96%e8%8f%9c%e5%8d%95-%e7%9b%91%e6%8e%a7%e7%bb%84%e4%bb%b6" class="header-mark"></a>PVE 添加额外菜单-监控组件</h1><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 当前测试版本为 8.2.2
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 修改Web界面源代码 /usr/share/pve-manager/js/pvemanagerlib.js(注意备份)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 搜索到内容 `if (caps.nodes[&#39;Sys.Audit&#39;]) {`，大概在 43869 行, 注意搜索结果会有多个。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 可以将前端界面修改为英文，然后随便改一个 gettext 内的内容刷新，看是否找对位置。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 添加菜单，完整内容如下 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="nx">caps</span><span class="p">.</span><span class="nx">nodes</span><span class="p">[</span><span class="s1">&#39;Sys.Audit&#39;</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">me</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;pveNodeSummary&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">title</span><span class="o">:</span> <span class="nx">gettext</span><span class="p">(</span><span class="s1">&#39;Summary&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">iconCls</span><span class="o">:</span> <span class="s1">&#39;fa fa-book&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">itemId</span><span class="o">:</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;pmxNotesView&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">title</span><span class="o">:</span> <span class="nx">gettext</span><span class="p">(</span><span class="s1">&#39;Notes&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">iconCls</span><span class="o">:</span> <span class="s1">&#39;fa fa-sticky-note-o&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">itemId</span><span class="o">:</span> <span class="s1">&#39;notes&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">/// 添加内容开始
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;prometheusMonitorView&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Prometheus 监控&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">iconCls</span><span class="o">:</span> <span class="s1">&#39;fa fa-line-chart&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">itemId</span><span class="o">:</span> <span class="s1">&#39;note-prometheus&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">/// 添加内容结束
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">/// 在文件最末尾添加 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Ext</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;PVE.node.PrometheusMonitor&#39;</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">extend</span><span class="o">:</span> <span class="s1">&#39;Ext.panel.Panel&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">alias</span><span class="o">:</span> <span class="s1">&#39;widget.prometheusMonitorView&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">scrollable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">bodyPadding</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">initComponent</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">me</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">prometheusIframe</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">xtype</span><span class="o">:</span> <span class="s1">&#39;component&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">autoEl</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;iframe&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">style</span><span class="o">:</span> <span class="s1">&#39;height: 100%; width: 100%; border: none;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">src</span><span class="o">:</span> <span class="s1">&#39;https://sogou.com&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">frameborder</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">scrolling</span><span class="o">:</span> <span class="s1">&#39;auto&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">Ext</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">me</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">layout</span><span class="o">:</span> <span class="s1">&#39;fit&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">items</span><span class="o">:</span> <span class="p">[</span><span class="nx">prometheusIframe</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nx">me</span><span class="p">.</span><span class="nx">callParent</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div></div>
 
     <div class="post-footer" id="post-footer">
   <div class="post-info">

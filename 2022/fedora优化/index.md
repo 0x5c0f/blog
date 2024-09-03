@@ -161,3 +161,7 @@ $> gsettings set org.gnome.software allow-updates false
 
 # 17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题
 - 在系统中的`键盘`-`键盘快捷键`-`导航` 中，将`切换应用程序`的快捷键删了，将`切换窗口`快捷键改为`alt+tab`即可解决 
+
+# 18. fedora 38 没有声音/音频设置
+- `OP`电脑体现是, 系统设置里面没有声音设置(应该是看不到输入和输出的设备管理)，蓝牙连接声音传递正常，但无法加减音量, 耳机线连接异常  
+- 解决方案: 注释掉 `/etc/pulse/default.pa: 110` 中 `load-module module-suspend-on-idle` , 然后`pulseaudio -k`、`pulseaudio --start` 一下(重启应该也可以), 具体可以看一下 [`https://discussion.fedoraproject.org/t/no-sound-audio-in-fedora-38/81903`](https://discussion.fedoraproject.org/t/no-sound-audio-in-fedora-38/81903)
