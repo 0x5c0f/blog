@@ -9,134 +9,42 @@
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</guid>
-    <description><![CDATA[<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>前言<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。</div>
-        </div>
-    </div>
-<h1 id="1-tomcat-服务调优" class="headerLink">
-    <a href="#1-tomcat-%e6%9c%8d%e5%8a%a1%e8%b0%83%e4%bc%98" class="header-mark"></a>1. tomcat 服务调优</h1><ul>
-<li><code>tomcat: 8.5.59</code></li>
-</ul>
-<h2 id="11-安全优化" class="headerLink">
-    <a href="#11-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>1.1. 安全优化</h2><ul>
-<li>
-<p>降权启动</p>]]></description>
+    <description><![CDATA[常用web环境优化]]></description>
 </item><item>
     <title>NGINX中变量详解</title>
     <link>https://blog.0x5c0f.cc/2023/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/</link>
     <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/</guid>
-    <description><![CDATA[<div class="details admonition quote open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-quote-right fa-fw"></i>以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><blockquote>
-<p><a href="http://www.hangdaowangluo.com/archives/754" target="_blank" rel="noopener noreferrer">http://www.hangdaowangluo.com/archives/754</a></p>]]></description>
+    <description><![CDATA[NGINX中变量详解]]></description>
 </item><item>
     <title>Nginx反向代理jenkins</title>
     <link>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</guid>
-    <description><![CDATA[<p>参考文献 :</p>
-<blockquote>
-<p><a href="https://wiki.jenkins.io/display/JENKINS/Jenkins&#43;behind&#43;an&#43;NGinX&#43;reverse&#43;proxy" target="_blank" rel="noopener noreferrer">https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy</a></p>
-</blockquote>
-<p>以下为个人解决方案 :<br>
-<code>jenkins</code> 配置:</p>
-<ul>
-<li>添加启动参数 <code>--prefix=/jenkins</code>，<code>docker</code>启动添加环境变量<code>JENKINS_OPTS=&quot;--prefix=/jenkins&quot;</code></li>
-<li>前端修改(<code>Jenkins</code> &gt; <code>Manage Jenkins</code> &gt; <code>Jenkins Location</code> &gt; <code>Jenkins URL</code>) 或者修改配置文件<code>/var/jenkins_home/jenkins.model.JenkinsLocationConfiguration.xml</code>中的<code>jenkinsUrl</code>，修改为<code>http(s)://www.example.com/jenkins/</code>,配置文件修改后需重启。</li>
-</ul>
-<p><code>nginx</code>配置:</p>]]></description>
+    <description><![CDATA[Nginx反向代理jenkins]]></description>
 </item><item>
     <title>Nginx常用骚操作</title>
     <link>https://blog.0x5c0f.cc/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/</link>
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/</guid>
-    <description><![CDATA[<h3 id="nginx-if-else-实现" class="headerLink">
-    <a href="#nginx-if-else-%e5%ae%9e%e7%8e%b0" class="header-mark"></a>nginx if else 实现</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pr]]></description>
+    <description><![CDATA[Nginx常用骚操作]]></description>
 </item><item>
     <title>Nginx安装维护</title>
     <link>https://blog.0x5c0f.cc/2019/nginx%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/</link>
     <pubDate>Wed, 10 Apr 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/nginx%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/</guid>
-    <description><![CDATA[<h1 id="搭建环境" class="headerLink">
-    <a href="#%e6%90%ad%e5%bb%ba%e7%8e%af%e5%a2%83" class="header-mark"></a>搭建环境：</h1><ul>
-<li>nginx：1.14.2</li>
-<li>服务器：centos7</li>
-</ul>
-<h1 id="依赖安装" class="headerLink">
-    <a href="#%e4%be%9d%e8%b5%96%e5%ae%89%e8%a3%85" class="header-mark"></a>依赖安装</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pr]]></description>
+    <description><![CDATA[Nginx安装维护]]></description>
 </item><item>
     <title>Nginx主配置文件nginx.conf超详细中文详解</title>
     <link>https://blog.0x5c0f.cc/2019/nginx.conf%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</link>
     <pubDate>Thu, 14 Mar 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/nginx.conf%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/</guid>
-    <description><![CDATA[<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>注意<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">本文原文出自老男孩微信公众号:<code>oldboyedu</code>, 原文连接已经丢失，现收集于网络转载文本，用于个人整理记录</div>
-        </div>
-    </div>
-<h1 id="1-作者简介" class="headerLink">
-    <a href="#1-%e4%bd%9c%e8%80%85%e7%ae%80%e4%bb%8b" class="header-mark"></a>1. 作者简介</h1><p>老男孩，北京老男孩IT教育创始人，畅销图书作者，51CTO金牌讲师，16年运维经验及培训经验， IT界顶级Linux集群架构实战与教育专家。<br>
-国内IT教育实战心理学运维思想体系创始人，将心理学运维思想大量应用于教学培训实践，成就屌丝无数。所教学生平均就业工资及后期发展速度连续多年在国内同行业排名第一！<br>
-老男孩老师个人博客：</p>]]></description>
+    <description><![CDATA[Nginx主配置文件nginx.conf超详细中文详解]]></description>
 </item><item>
     <title>Nginx Location 模块介绍</title>
     <link>https://blog.0x5c0f.cc/2019/nginx-location/</link>
     <pubDate>Mon, 04 Feb 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/nginx-location/</guid>
-    <description><![CDATA[<h1 id="1-前言" class="headerLink">
-    <a href="#1-%e5%89%8d%e8%a8%80" class="header-mark"></a>1. 前言</h1><p>个人整理,可参考</p>
-<h1 id="2-优化" class="headerLink">
-    <a href="#2-%e4%bc%98%e5%8c%96" class="header-mark"></a>2. 优化</h1><h2 id="21-参数说明" class="headerLink">
-    <a href="#21-%e5%8f%82%e6%95%b0%e8%af%b4%e6%98%8e" class="header-mark"></a>2.1. 参数说明</h2><p><code>worker_processes</code>      : 进程数<br>
-<code>worker_connections</code>    : 最大连接数<br>
-(最大并发连接=进程数x最大连接数)<br>
-<code>autoindex</code>             : 当主页不存在的时候，显示目录结构</p>]]></description>
+    <description><![CDATA[Nginx Location 模块介绍]]></description>
 </item></channel>
 </rss>

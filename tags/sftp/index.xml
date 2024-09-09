@@ -9,25 +9,12 @@
     <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
     <pubDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</guid>
-    <description><![CDATA[<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>注意<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><strong>本文内容仅在<code>CentOS 7</code>上进行测试</strong></div>
-        </div>
-    </div>
-<h1 id="前言" class="headerLink">
-    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h1><p>  文章介绍如何让<code>sftp</code>也可以实现<code>vsftpd</code>虚拟用户的功能。<br>
-  对于运维来说，我们使用文件传输功能的时候都是优先使用<code>vsftpd</code>，而不是<code>sftp</code>,多数原因我想应该都是因为<code>vsftpd</code>具有虚拟用户的功能，这个功能在针对特定的服务来说是非常友好的。比如<code>php</code>服务降权启动时，被读取文件的文件权限问题。 <br>
-  上述的问题，<code>sftp</code>实际上也是可以解决，借助<code>useradd -o</code>选项实现。</p>]]></description>
+    <description><![CDATA[SFTP搭建]]></description>
 </item><item>
     <title>Chroot系统</title>
     <link>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Wed, 23 Sep 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
-    <description><![CDATA[<p><strong>以下是一片草稿，真的真的是我自己记录的。但是！我现在自己也看不懂了，我真是栓Q了，好像多了一个chroot初始没啥用</strong></p>
-<h1 id="chroot系统" class="headerLink">
-    <a href="#chroot%e7%b3%bb%e7%bb%9f" class="header-mark"></a>chroot系统</h1><p><strong>正常来说针对于文件共享的<code>sftp</code>应该是以用户为单位来做的,但这儿我却用的是组,这个其实是我测试用用户来做从来没有成功过，只能被迫用组</strong></p>]]></description>
+    <description><![CDATA[Chroot系统,用于限制sftp的根目录权限]]></description>
 </item></channel>
 </rss>

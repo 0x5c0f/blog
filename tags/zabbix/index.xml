@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Zabbix - 标签 - 一个曾经的小码农...</title>
+        <link>http://localhost:1313/tags/zabbix/</link>
+        <description>Zabbix - 标签 - 一个曾经的小码农...</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
+            <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/zabbix/" rel="self" type="application/rss+xml" /><item>
+    <title>Zabbix安装(这是一个草稿)</title>
+    <link>http://localhost:1313/2022/zabbix%E5%AE%89%E8%A3%85/</link>
+    <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/zabbix%E5%AE%89%E8%A3%85/</guid>
+    <description><![CDATA[<h1 id="pwgen-18-1" class="headerLink">
+    <a href="#pwgen-18-1" class="header-mark"></a>pwgen 18 1</h1><p>GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&rsquo;%&rsquo;  Identified by &ldquo;k22gve2rSgUTArEd&rdquo;;
+GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&lsquo;127.0.0.1&rsquo;  Identified by &ldquo;k22gve2rSgUTArEd&rdquo; WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON <em>.</em> TO &lsquo;root&rsquo;@&rsquo;localhost&rsquo;  Identified by &ldquo;k22gve2rSgUTArEd&rdquo; WITH GRANT OPTION;</p>
+<p>wget &ldquo;<a href="https://cdn.zabbix.com/zabbix/sources/stable/4.0/zabbix-4.0.26.tar.gz%22" target="_blank" rel="noopener noreferrer">https://cdn.zabbix.com/zabbix/sources/stable/4.0/zabbix-4.0.26.tar.gz"</a></p>
+<p>tar -xzf zabbix-4.0.26.tar.gz &amp;&amp; cd zabbix-4.0.26/</p>
+<p>yum -y install curl libcurl-devel net-snmp net-snmp-devel perl-DBI libdbi-dbd-mysql mysql-devel gcc make libxml2 libxml2-devel libevent-devel</p>]]></description>
+</item></channel>
+</rss>

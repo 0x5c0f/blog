@@ -9,48 +9,18 @@
     <link>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
-    <description><![CDATA[<h1 id="netstat-命令" class="headerLink">
-    <a href="#netstat-%e5%91%bd%e4%bb%a4" class="header-mark"></a>netstat 命令</h1><p><code>netstat</code>列含义：</p>
-<ul>
-<li>
-<p><code>Proto</code>: 协议名（tcp协议或者udp协议)</p>
-</li>
-<li>
-<p><code>recv-Q</code>: 网络接收队列</p>
-<ul>
-<li>表示收到的数据已经在本地接收缓冲，但是还有多少没有被进程取走，recv()</li>
-<li>如果接收队列Recv-Q一直处于阻塞状态，可能是遭受了拒绝服务 <code>denial-of-service</code> 攻击。</li>
-</ul>
-</li>
-<li>
-<p><code>Send-Q</code>: 网路发送队列</p>]]></description>
+    <description><![CDATA[Netstat命令/TCP链路状态]]></description>
 </item><item>
     <title>OSI七层模型</title>
     <link>https://blog.0x5c0f.cc/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/</guid>
-    <description><![CDATA[<p>OSI 模型是从上往下的，越底层越接近硬件，越往上越接近软件，这七层模型分别是物理层、数据链路层、网络层、传输层、会话层、表示层、应用层</p>
-<ul>
-<li><code>物理层</code>: 在媒体上传输比特，提供机械的和电气的规约</li>
-<li><code>数据链路层</code>: 将分组数据封装成帧，提供节点到节点方式的传输</li>
-<li><code>网络层</code>: 将分组从源端传送到目的端，提供网络互联</li>
-<li><code>传输层</code>: 提供可靠的端到端的报文传输和差错控制</li>
-<li><code>会话层</code>: 建立、管理和终止会话</li>
-<li><code>表示层</code>: 对数据进行转换、加密和压缩</li>
-<li><code>应用层</code>: 程序及接口</li>
-</ul>]]></description>
+    <description><![CDATA[OSI七层模型/tcp]]></description>
 </item><item>
     <title>TCP/IP 协议概述</title>
     <link>https://blog.0x5c0f.cc/2022/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/</guid>
-    <description><![CDATA[<div class="details admonition quote open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-quote-right fa-fw"></i>引用<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><a href="https://blog.csdn.net/qzcsu/article/details/72861891" target="_blank" rel="noopener noreferrer"><code>两张动图-彻底明白TCP的三次握手与四次挥手</code></a></div>
-        </div>
-    </div>]]></description>
+    <description><![CDATA[Tcp.ip协议概述]]></description>
 </item></channel>
 </rss>

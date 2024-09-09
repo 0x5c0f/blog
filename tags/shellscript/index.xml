@@ -9,15 +9,6 @@
     <link>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</link>
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
-    <description><![CDATA[<h1 id="1-shell-脚本执行的几种方法" class="headerLink">
-    <a href="#1-shell-%e8%84%9a%e6%9c%ac%e6%89%a7%e8%a1%8c%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>1. shell 脚本执行的几种方法</h1><ul>
-<li>
-<p><code>bash(sh) /path/script.sh</code></p>
-</li>
-<li>
-<p>赋予执行权限 <code>/path/script.sh </code> 或 <code>./scripts.sh</code></p>
-</li>
-<li>
-<p><code>source script.sh</code> 或 <code>. script.sh</code></p>]]></description>
+    <description><![CDATA[Shellscript相关]]></description>
 </item></channel>
 </rss>

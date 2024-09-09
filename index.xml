@@ -19,22 +19,7 @@
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</guid>
-    <description><![CDATA[<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>前言<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。</div>
-        </div>
-    </div>
-<h1 id="1-tomcat-服务调优" class="headerLink">
-    <a href="#1-tomcat-%e6%9c%8d%e5%8a%a1%e8%b0%83%e4%bc%98" class="header-mark"></a>1. tomcat 服务调优</h1><ul>
-<li><code>tomcat: 8.5.59</code></li>
-</ul>
-<h2 id="11-安全优化" class="headerLink">
-    <a href="#11-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>1.1. 安全优化</h2><ul>
-<li>
-<p>降权启动</p>]]></description>
+    <description><![CDATA[常用web环境优化]]></description>
 </item><item>
     <title>常用命令收集</title>
     <link>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
@@ -46,207 +31,42 @@
     <link>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</link>
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
-    <description><![CDATA[<h1 id="1-shell-脚本执行的几种方法" class="headerLink">
-    <a href="#1-shell-%e8%84%9a%e6%9c%ac%e6%89%a7%e8%a1%8c%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>1. shell 脚本执行的几种方法</h1><ul>
-<li>
-<p><code>bash(sh) /path/script.sh</code></p>
-</li>
-<li>
-<p>赋予执行权限 <code>/path/script.sh </code> 或 <code>./scripts.sh</code></p>
-</li>
-<li>
-<p><code>source script.sh</code> 或 <code>. script.sh</code></p>]]></description>
+    <description><![CDATA[Shellscript相关]]></description>
 </item><item>
     <title>那些杂七杂八的记录(一)</title>
     <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/</link>
     <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/</guid>
-    <description><![CDATA[<h1 id="gnupg-加密与解密" class="headerLink">
-    <a href="#gnupg-%e5%8a%a0%e5%af%86%e4%b8%8e%e8%a7%a3%e5%af%86" class="header-mark"></a>GnuPG 加密与解密</h1><h2 id="gpg-对称加密" class="headerLink">
-    <a href="#gpg-%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="header-mark"></a>gpg 对称加密</h2><p>加密:  <code>gpg -c &lt;file&gt;</code>， 输入两次加密密码，完成后生成文件<code>&lt;file&gt;.gpg</code>(加密后源文件保留)<br>
-解密:  <code>gpg &lt;file&gt;.gpg</code>, 输入加密密码,正确后生成文件<code>&lt;file&gt;</code>(解密后加密文件保留)</p>]]></description>
+    <description><![CDATA[那些杂七杂八的记录(一)]]></description>
 </item><item>
     <title>那些杂七杂八的记录(二)</title>
     <link>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</link>
     <pubDate>Wed, 04 Aug 2021 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</guid>
-    <description><![CDATA[<h1 id="debian-12-下-rootn--用户无法设置中文问题" class="headerLink">
-    <a href="#debian-12-%e4%b8%8b-rootn--%e7%94%a8%e6%88%b7%e6%97%a0%e6%b3%95%e8%ae%be%e7%bd%ae%e4%b8%ad%e6%96%87%e9%97%ae%e9%a2%98" class="header-mark"></a>debian 12 下 ROOTN  用户，无法设置中文问题</h1><p>   具体体现是，系统无论如何设置，终端变量始终为 <code>LANG=C</code> 和 <code>LANGUAGE=C</code>, 检查了所有设置，最后发现在<code>~/.profile</code>中，设置了这两个变量，不知道为什么要这样干，删了重载下就可以了</p>]]></description>
+    <description><![CDATA[那些杂七杂八的记录(二)]]></description>
 </item><item>
     <title>Linux下使用tun2socks进行两地网络连接</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
     <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</guid>
-    <description><![CDATA[<br />
-<p>  之前写了一个关于<a href="https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/" target="_blank" rel="noopener noreferrer"><code>内网回拨解决方案</code></a>, 主要是介绍在<code>PPTP</code>不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是<code>badvpn</code>, 但该仓库已经归档很久了。这篇介绍另一个工具 <a href="https://github.com/xjasonlyu/tun2socks" target="_blank" rel="noopener noreferrer"><code>tun2socks</code></a> 来替代<code>badvpn</code>。</p>]]></description>
+    <description><![CDATA[Linux下使用tun2socks进行两地网络连接]]></description>
 </item><item>
     <title>Linux 性能基准测试工具及测试方法</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
     <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</guid>
-    <description><![CDATA[<pre class="mermaid">graph TB
-    A[Linux 性能基准/测试] --> B[CPU]
-    A --> C[内存]
-    A --> D[磁盘 IO]
-    A --> E[文件 IO]
-    A --> F[网络]
-    A --> G[应用程序]
-    
-    B --> H[Super_Pi 测试单线程性能]
-    B --> I[sysbench 测试多线程性能]
-    
-    C --> J[stream 测试内存带宽]
-    
-    D --> K[fio 测试IOPS]
-    D --> L[fio 测试吞吐量]
-    
-    E --> M[fio 测试IOPS]
-    E --> N[fio 测试吞吐量]
-    
-    F --> O[netperf 测试带宽]
-    F --> P[netperf 测试PPS]
-    G --> Q[wrk 测试 Nginx QPS]
-</pr]]></description>
+    <description><![CDATA[Linux 性能基准测试工具及测试方法]]></description>
 </item><item>
     <title>页面加载时间统计</title>
     <link>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</link>
     <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</guid>
-    <description><![CDATA[<h2 id="js-组件" class="headerLink">
-    <a href="#js-%e7%bb%84%e4%bb%b6" class="header-mark"></a>js 组件</h2><ul>
-<li>直接保存为文件,插入到 <code>html</code> 末尾即可(<code>&lt;script src=&quot;js/pcheck.js&quot;&gt;&lt;/script&gt;</code>), 用来统计当前页面的各类加载时间然后推送到远端
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span></code></pr]]></description>
+    <description><![CDATA[可用来统计页面加载时间，js组件直接插入到html末尾即可]]></description>
 </item><item>
     <title>内网.外网.宽带.带宽.流量.网速之间的区别与联系</title>
     <link>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</link>
     <pubDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</guid>
-    <description><![CDATA[<hr>
-<h1 id="带宽与宽带的区别是什么" class="headerLink">
-    <a href="#%e5%b8%a6%e5%ae%bd%e4%b8%8e%e5%ae%bd%e5%b8%a6%e7%9a%84%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a><strong>带宽</strong>与<strong>宽带</strong>的区别是什么</h1><p><code>带宽</code>是量词，指的是网速的大小，比如<code>1Mbps</code>的意思是一兆比特每秒，这个数值就是指带宽。<br>
-宽带是名词，说明网络的传输速率速很高 。宽带的标准各不相同，最初认为<code>128kbps</code>以上带宽的就是宽带，而以下的就是窄带。<br>
-但现在国内运营商一般提供至少<code>512kbps</code>带宽的宽带服务。也就是说，带宽是一个具体数值，而宽带则是满足一定带宽数值的一种传输标准(服务)。</p>]]></description>
+    <description><![CDATA[内网.外网.宽带.带宽.流量.网速之间的区别与联系]]></description>
 </item></channel>
 </rss>

@@ -9,37 +9,12 @@
     <link>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Wed, 23 Sep 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/chroot%E7%B3%BB%E7%BB%9F/</guid>
-    <description><![CDATA[<p><strong>以下是一片草稿，真的真的是我自己记录的。但是！我现在自己也看不懂了，我真是栓Q了，好像多了一个chroot初始没啥用</strong></p>
-<h1 id="chroot系统" class="headerLink">
-    <a href="#chroot%e7%b3%bb%e7%bb%9f" class="header-mark"></a>chroot系统</h1><p><strong>正常来说针对于文件共享的<code>sftp</code>应该是以用户为单位来做的,但这儿我却用的是组,这个其实是我测试用用户来做从来没有成功过，只能被迫用组</strong></p>]]></description>
+    <description><![CDATA[Chroot系统,用于限制sftp的根目录权限]]></description>
 </item><item>
     <title>Ssh隧道相关</title>
     <link>https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/</link>
     <pubDate>Tue, 07 May 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/</guid>
-    <description><![CDATA[<h1 id="1-记录一个草稿" class="headerLink">
-    <a href="#1-%e8%ae%b0%e5%bd%95%e4%b8%80%e4%b8%aa%e8%8d%89%e7%a8%bf" class="header-mark"></a>1. 记录一个草稿</h1><p>参考文献 :</p>
-<blockquote>
-<p><a href="http://www.zsythink.net/archives/2450" target="_blank" rel="noopener noreferrer">http://www.zsythink.net/archives/2450</a></p>
-</blockquote>
-<blockquote>
-<p><a href="http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/" target="_blank" rel="noopener noreferrer">http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/</a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html" target="_blank" rel="noopener noreferrer">https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html</a></p>
-</blockquote>
-<p>主机定义 :</p>
-<ol>
-<li>serverA: 10.0.1.11</li>
-<li>serverB: 10.0.1.12</li>
-<li>serverC: 172.16.110.11</li>
-<li>serverD: 172.16.110.12</li>
-</ol>
-<h1 id="2-本地转发" class="headerLink">
-    <a href="#2-%e6%9c%ac%e5%9c%b0%e8%bd%ac%e5%8f%91" class="header-mark"></a>2. 本地转发</h1><h2 id="命令格式" class="headerLink">
-    <a href="#%e5%91%bd%e4%bb%a4%e6%a0%bc%e5%bc%8f" class="header-mark"></a>命令格式</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pr]]></description>
+    <description><![CDATA[Ssh隧道相关，端口转发]]></description>
 </item></channel>
 </rss>

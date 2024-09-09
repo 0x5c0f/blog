@@ -9,131 +9,36 @@
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</guid>
-    <description><![CDATA[<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>前言<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content">一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。</div>
-        </div>
-    </div>
-<h1 id="1-tomcat-服务调优" class="headerLink">
-    <a href="#1-tomcat-%e6%9c%8d%e5%8a%a1%e8%b0%83%e4%bc%98" class="header-mark"></a>1. tomcat 服务调优</h1><ul>
-<li><code>tomcat: 8.5.59</code></li>
-</ul>
-<h2 id="11-安全优化" class="headerLink">
-    <a href="#11-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>1.1. 安全优化</h2><ul>
-<li>
-<p>降权启动</p>]]></description>
+    <description><![CDATA[常用web环境优化]]></description>
 </item><item>
     <title>Linux下使用tun2socks进行两地网络连接</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
     <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</guid>
-    <description><![CDATA[<br />
-<p>  之前写了一个关于<a href="https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/" target="_blank" rel="noopener noreferrer"><code>内网回拨解决方案</code></a>, 主要是介绍在<code>PPTP</code>不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是<code>badvpn</code>, 但该仓库已经归档很久了。这篇介绍另一个工具 <a href="https://github.com/xjasonlyu/tun2socks" target="_blank" rel="noopener noreferrer"><code>tun2socks</code></a> 来替代<code>badvpn</code>。</p>]]></description>
+    <description><![CDATA[Linux下使用tun2socks进行两地网络连接]]></description>
 </item><item>
     <title>Linux 性能基准测试工具及测试方法</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
     <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</guid>
-    <description><![CDATA[<pre class="mermaid">graph TB
-    A[Linux 性能基准/测试] --> B[CPU]
-    A --> C[内存]
-    A --> D[磁盘 IO]
-    A --> E[文件 IO]
-    A --> F[网络]
-    A --> G[应用程序]
-    
-    B --> H[Super_Pi 测试单线程性能]
-    B --> I[sysbench 测试多线程性能]
-    
-    C --> J[stream 测试内存带宽]
-    
-    D --> K[fio 测试IOPS]
-    D --> L[fio 测试吞吐量]
-    
-    E --> M[fio 测试IOPS]
-    E --> N[fio 测试吞吐量]
-    
-    F --> O[netperf 测试带宽]
-    F --> P[netperf 测试PPS]
-    G --> Q[wrk 测试 Nginx QPS]
-</pr]]></description>
+    <description><![CDATA[Linux 性能基准测试工具及测试方法]]></description>
 </item><item>
     <title>本地安全策略-安全选项</title>
     <link>https://blog.0x5c0f.cc/2022/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</guid>
-    <description><![CDATA[<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span></code></pr]]></description>
+    <description><![CDATA[本地安全策略]]></description>
 </item><item>
     <title>Tomcat安装及优化</title>
     <link>https://blog.0x5c0f.cc/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</guid>
-    <description><![CDATA[<h1 id="etcprofile" class="headerLink">
-    <a href="#etcprofile" class="header-mark"></a><code>/etc/profile</code></h1><h2 id="java" class="headerLink">
-    <a href="#java" class="header-mark"></a>java</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/opt/jdk1.8.0_271
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="nv">$JAVA_HOME</span>/lib/dt.jar:<span class="nv">$JAVA_HOME</span>/lib/tools.jar
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="tomcat" class="headerLink">
-    <a href="#tomcat" class="header-mark"></a>tomcat</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pr]]></description>
+    <description><![CDATA[Tomcat安装及优化]]></description>
 </item><item>
     <title>Systemctl之systemd自定义系统服务</title>
     <link>https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</link>
     <pubDate>Tue, 20 Aug 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/</guid>
-    <description><![CDATA[<div class="details admonition quote open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-quote-right fa-fw"></i>以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener noreferrer">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>]]></description>
+    <description><![CDATA[Systemctl之systemd自定义系统服务]]></description>
 </item></channel>
 </rss>

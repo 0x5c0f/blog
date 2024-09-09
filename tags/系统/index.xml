@@ -9,12 +9,6 @@
     <link>https://blog.0x5c0f.cc/2022/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
-    <description><![CDATA[<h1 id="1-进程与线程" class="headerLink">
-    <a href="#1-%e8%bf%9b%e7%a8%8b%e4%b8%8e%e7%ba%bf%e7%a8%8b" class="header-mark"></a>1. 进程与线程</h1><ul>
-<li><code>进程</code>: 一个程序的执行实例，也就是正在执行的程序</li>
-<li><code>线程</code>: 在一个程序里的一个执行路线就叫做线程</li>
-</ul>
-<h1 id="2-ps-命令" class="headerLink">
-    <a href="#2-ps-%e5%91%bd%e4%bb%a4" class="header-mark"></a>2. ps 命令</h1><p><code>-f</code> : 显示<code>UID</code>、<code>PID</code>、<code>PPID</code>、<code>C</code>(使用cpu资源百分比)、<code>STIME</code>(进程运行的开始时间)、<code>TTY</code>、<code>TIME</code>(进程使用的cpu总时长)、<code>CMD</code>栏位。</p>]]></description>
+    <description><![CDATA[系统管理]]></description>
 </item></channel>
 </rss>

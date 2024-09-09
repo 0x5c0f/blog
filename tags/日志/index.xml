@@ -9,56 +9,24 @@
     <link>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7logrotate%E8%AF%A6%E8%A7%A3/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7logrotate%E8%AF%A6%E8%A7%A3/</guid>
-    <description><![CDATA[<div class="details admonition quote open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-quote-right fa-fw"></i>Logrotate 程序是一个日志文件管理工具。用于分割日志文件，压缩转存、删除旧的日志文件，并创建新的日志文件  <i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><blockquote>
-<p><a href="https://cloud.tencent.com/developer/article/1681716" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/developer/article/1681716</a></p>]]></description>
+    <description><![CDATA[日志切割工具Logrotate详解]]></description>
 </item><item>
     <title>Graylog多节点部署</title>
     <link>https://blog.0x5c0f.cc/2020/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</link>
     <pubDate>Thu, 13 Aug 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</guid>
-    <description><![CDATA[<p>以下记录下graylog多节点部署的过程。附带一个几个日志搜集的配置方法。</p>
-<p>  此次部署是也是采用dokcer加物理机器混合部署的，各个核心组件均为两个节点。</p>]]></description>
+    <description><![CDATA[Graylog多节点部署]]></description>
 </item><item>
     <title>Elk日志分析系统</title>
     <link>https://blog.0x5c0f.cc/2020/elk%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Sun, 19 Jul 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/elk%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F/</guid>
-    <description><![CDATA[<p>elk日志收集系统，elasticsearch(存储+搜索)+logstash(收集)+kibana(展示)综合技术,简称elk</p>
-<p>搭建环境:</p>
-<ul>
-<li>virtualbox5.1.26</li>
-<li>centos 6.7</li>
-<li>openjdk1.8</li>
-<li>elasticsearch 2.x</li>
-</ul>
-<p>elasticsearch 部署需要安装jdk,openjdk和oraclejdk都可以,由于系统当中原来已经有openjdk了,我这儿就只把jdk升级了下</p>]]></description>
+    <description><![CDATA[Elk日志分析系统]]></description>
 </item><item>
     <title>Awstats日志分析系统</title>
     <link>https://blog.0x5c0f.cc/2019/awstats%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F/</link>
     <pubDate>Thu, 21 Feb 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/awstats%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F/</guid>
-    <description><![CDATA[<div class="details admonition note open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-pencil-alt fa-fw"></i>安装环境<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><ul>
-<li>centos 6.7</li>
-<li>nginx 1.12</li>
-<li>awstats 7.5</li>
-</ul>
-</div>
-        </div>
-    </div>
-<h3 id="-一个小坑-" class="headerLink">
-    <a href="#-%e4%b8%80%e4%b8%aa%e5%b0%8f%e5%9d%91-" class="header-mark"></a>[ 一个小坑 ]</h3><p>  这个是我早期的一个操作过程，当时是第一次用，然后跟着别人的一篇文章搭建的(perl环境)，但用了一段时间后，发现官方提供了php环境的配置信息，在<code>/pathto/awstats/tools/nginx</code>中。<br>
-  如果有<code>php</code>环境，将里面的<code>awstats-fcgi.php</code>复制到<code>/pathto/awstats/wwwroot/cgi-bin/</code>中,重命名为<code>fcgi.php</code>。<br>
-  然后将<code>awstats-nginx.conf</code>复制到自己的<code>nginx conf</code>下，修改里面的默认路径<code>/usr/share/awstats/wwwroot</code>
-为自己的<code>/pathto/awstats/wwwroot</code>路径即可。<a href="#2-%e5%ae%89%e8%a3%85awasts%e5%8f%8a%e9%85%8d%e7%bd%ae" rel="">awasts的安装及配置</a>和下面一样(跳过配置<code>nginx</code>,测试跳过<code>fcgi</code>启动)。</p>]]></description>
+    <description><![CDATA[Awstats日志分析系统]]></description>
 </item></channel>
 </rss>

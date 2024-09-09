@@ -9,25 +9,12 @@
     <link>https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</guid>
-    <description><![CDATA[<h1 id="-" class="headerLink">
-    <a href="#-" class="header-mark"></a>-</h1><p>  想了一下，网络上关于<code>fedora</code>桌面的美化似乎还是很少的,这对于我大<code>fedora</code>发展似乎是很不利的，凭什么<code>ubuntu</code>就可以有那么多的好东西。</p>]]></description>
+    <description><![CDATA[fedora视频桌面]]></description>
 </item><item>
     <title>FEDORA优化</title>
     <link>https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/</link>
     <pubDate>Mon, 28 Feb 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/fedora%E4%BC%98%E5%8C%96/</guid>
-    <description><![CDATA[<div class="details admonition info open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-info-circle fa-fw"></i>前言<i class="details-icon fas fa-angle-right fa-fw"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><em>以下的一些优化应该是我还在用<code>fedora26</code>的时候记录的，虽然现在我已经都更新到<code>33</code>了，不过这些优化还是有点用的，可以参考着改, 后续遇到的问题我也在慢慢更新上来。</em> <strong>目前已更新到fedora 38</strong></div>
-        </div>
-    </div>
-<h1 id="2-安装鼠标右键在终端中打开33中默认好像已经有了" class="headerLink">
-    <a href="#2-%e5%ae%89%e8%a3%85%e9%bc%a0%e6%a0%87%e5%8f%b3%e9%94%ae%e5%9c%a8%e7%bb%88%e7%ab%af%e4%b8%ad%e6%89%93%e5%bc%8033%e4%b8%ad%e9%bb%98%e8%ae%a4%e5%a5%bd%e5%83%8f%e5%b7%b2%e7%bb%8f%e6%9c%89%e4%ba%86" class="header-mark"></a>2. 安装鼠标右键“在终端中打开”，33中默认好像已经有了</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pr]]></description>
+    <description><![CDATA[fedora优化]]></description>
 </item></channel>
 </rss>

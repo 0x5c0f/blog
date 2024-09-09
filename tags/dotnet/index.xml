@@ -9,8 +9,6 @@
     <link>https://blog.0x5c0f.cc/2019/dotnet%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</link>
     <pubDate>Thu, 21 Feb 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/dotnet%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/</guid>
-    <description><![CDATA[<h1 id="安装故障" class="headerLink">
-    <a href="#%e5%ae%89%e8%a3%85%e6%95%85%e9%9a%9c" class="header-mark"></a>安装故障</h1><p>Failed to load , error: libunwind.so.8: cannot open shared object file: No such file or directory <br>
-Failed to bind to CoreCLR at ‘/root/dotnet/shared/Microsoft.NETCore.App/2.0.0/libcoreclr.so‘</p>]]></description>
+    <description><![CDATA[Dotnet运维故障记录]]></description>
 </item></channel>
 </rss>

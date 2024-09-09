@@ -9,61 +9,24 @@
     <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
     <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</guid>
-    <description><![CDATA[<br />
-<p>  之前写了一个关于<a href="https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/" target="_blank" rel="noopener noreferrer"><code>内网回拨解决方案</code></a>, 主要是介绍在<code>PPTP</code>不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是<code>badvpn</code>, 但该仓库已经归档很久了。这篇介绍另一个工具 <a href="https://github.com/xjasonlyu/tun2socks" target="_blank" rel="noopener noreferrer"><code>tun2socks</code></a> 来替代<code>badvpn</code>。</p>]]></description>
+    <description><![CDATA[Linux下使用tun2socks进行两地网络连接]]></description>
 </item><item>
     <title>常用的BAT脚本语法</title>
     <link>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
-    <description><![CDATA[<br/>  
-<p>我们在日常工作中常常会遇到一些需要重复进行的工作，又或者我们的项目在转交客户时需要去简化配置过程<br>
-这时我们就需要使用到一些自动化部署操作，我们常常会采用脚本来完成这部分功能<br>
-下面我们来介绍一种脚本类型Bat脚本，我们会从以下方面介绍：<br>
-脚本介绍</p>]]></description>
+    <description><![CDATA[常用的BAT脚本语法]]></description>
 </item><item>
     <title>windows安装优化</title>
     <link>https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/</guid>
-    <description><![CDATA[<h1 id="1-系统安全" class="headerLink">
-    <a href="#1-%e7%b3%bb%e7%bb%9f%e5%ae%89%e5%85%a8" class="header-mark"></a>1. 系统安全</h1><p>显示电脑图标到桌面: <code>rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0</code><br>
-开始文件夹: <code>shell:startup</code><br>
-本地安全策略: <code>secpol.msc</code> <br>
-计算机管理: <code>compmgmt.msc</code></p>
-<h2 id="11-修改服务器名按项目取名" class="headerLink">
-    <a href="#11-%e4%bf%ae%e6%94%b9%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%90%8d%e6%8c%89%e9%a1%b9%e7%9b%ae%e5%8f%96%e5%90%8d" class="header-mark"></a>1.1. 修改服务器名：按项目取名。</h2><ul>
-<li>右键点击我的电脑-高级-计算机名-更改。英文: <code>my computer - proterties - Advanced system settings - Computer Name - Change</code></li>
-</ul>
-<h2 id="12-调整性能设置" class="headerLink">
-    <a href="#12-%e8%b0%83%e6%95%b4%e6%80%a7%e8%83%bd%e8%ae%be%e7%bd%ae" class="header-mark"></a>1.2. 调整性能设置：</h2><ul>
-<li>右键点击我的电脑-高级-性能中，选中“设置为最佳性能”英文: <code>my computer - proterties-Advanced - Performance-setting -Visual Effects (Adjust for best performance)</code>；</li>
-<li>数据执行保护设置为“只为关键的<code>windows</code>程序保护”。</li>
-</ul>
-<h2 id="13-允许-dump-file-的产生" class="headerLink">
-    <a href="#13-%e5%85%81%e8%ae%b8-dump-file-%e7%9a%84%e4%ba%a7%e7%94%9f" class="header-mark"></a>1.3. 允许 dump file 的产生：</h2><ul>
-<li>右键点击我的电脑-高级-启动和故障恢复-写入调试信息 设置成“最小化记录模式”。英文版操作：右击 <code>My Computer-Advanced-Startup and recovery-write debugging infomation设置成“small…”</code>。</li>
-</ul>
-<h2 id="14-禁用-netbois" class="headerLink">
-    <a href="#14-%e7%a6%81%e7%94%a8-netbois" class="header-mark"></a>1.4. 禁用 NETBOIS:</h2><p>网络连接属性-tcpip 属性-高级-wins-NetBios 设置 “禁用 Tcp/ip 上的 NetBios”选项</p>]]></description>
+    <description><![CDATA[安装优化]]></description>
 </item><item>
     <title>Windows命令收集</title>
     <link>https://blog.0x5c0f.cc/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
-    <description><![CDATA[<h1 id="1-windows-服务安装卸载" class="headerLink">
-    <a href="#1-windows-%e6%9c%8d%e5%8a%a1%e5%ae%89%e8%a3%85%e5%8d%b8%e8%bd%bd" class="header-mark"></a>1. windows 服务安装卸载</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 注意空格</span>
-</span></span><span class="line"><span class="cl">sc create <span class="s2">&#34;Memcached_11233&#34;</span> start= auto binPath= <span class="s2">&#34;D:\box\memcached\memcached.exe -d runservice  -m 128 -c 512 -p 11233 -l 127.0.0.1&#34;</span>  DisplayName= <span class="s2">&#34;Memcached_11233&#34;</span> 
-</span></span><span class="line"><span class="cl">----
-</span></span><span class="line"><span class="cl">sc delete Memcached_11233
-</span></span></code></pr]]></description>
+    <description><![CDATA[命令收集]]></description>
 </item></channel>
 </rss>

@@ -68,14 +68,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="一个曾经的小码农..."><img
-        class="logo"
-        loading="lazy"
-        src="/icons/logo_title.png"
-        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        sizes="auto"
-        alt="/icons/logo_title.png"
-        title="/icons/logo_title.png" ><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="一个曾经的小码农..."><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -98,14 +91,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="一个曾经的小码农..."><img
-        class="logo"
-        loading="lazy"
-        src="/icons/logo_title.png"
-        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
-        sizes="auto"
-        alt="/icons/logo_title.png"
-        title="/icons/logo_title.png" ><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="一个曾经的小码农..."><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -347,7 +333,8 @@
 <h3 id="三次握手" class="headerLink">
     <a href="#%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b" class="header-mark"></a>三次握手</h3><p>客户端发送<code>SYN</code>到服务器端表示准备建立连接，服务端响应发送<code>SYN+ACK</code>于客户端表示准备建立连接请求，客户端发送<code>ACK</code>响应表示开始传输数据</p>
 <h3 id="四次挥手" class="headerLink">
-    <a href="#%e5%9b%9b%e6%ac%a1%e6%8c%a5%e6%89%8b" class="header-mark"></a>四次挥手</h3><p>客户端发送<code>FIN</code>请求到服务端表示准备断开连接，同时进入<code>FIN_WAIT_1</code>状态下，服务端接收到<code>FIN</code>后发送<code>ACK</code>于客户端表示接收到了准备断开的响应请求，同时进入<code>CLOSE_WAIT</code>,客户端接收到了<code>ACK</code>同时进入<code>FIN_WAIT_2</code>，服务端再次发送<code>FIN+ACK</code>于客户端表示我也准备断开请求了，同时服务端进入<code>LAST_ACK</code>,客户端在接收到<code>FIN+ACK</code>后发送<code>ACK</code>到服务端，表示我已经接收到服务端确认并准备关闭连接，服务端接收到客户端<code>ACK</code>后直接关闭，客户端在发送后进入<code>CLOSE_WAIT</code>并等待2个报文长度时间(默认30秒)后关闭连接。</p></div>
+    <a href="#%e5%9b%9b%e6%ac%a1%e6%8c%a5%e6%89%8b" class="header-mark"></a>四次挥手</h3><p>客户端发送<code>FIN</code>请求到服务端表示准备断开连接，同时进入<code>FIN_WAIT_1</code>状态下，服务端接收到<code>FIN</code>后发送<code>ACK</code>于客户端表示接收到了准备断开的响应请求，同时进入<code>CLOSE_WAIT</code>,客户端接收到了<code>ACK</code>同时进入<code>FIN_WAIT_2</code>，服务端再次发送<code>FIN+ACK</code>于客户端表示我也准备断开请求了，同时服务端进入<code>LAST_ACK</code>,客户端在接收到<code>FIN+ACK</code>后发送<code>ACK</code>到服务端，表示我已经接收到服务端确认并准备关闭连接，服务端接收到客户端<code>ACK</code>后直接关闭，客户端在发送后进入<code>CLOSE_WAIT</code>并等待2个报文长度时间(默认30秒)后关闭连接。</p>
+</div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

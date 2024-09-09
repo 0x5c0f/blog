@@ -9,8 +9,6 @@
     <link>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/</guid>
-    <description><![CDATA[<h1 id="磁盘管理" class="headerLink">
-    <a href="#%e7%a3%81%e7%9b%98%e7%ae%a1%e7%90%86" class="header-mark"></a>磁盘管理</h1><p>磁盘的最小存储单位是扇区，大小为<code>0.5kb(512Bytes)</code>，多个连续的扇区称之为块
-操作系统文件存取的最小单位是块(block)，为<code>8</code>个连续扇区,大小是<code>8 x 0.5 = 4kb</code>,即使文件小于<code>4k</code>,也会占用<code>4k</code></p>]]></description>
+    <description><![CDATA[磁盘管理]]></description>
 </item></channel>
 </rss>

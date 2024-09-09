@@ -9,10 +9,6 @@
     <link>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
-    <description><![CDATA[<br/>  
-<p>我们在日常工作中常常会遇到一些需要重复进行的工作，又或者我们的项目在转交客户时需要去简化配置过程<br>
-这时我们就需要使用到一些自动化部署操作，我们常常会采用脚本来完成这部分功能<br>
-下面我们来介绍一种脚本类型Bat脚本，我们会从以下方面介绍：<br>
-脚本介绍</p>]]></description>
+    <description><![CDATA[常用的BAT脚本语法]]></description>
 </item></channel>
 </rss>
