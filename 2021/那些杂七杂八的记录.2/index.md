@@ -120,3 +120,29 @@ Ext.define('PVE.node.PrometheusMonitor', {
     }
 });
 ```
+
+
+# binlog 解析工具
+> https://github.com/zhuchao941/canal2sql  
+
+{{< highlight bash "linenostart=1"  >}}
+# 常用参数
+## -sql_type: 只解析指定类型，支持 insert,update,delete,ddl。多个类型用逗号隔开，如--sql-type=insert,delete。可选。默认为insert,update,delete,ddl 
+## -filter: 白名单,指定导出，多个逗号隔开 <库名>.<表名>(db.*、*.*)
+## -mode: online/file/aliyun，默认online
+## --file_url: 离线的binlog文件，支持http url访问
+## -B: 显示回滚sql
+## ...
+
+
+# 1. 在线模式, 解析账户权限需要 SELECT, REPLICATION SLAVE, REPLICATION CLIENT 
+$> java -jar canal2sql-1.1.3.jar -sql_type update,delete -filter <database>.<tables>  -mode file -file_url 'file:/tmp/mysql-bin.000016' -uroot -P3306 -pxxxxx -hlocalhost
+
+
+# 2. 离线模式
+## 导出数据库标结构
+$> mysqldump -uroot -pxxxxx -hlocalhost --set-gtid-purged=OFF --default-character-set=utf8mb4 --single-transaction -R -E -B -d <database> > /tmp/database.sql
+## 
+$> java -jar ./canal2sql-1.1.3.jar -mode file -ddl '/tmp/database.sql' -file_url 'http://localhost:8080/binlog/mysql-bin.000474' 
+
+{{< /highlight >}}

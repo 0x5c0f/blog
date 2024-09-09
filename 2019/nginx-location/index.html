@@ -1,19 +1,17 @@
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>Nginx Location 模块介绍 - 一个曾经的小码农...</title><meta
-  name="Description"
-  content="Nginx Location"
-/><meta property="og:url" content="https://blog.0x5c0f.cc/2019/nginx-location/">
+    <title>Nginx Location 模块介绍 - 一个曾经的小码农...</title><meta name="Description" content="Nginx Location"><meta property="og:url" content="https://blog.0x5c0f.cc/2019/nginx-location/">
   <meta property="og:site_name" content="一个曾经的小码农...">
   <meta property="og:title" content="Nginx Location 模块介绍">
   <meta property="og:description" content="Nginx Location">
-  <meta property="og:locale" content="zh-CN">
+  <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2019-02-04T00:00:00+00:00">
@@ -28,60 +26,17 @@
       <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
       <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/">
       <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"><meta name="twitter:title" content="Nginx Location 模块介绍">
-<meta name="twitter:description" content="Nginx Location">
-<meta
-  name="application-name"
-  content="DoIt"
-/>
-<meta
-  name="apple-mobile-web-app-title"
-  content="DoIt"
-/>
 
-<meta name="theme-color" content="#f8f8f8" /><meta name="msapplication-TileColor" content="#da532c" /><link rel="icon" href="/icons/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" /><link rel="canonical" href="https://blog.0x5c0f.cc/2019/nginx-location/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/%E5%85%A8%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/" />
-<link
-      rel="stylesheet"
-      href="/css/main.css"
-      
-    /><link
-      rel="stylesheet"
-      href="/lib/normalize/normalize.min.css"
-      
-    /><link
-      rel="stylesheet"
-      href="/css/color.css"
-      
-    /><link
-      rel="stylesheet"
-      href="/css/style.min.css"
-      
-    /><link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="/lib/fontawesome-free/all.min.css"
-      
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="/lib/fontawesome-free/all.min.css"
-        
-    /></noscript><link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="/lib/animate/animate.min.css"
-      
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="/lib/animate/animate.min.css"
-        
-    /></noscript><script type="application/ld+json">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
+  <meta name="twitter:title" content="Nginx Location 模块介绍">
+  <meta name="twitter:description" content="Nginx Location">
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2019/nginx-location/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/%E5%85%A8%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -89,212 +44,104 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://blog.0x5c0f.cc/2019/nginx-location/"
+            "@id": "https:\/\/blog.0x5c0f.cc\/2019\/nginx-location\/"
         },"genre": "posts","keywords": "linux, nginx","wordcount":  2541 ,
-        "url": "https://blog.0x5c0f.cc/2019/nginx-location/","datePublished": "2019-02-04T00:00:00+00:00","dateModified": "2023-12-05T00:00:00+00:00","publisher": {
+        "url": "https:\/\/blog.0x5c0f.cc\/2019\/nginx-location\/","datePublished": "2019-02-04T00:00:00+00:00","dateModified": "2023-12-05T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
-                        "name": "admin"
+                        "name": "admin"                    
                     }],"description": "Nginx Location"
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
-  <body
-    header-desktop="auto"
-    header-mobile="auto"
-  ><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-  <div class="header-wrapper">
-    <div class="header-title">
-      <a href="/" title="一个曾经的小码农..."><img
-    class="logo"
-    loading="lazy"
-    src="/icons/logo_title.png"
-    srcset="/icons/logo_title.png,
-        /icons/logo_title.png 1.5x,
-        /icons/logo_title.png 2x"
-    title="/icons/logo_title.png"
-    
-    
-  /><span id="desktop-header-typeit" class="typeit"></span></a>
-    </div>
-    <div class="menu">
-      <div class="menu-inner"><a
-            class="menu-item"
-            href="/posts/"
-            
-          > 文章
-            </a><a
-            class="menu-item"
-            href="/tags/"
-            
-          > 标签
-            </a><a
-            class="menu-item"
-            href="/categories/"
-            
-          > 分类
-            </a><a
-            class="menu-item"
-            href="/series/"
-            
-          > 系列
-            </a><a
-            class="menu-item"
-            href="/about/"
-            
-          > About
-            </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-            <input
-              type="text"
-              placeholder="搜索文章标题或内容..."
-              id="search-input-desktop"
-            />
-            <a
-              href="javascript:void(0);"
-              class="search-button search-toggle"
-              id="search-toggle-desktop"
-              title="搜索"
-            >
-              <i class="fas fa-search fa-fw"></i>
-            </a>
-            <a
-              href="javascript:void(0);"
-              class="search-button search-clear"
-              id="search-clear-desktop"
-              title="清空"
-            >
-              <i class="fas fa-times-circle fa-fw"></i>
-            </a>
-            <span
-              class="search-button search-loading"
-              id="search-loading-desktop"
-            >
-              <i class="fas fa-spinner fa-fw fa-spin"></i>
-            </span>
-          </span><a
-            href="javascript:void(0);"
-            class="menu-item theme-switch"
-            title="切换主题"
-          >
-            <i class="fas fa-adjust fa-fw"></i>
-          </a></div>
-    </div>
-  </div>
-</header><header class="mobile" id="header-mobile">
-  <div class="header-container">
     <div class="header-wrapper">
-      <div class="header-title">
-        <a href="/" title="一个曾经的小码农..."><img
-    class="logo"
-    loading="lazy"
-    src="/icons/logo_title.png"
-    srcset="/icons/logo_title.png,
-        /icons/logo_title.png 1.5x,
-        /icons/logo_title.png 2x"
-    title="/icons/logo_title.png"
-    
-    
-  /><span id="mobile-header-typeit" class="typeit"></span></a>
-      </div>
-      <div class="menu-toggle" id="menu-toggle-mobile">
-        <span></span><span></span><span></span>
-      </div>
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="logo"
+        loading="lazy"
+        src="/icons/logo_title.png"
+        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        sizes="auto"
+        alt="/icons/logo_title.png"
+        title="/icons/logo_title.png" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
     </div>
-    <div class="menu" id="menu-mobile"><div class="search-wrapper">
-          <div class="search mobile" id="search-mobile">
-            <input
-              type="text"
-              placeholder="搜索文章标题或内容..."
-              id="search-input-mobile"
-            />
-            <a
-              href="javascript:void(0);"
-              class="search-button search-toggle"
-              id="search-toggle-mobile"
-              title="搜索"
-            >
-              <i class="fas fa-search fa-fw"></i>
-            </a>
-            <a
-              href="javascript:void(0);"
-              class="search-button search-clear"
-              id="search-clear-mobile"
-              title="清空"
-            >
-              <i class="fas fa-times-circle fa-fw"></i>
-            </a>
-            <span
-              class="search-button search-loading"
-              id="search-loading-mobile"
-            >
-              <i class="fas fa-spinner fa-fw fa-spin"></i>
-            </span>
-          </div>
-          <a
-            href="javascript:void(0);"
-            class="search-cancel"
-            id="search-cancel-mobile"
-          >
-            取消
-          </a>
-        </div><a
-          class="menu-item"
-          href="/posts/"
-          title=""
-          
-        >文章</a><a
-          class="menu-item"
-          href="/tags/"
-          title=""
-          
-        >标签</a><a
-          class="menu-item"
-          href="/categories/"
-          title=""
-          
-        >分类</a><a
-          class="menu-item"
-          href="/series/"
-          title=""
-          
-        >系列</a><a
-          class="menu-item"
-          href="/about/"
-          title=""
-          
-        >About</a><a
-          href="javascript:void(0);"
-          class="menu-item theme-switch"
-          title="切换主题"
-        >
-          <i class="fas fa-adjust fa-fw"></i>
-        </a></div>
-  </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="logo"
+        loading="lazy"
+        src="/icons/logo_title.png"
+        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        sizes="auto"
+        alt="/icons/logo_title.png"
+        title="/icons/logo_title.png" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
 </header>
 <div class="search-dropdown desktop">
-  <div id="search-dropdown-desktop"></div>
+    <div id="search-dropdown-desktop"></div>
 </div>
 <div class="search-dropdown mobile">
-  <div id="search-dropdown-mobile"></div>
+    <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-        <div class="container"><div class="toc" id="toc-auto">
-      <h2 class="toc-title">目录</h2>
-      <div
-        class="toc-content"
-        id="toc-content-auto"
-      ><nav id="TableOfContents">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-前言">1. 前言</a></li>
     <li><a href="#2-优化">2. 优化</a>
@@ -321,58 +168,24 @@
     </li>
   </ul>
 </nav></div>
-    </div><script>
-        document
-          .getElementsByTagName("main")[0]
-          .setAttribute("autoTOC", "true");
-      </script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">
-      Nginx Location 模块介绍
-    </h1><div class="post-meta">
-      <div class="post-meta-line">
-        <span class="post-author"><span class="author"><span class="author fas fa-user-circle fa-fw"></span><span class="screen-reader-text">  </span><a href="https://blog.0x5c0f.cc/authors/admin">0x5c0f</a></span>
-        </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-      <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
-            datetime="2019-02-04"
-            >2019-02-04</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-05"
-              >2023-12-05</time
-            >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 2541 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 6 分钟&nbsp;<span
-            id="/2019/nginx-location/"
-            class="leancloud_visitors"
-            data-flag-title="Nginx Location 模块介绍"
-          >
-            <i class="far fa-eye fa-fw"></i>&nbsp;<span
-              class="leancloud-visitors-count waline-pageview-count"
-              data-path="/2019/nginx-location/"
-            ></span
-            >&nbsp;次阅读 </span
-          >&nbsp;<span
-            id="/2019/nginx-location/"
-            class="comment_count"
-            data-flag-title="Nginx Location 模块介绍"
-          >
-            <i class="far fa-comments fa-fw"></i>&nbsp;<span
-              class="waline-comment-count"
-              id="waline-comment-count"
-              data-path="/2019/nginx-location/"
-            ></span
-            >&nbsp;条评论 </span
-          >&nbsp;<span>
-            <i class="fas fa-balance-scale fa-fw"></i
-            >&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp; </span
-          >&nbsp;</div>
-    </div><div
-        class="details toc"
-        id="toc-static"
-        kept=""
-      >
-        <div class="details-summary toc-title">
-          <span>目录</span>
-          <span><i class="details-icon fas fa-angle-right"></i></span>
-        </div>
-        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Nginx Location 模块介绍</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-02-04">2019-02-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-12-05">2023-12-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2541 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/2019/nginx-location/" class="leancloud_visitors" data-flag-title="Nginx Location 模块介绍">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/nginx-location/"></span>&nbsp;次阅读
+                    </span>&nbsp;<span id="/2019/nginx-location/" class="comment_count" data-flag-title="Nginx Location 模块介绍">
+                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2019/nginx-location/"></span>&nbsp;条评论
+                    </span>&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-前言">1. 前言</a></li>
     <li><a href="#2-优化">2. 优化</a>
@@ -399,22 +212,15 @@
     </li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><div class="details admonition warning open">
-        <div class="details-summary admonition-title">
-          <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i
-            class="details-icon fas fa-angle-right fa-fw"
-          ></i>
-        </div>
-        <div class="details-content">
-          <div class="admonition-content">
-            本文最后更新于 <span
-              class="timeago"
-              datetime="2023-12-05T00:00:00"
-              title="December 5, 2023"
-            >2023-12-05</span
-            >，文中内容可能已过时。</div>
-        </div>
-      </div><h1 id="1-前言" class="headerLink">
+            </div><div class="content" id="content"><div class="details admonition warning open">
+                <div class="details-summary admonition-title">
+                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
+                </div>
+                <div class="details-content">
+                    <div class="admonition-content">
+                        本文最后更新于 <span class="timeago" datetime="2023-12-05T00:00:00" title="December 5, 2023">2023-12-05</span>，文中内容可能已过时。</div>
+                </div>
+            </div><h1 id="1-前言" class="headerLink">
     <a href="#1-%e5%89%8d%e8%a8%80" class="header-mark"></a>1. 前言</h1><p>个人整理,可参考</p>
 <h1 id="2-优化" class="headerLink">
     <a href="#2-%e4%bc%98%e5%8c%96" class="header-mark"></a>2. 优化</h1><h2 id="21-参数说明" class="headerLink">
@@ -548,40 +354,40 @@ log_format  name    string &hellip;;</p>
 </div>
 </div><p>不同URI对应的配置:</p>
 <table>
-<thead>
-<tr>
-<th>用户请求的URI</th>
-<th>完整的URL地址</th>
-<th>匹配的配置</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/                     </code></td>
-<td><code>http://www.example.com/</code></td>
-<td>configuration A</td>
-</tr>
-<tr>
-<td><code>/index.html           </code></td>
-<td><code>http://www.example.com/</code></td>
-<td>configuration B</td>
-</tr>
-<tr>
-<td><code>/documents/index.html </code></td>
-<td><code>http://www.example.com/documents/index.html</code></td>
-<td>configuration C</td>
-</tr>
-<tr>
-<td><code>/images/1.jpg         </code></td>
-<td><code>http://www.example.com/images/1.jpg</code></td>
-<td>configuration D</td>
-</tr>
-<tr>
-<td><code>/ducoments/1.jpg      </code></td>
-<td><code>http://www.example.com/documents/1.jpg</code></td>
-<td>configuration E</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">用户请求的URI</th>
+          <th style="text-align: left">完整的URL地址</th>
+          <th style="text-align: left">匹配的配置</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>/                     </code></td>
+          <td style="text-align: left"><code>http://www.example.com/</code></td>
+          <td style="text-align: left">configuration A</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>/index.html           </code></td>
+          <td style="text-align: left"><code>http://www.example.com/</code></td>
+          <td style="text-align: left">configuration B</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>/documents/index.html </code></td>
+          <td style="text-align: left"><code>http://www.example.com/documents/index.html</code></td>
+          <td style="text-align: left">configuration C</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>/images/1.jpg         </code></td>
+          <td style="text-align: left"><code>http://www.example.com/images/1.jpg</code></td>
+          <td style="text-align: left">configuration D</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>/ducoments/1.jpg      </code></td>
+          <td style="text-align: left"><code>http://www.example.com/documents/1.jpg</code></td>
+          <td style="text-align: left">configuration E</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="243-location-语法测试" class="headerLink">
     <a href="#243-location-%e8%af%ad%e6%b3%95%e6%b5%8b%e8%af%95" class="header-mark"></a>2.4.3 location 语法测试:</h3><div class="highlight"><div class="chroma">
@@ -659,184 +465,184 @@ log_format  name    string &hellip;;</p>
 </div>
 </div><p>匹配优先级:</p>
 <table>
-<thead>
-<tr>
-<th>不用URI及特殊字符组合匹配顺序</th>
-<th>匹配说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>location = / { </code></td>
-<td>精确匹配/</td>
-</tr>
-<tr>
-<td><code>location ^~ /images/ { </code></td>
-<td>匹配常规字符串，不做正则匹配检查</td>
-</tr>
-<tr>
-<td><code>location ~ \.(gif|JPG|jpeg)$ {</code></td>
-<td>区分大小写的正则匹配</td>
-</tr>
-<tr>
-<td><code>location ~* \.(gif|jpg|jpeg)$ {</code></td>
-<td>不区分大小写的正则匹配</td>
-</tr>
-<tr>
-<td><code>location /document/ { </code></td>
-<td>匹配常规字符串，如果有正则则优先匹配正则</td>
-</tr>
-<tr>
-<td><code>location / {</code></td>
-<td>所有location都不匹配后的默认匹配规则</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">不用URI及特殊字符组合匹配顺序</th>
+          <th style="text-align: left">匹配说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>location = / { </code></td>
+          <td style="text-align: left">精确匹配/</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>location ^~ /images/ { </code></td>
+          <td style="text-align: left">匹配常规字符串，不做正则匹配检查</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>location ~ \.(gif|JPG|jpeg)$ {</code></td>
+          <td style="text-align: left">区分大小写的正则匹配</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>location ~* \.(gif|jpg|jpeg)$ {</code></td>
+          <td style="text-align: left">不区分大小写的正则匹配</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>location /document/ { </code></td>
+          <td style="text-align: left">匹配常规字符串，如果有正则则优先匹配正则</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>location / {</code></td>
+          <td style="text-align: left">所有location都不匹配后的默认匹配规则</td>
+      </tr>
+  </tbody>
 </table>
 <p>注: 优先级为： <code>=</code> &gt; <code>完整路径</code> &gt; <code>^~</code> &gt; <code>~|~*</code> &gt; <code>部分起始路径</code> &gt; <code>/</code></p>
 <h2 id="25-nginx-rewrite" class="headerLink">
     <a href="#25-nginx-rewrite" class="header-mark"></a>2.5. nginx Rewrite</h2><p>用于实现伪静态，URL改写，必须安装PCRE的软件的支持，nginx编译默认安装Rewrite模块</p>
 <h3 id="251-rewrite-全局变量" class="headerLink">
     <a href="#251-rewrite-%e5%85%a8%e5%b1%80%e5%8f%98%e9%87%8f" class="header-mark"></a>2.5.1. Rewrite 全局变量</h3><table>
-<thead>
-<tr>
-<th>-</th>
-<th>-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$remote_addr</code></td>
-<td>获取客户端ip</td>
-</tr>
-<tr>
-<td><code>$binary_remote_addr</code></td>
-<td>客户端ip（二进制)</td>
-</tr>
-<tr>
-<td><code>$remote_port</code></td>
-<td>客户端port，如：50472</td>
-</tr>
-<tr>
-<td><code>$remote_user</code></td>
-<td>已经经过Auth Basic Module验证的用户名</td>
-</tr>
-<tr>
-<td><code>$host</code></td>
-<td>请求主机头字段，否则为服务器名称，如:blog.sakmon.com</td>
-</tr>
-<tr>
-<td><code>$request</code></td>
-<td>用户请求信息，如：GET ?a=1&amp;b=2 HTTP/1.1</td>
-</tr>
-<tr>
-<td><code>$request_filename</code></td>
-<td>当前请求的文件的路径名，由root或alias和URI request组合而成，如：/2013/81.html</td>
-</tr>
-<tr>
-<td><code>$status</code></td>
-<td>请求的响应状态码,如:200</td>
-</tr>
-<tr>
-<td><code>$body_bytes_sent</code></td>
-<td>响应时送出的body字节数数量。即使连接中断，这个数据也是精确的,如：40</td>
-</tr>
-<tr>
-<td><code>$content_length</code></td>
-<td>等于请求行的“Content_Length”的值</td>
-</tr>
-<tr>
-<td><code>$content_type</code></td>
-<td>等于请求行的“Content_Type”的值</td>
-</tr>
-<tr>
-<td><code>$http_referer</code></td>
-<td>引用地址</td>
-</tr>
-<tr>
-<td><code>$http_user_agent</code></td>
-<td>客户端agent信息,如：Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36</td>
-</tr>
-<tr>
-<td><code>$args</code></td>
-<td>与$query_string相同 等于当中URL的参数(GET)，如a=1&amp;b=2</td>
-</tr>
-<tr>
-<td><code>$document_uri</code></td>
-<td>与$uri相同 这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html</td>
-</tr>
-<tr>
-<td><code>$document_root</code></td>
-<td>针对当前请求的根路径设置值</td>
-</tr>
-<tr>
-<td><code>$hostname</code></td>
-<td>如：centos53.localdomain</td>
-</tr>
-<tr>
-<td><code>$http_cookie</code></td>
-<td>客户端cookie信息</td>
-</tr>
-<tr>
-<td><code>$cookie_COOKIE</code></td>
-<td>cookie COOKIE变量的值</td>
-</tr>
-<tr>
-<td><code>$is_args</code></td>
-<td>如果有$args参数，这个变量等于”?”，否则等于”&quot;，空值，如?</td>
-</tr>
-<tr>
-<td><code>$limit_rate</code></td>
-<td>这个变量可以限制连接速率，0表示不限速</td>
-</tr>
-<tr>
-<td><code>$query_string</code></td>
-<td>与$args相同 等于当中URL的参数(GET)，如a=1&amp;b=2</td>
-</tr>
-<tr>
-<td><code>$request_body</code></td>
-<td>记录POST过来的数据信息</td>
-</tr>
-<tr>
-<td><code>$request_body_file</code></td>
-<td>客户端请求主体信息的临时文件名</td>
-</tr>
-<tr>
-<td><code>$request_method</code></td>
-<td>客户端请求的动作，通常为GET或POST,如：GET</td>
-</tr>
-<tr>
-<td><code>$request_uri</code></td>
-<td>包含请求参数的原始URI，不包含主机名，如：/2013/81.html?a=1&amp;b=2</td>
-</tr>
-<tr>
-<td><code>$scheme</code></td>
-<td>HTTP方法（如http，https）,如：http</td>
-</tr>
-<tr>
-<td><code>$uri</code></td>
-<td>这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html</td>
-</tr>
-<tr>
-<td><code>$request_completion</code></td>
-<td>如果请求结束，设置为OK. 当请求未结束或如果该请求不是请求链串的最后一个时，为空(Empty)，如：OK</td>
-</tr>
-<tr>
-<td><code>$server_protocol</code></td>
-<td>请求使用的协议，通常是HTTP/1.0或HTTP/1.1，如：HTTP/1.1</td>
-</tr>
-<tr>
-<td><code>$server_addr</code></td>
-<td>服务器IP地址，在完成一次系统调用后可以确定这个值</td>
-</tr>
-<tr>
-<td><code>$server_name</code></td>
-<td>服务器名称，如：blog.sakmon.com</td>
-</tr>
-<tr>
-<td><code>$server_port</code></td>
-<td>请求到达服务器的端口号,如：80</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">-</th>
+          <th style="text-align: left">-</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>$remote_addr</code></td>
+          <td style="text-align: left">获取客户端ip</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$binary_remote_addr</code></td>
+          <td style="text-align: left">客户端ip（二进制)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$remote_port</code></td>
+          <td style="text-align: left">客户端port，如：50472</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$remote_user</code></td>
+          <td style="text-align: left">已经经过Auth Basic Module验证的用户名</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$host</code></td>
+          <td style="text-align: left">请求主机头字段，否则为服务器名称，如:blog.sakmon.com</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$request</code></td>
+          <td style="text-align: left">用户请求信息，如：GET ?a=1&amp;b=2 HTTP/1.1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$request_filename</code></td>
+          <td style="text-align: left">当前请求的文件的路径名，由root或alias和URI request组合而成，如：/2013/81.html</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$status</code></td>
+          <td style="text-align: left">请求的响应状态码,如:200</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$body_bytes_sent</code></td>
+          <td style="text-align: left">响应时送出的body字节数数量。即使连接中断，这个数据也是精确的,如：40</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$content_length</code></td>
+          <td style="text-align: left">等于请求行的“Content_Length”的值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$content_type</code></td>
+          <td style="text-align: left">等于请求行的“Content_Type”的值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$http_referer</code></td>
+          <td style="text-align: left">引用地址</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$http_user_agent</code></td>
+          <td style="text-align: left">客户端agent信息,如：Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$args</code></td>
+          <td style="text-align: left">与$query_string相同 等于当中URL的参数(GET)，如a=1&amp;b=2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$document_uri</code></td>
+          <td style="text-align: left">与$uri相同 这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$document_root</code></td>
+          <td style="text-align: left">针对当前请求的根路径设置值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$hostname</code></td>
+          <td style="text-align: left">如：centos53.localdomain</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$http_cookie</code></td>
+          <td style="text-align: left">客户端cookie信息</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$cookie_COOKIE</code></td>
+          <td style="text-align: left">cookie COOKIE变量的值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$is_args</code></td>
+          <td style="text-align: left">如果有$args参数，这个变量等于”?”，否则等于”&quot;，空值，如?</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$limit_rate</code></td>
+          <td style="text-align: left">这个变量可以限制连接速率，0表示不限速</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$query_string</code></td>
+          <td style="text-align: left">与$args相同 等于当中URL的参数(GET)，如a=1&amp;b=2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$request_body</code></td>
+          <td style="text-align: left">记录POST过来的数据信息</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$request_body_file</code></td>
+          <td style="text-align: left">客户端请求主体信息的临时文件名</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$request_method</code></td>
+          <td style="text-align: left">客户端请求的动作，通常为GET或POST,如：GET</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$request_uri</code></td>
+          <td style="text-align: left">包含请求参数的原始URI，不包含主机名，如：/2013/81.html?a=1&amp;b=2</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$scheme</code></td>
+          <td style="text-align: left">HTTP方法（如http，https）,如：http</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$uri</code></td>
+          <td style="text-align: left">这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$request_completion</code></td>
+          <td style="text-align: left">如果请求结束，设置为OK. 当请求未结束或如果该请求不是请求链串的最后一个时，为空(Empty)，如：OK</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$server_protocol</code></td>
+          <td style="text-align: left">请求使用的协议，通常是HTTP/1.0或HTTP/1.1，如：HTTP/1.1</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$server_addr</code></td>
+          <td style="text-align: left">服务器IP地址，在完成一次系统调用后可以确定这个值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$server_name</code></td>
+          <td style="text-align: left">服务器名称，如：blog.sakmon.com</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$server_port</code></td>
+          <td style="text-align: left">请求到达服务器的端口号,如：80</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="252-rewrite-语法" class="headerLink">
     <a href="#252-rewrite-%e8%af%ad%e6%b3%95" class="header-mark"></a>2.5.2. rewrite 语法</h3><div class="highlight"><div class="chroma">
@@ -863,30 +669,30 @@ log_format  name    string &hellip;;</p>
 <code>permanent</code> ： 301 永久重定向标记</p>
 <p>flag 标记说明 :</p>
 <table>
-<thead>
-<tr>
-<th>flag标记符号</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>last</td>
-<td>本条规则匹配完成后，继续向下匹配新的location URI规则</td>
-</tr>
-<tr>
-<td>break</td>
-<td>本条规则被匹配到后，就不在匹配后面的任何规则</td>
-</tr>
-<tr>
-<td>redirect</td>
-<td>临时重定向 302，浏览器地址会显示跳转后的URL地址</td>
-</tr>
-<tr>
-<td>permanent</td>
-<td>永久重定向 301,浏览器地址会显示跳转后的URL地址</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">flag标记符号</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">last</td>
+          <td style="text-align: left">本条规则匹配完成后，继续向下匹配新的location URI规则</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">break</td>
+          <td style="text-align: left">本条规则被匹配到后，就不在匹配后面的任何规则</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">redirect</td>
+          <td style="text-align: left">临时重定向 302，浏览器地址会显示跳转后的URL地址</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">permanent</td>
+          <td style="text-align: left">永久重定向 301,浏览器地址会显示跳转后的URL地址</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="253-rewrite-应用场景" class="headerLink">
     <a href="#253-rewrite-%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" class="header-mark"></a>2.5.3. rewrite 应用场景</h3><ol>
@@ -943,65 +749,39 @@ log_format  name    string &hellip;;</p>
 </div>
 </div></div>
 
-    <div class="post-footer" id="post-footer">
-  <div class="post-info">
-    <div class="post-info-line">
-      <div class="post-info-mod">
-        <span>更新于 2023-12-05</span>
-      </div>
-      <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-12-05</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2019/nginx-location/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2019/nginx-location/" data-title="Nginx Location 模块介绍"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
     </div>
-    <div class="post-info-line">
-      <div class="post-info-md"><span><a
-                class="link-to-mardown"
-                href=/2019/nginx-location/index.md
-                target="_blank"
-                rel="noopener noreferrer"
-              >阅读原始文档</a>
-            </span></div>
-      <div class="post-info-share"><button
-      title="分享到 Evernote"
-      data-sharer="evernote"
-      data-url="https://blog.0x5c0f.cc/2019/nginx-location/"
-      data-title="Nginx Location 模块介绍"
-    ><span class="fab fa-evernote fa-fw"></span></button></div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/nginx/">Nginx</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-  </div>
 
-  <div class="post-info-more">
-    <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/nginx/">Nginx</a></section>
-    <section>
-      <span
-        ><a href="javascript:void(0);" onclick="window.history.back();"
-          >返回</a
-        ></span
-      >&nbsp;|&nbsp;<span
-        ><a href="/">主页</a></span
-      >
-    </section>
-  </div>
-
-  <div class="post-nav"><a
-        href="/2019/%E5%85%A8%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4/"
-        class="prev"
-        rel="prev"
-        title="Python全网页加载时间"
-        ><i class="fas fa-angle-left fa-fw"></i>Python全网页加载时间</a
-      >
-      <a
-        href="/2019/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/"
-        class="next"
-        rel="next"
-        title="那些有用没用的问题收集"
-        >那些有用没用的问题收集<i class="fas fa-angle-right fa-fw"></i
-      ></a></div>
+    <div class="post-nav"><a href="/2019/%E5%85%A8%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4/" class="prev" rel="prev" title="Python全网页加载时间"><i class="fas fa-angle-left fa-fw"></i>Python全网页加载时间</a>
+            <a href="/2019/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/" class="next" rel="next" title="那些有用没用的问题收集">那些有用没用的问题收集<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="waline" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
             </noscript></div></article></div>
-      </main><footer class="footer">
+        </main><footer class="footer">
     <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".icp, .icp-splitter, .icp-br").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.125.7">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.134.1">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
         </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
             >&nbsp;<a
               href="https://tools.0x5c0f.cc"
@@ -1016,112 +796,16 @@ log_format  name    string &hellip;;</p>
       <div class="footer-line"></div>
     </div></footer></div>
 
-    <div id="fixed-buttons"><a
-        href="#back-to-top"
-        id="back-to-top-button"
-        class="fixed-button"
-        title="回到顶部"
-      >
-        <i class="fas fa-arrow-up fa-fw"></i>
-      </a><a
-        href="#"
-        id="view-comments"
-        class="fixed-button"
-        title="查看评论"
-      >
-        <i class="fas fa-comment fa-fw"></i>
-      </a>
-    </div><div class="assets"><link
-      rel="stylesheet"
-      href="/lib/waline/waline.min.css"
-      
-    /><link
-      rel="stylesheet"
-      href="/lib/katex/katex.min.css"
-      
-    /><link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="/lib/katex/copy-tex.min.css"
-      
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="/lib/katex/copy-tex.min.css"
-        
-    /></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script
-    type="text/javascript"
-    src="/lib/waline/waline.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/js/waline.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/tablesort/tablesort.min.js"
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/clipboard/clipboard.min.js"
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/sharer/sharer.min.js"
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/typeit/typeit.min.js"
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/katex/katex.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/katex/auto-render.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/katex/copy-tex.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/katex/mhchem.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/js/katex.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/js/theme.min.js"
-    
-      defer
-    
-  ></script><script type="text/javascript">
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
             window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', 'G-06MPV27KSD');
-        </script><script
-    type="text/javascript"
-    src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD"
-    async
-  ></script></div>
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
 </body>
+
 </html>

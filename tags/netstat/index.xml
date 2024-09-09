@@ -9,6 +9,20 @@
     <link>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</link>
     <pubDate>Tue, 05 Jul 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/netstat%E5%91%BD%E4%BB%A4/</guid>
-    <description><![CDATA[netstat 命令netstat列含义： Proto: 协议名（tcp协议或者udp协议) recv-Q: 网络接收队列 表示收到的数据已经在本地接收缓冲，但是还有多少没有被进程取走，]]></description>
+    <description><![CDATA[<h1 id="netstat-命令" class="headerLink">
+    <a href="#netstat-%e5%91%bd%e4%bb%a4" class="header-mark"></a>netstat 命令</h1><p><code>netstat</code>列含义：</p>
+<ul>
+<li>
+<p><code>Proto</code>: 协议名（tcp协议或者udp协议)</p>
+</li>
+<li>
+<p><code>recv-Q</code>: 网络接收队列</p>
+<ul>
+<li>表示收到的数据已经在本地接收缓冲，但是还有多少没有被进程取走，recv()</li>
+<li>如果接收队列Recv-Q一直处于阻塞状态，可能是遭受了拒绝服务 <code>denial-of-service</code> 攻击。</li>
+</ul>
+</li>
+<li>
+<p><code>Send-Q</code>: 网路发送队列</p>]]></description>
 </item></channel>
 </rss>

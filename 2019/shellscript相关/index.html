@@ -1,19 +1,17 @@
 
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title>Shellscript相关 - 一个曾经的小码农...</title><meta
-  name="Description"
-  content="Shellscript相关"
-/><meta property="og:url" content="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/">
+    <title>Shellscript相关 - 一个曾经的小码农...</title><meta name="Description" content="Shellscript相关"><meta property="og:url" content="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/">
   <meta property="og:site_name" content="一个曾经的小码农...">
   <meta property="og:title" content="Shellscript相关">
   <meta property="og:description" content="Shellscript相关">
-  <meta property="og:locale" content="zh-CN">
+  <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2019-05-31T00:00:00+00:00">
@@ -27,60 +25,17 @@
       <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
       <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/">
       <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png"><meta name="twitter:title" content="Shellscript相关">
-<meta name="twitter:description" content="Shellscript相关">
-<meta
-  name="application-name"
-  content="DoIt"
-/>
-<meta
-  name="apple-mobile-web-app-title"
-  content="DoIt"
-/>
 
-<meta name="theme-color" content="#f8f8f8" /><meta name="msapplication-TileColor" content="#da532c" /><link rel="icon" href="/icons/favicon.ico" /><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" /><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" /><link rel="canonical" href="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/" /><link rel="prev" href="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" />
-<link
-      rel="stylesheet"
-      href="/css/main.css"
-      
-    /><link
-      rel="stylesheet"
-      href="/lib/normalize/normalize.min.css"
-      
-    /><link
-      rel="stylesheet"
-      href="/css/color.css"
-      
-    /><link
-      rel="stylesheet"
-      href="/css/style.min.css"
-      
-    /><link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="/lib/fontawesome-free/all.min.css"
-      
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="/lib/fontawesome-free/all.min.css"
-        
-    /></noscript><link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="/lib/animate/animate.min.css"
-      
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="/lib/animate/animate.min.css"
-        
-    /></noscript><script type="application/ld+json">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
+  <meta name="twitter:title" content="Shellscript相关">
+  <meta name="twitter:description" content="Shellscript相关">
+<meta name="application-name" content="DoIt">
+<meta name="apple-mobile-web-app-title" content="DoIt">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/" /><link rel="prev" href="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -88,212 +43,104 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/"
+            "@id": "https:\/\/blog.0x5c0f.cc\/2019\/shellscript%E7%9B%B8%E5%85%B3\/"
         },"genre": "posts","keywords": "linux, shellscript","wordcount":  6388 ,
-        "url": "https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2024-07-23T00:00:00+00:00","publisher": {
+        "url": "https:\/\/blog.0x5c0f.cc\/2019\/shellscript%E7%9B%B8%E5%85%B3\/","datePublished": "2019-05-31T00:00:00+00:00","dateModified": "2024-07-23T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "0x5c0f"},"authors": [{
                         "@type": "Person",
-                        "name": "admin"
+                        "name": "admin"                    
                     }],"description": "Shellscript相关"
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
-  <body
-    header-desktop="auto"
-    header-mobile="auto"
-  ><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-  <div class="header-wrapper">
-    <div class="header-title">
-      <a href="/" title="一个曾经的小码农..."><img
-    class="logo"
-    loading="lazy"
-    src="/icons/logo_title.png"
-    srcset="/icons/logo_title.png,
-        /icons/logo_title.png 1.5x,
-        /icons/logo_title.png 2x"
-    title="/icons/logo_title.png"
-    
-    
-  /><span id="desktop-header-typeit" class="typeit"></span></a>
-    </div>
-    <div class="menu">
-      <div class="menu-inner"><a
-            class="menu-item"
-            href="/posts/"
-            
-          > 文章
-            </a><a
-            class="menu-item"
-            href="/tags/"
-            
-          > 标签
-            </a><a
-            class="menu-item"
-            href="/categories/"
-            
-          > 分类
-            </a><a
-            class="menu-item"
-            href="/series/"
-            
-          > 系列
-            </a><a
-            class="menu-item"
-            href="/about/"
-            
-          > About
-            </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-            <input
-              type="text"
-              placeholder="搜索文章标题或内容..."
-              id="search-input-desktop"
-            />
-            <a
-              href="javascript:void(0);"
-              class="search-button search-toggle"
-              id="search-toggle-desktop"
-              title="搜索"
-            >
-              <i class="fas fa-search fa-fw"></i>
-            </a>
-            <a
-              href="javascript:void(0);"
-              class="search-button search-clear"
-              id="search-clear-desktop"
-              title="清空"
-            >
-              <i class="fas fa-times-circle fa-fw"></i>
-            </a>
-            <span
-              class="search-button search-loading"
-              id="search-loading-desktop"
-            >
-              <i class="fas fa-spinner fa-fw fa-spin"></i>
-            </span>
-          </span><a
-            href="javascript:void(0);"
-            class="menu-item theme-switch"
-            title="切换主题"
-          >
-            <i class="fas fa-adjust fa-fw"></i>
-          </a></div>
-    </div>
-  </div>
-</header><header class="mobile" id="header-mobile">
-  <div class="header-container">
     <div class="header-wrapper">
-      <div class="header-title">
-        <a href="/" title="一个曾经的小码农..."><img
-    class="logo"
-    loading="lazy"
-    src="/icons/logo_title.png"
-    srcset="/icons/logo_title.png,
-        /icons/logo_title.png 1.5x,
-        /icons/logo_title.png 2x"
-    title="/icons/logo_title.png"
-    
-    
-  /><span id="mobile-header-typeit" class="typeit"></span></a>
-      </div>
-      <div class="menu-toggle" id="menu-toggle-mobile">
-        <span></span><span></span><span></span>
-      </div>
+        <div class="header-title">
+            <a href="/" title="一个曾经的小码农..."><img
+        class="logo"
+        loading="lazy"
+        src="/icons/logo_title.png"
+        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        sizes="auto"
+        alt="/icons/logo_title.png"
+        title="/icons/logo_title.png" ><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
     </div>
-    <div class="menu" id="menu-mobile"><div class="search-wrapper">
-          <div class="search mobile" id="search-mobile">
-            <input
-              type="text"
-              placeholder="搜索文章标题或内容..."
-              id="search-input-mobile"
-            />
-            <a
-              href="javascript:void(0);"
-              class="search-button search-toggle"
-              id="search-toggle-mobile"
-              title="搜索"
-            >
-              <i class="fas fa-search fa-fw"></i>
-            </a>
-            <a
-              href="javascript:void(0);"
-              class="search-button search-clear"
-              id="search-clear-mobile"
-              title="清空"
-            >
-              <i class="fas fa-times-circle fa-fw"></i>
-            </a>
-            <span
-              class="search-button search-loading"
-              id="search-loading-mobile"
-            >
-              <i class="fas fa-spinner fa-fw fa-spin"></i>
-            </span>
-          </div>
-          <a
-            href="javascript:void(0);"
-            class="search-cancel"
-            id="search-cancel-mobile"
-          >
-            取消
-          </a>
-        </div><a
-          class="menu-item"
-          href="/posts/"
-          title=""
-          
-        >文章</a><a
-          class="menu-item"
-          href="/tags/"
-          title=""
-          
-        >标签</a><a
-          class="menu-item"
-          href="/categories/"
-          title=""
-          
-        >分类</a><a
-          class="menu-item"
-          href="/series/"
-          title=""
-          
-        >系列</a><a
-          class="menu-item"
-          href="/about/"
-          title=""
-          
-        >About</a><a
-          href="javascript:void(0);"
-          class="menu-item theme-switch"
-          title="切换主题"
-        >
-          <i class="fas fa-adjust fa-fw"></i>
-        </a></div>
-  </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="一个曾经的小码农..."><img
+        class="logo"
+        loading="lazy"
+        src="/icons/logo_title.png"
+        srcset="/icons/logo_title.png, /icons/logo_title.png 1.5x, /icons/logo_title.png 2x"
+        sizes="auto"
+        alt="/icons/logo_title.png"
+        title="/icons/logo_title.png" ><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
 </header>
 <div class="search-dropdown desktop">
-  <div id="search-dropdown-desktop"></div>
+    <div id="search-dropdown-desktop"></div>
 </div>
 <div class="search-dropdown mobile">
-  <div id="search-dropdown-mobile"></div>
+    <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-        <div class="container"><div class="toc" id="toc-auto">
-      <h2 class="toc-title">目录</h2>
-      <div
-        class="toc-content"
-        id="toc-content-auto"
-      ><nav id="TableOfContents">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-shell-脚本执行的几种方法">1. shell 脚本执行的几种方法</a></li>
     <li><a href="#2-shell-脚本规范">2. shell 脚本规范</a></li>
@@ -371,58 +218,24 @@
     <li><a href="#21-将脚本以特定用户运行">21. 将脚本以特定用户运行</a></li>
   </ul>
 </nav></div>
-    </div><script>
-        document
-          .getElementsByTagName("main")[0]
-          .setAttribute("autoTOC", "true");
-      </script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">
-      Shellscript相关
-    </h1><div class="post-meta">
-      <div class="post-meta-line">
-        <span class="post-author"><span class="author"><span class="author fas fa-user-circle fa-fw"></span><span class="screen-reader-text">  </span><a href="https://blog.0x5c0f.cc/authors/admin">0x5c0f</a></span>
-        </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-      <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time
-            datetime="2019-05-31"
-            >2019-05-31</time
-          >&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-07-23"
-              >2024-07-23</time
-            >&nbsp;<i class="fas fa-pencil-alt fa-fw"></i
-          >&nbsp;约 6388 字&nbsp;<i class="far fa-clock fa-fw"></i
-          >&nbsp;预计阅读 13 分钟&nbsp;<span
-            id="/2019/shellscript%E7%9B%B8%E5%85%B3/"
-            class="leancloud_visitors"
-            data-flag-title="Shellscript相关"
-          >
-            <i class="far fa-eye fa-fw"></i>&nbsp;<span
-              class="leancloud-visitors-count waline-pageview-count"
-              data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"
-            ></span
-            >&nbsp;次阅读 </span
-          >&nbsp;<span
-            id="/2019/shellscript%E7%9B%B8%E5%85%B3/"
-            class="comment_count"
-            data-flag-title="Shellscript相关"
-          >
-            <i class="far fa-comments fa-fw"></i>&nbsp;<span
-              class="waline-comment-count"
-              id="waline-comment-count"
-              data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"
-            ></span
-            >&nbsp;条评论 </span
-          >&nbsp;<span>
-            <i class="fas fa-balance-scale fa-fw"></i
-            >&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp; </span
-          >&nbsp;</div>
-    </div><div
-        class="details toc"
-        id="toc-static"
-        kept=""
-      >
-        <div class="details-summary toc-title">
-          <span>目录</span>
-          <span><i class="details-icon fas fa-angle-right"></i></span>
-        </div>
-        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Shellscript相关</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-31">2019-05-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-07-23">2024-07-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 6388 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 13 分钟&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="leancloud_visitors" data-flag-title="Shellscript相关">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"></span>&nbsp;次阅读
+                    </span>&nbsp;<span id="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="comment_count" data-flag-title="Shellscript相关">
+                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2019/shellscript%E7%9B%B8%E5%85%B3/"></span>&nbsp;条评论
+                    </span>&nbsp;<span>
+                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
     <li><a href="#1-shell-脚本执行的几种方法">1. shell 脚本执行的几种方法</a></li>
     <li><a href="#2-shell-脚本规范">2. shell 脚本规范</a></li>
@@ -500,7 +313,7 @@
     <li><a href="#21-将脚本以特定用户运行">21. 将脚本以特定用户运行</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><h1 id="1-shell-脚本执行的几种方法" class="headerLink">
+            </div><div class="content" id="content"><h1 id="1-shell-脚本执行的几种方法" class="headerLink">
     <a href="#1-shell-%e8%84%9a%e6%9c%ac%e6%89%a7%e8%a1%8c%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>1. shell 脚本执行的几种方法</h1><ul>
 <li>
 <p><code>bash(sh) /path/script.sh</code></p>
@@ -556,58 +369,58 @@
 </ul>
 <h1 id="5-特殊内置变量" class="headerLink">
     <a href="#5-%e7%89%b9%e6%ae%8a%e5%86%85%e7%bd%ae%e5%8f%98%e9%87%8f" class="header-mark"></a>5. 特殊、内置变量</h1><table>
-<thead>
-<tr>
-<th>变量名</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>$0</code></td>
-<td>获取当前执行脚本的名称,如果执行脚本带有路径,则包含脚本路径</td>
-</tr>
-<tr>
-<td><code>$n</code></td>
-<td>获取当前执行脚本的第 n 个参数,n=1-9，n 为 0 时,表示脚本文件名,如果 n 大于 9,用大括号括起来${10},参数以空格隔开</td>
-</tr>
-<tr>
-<td><code>$*</code></td>
-<td>获取当前脚本所有传入的参数,将所有的参数视为单个字符串,相当于&quot;$1$2$3&quot;&hellip;</td>
-</tr>
-<tr>
-<td><code>$#</code></td>
-<td>获取当前脚本传入参数的个数总数</td>
-</tr>
-<tr>
-<td><code>$@</code></td>
-<td>获取当前脚本所有传入参数,将所有的参数分别传入至其他变量或脚本(获取脚本最后一个参数:<code>${@: -1}</code></td>
-</tr>
-<tr>
-<td><code>$?</code></td>
-<td>确定上一个指令的返回值，0 成功, 非 0 不成功 <br/> <code>2</code>: 权限拒绝 ; <br/><code>1-125</code>: 运行失败,参数传递错误 ; <br/><code>126</code>: 找到该命令,但无法执行 ; <br/><code>127</code>:未找到运行的命令 ; <br/><code>128</code>: 命令被强行中断 ; <br/>脚本中一般用<code>exit 0</code> , 在执行脚本,返回值给$?, 函数中一般用return 返回值给<code>$?</code></td>
-</tr>
-<tr>
-<td><code>$$</code></td>
-<td>当前脚本执行的进程号</td>
-</tr>
-<tr>
-<td><code>$!</code></td>
-<td>获得之前(上一个)进程 ID</td>
-</tr>
-<tr>
-<td><code>$_</code></td>
-<td>上一条命令的最后一个参数</td>
-</tr>
-<tr>
-<td><code>$PPID</code></td>
-<td>父进程的进程 ID</td>
-</tr>
-<tr>
-<td><code>$PS1</code></td>
-<td>主提示符串，默认值是$</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">变量名</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>$0</code></td>
+          <td style="text-align: left">获取当前执行脚本的名称,如果执行脚本带有路径,则包含脚本路径</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$n</code></td>
+          <td style="text-align: left">获取当前执行脚本的第 n 个参数,n=1-9，n 为 0 时,表示脚本文件名,如果 n 大于 9,用大括号括起来${10},参数以空格隔开</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$*</code></td>
+          <td style="text-align: left">获取当前脚本所有传入的参数,将所有的参数视为单个字符串,相当于&quot;$1$2$3&quot;&hellip;</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$#</code></td>
+          <td style="text-align: left">获取当前脚本传入参数的个数总数</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$@</code></td>
+          <td style="text-align: left">获取当前脚本所有传入参数,将所有的参数分别传入至其他变量或脚本(获取脚本最后一个参数:<code>${@: -1}</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$?</code></td>
+          <td style="text-align: left">确定上一个指令的返回值，0 成功, 非 0 不成功 <br/> <code>2</code>: 权限拒绝 ; <br/><code>1-125</code>: 运行失败,参数传递错误 ; <br/><code>126</code>: 找到该命令,但无法执行 ; <br/><code>127</code>:未找到运行的命令 ; <br/><code>128</code>: 命令被强行中断 ; <br/>脚本中一般用<code>exit 0</code> , 在执行脚本,返回值给$?, 函数中一般用return 返回值给<code>$?</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$$</code></td>
+          <td style="text-align: left">当前脚本执行的进程号</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$!</code></td>
+          <td style="text-align: left">获得之前(上一个)进程 ID</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$_</code></td>
+          <td style="text-align: left">上一条命令的最后一个参数</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$PPID</code></td>
+          <td style="text-align: left">父进程的进程 ID</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>$PS1</code></td>
+          <td style="text-align: left">主提示符串，默认值是$</td>
+      </tr>
+  </tbody>
 </table>
 <p><code>$*</code> 和 <code>$@</code> 的示例:</p>
 <div class="highlight"><div class="chroma">
@@ -648,85 +461,85 @@
 </div>
 </div><h1 id="6-常用操作表达式" class="headerLink">
     <a href="#6-%e5%b8%b8%e7%94%a8%e6%93%8d%e4%bd%9c%e8%a1%a8%e8%be%be%e5%bc%8f" class="header-mark"></a>6. 常用操作表达式</h1><table>
-<thead>
-<tr>
-<th>表达式</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>${#string}</code></td>
-<td>返回<code>$string</code>的长度</td>
-</tr>
-<tr>
-<td><code>${string:position}</code></td>
-<td>在<code>$stirng</code>中,从<code>$position</code>之后开始提取子串</td>
-</tr>
-<tr>
-<td><code>${string:position:length}</code></td>
-<td>在<code>$string</code>,从位置<code>$position</code>之后开始提取长度为<code>$length</code>的子串</td>
-</tr>
-<tr>
-<td><code>${string#substring}</code></td>
-<td>从变量<code>$string</code>开头开始删除最短匹配<code>$substring</code>的子串</td>
-</tr>
-<tr>
-<td><code>${string##substring}</code></td>
-<td>从变量<code>$string</code>开头开始删除最长匹配<code>$substring</code>的子串</td>
-</tr>
-<tr>
-<td><code>${string%substring}</code></td>
-<td>从变量<code>$string</code>结尾开始删除最短匹配<code>$substring</code>的子串</td>
-</tr>
-<tr>
-<td><code>${string%%substring}</code></td>
-<td>从变量<code>$string</code>结尾开始删除最长匹配<code>$substring</code>的子串</td>
-</tr>
-<tr>
-<td><code>${string/pattern/parameter}</code></td>
-<td>在变量<code>string</code>中,使用<code>parameter</code>替换<code>pattern</code>匹配的第一个值</td>
-</tr>
-<tr>
-<td><code>${string//pattern/parameter}</code></td>
-<td>在变量<code>string</code>中,使用<code>parameter</code>替换所有<code>pattern</code>匹配的值</td>
-</tr>
-<tr>
-<td><code>${string/#pattern/parameter}</code></td>
-<td>在变量<code>string</code>中,使用<code>parameter</code>替换以<code>pattern</code>开头的值</td>
-</tr>
-<tr>
-<td><code>${string/%pattern/parameter}</code></td>
-<td>在变量<code>string</code>中,使用<code>parameter</code>替换以<code>pattern</code>结尾的值</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">表达式</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>${#string}</code></td>
+          <td style="text-align: left">返回<code>$string</code>的长度</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string:position}</code></td>
+          <td style="text-align: left">在<code>$stirng</code>中,从<code>$position</code>之后开始提取子串</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string:position:length}</code></td>
+          <td style="text-align: left">在<code>$string</code>,从位置<code>$position</code>之后开始提取长度为<code>$length</code>的子串</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string#substring}</code></td>
+          <td style="text-align: left">从变量<code>$string</code>开头开始删除最短匹配<code>$substring</code>的子串</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string##substring}</code></td>
+          <td style="text-align: left">从变量<code>$string</code>开头开始删除最长匹配<code>$substring</code>的子串</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string%substring}</code></td>
+          <td style="text-align: left">从变量<code>$string</code>结尾开始删除最短匹配<code>$substring</code>的子串</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string%%substring}</code></td>
+          <td style="text-align: left">从变量<code>$string</code>结尾开始删除最长匹配<code>$substring</code>的子串</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string/pattern/parameter}</code></td>
+          <td style="text-align: left">在变量<code>string</code>中,使用<code>parameter</code>替换<code>pattern</code>匹配的第一个值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string//pattern/parameter}</code></td>
+          <td style="text-align: left">在变量<code>string</code>中,使用<code>parameter</code>替换所有<code>pattern</code>匹配的值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string/#pattern/parameter}</code></td>
+          <td style="text-align: left">在变量<code>string</code>中,使用<code>parameter</code>替换以<code>pattern</code>开头的值</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${string/%pattern/parameter}</code></td>
+          <td style="text-align: left">在变量<code>string</code>中,使用<code>parameter</code>替换以<code>pattern</code>结尾的值</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="7-变量替换表" class="headerLink">
     <a href="#7-%e5%8f%98%e9%87%8f%e6%9b%bf%e6%8d%a2%e8%a1%a8" class="header-mark"></a>7. 变量替换表</h1><table>
-<thead>
-<tr>
-<th>运算符号</th>
-<th>替换</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>${value:-word}</code></td>
-<td>如果变量<code>value</code>存在且非<code>null</code>，则返回变量的值,否则,返回<code>word</code>字符串. 例: <code>res=${value:-word}</code>,如果<code>value</code>未定义,则<code>res</code>的值为<code>word</code></td>
-</tr>
-<tr>
-<td><code>${value:=word}</code></td>
-<td>如果变量<code>value</code>存在且非<code>null</code>，则返回变量的值,否则,则设置这个变量值为<code>word</code>. 例: <code>res=${value:=word}</code>,如果<code>value</code>未定义,则<code>res</code>的值为<code>word</code>,<code>value</code>值也为<code>word</code></td>
-</tr>
-<tr>
-<td><code>${value:+word}</code></td>
-<td>如果<code>value</code>存在且非<code>null</code>,则返回<code>word</code>,否则返回<code>null</code>.例<code>res=${value:+word}</code>,如果<code>value</code>已经定义, 则<code>res</code>的值为<code>word</code>,如果<code>value</code>值未定义,则<code>res</code>值为<code>null(空)</code></td>
-</tr>
-<tr>
-<td><code>${value:?message}</code></td>
-<td>如果变量<code>value</code>存在且非<code>null</code>，则返回变量<code>value</code>的值，否则返回信息<code>bash: value: message</code>,例 <code>echo ${value:?is null}</code>,如果<code>value</code>值已定义，则返回<code>value</code>定义值,否者返回 <code>bash: value: is null</code>,退出状态码为<code>1</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">运算符号</th>
+          <th style="text-align: left">替换</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>${value:-word}</code></td>
+          <td style="text-align: left">如果变量<code>value</code>存在且非<code>null</code>，则返回变量的值,否则,返回<code>word</code>字符串. 例: <code>res=${value:-word}</code>,如果<code>value</code>未定义,则<code>res</code>的值为<code>word</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${value:=word}</code></td>
+          <td style="text-align: left">如果变量<code>value</code>存在且非<code>null</code>，则返回变量的值,否则,则设置这个变量值为<code>word</code>. 例: <code>res=${value:=word}</code>,如果<code>value</code>未定义,则<code>res</code>的值为<code>word</code>,<code>value</code>值也为<code>word</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${value:+word}</code></td>
+          <td style="text-align: left">如果<code>value</code>存在且非<code>null</code>,则返回<code>word</code>,否则返回<code>null</code>.例<code>res=${value:+word}</code>,如果<code>value</code>已经定义, 则<code>res</code>的值为<code>word</code>,如果<code>value</code>值未定义,则<code>res</code>值为<code>null(空)</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>${value:?message}</code></td>
+          <td style="text-align: left">如果变量<code>value</code>存在且非<code>null</code>，则返回变量<code>value</code>的值，否则返回信息<code>bash: value: message</code>,例 <code>echo ${value:?is null}</code>,如果<code>value</code>值已定义，则返回<code>value</code>定义值,否者返回 <code>bash: value: is null</code>,退出状态码为<code>1</code></td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="8-常见的运算符" class="headerLink">
     <a href="#8-%e5%b8%b8%e8%a7%81%e7%9a%84%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8. 常见的运算符</h1><p>在Shell脚本中，<code>[]</code>和<code>[[]]</code>都用于条件测试，但它们之间存在一些重要的差异</p>
@@ -740,309 +553,309 @@
 </ul>
 <h2 id="81-变量运算符" class="headerLink">
     <a href="#81-%e5%8f%98%e9%87%8f%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8.1. 变量运算符</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">运算符</th>
-<th style="text-align:left">说明</th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>++ --</code></td>
-<td style="text-align:left">自增与自减; 符号在前代表先运算在赋值，符号在后代表先赋值在运算</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>+ - ! ~</code></td>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>* / %</code></td>
-<td style="text-align:left">乘、除、模</td>
-<td style="text-align:left">/ 取整 ; % 取余</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>+ -</code></td>
-<td style="text-align:left">加、减</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt; &lt;= &gt; &gt;=</code></td>
-<td style="text-align:left">小于、小于等于、大于、大于等于</td>
-<td style="text-align:left">-</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>== != =~</code></td>
-<td style="text-align:left">等于、不等于、正则匹配符</td>
-<td style="text-align:left"><code>[[ $VAR =~ ^[a-zA-Z] ]]</code>,正则不可用引号括起来,变量可单双引号</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt;&lt; &gt;&gt;</code></td>
-<td style="text-align:left">位运算: 左移、右移</td>
-<td style="text-align:left">二进制计算</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&amp;&amp;</code></td>
-<td style="text-align:left">逻辑的 <code>and</code></td>
-<td style="text-align:left"><code>true &amp;&amp; false</code> ,结果 <code>false</code></td>
-</tr>
-<tr>
-<td style="text-align:center">`</td>
-<td style="text-align:left"></td>
-<td style="text-align:left">`</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>= += -= *= /= %=</code></td>
-<td style="text-align:left">赋值运算</td>
-<td style="text-align:left"><code>(a+=b) == (a=a+b)</code>; 其他同理</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>**</code></td>
-<td style="text-align:left">幕运算</td>
-<td style="text-align:left"><code>2**3=8</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">运算符</th>
+          <th style="text-align: left">说明</th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>++ --</code></td>
+          <td style="text-align: left">自增与自减; 符号在前代表先运算在赋值，符号在后代表先赋值在运算</td>
+          <td style="text-align: left">-</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>+ - ! ~</code></td>
+          <td style="text-align: left">-</td>
+          <td style="text-align: left">-</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>* / %</code></td>
+          <td style="text-align: left">乘、除、模</td>
+          <td style="text-align: left">/ 取整 ; % 取余</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>+ -</code></td>
+          <td style="text-align: left">加、减</td>
+          <td style="text-align: left">-</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&lt; &lt;= &gt; &gt;=</code></td>
+          <td style="text-align: left">小于、小于等于、大于、大于等于</td>
+          <td style="text-align: left">-</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>== != =~</code></td>
+          <td style="text-align: left">等于、不等于、正则匹配符</td>
+          <td style="text-align: left"><code>[[ $VAR =~ ^[a-zA-Z] ]]</code>,正则不可用引号括起来,变量可单双引号</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&lt;&lt; &gt;&gt;</code></td>
+          <td style="text-align: left">位运算: 左移、右移</td>
+          <td style="text-align: left">二进制计算</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&amp;&amp;</code></td>
+          <td style="text-align: left">逻辑的 <code>and</code></td>
+          <td style="text-align: left"><code>true &amp;&amp; false</code> ,结果 <code>false</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">`</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">`</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>= += -= *= /= %=</code></td>
+          <td style="text-align: left">赋值运算</td>
+          <td style="text-align: left"><code>(a+=b) == (a=a+b)</code>; 其他同理</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>**</code></td>
+          <td style="text-align: left">幕运算</td>
+          <td style="text-align: left"><code>2**3=8</code></td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="82-算术运算符" class="headerLink">
     <a href="#82-%e7%ae%97%e6%9c%af%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8.2. 算术运算符</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">字符串比较运算符</br>(建议在<code>(())</code>和<code>[[]]</code>中使用的)</th>
-<th style="text-align:center">算术运算符</br>(建议在<code>[]</code>以及<code>test</code>中使用的)</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>==</code>或<code>=</code></td>
-<td style="text-align:center"><code>-eq</code></td>
-<td style="text-align:left">检测 2 个数是否相等，相等返回<code>true</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>!=</code></td>
-<td style="text-align:center"><code>-ne</code></td>
-<td style="text-align:left">检测 2 个数是否不相等，相等返回<code>true</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;</code></td>
-<td style="text-align:center"><code>-gt</code></td>
-<td style="text-align:left">检测左边的数是否大于右边的，如果是，则返回<code>true</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;=</code></td>
-<td style="text-align:center"><code>-ge</code></td>
-<td style="text-align:left">检测左边的数是否大于等于右边的，如果是，则返回<code>true</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt;</code></td>
-<td style="text-align:center"><code>-lt</code></td>
-<td style="text-align:left">检测左边的数是否小于右边的，如果是，则返回<code>true</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt;=</code></td>
-<td style="text-align:center"><code>-le</code></td>
-<td style="text-align:left">检测左边的数是否小于等于右边的，如果是，则返回<code>true</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">字符串比较运算符</br>(建议在<code>(())</code>和<code>[[]]</code>中使用的)</th>
+          <th style="text-align: center">算术运算符</br>(建议在<code>[]</code>以及<code>test</code>中使用的)</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>==</code>或<code>=</code></td>
+          <td style="text-align: center"><code>-eq</code></td>
+          <td style="text-align: left">检测 2 个数是否相等，相等返回<code>true</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>!=</code></td>
+          <td style="text-align: center"><code>-ne</code></td>
+          <td style="text-align: left">检测 2 个数是否不相等，相等返回<code>true</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&gt;</code></td>
+          <td style="text-align: center"><code>-gt</code></td>
+          <td style="text-align: left">检测左边的数是否大于右边的，如果是，则返回<code>true</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&gt;=</code></td>
+          <td style="text-align: center"><code>-ge</code></td>
+          <td style="text-align: left">检测左边的数是否大于等于右边的，如果是，则返回<code>true</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&lt;</code></td>
+          <td style="text-align: center"><code>-lt</code></td>
+          <td style="text-align: left">检测左边的数是否小于右边的，如果是，则返回<code>true</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&lt;=</code></td>
+          <td style="text-align: center"><code>-le</code></td>
+          <td style="text-align: left">检测左边的数是否小于等于右边的，如果是，则返回<code>true</code></td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="83-逻辑运算符" class="headerLink">
     <a href="#83-%e9%80%bb%e8%be%91%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>8.3. 逻辑运算符</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">运算符</br>(建议在<code>[[]]</code>中使用)</th>
-<th style="text-align:center">运算符</br>(建议在<code>[]</code>和<code>test</code>中使用)</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>!</code></td>
-<td style="text-align:center"><code>!</code></td>
-<td style="text-align:left">非运算，表达式为<code>true</code>，则返回<code>false</code>，否则返回<code>true</code>; 例: <code>[!false]</code>返回<code>true</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>||</code></td>
-<td style="text-align:center"><code>-o</code></td>
-<td style="text-align:left">或运算，有一个表达式为<code>true，则返回``true</code></td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&amp;&amp;</code></td>
-<td style="text-align:center"><code>-a</code></td>
-<td style="text-align:left">与运算，2 个表达式都为<code>true，才返回``true</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">运算符</br>(建议在<code>[[]]</code>中使用)</th>
+          <th style="text-align: center">运算符</br>(建议在<code>[]</code>和<code>test</code>中使用)</th>
+          <th style="text-align: left">说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>!</code></td>
+          <td style="text-align: center"><code>!</code></td>
+          <td style="text-align: left">非运算，表达式为<code>true</code>，则返回<code>false</code>，否则返回<code>true</code>; 例: <code>[!false]</code>返回<code>true</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>||</code></td>
+          <td style="text-align: center"><code>-o</code></td>
+          <td style="text-align: left">或运算，有一个表达式为<code>true，则返回``true</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&amp;&amp;</code></td>
+          <td style="text-align: center"><code>-a</code></td>
+          <td style="text-align: left">与运算，2 个表达式都为<code>true，才返回``true</code></td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="84-条件判断符" class="headerLink">
     <a href="#84-%e6%9d%a1%e4%bb%b6%e5%88%a4%e6%96%ad%e7%ac%a6" class="header-mark"></a>8.4. 条件判断符</h2><table>
-<thead>
-<tr>
-<th>判断符(man test)</th>
-<th>说明(如果存在为 true)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>-e</code></td>
-<td>文件存在</td>
-</tr>
-<tr>
-<td><code>-f</code></td>
-<td>被测文件是一个 regular 文件（正常文件，非目录或设备）</td>
-</tr>
-<tr>
-<td><code>-s</code></td>
-<td>如果文件存在且文件大小大于零，则返回真</td>
-</tr>
-<tr>
-<td><code>-d</code></td>
-<td>被测对象是目录</td>
-</tr>
-<tr>
-<td><code>-b</code></td>
-<td>被测对象是块设备</td>
-</tr>
-<tr>
-<td><code>-c</code></td>
-<td>被测对象是字符设备</td>
-</tr>
-<tr>
-<td><code>-p</code></td>
-<td>被测对象是管道</td>
-</tr>
-<tr>
-<td><code>-h</code></td>
-<td>被测文件是符号连接</td>
-</tr>
-<tr>
-<td><code>-L</code></td>
-<td>被测文件是符号连接</td>
-</tr>
-<tr>
-<td><code>-s</code></td>
-<td>被测文件是一个 socket</td>
-</tr>
-<tr>
-<td><code>-t</code></td>
-<td>关联到一个终端设备的文件描述符。用来检测脚本的<code>stdin[-t0]</code>或<code>[-t1]</code>是一个终端</td>
-</tr>
-<tr>
-<td><code>-r</code></td>
-<td>文件具有读权限，针对运行脚本的用户</td>
-</tr>
-<tr>
-<td><code>-w</code></td>
-<td>文件具有写权限，针对运行脚本的用户</td>
-</tr>
-<tr>
-<td><code>-x</code></td>
-<td>文件具有执行权限，针对运行脚本的用户</td>
-</tr>
-<tr>
-<td><code>-u</code></td>
-<td>set-user-id(suid)标志到文件，即普通用户可以使用的 root 权限文件，通过 chmod +s file 实现</td>
-</tr>
-<tr>
-<td><code>-k</code></td>
-<td>设置粘贴位</td>
-</tr>
-<tr>
-<td><code>-O</code></td>
-<td>运行脚本的用户是文件的所有者</td>
-</tr>
-<tr>
-<td><code>-G</code></td>
-<td>文件的 group-id 和运行脚本的用户相同</td>
-</tr>
-<tr>
-<td><code>-N</code></td>
-<td>从文件最后被阅读到现在，是否被修改</td>
-</tr>
-<tr>
-<td><code>-z</code></td>
-<td>字符串为 null，即长度为 0</td>
-</tr>
-<tr>
-<td><code>-n</code></td>
-<td>字符串不为 null，即长度不为 0</td>
-</tr>
-<tr>
-<td><code>=</code></td>
-<td>字符串是否相等,可以使用<code>==</code>代替<code>=</code></td>
-</tr>
-<tr>
-<td><code>!=</code></td>
-<td>字符串是否不相等</td>
-</tr>
-<tr>
-<td><code>f1 -nt f2</code></td>
-<td>文件 f1 是否比 f2 新</td>
-</tr>
-<tr>
-<td><code>f1 -ot f2</code></td>
-<td>文件 f1 是否比 f2 旧</td>
-</tr>
-<tr>
-<td><code>f1 -ef f2</code></td>
-<td>文件 f1 和 f2 是否硬连接到同一个文件</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">判断符(man test)</th>
+          <th style="text-align: left">说明(如果存在为 true)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>-e</code></td>
+          <td style="text-align: left">文件存在</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-f</code></td>
+          <td style="text-align: left">被测文件是一个 regular 文件（正常文件，非目录或设备）</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-s</code></td>
+          <td style="text-align: left">如果文件存在且文件大小大于零，则返回真</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-d</code></td>
+          <td style="text-align: left">被测对象是目录</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-b</code></td>
+          <td style="text-align: left">被测对象是块设备</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-c</code></td>
+          <td style="text-align: left">被测对象是字符设备</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-p</code></td>
+          <td style="text-align: left">被测对象是管道</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-h</code></td>
+          <td style="text-align: left">被测文件是符号连接</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-L</code></td>
+          <td style="text-align: left">被测文件是符号连接</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-s</code></td>
+          <td style="text-align: left">被测文件是一个 socket</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-t</code></td>
+          <td style="text-align: left">关联到一个终端设备的文件描述符。用来检测脚本的<code>stdin[-t0]</code>或<code>[-t1]</code>是一个终端</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-r</code></td>
+          <td style="text-align: left">文件具有读权限，针对运行脚本的用户</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-w</code></td>
+          <td style="text-align: left">文件具有写权限，针对运行脚本的用户</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-x</code></td>
+          <td style="text-align: left">文件具有执行权限，针对运行脚本的用户</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-u</code></td>
+          <td style="text-align: left">set-user-id(suid)标志到文件，即普通用户可以使用的 root 权限文件，通过 chmod +s file 实现</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-k</code></td>
+          <td style="text-align: left">设置粘贴位</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-O</code></td>
+          <td style="text-align: left">运行脚本的用户是文件的所有者</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-G</code></td>
+          <td style="text-align: left">文件的 group-id 和运行脚本的用户相同</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-N</code></td>
+          <td style="text-align: left">从文件最后被阅读到现在，是否被修改</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-z</code></td>
+          <td style="text-align: left">字符串为 null，即长度为 0</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-n</code></td>
+          <td style="text-align: left">字符串不为 null，即长度不为 0</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>=</code></td>
+          <td style="text-align: left">字符串是否相等,可以使用<code>==</code>代替<code>=</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>!=</code></td>
+          <td style="text-align: left">字符串是否不相等</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>f1 -nt f2</code></td>
+          <td style="text-align: left">文件 f1 是否比 f2 新</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>f1 -ot f2</code></td>
+          <td style="text-align: left">文件 f1 是否比 f2 旧</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>f1 -ef f2</code></td>
+          <td style="text-align: left">文件 f1 和 f2 是否硬连接到同一个文件</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="85-标准-io-重定向" class="headerLink">
     <a href="#85-%e6%a0%87%e5%87%86-io-%e9%87%8d%e5%ae%9a%e5%90%91" class="header-mark"></a>8.5. 标准 I/O 重定向</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">重定向操作符</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><code>&lt; filename</code></td>
-<td style="text-align:left">重定向输入</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt; filename</code></td>
-<td style="text-align:left">重定向输出</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;&gt; filename</code></td>
-<td style="text-align:left">追加输出</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>2&gt; filename</code></td>
-<td style="text-align:left">重定向标准错误输出</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>2&gt;&gt; filename</code></td>
-<td style="text-align:left">重定向和追加标准错误输出</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&amp;&gt; filename</code></td>
-<td style="text-align:left">重定向标准输出和标准错误输出</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;&amp; filename</code></td>
-<td style="text-align:left">重定向标准输出和标准错误输出(首选方式)</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>2&gt;&amp;1</code></td>
-<td style="text-align:left">将标准错误输出重定向到输出的去处</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>1&gt;&amp;2</code></td>
-<td style="text-align:left">将输出重定向到标准错误输出的去处</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&gt;</code></td>
-<td style="text-align:left">重定向输出时忽略 noclobber</td>
-</tr>
-<tr>
-<td style="text-align:center"><code>&lt;&gt; filename</code></td>
-<td style="text-align:left">如果是一个设备文件(/dev),使用巍峨年作为标准输入和标准输出</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">重定向操作符</th>
+          <th style="text-align: left">功能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><code>&lt; filename</code></td>
+          <td style="text-align: left">重定向输入</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&gt; filename</code></td>
+          <td style="text-align: left">重定向输出</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&gt;&gt; filename</code></td>
+          <td style="text-align: left">追加输出</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>2&gt; filename</code></td>
+          <td style="text-align: left">重定向标准错误输出</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>2&gt;&gt; filename</code></td>
+          <td style="text-align: left">重定向和追加标准错误输出</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&amp;&gt; filename</code></td>
+          <td style="text-align: left">重定向标准输出和标准错误输出</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&gt;&amp; filename</code></td>
+          <td style="text-align: left">重定向标准输出和标准错误输出(首选方式)</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>2&gt;&amp;1</code></td>
+          <td style="text-align: left">将标准错误输出重定向到输出的去处</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>1&gt;&amp;2</code></td>
+          <td style="text-align: left">将输出重定向到标准错误输出的去处</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&gt;</code></td>
+          <td style="text-align: left">重定向输出时忽略 noclobber</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><code>&lt;&gt; filename</code></td>
+          <td style="text-align: left">如果是一个设备文件(/dev),使用巍峨年作为标准输入和标准输出</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="9-变量的数值运算" class="headerLink">
     <a href="#9-%e5%8f%98%e9%87%8f%e7%9a%84%e6%95%b0%e5%80%bc%e8%bf%90%e7%ae%97" class="header-mark"></a>9. 变量的数值运算</h1><ul>
@@ -1110,15 +923,7 @@
 <h2 id="113-补充" class="headerLink">
     <a href="#113-%e8%a1%a5%e5%85%85" class="header-mark"></a>11.3. 补充</h2><p>关于<code>()</code>、<code>(())</code>、<code>[]</code>、<code>[[]]</code>、<code>{}</code>几个的区别,接入一个很详细的文档,但是我表示没怎么看懂,先记录下来,以后慢慢看</p>
 <blockquote>
-<p><a
-  href="https://blog.csdn.net/taiyang1987912/article/details/39551385"
-  
-     target="_blank"
-  
-  rel="noopener noreferrer"
-  
->https://blog.csdn.net/taiyang1987912/article/details/39551385</a>
-</p>
+<p><a href="https://blog.csdn.net/taiyang1987912/article/details/39551385" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/taiyang1987912/article/details/39551385</a></p>
 </blockquote>
 <h1 id="12-函数" class="headerLink">
     <a href="#12-%e5%87%bd%e6%95%b0" class="header-mark"></a>12. 函数</h1><h2 id="121-语法" class="headerLink">
@@ -1159,13 +964,7 @@
 <li>在函数中使用<code>exit</code>会退出整个脚本,<code>return</code>是跳出当前函数</li>
 <li>函数脚本引用
 <ul>
-<li>脚本内加载<code>. /path/scrpt.sh</code>,相当于将<code>/path/script.sh</code>内容<a
-  href="#112"
-  
-  rel=""
-  
->直接加载</a>
-到当前脚本中</li>
+<li>脚本内加载<code>. /path/scrpt.sh</code>,相当于将<code>/path/script.sh</code>内容<a href="#112" rel="">直接加载</a>到当前脚本中</li>
 </ul>
 </li>
 </ol>
@@ -1421,55 +1220,55 @@
 </div><h1 id="17-linux-信号" class="headerLink">
     <a href="#17-linux-%e4%bf%a1%e5%8f%b7" class="header-mark"></a>17. linux 信号</h1><h2 id="171-常用信号" class="headerLink">
     <a href="#171-%e5%b8%b8%e7%94%a8%e4%bf%a1%e5%8f%b7" class="header-mark"></a>17.1. 常用信号</h2><table>
-<thead>
-<tr>
-<th>信号</th>
-<th>-</th>
-<th>说明(<code>stty -a</code>查看键盘按键对应的信号)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>1</code></td>
-<td><code>HUP</code>|<code>SIGHUP</code></td>
-<td>挂起,通常因终端雕像或用户退出引发</td>
-</tr>
-<tr>
-<td><code>2</code></td>
-<td><code>INT</code>|<code>SIGINT</code></td>
-<td>中断,通常是按下<code>Ctrl+C</code>引发</td>
-</tr>
-<tr>
-<td><code>3</code></td>
-<td><code>QUIT</code>|<code>SIGQUIT</code></td>
-<td>退出,通常是按下<code>Ctrl+/</code>引发</td>
-</tr>
-<tr>
-<td><code>6</code></td>
-<td><code>ABRT</code>|<code>SIGABRT</code></td>
-<td>终止,通常因为严重的执行错误而引发</td>
-</tr>
-<tr>
-<td><code>9</code></td>
-<td><code>SIGKILL</code></td>
-<td>立即终止进程</td>
-</tr>
-<tr>
-<td><code>14</code></td>
-<td><code>ALRM</code>|<code>SIGALRM</code></td>
-<td>报警,通常用来处理超时</td>
-</tr>
-<tr>
-<td><code>15</code></td>
-<td><code>TERM</code>|<code>SIGTERM</code></td>
-<td>终止,通常在系统挂机时发送</td>
-</tr>
-<tr>
-<td><code>20</code></td>
-<td><code>TSTP</code>|<code>SIGSTP</code></td>
-<td>停止进程的运行,但该型号可以被处理和忽略,用户键入<code>SUSP</code>字符(通常是<code>Ctrl+z</code>)发出这个信号</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">信号</th>
+          <th style="text-align: left">-</th>
+          <th style="text-align: left">说明(<code>stty -a</code>查看键盘按键对应的信号)</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>1</code></td>
+          <td style="text-align: left"><code>HUP</code>|<code>SIGHUP</code></td>
+          <td style="text-align: left">挂起,通常因终端雕像或用户退出引发</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>2</code></td>
+          <td style="text-align: left"><code>INT</code>|<code>SIGINT</code></td>
+          <td style="text-align: left">中断,通常是按下<code>Ctrl+C</code>引发</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>3</code></td>
+          <td style="text-align: left"><code>QUIT</code>|<code>SIGQUIT</code></td>
+          <td style="text-align: left">退出,通常是按下<code>Ctrl+/</code>引发</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>6</code></td>
+          <td style="text-align: left"><code>ABRT</code>|<code>SIGABRT</code></td>
+          <td style="text-align: left">终止,通常因为严重的执行错误而引发</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>9</code></td>
+          <td style="text-align: left"><code>SIGKILL</code></td>
+          <td style="text-align: left">立即终止进程</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>14</code></td>
+          <td style="text-align: left"><code>ALRM</code>|<code>SIGALRM</code></td>
+          <td style="text-align: left">报警,通常用来处理超时</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>15</code></td>
+          <td style="text-align: left"><code>TERM</code>|<code>SIGTERM</code></td>
+          <td style="text-align: left">终止,通常在系统挂机时发送</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>20</code></td>
+          <td style="text-align: left"><code>TSTP</code>|<code>SIGSTP</code></td>
+          <td style="text-align: left">停止进程的运行,但该型号可以被处理和忽略,用户键入<code>SUSP</code>字符(通常是<code>Ctrl+z</code>)发出这个信号</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="172-trap-命令" class="headerLink">
     <a href="#172-trap-%e5%91%bd%e4%bb%a4" class="header-mark"></a>17.2. trap 命令</h2><p>trap 命令用于在接受到信号后将要采取的行动,常用于脚本程序中断时完成清理工作,可用于跳板机脚本制作(由于脚本从上向下进行执行,因此需要将在要保护的程序片段之前进行 trap 设置)<br>
@@ -1508,15 +1307,7 @@
 </div>
 </div><h1 id="18-advanced-bash-scripting-guidecontributed-scripts" class="headerLink">
     <a href="#18-advanced-bash-scripting-guidecontributed-scripts" class="header-mark"></a>18. Advanced Bash-Scripting Guide(Contributed Scripts)</h1><blockquote>
-<p><a
-  href="http://tldp.org/LDP/abs/html/contributed-scripts.html"
-  
-     target="_blank"
-  
-  rel="noopener noreferrer"
-  
->http://tldp.org/LDP/abs/html/contributed-scripts.html</a>
-</p>
+<p><a href="http://tldp.org/LDP/abs/html/contributed-scripts.html" target="_blank" rel="noopener noreferrer">http://tldp.org/LDP/abs/html/contributed-scripts.html</a></p>
 </blockquote>
 <h1 id="19-getops" class="headerLink">
     <a href="#19-getops" class="header-mark"></a>19. getops</h1><ul>
@@ -1826,65 +1617,39 @@
 </div>
 </div></div>
 
-    <div class="post-footer" id="post-footer">
-  <div class="post-info">
-    <div class="post-info-line">
-      <div class="post-info-mod">
-        <span>更新于 2024-07-23</span>
-      </div>
-      <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2024-07-23</span>
+            </div>
+            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span><a class="link-to-mardown" href=/2019/shellscript%E7%9B%B8%E5%85%B3/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                    </span></div>
+            <div class="post-info-share">
+                <span><a href="#" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/" data-title="Shellscript相关"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
     </div>
-    <div class="post-info-line">
-      <div class="post-info-md"><span><a
-                class="link-to-mardown"
-                href=/2019/shellscript%E7%9B%B8%E5%85%B3/index.md
-                target="_blank"
-                rel="noopener noreferrer"
-              >阅读原始文档</a>
-            </span></div>
-      <div class="post-info-share"><button
-      title="分享到 Evernote"
-      data-sharer="evernote"
-      data-url="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/"
-      data-title="Shellscript相关"
-    ><span class="fab fa-evernote fa-fw"></span></button></div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/shellscript/">Shellscript</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-  </div>
 
-  <div class="post-info-more">
-    <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/shellscript/">Shellscript</a></section>
-    <section>
-      <span
-        ><a href="javascript:void(0);" onclick="window.history.back();"
-          >返回</a
-        ></span
-      >&nbsp;|&nbsp;<span
-        ><a href="/">主页</a></span
-      >
-    </section>
-  </div>
-
-  <div class="post-nav"><a
-        href="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/"
-        class="prev"
-        rel="prev"
-        title="那些杂七杂八的记录(一)"
-        ><i class="fas fa-angle-left fa-fw"></i>那些杂七杂八的记录(一)</a
-      >
-      <a
-        href="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/"
-        class="next"
-        rel="next"
-        title="常用命令收集"
-        >常用命令收集<i class="fas fa-angle-right fa-fw"></i
-      ></a></div>
+    <div class="post-nav"><a href="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" class="prev" rel="prev" title="那些杂七杂八的记录(一)"><i class="fas fa-angle-left fa-fw"></i>那些杂七杂八的记录(一)</a>
+            <a href="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" class="next" rel="next" title="常用命令收集">常用命令收集<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="waline" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
             </noscript></div></article></div>
-      </main><footer class="footer">
+        </main><footer class="footer">
     <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".icp, .icp-splitter, .icp-br").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.125.7">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.134.1">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
         </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
             >&nbsp;<a
               href="https://tools.0x5c0f.cc"
@@ -1899,112 +1664,16 @@
       <div class="footer-line"></div>
     </div></footer></div>
 
-    <div id="fixed-buttons"><a
-        href="#back-to-top"
-        id="back-to-top-button"
-        class="fixed-button"
-        title="回到顶部"
-      >
-        <i class="fas fa-arrow-up fa-fw"></i>
-      </a><a
-        href="#"
-        id="view-comments"
-        class="fixed-button"
-        title="查看评论"
-      >
-        <i class="fas fa-comment fa-fw"></i>
-      </a>
-    </div><div class="assets"><link
-      rel="stylesheet"
-      href="/lib/waline/waline.min.css"
-      
-    /><link
-      rel="stylesheet"
-      href="/lib/katex/katex.min.css"
-      
-    /><link
-      rel="preload"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-      href="/lib/katex/copy-tex.min.css"
-      
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="/lib/katex/copy-tex.min.css"
-        
-    /></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script
-    type="text/javascript"
-    src="/lib/waline/waline.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/js/waline.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/tablesort/tablesort.min.js"
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/clipboard/clipboard.min.js"
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/sharer/sharer.min.js"
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/typeit/typeit.min.js"
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/katex/katex.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/katex/auto-render.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/katex/copy-tex.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/lib/katex/mhchem.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/js/katex.min.js"
-    
-      defer
-    
-  ></script><script
-    type="text/javascript"
-    src="/js/theme.min.js"
-    
-      defer
-    
-  ></script><script type="text/javascript">
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
             window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', 'G-06MPV27KSD');
-        </script><script
-    type="text/javascript"
-    src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD"
-    async
-  ></script></div>
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
 </body>
+
 </html>

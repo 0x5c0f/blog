@@ -9,6 +9,16 @@
     <link>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/</guid>
-    <description><![CDATA[参考文献 : https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy 以下为个人解决方案 : jenkins 配置: 添加启动参数 --prefix=/jenkins，docker启动添加环境变量JENKINS_OPTS]]></description>
+    <description><![CDATA[<p>参考文献 :</p>
+<blockquote>
+<p><a href="https://wiki.jenkins.io/display/JENKINS/Jenkins&#43;behind&#43;an&#43;NGinX&#43;reverse&#43;proxy" target="_blank" rel="noopener noreferrer">https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy</a></p>
+</blockquote>
+<p>以下为个人解决方案 :<br>
+<code>jenkins</code> 配置:</p>
+<ul>
+<li>添加启动参数 <code>--prefix=/jenkins</code>，<code>docker</code>启动添加环境变量<code>JENKINS_OPTS=&quot;--prefix=/jenkins&quot;</code></li>
+<li>前端修改(<code>Jenkins</code> &gt; <code>Manage Jenkins</code> &gt; <code>Jenkins Location</code> &gt; <code>Jenkins URL</code>) 或者修改配置文件<code>/var/jenkins_home/jenkins.model.JenkinsLocationConfiguration.xml</code>中的<code>jenkinsUrl</code>，修改为<code>http(s)://www.example.com/jenkins/</code>,配置文件修改后需重启。</li>
+</ul>
+<p><code>nginx</code>配置:</p>]]></description>
 </item></channel>
 </rss>

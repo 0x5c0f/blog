@@ -9,7 +9,22 @@
     <link>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/</guid>
-    <description><![CDATA[前言 一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。 1. tomcat 服务调优 tomcat: 8.5.59 1.1. 安全]]></description>
+    <description><![CDATA[<div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>前言<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。</div>
+        </div>
+    </div>
+<h1 id="1-tomcat-服务调优" class="headerLink">
+    <a href="#1-tomcat-%e6%9c%8d%e5%8a%a1%e8%b0%83%e4%bc%98" class="header-mark"></a>1. tomcat 服务调优</h1><ul>
+<li><code>tomcat: 8.5.59</code></li>
+</ul>
+<h2 id="11-安全优化" class="headerLink">
+    <a href="#11-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>1.1. 安全优化</h2><ul>
+<li>
+<p>降权启动</p>]]></description>
 </item><item>
     <title>常用命令收集</title>
     <link>https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
@@ -21,48 +36,245 @@
     <link>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</link>
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
-    <description><![CDATA[1. shell 脚本执行的几种方法 bash(sh) /path/script.sh 赋予执行权限 /path/script.sh 或 ./scripts.sh source script.sh 或 . script.sh 在此方法中执行,子 shell 中定义的变量,可在父 shell 中调用(其他方式父 shell 不能直接调用子 shell 的变量)]]></description>
+    <description><![CDATA[<h1 id="1-shell-脚本执行的几种方法" class="headerLink">
+    <a href="#1-shell-%e8%84%9a%e6%9c%ac%e6%89%a7%e8%a1%8c%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>1. shell 脚本执行的几种方法</h1><ul>
+<li>
+<p><code>bash(sh) /path/script.sh</code></p>
+</li>
+<li>
+<p>赋予执行权限 <code>/path/script.sh </code> 或 <code>./scripts.sh</code></p>
+</li>
+<li>
+<p><code>source script.sh</code> 或 <code>. script.sh</code></p>]]></description>
 </item><item>
     <title>Linux下使用tun2socks进行两地网络连接</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
     <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</guid>
-    <description><![CDATA[之前写了一个关于内网回拨解决方案 , 主要是介绍在PPTP不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是badvpn, 但该仓库已]]></description>
+    <description><![CDATA[<br />
+<p>  之前写了一个关于<a href="https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/" target="_blank" rel="noopener noreferrer"><code>内网回拨解决方案</code></a>, 主要是介绍在<code>PPTP</code>不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是<code>badvpn</code>, 但该仓库已经归档很久了。这篇介绍另一个工具 <a href="https://github.com/xjasonlyu/tun2socks" target="_blank" rel="noopener noreferrer"><code>tun2socks</code></a> 来替代<code>badvpn</code>。</p>]]></description>
 </item><item>
     <title>Linux 性能基准测试工具及测试方法</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
     <pubDate>Wed, 08 May 2024 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</guid>
-    <description><![CDATA[graph TB A[Linux 性能基准/测试] --> B[CPU] A --> C[内存] A --> D[磁盘 IO] A --> E[文件 IO] A --> F[网络] A --> G[应用程序] B --> H[Super_Pi 测试单线程性能] B --> I[sysbench 测试多线程性]]></description>
+    <description><![CDATA[<pre class="mermaid">graph TB
+    A[Linux 性能基准/测试] --> B[CPU]
+    A --> C[内存]
+    A --> D[磁盘 IO]
+    A --> E[文件 IO]
+    A --> F[网络]
+    A --> G[应用程序]
+    
+    B --> H[Super_Pi 测试单线程性能]
+    B --> I[sysbench 测试多线程性能]
+    
+    C --> J[stream 测试内存带宽]
+    
+    D --> K[fio 测试IOPS]
+    D --> L[fio 测试吞吐量]
+    
+    E --> M[fio 测试IOPS]
+    E --> N[fio 测试吞吐量]
+    
+    F --> O[netperf 测试带宽]
+    F --> P[netperf 测试PPS]
+    G --> Q[wrk 测试 Nginx QPS]
+</pr]]></description>
 </item><item>
     <title>页面加载时间统计</title>
     <link>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</link>
     <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</guid>
-    <description><![CDATA[js 组件 直接保存为文件,插入到 html 末尾即可(&lt;script src=&quot;js/pcheck.js&quot;&gt;&lt;/script&gt;), 用来统计当前页面的各类加载时间然后推送到远端 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17]]></description>
+    <description><![CDATA[<h2 id="js-组件" class="headerLink">
+    <a href="#js-%e7%bb%84%e4%bb%b6" class="header-mark"></a>js 组件</h2><ul>
+<li>直接保存为文件,插入到 <code>html</code> 末尾即可(<code>&lt;script src=&quot;js/pcheck.js&quot;&gt;&lt;/script&gt;</code>), 用来统计当前页面的各类加载时间然后推送到远端
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span></code></pr]]></description>
 </item><item>
     <title>内网.外网.宽带.带宽.流量.网速之间的区别与联系</title>
     <link>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</link>
     <pubDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</guid>
-    <description><![CDATA[带宽与宽带的区别是什么带宽是量词，指的是网速的大小，比如1Mbps的意思是一兆比特每秒，这个数值就是指带宽。 宽带是名词，说明网络的传输速率速]]></description>
+    <description><![CDATA[<hr>
+<h1 id="带宽与宽带的区别是什么" class="headerLink">
+    <a href="#%e5%b8%a6%e5%ae%bd%e4%b8%8e%e5%ae%bd%e5%b8%a6%e7%9a%84%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a><strong>带宽</strong>与<strong>宽带</strong>的区别是什么</h1><p><code>带宽</code>是量词，指的是网速的大小，比如<code>1Mbps</code>的意思是一兆比特每秒，这个数值就是指带宽。<br>
+宽带是名词，说明网络的传输速率速很高 。宽带的标准各不相同，最初认为<code>128kbps</code>以上带宽的就是宽带，而以下的就是窄带。<br>
+但现在国内运营商一般提供至少<code>512kbps</code>带宽的宽带服务。也就是说，带宽是一个具体数值，而宽带则是满足一定带宽数值的一种传输标准(服务)。</p>]]></description>
 </item><item>
     <title>NGINX中变量详解</title>
     <link>https://blog.0x5c0f.cc/2023/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/</link>
     <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/</guid>
-    <description><![CDATA[以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接 http://www.hangdaowangluo.com/archives/754 http Croe模块 - - $http_user_agent 客户端UA信息 $http_cookie 客户端COOKIE $cookie_name]]></description>
+    <description><![CDATA[<div class="details admonition quote open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-quote-right fa-fw"></i>以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><blockquote>
+<p><a href="http://www.hangdaowangluo.com/archives/754" target="_blank" rel="noopener noreferrer">http://www.hangdaowangluo.com/archives/754</a></p>]]></description>
 </item><item>
     <title>运维常见面试题</title>
     <link>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</link>
     <pubDate>Fri, 30 Dec 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</guid>
-    <description><![CDATA[1. 请简述OSI七层网络模型有哪些层及各自的含义 物理层：底层数据传输，比如网线、网卡标准 数据链路层：定义数据的基本格式，如何传输，如何标识。比]]></description>
+    <description><![CDATA[<hr>
+<h1 id="1-请简述osi七层网络模型有哪些层及各自的含义" class="headerLink">
+    <a href="#1-%e8%af%b7%e7%ae%80%e8%bf%b0osi%e4%b8%83%e5%b1%82%e7%bd%91%e7%bb%9c%e6%a8%a1%e5%9e%8b%e6%9c%89%e5%93%aa%e4%ba%9b%e5%b1%82%e5%8f%8a%e5%90%84%e8%87%aa%e7%9a%84%e5%90%ab%e4%b9%89" class="header-mark"></a>1. 请简述OSI七层网络模型有哪些层及各自的含义</h1><ul>
+<li><code>物理层</code>：底层数据传输，比如网线、网卡标准</li>
+<li><code>数据链路层</code>：定义数据的基本格式，如何传输，如何标识。比如网卡MAC地址</li>
+<li><code>网络层</code>：定义IP编码，定义路由功能，比如不同设备的数据转发</li>
+<li><code>传输层</code>：端到端传输数据的基本功能，比如TCP、UDP</li>
+<li><code>会话层</code>：控制应用程序之间会话能力，比如不同软件数据分发给不停软件</li>
+<li><code>表示层</code>：数据格式标识，基本压缩加密功能。</li>
+<li><code>应用层</code>：各种应用软件，包括 Web 应用。</li>
+</ul>
+<h1 id="2-在linux的lvm分区格式下请简述给根分区磁盘扩容的步骤" class="headerLink">
+    <a href="#2-%e5%9c%a8linux%e7%9a%84lvm%e5%88%86%e5%8c%ba%e6%a0%bc%e5%bc%8f%e4%b8%8b%e8%af%b7%e7%ae%80%e8%bf%b0%e7%bb%99%e6%a0%b9%e5%88%86%e5%8c%ba%e7%a3%81%e7%9b%98%e6%89%a9%e5%ae%b9%e7%9a%84%e6%ad%a5%e9%aa%a4" class="header-mark"></a>2. 在Linux的LVM分区格式下，请简述给根分区磁盘扩容的步骤.</h1><ul>
+<li>这个分3种
+<h2 id="第一种方法" class="headerLink">
+    <a href="#%e7%ac%ac%e4%b8%80%e7%a7%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>第一种方法:</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pr]]></description>
 </item><item>
     <title>SFTP搭建</title>
     <link>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</link>
     <pubDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/sftp%E6%90%AD%E5%BB%BA/</guid>
-    <description><![CDATA[注意 本文内容仅在CentOS 7上进行测试 前言 文章介绍如何让sftp也可以实现vsftpd虚拟用户的功能。 对于运维来说，我们使用文件传输功能的]]></description>
+    <description><![CDATA[<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>注意<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><strong>本文内容仅在<code>CentOS 7</code>上进行测试</strong></div>
+        </div>
+    </div>
+<h1 id="前言" class="headerLink">
+    <a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h1><p>  文章介绍如何让<code>sftp</code>也可以实现<code>vsftpd</code>虚拟用户的功能。<br>
+  对于运维来说，我们使用文件传输功能的时候都是优先使用<code>vsftpd</code>，而不是<code>sftp</code>,多数原因我想应该都是因为<code>vsftpd</code>具有虚拟用户的功能，这个功能在针对特定的服务来说是非常友好的。比如<code>php</code>服务降权启动时，被读取文件的文件权限问题。 <br>
+  上述的问题，<code>sftp</code>实际上也是可以解决，借助<code>useradd -o</code>选项实现。</p>]]></description>
 </item></channel>
 </rss>

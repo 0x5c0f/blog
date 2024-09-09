@@ -9,7 +9,24 @@
     <link>https://blog.0x5c0f.cc/2019/%E7%9B%91%E6%8E%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
     <pubDate>Mon, 15 Jul 2019 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/%E7%9B%91%E6%8E%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
-    <description><![CDATA[1. tomcat 监控方案 (jmx)zabbix javaGetway zabbix_server 编译安装需增加-enable-java，yum安装的需要安装java java-devel zabbix-java-gateway Tomcat开启远程监控功能, /pathto/tomcat/bin/catalina.sh 大概97行添加CA]]></description>
+    <description><![CDATA[<h1 id="1-tomcat-监控方案-jmx" class="headerLink">
+    <a href="#1-tomcat-%e7%9b%91%e6%8e%a7%e6%96%b9%e6%a1%88-jmx" class="header-mark"></a>1. tomcat 监控方案 (jmx)</h1><p><code>zabbix javaGetway</code></p>
+<ol>
+<li>zabbix_server 编译安装需增加<code>-enable-java</code>，yum安装的需要安装<code>java java-devel zabbix-java-gateway</code></li>
+<li><code>Tomcat</code>开启远程监控功能, <code>/pathto/tomcat/bin/catalina.sh</code> 大概97行添加<code>CATALINA_OPTS=&quot;$CATALINA_OPTS -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=12345 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=&lt;tomcat主机ip&gt;&quot; </code>配置，并解析<code>&lt;tomcat主机ip&gt; tomcat</code></li>
+<li>启动<code>/pathto/zabbix/sbin/zabbix_java/startup.sh</code>   端口: <code>10052</code></li>
+<li>修改<code>zabbix_server.conf</code>配置文件，启用<code>javaPollers</code>,指定<code>javaGateway</code>地址,
+<ul>
+<li>217 行: <code>JavaGateway=127.0.0.1</code>  # ip</li>
+<li>225 行: <code>JavaGatewayPort=10052</code>  # 本地的端口</li>
+<li>235 行: <code>StartJavaPollers=5</code>  # 启动的进程书</li>
+</ul>
+</li>
+<li>zabbix 创建主机，添加<code>jmx</code>接口监控，添加模版<code>JMX</code>的<code>Template JMX Generic</code>/<code>Template JMX Tomcat</code></li>
+</ol>
+<h1 id="2-mysql-监控方案-percona--zabbix" class="headerLink">
+    <a href="#2-mysql-%e7%9b%91%e6%8e%a7%e6%96%b9%e6%a1%88-percona--zabbix" class="header-mark"></a>2. mysql 监控方案 (percona + zabbix)</h1><blockquote>
+<p><a href="https://www.percona.com/doc/percona-monitoring-plugins/LATEST/zabbix/index.html#installation-instructions" target="_blank" rel="noopener noreferrer">https://www.percona.com/doc/percona-monitoring-plugins/LATEST/zabbix/index.html#installation-instructions</a></p>]]></description>
 </item><item>
     <title>Python全网页加载时间</title>
     <link>https://blog.0x5c0f.cc/2019/%E5%85%A8%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4/</link>

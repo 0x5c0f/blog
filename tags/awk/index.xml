@@ -9,6 +9,38 @@
     <link>https://blog.0x5c0f.cc/2022/awk%E5%B8%B8%E7%94%A8/</link>
     <pubDate>Thu, 23 Jun 2022 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/awk%E5%B8%B8%E7%94%A8/</guid>
-    <description><![CDATA[https://awk.readthedocs.io/en/latest/chapter-one.html 1. 摘要awk ' BEGIN{ 语句 } statements2 {语句} END{ 语句 } ' BEGIN { 语句 }：在读取任何输入前执行一次 语句 END { 语句 }：读取所有输入之后执行一次 语句 表达式 { 语句 }：]]></description>
+    <description><![CDATA[<blockquote>
+<p><a href="https://awk.readthedocs.io/en/latest/chapter-one.html" target="_blank" rel="noopener noreferrer">https://awk.readthedocs.io/en/latest/chapter-one.html</a></p>
+</blockquote>
+<h1 id="1-摘要" class="headerLink">
+    <a href="#1-%e6%91%98%e8%a6%81" class="header-mark"></a>1. 摘要</h1><p><code>awk ' BEGIN{ 语句 } statements2 {语句} END{ 语句 } '</code></p>
+<ul>
+<li><code>BEGIN { 语句 }</code>：在读取任何输入前执行一次 语句</li>
+<li><code>END { 语句 }</code>：读取所有输入之后执行一次 语句</li>
+<li><code>表达式 { 语句 }</code>： 对于 表达式 为真（即，非零或非空）的行，执行 语句</li>
+<li><code>/正则表达式/ { 语句 }</code>： 如果输入行包含字符串与 正则表达式 相匹配，则执行 语句</li>
+<li><code>组合模式 { 语句 }</code>： 一个 组合模式 通过与（<code>&amp;&amp;</code>），或（<code>||</code>），非（<code>|</code>），以及括弧来组合多个表达式；对于组合模式为真的每个输入行，执行 语句</li>
+<li><code>模式1，模式2 { 语句 }</code>：  范围模式(<code>range pattern</code>)匹配从与 模式1 相匹配的行到与 模式2 相匹配的行（包含该行）之间的所有行，对于这些输入行，执行 语句 。 <code>BEGIN</code>和<code>END</code>不与其他模式组合。范围模式不可以是任何其他模式的一部分。<code>BEGIN</code>和<code>END</code>是仅有的必须搭配动作的模式。</li>
+</ul>
+<h1 id="2-awk-变量" class="headerLink">
+    <a href="#2-awk-%e5%8f%98%e9%87%8f" class="header-mark"></a>2. awk 变量</h1><ul>
+<li><code>$n</code>: 分割后，第<code>n</code>列的字段</li>
+<li><code>${1..n}</code> 代表当前行的<code>1-n</code>的列值</li>
+<li><code>$0</code>: 代表整行的数据</li>
+<li><code>FS</code>: 表示使用的列的分割符(默认空格,位于<code>BEGIN</code>模块,命令行中<code>-F</code>指定)</li>
+<li><code>OFS</code>: 输出列的分割符,默认<code>print $1,$2</code>的时候中间的<code>,</code>代表空格(默认),可使用<code>OFS</code>进行更改,位于<code>BEGIN</code>模块当中</li>
+<li><code>NF</code>: 分割后，当前行一共多少个字段(<code>$NF</code>最后一列,<code>$(NF-1)</code>倒数第2列)</li>
+<li><code>NR</code>: 记录行号,表示当前正在处理的记录的行的号码</li>
+<li><code>FNR</code>: 各文件分别计数的行号</li>
+<li><code>RS</code>: 表示行分隔符,表示每个记录输入的时候的分割符,即行与行是如何分割的(内置变量RS用来存放输入的记录分割符,可通过<code>BEGIN</code>模块来进行修改,支持正则表达式</li>
+<li><code>ORS</code>: 输出记录分隔符(输出换行符)，输出时用指定符号代替换行符,默认行的分割符为<code>\n</code></li>
+<li><code>FILENAME</code>: 当前文件名</li>
+<li><code>ARGC</code>：命令行参数的个数</li>
+<li><code>ARGV</code>: 数组，命令行参数的值</li>
+</ul>
+<h2 id="示例" class="headerLink">
+    <a href="#%e7%a4%ba%e4%be%8b" class="header-mark"></a>示例</h2><ul>
+<li>
+<p><code>RS</code>: 表示行分隔符,表示每个记录输入的时候的分割符,即行与行是如何分割的(内置变量RS用来存放输入的记录分割符,可通过<code>BEGIN</code>模块来进行修改,支持正则表达式</p>]]></description>
 </item></channel>
 </rss>

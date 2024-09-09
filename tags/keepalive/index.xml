@@ -9,6 +9,9 @@
     <link>https://blog.0x5c0f.cc/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</link>
     <pubDate>Thu, 19 Nov 2020 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/keepalive%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</guid>
-    <description><![CDATA[安装前需检查反项代理是否正常 yum install keepalived 配置文件说明 /etc/keepalived/keepalived.conf主备节点配置基本一致,需修改的仅]]></description>
+    <description><![CDATA[<p>安装前需检查反项代理是否正常</p>
+<p><code>yum install keepalived</code></p>
+<h1 id="配置文件说明-etckeepalivedkeepalivedconf" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e8%af%b4%e6%98%8e-etckeepalivedkeepalivedconf" class="header-mark"></a>配置文件说明 /etc/keepalived/keepalived.conf</h1><p>主备节点配置基本一致,需修改的仅有 router_id , state ，priority</p>]]></description>
 </item></channel>
 </rss>
