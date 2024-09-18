@@ -184,13 +184,20 @@ Seconds_Behind_Master         | 0
 ```bash
 ## 控制 my.cnf (不建议在主库进行设置,建议在从库进行设置)
 ## 白名单(在此当中的才会复制)
+
+## replicate_do_db = test 
 --replicate-do-db = test 
+# replicate_do_table = test.t1 
 --replicate-do-table = test.t1 
+# replicate_wild_do_table = test.t% 
 --replicate-wild-do-table = test.t% 
 
 ## 黑名单(在此中的将不会复制)
+# replicate_ignore_db = test
 --replicate-ignore-db = test
+# replicate_ignore_table = test.t1 
 --replicate-ignore-table = test.t1 
+# replicate_wild_ignore_table = test.t%
 --replicate-wild-ignore-table = test.t%
 
 ```

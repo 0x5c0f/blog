@@ -2,7 +2,7 @@
 
 **当年收藏的一个封装脚本**  
 
-{{< highlight javascript >}}
+```javascript
 /*
  * Util.$(objid)：获取指定ID的dom对象
  *
@@ -292,4 +292,4 @@ EventHandler.detachEvent = function (obj, eventname, func) {
   }
 };
 
-{{< /highlight >}}
+```

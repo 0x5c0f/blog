@@ -91,9 +91,13 @@ C、本地策略——>安全选项
 帐户：重命名系统管理员帐户　　　　　　　　重命名一个帐户（比如administrator改成lefux,不一定是lefux问清楚再改，改后最好重启一下服务器）
 
 英文版本：
-Interactive logon:Do not display last user name    Enabled
-Network access:Do not allow anonymous enumeration of SAM accounts and share  Enabled
-Network access:Do not allow
+Interactive logon: Do not display last user name    Enabled
+Network access: Do not allow anonymous enumeration of SAM accounts and share  Enabled
+Network access: Do not allow storage of passwords and credentials for network authentication	 Enabled
+Network access: Named Pipes that can be accessed anonymously      全删除
+Network access: Remotely accessible registry paths               全删除
+Network access: Remotely accessible registry paths and subpaths  全删除
+Network access: Shares that can be accessed anonymously           全删除
 ```
 
 # 4. 禁用以下的服务

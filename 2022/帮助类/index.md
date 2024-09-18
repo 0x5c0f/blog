@@ -1,7 +1,7 @@
 # javascript 帮助类
 
 
-{{< highlight javascript >}}
+```javascript
 function check_browser() {
    Opera = (navigator .userAgent .indexOf ("Opera", 0) != -1 )?1: 0;
    MSIE = (navigator .userAgent .indexOf ("Microsoft", 0) != -1 )?1: 0;
@@ -466,4 +466,5 @@ $("input[name='decAmountInput']").keypress(function (event) {
     this.style.imeMode = 'disabled';
 });
 // -------------------
-{{< /highlight >}}
+
+```

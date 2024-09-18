@@ -104,7 +104,7 @@ pause
 ```
 
 # 8. 按照时间创建文件夹 
-{{< highlight batch >}}
+```batch
 :: 编码格式 ANSI
 :: 脚本创建时最好选择ANSI编码(防止中文乱码)
 :: @echo off 表示不回显执行的命令
@@ -133,7 +133,7 @@ if %HOUR% LEQ %NINE% set HOUR=%ZERO%%TMP_HOUR%
  
 set CURRENT_DATE_TIME_STAMP=%YEAR%%MONTH%%DAY%%HOUR%%MINUTE%%SECOND%%MILLISECIOND%
 mkdir %CURRENT_DATE_TIME_STAMP%
-{{< /highlight >}}
+```
 
 # 9. windows前台程序运行到后台
 ```vb
