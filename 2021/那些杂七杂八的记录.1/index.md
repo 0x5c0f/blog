@@ -763,9 +763,11 @@ $> ab -n 5000 -c 50 -r http://www.example.com/
     s3fs#<存储桶名> <挂载到的目录> fuse auto,_netdev,sigv4,allow_other,passwd_file=/etc/sysconfig/passwd-s3fs,endpoint=ap-east-1,use_path_request_style,url=https://s3.ap-east-1.amazonaws.com 0 0
     ```
 
-## 亚马逊用户策略
+### 亚马逊用户策略
 ```json
-// 以下策略用于控制仅限操作特定的存储桶 
+// 方案一 
+// 注意: 若是按照上面存储通步骤创建存储桶，那么需要手动打开 `权限` - `访问控制列表(ACL)` 中 所有人(公有访问权限) 的 `列出` 权限，否则通过api无法正常操作(s3 brower也需要开启此项设置)
+// 以下策略用于控制仅限`特定用户`操作特定的存储桶，该策略附加给用户
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -777,6 +779,34 @@ $> ab -n 5000 -c 50 -r http://www.example.com/
             "Resource": [
                 "arn:aws:s3:::<存储桶名>/*"
             ]
+        }
+    ]
+}
+// 方案二 
+// 以下策略设置在 `存储桶` - `权限` - `存储桶策略` 中，用于控制存储桶接受那个用户操作，该策略是附加给存储桶的 
+// https://docs.aws.amazon.com/zh_cn/AmazonS3/latest/userguide/example-bucket-policies.html
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AddPublicReadCannedAcl",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    "用户的ARN",
+                ]
+            },
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": "arn:aws:s3:::存储桶名/*",
+            "Condition": {
+                "StringEquals": {
+                    "s3:x-amz-acl": [
+                        "public-read" // 必须指定的ACL权限
+                    ]
+                }
+            }
         }
     ]
 }

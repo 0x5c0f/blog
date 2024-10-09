@@ -538,9 +538,13 @@ $> skopeo delete docker://hub.example.com/0x5c0f/sshx:2023121505
 $> watch -n 3 'docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}" | sort -k 2 -r'
 ```
 
-# `docker-compose` 同时查询`服务名`、`容器名`、`容器id`  
+# docker-compose 同时查询`服务名`、`容器名`、`容器id`  
 ```bash
 # 需要 docker-compose v2
 $> docker compose ps --format "table {{.Service}}:{{.Name}}\t{{.ID}}" 
 ```
 
+# 实时写入的大文件压缩切割 
+```bash
+$> gzip -c a.log >/tmp/a.log.gz && > a.log
+```
