@@ -3,12 +3,26 @@
         <title>Tags - 标签 - 一个曾经的小码农...</title>
         <link>https://blog.0x5c0f.cc/tags/</link>
         <description>Tags - 标签 - 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 29 Oct 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/" rel="self" type="application/rss+xml" /><item>
     <title>Linux</title>
     <link>https://blog.0x5c0f.cc/tags/linux/</link>
-    <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
+    <pubDate>Tue, 29 Oct 2024 00:00:00 &#43;0000</pubDate><author>
         <name>作者</name>
     </author><guid>https://blog.0x5c0f.cc/tags/linux/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>解决方案</title>
+    <link>https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
+    <pubDate>Tue, 29 Oct 2024 00:00:00 &#43;0000</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>同步</title>
+    <link>https://blog.0x5c0f.cc/tags/%E5%90%8C%E6%AD%A5/</link>
+    <pubDate>Tue, 29 Oct 2024 00:00:00 &#43;0000</pubDate><author>
+        <name>作者</name>
+    </author><guid>https://blog.0x5c0f.cc/tags/%E5%90%8C%E6%AD%A5/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>Windows</title>
@@ -16,13 +30,6 @@
     <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
         <name>作者</name>
     </author><guid>https://blog.0x5c0f.cc/tags/windows/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>解决方案</title>
-    <link>https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link>
-    <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
-        <name>作者</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>优化</title>
@@ -65,13 +72,6 @@
     <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate><author>
         <name>作者</name>
     </author><guid>https://blog.0x5c0f.cc/tags/nginx/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>Sftp</title>
-    <link>https://blog.0x5c0f.cc/tags/sftp/</link>
-    <pubDate>Wed, 07 Dec 2022 00:00:00 &#43;0000</pubDate><author>
-        <name>作者</name>
-    </author><guid>https://blog.0x5c0f.cc/tags/sftp/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

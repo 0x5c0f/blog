@@ -118,3 +118,33 @@
 解决： 经多方对比，发现问题是由于程序池设置导致，复制后的站点，程序池未开启 `加载用户配置文件`。
 总结： `windows`上应不会存在权限相关问题，因此此类问题应该优先考虑程序池
 
+
+
+# IIS .net项目下载文件出现访问被拒绝
+- 异常体现
+```
+  对路径“xxxx.JPG”的访问被拒绝。
+  说明: 执行当前 Web 请求期间，出现未经处理的异常。请检查堆栈跟踪信息，以了解有关该错误以及代码中导致错误的出处的详细信息。
+
+  异常详细信息: System.UnauthorizedAccessException: 对路径“xxxx.JPG”的访问被拒绝。
+
+  ASP.NET 无权访问所请求的资源。请考虑对 ASP.NET 请求标识授予访问此资源的权限。ASP.NET 有一个在应用程序没有模拟时使用的基进程标识(通常，在 IIS 5 上为 {MACHINE}\ASPNET，在 IIS 6 和 IIS 7 上为网络服务，在 IIS 7.5 上为配置的应用程序池标识)。如果应用程序正在通过 <identity impersonate="true"/> 模拟，则标识将为匿名用户(通常为 IUSR_MACHINENAME)或经过身份验证的请求用户。
+
+  要将 ASP.NET 访问权限授予某个文件，请在文件资源管理器中右击该文件，选择“属性”，然后选择“安全”选项卡。单击“添加”添加适当的用户或组。突出显示 ASP.NET 帐户，选中所需访问权限对应的框。
+
+  源错误:
+
+  执行当前 Web 请求期间生成了未经处理的异常。可以使用下面的异常堆栈跟踪信息确定有关异常原因和发生位置的信息。
+
+  堆栈跟踪:
+
+  [DirectoryNotFoundException: 未能找到路径“xxxxxx”的一部分。]
+  System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath) +490
+  System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost) +833
+  System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy) +144
+  System.IO.FileStream..ctor(String path, FileMode mode) +91
+  HTYD.Merchant.Controllers.ExportController.DownloadFile(String fPath) in xxxx.cs:192
+  System.Web.Mvc.<>c__DisplayClass1.<WrapVoidAction>b__0(ControllerBase controller, Object[] parameters) +15
+  .....
+  ```
+- 解决方案:  此项问题产生原因不知道，但解决方案是，为该目录添加 `IIS_USER` 用户权限，注意需要附加 `修改` 权限 

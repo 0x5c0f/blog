@@ -3,7 +3,7 @@
         <title>所有文章 - 一个曾经的小码农...</title>
         <link>https://blog.0x5c0f.cc/posts/</link>
         <description>所有文章 | 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 29 Oct 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Starting</title>
     <link>https://blog.0x5c0f.cc/2022/starting/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
@@ -42,6 +42,12 @@
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</guid>
     <description><![CDATA[那些杂七杂八的记录(二)]]></description>
 </item><item>
+    <title>Redis主从复制&#43;哨兵</title>
+    <link>https://blog.0x5c0f.cc/2024/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6_%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Tue, 29 Oct 2024 00:00:00 &#43;0000</pubDate><author>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6_%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[Redis主从+哨兵模式创建]]></description>
+</item><item>
     <title>Linux下使用tun2socks进行两地网络连接</title>
     <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
     <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
@@ -59,11 +65,5 @@
     <pubDate>Mon, 13 Nov 2023 00:00:00 &#43;0000</pubDate><author>
                         <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/</guid>
     <description><![CDATA[可用来统计页面加载时间，js组件直接插入到html末尾即可]]></description>
-</item><item>
-    <title>内网.外网.宽带.带宽.流量.网速之间的区别与联系</title>
-    <link>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</link>
-    <pubDate>Fri, 03 Nov 2023 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</guid>
-    <description><![CDATA[内网.外网.宽带.带宽.流量.网速之间的区别与联系]]></description>
 </item></channel>
 </rss>

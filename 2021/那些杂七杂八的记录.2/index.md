@@ -179,3 +179,7 @@ $> java -jar ./canal2sql-1.1.3.jar -mode file -ddl '/tmp/database.sql' -file_url
 > https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/deployment-variables/deployment-variables-linux.html
 
 
+## 跨 VPC 访问 Redis 主备，info replication 拿到的从库ip是 内网ip 
+- 这个问题初次发现是应用调用华为的云Redis发现的，云Redis是跨vpc部署的主备， 但是info replication 拿到的从库ip是内网ip，由于应用和redis实际环境不处于同一网络，导致应用访问超时，目前的解决是研发这边准备重写对应组件，但发现该组件作者已经解决了这个问题，升级到新版本后解决。 架构可以看成是  `用户: 192.168.2.8/24` 访问 `代理:192.168.2.10/24` ---> `Redis主: 10.0.2.10/24`, 而 用户通过 `info replication` 拿到的却是 `10.0.2.10/24`，所以 `192.168.2.8/24` 肯定无法连接 `10.0.2.10/24`。  
+
+- 这个问题感觉还是比较经典的，比如 用容器部署的主备，应用和主备环境不处于同一主机， 也会出现类似问题。应该是容器化部署类的都会产生，架构方面应该可以解决，但是没有找到合适的解决方案。
