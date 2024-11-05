@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Shellscript - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/shellscript/</link>
+        <link>http://localhost:1313/tags/shellscript/</link>
         <description>Shellscript - 标签 - 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 31 May 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/shellscript/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 31 May 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/shellscript/" rel="self" type="application/rss+xml" /><item>
     <title>Shellscript相关</title>
-    <link>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</link>
+    <link>http://localhost:1313/2019/shellscript%E7%9B%B8%E5%85%B3/</link>
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2019/shellscript%E7%9B%B8%E5%85%B3/</guid>
     <description><![CDATA[Shellscript相关]]></description>
 </item></channel>
 </rss>

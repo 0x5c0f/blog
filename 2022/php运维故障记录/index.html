@@ -1,13 +1,28 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>Php运维故障记录 - 一个曾经的小码农...</title><meta name="Description" content="Php运维故障记录"><meta property="og:url" content="https://blog.0x5c0f.cc/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Php运维故障记录 · 一个曾经的小码农...
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="description" content="Php运维故障记录">
+<meta name="keywords" content="[linux Hugo 解决方案 故障]">
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta name="twitter:title" content="Php运维故障记录">
+  <meta name="twitter:description" content="Php运维故障记录">
+
+<meta property="og:url" content="http://localhost:1313/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/">
   <meta property="og:site_name" content="一个曾经的小码农...">
   <meta property="og:title" content="Php运维故障记录">
   <meta property="og:description" content="Php运维故障记录">
@@ -19,158 +34,181 @@
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Php">
     <meta property="article:tag" content="解决方案">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6_%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_avatar.png">
+      <meta property="og:see_also" content="http://localhost:1313/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/">
+      <meta property="og:see_also" content="http://localhost:1313/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">
+      <meta property="og:see_also" content="http://localhost:1313/2019/shellscript%E7%9B%B8%E5%85%B3/">
+      <meta property="og:see_also" content="http://localhost:1313/2024/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6_%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
+      <meta property="og:see_also" content="http://localhost:1313/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
+      <meta property="og:see_also" content="http://localhost:1313/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
+      <meta property="og:see_also" content="http://localhost:1313/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-  <meta name="twitter:title" content="Php运维故障记录">
-  <meta name="twitter:description" content="Php运维故障记录">
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" /><link rel="prev" href="https://blog.0x5c0f.cc/2022/redis%E9%9B%86%E7%BE%A4%E5%8F%8Aredis%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Php运维故障记录",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/blog.0x5c0f.cc\/2022\/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/"
-        },"genre": "posts","keywords": "linux, php, 解决方案","wordcount":  1399 ,
-        "url": "https:\/\/blog.0x5c0f.cc\/2022\/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95\/","datePublished": "2022-06-22T00:00:00+00:00","dateModified": "2022-06-22T00:00:00+00:00","publisher": {
-            "@type": "Organization",
-            "name": "作者"},"authors": [{
-                        "@type": "Person",
-                        "name": "admin"                    
-                    }],"description": "Php运维故障记录"
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+
+
+<link rel="canonical" href="http://localhost:1313/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link rel="alternate" type="text/plain" href="/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/index.md" title="一个曾经的小码农..." />
+
+
+
+
+
+
+
 </head>
 
-<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="一个曾经的小码农..."><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="一个曾经的小码农..."><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
 </div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><div class="toc" id="toc-auto">
-        <h2 class="toc-title">目录</h2>
-        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-php-message-php-fatal-error--allowed-memory-size-of-134217728-bytes-exhausted-修改-phpini">1. PHP message: PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted, 修改 php.ini</a></li>
-    <li><a href="#2-request_terminate_timeout的值如果设置为0或者过长的时间可能会引起file_get_contents的资源问题">2. request_terminate_timeout的值如果设置为0或者过长的时间，可能会引起file_get_contents的资源问题。</a></li>
-    <li><a href="#3-max_requests参数配置不当可能会引起间歇性502错误转">3. max_requests参数配置不当，可能会引起间歇性502错误(转)</a></li>
-    <li><a href="#4-php-fpm的慢日志debug及异常排查神器">4. php-fpm的慢日志，debug及异常排查神器：</a></li>
-  </ul>
-</nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Php运维故障记录</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-22">2022-06-22</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-22">2022-06-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1399 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="leancloud_visitors" data-flag-title="Php运维故障记录">
-                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"></span>&nbsp;次阅读
-                    </span>&nbsp;<span id="/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="comment_count" data-flag-title="Php运维故障记录">
-                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"></span>&nbsp;条评论
-                    </span>&nbsp;<span>
-                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
-                    </span>&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-php-message-php-fatal-error--allowed-memory-size-of-134217728-bytes-exhausted-修改-phpini">1. PHP message: PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted, 修改 php.ini</a></li>
-    <li><a href="#2-request_terminate_timeout的值如果设置为0或者过长的时间可能会引起file_get_contents的资源问题">2. request_terminate_timeout的值如果设置为0或者过长的时间，可能会引起file_get_contents的资源问题。</a></li>
-    <li><a href="#3-max_requests参数配置不当可能会引起间歇性502错误转">3. max_requests参数配置不当，可能会引起间歇性502错误(转)</a></li>
-    <li><a href="#4-php-fpm的慢日志debug及异常排查神器">4. php-fpm的慢日志，debug及异常排查神器：</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><div class="details admonition warning open">
-                <div class="details-summary admonition-title">
-                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
-                </div>
-                <div class="details-content">
-                    <div class="admonition-content">
-                        本文最后更新于 <span class="timeago" datetime="2022-06-22T00:00:00" title="June 22, 2022">2022-06-22</span>，文中内容可能已过时。</div>
-                </div>
-            </div><h1 id="1-php-message-php-fatal-error--allowed-memory-size-of-134217728-bytes-exhausted-修改-phpini" class="headerLink">
-    <a href="#1-php-message-php-fatal-error--allowed-memory-size-of-134217728-bytes-exhausted-%e4%bf%ae%e6%94%b9-phpini" class="header-mark"></a>1. PHP message: PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted, 修改 php.ini</h1><div class="highlight"><div class="chroma">
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      一个曾经的小码农...
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/series/">系列</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/">
+              Php运维故障记录
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2022-06-22T00:00:00Z">
+                June 22, 2022
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              阅读时间：3 分钟
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/admin/">Admin</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/linux/">Linux</a>
+      <span class="separator">•</span>
+    <a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/linux/">Linux</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/php/">Php</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <h1 id="1-php-message-php-fatal-error--allowed-memory-size-of-134217728-bytes-exhausted-修改-phpini">
+  1. PHP message: PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted, 修改 php.ini
+  <a class="heading-link" href="#1-php-message-php-fatal-error--allowed-memory-size-of-134217728-bytes-exhausted-%e4%bf%ae%e6%94%b9-phpini">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -186,9 +224,15 @@
 </span></span></span><span class="line"><span class="cl"><span class="s"> # 完成后重启nginx即可</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="2-request_terminate_timeout的值如果设置为0或者过长的时间可能会引起file_get_contents的资源问题" class="headerLink">
-    <a href="#2-request_terminate_timeout%e7%9a%84%e5%80%bc%e5%a6%82%e6%9e%9c%e8%ae%be%e7%bd%ae%e4%b8%ba0%e6%88%96%e8%80%85%e8%bf%87%e9%95%bf%e7%9a%84%e6%97%b6%e9%97%b4%e5%8f%af%e8%83%bd%e4%bc%9a%e5%bc%95%e8%b5%b7file_get_contents%e7%9a%84%e8%b5%84%e6%ba%90%e9%97%ae%e9%a2%98" class="header-mark"></a>2. request_terminate_timeout的值如果设置为0或者过长的时间，可能会引起file_get_contents的资源问题。</h1><blockquote>
-<p><a href="http://www.cnblogs.com/argb/p/3604340.html" target="_blank" rel="noopener noreferrer">http://www.cnblogs.com/argb/p/3604340.html</a></p>
+</div><h1 id="2-request_terminate_timeout的值如果设置为0或者过长的时间可能会引起file_get_contents的资源问题">
+  2. request_terminate_timeout的值如果设置为0或者过长的时间，可能会引起file_get_contents的资源问题。
+  <a class="heading-link" href="#2-request_terminate_timeout%e7%9a%84%e5%80%bc%e5%a6%82%e6%9e%9c%e8%ae%be%e7%bd%ae%e4%b8%ba0%e6%88%96%e8%80%85%e8%bf%87%e9%95%bf%e7%9a%84%e6%97%b6%e9%97%b4%e5%8f%af%e8%83%bd%e4%bc%9a%e5%bc%95%e8%b5%b7file_get_contents%e7%9a%84%e8%b5%84%e6%ba%90%e9%97%ae%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<blockquote>
+<p><a href="http://www.cnblogs.com/argb/p/3604340.html"  class="external-link" target="_blank" rel="noopener">http://www.cnblogs.com/argb/p/3604340.html</a></p>
 </blockquote>
 <p>如果<code>file_get_contents</code>请求的远程资源如果反应过慢，<code>file_get_contents</code>就会一直卡在那里不会超时。我们知道<code>php.ini</code> 里面<code>max_execution_time</code> 可以设置 <code>PHP</code> 脚本的最大执行时间，但是，在 <code>php-cgi(php-fpm)</code> 中，该参数不会起效。真正能够控制 <code>PHP</code> 脚本最大执行时间的是 <code>php-fpm.conf</code> 配置文件中的<code>request_terminate_timeout</code>参数。</p>
 <p><code>request_terminate_timeout</code>默认值为 0 秒，也就是说，PHP 脚本会一直执行下去。这样，当所有的 <code>php-cgi</code> 进程都卡在 <code>file_get_contents()</code> 函数时，这台 <code>Nginx+PHP</code> 的 <code>WebServer</code> 已经无法再处理新的 PHP 请求了，Nginx 将给用户返回“502 Bad Gateway”。修改该参数，设置一个 PHP 脚本最大执行时间是必要的，但是，治标不治本。例如改成 30s，如果发生 <code>file_get_contents()</code> 获取网页内容较慢的情况，这就意味着 150 个 php-cgi 进程，每秒钟只能处理 5 个请求，<code>WebServer</code> 同样很难避免”502 Bad Gateway”。<strong>解决办法是<code>request_terminate_timeout</code>设置为10s或者一个合理的值，或者给<code>file_get_contents</code>加一个超时参数。</strong></p>
@@ -212,8 +256,14 @@
 </span></span><span class="line"><span class="cl"><span class="nx">file_get_contents</span><span class="p">(</span><span class="nv">$str</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">$ctx</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="3-max_requests参数配置不当可能会引起间歇性502错误转" class="headerLink">
-    <a href="#3-max_requests%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e4%b8%8d%e5%bd%93%e5%8f%af%e8%83%bd%e4%bc%9a%e5%bc%95%e8%b5%b7%e9%97%b4%e6%ad%87%e6%80%a7502%e9%94%99%e8%af%af%e8%bd%ac" class="header-mark"></a>3. max_requests参数配置不当，可能会引起间歇性502错误(转)</h1><p><code>pm.max_requests = 1000</code><br>
+</div><h1 id="3-max_requests参数配置不当可能会引起间歇性502错误转">
+  3. max_requests参数配置不当，可能会引起间歇性502错误(转)
+  <a class="heading-link" href="#3-max_requests%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e4%b8%8d%e5%bd%93%e5%8f%af%e8%83%bd%e4%bc%9a%e5%bc%95%e8%b5%b7%e9%97%b4%e6%ad%87%e6%80%a7502%e9%94%99%e8%af%af%e8%bd%ac">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><code>pm.max_requests = 1000</code><br>
 设置每个子进程重生之前服务的请求数. 对于可能存在内存泄漏的第三方模块来说是非常有用的. 如果设置为 ’0′ 则一直接受请求. 等同于 <code>PHP_FCGI_MAX_REQUESTS</code> 环境变量. 默认值: 0.
 这段配置的意思是，当一个 PHP-CGI 进程处理的请求数累积到 500 个后，自动重启该进程。</p>
 <ul>
@@ -223,8 +273,14 @@
   目前我们的解决方法是，把这个值尽量设置大些，尽可能减少 PHP-CGI 重新 SPAWN 的次数，同时也能提高总体性能。在我们自己实际的生产环境中发现，内存泄漏并不明显，因此我们将这个值设置得非常大（204800）。大家要根据自己的实际情况设置这个值，不能盲目地加大。<br>
   <strong>话说回来，这套机制目的只为保证 PHP-CGI 不过分地占用内存，为何不通过检测内存的方式来处理呢？我非常认同高春辉所说的，通过设置进程的峰值内在占用量来重启 PHP-CGI 进程，会是更好的一个解决方案。</strong></li>
 </ul>
-<h1 id="4-php-fpm的慢日志debug及异常排查神器" class="headerLink">
-    <a href="#4-php-fpm%e7%9a%84%e6%85%a2%e6%97%a5%e5%bf%97debug%e5%8f%8a%e5%bc%82%e5%b8%b8%e6%8e%92%e6%9f%a5%e7%a5%9e%e5%99%a8" class="header-mark"></a>4. php-fpm的慢日志，debug及异常排查神器：</h1><p><code>request_slowlog_timeout</code>设置一个超时的参数，slowlog设置慢日志的存放位置</p>
+<h1 id="4-php-fpm的慢日志debug及异常排查神器">
+  4. php-fpm的慢日志，debug及异常排查神器：
+  <a class="heading-link" href="#4-php-fpm%e7%9a%84%e6%85%a2%e6%97%a5%e5%bf%97debug%e5%8f%8a%e5%bc%82%e5%b8%b8%e6%8e%92%e6%9f%a5%e7%a5%9e%e5%99%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><code>request_slowlog_timeout</code>设置一个超时的参数，slowlog设置慢日志的存放位置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -235,41 +291,90 @@
 </div>
 </div><p>上面的命令即可看到执行过慢的php过程。<br>
 大家可以看到经常出现的网络读取超过、Mysql查询过慢的问题，根据提示信息再排查问题就有很明确的方向了。</p>
-</div>
 
-        <div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-06-22</span>
-            </div>
-            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span><a class="link-to-mardown" href=/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
-                    </span></div>
-            <div class="post-info-share">
-                <span><a href="#" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2022/php%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" data-title="Php运维故障记录"><i class="fab fa-evernote fa-fw"></i></a></span>
-            </div>
-        </div>
+      </div>
+
+
+      <footer>
+        
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-运维记事">
+        参见 运维记事
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e8%bf%90%e7%bb%b4%e8%ae%b0%e4%ba%8b">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/">常用web环境优化</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">常用命令收集</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2019/shellscript%E7%9B%B8%E5%85%B3/">Shellscript相关</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2024/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6_%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">Redis主从复制&#43;哨兵</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">Linux下使用tun2socks进行两地网络连接</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">Linux 性能基准测试工具及测试方法</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
     </div>
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/php/">Php</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/2022/redis%E9%9B%86%E7%BE%A4%E5%8F%8Aredis%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/" class="prev" rel="prev" title="Redis集群及redis代理配置"><i class="fas fa-angle-left fa-fw"></i>Redis集群及redis代理配置</a>
-            <a href="/2022/%E9%82%A3%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%E6%94%B6%E9%9B%86/" class="next" rel="next" title="那些好用的工具收集">那些好用的工具收集<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="waline" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
-            </noscript></div></article></div>
-        </main><footer class="footer">
+    <footer class="footer">
     <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".icp, .icp-splitter, .icp-br").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.134.1">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+          &nbsp;|&nbsp;&nbsp;|&nbsp;
         </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
             >&nbsp;<a
               href="/"
@@ -282,18 +387,52 @@
           <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div>
       <div class="footer-line"></div>
       <div class="footer-line"></div>
-    </div></footer></div>
+    </div></footer>
+  </main>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-06MPV27KSD');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 </body>
 
 </html>

@@ -1,13 +1,28 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>常用web环境优化 - 一个曾经的小码农...</title><meta name="Description" content="常用web环境优化"><meta property="og:url" content="https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  常用web环境优化 · 一个曾经的小码农...
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="description" content="常用web环境优化">
+<meta name="keywords" content="[linux Hugo 解决方案 故障]">
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta name="twitter:title" content="常用web环境优化">
+  <meta name="twitter:description" content="常用web环境优化">
+
+<meta property="og:url" content="http://localhost:1313/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/">
   <meta property="og:site_name" content="一个曾经的小码农...">
   <meta property="og:title" content="常用web环境优化">
   <meta property="og:description" content="常用web环境优化">
@@ -21,346 +36,181 @@
     <meta property="article:tag" content="Nginx">
     <meta property="article:tag" content="Php">
     <meta property="article:tag" content="解决方案">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2019/shellscript%E7%9B%B8%E5%85%B3/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6_%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_avatar.png">
+      <meta property="og:see_also" content="http://localhost:1313/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">
+      <meta property="og:see_also" content="http://localhost:1313/2019/shellscript%E7%9B%B8%E5%85%B3/">
+      <meta property="og:see_also" content="http://localhost:1313/2024/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6_%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
+      <meta property="og:see_also" content="http://localhost:1313/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
+      <meta property="og:see_also" content="http://localhost:1313/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">
+      <meta property="og:see_also" content="http://localhost:1313/2023/%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4%E7%BB%9F%E8%AE%A1/">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-  <meta name="twitter:title" content="常用web环境优化">
-  <meta name="twitter:description" content="常用web环境优化">
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" /><link rel="next" href="https://blog.0x5c0f.cc/2022/starting/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "常用web环境优化",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/blog.0x5c0f.cc\/2020\/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96\/"
-        },"genre": "posts","keywords": "linux, 优化, nginx, php, 解决方案","wordcount":  9034 ,
-        "url": "https:\/\/blog.0x5c0f.cc\/2020\/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96\/","datePublished": "2020-11-18T00:00:00+00:00","dateModified": "2022-06-28T00:00:00+00:00","publisher": {
-            "@type": "Organization",
-            "name": "作者"},"authors": [{
-                        "@type": "Person",
-                        "name": "admin"                    
-                    }],"description": "常用web环境优化"
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+
+
+<link rel="canonical" href="http://localhost:1313/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link rel="alternate" type="text/plain" href="/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/index.md" title="一个曾经的小码农..." />
+
+
+
+
+
+
+
 </head>
 
-<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="一个曾经的小码农..."><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="一个曾经的小码农..."><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
 </div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><div class="toc" id="toc-auto">
-        <h2 class="toc-title">目录</h2>
-        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-tomcat-服务调优">1. tomcat 服务调优</a>
-      <ul>
-        <li><a href="#11-安全优化">1.1. 安全优化</a></li>
-        <li><a href="#12-性能优化">1.2. 性能优化</a></li>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      一个曾经的小码农...
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/series/">系列</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
       </ul>
-    </li>
-    <li><a href="#2-tmpfs-一种基于内存的文件系统">2. tmpfs 一种基于内存的文件系统</a></li>
-    <li><a href="#3-nginx-优化">3. nginx 优化</a>
-      <ul>
-        <li><a href="#31-版本号隐藏">3.1. 版本号隐藏</a></li>
-        <li><a href="#32-更改nginx默认用户">3.2. 更改nginx默认用户</a></li>
-        <li><a href="#33-优化wroker进程数">3.3. 优化wroker进程数</a></li>
-        <li><a href="#34-nginx-事件模型优化">3.4. Nginx 事件模型优化</a></li>
-        <li><a href="#35-nginx-worker-进程最大打开文件数">3.5. Nginx worker 进程最大打开文件数</a></li>
-        <li><a href="#36-nginx-服务器域名hash表大小">3.6. Nginx 服务器域名hash表大小</a></li>
-        <li><a href="#37-开启高效的文件传输模式">3.7. 开启高效的文件传输模式</a></li>
-        <li><a href="#38-超时连接优化">3.8. 超时连接优化</a>
-          <ul>
-            <li><a href="#381-作用">3.8.1. 作用</a></li>
-            <li><a href="#382-问题">3.8.2. 问题</a></li>
-            <li><a href="#383-建议">3.8.3. 建议</a></li>
-            <li><a href="#384-配置">3.8.4. 配置</a></li>
-          </ul>
-        </li>
-        <li><a href="#39-动态参数引擎fastcgi">3.9. 动态参数引擎fastcgi</a></li>
-        <li><a href="#310-gzip">3.10. gzip</a>
-          <ul>
-            <li><a href="#3101-优点">3.10.1. 优点</a></li>
-            <li><a href="#3102-需要和不需要压缩的对象">3.10.2. 需要和不需要压缩的对象</a></li>
-            <li><a href="#3103-配置">3.10.3. 配置</a></li>
-          </ul>
-        </li>
-        <li><a href="#311-nginx-expires-缓存">3.11. nginx expires 缓存</a>
-          <ul>
-            <li><a href="#3111-优点">3.11.1. 优点</a></li>
-            <li><a href="#3112-缺点">3.11.2. 缺点</a></li>
-            <li><a href="#3113-配置">3.11.3. 配置</a></li>
-          </ul>
-        </li>
-        <li><a href="#312-nginx-日志">3.12. nginx 日志</a>
-          <ul>
-            <li><a href="#3121-切割示例">3.12.1. 切割示例</a></li>
-            <li><a href="#3122-不记录不需要的日志">3.12.2. 不记录不需要的日志</a></li>
-            <li><a href="#3123-访问日志权限设置">3.12.3. 访问日志权限设置</a></li>
-          </ul>
-        </li>
-        <li><a href="#313-nginx-站点目录及文件url控制">3.13. nginx 站点目录及文件URL控制</a>
-          <ul>
-            <li><a href="#3131-根据文件扩展名限制程序和文件访问">3.13.1. 根据文件扩展名限制程序和文件访问</a></li>
-            <li><a href="#3132-限制网站来源ip访问">3.13.2. 限制网站来源IP访问</a></li>
-            <li><a href="#3133-配置nginx禁止非法域名解析">3.13.3. 配置nginx禁止非法域名解析</a></li>
-          </ul>
-        </li>
-        <li><a href="#314-防盗链">3.14. 防盗链</a>
-          <ul>
-            <li><a href="#3141-解决方案">3.14.1. 解决方案</a></li>
-          </ul>
-        </li>
-        <li><a href="#315-错误页面优雅显示">3.15. 错误页面优雅显示</a></li>
-        <li><a href="#316-站点目录权限优化">3.16. 站点目录权限优化</a></li>
-        <li><a href="#317-防爬虫优化">3.17. 防爬虫优化</a>
-          <ul>
-            <li><a href="#3171-robotstxt-机器人协议">3.17.1. robots.txt 机器人协议</a></li>
-            <li><a href="#3172-nginx-防爬虫优化配置">3.17.2. nginx 防爬虫优化配置</a></li>
-          </ul>
-        </li>
-        <li><a href="#318-nginx-限制http请求方法">3.18. nginx 限制http请求方法</a></li>
-        <li><a href="#319-使用cdn做网站内容加速">3.19. 使用cdn做网站内容加速</a></li>
-        <li><a href="#320-网站架构优化">3.20. 网站架构优化</a>
-          <ul>
-            <li><a href="#3201-为网站程序解耦">3.20.1. 为网站程序解耦</a></li>
-          </ul>
-        </li>
-        <li><a href="#321-nginx-监牢模式">3.21. nginx 监牢模式</a>
-          <ul>
-            <li><a href="#3211-nginx-服务降权解决方案">3.21.1. nginx 服务降权解决方案</a></li>
-          </ul>
-        </li>
-        <li><a href="#322-控制nginx并发连接数">3.22. 控制nginx并发连接数</a></li>
-        <li><a href="#323-控制-nginx请求">3.23. 控制 nginx请求</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-php-优化">4. php 优化</a>
-      <ul>
-        <li><a href="#41-php-参数调优">4.1. php 参数调优</a>
-          <ul>
-            <li><a href="#411-phpini-安全参数调优">4.1.1. php.ini 安全参数调优</a></li>
-            <li><a href="#412-phpini-优化参数调优">4.1.2. php.ini 优化参数调优</a></li>
-            <li><a href="#413-phpini-安全优化">4.1.3. php.ini 安全优化</a></li>
-            <li><a href="#414-php-session-会话保持">4.1.4. php session 会话保持</a></li>
-          </ul>
-        </li>
-        <li><a href="#42-php-fpm-调优">4.2. php-fpm 调优</a>
-          <ul>
-            <li><a href="#421-php-fpmconf-调优">4.2.1. php-fpm.conf 调优</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">常用web环境优化</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-folder fa-fw"></i>运维记事</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/"><i class="far fa-list-alt fa-fw"></i>运维记事</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-18">2020-11-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-28">2022-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9034 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id="/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/" class="leancloud_visitors" data-flag-title="常用web环境优化">
-                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/"></span>&nbsp;次阅读
-                    </span>&nbsp;<span id="/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/" class="comment_count" data-flag-title="常用web环境优化">
-                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/"></span>&nbsp;条评论
-                    </span>&nbsp;<span>
-                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
-                    </span>&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-tomcat-服务调优">1. tomcat 服务调优</a>
-      <ul>
-        <li><a href="#11-安全优化">1.1. 安全优化</a></li>
-        <li><a href="#12-性能优化">1.2. 性能优化</a></li>
-      </ul>
-    </li>
-    <li><a href="#2-tmpfs-一种基于内存的文件系统">2. tmpfs 一种基于内存的文件系统</a></li>
-    <li><a href="#3-nginx-优化">3. nginx 优化</a>
-      <ul>
-        <li><a href="#31-版本号隐藏">3.1. 版本号隐藏</a></li>
-        <li><a href="#32-更改nginx默认用户">3.2. 更改nginx默认用户</a></li>
-        <li><a href="#33-优化wroker进程数">3.3. 优化wroker进程数</a></li>
-        <li><a href="#34-nginx-事件模型优化">3.4. Nginx 事件模型优化</a></li>
-        <li><a href="#35-nginx-worker-进程最大打开文件数">3.5. Nginx worker 进程最大打开文件数</a></li>
-        <li><a href="#36-nginx-服务器域名hash表大小">3.6. Nginx 服务器域名hash表大小</a></li>
-        <li><a href="#37-开启高效的文件传输模式">3.7. 开启高效的文件传输模式</a></li>
-        <li><a href="#38-超时连接优化">3.8. 超时连接优化</a>
-          <ul>
-            <li><a href="#381-作用">3.8.1. 作用</a></li>
-            <li><a href="#382-问题">3.8.2. 问题</a></li>
-            <li><a href="#383-建议">3.8.3. 建议</a></li>
-            <li><a href="#384-配置">3.8.4. 配置</a></li>
-          </ul>
-        </li>
-        <li><a href="#39-动态参数引擎fastcgi">3.9. 动态参数引擎fastcgi</a></li>
-        <li><a href="#310-gzip">3.10. gzip</a>
-          <ul>
-            <li><a href="#3101-优点">3.10.1. 优点</a></li>
-            <li><a href="#3102-需要和不需要压缩的对象">3.10.2. 需要和不需要压缩的对象</a></li>
-            <li><a href="#3103-配置">3.10.3. 配置</a></li>
-          </ul>
-        </li>
-        <li><a href="#311-nginx-expires-缓存">3.11. nginx expires 缓存</a>
-          <ul>
-            <li><a href="#3111-优点">3.11.1. 优点</a></li>
-            <li><a href="#3112-缺点">3.11.2. 缺点</a></li>
-            <li><a href="#3113-配置">3.11.3. 配置</a></li>
-          </ul>
-        </li>
-        <li><a href="#312-nginx-日志">3.12. nginx 日志</a>
-          <ul>
-            <li><a href="#3121-切割示例">3.12.1. 切割示例</a></li>
-            <li><a href="#3122-不记录不需要的日志">3.12.2. 不记录不需要的日志</a></li>
-            <li><a href="#3123-访问日志权限设置">3.12.3. 访问日志权限设置</a></li>
-          </ul>
-        </li>
-        <li><a href="#313-nginx-站点目录及文件url控制">3.13. nginx 站点目录及文件URL控制</a>
-          <ul>
-            <li><a href="#3131-根据文件扩展名限制程序和文件访问">3.13.1. 根据文件扩展名限制程序和文件访问</a></li>
-            <li><a href="#3132-限制网站来源ip访问">3.13.2. 限制网站来源IP访问</a></li>
-            <li><a href="#3133-配置nginx禁止非法域名解析">3.13.3. 配置nginx禁止非法域名解析</a></li>
-          </ul>
-        </li>
-        <li><a href="#314-防盗链">3.14. 防盗链</a>
-          <ul>
-            <li><a href="#3141-解决方案">3.14.1. 解决方案</a></li>
-          </ul>
-        </li>
-        <li><a href="#315-错误页面优雅显示">3.15. 错误页面优雅显示</a></li>
-        <li><a href="#316-站点目录权限优化">3.16. 站点目录权限优化</a></li>
-        <li><a href="#317-防爬虫优化">3.17. 防爬虫优化</a>
-          <ul>
-            <li><a href="#3171-robotstxt-机器人协议">3.17.1. robots.txt 机器人协议</a></li>
-            <li><a href="#3172-nginx-防爬虫优化配置">3.17.2. nginx 防爬虫优化配置</a></li>
-          </ul>
-        </li>
-        <li><a href="#318-nginx-限制http请求方法">3.18. nginx 限制http请求方法</a></li>
-        <li><a href="#319-使用cdn做网站内容加速">3.19. 使用cdn做网站内容加速</a></li>
-        <li><a href="#320-网站架构优化">3.20. 网站架构优化</a>
-          <ul>
-            <li><a href="#3201-为网站程序解耦">3.20.1. 为网站程序解耦</a></li>
-          </ul>
-        </li>
-        <li><a href="#321-nginx-监牢模式">3.21. nginx 监牢模式</a>
-          <ul>
-            <li><a href="#3211-nginx-服务降权解决方案">3.21.1. nginx 服务降权解决方案</a></li>
-          </ul>
-        </li>
-        <li><a href="#322-控制nginx并发连接数">3.22. 控制nginx并发连接数</a></li>
-        <li><a href="#323-控制-nginx请求">3.23. 控制 nginx请求</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-php-优化">4. php 优化</a>
-      <ul>
-        <li><a href="#41-php-参数调优">4.1. php 参数调优</a>
-          <ul>
-            <li><a href="#411-phpini-安全参数调优">4.1.1. php.ini 安全参数调优</a></li>
-            <li><a href="#412-phpini-优化参数调优">4.1.2. php.ini 优化参数调优</a></li>
-            <li><a href="#413-phpini-安全优化">4.1.3. php.ini 安全优化</a></li>
-            <li><a href="#414-php-session-会话保持">4.1.4. php session 会话保持</a></li>
-          </ul>
-        </li>
-        <li><a href="#42-php-fpm-调优">4.2. php-fpm 调优</a>
-          <ul>
-            <li><a href="#421-php-fpmconf-调优">4.2.1. php-fpm.conf 调优</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><div class="details admonition warning open">
-                <div class="details-summary admonition-title">
-                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
-                </div>
-                <div class="details-content">
-                    <div class="admonition-content">
-                        本文最后更新于 <span class="timeago" datetime="2022-06-28T00:00:00" title="June 28, 2022">2022-06-28</span>，文中内容可能已过时。</div>
-                </div>
-            </div><div class="details admonition info open">
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/">
+              常用web环境优化
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2020-11-18T00:00:00Z">
+                November 18, 2020
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              阅读时间：19 分钟
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/admin/">Admin</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/linux/">Linux</a>
+      <span class="separator">•</span>
+    <a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/linux/">Linux</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/nginx/">Nginx</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/php/">Php</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <div class="details admonition info open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-info-circle fa-fw"></i>前言<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
@@ -368,12 +218,24 @@
             <div class="admonition-content">一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。</div>
         </div>
     </div>
-<h1 id="1-tomcat-服务调优" class="headerLink">
-    <a href="#1-tomcat-%e6%9c%8d%e5%8a%a1%e8%b0%83%e4%bc%98" class="header-mark"></a>1. tomcat 服务调优</h1><ul>
+<h1 id="1-tomcat-服务调优">
+  1. tomcat 服务调优
+  <a class="heading-link" href="#1-tomcat-%e6%9c%8d%e5%8a%a1%e8%b0%83%e4%bc%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<ul>
 <li><code>tomcat: 8.5.59</code></li>
 </ul>
-<h2 id="11-安全优化" class="headerLink">
-    <a href="#11-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>1.1. 安全优化</h2><ul>
+<h2 id="11-安全优化">
+  1.1. 安全优化
+  <a class="heading-link" href="#11-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
 <li>
 <p>降权启动</p>
 <ul>
@@ -426,8 +288,14 @@
 </ul>
 </li>
 </ul>
-<h2 id="12-性能优化" class="headerLink">
-    <a href="#12-%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96" class="header-mark"></a>1.2. 性能优化</h2><ul>
+<h2 id="12-性能优化">
+  1.2. 性能优化
+  <a class="heading-link" href="#12-%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ul>
 <li>
 <p>屏蔽dns查询</p>
 <ul>
@@ -459,8 +327,14 @@
 </span></span><span class="line"><span class="cl">        redirectPort=&#34;8443&#34; /&gt;  
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="2-tmpfs-一种基于内存的文件系统" class="headerLink">
-    <a href="#2-tmpfs-%e4%b8%80%e7%a7%8d%e5%9f%ba%e4%ba%8e%e5%86%85%e5%ad%98%e7%9a%84%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" class="header-mark"></a>2. tmpfs 一种基于内存的文件系统</h1><p>可用于挂载临时文件存放目录,挂载后操作目录相当于直接操作内存，umount后挂载目录数据会被直接清空。</p>
+</div><h1 id="2-tmpfs-一种基于内存的文件系统">
+  2. tmpfs 一种基于内存的文件系统
+  <a class="heading-link" href="#2-tmpfs-%e4%b8%80%e7%a7%8d%e5%9f%ba%e4%ba%8e%e5%86%85%e5%ad%98%e7%9a%84%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>可用于挂载临时文件存放目录,挂载后操作目录相当于直接操作内存，umount后挂载目录数据会被直接清空。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -469,8 +343,14 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mount -t tmpfs -o <span class="nv">size</span><span class="o">=</span>1024M tmpfs /mnt/usb02 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="3-nginx-优化" class="headerLink">
-    <a href="#3-nginx-%e4%bc%98%e5%8c%96" class="header-mark"></a>3. nginx 优化</h1><p>nginx 规则匹配优先级: <code>=</code> &gt; <code>完整路径</code> &gt; <code>^~</code> &gt; <code>~|~*</code> &gt; <code>部分起始路径</code> &gt; <code>/</code> <br>
+</div><h1 id="3-nginx-优化">
+  3. nginx 优化
+  <a class="heading-link" href="#3-nginx-%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>nginx 规则匹配优先级: <code>=</code> &gt; <code>完整路径</code> &gt; <code>^~</code> &gt; <code>~|~*</code> &gt; <code>部分起始路径</code> &gt; <code>/</code> <br>
 <span id="30"></span></p>
 <details>
 <summary style="font-size:18px;color:blue">防止SQL注入、XSS攻击的实践配置方法</summary>
@@ -625,8 +505,14 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
-<h2 id="31-版本号隐藏" class="headerLink">
-    <a href="#31-%e7%89%88%e6%9c%ac%e5%8f%b7%e9%9a%90%e8%97%8f" class="header-mark"></a>3.1. 版本号隐藏</h2><ol>
+<h2 id="31-版本号隐藏">
+  3.1. 版本号隐藏
+  <a class="heading-link" href="#31-%e7%89%88%e6%9c%ac%e5%8f%b7%e9%9a%90%e8%97%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
 <li>修改文件: 修改<code>nginx.conf</code>,在<code>http</code>标签中添加<code>server_tokens off;</code>参数,然后<code>reload</code></li>
 <li>编译修改:
 <ul>
@@ -637,13 +523,25 @@
 </ul>
 </li>
 </ol>
-<h2 id="32-更改nginx默认用户" class="headerLink">
-    <a href="#32-%e6%9b%b4%e6%94%b9nginx%e9%bb%98%e8%ae%a4%e7%94%a8%e6%88%b7" class="header-mark"></a>3.2. 更改nginx默认用户</h2><ol>
+<h2 id="32-更改nginx默认用户">
+  3.2. 更改nginx默认用户
+  <a class="heading-link" href="#32-%e6%9b%b4%e6%94%b9nginx%e9%bb%98%e8%ae%a4%e7%94%a8%e6%88%b7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
 <li>修改配置文件: <code>/pathto/nginx/conf/nginx.conf</code>,值 <code>user nobody</code> 为 <code>user &lt;user&gt; &lt;group&gt;</code>;</li>
 <li>编译时指定默认用户: <code>--user=&lt;user&gt; --group=&lt;group&gt;</code></li>
 </ol>
-<h2 id="33-优化wroker进程数" class="headerLink">
-    <a href="#33-%e4%bc%98%e5%8c%96wroker%e8%bf%9b%e7%a8%8b%e6%95%b0" class="header-mark"></a>3.3. 优化wroker进程数</h2><div class="highlight"><div class="chroma">
+<h2 id="33-优化wroker进程数">
+  3.3. 优化wroker进程数
+  <a class="heading-link" href="#33-%e4%bc%98%e5%8c%96wroker%e8%bf%9b%e7%a8%8b%e6%95%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -655,8 +553,14 @@
 </span></span><span class="line"><span class="cl">worker_cpu_affinity <span class="m">0001</span> <span class="m">0010</span> <span class="m">0100</span> <span class="m">1000</span> <span class="m">0001</span> <span class="m">0010</span> <span class="m">0100</span> 1000<span class="p">;</span>  <span class="c1"># 掩码形式 分别代表1-8核</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="34-nginx-事件模型优化" class="headerLink">
-    <a href="#34-nginx-%e4%ba%8b%e4%bb%b6%e6%a8%a1%e5%9e%8b%e4%bc%98%e5%8c%96" class="header-mark"></a>3.4. Nginx 事件模型优化</h2><p>nginx是异步的网络io模型，epoll 工作模型是高性能高并发的设置。</p>
+</div><h2 id="34-nginx-事件模型优化">
+  3.4. Nginx 事件模型优化
+  <a class="heading-link" href="#34-nginx-%e4%ba%8b%e4%bb%b6%e6%a8%a1%e5%9e%8b%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>nginx是异步的网络io模型，epoll 工作模型是高性能高并发的设置。</p>
 <ol>
 <li>修改配置文件: <code>/pathto/nginx/conf/nginx.conf</code></li>
 </ol>
@@ -682,42 +586,90 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="35-nginx-worker-进程最大打开文件数" class="headerLink">
-    <a href="#35-nginx-worker-%e8%bf%9b%e7%a8%8b%e6%9c%80%e5%a4%a7%e6%89%93%e5%bc%80%e6%96%87%e4%bb%b6%e6%95%b0" class="header-mark"></a>3.5. Nginx worker 进程最大打开文件数</h2><ol>
+</div><h2 id="35-nginx-worker-进程最大打开文件数">
+  3.5. Nginx worker 进程最大打开文件数
+  <a class="heading-link" href="#35-nginx-worker-%e8%bf%9b%e7%a8%8b%e6%9c%80%e5%a4%a7%e6%89%93%e5%bc%80%e6%96%87%e4%bb%b6%e6%95%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<ol>
 <li><code>main</code>标签下设置<code>worker_rlimit_nofile 65535</code> ，值可为系统优化后设置的<code>ulimit -HSn</code>的结果 。</li>
 </ol>
-<h2 id="36-nginx-服务器域名hash表大小" class="headerLink">
-    <a href="#36-nginx-%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%9f%9f%e5%90%8dhash%e8%a1%a8%e5%a4%a7%e5%b0%8f" class="header-mark"></a>3.6. Nginx 服务器域名hash表大小</h2><p>: main</p>
+<h2 id="36-nginx-服务器域名hash表大小">
+  3.6. Nginx 服务器域名hash表大小
+  <a class="heading-link" href="#36-nginx-%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%9f%9f%e5%90%8dhash%e8%a1%a8%e5%a4%a7%e5%b0%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>: main</p>
 <ol>
 <li>参数1: <code>server_names_hash_max_size 512;</code> 设置存放域名(server_names)的最大hash表大小(如果nginx发出消息 应首选增大 max size)</li>
 <li>参数2: <code>server_names_hash_bucket_size 64;</code> 此设置与<code>server_names_hash_max_size</code>共同控制保存服务器域名的hash表.</li>
 </ol>
-<h2 id="37-开启高效的文件传输模式" class="headerLink">
-    <a href="#37-%e5%bc%80%e5%90%af%e9%ab%98%e6%95%88%e7%9a%84%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93%e6%a8%a1%e5%bc%8f" class="header-mark"></a>3.7. 开启高效的文件传输模式</h2><p>; http/server/location/if in location</p>
+<h2 id="37-开启高效的文件传输模式">
+  3.7. 开启高效的文件传输模式
+  <a class="heading-link" href="#37-%e5%bc%80%e5%90%af%e9%ab%98%e6%95%88%e7%9a%84%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93%e6%a8%a1%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>; http/server/location/if in location</p>
 <ol>
 <li><code>sendfile on;</code>, 作用于两个文件描述符之间的数据拷贝函数，这个拷贝操作是在内核中的。</li>
 <li><code>tcp_nopush on;</code>,允许把http response header和文件的开始放在一个文件里面发布，积极的作用是减少网络报文段的数量。</li>
 <li><code>tcp_nodelay on;</code>, 提升io性能，默认情况下数据发送时，内核并不会马上发送，可能会等待更多的字节组成一个数据包，这样可以提高I/O性能，但是，每次只发送很少字节的业务场景，使用tcp_nodelay功能，等待时间会比较长.(高并发建议使用)</li>
 </ol>
-<h2 id="38-超时连接优化" class="headerLink">
-    <a href="#38-%e8%b6%85%e6%97%b6%e8%bf%9e%e6%8e%a5%e4%bc%98%e5%8c%96" class="header-mark"></a>3.8. 超时连接优化</h2><h3 id="381-作用" class="headerLink">
-    <a href="#381-%e4%bd%9c%e7%94%a8" class="header-mark"></a>3.8.1. 作用</h3><ol>
+<h2 id="38-超时连接优化">
+  3.8. 超时连接优化
+  <a class="heading-link" href="#38-%e8%b6%85%e6%97%b6%e8%bf%9e%e6%8e%a5%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="381-作用">
+  3.8.1. 作用
+  <a class="heading-link" href="#381-%e4%bd%9c%e7%94%a8">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
 <li>设置将无用的连接尽快超时,可以保护服务器的系统资源(cpu、内存、磁盘)</li>
 <li>当连接很多时，及时断掉那些已经建立好但又长时间不做事的连接, 以减少其占用的服务器资源，应为服务器维护连接也是要消耗资源的。</li>
 <li>有时黑客或恶意用户攻击网站，就会不断的和服务器建立多个连接，消耗连接数，但啥也不干，只是持续建立连接，这就会大量消耗服务器的资源，此时就应该及时断掉这些恶意占用资源的连接。</li>
 <li>LNMP环境中，如果用户请求了动态服务，则Nginx就会建立连接请求fastcgi服务以及mysql服务，此时这个Nginx连接就要设定一个超时时间，在用户容忍的是就按内反回数据，或者在多等一会后端服务器返回数据，具体的策略要具体业务分析。</li>
 </ol>
-<h3 id="382-问题" class="headerLink">
-    <a href="#382-%e9%97%ae%e9%a2%98" class="header-mark"></a>3.8.2. 问题</h3><ol>
+<h3 id="382-问题">
+  3.8.2. 问题
+  <a class="heading-link" href="#382-%e9%97%ae%e9%a2%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
 <li>超时时间若设置太短，并发很大的时候，就会导致服务器无法瞬间响应用户请求，导致体验下降 。</li>
 </ol>
-<h3 id="383-建议" class="headerLink">
-    <a href="#383-%e5%bb%ba%e8%ae%ae" class="header-mark"></a>3.8.3. 建议</h3><ol>
+<h3 id="383-建议">
+  3.8.3. 建议
+  <a class="heading-link" href="#383-%e5%bb%ba%e8%ae%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
 <li>php 网站建议短连接，php程序建立连接消耗的资源和时间少</li>
 <li>java网站建议长连接，java程序建立连接消耗的资源和时间多(连接重用，连接池..)</li>
 </ol>
-<h3 id="384-配置" class="headerLink">
-    <a href="#384-%e9%85%8d%e7%bd%ae" class="header-mark"></a>3.8.4. 配置</h3><div class="highlight"><div class="chroma">
+<h3 id="384-配置">
+  3.8.4. 配置
+  <a class="heading-link" href="#384-%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -749,8 +701,14 @@
 </span></span><span class="line"><span class="cl">client_max_body_size 8m<span class="p">;</span>  <span class="c1"># 上传文件大小，超过设置值反会413错误.</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="39-动态参数引擎fastcgi" class="headerLink">
-    <a href="#39-%e5%8a%a8%e6%80%81%e5%8f%82%e6%95%b0%e5%bc%95%e6%93%8efastcgi" class="header-mark"></a>3.9. 动态参数引擎fastcgi</h2><table>
+</div><h2 id="39-动态参数引擎fastcgi">
+  3.9. 动态参数引擎fastcgi
+  <a class="heading-link" href="#39-%e5%8a%a8%e6%80%81%e5%8f%82%e6%95%b0%e5%bc%95%e6%93%8efastcgi">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<table>
   <thead>
       <tr>
           <th style="text-align: left">Nginx Fastcgi参数(http)</th>
@@ -855,20 +813,44 @@
 </span></span><span class="line"><span class="cl"><span class="k">fastcgi_cache_key</span> <span class="s">http://</span><span class="nv">$host$request_uri</span><span class="p">;</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="310-gzip" class="headerLink">
-    <a href="#310-gzip" class="header-mark"></a>3.10. gzip</h2><h3 id="3101-优点" class="headerLink">
-    <a href="#3101-%e4%bc%98%e7%82%b9" class="header-mark"></a>3.10.1. 优点</h3><ul>
+</div><h2 id="310-gzip">
+  3.10. gzip
+  <a class="heading-link" href="#310-gzip">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="3101-优点">
+  3.10.1. 优点
+  <a class="heading-link" href="#3101-%e4%bc%98%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
 <li>提升网站用户体验,提升网站用户访问速度</li>
 <li>节约网站宽带成本</li>
 </ul>
-<h3 id="3102-需要和不需要压缩的对象" class="headerLink">
-    <a href="#3102-%e9%9c%80%e8%a6%81%e5%92%8c%e4%b8%8d%e9%9c%80%e8%a6%81%e5%8e%8b%e7%bc%a9%e7%9a%84%e5%af%b9%e8%b1%a1" class="header-mark"></a>3.10.2. 需要和不需要压缩的对象</h3><ul>
+<h3 id="3102-需要和不需要压缩的对象">
+  3.10.2. 需要和不需要压缩的对象
+  <a class="heading-link" href="#3102-%e9%9c%80%e8%a6%81%e5%92%8c%e4%b8%8d%e9%9c%80%e8%a6%81%e5%8e%8b%e7%bc%a9%e7%9a%84%e5%af%b9%e8%b1%a1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
 <li>纯文本内容压缩比很高，因此纯文本的内容最好要压缩(例如: html、js、css、xml、shtml等)</li>
 <li>被压缩的纯文本必须要大于1kb，否则由于压缩算法的原因，可能导致压缩反而是文件增大</li>
 <li>图片、视频(流媒体)等文件尽量不要压缩，因为这些文件大多都是经过压缩的，如果在压缩可能不会减少太多，或者可能增大，而在压缩还会消耗大量的cpu、内存资源</li>
 </ul>
-<h3 id="3103-配置" class="headerLink">
-    <a href="#3103-%e9%85%8d%e7%bd%ae" class="header-mark"></a>3.10.3. 配置</h3><table>
+<h3 id="3103-配置">
+  3.10.3. 配置
+  <a class="heading-link" href="#3103-%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<table>
   <thead>
       <tr>
           <th style="text-align: left">参数</th>
@@ -906,15 +888,33 @@
       </tr>
   </tbody>
 </table>
-<h2 id="311-nginx-expires-缓存" class="headerLink">
-    <a href="#311-nginx-expires-%e7%bc%93%e5%ad%98" class="header-mark"></a>3.11. nginx expires 缓存</h2><h3 id="3111-优点" class="headerLink">
-    <a href="#3111-%e4%bc%98%e7%82%b9" class="header-mark"></a>3.11.1. 优点</h3><ul>
+<h2 id="311-nginx-expires-缓存">
+  3.11. nginx expires 缓存
+  <a class="heading-link" href="#311-nginx-expires-%e7%bc%93%e5%ad%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="3111-优点">
+  3.11.1. 优点
+  <a class="heading-link" href="#3111-%e4%bc%98%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
 <li>expires 可以降低网站的宽带，节约成本</li>
 <li>加快用户访问网站的速度，提升用户体验</li>
 <li>减少服务器访问量，降低服务器压力，节约服务器成本</li>
 </ul>
-<h3 id="3112-缺点" class="headerLink">
-    <a href="#3112-%e7%bc%ba%e7%82%b9" class="header-mark"></a>3.11.2. 缺点</h3><ul>
+<h3 id="3112-缺点">
+  3.11.2. 缺点
+  <a class="heading-link" href="#3112-%e7%bc%ba%e7%82%b9">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
 <li>当网站被缓存的页面存在更新时，用户看到的可能还是旧的数据
 <ul>
 <li>解决方案:
@@ -926,8 +926,14 @@
 </ul>
 </li>
 </ul>
-<h3 id="3113-配置" class="headerLink">
-    <a href="#3113-%e9%85%8d%e7%bd%ae" class="header-mark"></a>3.11.3. 配置</h3><p>如果配置后导致前端无法正常访问，有可能是因为server标签中没有指定root目录有关<br>
+<h3 id="3113-配置">
+  3.11.3. 配置
+  <a class="heading-link" href="#3113-%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>如果配置后导致前端无法正常访问，有可能是因为server标签中没有指定root目录有关<br>
 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -945,9 +951,21 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="312-nginx-日志" class="headerLink">
-    <a href="#312-nginx-%e6%97%a5%e5%bf%97" class="header-mark"></a>3.12. nginx 日志</h2><h3 id="3121-切割示例" class="headerLink">
-    <a href="#3121-%e5%88%87%e5%89%b2%e7%a4%ba%e4%be%8b" class="header-mark"></a>3.12.1. 切割示例</h3><div class="highlight"><div class="chroma">
+</div><h2 id="312-nginx-日志">
+  3.12. nginx 日志
+  <a class="heading-link" href="#312-nginx-%e6%97%a5%e5%bf%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="3121-切割示例">
+  3.12.1. 切割示例
+  <a class="heading-link" href="#3121-%e5%88%87%e5%89%b2%e7%a4%ba%e4%be%8b">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -987,8 +1005,14 @@
 </span></span><span class="line"><span class="cl">/opt/nginxssl/sbin/nginx -s reopen
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3122-不记录不需要的日志" class="headerLink">
-    <a href="#3122-%e4%b8%8d%e8%ae%b0%e5%bd%95%e4%b8%8d%e9%9c%80%e8%a6%81%e7%9a%84%e6%97%a5%e5%bf%97" class="header-mark"></a>3.12.2. 不记录不需要的日志</h3><ol>
+</div><h3 id="3122-不记录不需要的日志">
+  3.12.2. 不记录不需要的日志
+  <a class="heading-link" href="#3122-%e4%b8%8d%e8%ae%b0%e5%bd%95%e4%b8%8d%e9%9c%80%e8%a6%81%e7%9a%84%e6%97%a5%e5%bf%97">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
 <li>在实际工作中，对于负载均衡器的健康检查节点或某些特定文件(如图片、js、css等)的日志，一般不需要记录下来，因为在PV时是按照页面计算的。而且日志写入太频繁会大量消耗磁盘IO，降低服务器性能.
 <ul>
 <li>网络流量度量术语
@@ -1015,13 +1039,31 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3123-访问日志权限设置" class="headerLink">
-    <a href="#3123-%e8%ae%bf%e9%97%ae%e6%97%a5%e5%bf%97%e6%9d%83%e9%99%90%e8%ae%be%e7%bd%ae" class="header-mark"></a>3.12.3. 访问日志权限设置</h3><ul>
+</div><h3 id="3123-访问日志权限设置">
+  3.12.3. 访问日志权限设置
+  <a class="heading-link" href="#3123-%e8%ae%bf%e9%97%ae%e6%97%a5%e5%bf%97%e6%9d%83%e9%99%90%e8%ae%be%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
 <li>限制用户及组为root , 修改目录权限 600 ,nginx访问日志的权限即使是root，nginx也是可以读取的</li>
 </ul>
-<h2 id="313-nginx-站点目录及文件url控制" class="headerLink">
-    <a href="#313-nginx-%e7%ab%99%e7%82%b9%e7%9b%ae%e5%bd%95%e5%8f%8a%e6%96%87%e4%bb%b6url%e6%8e%a7%e5%88%b6" class="header-mark"></a>3.13. nginx 站点目录及文件URL控制</h2><h3 id="3131-根据文件扩展名限制程序和文件访问" class="headerLink">
-    <a href="#3131-%e6%a0%b9%e6%8d%ae%e6%96%87%e4%bb%b6%e6%89%a9%e5%b1%95%e5%90%8d%e9%99%90%e5%88%b6%e7%a8%8b%e5%ba%8f%e5%92%8c%e6%96%87%e4%bb%b6%e8%ae%bf%e9%97%ae" class="header-mark"></a>3.13.1. 根据文件扩展名限制程序和文件访问</h3><ul>
+<h2 id="313-nginx-站点目录及文件url控制">
+  3.13. nginx 站点目录及文件URL控制
+  <a class="heading-link" href="#313-nginx-%e7%ab%99%e7%82%b9%e7%9b%ae%e5%bd%95%e5%8f%8a%e6%96%87%e4%bb%b6url%e6%8e%a7%e5%88%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="3131-根据文件扩展名限制程序和文件访问">
+  3.13.1. 根据文件扩展名限制程序和文件访问
+  <a class="heading-link" href="#3131-%e6%a0%b9%e6%8d%ae%e6%96%87%e4%bb%b6%e6%89%a9%e5%b1%95%e5%90%8d%e9%99%90%e5%88%b6%e7%a8%8b%e5%ba%8f%e5%92%8c%e6%96%87%e4%bb%b6%e8%ae%bf%e9%97%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ul>
 <li>示例:</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -1052,8 +1094,14 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3132-限制网站来源ip访问" class="headerLink">
-    <a href="#3132-%e9%99%90%e5%88%b6%e7%bd%91%e7%ab%99%e6%9d%a5%e6%ba%90ip%e8%ae%bf%e9%97%ae" class="header-mark"></a>3.13.2. 限制网站来源IP访问</h3><div class="highlight"><div class="chroma">
+</div><h3 id="3132-限制网站来源ip访问">
+  3.13.2. 限制网站来源IP访问
+  <a class="heading-link" href="#3132-%e9%99%90%e5%88%b6%e7%bd%91%e7%ab%99%e6%9d%a5%e6%ba%90ip%e8%ae%bf%e9%97%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1092,8 +1140,14 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3133-配置nginx禁止非法域名解析" class="headerLink">
-    <a href="#3133-%e9%85%8d%e7%bd%aenginx%e7%a6%81%e6%ad%a2%e9%9d%9e%e6%b3%95%e5%9f%9f%e5%90%8d%e8%a7%a3%e6%9e%90" class="header-mark"></a>3.13.3. 配置nginx禁止非法域名解析</h3><ol>
+</div><h3 id="3133-配置nginx禁止非法域名解析">
+  3.13.3. 配置nginx禁止非法域名解析
+  <a class="heading-link" href="#3133-%e9%85%8d%e7%bd%aenginx%e7%a6%81%e6%ad%a2%e9%9d%9e%e6%b3%95%e5%9f%9f%e5%90%8d%e8%a7%a3%e6%9e%90">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
 <li>问题： 如何防止用户IP访问网站(恶意域名解析，也相当于ip访问网站)<br>
 解决：让使用ip访问网站的用户，或者恶意解析域名的用户，收到501错误。(需要放到所有server之前)</li>
 </ol>
@@ -1113,9 +1167,21 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="314-防盗链" class="headerLink">
-    <a href="#314-%e9%98%b2%e7%9b%97%e9%93%be" class="header-mark"></a>3.14. 防盗链</h2><h3 id="3141-解决方案" class="headerLink">
-    <a href="#3141-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" class="header-mark"></a>3.14.1. 解决方案</h3><ol>
+</div><h2 id="314-防盗链">
+  3.14. 防盗链
+  <a class="heading-link" href="#314-%e9%98%b2%e7%9b%97%e9%93%be">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="3141-解决方案">
+  3.14.1. 解决方案
+  <a class="heading-link" href="#3141-%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<ol>
 <li>根据<code>http_referer</code>实现防盗链
 示例:</li>
 </ol>
@@ -1144,8 +1210,14 @@
 </div><ol start="2">
 <li>根据<code>cookie</code>防盗链</li>
 </ol>
-<h2 id="315-错误页面优雅显示" class="headerLink">
-    <a href="#315-%e9%94%99%e8%af%af%e9%a1%b5%e9%9d%a2%e4%bc%98%e9%9b%85%e6%98%be%e7%a4%ba" class="header-mark"></a>3.15. 错误页面优雅显示</h2><p>示例:</p>
+<h2 id="315-错误页面优雅显示">
+  3.15. 错误页面优雅显示
+  <a class="heading-link" href="#315-%e9%94%99%e8%af%af%e9%a1%b5%e9%9d%a2%e4%bc%98%e9%9b%85%e6%98%be%e7%a4%ba">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1161,11 +1233,29 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>fastcgi_intercept_errors on;</code> 默认 <code>off</code> ,这个指令指定的是是否传递 <code>4xx</code>和 <code>5xx</code>信息到客户端，或允许<code>nginx</code> 使用<code>error_page</code>处理错误信息。</p>
-<h2 id="316-站点目录权限优化" class="headerLink">
-    <a href="#316-%e7%ab%99%e7%82%b9%e7%9b%ae%e5%bd%95%e6%9d%83%e9%99%90%e4%bc%98%e5%8c%96" class="header-mark"></a>3.16. 站点目录权限优化</h2><p>目录权限<code>755</code>,文件权限<code>644</code>，用户及组<code>root</code>，用户上传目录<code>nginx</code>服务用户.(减少文件上传目录权限)</p>
-<h2 id="317-防爬虫优化" class="headerLink">
-    <a href="#317-%e9%98%b2%e7%88%ac%e8%99%ab%e4%bc%98%e5%8c%96" class="header-mark"></a>3.17. 防爬虫优化</h2><h3 id="3171-robotstxt-机器人协议" class="headerLink">
-    <a href="#3171-robotstxt-%e6%9c%ba%e5%99%a8%e4%ba%ba%e5%8d%8f%e8%ae%ae" class="header-mark"></a>3.17.1. robots.txt 机器人协议</h3><p>网站通过robots(网站根目录存放robots.txt)协议告诉搜索引擎哪些页面可以抓取，那些页面不能抓取。
+<h2 id="316-站点目录权限优化">
+  3.16. 站点目录权限优化
+  <a class="heading-link" href="#316-%e7%ab%99%e7%82%b9%e7%9b%ae%e5%bd%95%e6%9d%83%e9%99%90%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>目录权限<code>755</code>,文件权限<code>644</code>，用户及组<code>root</code>，用户上传目录<code>nginx</code>服务用户.(减少文件上传目录权限)</p>
+<h2 id="317-防爬虫优化">
+  3.17. 防爬虫优化
+  <a class="heading-link" href="#317-%e9%98%b2%e7%88%ac%e8%99%ab%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="3171-robotstxt-机器人协议">
+  3.17.1. robots.txt 机器人协议
+  <a class="heading-link" href="#3171-robotstxt-%e6%9c%ba%e5%99%a8%e4%ba%ba%e5%8d%8f%e8%ae%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>网站通过robots(网站根目录存放robots.txt)协议告诉搜索引擎哪些页面可以抓取，那些页面不能抓取。
 示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1179,8 +1269,14 @@
 </span></span><span class="line"><span class="cl"><span class="na">Sitemap: https://www.example.com/sitemap.xml</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3172-nginx-防爬虫优化配置" class="headerLink">
-    <a href="#3172-nginx-%e9%98%b2%e7%88%ac%e8%99%ab%e4%bc%98%e5%8c%96%e9%85%8d%e7%bd%ae" class="header-mark"></a>3.17.2. nginx 防爬虫优化配置</h3><p>示例:</p>
+</div><h3 id="3172-nginx-防爬虫优化配置">
+  3.17.2. nginx 防爬虫优化配置
+  <a class="heading-link" href="#3172-nginx-%e9%98%b2%e7%88%ac%e8%99%ab%e4%bc%98%e5%8c%96%e9%85%8d%e7%bd%ae">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1195,8 +1291,14 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="318-nginx-限制http请求方法" class="headerLink">
-    <a href="#318-nginx-%e9%99%90%e5%88%b6http%e8%af%b7%e6%b1%82%e6%96%b9%e6%b3%95" class="header-mark"></a>3.18. nginx 限制http请求方法</h2><p>示例:</p>
+</div><h2 id="318-nginx-限制http请求方法">
+  3.18. nginx 限制http请求方法
+  <a class="heading-link" href="#318-nginx-%e9%99%90%e5%88%b6http%e8%af%b7%e6%b1%82%e6%96%b9%e6%b3%95">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1213,21 +1315,57 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="319-使用cdn做网站内容加速" class="headerLink">
-    <a href="#319-%e4%bd%bf%e7%94%a8cdn%e5%81%9a%e7%bd%91%e7%ab%99%e5%86%85%e5%ae%b9%e5%8a%a0%e9%80%9f" class="header-mark"></a>3.19. 使用cdn做网站内容加速</h2><p>cdn全国或全球的分布式缓存集群</p>
-<h2 id="320-网站架构优化" class="headerLink">
-    <a href="#320-%e7%bd%91%e7%ab%99%e6%9e%b6%e6%9e%84%e4%bc%98%e5%8c%96" class="header-mark"></a>3.20. 网站架构优化</h2><h3 id="3201-为网站程序解耦" class="headerLink">
-    <a href="#3201-%e4%b8%ba%e7%bd%91%e7%ab%99%e7%a8%8b%e5%ba%8f%e8%a7%a3%e8%80%a6" class="header-mark"></a>3.20.1. 为网站程序解耦</h3><p>指的是把一堆程序代码按照业务用途分开，然后提供服务。例如: 注册登陆、上传、下载、浏览列表、商品内容页面、订单支付等都应该是独立的程序服务。</p>
-<h2 id="321-nginx-监牢模式" class="headerLink">
-    <a href="#321-nginx-%e7%9b%91%e7%89%a2%e6%a8%a1%e5%bc%8f" class="header-mark"></a>3.21. nginx 监牢模式</h2><h3 id="3211-nginx-服务降权解决方案" class="headerLink">
-    <a href="#3211-nginx-%e6%9c%8d%e5%8a%a1%e9%99%8d%e6%9d%83%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" class="header-mark"></a>3.21.1. nginx 服务降权解决方案</h3><p>解决方案:</p>
+</div><h2 id="319-使用cdn做网站内容加速">
+  3.19. 使用cdn做网站内容加速
+  <a class="heading-link" href="#319-%e4%bd%bf%e7%94%a8cdn%e5%81%9a%e7%bd%91%e7%ab%99%e5%86%85%e5%ae%b9%e5%8a%a0%e9%80%9f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>cdn全国或全球的分布式缓存集群</p>
+<h2 id="320-网站架构优化">
+  3.20. 网站架构优化
+  <a class="heading-link" href="#320-%e7%bd%91%e7%ab%99%e6%9e%b6%e6%9e%84%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="3201-为网站程序解耦">
+  3.20.1. 为网站程序解耦
+  <a class="heading-link" href="#3201-%e4%b8%ba%e7%bd%91%e7%ab%99%e7%a8%8b%e5%ba%8f%e8%a7%a3%e8%80%a6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>指的是把一堆程序代码按照业务用途分开，然后提供服务。例如: 注册登陆、上传、下载、浏览列表、商品内容页面、订单支付等都应该是独立的程序服务。</p>
+<h2 id="321-nginx-监牢模式">
+  3.21. nginx 监牢模式
+  <a class="heading-link" href="#321-nginx-%e7%9b%91%e7%89%a2%e6%a8%a1%e5%bc%8f">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="3211-nginx-服务降权解决方案">
+  3.21.1. nginx 服务降权解决方案
+  <a class="heading-link" href="#3211-nginx-%e6%9c%8d%e5%8a%a1%e9%99%8d%e6%9d%83%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>解决方案:</p>
 <ul>
 <li>给<code>nginx</code> 服务降权，用普通用户(假设普通用户为<code>www</code> )跑<code>nginx</code> 服务，给开发和运维设置普通用户帐号，将开发和运维的帐号设置为与<code>www</code> 同组即可管理<code>nginx</code>，该方案解决了<code>nginx</code>管理问题，防止<code>root</code>分配权限过大。</li>
 <li>开发人员使用普通用户即可管理<code>nginx</code> 服务及站点下的程序和日志。</li>
 <li>采取项目负责制度，即谁负责的项目维护出了问题就是谁负责。</li>
 </ul>
-<h2 id="322-控制nginx并发连接数" class="headerLink">
-    <a href="#322-%e6%8e%a7%e5%88%b6nginx%e5%b9%b6%e5%8f%91%e8%bf%9e%e6%8e%a5%e6%95%b0" class="header-mark"></a>3.22. 控制nginx并发连接数</h2><p>示例:</p>
+<h2 id="322-控制nginx并发连接数">
+  3.22. 控制nginx并发连接数
+  <a class="heading-link" href="#322-%e6%8e%a7%e5%88%b6nginx%e5%b9%b6%e5%8f%91%e8%bf%9e%e6%8e%a5%e6%95%b0">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p>示例:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1244,8 +1382,14 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">limit_conn</span> <span class="s">addr</span> <span class="mi">1</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="323-控制-nginx请求" class="headerLink">
-    <a href="#323-%e6%8e%a7%e5%88%b6-nginx%e8%af%b7%e6%b1%82" class="header-mark"></a>3.23. 控制 nginx请求</h2><div class="highlight"><div class="chroma">
+</div><h2 id="323-控制-nginx请求">
+  3.23. 控制 nginx请求
+  <a class="heading-link" href="#323-%e6%8e%a7%e5%88%b6-nginx%e8%af%b7%e6%b1%82">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1261,11 +1405,29 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">limit_req</span> <span class="s">zone=one</span> <span class="s">burst=5</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="4-php-优化" class="headerLink">
-    <a href="#4-php-%e4%bc%98%e5%8c%96" class="header-mark"></a>4. php 优化</h1><h2 id="41-php-参数调优" class="headerLink">
-    <a href="#41-php-%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98" class="header-mark"></a>4.1. php 参数调优</h2><p><code>php.ini-development</code>与<code>php.ini-production</code>的区别是日志的开启与隐藏</p>
-<h3 id="411-phpini-安全参数调优" class="headerLink">
-    <a href="#411-phpini-%e5%ae%89%e5%85%a8%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98" class="header-mark"></a>4.1.1. php.ini 安全参数调优</h3><div class="highlight"><div class="chroma">
+</div><h1 id="4-php-优化">
+  4. php 优化
+  <a class="heading-link" href="#4-php-%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="41-php-参数调优">
+  4.1. php 参数调优
+  <a class="heading-link" href="#41-php-%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<p><code>php.ini-development</code>与<code>php.ini-production</code>的区别是日志的开启与隐藏</p>
+<h3 id="411-phpini-安全参数调优">
+  4.1.1. php.ini 安全参数调优
+  <a class="heading-link" href="#411-phpini-%e5%ae%89%e5%85%a8%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1305,8 +1467,14 @@
 </span></span><span class="line"><span class="cl"><span class="na">display_errors</span> <span class="o">=</span> <span class="s">Off</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="412-phpini-优化参数调优" class="headerLink">
-    <a href="#412-phpini-%e4%bc%98%e5%8c%96%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98" class="header-mark"></a>4.1.2. php.ini 优化参数调优</h3><div class="highlight"><div class="chroma">
+</div><h3 id="412-phpini-优化参数调优">
+  4.1.2. php.ini 优化参数调优
+  <a class="heading-link" href="#412-phpini-%e4%bc%98%e5%8c%96%e5%8f%82%e6%95%b0%e8%b0%83%e4%bc%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1336,8 +1504,14 @@
 </span></span><span class="line"><span class="cl"><span class="na">post_max_size</span> <span class="o">=</span> <span class="s">8M </span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="413-phpini-安全优化" class="headerLink">
-    <a href="#413-phpini-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>4.1.3. php.ini 安全优化</h3><div class="highlight"><div class="chroma">
+</div><h3 id="413-phpini-安全优化">
+  4.1.3. php.ini 安全优化
+  <a class="heading-link" href="#413-phpini-%e5%ae%89%e5%85%a8%e4%bc%98%e5%8c%96">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -1351,8 +1525,14 @@
 </span></span><span class="line"><span class="cl"><span class="na">cgi.fix_pathinfo</span> <span class="o">=</span> <span class="s">0</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="414-php-session-会话保持" class="headerLink">
-    <a href="#414-php-session-%e4%bc%9a%e8%af%9d%e4%bf%9d%e6%8c%81" class="header-mark"></a>4.1.4. php session 会话保持</h3><p>集群环境，一般会将session存放于memcache中，多个集群节点连接同一个memcache，保证用户session处于在线状态<br>
+</div><h3 id="414-php-session-会话保持">
+  4.1.4. php session 会话保持
+  <a class="heading-link" href="#414-php-session-%e4%bc%9a%e8%af%9d%e4%bf%9d%e6%8c%81">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<p>集群环境，一般会将session存放于memcache中，多个集群节点连接同一个memcache，保证用户session处于在线状态<br>
 php.ini 修改</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1368,9 +1548,21 @@ php.ini 修改</p>
 </span></span><span class="line"><span class="cl"><span class="na">session.save_path</span> <span class="o">=</span> <span class="s">&#34;tcp://10.0.0.18:11211&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="42-php-fpm-调优" class="headerLink">
-    <a href="#42-php-fpm-%e8%b0%83%e4%bc%98" class="header-mark"></a>4.2. php-fpm 调优</h2><h3 id="421-php-fpmconf-调优" class="headerLink">
-    <a href="#421-php-fpmconf-%e8%b0%83%e4%bc%98" class="header-mark"></a>4.2.1. php-fpm.conf 调优</h3><div class="highlight"><div class="chroma">
+</div><h2 id="42-php-fpm-调优">
+  4.2. php-fpm 调优
+  <a class="heading-link" href="#42-php-fpm-%e8%b0%83%e4%bc%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<h3 id="421-php-fpmconf-调优">
+  4.2.1. php-fpm.conf 调优
+  <a class="heading-link" href="#421-php-fpmconf-%e8%b0%83%e4%bc%98">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h3>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1452,41 +1644,86 @@ php.ini 修改</p>
 </span></span><span class="line"><span class="cl"><span class="na">pm.max_requests</span> <span class="o">=</span> <span class="s">10240 </span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div></div>
-
-        <div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2022-06-28</span>
-            </div>
-            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span><a class="link-to-mardown" href=/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
-                    </span></div>
-            <div class="post-info-share">
-                <span><a href="#" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96/" data-title="常用web环境优化"><i class="fab fa-evernote fa-fw"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E4%BC%98%E5%8C%96/">优化</a>,&nbsp;<a href="/tags/nginx/">Nginx</a>,&nbsp;<a href="/tags/php/">Php</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" class="prev" rel="prev" title="常用命令收集"><i class="fas fa-angle-left fa-fw"></i>常用命令收集</a>
-            <a href="/2022/starting/" class="next" rel="next" title="Starting">Starting<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-<div id="comments"><div id="waline" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
-            </noscript></div></article></div>
-        </main><footer class="footer">
+      </div>
+
+
+      <footer>
+        
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-运维记事">
+        参见 运维记事
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e8%bf%90%e7%bb%b4%e8%ae%b0%e4%ba%8b">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+        
+          
+            <li>
+              <a href="/2019/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">常用命令收集</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2019/shellscript%E7%9B%B8%E5%85%B3/">Shellscript相关</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2024/redis%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6_%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">Redis主从复制&#43;哨兵</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">Linux下使用tun2socks进行两地网络连接</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2024/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/">Linux 性能基准测试工具及测试方法</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+    </div>
+
+    <footer class="footer">
     <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".icp, .icp-splitter, .icp-br").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.134.1">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+          &nbsp;|&nbsp;&nbsp;|&nbsp;
         </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
             >&nbsp;<a
               href="/"
@@ -1499,18 +1736,52 @@ php.ini 修改</p>
           <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div>
       <div class="footer-line"></div>
       <div class="footer-line"></div>
-    </div></footer></div>
+    </div></footer>
+  </main>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-06MPV27KSD');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 </body>
 
 </html>

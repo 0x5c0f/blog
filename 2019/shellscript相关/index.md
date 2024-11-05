@@ -62,25 +62,25 @@
 | `$PPID` | 父进程的进程 ID                                                                                                                                                                                                                                                                           |
 | `$PS1`  | 主提示符串，默认值是$                                                                                                                                                                                                                                                                     |
 
-`$*` 和 `$@` 的示例:
+- `$*` 和 `$@` 的示例:
 
-```bash
-[root@00 ~]# set -- hello my  "linux shell"
-[root@00 ~]# echo $#
-3
-[root@00 ~]# echo $1
-hello
-[root@00 ~]# echo $2
-my
-[root@00 ~]# echo $3
-linux shell
-[root@00 ~]# for i in "$@"; do echo $i;done
-hello
-my
-linux shell
-[root@00 ~]# for i in "$*"; do echo $i;done
-hello my linux shell
-```
+    ```bash
+    [root@00 ~]# set -- hello my  "linux shell"
+    [root@00 ~]# echo $#
+    3
+    [root@00 ~]# echo $1
+    hello
+    [root@00 ~]# echo $2
+    my
+    [root@00 ~]# echo $3
+    linux shell
+    [root@00 ~]# for i in "$@"; do echo $i;done
+    hello
+    my
+    linux shell
+    [root@00 ~]# for i in "$*"; do echo $i;done
+    hello my linux shell
+    ```
 
 # 6. 常用操作表达式
 
@@ -220,14 +220,14 @@ hello my linux shell
 
 ## 10.1. read bash 内置变量
 
-`-p 设置提示信息; -t 设置输入等待时间(默认s),超过时间自动退出`
-
-```bash
-[root@00 ~]#  read -p "hello bash :" num1 num2  # " 和变量之间需要一个空格
-hello bash : hello_1 hello_2
-[root@00 ~]#  echo $num1 $num2
-hello_1 hello_2
-```
+- `-p` 设置提示信息; 
+- `-t` 设置输入等待时间(默认s),超过时间自动退出
+    ```bash
+    [root@00 ~]#  read -p "hello bash :" num1 num2  # " 和变量之间需要一个空格
+    hello bash : hello_1 hello_2
+    [root@00 ~]#  echo $num1 $num2
+    hello_1 hello_2
+    ```
 
 # 11. 条件测试与比较
 
@@ -394,36 +394,34 @@ done
 ## 16.2. 分段调试
 
 - 脚本内 :
-
-```bash
-#!/bin/bash
-for i in {1..20} ; do
-    if [ $i -gt 10 ]; then
-        set -x              # <<====== 分段调试开始
-        echo "i>20: $i"
-        set +x              # <<====== 分段调试结束
-    else
-        echo "i<=10: $i"
-    fi
-done
-```
+    ```bash
+    #!/bin/bash
+    for i in {1..20} ; do
+        if [ $i -gt 10 ]; then
+            set -x              # <<====== 分段调试开始
+            echo "i>20: $i"
+            set +x              # <<====== 分段调试结束
+        else
+            echo "i<=10: $i"
+        fi
+    done
+    ```
 
 - 终端内
-
-```bash
-[root@00 ~]# set -x             # <<==== 调试启动
-[root@00 ~]# for i in 1 2 3 ; do echo $i ; done
-+ for i in 1 2 3
-+ echo 1
-1
-+ for i in 1 2 3
-+ echo 2
-2
-+ for i in 1 2 3
-+ echo 3
-3
-[root@00 ~]# set +x             # <<==== 调试结束
-```
+    ```bash
+    [root@00 ~]# set -x             # <<==== 调试启动
+    [root@00 ~]# for i in 1 2 3 ; do echo $i ; done
+    + for i in 1 2 3
+    + echo 1
+    1
+    + for i in 1 2 3
+    + echo 2
+    2
+    + for i in 1 2 3
+    + echo 3
+    3
+    [root@00 ~]# set +x             # <<==== 调试结束
+    ```
 
 # 17. linux 信号
 
@@ -453,17 +451,16 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
 - `trap "" signals` 为空表示这个信号失效
 - `trap "commands" signals ` 表示收到`signals`信号时,信号功能副为同时执行`commands`命令
 - `trap signals` 信号复原,取消已经设置的信号
-
-```bash
-# 临时生效,终端退出失效
-[root@00 ~]# trap "" 2  # 设置信号
-[root@00 ~]# trap -p    # 打印设置信号
-trap -- '' SIGINT
-[root@00 ~]#            # << 此时按Ctrl+c  无任何反映
-[root@00 ~]# trap 2     # 信号复原
-[root@00 ~]# ^C         # 复员后 Ctrl+c
-[root@00 ~]# ^C         # 复员后 Ctrl+c
-```
+    ```bash
+    # 临时生效,终端退出失效
+    [root@00 ~]# trap "" 2  # 设置信号
+    [root@00 ~]# trap -p    # 打印设置信号
+    trap -- '' SIGINT
+    [root@00 ~]#            # << 此时按Ctrl+c  无任何反映
+    [root@00 ~]# trap 2     # 信号复原
+    [root@00 ~]# ^C         # 复员后 Ctrl+c
+    [root@00 ~]# ^C         # 复员后 Ctrl+c
+    ```
 
 # 18. Advanced Bash-Scripting Guide(Contributed Scripts)
 
@@ -471,137 +468,137 @@ trap -- '' SIGINT
 
 # 19. getops
 - `example1`
-```bash
-#!/bin/bash
+    ```bash
+    #!/bin/bash
 
-# 长短选项兼容
+    # 长短选项兼容
 
-# ./scripts.sh -h
-# ./scripts.sh -s <values>
-# ./scripts.sh --src_dir <values>
-# ./scripts.sh -k <values> 
-# ./scripts.sh --key_prefix <values>
-# ./scripts.sh -b <values>
-# ./scripts.sh --bucket <values>
-# ./scripts.sh -f <values>
-# ./scripts.sh --file_type <values>
-# ./scripts.sh --skip_fixed_strings <values>
-# ./scripts.sh --skip_file_prefixes <values>
-# ./scripts.sh --skip_path_prefixes <values>
-# ...
+    # ./scripts.sh -h
+    # ./scripts.sh -s <values>
+    # ./scripts.sh --src_dir <values>
+    # ./scripts.sh -k <values> 
+    # ./scripts.sh --key_prefix <values>
+    # ./scripts.sh -b <values>
+    # ./scripts.sh --bucket <values>
+    # ./scripts.sh -f <values>
+    # ./scripts.sh --file_type <values>
+    # ./scripts.sh --skip_fixed_strings <values>
+    # ./scripts.sh --skip_file_prefixes <values>
+    # ./scripts.sh --skip_path_prefixes <values>
+    # ...
 
-while getopts "hs:k:b:f:-:" opt; do
-  case $opt in
-    s) SRC_DIR=$OPTARG;;
-    k) KEY_PREFIX=$OPTARG;;
-    b) BUCKET=$OPTARG;;
-    f) FILE_TYPE=$OPTARG;;
-    h) usage;;
-    -)
-      case $OPTARG in
-        src_dir) SRC_DIR=$2; shift;;
-        key_prefix) KEY_PREFIX=$2; shift;;
-        bucket) BUCKET=$2; shift;;
-        skip_fixed_strings) SKIP_FIXED_STRINGS=$2; shift;;
-        skip_file_prefixes) SKIP_FILE_PREFIXES=$2; shift;;
-        skip_path_prefixes) SKIP_PATH_PREFIXES=$2; shift;;
-        skip_suffixes) SKIP_SUFFIXES=$2; shift;;
-        file_type) FILE_TYPE=$2; shift;;
-        ignore_dir) IGNORE_DIR=$2; shift;;
-        check_exists) CHECK_EXISTS=$2; shift;;
-        check_hash) CHECK_HASH=$2; shift;;
-        rescan_local) RESCAN_LOCAL=$2; shift;;
-        log_level) LOG_LEVEL=$2; shift;;
-        log_file) LOG_FILE=$2; shift;;
-        delete_on_success) DELETE_ON_SUCCESS=$2; shift;;
-        *) echo "Invalid option: --$OPTARG"; exit 1;;
-      esac;;
-    :) echo "Option -$OPTARG requires an argument."; exit 1;;
-    \?) echo "Invalid option: -$OPTARG"; exit 1;;
-  esac
-done
-```
-- `example3`
-```bash
-# scripts.sh -h
-# scripts.sh -a action
-# scripts.sh -a action -n step1 -n step2
-# scripts.sh -a action -e "var1=value1,var2=value2"
-
-declare -- ACTIONS=""
-declare -- STEPS=""
-declare -- ENV_VARS=""
-
-while getopts "ha:n:e:" opt; do
+    while getopts "hs:k:b:f:-:" opt; do
     case $opt in
-    h)
-        usage
-        exit 0
-        ;;
-    a)
-        ACTIONS=$OPTARG
-        ;;
-    n)
-        STEPS+=$OPTARG" "
-        ;;
-    e)
-        ENV_VARS=$OPTARG
-        ;;
-    :)
-        echo "Option -$OPTARG requires an argument." >&2
-        usage
-        exit 1
-        ;;
-    \?)
-        echo "Invalid option: -$OPTARG" >&2
-        usage
-        exit 1
-        ;;
+        s) SRC_DIR=$OPTARG;;
+        k) KEY_PREFIX=$OPTARG;;
+        b) BUCKET=$OPTARG;;
+        f) FILE_TYPE=$OPTARG;;
+        h) usage;;
+        -)
+        case $OPTARG in
+            src_dir) SRC_DIR=$2; shift;;
+            key_prefix) KEY_PREFIX=$2; shift;;
+            bucket) BUCKET=$2; shift;;
+            skip_fixed_strings) SKIP_FIXED_STRINGS=$2; shift;;
+            skip_file_prefixes) SKIP_FILE_PREFIXES=$2; shift;;
+            skip_path_prefixes) SKIP_PATH_PREFIXES=$2; shift;;
+            skip_suffixes) SKIP_SUFFIXES=$2; shift;;
+            file_type) FILE_TYPE=$2; shift;;
+            ignore_dir) IGNORE_DIR=$2; shift;;
+            check_exists) CHECK_EXISTS=$2; shift;;
+            check_hash) CHECK_HASH=$2; shift;;
+            rescan_local) RESCAN_LOCAL=$2; shift;;
+            log_level) LOG_LEVEL=$2; shift;;
+            log_file) LOG_FILE=$2; shift;;
+            delete_on_success) DELETE_ON_SUCCESS=$2; shift;;
+            *) echo "Invalid option: --$OPTARG"; exit 1;;
+        esac;;
+        :) echo "Option -$OPTARG requires an argument."; exit 1;;
+        \?) echo "Invalid option: -$OPTARG"; exit 1;;
     esac
-done
+    done
+    ```
+- `example3`
+    ```bash
+    # scripts.sh -h
+    # scripts.sh -a action
+    # scripts.sh -a action -n step1 -n step2
+    # scripts.sh -a action -e "var1=value1,var2=value2"
 
-shift $((OPTIND - 1))
+    declare -- ACTIONS=""
+    declare -- STEPS=""
+    declare -- ENV_VARS=""
 
-# 将传入的key=value参数转换成环境变量
-# 例如: --env key=value
-IFS=',' read -ra ENV_ARR <<<"$ENV_VARS"
-for var in "${ENV_ARR[@]}"; do
-    IFS='=' read -ra VAR_ARR <<<"$var"
-    declare -g "${VAR_ARR[0]}=${VAR_ARR[1]}"
-done
-```
+    while getopts "ha:n:e:" opt; do
+        case $opt in
+        h)
+            usage
+            exit 0
+            ;;
+        a)
+            ACTIONS=$OPTARG
+            ;;
+        n)
+            STEPS+=$OPTARG" "
+            ;;
+        e)
+            ENV_VARS=$OPTARG
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            usage
+            exit 1
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            usage
+            exit 1
+            ;;
+        esac
+    done
+
+    shift $((OPTIND - 1))
+
+    # 将传入的key=value参数转换成环境变量
+    # 例如: --env key=value
+    IFS=',' read -ra ENV_ARR <<<"$ENV_VARS"
+    for var in "${ENV_ARR[@]}"; do
+        IFS='=' read -ra VAR_ARR <<<"$var"
+        declare -g "${VAR_ARR[0]}=${VAR_ARR[1]}"
+    done
+    ```
 
 - `example3`
-```bash
-# 双冒号 双冒号短参数必须贴近或无参数,长参数必须等号赋值(长参数名可以不用写完)或无参数(注:无参数时变量偏移也是2位)
-# 单冒号参数可以贴近也可以不贴近,但参数必选
-# f d a 必须接受参数
-# s 参数可选
-#
-ARGS=`getopt -o f:s::d:a: --long filename:,source::,desc:,action:: -- "$@"`
-eval set -- "$ARGS"
+    ```bash
+    # 双冒号 双冒号短参数必须贴近或无参数,长参数必须等号赋值(长参数名可以不用写完)或无参数(注:无参数时变量偏移也是2位)
+    # 单冒号参数可以贴近也可以不贴近,但参数必选
+    # f d a 必须接受参数
+    # s 参数可选
+    #
+    ARGS=`getopt -o f:s::d:a: --long filename:,source::,desc:,action:: -- "$@"`
+    eval set -- "$ARGS"
 
-while true ; do
-    case "$1" in
-        -f|--filename)
-            fileName=$2 ; shift 2 ;;
-        -s|--source)
-            case "$2" in
-                "") sourceDir='.' ; shift 2 ;;
-                 *) sourceDir=$2 ; shift 2 ;;
-            esac ;;
-        -d|--desc)
-            descDir=$2 ; shift 2;;
-        -a|--action)
-            case "$2" in
-                "copy"|"move") action=$2 ; shift 2 ;;
-                            *) action="copy" ; shift 2 ;;
-            esac ;;
-        --) shift ; break ;;
-        *) echo "Internal error!" ; exit 1 ;;
-    esac
-done
-```
+    while true ; do
+        case "$1" in
+            -f|--filename)
+                fileName=$2 ; shift 2 ;;
+            -s|--source)
+                case "$2" in
+                    "") sourceDir='.' ; shift 2 ;;
+                    *) sourceDir=$2 ; shift 2 ;;
+                esac ;;
+            -d|--desc)
+                descDir=$2 ; shift 2;;
+            -a|--action)
+                case "$2" in
+                    "copy"|"move") action=$2 ; shift 2 ;;
+                                *) action="copy" ; shift 2 ;;
+                esac ;;
+            --) shift ; break ;;
+            *) echo "Internal error!" ; exit 1 ;;
+        esac
+    done
+    ```
 
 # 20. 那些很神奇的操作
 
@@ -619,5 +616,4 @@ if [ "$(id -u)" -eq 0 ]; then
   echo "Switching to www user..."
   exec runuser -u www -- "$0" "$@"
 fi
-
 ```

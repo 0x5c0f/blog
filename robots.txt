@@ -10,4 +10,4 @@ Disallow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://blog.0x5c0f.cc/sitemap.xml
+Sitemap: http://localhost:1313/sitemap.xml

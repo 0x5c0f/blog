@@ -1,67 +1,67 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Mysql - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/mysql/</link>
+        <link>http://localhost:1313/tags/mysql/</link>
         <description>Mysql - 标签 - 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/mysql/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/mysql/" rel="self" type="application/rss+xml" /><item>
     <title>Mysql 备份与恢复</title>
-    <link>https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
+    <link>http://localhost:1313/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
     <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
     <description><![CDATA[备份与恢复]]></description>
 </item><item>
     <title>Mysql 存储引擎</title>
-    <link>https://blog.0x5c0f.cc/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</link>
+    <link>http://localhost:1313/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</link>
     <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/</guid>
     <description><![CDATA[Mysql 存储引擎]]></description>
 </item><item>
     <title>Mysql 日志管理</title>
-    <link>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</link>
+    <link>http://localhost:1313/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</link>
     <pubDate>Tue, 28 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/</guid>
     <description><![CDATA[Mysql 日志管理]]></description>
 </item><item>
     <title>Mysql Atlas高可用软件</title>
-    <link>https://blog.0x5c0f.cc/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</link>
+    <link>http://localhost:1313/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</guid>
     <description><![CDATA[Mysql Atlas高可用软件]]></description>
 </item><item>
     <title>Mysql MHA高可用软件</title>
-    <link>https://blog.0x5c0f.cc/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</link>
+    <link>http://localhost:1313/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/</guid>
     <description><![CDATA[Mysql MHA高可用软件]]></description>
 </item><item>
     <title>Mysql安装</title>
-    <link>https://blog.0x5c0f.cc/2022/mysql%E5%AE%89%E8%A3%85/</link>
+    <link>http://localhost:1313/2022/mysql%E5%AE%89%E8%A3%85/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E5%AE%89%E8%A3%85/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E5%AE%89%E8%A3%85/</guid>
     <description><![CDATA[Mysql安装]]></description>
 </item><item>
     <title>Mysql程序模型(草稿)</title>
-    <link>https://blog.0x5c0f.cc/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</link>
+    <link>http://localhost:1313/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/</guid>
     <description><![CDATA[Mysql程序模型]]></description>
 </item><item>
     <title>Mysql管理</title>
-    <link>https://blog.0x5c0f.cc/2022/mysql%E7%AE%A1%E7%90%86/</link>
+    <link>http://localhost:1313/2022/mysql%E7%AE%A1%E7%90%86/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E7%AE%A1%E7%90%86/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E7%AE%A1%E7%90%86/</guid>
     <description><![CDATA[Mysql管理]]></description>
 </item><item>
     <title>Mysql监控指标</title>
-    <link>https://blog.0x5c0f.cc/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/</link>
+    <link>http://localhost:1313/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/</guid>
     <description><![CDATA[Mysql监控指标]]></description>
 </item><item>
     <title>Mysql密码重置</title>
-    <link>https://blog.0x5c0f.cc/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</link>
+    <link>http://localhost:1313/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/</guid>
     <description><![CDATA[Mysql密码重置]]></description>
 </item></channel>
 </rss>

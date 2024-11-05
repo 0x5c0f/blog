@@ -1,146 +1,243 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>Mysql - 系列 - 一个曾经的小码农...</title><meta name="Description" content=""><meta property="og:url" content="https://blog.0x5c0f.cc/series/mysql/">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>系列: Mysql · 一个曾经的小码农...</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="description" content="">
+<meta name="keywords" content="[linux Hugo 解决方案 故障]">
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta name="twitter:title" content="Mysql">
+
+<meta property="og:url" content="http://localhost:1313/series/mysql/">
   <meta property="og:site_name" content="一个曾经的小码农...">
   <meta property="og:title" content="Mysql">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="website">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_avatar.png">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-  <meta name="twitter:title" content="Mysql">
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/series/mysql/" /><link rel="alternate" href="/series/mysql/index.xml" type="application/rss+xml" title="一个曾经的小码农...">
-    <link rel="feed" href="/series/mysql/index.xml" type="application/rss+xml" title="一个曾经的小码农..."><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+
+
+<link rel="canonical" href="http://localhost:1313/series/mysql/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link rel="alternate" type="application/rss+xml" href="/series/mysql/index.xml" title="一个曾经的小码农..." />
+
+
+
+
+
+
+
 </head>
 
-<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="一个曾经的小码农..."><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="一个曾经的小码农..."><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
 </div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><div class="page archive"><h2 class="single-title animate__animated animate__pulse animate__faster">系列 - Mysql</h2><article class="archive-item">
-                        <a href="/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/" class="archive-item-link">Mysql 备份与恢复</a>
-                        <span class="archive-item-date">2022-06-28</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/" class="archive-item-link">Mysql 存储引擎</a>
-                        <span class="archive-item-date">2022-06-28</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/" class="archive-item-link">Mysql 日志管理</a>
-                        <span class="archive-item-date">2022-06-28</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/" class="archive-item-link">Mysql Atlas高可用软件</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/" class="archive-item-link">Mysql MHA高可用软件</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mysql%E5%AE%89%E8%A3%85/" class="archive-item-link">Mysql安装</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/" class="archive-item-link">Mysql程序模型(草稿)</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mysql%E7%AE%A1%E7%90%86/" class="archive-item-link">Mysql管理</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/" class="archive-item-link">Mysql监控指标</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/" class="archive-item-link">Mysql密码重置</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mysql%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" class="archive-item-link">Mysql命令收集</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mysql%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="archive-item-link">Mysql配置文件</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/mysql%E4%BC%98%E5%8C%96/" class="archive-item-link">Mysql优化</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article><article class="archive-item">
-                        <a href="/2022/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" class="archive-item-link">Mysql主从复制</a>
-                        <span class="archive-item-date">2022-06-24</span>
-                    </article></div></div>
-        </main><footer class="footer">
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      一个曾经的小码农...
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/series/">系列</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container list">
+  <header>
+    <h1 class="title">
+      <a class="title-link" href="http://localhost:1313/series/mysql/">系列: Mysql</a>
+    </h1>
+  </header>
+  
+  <ul>
+    
+    <li>
+      <span class="date">June 28, 2022</span>
+      <a class="title" href="/2022/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/">Mysql 备份与恢复</a>
+    </li>
+    
+    <li>
+      <span class="date">June 28, 2022</span>
+      <a class="title" href="/2022/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/">Mysql 存储引擎</a>
+    </li>
+    
+    <li>
+      <span class="date">June 28, 2022</span>
+      <a class="title" href="/2022/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/">Mysql 日志管理</a>
+    </li>
+    
+    <li>
+      <span class="date">June 24, 2022</span>
+      <a class="title" href="/2022/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/">Mysql Atlas高可用软件</a>
+    </li>
+    
+    <li>
+      <span class="date">June 24, 2022</span>
+      <a class="title" href="/2022/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/">Mysql MHA高可用软件</a>
+    </li>
+    
+    <li>
+      <span class="date">June 24, 2022</span>
+      <a class="title" href="/2022/mysql%E5%AE%89%E8%A3%85/">Mysql安装</a>
+    </li>
+    
+    <li>
+      <span class="date">June 24, 2022</span>
+      <a class="title" href="/2022/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/">Mysql程序模型(草稿)</a>
+    </li>
+    
+    <li>
+      <span class="date">June 24, 2022</span>
+      <a class="title" href="/2022/mysql%E7%AE%A1%E7%90%86/">Mysql管理</a>
+    </li>
+    
+    <li>
+      <span class="date">June 24, 2022</span>
+      <a class="title" href="/2022/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/">Mysql监控指标</a>
+    </li>
+    
+    <li>
+      <span class="date">June 24, 2022</span>
+      <a class="title" href="/2022/mysql%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE/">Mysql密码重置</a>
+    </li>
+    
+  </ul>
+  
+
+
+
+
+
+<ul class="pagination">
+  
+  
+    
+    
+      
+    
+    
+      
+      <li>1</li>
+      
+    
+  
+    
+    
+      
+    
+    
+      
+      <li><a href="/series/mysql/page/2/">2</a></li>
+      
+    
+  
+  
+    <li class="hidden"><a href="/series/mysql/page/2/">&rsaquo;</a></li>
+    
+    <li><a href="/series/mysql/page/2/">&raquo;</a></li>
+    
+  
+</ul>
+
+
+</section>
+
+
+    </div>
+
+    <footer class="footer">
     <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".icp, .icp-splitter, .icp-br").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.134.1">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+          &nbsp;|&nbsp;&nbsp;|&nbsp;
         </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
             >&nbsp;<a
               href="/"
@@ -153,18 +250,52 @@
           <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div>
       <div class="footer-line"></div>
       <div class="footer-line"></div>
-    </div></footer></div>
+    </div></footer>
+  </main>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-06MPV27KSD');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 </body>
 
 </html>

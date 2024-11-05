@@ -1,61 +1,61 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Windows - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/windows/</link>
+        <link>http://localhost:1313/tags/windows/</link>
         <description>Windows - 标签 - 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/windows/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/windows/" rel="self" type="application/rss+xml" /><item>
     <title>Linux下使用tun2socks进行两地网络连接</title>
-    <link>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
+    <link>http://localhost:1313/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</link>
     <pubDate>Fri, 14 Jun 2024 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2024/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/</guid>
     <description><![CDATA[Linux下使用tun2socks进行两地网络连接]]></description>
 </item><item>
     <title>常用的BAT脚本语法</title>
-    <link>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+    <link>http://localhost:1313/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
     <pubDate>Thu, 06 Apr 2023 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
     <description><![CDATA[常用的BAT脚本语法]]></description>
 </item><item>
     <title>IIS命令操作</title>
-    <link>https://blog.0x5c0f.cc/2022/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</link>
+    <link>http://localhost:1313/2022/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</guid>
     <description><![CDATA[IIS命令操作]]></description>
 </item><item>
     <title>windows 本地安全策略设置</title>
-    <link>https://blog.0x5c0f.cc/2022/ipsec/</link>
+    <link>http://localhost:1313/2022/ipsec/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/ipsec/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/ipsec/</guid>
     <description><![CDATA[IPSEC]]></description>
 </item><item>
     <title>windows安装优化</title>
-    <link>https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/</link>
+    <link>http://localhost:1313/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/</guid>
     <description><![CDATA[安装优化]]></description>
 </item><item>
     <title>Windows命令收集</title>
-    <link>https://blog.0x5c0f.cc/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
+    <link>http://localhost:1313/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/</guid>
     <description><![CDATA[命令收集]]></description>
 </item><item>
     <title>本地安全策略-安全选项</title>
-    <link>https://blog.0x5c0f.cc/2022/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</link>
+    <link>http://localhost:1313/2022/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</guid>
     <description><![CDATA[本地安全策略]]></description>
 </item><item>
     <title>关闭短文建生成注册</title>
-    <link>https://blog.0x5c0f.cc/2022/%E5%85%B3%E9%97%AD%E7%9F%AD%E6%96%87%E5%BB%BA%E7%94%9F%E6%88%90%E6%B3%A8%E5%86%8C/</link>
+    <link>http://localhost:1313/2022/%E5%85%B3%E9%97%AD%E7%9F%AD%E6%96%87%E5%BB%BA%E7%94%9F%E6%88%90%E6%B3%A8%E5%86%8C/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E5%85%B3%E9%97%AD%E7%9F%AD%E6%96%87%E5%BB%BA%E7%94%9F%E6%88%90%E6%B3%A8%E5%86%8C/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E5%85%B3%E9%97%AD%E7%9F%AD%E6%96%87%E5%BB%BA%E7%94%9F%E6%88%90%E6%B3%A8%E5%86%8C/</guid>
     <description><![CDATA[关闭短文建生成注册]]></description>
 </item><item>
     <title>禁止windows服务</title>
-    <link>https://blog.0x5c0f.cc/2022/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/</link>
+    <link>http://localhost:1313/2022/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/</link>
     <pubDate>Fri, 24 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/</guid>
     <description><![CDATA[禁止windows服务]]></description>
 </item></channel>
 </rss>

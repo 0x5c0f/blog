@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Tomcat - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/tomcat/</link>
+        <link>http://localhost:1313/tags/tomcat/</link>
         <description>Tomcat - 标签 - 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/tomcat/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/tomcat/" rel="self" type="application/rss+xml" /><item>
     <title>Tomcat安装及优化</title>
-    <link>https://blog.0x5c0f.cc/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</link>
+    <link>http://localhost:1313/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</link>
     <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/</guid>
     <description><![CDATA[Tomcat安装及优化]]></description>
 </item></channel>
 </rss>

@@ -1,13 +1,28 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cn">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>Systemctl之systemd自定义系统服务 - 一个曾经的小码农...</title><meta name="Description" content="Systemctl之systemd自定义系统服务"><meta property="og:url" content="https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Systemctl之systemd自定义系统服务 · 一个曾经的小码农...
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="description" content="Systemctl之systemd自定义系统服务">
+<meta name="keywords" content="[linux Hugo 解决方案 故障]">
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta name="twitter:title" content="Systemctl之systemd自定义系统服务">
+  <meta name="twitter:description" content="Systemctl之systemd自定义系统服务">
+
+<meta property="og:url" content="http://localhost:1313/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/">
   <meta property="og:site_name" content="一个曾经的小码农...">
   <meta property="og:title" content="Systemctl之systemd自定义系统服务">
   <meta property="og:description" content="Systemctl之systemd自定义系统服务">
@@ -20,199 +35,208 @@
     <meta property="article:tag" content="优化">
     <meta property="article:tag" content="Systemd">
     <meta property="article:tag" content="解决方案">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/">
-      <meta property="og:see_also" content="https://blog.0x5c0f.cc/2022/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_avatar.png">
+      <meta property="og:see_also" content="http://localhost:1313/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/">
+      <meta property="og:see_also" content="http://localhost:1313/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/">
+      <meta property="og:see_also" content="http://localhost:1313/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">
+      <meta property="og:see_also" content="http://localhost:1313/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/">
+      <meta property="og:see_also" content="http://localhost:1313/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/">
+      <meta property="og:see_also" content="http://localhost:1313/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/">
+      <meta property="og:see_also" content="http://localhost:1313/2022/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
-  <meta name="twitter:title" content="Systemctl之systemd自定义系统服务">
-  <meta name="twitter:description" content="Systemctl之systemd自定义系统服务">
-<meta name="application-name" content="DoIt">
-<meta name="apple-mobile-web-app-title" content="DoIt">
 
-<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/icons/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" /><link rel="prev" href="https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/" /><link rel="next" href="https://blog.0x5c0f.cc/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Systemctl之systemd自定义系统服务",
-        "inLanguage": "zh-CN",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/blog.0x5c0f.cc\/2019\/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1\/"
-        },"genre": "posts","keywords": "linux, 优化, systemd, 解决方案","wordcount":  4828 ,
-        "url": "https:\/\/blog.0x5c0f.cc\/2019\/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1\/","datePublished": "2019-08-20T00:00:00+00:00","dateModified": "2023-01-30T00:00:00+00:00","publisher": {
-            "@type": "Organization",
-            "name": "作者"},"authors": [{
-                        "@type": "Person",
-                        "name": "admin"                    
-                    }],"description": "Systemctl之systemd自定义系统服务"
-    }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+
+
+<link rel="canonical" href="http://localhost:1313/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link rel="alternate" type="text/plain" href="/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/index.md" title="一个曾经的小码农..." />
+
+
+
+
+
+
+
 </head>
 
-<body header-desktop="auto" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="一个曾经的小码农..."><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/series/"> 系列 </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="一个曾经的小码农..."><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/series/" title="">系列</a><a class="menu-item" href="/about/" title="">About</a><a href="#" class="menu-item theme-switch" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+
+
+
+<body class="preload-transitions colorscheme-light">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
 </div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><div class="toc" id="toc-auto">
-        <h2 class="toc-title">目录</h2>
-        <div class="toc-content" id="toc-content-auto"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-unit">1. [Unit]</a></li>
-    <li><a href="#2-service">2. [Service]</a></li>
-    <li><a href="#3-install">3. [Install]</a></li>
-    <li><a href="#4-systemd-的定时任务timer">4. systemd 的定时任务(.timer)</a></li>
-    <li><a href="#5-systemd-常用相关命令">5. systemd 常用相关命令</a>
-      <ul>
-        <li><a href="#51-systemctl-系统相关">5.1. systemctl 系统相关</a></li>
-        <li><a href="#52-systemd-analyze命令用于查看启动耗时">5.2. systemd-analyze命令用于查看启动耗时</a></li>
-        <li><a href="#53-loginctl命令用于查看当前登录的用户">5.3. loginctl命令用于查看当前登录的用户</a></li>
-        <li><a href="#54-systemctl-状态查询命令">5.4. systemctl 状态查询命令</a></li>
-        <li><a href="#55-系统日志管理">5.5. 系统日志管理</a></li>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      一个曾经的小码农...
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">文章</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/tags/">标签</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/categories/">分类</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/series/">系列</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
       </ul>
-    </li>
-  </ul>
-</nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Systemctl之systemd自定义系统服务</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><span class='author'><i class="author fas fa-user-circle fa-fw"></i><span class='screen-reader-text'>  </span><a href='https://blog.0x5c0f.cc/authors/admin'>0x5c0f</a></span>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a>&nbsp;<a href="/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/"><i class="far fa-folder fa-fw"></i>那些有用没用的</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/%E6%9D%82%E8%AE%B0/"><i class="far fa-list-alt fa-fw"></i>杂记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-08-20">2019-08-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-01-30">2023-01-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4828 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id="/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" class="leancloud_visitors" data-flag-title="Systemctl之systemd自定义系统服务">
-                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class="leancloud-visitors-count waline-pageview-count" data-path="/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/"></span>&nbsp;次阅读
-                    </span>&nbsp;<span id="/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" class="comment_count" data-flag-title="Systemctl之systemd自定义系统服务">
-                        <i class="far fa-comments fa-fw"></i>&nbsp;<span class="waline-comment-count" id="waline-comment-count" data-path="/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/"></span>&nbsp;条评论
-                    </span>&nbsp;<span>
-                        <i class="fas fa-balance-scale fa-fw"></i>&nbsp;<span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>&nbsp;
-                    </span>&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-unit">1. [Unit]</a></li>
-    <li><a href="#2-service">2. [Service]</a></li>
-    <li><a href="#3-install">3. [Install]</a></li>
-    <li><a href="#4-systemd-的定时任务timer">4. systemd 的定时任务(.timer)</a></li>
-    <li><a href="#5-systemd-常用相关命令">5. systemd 常用相关命令</a>
-      <ul>
-        <li><a href="#51-systemctl-系统相关">5.1. systemctl 系统相关</a></li>
-        <li><a href="#52-systemd-analyze命令用于查看启动耗时">5.2. systemd-analyze命令用于查看启动耗时</a></li>
-        <li><a href="#53-loginctl命令用于查看当前登录的用户">5.3. loginctl命令用于查看当前登录的用户</a></li>
-        <li><a href="#54-systemctl-状态查询命令">5.4. systemctl 状态查询命令</a></li>
-        <li><a href="#55-系统日志管理">5.5. 系统日志管理</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><div class="details admonition warning open">
-                <div class="details-summary admonition-title">
-                    <i class="icon fas fa-exclamation-triangle fa-fwwarning"></i>警告<i class="details-icon fas fa-angle-right fa-fw"></i>
-                </div>
-                <div class="details-content">
-                    <div class="admonition-content">
-                        本文最后更新于 <span class="timeago" datetime="2023-01-30T00:00:00" title="January 30, 2023">2023-01-30</span>，文中内容可能已过时。</div>
-                </div>
-            </div><div class="details admonition quote open">
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="http://localhost:1313/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/">
+              Systemctl之systemd自定义系统服务
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+              <time datetime="2019-08-20T00:00:00Z">
+                August 20, 2019
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fa-solid fa-clock" aria-hidden="true"></i>
+              阅读时间：10 分钟
+            </span>
+          </div>
+          <div class="authors">
+  <i class="fa-solid fa-user" aria-hidden="true"></i>
+    <a href="/authors/admin/">Admin</a></div>
+
+          <div class="categories">
+  <i class="fa-solid fa-folder" aria-hidden="true"></i>
+    <a href="/categories/linux/">Linux</a>
+      <span class="separator">•</span>
+    <a href="/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</a></div>
+
+          <div class="tags">
+  <i class="fa-solid fa-tag" aria-hidden="true"></i>
+    <span class="tag">
+      <a href="/tags/linux/">Linux</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/%E4%BC%98%E5%8C%96/">优化</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/systemd/">Systemd</a>
+    </span>
+      <span class="separator">•</span>
+    <span class="tag">
+      <a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a>
+    </span></div>
+
+        </div>
+      </header>
+
+      <div class="post-content">
+        
+        <div class="details admonition quote open">
         <div class="details-summary admonition-title">
             <i class="icon fas fa-quote-right fa-fw"></i>以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
             <div class="admonition-content"><blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener noreferrer">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html"  class="external-link" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html</a></p>
 </blockquote>
 <blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html" target="_blank" rel="noopener noreferrer">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html"  class="external-link" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html</a></p>
 </blockquote>
 <blockquote>
-<p><a href="http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html" target="_blank" rel="noopener noreferrer">http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html"  class="external-link" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html</a></p>
 </blockquote>
 </div>
         </div>
     </div>
 <hr>
-<h1 id="1-unit" class="headerLink">
-    <a href="#1-unit" class="header-mark"></a>1. [Unit]</h1><p><code>Unit</code> 定义启动顺序与依赖关系</p>
+<h1 id="1-unit">
+  1. [Unit]
+  <a class="heading-link" href="#1-unit">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><code>Unit</code> 定义启动顺序与依赖关系</p>
 <p>单元(Unit)是 <code>Systemd</code> 的最小功能单位，是单个进程的描述。一个个小的单元互相调用和依赖，组成一个庞大的任务管理系统</p>
 <details>
 <summary> 其他的单元类型 </summary>
 <blockquote>
-<p><a href="https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files" target="_blank" rel="noopener noreferrer">https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files</a><br>
+<p><a href="https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files"  class="external-link" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files</a><br>
 <code>Systemd</code> 根据他们描述的资源类型对单位进行分类。确定单元类型的最简单方法是使用其类型后缀，该后缀附加到资源名称的末尾。<br>
 以下列表描述了可用于以下各项的单位类型<code>systemd</code>:</p>
 <ul>
@@ -249,8 +273,14 @@
 </span></span><span class="line"><span class="cl"><span class="na">Requires</span><span class="o">=</span><span class="s">表示此字段标记的服务与当前定义服务存在&#34;强依赖&#34;关系,即表示当前定义的节点服务启动失败或者停止运行,那么当前定义的服务也必须停止.  </span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="2-service" class="headerLink">
-    <a href="#2-service" class="header-mark"></a>2. [Service]</h1><p><code>Service</code>区块定义如何启动当前服务。<br>
+</div><h1 id="2-service">
+  2. [Service]
+  <a class="heading-link" href="#2-service">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><code>Service</code>区块定义如何启动当前服务。<br>
 注意：[<code>Service</code>]部分的启动、重启、停止命令全部要求使用绝对路径，使用相对路径则会报错！</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -332,8 +362,14 @@
 </span></span><span class="line"><span class="cl"><span class="na">RestartSec</span><span class="o">=</span><span class="s">12s 表示 Systemd 重启服务之前，需要等待的秒数。</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="3-install" class="headerLink">
-    <a href="#3-install" class="header-mark"></a>3. [Install]</h1><p><code>Install</code>区块，定义如何安装这个配置文件，即怎样做到开机启动。</p>
+</div><h1 id="3-install">
+  3. [Install]
+  <a class="heading-link" href="#3-install">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p><code>Install</code>区块，定义如何安装这个配置文件，即怎样做到开机启动。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -344,8 +380,14 @@
 </span></span><span class="line"><span class="cl"><span class="c1">; Target的含义是服务组，表示一组服务,一般来说，常用的 Target 有两个：一个是multi-user.target，表示多用户命令行状态；另一个是graphical.target，表示图形用户状态，它依赖于multi-user.target </span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="4-systemd-的定时任务timer" class="headerLink">
-    <a href="#4-systemd-%e7%9a%84%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1timer" class="header-mark"></a>4. systemd 的定时任务(.timer)</h1><p>所谓定时任务，就是未来的某个或多个时点，预定要执行的任务，比如每五分钟收一次邮件、每天半夜两点分析一下日志等等。<br>
+</div><h1 id="4-systemd-的定时任务timer">
+  4. systemd 的定时任务(.timer)
+  <a class="heading-link" href="#4-systemd-%e7%9a%84%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1timer">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<p>所谓定时任务，就是未来的某个或多个时点，预定要执行的任务，比如每五分钟收一次邮件、每天半夜两点分析一下日志等等。<br>
 <code>Linux</code> 系统通常都使用 <code>cron</code> 设置定时任务，但是 <code>Systemd</code> 也有这个功能，而且优点显著</p>
 <ul>
 <li>自动生成日志，配合 <code>Systemd</code> 的日志工具，很方便除错</li>
@@ -368,13 +410,25 @@
 <li>定时执行部分<code>.timer</code>
 <ul>
 <li>用于定义什么时间执行该任务</li>
-<li><a href="#timer" rel=""><code>[Timer]</code> 节点</a></li>
+<li><a href="#timer" ><code>[Timer]</code> 节点</a></li>
 </ul>
 </li>
 </ol>
-<h1 id="5-systemd-常用相关命令" class="headerLink">
-    <a href="#5-systemd-%e5%b8%b8%e7%94%a8%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4" class="header-mark"></a>5. systemd 常用相关命令</h1><h2 id="51-systemctl-系统相关" class="headerLink">
-    <a href="#51-systemctl-%e7%b3%bb%e7%bb%9f%e7%9b%b8%e5%85%b3" class="header-mark"></a>5.1. systemctl 系统相关</h2><div class="highlight"><div class="chroma">
+<h1 id="5-systemd-常用相关命令">
+  5. systemd 常用相关命令
+  <a class="heading-link" href="#5-systemd-%e5%b8%b8%e7%94%a8%e7%9b%b8%e5%85%b3%e5%91%bd%e4%bb%a4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h1>
+<h2 id="51-systemctl-系统相关">
+  5.1. systemctl 系统相关
+  <a class="heading-link" href="#51-systemctl-%e7%b3%bb%e7%bb%9f%e7%9b%b8%e5%85%b3">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -420,8 +474,14 @@
 </span></span><span class="line"><span class="cl">$&gt; sudo systemctl rescue
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="52-systemd-analyze命令用于查看启动耗时" class="headerLink">
-    <a href="#52-systemd-analyze%e5%91%bd%e4%bb%a4%e7%94%a8%e4%ba%8e%e6%9f%a5%e7%9c%8b%e5%90%af%e5%8a%a8%e8%80%97%e6%97%b6" class="header-mark"></a>5.2. systemd-analyze命令用于查看启动耗时</h2><div class="highlight"><div class="chroma">
+</div><h2 id="52-systemd-analyze命令用于查看启动耗时">
+  5.2. systemd-analyze命令用于查看启动耗时
+  <a class="heading-link" href="#52-systemd-analyze%e5%91%bd%e4%bb%a4%e7%94%a8%e4%ba%8e%e6%9f%a5%e7%9c%8b%e5%90%af%e5%8a%a8%e8%80%97%e6%97%b6">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -449,8 +509,14 @@
 </span></span><span class="line"><span class="cl">$&gt; systemd-analyze critical-chain atd.service
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="53-loginctl命令用于查看当前登录的用户" class="headerLink">
-    <a href="#53-loginctl%e5%91%bd%e4%bb%a4%e7%94%a8%e4%ba%8e%e6%9f%a5%e7%9c%8b%e5%bd%93%e5%89%8d%e7%99%bb%e5%bd%95%e7%9a%84%e7%94%a8%e6%88%b7" class="header-mark"></a>5.3. loginctl命令用于查看当前登录的用户</h2><div class="highlight"><div class="chroma">
+</div><h2 id="53-loginctl命令用于查看当前登录的用户">
+  5.3. loginctl命令用于查看当前登录的用户
+  <a class="heading-link" href="#53-loginctl%e5%91%bd%e4%bb%a4%e7%94%a8%e4%ba%8e%e6%9f%a5%e7%9c%8b%e5%bd%93%e5%89%8d%e7%99%bb%e5%bd%95%e7%9a%84%e7%94%a8%e6%88%b7">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -472,8 +538,14 @@
 </span></span><span class="line"><span class="cl">$&gt; loginctl show-user ruanyf
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="54-systemctl-状态查询命令" class="headerLink">
-    <a href="#54-systemctl-%e7%8a%b6%e6%80%81%e6%9f%a5%e8%af%a2%e5%91%bd%e4%bb%a4" class="header-mark"></a>5.4. systemctl 状态查询命令</h2><div class="highlight"><div class="chroma">
+</div><h2 id="54-systemctl-状态查询命令">
+  5.4. systemctl 状态查询命令
+  <a class="heading-link" href="#54-systemctl-%e7%8a%b6%e6%80%81%e6%9f%a5%e8%af%a2%e5%91%bd%e4%bb%a4">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -495,8 +567,14 @@
 </span></span><span class="line"><span class="cl">$&gt; systemctl is-enabled application.service
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="55-系统日志管理" class="headerLink">
-    <a href="#55-%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97%e7%ae%a1%e7%90%86" class="header-mark"></a>5.5. 系统日志管理</h2><div class="highlight"><div class="chroma">
+</div><h2 id="55-系统日志管理">
+  5.5. 系统日志管理
+  <a class="heading-link" href="#55-%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97%e7%ae%a1%e7%90%86">
+    <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+    <span class="sr-only">链接到标题</span>
+  </a>
+</h2>
+<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -677,7 +755,7 @@
 <li><code>OnUnitActiveSec=Mon *-*-* 02:00:00</code>表示每周一凌晨两点执行</li>
 <li>
 <blockquote>
-<p>官方文档 <a href="https://www.freedesktop.org/software/systemd/man/systemd.time.html" target="_blank" rel="noopener noreferrer">https://www.freedesktop.org/software/systemd/man/systemd.time.html</a></p>
+<p>官方文档 <a href="https://www.freedesktop.org/software/systemd/man/systemd.time.html"  class="external-link" target="_blank" rel="noopener">https://www.freedesktop.org/software/systemd/man/systemd.time.html</a></p>
 </blockquote>
 </li>
 </ul>
@@ -693,41 +771,90 @@
 </ul>
 </li>
 </ol>
-</div>
 
-        <div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>更新于 2023-01-30</span>
-            </div>
-            <div class="post-info-license"><span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div>
-        </div>
-        <div class="post-info-line">
-            <div class="post-info-md"><span><a class="link-to-mardown" href=/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/index.md target="_blank" rel="noopener noreferrer">阅读原始文档</a>
-                    </span></div>
-            <div class="post-info-share">
-                <span><a href="#" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.0x5c0f.cc/2019/systemctl%E4%B9%8Bsystemd%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" data-title="Systemctl之systemd自定义系统服务"><i class="fab fa-evernote fa-fw"></i></a></span>
-            </div>
-        </div>
+      </div>
+
+
+      <footer>
+        
+
+<section class="see-also">
+  
+    
+    
+    
+      <h3 id="参见-杂记">
+        参见 杂记
+        <a class="heading-link" href="#%e5%8f%82%e8%a7%81-%e6%9d%82%e8%ae%b0">
+          <i class="fa-solid fa-link" aria-hidden="true" title="链接到标题"></i>
+          <span class="sr-only">链接到标题</span>
+        </a>
+      </h3>
+      <nav>
+        <ul>
+        
+        
+          
+            <li>
+              <a href="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/">那些杂七杂八的记录(一)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2021/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/">那些杂七杂八的记录(二)</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2023/%E5%86%85%E7%BD%91.%E5%A4%96%E7%BD%91.%E5%AE%BD%E5%B8%A6.%E5%B8%A6%E5%AE%BD.%E6%B5%81%E9%87%8F.%E7%BD%91%E9%80%9F%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">内网.外网.宽带.带宽.流量.网速之间的区别与联系</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2023/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/">常用的BAT脚本语法</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2022/http%E5%93%8D%E5%BA%94%E7%A0%81/">HTTP响应码</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="/2022/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/">Fedora视频桌面</a>
+            </li>
+          
+        
+        </ul>
+      </nav>
+    
+  
+</section>
+
+
+        
+        
+        
+        
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
     </div>
 
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/%E4%BC%98%E5%8C%96/">优化</a>,&nbsp;<a href="/tags/systemd/">Systemd</a>,&nbsp;<a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">解决方案</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/" class="prev" rel="prev" title="内网回拨方案"><i class="fas fa-angle-left fa-fw"></i>内网回拨方案</a>
-            <a href="/2019/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" class="next" rel="next" title="介绍在Linux命令行中使用tcpdump">介绍在Linux命令行中使用tcpdump<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id="comments"><div id="waline" class="comment"></div><noscript>
-                Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/">Waline</a>.
-            </noscript></div></article></div>
-        </main><footer class="footer">
+    <footer class="footer">
     <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".icp, .icp-splitter, .icp-br").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-          由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.134.1">Hugo</a> 强力驱动&nbsp;|&nbsp;托管在 <a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a> 上&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+          &nbsp;|&nbsp;&nbsp;|&nbsp;
         </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2022 -2024</span><span class="author" itemprop="copyrightHolder"
             >&nbsp;<a
               href="/"
@@ -740,18 +867,52 @@
           <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div>
       <div class="footer-line"></div>
       <div class="footer-line"></div>
-    </div></footer></div>
+    </div></footer>
+  </main>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/waline/waline.min.css"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"waline":{"comment":true,"copyright":true,"dark":"body[theme='dark'], body[theme='black']","el":"#waline","emoji":["https://unpkg.com/@waline/emojis/alus"],"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageview":true,"requiredMeta":["mail"],"serverURL":"https://talk.51ac.cc"}},"data":{"desktop-header-typeit":"0x5c0f.cc","mobile-header-typeit":"0x5c0f.cc"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":true},"sharerjs":true,"table":{"sort":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":9000,"speed":100}};</script><script type="text/javascript" src="/lib/waline/waline.js" defer></script><script type="text/javascript" src="/js/waline.min.js" defer></script><script type="text/javascript" src="/lib/tablesort/tablesort.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script><script type="text/javascript">
-            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
-            gtag('config', 'G-06MPV27KSD');
-        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-06MPV27KSD" async></script></div>
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 </body>
 
 </html>

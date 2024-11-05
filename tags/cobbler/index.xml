@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Cobbler - 标签 - 一个曾经的小码农...</title>
-        <link>https://blog.0x5c0f.cc/tags/cobbler/</link>
+        <link>http://localhost:1313/tags/cobbler/</link>
         <description>Cobbler - 标签 - 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 19 Jan 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/tags/cobbler/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 19 Jan 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/cobbler/" rel="self" type="application/rss+xml" /><item>
     <title>Cobbler无人值守安装</title>
-    <link>https://blog.0x5c0f.cc/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/</link>
+    <link>http://localhost:1313/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/</link>
     <pubDate>Sun, 19 Jan 2020 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>https://blog.0x5c0f.cc/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/</guid>
+                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2020/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/</guid>
     <description><![CDATA[Cobbler无人值守安装]]></description>
 </item></channel>
 </rss>
