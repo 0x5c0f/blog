@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Supervisor批量进程管理 - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
+<meta name="description" content="Supervisor批量进程管理"><meta name="keywords" content='linux'>
+  <meta itemprop="name" content="Supervisor批量进程管理">
+  <meta itemprop="description" content="Supervisor批量进程管理">
+  <meta itemprop="datePublished" content="2019-02-21T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-03-30T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1187">
+  <meta itemprop="image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta itemprop="keywords" content="Linux"><meta property="og:url" content="http://localhost:1313/posts/linux/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
+  <meta property="og:site_name" content="一个曾经的小码农...">
+  <meta property="og:title" content="Supervisor批量进程管理">
+  <meta property="og:description" content="Supervisor批量进程管理">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-02-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-03-30T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta name="twitter:title" content="Supervisor批量进程管理">
+  <meta name="twitter:description" content="Supervisor批量进程管理">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/posts/linux/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" title="Supervisor批量进程管理 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="http://localhost:1313/posts/other/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/" title="那些有用没用的问题收集" /><link rel="next" type="text/html" href="http://localhost:1313/posts/linux/dotnet%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" title="Dotnet运维故障记录" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/posts/linux/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/index.md" title="Supervisor批量进程管理 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Supervisor批量进程管理",
+    "inLanguage": "zh-cn",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/linux\/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/"
+    },"genre": "posts","keywords": "linux","wordcount":  1187 ,
+    "url": "http:\/\/localhost:1313\/posts\/linux\/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86\/","datePublished": "2019-02-21T00:00:00+00:00","dateModified": "2023-03-30T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "0x5c0f"
+      },"description": "Supervisor批量进程管理"
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/posts/">文章</a></li><li class="menu-item">
+              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/posts/">文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Supervisor批量进程管理</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2019-02-21 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-02-21">2019-02-21</time></span>&nbsp;<span title="更新于 2023-03-30 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2023-03-30">2023-03-30</time></span>&nbsp;<span title="1187 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1200 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 6 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#31-配置参数说明">3.1. 配置参数说明</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><div class="details admonition warning open">
+      <div class="details-summary admonition-title">
+        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
+      </div>
+      <div class="details-content">
+        <div class="admonition-content">本文最后更新于 2023-03-30，文中内容可能已过时。</div>
+      </div>
+    </div><p><code>supervisor</code> 一个简单的python编写的进程管理器，功能类似是将普通进程以守护进程的形式运行到后台</p>
+<p><code>supervisord-monitor</code> 一个集中的管理前端</p>
+<blockquote>
+<p><a href="https://github.com/mlazarov/supervisord-monitor"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/mlazarov/supervisord-monitor<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</blockquote>
+<h2 id="1-安装" class="heading-element"><span>1. 安装</span>
+  <a href="#1-%e5%ae%89%e8%a3%85" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; pip3 install supervisor</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="配置及启动" class="heading-element"><span>配置及启动</span>
+  <a href="#%e9%85%8d%e7%bd%ae%e5%8f%8a%e5%90%af%e5%8a%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成配置文件 </span>
+</span></span><span class="line"><span class="cl">$&gt; echo_supervisord_conf &gt; /etc/supervisord.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建systemd 管理脚本</span>
+</span></span><span class="line"><span class="cl">$&gt; vim /etc/systemd/system/supervisord.service
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span><span class="o">=</span>Process Monitoring and Control Daemon
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>rc-local.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>forking
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/supervisord -c /etc/supervisord.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">LimitCORE</span><span class="o">=</span>infinity
+</span></span><span class="line"><span class="cl"><span class="nv">LimitNOFILE</span><span class="o">=</span><span class="m">65535</span>
+</span></span><span class="line"><span class="cl"><span class="nv">LimitNPROC</span><span class="o">=</span><span class="m">65535</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># # #  </span>
+</span></span><span class="line"><span class="cl">$&gt; systemctl daemon-reload
+</span></span><span class="line"><span class="cl">$&gt; systemctl start supervisord
+</span></span><span class="line"><span class="cl"><span class="c1"># </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl status：查看所有进程的状态</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl stop es：停止es</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl start es：启动es</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl restart es: 重启es</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl update :配置文件修改后可以使用该命令加载新的配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># supervisorctl reload: 重新启动配置中的所有程序</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-配置文件说明" class="heading-element"><span>3. 配置文件说明</span>
+  <a href="#3-%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e8%af%b4%e6%98%8e" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 注意安装的版本，版本不一样配置文件有差异,以下配置文件是3.1.4</span>
+</span></span><span class="line"><span class="cl"><span class="k">[unix_http_server]</span>
+</span></span><span class="line"><span class="cl"><span class="na">file</span><span class="o">=</span><span class="s">/tmp/supervisor.sock   ; the path to the socket file</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">[inet_http_server]         ; inet (TCP) server disabled by default</span>
+</span></span><span class="line"><span class="cl"><span class="na">port</span><span class="o">=</span><span class="s">0.0.0.0:9001</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; username=&lt;username&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; password=&lt;password&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[supervisord]</span>
+</span></span><span class="line"><span class="cl"><span class="na">logfile</span><span class="o">=</span><span class="s">/tmp/supervisord.log </span>
+</span></span><span class="line"><span class="cl"><span class="na">logfile_maxbytes</span><span class="o">=</span><span class="s">50MB</span>
+</span></span><span class="line"><span class="cl"><span class="na">logfile_backups</span><span class="o">=</span><span class="s">10</span>
+</span></span><span class="line"><span class="cl"><span class="na">loglevel</span><span class="o">=</span><span class="s">info</span>
+</span></span><span class="line"><span class="cl"><span class="na">pidfile</span><span class="o">=</span><span class="s">/tmp/supervisord.pid</span>
+</span></span><span class="line"><span class="cl"><span class="na">nodaemon</span><span class="o">=</span><span class="s">false</span>
+</span></span><span class="line"><span class="cl"><span class="na">silent</span><span class="o">=</span><span class="s">false</span>
+</span></span><span class="line"><span class="cl"><span class="na">minfds</span><span class="o">=</span><span class="s">1024                  ; 这个是最少系统空闲的文件描述符，低于这个值supervisor将不会启动; default 1024</span>
+</span></span><span class="line"><span class="cl"><span class="na">minprocs</span><span class="o">=</span><span class="s">200                 ; 最小可用的进程描述符，低于这个值supervisor也将不会正常启动;default 200</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;directory=/tmp              ; default is not to cd during start</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;nocleanup=false             ; 为false时，启动会清除历史的子进程日志; default false</span>
+</span></span><span class="line"><span class="cl"><span class="c1">;childlogdir=/tmp            ; &#39;AUTO&#39; child log dir, default $TEMP(python -c &#34;import tempfile;print tempfile.gettempdir()&#34;) </span>
+</span></span><span class="line"><span class="cl"><span class="na">environment</span><span class="o">=</span><span class="s">TZ=Asia/Shanghai ; environment=TZ=Asia/Shanghai,TZ=Asia/Shanghai,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[rpcinterface:supervisor]</span>
+</span></span><span class="line"><span class="cl"><span class="na">supervisor.rpcinterface_factory</span> <span class="o">=</span> <span class="s">supervisor.rpcinterface:make_main_rpcinterface</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[supervisorctl]</span>
+</span></span><span class="line"><span class="cl"><span class="na">serverurl</span><span class="o">=</span><span class="s">unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">; [program:theprogramname]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; command=/bin/cat</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; directory=/tmp</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; ; process_name=example.com(80)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; autostart=true         ; 是否在 supervisord 启动时启动</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; autorestart=true       ; 子进程挂掉时候自动重启</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; user=www</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; stopasgroup=true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; killasgroup=true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; redirect_stderr=true</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; stdout_logfile=/var/log/example.com.log </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; stdout_logfile_maxbytes=50MB</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; stdout_logfile_backups=10</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; ; environment=TZ=Asia/Shanghai </span>
+</span></span><span class="line"><span class="cl"><span class="c1">; ; exitcodes=CODE1,CODE2    ; 允许的进程退出码。以&#34;,&#34;分隔，默认为0,2。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[include]</span>
+</span></span><span class="line"><span class="cl"><span class="na">files</span> <span class="o">=</span> <span class="s">/etc/supervisord.d/*.ini</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="31-配置参数说明" class="heading-element"><span>3.1. 配置参数说明</span>
+  <a href="#31-%e9%85%8d%e7%bd%ae%e5%8f%82%e6%95%b0%e8%af%b4%e6%98%8e" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><blockquote>
+<p><a href="https://blog.csdn.net/lvmuheng/article/details/72367849"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/lvmuheng/article/details/72367849<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="p">[</span><span class="n">unix_http_server</span><span class="p">]</span>            
+</span></span><span class="line"><span class="cl"><span class="n">file</span><span class="o">=/</span><span class="n">tmp</span><span class="o">/</span><span class="n">supervisor</span><span class="o">.</span><span class="n">sock</span>   <span class="p">;</span> <span class="n">socket文件的路径</span><span class="err">，</span><span class="n">supervisorctl用XML_RPC和supervisord通信就是通过它进行</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">的。如果不设置的话，</span><span class="n">supervisorctl也就不能用了</span>  
+</span></span><span class="line"><span class="cl">                              <span class="err">不设置的话，默认为</span><span class="n">none</span><span class="err">。</span> <span class="err">非必须设置</span>        
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">chmod</span><span class="o">=</span><span class="mi">0700</span>                 <span class="p">;</span> <span class="err">这个简单，就是修改上面的那个</span><span class="n">socket文件的权限为0700</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">不设置的话，默认为</span><span class="mi">0700</span><span class="err">。</span> <span class="err">非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">chown</span><span class="o">=</span><span class="n">nobody</span><span class="p">:</span><span class="n">nogroup</span>       <span class="p">;</span> <span class="err">这个一样，修改上面的那个</span><span class="n">socket文件的属组为user</span><span class="o">.</span><span class="n">group</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">不设置的话，默认为启动</span><span class="n">supervisord进程的用户及属组</span><span class="err">。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">username</span><span class="o">=</span><span class="n">user</span>              <span class="p">;</span> <span class="err">使用</span><span class="n">supervisorctl连接的时候</span><span class="err">，认证的用户</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">不设置的话，默认为不需要用户。</span> <span class="err">非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">password</span><span class="o">=</span><span class="mi">123</span>               <span class="p">;</span> <span class="err">和上面的用户名对应的密码，可以直接使用明码，也可以使用</span><span class="n">SHA加密</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">如：</span><span class="p">{</span><span class="n">SHA</span><span class="p">}</span><span class="mi">82</span><span class="n">ab876d1387bfafe46cc1c8a2ef074eae50cb1d</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">默认不设置。。。非必须设置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;[</span><span class="n">inet_http_server</span><span class="p">]</span>         <span class="p">;</span> <span class="err">侦听在</span><span class="n">TCP上的socket</span><span class="err">，</span><span class="n">Web</span> <span class="n">Server和远程的supervisorctl都要用到他</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">不设置的话，默认为不开启。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">port</span><span class="o">=</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9001</span>        <span class="p">;</span> <span class="err">这个是侦听的</span><span class="n">IP和端口</span><span class="err">，侦听所有</span><span class="n">IP用</span> <span class="p">:</span><span class="mi">9001</span><span class="err">或</span><span class="o">*</span><span class="p">:</span><span class="mi">9001</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">这个必须设置，只要上面的</span><span class="p">[</span><span class="n">inet_http_server</span><span class="p">]</span><span class="err">开启了，就必须设置它</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">username</span><span class="o">=</span><span class="n">user</span>              <span class="p">;</span> <span class="err">这个和上面的</span><span class="n">uinx_http_server一个样</span><span class="err">。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">password</span><span class="o">=</span><span class="mi">123</span>               <span class="p">;</span> <span class="err">这个也一个样。非必须设置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">supervisord</span><span class="p">]</span>                <span class="p">;</span><span class="err">这个主要是定义</span><span class="n">supervisord这个服务端进程的一些参数的</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">这个必须设置，不设置，</span><span class="n">supervisor就不用干活了</span>
+</span></span><span class="line"><span class="cl"><span class="n">logfile</span><span class="o">=/</span><span class="n">tmp</span><span class="o">/</span><span class="n">supervisord</span><span class="o">.</span><span class="n">log</span> <span class="p">;</span> <span class="err">这个是</span><span class="n">supervisord这个主进程的日志路径</span><span class="err">，注意和子进程的日志不搭嘎。</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认路径</span><span class="o">$</span><span class="n">CWD</span><span class="o">/</span><span class="n">supervisord</span><span class="o">.</span><span class="n">log</span><span class="err">，</span><span class="o">$</span><span class="n">CWD是当前目录</span><span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="n">logfile_maxbytes</span><span class="o">=</span><span class="mi">50</span><span class="n">MB</span>        <span class="p">;</span> <span class="err">这个是上面那个日志文件的最大的大小，当超过</span><span class="mi">50</span><span class="n">M的时候</span><span class="err">，会生成一个新的日</span> 
+</span></span><span class="line"><span class="cl">                               <span class="err">志文件。当设置为</span><span class="mi">0</span><span class="err">时，表示不限制文件大小</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认值是</span><span class="mi">50</span><span class="n">M</span><span class="err">，非必须设置。</span>              
+</span></span><span class="line"><span class="cl"><span class="n">logfile_backups</span><span class="o">=</span><span class="mi">10</span>           <span class="p">;</span> <span class="err">日志文件保持的数量，上面的日志文件大于</span><span class="mi">50</span><span class="n">M时</span><span class="err">，就会生成一个新文件。文件</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">数量大于</span><span class="mi">10</span><span class="err">时，最初的老文件被新文件覆盖，文件数量将保持为</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">当设置为</span><span class="mi">0</span><span class="err">时，表示不限制文件的数量。</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认情况下为</span><span class="mi">10</span><span class="err">。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="n">loglevel</span><span class="o">=</span><span class="n">info</span>                <span class="p">;</span> <span class="err">日志级别，有</span><span class="n">critical</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">warn</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">debug</span><span class="p">,</span> <span class="n">trace</span><span class="p">,</span> <span class="ow">or</span> <span class="n">blather等</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认为</span><span class="n">info</span><span class="err">。。。非必须设置项</span>
+</span></span><span class="line"><span class="cl"><span class="n">pidfile</span><span class="o">=/</span><span class="n">tmp</span><span class="o">/</span><span class="n">supervisord</span><span class="o">.</span><span class="n">pid</span> <span class="p">;</span> <span class="n">supervisord的pid文件路径</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认为</span><span class="o">$</span><span class="n">CWD</span><span class="o">/</span><span class="n">supervisord</span><span class="o">.</span><span class="n">pid</span><span class="err">。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="n">nodaemon</span><span class="o">=</span><span class="bp">false</span>               <span class="p">;</span> <span class="err">如果是</span><span class="bp">true</span><span class="err">，</span><span class="n">supervisord进程将在前台运行</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认为</span><span class="bp">false</span><span class="err">，也就是后台以守护进程运行。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="n">minfds</span><span class="o">=</span><span class="mi">1024</span>                  <span class="p">;</span> <span class="err">这个是最少系统空闲的文件描述符，低于这个值</span><span class="n">supervisor将不会启动</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">系统的文件描述符在这里设置</span><span class="n">cat</span> <span class="o">/</span><span class="n">proc</span><span class="o">/</span><span class="n">sys</span><span class="o">/</span><span class="n">fs</span><span class="o">/</span><span class="n">file</span><span class="o">-</span><span class="nb">max</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认情况下为</span><span class="mi">1024</span><span class="err">。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="n">minprocs</span><span class="o">=</span><span class="mi">200</span>                 <span class="p">;</span> <span class="err">最小可用的进程描述符，低于这个值</span><span class="n">supervisor也将不会正常启动</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">ulimit</span>  <span class="o">-</span><span class="n">u这个命令</span><span class="err">，可以查看</span><span class="n">linux下面用户的最大进程数</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">默认为</span><span class="mi">200</span><span class="err">。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">umask</span><span class="o">=</span><span class="mi">022</span>                   <span class="p">;</span> <span class="err">进程创建文件的掩码</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认为</span><span class="mi">022</span><span class="err">。。非必须设置项</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">user</span><span class="o">=</span><span class="n">chrism</span>                 <span class="p">;</span> <span class="err">这个参数可以设置一个非</span><span class="n">root用户</span><span class="err">，当我们以</span><span class="n">root用户启动supervisord之后</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">我这里面设置的这个用户，也可以对</span><span class="n">supervisord进行管理</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认情况是不设置。。。非必须设置项</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">identifier</span><span class="o">=</span><span class="n">supervisor</span>       <span class="p">;</span> <span class="err">这个参数是</span><span class="n">supervisord的标识符</span><span class="err">，主要是给</span><span class="n">XML_RPC用的</span><span class="err">。当你有多个</span>
+</span></span><span class="line"><span class="cl">                               <span class="n">supervisor的时候</span><span class="err">，而且想调用</span><span class="n">XML_RPC统一管理</span><span class="err">，就需要为每个</span>
+</span></span><span class="line"><span class="cl">                               <span class="n">supervisor设置不同的标识符了</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认是</span><span class="n">supervisord</span><span class="err">。。。非必需设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">directory</span><span class="o">=/</span><span class="n">tmp</span>              <span class="p">;</span> <span class="err">这个参数是当</span><span class="n">supervisord作为守护进程运行的时候</span><span class="err">，设置这个参数的话，启动</span>
+</span></span><span class="line"><span class="cl">                               <span class="n">supervisord进程之前</span><span class="err">，会先切换到这个目录</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认不设置。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">nocleanup</span><span class="o">=</span><span class="bp">true</span>              <span class="p">;</span> <span class="err">这个参数当为</span><span class="n">false的时候</span><span class="err">，会在</span><span class="n">supervisord进程启动的时候</span><span class="err">，把以前子进程</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">产生的日志文件</span><span class="p">(</span><span class="err">路径为</span><span class="n">AUTO的情况下</span><span class="p">)</span><span class="err">清除掉。有时候咱们想要看历史日志，当</span> 
+</span></span><span class="line"><span class="cl">                               <span class="err">然不想日志被清除了。所以可以设置为</span><span class="bp">true</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认是</span><span class="bp">false</span><span class="err">，有调试需求的同学可以设置为</span><span class="bp">true</span><span class="err">。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">childlogdir</span><span class="o">=/</span><span class="n">tmp</span>            <span class="p">;</span> <span class="err">当子进程日志路径为</span><span class="n">AUTO的时候</span><span class="err">，子进程日志文件的存放路径。</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认路径是这个东西，执行下面的这个命令看看就</span><span class="n">OK了</span><span class="err">，处理的东西就默认路径</span>
+</span></span><span class="line"><span class="cl">                               <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&#34;import tempfile;print tempfile.gettempdir()&#34;</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">environment</span><span class="o">=</span><span class="n">KEY</span><span class="o">=</span><span class="s2">&#34;value&#34;</span>     <span class="p">;</span> <span class="err">这个是用来设置环境变量的，</span><span class="n">supervisord在linux中启动默认继承了linux的</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">环境变量，在这里可以设置</span><span class="n">supervisord进程特有的其他环境变量</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                               <span class="n">supervisord启动子进程时</span><span class="err">，子进程会拷贝父进程的内存空间内容。</span> <span class="err">所以设置的</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">这些环境变量也会被子进程继承。</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">小例子：</span><span class="n">environment</span><span class="o">=</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;haha&#34;</span><span class="p">,</span><span class="n">age</span><span class="o">=</span><span class="s2">&#34;hehe&#34;</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认为不设置。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">strip_ansi</span><span class="o">=</span><span class="bp">false</span>            <span class="p">;</span> <span class="err">这个选项如果设置为</span><span class="bp">true</span><span class="err">，会清除子进程日志中的所有</span><span class="n">ANSI</span> <span class="err">序列。什么是</span><span class="n">ANSI</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">序列呢？就是我们的</span>\<span class="n">n</span><span class="p">,</span>\<span class="n">t这些东西</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认为</span><span class="bp">false</span><span class="err">。。。非必须设置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">the</span> <span class="n">below</span> <span class="n">section</span> <span class="n">must</span> <span class="n">remain</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">config</span> <span class="n">file</span> <span class="k">for</span> <span class="n">RPC</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="p">(</span><span class="n">supervisorctl</span><span class="o">/</span><span class="n">web</span> <span class="n">interface</span><span class="p">)</span> <span class="n">to</span> <span class="n">work</span><span class="p">,</span> <span class="n">additional</span> <span class="n">interfaces</span> <span class="n">may</span> <span class="n">be</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">added</span> <span class="n">by</span> <span class="n">defining</span> <span class="n">them</span> <span class="ow">in</span> <span class="n">separate</span> <span class="n">rpcinterface</span><span class="p">:</span> <span class="n">sections</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">rpcinterface</span><span class="p">:</span><span class="n">supervisor</span><span class="p">]</span>    <span class="p">;</span><span class="err">这个选项是给</span><span class="n">XML_RPC用的</span><span class="err">，当然你如果想使用</span><span class="n">supervisord或者web</span> <span class="n">server</span> <span class="err">这</span> 
+</span></span><span class="line"><span class="cl">                              <span class="err">个选项必须要开启的</span>
+</span></span><span class="line"><span class="cl"><span class="n">supervisor</span><span class="o">.</span><span class="n">rpcinterface_factory</span> <span class="o">=</span> <span class="n">supervisor</span><span class="o">.</span><span class="n">rpcinterface</span><span class="p">:</span><span class="n">make_main_rpcinterface</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">supervisorctl</span><span class="p">]</span>              <span class="p">;</span><span class="err">这个主要是针对</span><span class="n">supervisorctl的一些配置</span>  
+</span></span><span class="line"><span class="cl"><span class="n">serverurl</span><span class="o">=</span><span class="n">unix</span><span class="p">:</span><span class="o">///</span><span class="n">tmp</span><span class="o">/</span><span class="n">supervisor</span><span class="o">.</span><span class="n">sock</span> <span class="p">;</span> <span class="err">这个是</span><span class="n">supervisorctl本地连接supervisord的时候</span><span class="err">，本地</span><span class="n">UNIX</span> <span class="n">socket</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">路径，注意这个是和前面的</span><span class="p">[</span><span class="n">unix_http_server</span><span class="p">]</span><span class="err">对应的</span>
+</span></span><span class="line"><span class="cl">                                        <span class="err">默认值就是</span><span class="n">unix</span><span class="p">:</span><span class="o">///</span><span class="n">tmp</span><span class="o">/</span><span class="n">supervisor</span><span class="o">.</span><span class="n">sock</span><span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">serverurl</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9001</span> <span class="p">;</span> <span class="err">这个是</span><span class="n">supervisorctl远程连接supervisord的时候</span><span class="err">，用到的</span><span class="n">TCP</span> <span class="n">socket路径</span>
+</span></span><span class="line"><span class="cl">                                   <span class="err">注意这个和前面的</span><span class="p">[</span><span class="n">inet_http_server</span><span class="p">]</span><span class="err">对应</span>
+</span></span><span class="line"><span class="cl">                                   <span class="err">默认就是</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">9001</span><span class="err">。。。非必须项</span>
+</span></span><span class="line"><span class="cl">                               
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">username</span><span class="o">=</span><span class="n">chris</span>              <span class="p">;</span> <span class="err">用户名</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认空。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">password</span><span class="o">=</span><span class="mi">123</span>                <span class="p">;</span> <span class="err">密码</span>
+</span></span><span class="line"><span class="cl">                              <span class="err">默认空。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">prompt</span><span class="o">=</span><span class="n">mysupervisor</span>         <span class="p">;</span> <span class="err">输入用户名密码时候的提示符</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认</span><span class="n">supervisor</span><span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">history_file</span><span class="o">=~/.</span><span class="n">sc_history</span>  <span class="p">;</span> <span class="err">这个参数和</span><span class="n">shell中的history类似</span><span class="err">，我们可以用上下键来查找前面执行过的命令</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">默认是</span><span class="n">no</span> <span class="n">file的</span><span class="err">。。所以我们想要有这种功能，必须指定一个文件。。。非</span>
+</span></span><span class="line"><span class="cl">                               <span class="err">必须设置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">The</span> <span class="n">below</span> <span class="n">sample</span> <span class="n">program</span> <span class="n">section</span> <span class="n">shows</span> <span class="n">all</span> <span class="n">possible</span> <span class="n">program</span> <span class="n">subsection</span> <span class="n">values</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">create</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> <span class="s1">&#39;real&#39;</span> <span class="n">program</span><span class="p">:</span> <span class="n">sections</span> <span class="n">to</span> <span class="n">be</span> <span class="n">able</span> <span class="n">to</span> <span class="n">control</span> <span class="n">them</span> <span class="n">under</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">supervisor</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;[</span><span class="n">program</span><span class="p">:</span><span class="n">theprogramname</span><span class="p">]</span>      <span class="p">;</span><span class="err">这个就是咱们要管理的子进程了，</span><span class="s2">&#34;:&#34;</span><span class="err">后面的是名字，最好别乱写和实际进程</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">有点关联最好。这样的</span><span class="n">program我们可以设置一个或多个</span><span class="err">，一个</span><span class="n">program就是</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">要被管理的一个进程</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">command</span><span class="o">=/</span><span class="n">bin</span><span class="o">/</span><span class="n">cat</span>              <span class="p">;</span> <span class="err">这个就是我们的要启动进程的命令路径了，可以带参数</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">例子：</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">a</span> <span class="s1">&#39;hehe&#39;</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">有一点需要注意的是，我们的</span><span class="n">command只能是那种在终端运行的进程</span><span class="err">，不能是</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">守护进程。这个想想也知道了，比如说</span><span class="n">command</span><span class="o">=</span><span class="n">service</span> <span class="n">httpd</span> <span class="n">start</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">httpd这个进程被linux的service管理了</span><span class="err">，我们的</span><span class="n">supervisor再去启动这个命令</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">这已经不是严格意义的子进程了。</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">这个是个必须设置的项</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">process_name</span><span class="o">=%</span><span class="p">(</span><span class="n">program_name</span><span class="p">)</span><span class="n">s</span> <span class="p">;</span> <span class="err">这个是进程名，如果我们下面的</span><span class="n">numprocs参数为1的话</span><span class="err">，就不用管这个参数</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">了，它默认值</span><span class="o">%</span><span class="p">(</span><span class="n">program_name</span><span class="p">)</span><span class="n">s也就是上面的那个program冒号后面的名字</span><span class="err">，</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">但是如果</span><span class="n">numprocs为多个的话</span><span class="err">，那就不能这么干了。想想也知道，不可能每个</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">进程都用同一个进程名吧。</span><span class="p">(</span><span class="err">别名</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">numprocs</span><span class="o">=</span><span class="mi">1</span>                    <span class="p">;</span> <span class="err">启动进程的数目。当不为</span><span class="mi">1</span><span class="err">时，就是进程池的概念，注意</span><span class="n">process_name的设置</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为</span><span class="mi">1</span>    <span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">directory</span><span class="o">=/</span><span class="n">tmp</span>                <span class="p">;</span> <span class="err">进程运行前，会前切换到这个目录</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认不设置。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">umask</span><span class="o">=</span><span class="mi">022</span>                     <span class="p">;</span> <span class="err">进程掩码，默认</span><span class="n">none</span><span class="err">，非必须</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">priority</span><span class="o">=</span><span class="mi">999</span>                  <span class="p">;</span> <span class="err">子进程启动关闭优先级，优先级低的，最先启动，关闭的时候最后关闭</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认值为</span><span class="mi">999</span> <span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">autostart</span><span class="o">=</span><span class="bp">true</span>                <span class="p">;</span> <span class="err">如果是</span><span class="n">true的话</span><span class="err">，子进程将在</span><span class="n">supervisord启动后被自动启动</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认就是</span><span class="bp">true</span>   <span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">autorestart</span><span class="o">=</span><span class="n">unexpected</span>        <span class="p">;</span> <span class="err">这个是设置子进程挂掉后自动重启的情况，有三个选项，</span><span class="bp">false</span><span class="p">,</span><span class="n">unexpected</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">和</span><span class="bp">true</span><span class="err">。如果为</span><span class="n">false的时候</span><span class="err">，无论什么情况下，都不会被重新启动，</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">如果为</span><span class="n">unexpected</span><span class="err">，只有当进程的退出码不在下面的</span><span class="n">exitcodes里面定义的退</span> 
+</span></span><span class="line"><span class="cl">                                 <span class="err">出码的时候，才会被自动重启。当为</span><span class="n">true的时候</span><span class="err">，只要子进程挂掉，将会被无</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">条件的重启</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">startsecs</span><span class="o">=</span><span class="mi">1</span>                   <span class="p">;</span> <span class="err">这个选项是子进程启动多少秒之后，此时状态如果是</span><span class="n">running</span><span class="err">，则我们认为启</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">动成功了</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认值为</span><span class="mi">1</span> <span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">startretries</span><span class="o">=</span><span class="mi">3</span>                <span class="p">;</span> <span class="err">当进程启动失败后，最大尝试启动的次数。。当超过</span><span class="mi">3</span><span class="err">次后，</span><span class="n">supervisor将把</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">此进程的状态置为</span><span class="n">FAIL</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认值为</span><span class="mi">3</span> <span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">exitcodes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span>                 <span class="p">;</span> <span class="err">注意和上面的的</span><span class="n">autorestart</span><span class="o">=</span><span class="n">unexpected对应</span><span class="err">。。</span><span class="n">exitcodes里面的定义的</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">退出码是</span><span class="n">expected的</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stopsignal</span><span class="o">=</span><span class="n">QUIT</span>               <span class="p">;</span> <span class="err">进程停止信号，可以为</span><span class="n">TERM</span><span class="p">,</span> <span class="n">HUP</span><span class="p">,</span> <span class="n">INT</span><span class="p">,</span> <span class="n">QUIT</span><span class="p">,</span> <span class="n">KILL</span><span class="p">,</span> <span class="n">USR1</span><span class="p">,</span> <span class="ow">or</span> <span class="n">USR2等信号</span>
+</span></span><span class="line"><span class="cl">                                  <span class="err">默认为</span><span class="n">TERM</span> <span class="err">。。当用设定的信号去干掉进程，退出码会被认为是</span><span class="n">expected</span>
+</span></span><span class="line"><span class="cl">                                  <span class="err">非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stopwaitsecs</span><span class="o">=</span><span class="mi">10</span>               <span class="p">;</span> <span class="err">这个是当我们向子进程发送</span><span class="n">stopsignal信号后</span><span class="err">，到系统返回信息</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">给</span><span class="n">supervisord</span><span class="err">，所等待的最大时间。</span> <span class="err">超过这个时间，</span><span class="n">supervisord会向该</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">子进程发送一个强制</span><span class="n">kill的信号</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为</span><span class="mi">10</span><span class="err">秒。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stopasgroup</span><span class="o">=</span><span class="bp">false</span>             <span class="p">;</span> <span class="err">这个东西主要用于，</span><span class="n">supervisord管理的子进程</span><span class="err">，这个子进程本身还有</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">子进程。那么我们如果仅仅干掉</span><span class="n">supervisord的子进程的话</span><span class="err">，子进程的子进程</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">有可能会变成孤儿进程。所以咱们可以设置可个选项，把整个该子进程的</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">整个进程组都干掉。</span> <span class="err">设置为</span><span class="n">true的话</span><span class="err">，一般</span><span class="n">killasgroup也会被设置为true</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">需要注意的是，该选项发送的是</span><span class="n">stop信号</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为</span><span class="bp">false</span><span class="err">。。非必须设置。。</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">killasgroup</span><span class="o">=</span><span class="bp">false</span>             <span class="p">;</span> <span class="err">这个和上面的</span><span class="n">stopasgroup类似</span><span class="err">，不过发送的是</span><span class="n">kill信号</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">user</span><span class="o">=</span><span class="n">chrism</span>                   <span class="p">;</span> <span class="err">如果</span><span class="n">supervisord是root启动</span><span class="err">，我们在这里设置这个非</span><span class="n">root用户</span><span class="err">，可以用来</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">管理该</span><span class="n">program</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认不设置。。。非必须设置项</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">redirect_stderr</span><span class="o">=</span><span class="bp">true</span>          <span class="p">;</span> <span class="err">如果为</span><span class="bp">true</span><span class="err">，则</span><span class="n">stderr的日志会被写入stdout日志文件中</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为</span><span class="bp">false</span><span class="err">，非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_logfile</span><span class="o">=/</span><span class="n">a</span><span class="o">/</span><span class="n">path</span>        <span class="p">;</span> <span class="err">子进程的</span><span class="n">stdout的日志路径</span><span class="err">，可以指定路径，</span><span class="n">AUTO</span><span class="err">，</span><span class="n">none等三个选项</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">设置为</span><span class="n">none的话</span><span class="err">，将没有日志产生。设置为</span><span class="n">AUTO的话</span><span class="err">，将随机找一个地方</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">生成日志文件，而且当</span><span class="n">supervisord重新启动的时候</span><span class="err">，以前的日志文件会被</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">清空。当</span> <span class="n">redirect_stderr</span><span class="o">=</span><span class="n">true的时候</span><span class="err">，</span><span class="n">sterr也会写进这个日志文件</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_logfile_maxbytes</span><span class="o">=</span><span class="mi">1</span><span class="n">MB</span>   <span class="p">;</span> <span class="err">日志文件最大大小，和</span><span class="p">[</span><span class="n">supervisord</span><span class="p">]</span><span class="err">中定义的一样。默认为</span><span class="mi">50</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_logfile_backups</span><span class="o">=</span><span class="mi">10</span>     <span class="p">;</span> <span class="err">和</span><span class="p">[</span><span class="n">supervisord</span><span class="p">]</span><span class="err">定义的一样。默认</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_capture_maxbytes</span><span class="o">=</span><span class="mi">1</span><span class="n">MB</span>   <span class="p">;</span> <span class="err">这个东西是设定</span><span class="n">capture管道的大小</span><span class="err">，当值不为</span><span class="mi">0</span><span class="err">的时候，子进程可以从</span><span class="n">stdout</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">发送信息，而</span><span class="n">supervisor可以根据信息</span><span class="err">，发送相应的</span><span class="n">event</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为</span><span class="mi">0</span><span class="err">，为</span><span class="mi">0</span><span class="err">的时候表达关闭管道。。。非必须项</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_events_enabled</span><span class="o">=</span><span class="bp">false</span>   <span class="p">;</span> <span class="err">当设置为</span><span class="n">ture的时候</span><span class="err">，当子进程由</span><span class="n">stdout向文件描述符中写日志的时候</span><span class="err">，将</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">触发</span><span class="n">supervisord发送PROCESS_LOG_STDOUT类型的event</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为</span><span class="bp">false</span><span class="err">。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_logfile</span><span class="o">=/</span><span class="n">a</span><span class="o">/</span><span class="n">path</span>        <span class="p">;</span> <span class="err">这个东西是设置</span><span class="n">stderr写的日志路径</span><span class="err">，当</span><span class="n">redirect_stderr</span><span class="o">=</span><span class="bp">true</span><span class="err">。这个就不用</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">设置了，设置了也是白搭。因为它会被写入</span><span class="n">stdout_logfile的同一个文件中</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为</span><span class="n">AUTO</span><span class="err">，也就是随便找个地存，</span><span class="n">supervisord重启被清空</span><span class="err">。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_logfile_maxbytes</span><span class="o">=</span><span class="mi">1</span><span class="n">MB</span>   <span class="p">;</span> <span class="err">这个出现好几次了，就不重复了</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_logfile_backups</span><span class="o">=</span><span class="mi">10</span>     <span class="p">;</span> <span class="err">这个也是</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_capture_maxbytes</span><span class="o">=</span><span class="mi">1</span><span class="n">MB</span>   <span class="p">;</span> <span class="err">这个一样，和</span><span class="n">stdout_capture一样</span><span class="err">。</span> <span class="err">默认为</span><span class="mi">0</span><span class="err">，关闭状态</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_events_enabled</span><span class="o">=</span><span class="bp">false</span>   <span class="p">;</span> <span class="err">这个也是一样，默认为</span><span class="bp">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">environment</span><span class="o">=</span><span class="n">A</span><span class="o">=</span><span class="s2">&#34;1&#34;</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="s2">&#34;2&#34;</span>       <span class="p">;</span> <span class="err">这个是该子进程的环境变量，和别的子进程是不共享的</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">serverurl</span><span class="o">=</span><span class="n">AUTO</span>                <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">The</span> <span class="n">below</span> <span class="n">sample</span> <span class="n">eventlistener</span> <span class="n">section</span> <span class="n">shows</span> <span class="n">all</span> <span class="n">possible</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">eventlistener</span> <span class="n">subsection</span> <span class="n">values</span><span class="p">,</span> <span class="n">create</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> <span class="s1">&#39;real&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">eventlistener</span><span class="p">:</span> <span class="n">sections</span> <span class="n">to</span> <span class="n">be</span> <span class="n">able</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">event</span> <span class="n">notifications</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">sent</span> <span class="n">by</span> <span class="n">supervisor</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;[</span><span class="n">eventlistener</span><span class="p">:</span><span class="n">theeventlistenername</span><span class="p">]</span> <span class="p">;</span><span class="err">这个东西其实和</span><span class="n">program的地位是一样的</span><span class="err">，也是</span><span class="n">suopervisor启动的子进</span>
+</span></span><span class="line"><span class="cl">                                       <span class="err">程，不过它干的活是订阅</span><span class="n">supervisord发送的event</span><span class="err">。他的名字就叫</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">listener了</span><span class="err">。我们可以在</span><span class="n">listener里面做一系列处理</span><span class="err">，比如报警等等</span>
+</span></span><span class="line"><span class="cl">                                       <span class="err">楼主这两天干的活，就是弄的这玩意</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">command</span><span class="o">=/</span><span class="n">bin</span><span class="o">/</span><span class="n">eventlistener</span>    <span class="p">;</span> <span class="err">这个和上面的</span><span class="n">program一样</span><span class="err">，表示</span><span class="n">listener的可执行文件的路径</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">process_name</span><span class="o">=%</span><span class="p">(</span><span class="n">program_name</span><span class="p">)</span><span class="n">s</span> <span class="p">;</span> <span class="err">这个也一样，进程名，当下面的</span><span class="n">numprocs为多个的时候</span><span class="err">，才需要。否则默认就</span>
+</span></span><span class="line"><span class="cl">                                 <span class="n">OK了</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">numprocs</span><span class="o">=</span><span class="mi">1</span>                    <span class="p">;</span> <span class="err">相同的</span><span class="n">listener启动的个数</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">events</span><span class="o">=</span><span class="n">EVENT</span>                  <span class="p">;</span> <span class="n">event事件的类型</span><span class="err">，也就是说，只有写在这个地方的事件类型。才会被发送</span>
+</span></span><span class="line"><span class="cl">                      
+</span></span><span class="line"><span class="cl">                                 
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">buffer_size</span><span class="o">=</span><span class="mi">10</span>                <span class="p">;</span> <span class="err">这个是</span><span class="n">event队列缓存大小</span><span class="err">，单位不太清楚，楼主猜测应该是个吧。当</span><span class="n">buffer</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">超过</span><span class="mi">10</span><span class="err">的时候，最旧的</span><span class="n">event将会被清除</span><span class="err">，并把新的</span><span class="n">event放进去</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认值为</span><span class="mi">10</span><span class="err">。。非必须选项</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">directory</span><span class="o">=/</span><span class="n">tmp</span>                <span class="p">;</span> <span class="err">进程执行前，会切换到这个目录下执行</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为不切换。。。非必须</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">umask</span><span class="o">=</span><span class="mi">022</span>                     <span class="p">;</span> <span class="err">淹没，默认为</span><span class="n">none</span><span class="err">，不说了</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">priority</span><span class="o">=-</span><span class="mi">1</span>                   <span class="p">;</span> <span class="err">启动优先级，默认</span><span class="o">-</span><span class="mi">1</span><span class="err">，也不扯了</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">autostart</span><span class="o">=</span><span class="bp">true</span>                <span class="p">;</span> <span class="err">是否随</span><span class="n">supervisord启动一起启动</span><span class="err">，默认</span><span class="bp">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">autorestart</span><span class="o">=</span><span class="n">unexpected</span>        <span class="p">;</span> <span class="err">是否自动重启，和</span><span class="n">program一个样</span><span class="err">，分</span><span class="bp">true</span><span class="p">,</span><span class="bp">false</span><span class="p">,</span><span class="n">unexpected等</span><span class="err">，注意</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">unexpected和exitcodes的关系</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">startsecs</span><span class="o">=</span><span class="mi">1</span>                   <span class="p">;</span> <span class="err">也是一样，进程启动后跑了几秒钟，才被认定为成功启动，默认</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">startretries</span><span class="o">=</span><span class="mi">3</span>                <span class="p">;</span> <span class="err">失败最大尝试次数，默认</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">exitcodes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span>                 <span class="p">;</span> <span class="err">期望或者说预料中的进程退出码，</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stopsignal</span><span class="o">=</span><span class="n">QUIT</span>               <span class="p">;</span> <span class="err">干掉进程的信号，默认为</span><span class="n">TERM</span><span class="err">，比如设置为</span><span class="n">QUIT</span><span class="err">，那么如果</span><span class="n">QUIT来干这个进程</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">那么会被认为是正常维护，退出码也被认为是</span><span class="n">expected中的</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stopwaitsecs</span><span class="o">=</span><span class="mi">10</span>               <span class="p">;</span> <span class="nb">max</span> <span class="n">num</span> <span class="n">secs</span> <span class="n">to</span> <span class="n">wait</span> <span class="n">b4</span> <span class="n">SIGKILL</span> <span class="p">(</span><span class="n">default</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stopasgroup</span><span class="o">=</span><span class="bp">false</span>             <span class="p">;</span> <span class="n">send</span> <span class="n">stop</span> <span class="k">signal</span> <span class="n">to</span> <span class="n">the</span> <span class="n">UNIX</span> <span class="n">process</span> <span class="n">group</span> <span class="p">(</span><span class="n">default</span> <span class="bp">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">killasgroup</span><span class="o">=</span><span class="bp">false</span>             <span class="p">;</span> <span class="n">SIGKILL</span> <span class="n">the</span> <span class="n">UNIX</span> <span class="n">process</span> <span class="n">group</span> <span class="p">(</span><span class="k">def</span> <span class="nf">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">user</span><span class="o">=</span><span class="n">chrism</span>                   <span class="p">;</span><span class="err">设置普通用户，可以用来管理该</span><span class="n">listener进程</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">默认为空。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">redirect_stderr</span><span class="o">=</span><span class="bp">true</span>          <span class="p">;</span> <span class="err">为</span><span class="n">true的话</span><span class="err">，</span><span class="n">stderr的log会并入stdout的log里面</span>
+</span></span><span class="line"><span class="cl">                                <span class="err">默认为</span><span class="bp">false</span><span class="err">。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_logfile</span><span class="o">=/</span><span class="n">a</span><span class="o">/</span><span class="n">path</span>        <span class="p">;</span> <span class="err">这个不说了，好几遍了</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_logfile_maxbytes</span><span class="o">=</span><span class="mi">1</span><span class="n">MB</span>   <span class="p">;</span> <span class="err">这个也是</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_logfile_backups</span><span class="o">=</span><span class="mi">10</span>     <span class="p">;</span> <span class="err">这个也是</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stdout_events_enabled</span><span class="o">=</span><span class="bp">false</span>   <span class="p">;</span> <span class="err">这个其实是错的，</span><span class="n">listener是不能发送event</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_logfile</span><span class="o">=/</span><span class="n">a</span><span class="o">/</span><span class="n">path</span>        <span class="p">;</span> <span class="err">这个也是</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_logfile_maxbytes</span><span class="o">=</span><span class="mi">1</span><span class="n">MB</span>   <span class="p">;</span> <span class="err">这个也是</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_logfile_backups</span>        <span class="p">;</span> <span class="err">这个不说了</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">stderr_events_enabled</span><span class="o">=</span><span class="bp">false</span>   <span class="p">;</span> <span class="err">这个也是错的，</span><span class="n">listener不能发送event</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">environment</span><span class="o">=</span><span class="n">A</span><span class="o">=</span><span class="s2">&#34;1&#34;</span><span class="p">,</span><span class="n">B</span><span class="o">=</span><span class="s2">&#34;2&#34;</span>       <span class="p">;</span> <span class="err">这个是该子进程的环境变量</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认为空。。。非必须设置</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">serverurl</span><span class="o">=</span><span class="n">AUTO</span>                <span class="p">;</span> <span class="n">override</span> <span class="n">serverurl</span> <span class="n">computation</span> <span class="p">(</span><span class="n">childutils</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">The</span> <span class="n">below</span> <span class="n">sample</span> <span class="n">group</span> <span class="n">section</span> <span class="n">shows</span> <span class="n">all</span> <span class="n">possible</span> <span class="n">group</span> <span class="n">values</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">create</span> <span class="n">one</span> <span class="ow">or</span> <span class="n">more</span> <span class="s1">&#39;real&#39;</span> <span class="n">group</span><span class="p">:</span> <span class="n">sections</span> <span class="n">to</span> <span class="n">create</span> <span class="s2">&#34;heterogeneous&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">process</span> <span class="n">groups</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;[</span><span class="n">group</span><span class="p">:</span><span class="n">thegroupname</span><span class="p">]</span>  <span class="p">;</span><span class="err">这个东西就是给</span><span class="n">programs分组</span><span class="err">，划分到组里面的</span><span class="n">program</span><span class="err">。我们就不用一个一个去操作了</span>
+</span></span><span class="line"><span class="cl">                         <span class="err">我们可以对组名进行统一的操作。</span> <span class="err">注意：</span><span class="n">program被划分到组里面之后</span><span class="err">，就相当于原来</span>
+</span></span><span class="line"><span class="cl">                         <span class="err">的配置从</span><span class="n">supervisor的配置文件里消失了</span><span class="err">。。。</span><span class="n">supervisor只会对组进行管理</span><span class="err">，而不再</span>
+</span></span><span class="line"><span class="cl">                         <span class="err">会对组里面的单个</span><span class="n">program进行管理了</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">programs</span><span class="o">=</span><span class="n">progname1</span><span class="p">,</span><span class="n">progname2</span>  <span class="p">;</span> <span class="err">组成员，用逗号分开</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">这个是个必须的设置项</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">priority</span><span class="o">=</span><span class="mi">999</span>                  <span class="p">;</span> <span class="err">优先级，相对于组和组之间说的</span>
+</span></span><span class="line"><span class="cl">                                 <span class="err">默认</span><span class="mi">999</span><span class="err">。。非必须选项</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">The</span> <span class="p">[</span><span class="n">include</span><span class="p">]</span> <span class="n">section</span> <span class="n">can</span> <span class="n">just</span> <span class="n">contain</span> <span class="n">the</span> <span class="s2">&#34;files&#34;</span> <span class="n">setting</span><span class="o">.</span>  <span class="n">This</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">setting</span> <span class="n">can</span> <span class="n">list</span> <span class="n">multiple</span> <span class="n">files</span> <span class="p">(</span><span class="n">separated</span> <span class="n">by</span> <span class="n">whitespace</span> <span class="ow">or</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">newlines</span><span class="p">)</span><span class="o">.</span>  <span class="n">It</span> <span class="n">can</span> <span class="n">also</span> <span class="n">contain</span> <span class="n">wildcards</span><span class="o">.</span>  <span class="n">The</span> <span class="n">filenames</span> <span class="n">are</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">interpreted</span> <span class="n">as</span> <span class="n">relative</span> <span class="n">to</span> <span class="n">this</span> <span class="n">file</span><span class="o">.</span>  <span class="n">Included</span> <span class="n">files</span> <span class="o">*</span><span class="n">cannot</span><span class="o">*</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="n">include</span> <span class="n">files</span> <span class="n">themselves</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;[</span><span class="n">include</span><span class="p">]</span>                         <span class="p">;</span><span class="err">这个东西挺有用的，当我们要管理的进程很多的时候，写在一个文件里面</span>
+</span></span><span class="line"><span class="cl">                                    <span class="err">就有点大了。我们可以把配置信息写到多个文件中，然后</span><span class="n">include过来</span>
+</span></span><span class="line"><span class="cl"><span class="p">;</span><span class="n">files</span> <span class="o">=</span> <span class="n">relative</span><span class="o">/</span><span class="n">directory</span><span class="o">/*.</span><span class="n">ini</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2023-03-30 00:00:00">更新于 2023-03-30&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/linux/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/other/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/" class="post-nav-item" rel="prev" title="那些有用没用的问题收集"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>那些有用没用的问题收集</a><a href="/posts/linux/dotnet%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="post-nav-item" rel="next" title="Dotnet运维故障记录">Dotnet运维故障记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="waline" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/" rel="external nofollow noopener noreferrer">Waline</a>.
+      </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".footer-line.beian").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.134.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.14"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="--fi-progress-start: left; top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/waline/waline.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/waline/waline.js" defer></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script src="/js/flyfish.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"waline":{"copyright":true,"dark":"html[data-theme='dark']","el":"#waline","emoji":["//unpkg.com/@waline/emojis@1.1.0/weibo"],"highlighter":false,"imageUploader":false,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"search":false,"serverURL":"https://talk.51ac.cc","texRenderer":false}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.14"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

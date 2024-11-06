@@ -1,13 +1,23 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Proxychains - 标签 - 一个曾经的小码农...</title>
-        <link>http://localhost:1313/tags/proxychains/</link>
-        <description>Proxychains - 标签 - 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 27 Jun 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/proxychains/" rel="self" type="application/rss+xml" /><item>
-    <title>PPTP相关</title>
-    <link>http://localhost:1313/2021/pptp%E7%9B%B8%E5%85%B3/</link>
-    <pubDate>Sun, 27 Jun 2021 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2021/pptp%E7%9B%B8%E5%85%B3/</guid>
-    <description><![CDATA[pptp相关]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Proxychains - 标签 - 一个曾经的小码农...</title>
+    <link>http://localhost:1313/tags/proxychains/</link>
+    <description>一个曾经的小码农...</description>
+    <generator>Hugo 0.134.1 &amp; FixIt v0.3.14</generator>
+    <language>zh-cn</language>
+    <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
+    <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
+    <lastBuildDate>Thu, 30 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/proxychains/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>PPTP相关</title>
+      <link>http://localhost:1313/posts/linux/pptp%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
+      <guid>http://localhost:1313/posts/linux/pptp%E7%9B%B8%E5%85%B3/</guid>
+      <category domain="http://localhost:1313/categories/linux/">Linux</category>
+      <category domain="http://localhost:1313/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</category>
+      <description>pptp相关</description>
+    </item>
+  </channel>
 </rss>

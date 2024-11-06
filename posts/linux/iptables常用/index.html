@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Iptables常用 - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
+<meta name="description" content="Iptables常用"><meta name="keywords" content='linux, iptables'>
+  <meta itemprop="name" content="Iptables常用">
+  <meta itemprop="description" content="Iptables常用">
+  <meta itemprop="datePublished" content="2019-03-08T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2019-03-08T00:00:00+00:00">
+  <meta itemprop="wordCount" content="314">
+  <meta itemprop="image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta itemprop="keywords" content="Linux,Iptables"><meta property="og:url" content="http://localhost:1313/posts/linux/iptables%E5%B8%B8%E7%94%A8/">
+  <meta property="og:site_name" content="一个曾经的小码农...">
+  <meta property="og:title" content="Iptables常用">
+  <meta property="og:description" content="Iptables常用">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-03-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-03-08T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Iptables">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta name="twitter:title" content="Iptables常用">
+  <meta name="twitter:description" content="Iptables常用">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/posts/linux/iptables%E5%B8%B8%E7%94%A8/" title="Iptables常用 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="http://localhost:1313/posts/linux/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="Vsftpd安装配置" /><link rel="next" type="text/html" href="http://localhost:1313/posts/linux/nginx.conf%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" title="Nginx主配置文件nginx.conf超详细中文详解" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/posts/linux/iptables%E5%B8%B8%E7%94%A8/index.md" title="Iptables常用 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Iptables常用",
+    "inLanguage": "zh-cn",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/linux\/iptables%E5%B8%B8%E7%94%A8\/"
+    },"genre": "posts","keywords": "linux, iptables","wordcount":  314 ,
+    "url": "http:\/\/localhost:1313\/posts\/linux\/iptables%E5%B8%B8%E7%94%A8\/","datePublished": "2019-03-08T00:00:00+00:00","dateModified": "2019-03-08T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "0x5c0f"
+      },"description": "Iptables常用"
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/posts/">文章</a></li><li class="menu-item">
+              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/posts/">文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Iptables常用</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2019-03-08 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-03-08">2019-03-08</time></span>&nbsp;<span title="314 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 400 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 2 分钟</span>&nbsp;</div>
+    </div><div class="content" id="content"><div class="details admonition warning open">
+      <div class="details-summary admonition-title">
+        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
+      </div>
+      <div class="details-content">
+        <div class="admonition-content">本文最后更新于 2019-03-08，文中内容可能已过时。</div>
+      </div>
+    </div><h2 id="1-iptables--工作流程" class="heading-element"><span>1. iptables  工作流程</span>
+  <a href="#1-iptables--%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ol>
+<li>防火墙是一层一层过滤的，实际是按照配置规则的顺序从上到下，从前到后进行过滤的。</li>
+<li>如果匹配上规则，即明确表明是阻止还是通过，此时数据包就不在向下进行新的匹配规则了。</li>
+<li>如果所有规则中没有明确表明是阻止还是通过这个数据包，也就是没有匹配上的规则，向下进行匹配，直到匹配默认规则得到明确的阻止还是通过.</li>
+<li>防火墙的默认规则是对应链的所有的规则执行完成后才会执行。</li>
+</ol>
+<h2 id="2-iptables-表和链" class="heading-element"><span>2. iptables 表和链</span>
+  <a href="#2-iptables-%e8%a1%a8%e5%92%8c%e9%93%be" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ul>
+<li>4 表:</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">filter</td>
+          <td style="text-align: left">包过滤，用于防火墙规则。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">net</td>
+          <td style="text-align: left">地址转换，用于网关路由器。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">mangle</td>
+          <td style="text-align: left">数据包修改（QOS），用于实现服务质量。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">raw</td>
+          <td style="text-align: left">高级功能，如：网址过滤。</td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>5链:</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">INPUT链</td>
+          <td style="text-align: left">处理输入数据包。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">OUTPUT链</td>
+          <td style="text-align: left">处理输出数据包。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">PORWARD链</td>
+          <td style="text-align: left">处理转发数据包。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">PREROUTING链</td>
+          <td style="text-align: left">用于目标地址转换（DNAT）。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">POSTOUTING链</td>
+          <td style="text-align: left">用于源地址转换（SNAT）。</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="3-iptables-命令" class="heading-element"><span>3. iptables 命令</span>
+  <a href="#3-iptables-%e5%91%bd%e4%bb%a4" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">参数</th>
+          <th style="text-align: left">作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>-F</code></td>
+          <td style="text-align: left">清空所有规则，不会处理默认规则</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-X</code></td>
+          <td style="text-align: left">删除用户自定义的链</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-Z</code></td>
+          <td style="text-align: left">清空链的计数器</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-t</code></td>
+          <td style="text-align: left">指定表(默认filter)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-A</code></td>
+          <td style="text-align: left">添加规则到指定链的结尾(查找对应链，做什么处理)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-I</code></td>
+          <td style="text-align: left">添加规则到指定链的开头(查找对应链，做什么处理)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-P</code></td>
+          <td style="text-align: left">指定协议: all(默认)、tcp、udp、icmp</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>--dport</code></td>
+          <td style="text-align: left">指定目的端口(端口范围冒号分割,如:80:89)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>--sport</code></td>
+          <td style="text-align: left">指定源端口(端口范围冒号分割,如:80:89)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-m multiport  --dport/--sport</code></td>
+          <td style="text-align: left">指定匹配多个端口,需配合(<code>--dport</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-j</code></td>
+          <td style="text-align: left">行为 ACCEPT(接受)、DROP(丢弃)、REJECT(拒绝:REJECT会反馈给拒绝对象信息)</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-s</code></td>
+          <td style="text-align: left">指定源ip地址</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-i</code></td>
+          <td style="text-align: left">指定进入的网卡</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-o</code></td>
+          <td style="text-align: left">指定出去的网卡</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-n</code></td>
+          <td style="text-align: left">以数字形式显示ip和端口(默认主机名、网络名),需配合<code>-L</code>使用</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-L</code></td>
+          <td style="text-align: left">列出所有规则</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-D</code></td>
+          <td style="text-align: left">删除单条规则</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>--line-number</code></td>
+          <td style="text-align: left">显示序号</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-m state --state </code></td>
+          <td style="text-align: left">new: 已经或将启动新的连接、ESTABLISHED:已建立的连接、 RELATED: 正在启动的新连接、INVALID: 非法或无法识别的</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>-m limit --limit n/{second/minute/hour}</code></td>
+          <td style="text-align: left">限制指定时间包的允许通过数量及并发数</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>--limit-burst [n]</code></td>
+          <td style="text-align: left">在同一时间内允许通过的请求<code>n</code>个</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="4-示例" class="heading-element"><span>4. 示例</span>
+  <a href="#4-%e7%a4%ba%e4%be%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ol>
+<li>清空规则、用户自定义链、链的计数器</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -F </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -X </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -Z </span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>拒绝规则</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -t filter -A INPUT -p tcp --dport 22 -j DROP</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -t filter -A INPUT -s 172.16.80.0/24 -j DROP </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -t filter -A INPUT -i eth0 -s 172.16.80.0/24 -j DROP </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -t filter -A INPUT ! -s 172.16.80.0/24 -j DROP  # 拒绝非 172.16.80.0/24 网段进行连接(6.x后!放在-s前面)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>匹配ICMP类型</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -A INPUT -p icmp --icmp-type 8 -j DROP         # 8 代表ping</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -A INPUT -p icmp --icmp-type 8 -s 172.18.80.0/24 -j DROP </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># </span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>允许关联的状态包(如vsftpd服务)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>nat 共享网络</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 存在固定的外网地址</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -o eth1 -j SNAT --to-source 172.16.110.131  </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -s 10.0.1.0/24 为办公室或IDC内网网段;-o eth1 为网关的外网网卡接口;-j SNAT --to-source 172.16.110.131 是外网网卡的ip地址 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 存在变化的外网地址(伪装)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -t nat -A POSTROUTING -s 10.0.1.0/24 -j MASQUERADE </span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>nat 端口转发(一对一映射)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 访问 172.16.80.31:2121转发到 172.16.110.131:22</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -t nat -A PREROUTING -p tcp -i eth0 -d 172.16.80.31 --dport 2121 -j DNAT --to 172.16.110.131:22</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># iptables -t nat -I POSTROUTING -d 172.16.110.131 -j SNAT --to-source 172.16.80.31</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2019-03-08 00:00:00">更新于 2019-03-08&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/linux/iptables%E5%B8%B8%E7%94%A8/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/iptables/" class="post-tag" title="标签 - Iptables">Iptables</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/linux/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="post-nav-item" rel="prev" title="Vsftpd安装配置"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Vsftpd安装配置</a><a href="/posts/linux/nginx.conf%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%A6%E8%A7%A3/" class="post-nav-item" rel="next" title="Nginx主配置文件nginx.conf超详细中文详解">Nginx主配置文件nginx.conf超详细中文详解<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="waline" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/" rel="external nofollow noopener noreferrer">Waline</a>.
+      </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".footer-line.beian").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.134.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.14"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="--fi-progress-start: left; top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/waline/waline.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/waline/waline.js" defer></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script src="/js/flyfish.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"waline":{"copyright":true,"dark":"html[data-theme='dark']","el":"#waline","emoji":["//unpkg.com/@waline/emojis@1.1.0/weibo"],"highlighter":false,"imageUploader":false,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"search":false,"serverURL":"https://talk.51ac.cc","texRenderer":false}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.14"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

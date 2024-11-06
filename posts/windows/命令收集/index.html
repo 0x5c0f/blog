@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-cn">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Windows命令收集 - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
+<meta name="description" content="命令收集"><meta name="keywords" content='windows'>
+  <meta itemprop="name" content="Windows命令收集">
+  <meta itemprop="description" content="命令收集">
+  <meta itemprop="datePublished" content="2022-06-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-06-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="445">
+  <meta itemprop="image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta itemprop="keywords" content="Windows"><meta property="og:url" content="http://localhost:1313/posts/windows/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">
+  <meta property="og:site_name" content="一个曾经的小码农...">
+  <meta property="og:title" content="Windows命令收集">
+  <meta property="og:description" content="命令收集">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-06-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-06-24T00:00:00+00:00">
+    <meta property="article:tag" content="Windows">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_avatar.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_avatar.png">
+  <meta name="twitter:title" content="Windows命令收集">
+  <meta name="twitter:description" content="命令收集">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/posts/windows/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" title="Windows命令收集 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="http://localhost:1313/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/" title="本地安全策略-安全选项" /><link rel="next" type="text/html" href="http://localhost:1313/posts/windows/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/" title="windows安装优化" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/posts/windows/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/index.md" title="Windows命令收集 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Windows命令收集",
+    "inLanguage": "zh-cn",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/windows\/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86\/"
+    },"genre": "posts","keywords": "windows","wordcount":  445 ,
+    "url": "http:\/\/localhost:1313\/posts\/windows\/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86\/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-24T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "0x5c0f"
+      },"description": "命令收集"
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/posts/">文章</a></li><li class="menu-item">
+              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/posts/">文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Windows命令收集</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/windows/" class="post-category" title="分类 - Windows"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Windows</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2022-06-24 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2022-06-24">2022-06-24</time></span>&nbsp;<span title="445 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 500 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 3 分钟</span>&nbsp;</div>
+    </div><div class="content" id="content"><div class="details admonition warning open">
+      <div class="details-summary admonition-title">
+        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
+      </div>
+      <div class="details-content">
+        <div class="admonition-content">本文最后更新于 2022-06-24，文中内容可能已过时。</div>
+      </div>
+    </div><h2 id="1-windows-服务安装卸载" class="heading-element"><span>1. windows 服务安装卸载</span>
+  <a href="#1-windows-%e6%9c%8d%e5%8a%a1%e5%ae%89%e8%a3%85%e5%8d%b8%e8%bd%bd" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 注意空格</span>
+</span></span><span class="line"><span class="cl">sc create <span class="s2">&#34;Memcached_11233&#34;</span> start= auto binPath= <span class="s2">&#34;D:\box\memcached\memcached.exe -d runservice  -m 128 -c 512 -p 11233 -l 127.0.0.1&#34;</span>  DisplayName= <span class="s2">&#34;Memcached_11233&#34;</span> 
+</span></span><span class="line"><span class="cl">----
+</span></span><span class="line"><span class="cl">sc delete Memcached_11233</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-删除windowstemp-5天前以sess开头的文件" class="heading-element"><span>2. 删除<code>windows\temp</code> 5天前以sess*开头的文件</span>
+  <a href="#2-%e5%88%a0%e9%99%a4windowstemp-5%e5%a4%a9%e5%89%8d%e4%bb%a5sess%e5%bc%80%e5%a4%b4%e7%9a%84%e6%96%87%e4%bb%b6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl">forfiles /p <span class="s2">&#34;C:\Windows\Temp&#34;</span> /s /d -5 /m sess* /c <span class="s2">&#34;cmd /c del /f /q /s @path&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-windows-端口转发" class="heading-element"><span>3. windows 端口转发</span>
+  <a href="#3-windows-%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 转发不生效需先安装 ipv6 </span>
+</span></span><span class="line"><span class="cl">C<span class="p">:</span><span class="nl">\</span><span class="c1">&gt; netsh interface ipv6 install</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 转发本机ip端口 到其他服务器ip端口</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: netsh interface portproxy add v4tov4 listenaddress=[外网IP] listenport=[外网端口] connectaddress=[内网IP] connectport=[内网端口]</span>
+</span></span><span class="line"><span class="cl">C<span class="p">:</span><span class="nl">\</span><span class="c1">&gt; netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=10055 connectaddress=10.42.0.58 connectport=10050</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 查看已设置的转发 </span>
+</span></span><span class="line"><span class="cl">C<span class="p">:</span><span class="nl">\</span><span class="c1">&gt; netsh interface portproxy show all</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 删除端口转发</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: netsh interface portproxy delete v4tov4 listenaddress=[外网IP] listenport=[外网端口]</span>
+</span></span><span class="line"><span class="cl">C<span class="p">:</span><span class="nl">\</span><span class="c1">&gt; netsh interface portproxy delete v4tov4 listenaddress=0.0.0.0 listenport=10055</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4-修改ntp同步频率" class="heading-element"><span>4. 修改ntp同步频率</span>
+  <a href="#4-%e4%bf%ae%e6%94%b9ntp%e5%90%8c%e6%ad%a5%e9%a2%91%e7%8e%87" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl">regedit:
+</span></span><span class="line"><span class="cl">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\SpecialPollInterval
+</span></span><span class="line"><span class="cl">900=15分钟
+</span></span><span class="line"><span class="cl">3600=1小时
+</span></span><span class="line"><span class="cl">默认: 604800是由7(天)×24(时)×60(分)×60(秒)</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5-windows-mysql-备份" class="heading-element"><span>5. windows mysql 备份</span>
+  <a href="#5-windows-mysql-%e5%a4%87%e4%bb%bd" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
+</span></span><span class="line"><span class="cl"><span class="k">title</span> mysql-client
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="s2">&#34;Ymd=</span><span class="nv">%date:~,4%%date:~5,2%%date:~8,2%</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">%Ymd%</span>
+</span></span><span class="line"><span class="cl">C<span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;D:\xx\mysqldump.exe&#34;</span> -h<span class="p">&lt;</span>ip<span class="p">&gt;</span> -P<span class="p">&lt;</span>port<span class="p">&gt;</span> -u<span class="p">&lt;</span>user<span class="p">&gt;</span> -p<span class="p">&lt;</span>passwrod<span class="p">&gt;</span> -R <span class="p">&lt;</span>数据库名称<span class="p">&gt;</span>  &gt; D:\DatabaseBak\xxx_<span class="nv">%Ymd%</span>.sql</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6-查看80端口连接数" class="heading-element"><span>6. 查看80端口连接数</span>
+  <a href="#6-%e6%9f%a5%e7%9c%8b80%e7%ab%af%e5%8f%a3%e8%bf%9e%e6%8e%a5%e6%95%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl">netstat -an -p tcp <span class="p">|</span> find /c <span class="s2">&#34;80&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7-windows-时间获取方式" class="heading-element"><span>7. windows 时间获取方式</span>
+  <a href="#7-windows-%e6%97%b6%e9%97%b4%e8%8e%b7%e5%8f%96%e6%96%b9%e5%bc%8f" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 编码格式 ANSI</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 脚本创建时最好选择ANSI编码(防止中文乱码)</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: @echo off 表示不回显执行的命令</span>
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off 
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> =========Windows的原本日期时间格式=======================
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 设置变量，使用变量时需要用一对%包起来</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">ORIGINAL_DATE</span><span class="p">=</span><span class="nv">%date%</span> 
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">%ORIGINAL_DATE%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> =========日期按照YYYY-MM-DD格式显示======================
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 日期截取遵从格式 %date:~x,y%，表示从第x位开始，截取y个长度(x,y的起始值为0)</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 年份从第0位开始截取4位，月份从第5位开始截取2位，日期从第8位开始截取2位</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">YEAR</span><span class="p">=</span><span class="nv">%date:~0,4%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">MONTH</span><span class="p">=</span><span class="nv">%date:~5,2%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">DAY</span><span class="p">=</span><span class="nv">%date:~8,2%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">CURRENT_DATE</span><span class="p">=</span><span class="nv">%YEAR%</span>-<span class="nv">%MONTH%</span>-<span class="nv">%DAY%</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">%CURRENT_DATE%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> =========时间按照HH:MM:SS格式显示========================
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 时间截取遵从格式 %time:~x,y%，表示从第x位开始，截取y个长度(x,y的起始值为0)</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 时钟从第0位开始截取2位，分钟从第3位开始截取2位，秒钟从第6位开始截取2位</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">HOUR</span><span class="p">=</span><span class="nv">%time:~0,2%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">MINUTE</span><span class="p">=</span><span class="nv">%time:~3,2%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">SECOND</span><span class="p">=</span><span class="nv">%time:~6,2%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 当时钟小于等于9时,前面有个空格，这时我们少截取一位，从第1位开始截取</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">TMP_HOUR</span><span class="p">=</span><span class="nv">%time:~1,1%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">NINE</span><span class="p">=</span>9
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">ZERO</span><span class="p">=</span>0
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 处理时钟是个位数的时候前面补上一个0, LEQ表示小于等于https://www.coder.work/article/6503907</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">%HOUR%</span> <span class="ow">LEQ</span> <span class="nv">%NINE%</span> <span class="k">set</span> <span class="nv">HOUR</span><span class="p">=</span><span class="nv">%ZERO%%TMP_HOUR%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">CURRENT_TIME</span><span class="p">=</span><span class="nv">%HOUR%</span>:<span class="nv">%MINUTE%</span>:<span class="nv">%SECOND%</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">%CURRENT_TIME%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> =========日期时间按照YYYY-MM-DD HH:MM:SS格式显示=========
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">CURRENT_DATE_TIME</span><span class="p">=</span><span class="nv">%YEAR%</span>-<span class="nv">%MONTH%</span>-<span class="nv">%DAY%</span> <span class="nv">%HOUR%</span>:<span class="nv">%MINUTE%</span>:<span class="nv">%SECOND%</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">%CURRENT_DATE_TIME%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> =========日期时间按照YYYYMMDD_HHMMSS格式显示=============
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">CURRENT_DATE_TIME_STAMP</span><span class="p">=</span><span class="nv">%YEAR%%MONTH%%DAY%</span>_<span class="nv">%HOUR%%MINUTE%%SECOND%</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> <span class="nv">%CURRENT_DATE_TIME_STAMP%</span>
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> =========================================================
+</span></span><span class="line"><span class="cl">pause</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="8-按照时间创建文件夹" class="heading-element"><span>8. 按照时间创建文件夹</span>
+  <a href="#8-%e6%8c%89%e7%85%a7%e6%97%b6%e9%97%b4%e5%88%9b%e5%bb%ba%e6%96%87%e4%bb%b6%e5%a4%b9" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-batch" data-lang="batch"><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 编码格式 ANSI</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 脚本创建时最好选择ANSI编码(防止中文乱码)</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: @echo off 表示不回显执行的命令</span>
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 日期截取遵从格式 %date:~x,y%，表示从第x位开始，截取y个长度(x,y的起始值为0)</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 年份从第0位开始截取4位，月份从第5位开始截取2位，日期从第8位开始截取2位</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">YEAR</span><span class="p">=</span><span class="nv">%date:~0,4%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">MONTH</span><span class="p">=</span><span class="nv">%date:~5,2%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">DAY</span><span class="p">=</span><span class="nv">%date:~8,2%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 时间截取遵从格式 %time:~x,y%，表示从第x位开始，截取y个长度(x,y的起始值为0)</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 时钟从第0位开始截取2位，分钟从第3位开始截取2位，秒钟从第6位开始截取2位</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">HOUR</span><span class="p">=</span><span class="nv">%time:~0,2%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">MINUTE</span><span class="p">=</span><span class="nv">%time:~3,2%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">SECOND</span><span class="p">=</span><span class="nv">%time:~6,2%</span>
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 毫秒</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">MILLISECIOND</span><span class="p">=</span><span class="nv">%time:~9,2%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 当时钟小于等于9时,前面有个空格，这时我们少截取一位，从第1位开始截取</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">TMP_HOUR</span><span class="p">=</span><span class="nv">%time:~1,1%</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">NINE</span><span class="p">=</span>9
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">ZERO</span><span class="p">=</span>0
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 处理时钟是个位数的时候前面补上一个0, LEQ表示小于等于</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">%HOUR%</span> <span class="ow">LEQ</span> <span class="nv">%NINE%</span> <span class="k">set</span> <span class="nv">HOUR</span><span class="p">=</span><span class="nv">%ZERO%%TMP_HOUR%</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="nv">CURRENT_DATE_TIME_STAMP</span><span class="p">=</span><span class="nv">%YEAR%%MONTH%%DAY%%HOUR%%MINUTE%%SECOND%%MILLISECIOND%</span>
+</span></span><span class="line"><span class="cl"><span class="k">mkdir</span> <span class="nv">%CURRENT_DATE_TIME_STAMP%</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="9-windows前台程序运行到后台" class="heading-element"><span>9. windows前台程序运行到后台</span>
+  <a href="#9-windows%e5%89%8d%e5%8f%b0%e7%a8%8b%e5%ba%8f%e8%bf%90%e8%a1%8c%e5%88%b0%e5%90%8e%e5%8f%b0" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vb" data-lang="vb"><span class="line"><span class="cl"><span class="c">&#39; 运行到后台
+</span></span></span><span class="line"><span class="cl"><span class="c">&#39; start.vbs 
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">Set</span> <span class="n">ws</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&#34;Wscript.Shell&#34;</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="n">ws</span><span class="p">.</span><span class="n">run</span> <span class="s">&#34;example.exe&#34;</span><span class="p">,</span><span class="n">vbhide</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c">&#39; 程序关闭
+</span></span></span><span class="line"><span class="cl"><span class="c">&#39; stop.vbs
+</span></span></span><span class="line"><span class="cl"><span class="c"></span><span class="k">Dim</span> <span class="n">Wsh</span>
+</span></span><span class="line"><span class="cl"><span class="k">Set</span> <span class="n">Wsh</span> <span class="o">=</span> <span class="n">WScript</span><span class="p">.</span><span class="n">CreateObject</span><span class="p">(</span><span class="s">&#34;WScript.Shell&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">Wsh</span><span class="p">.</span><span class="n">Run</span> <span class="s">&#34;taskkill /f /im example.exe&#34;</span><span class="p">,</span><span class="n">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">Set</span> <span class="n">Wsh</span><span class="o">=</span><span class="k">NoThing</span>
+</span></span><span class="line"><span class="cl"><span class="n">WScript</span><span class="p">.</span><span class="n">quit</span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2022-06-24 00:00:00">更新于 2022-06-24&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/windows/%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/windows/" class="post-tag" title="标签 - Windows">Windows</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/" class="post-nav-item" rel="prev" title="本地安全策略-安全选项"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>本地安全策略-安全选项</a><a href="/posts/windows/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/" class="post-nav-item" rel="next" title="Windows安装优化">Windows安装优化<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="waline" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://waline.js.org/" rel="external nofollow noopener noreferrer">Waline</a>.
+      </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".footer-line.beian").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.134.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.14"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="--fi-progress-start: left; top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/waline/waline.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/waline/waline.js" defer></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script src="/js/flyfish.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"waline":{"copyright":true,"dark":"html[data-theme='dark']","el":"#waline","emoji":["//unpkg.com/@waline/emojis@1.1.0/weibo"],"highlighter":false,"imageUploader":false,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"search":false,"serverURL":"https://talk.51ac.cc","texRenderer":false}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.14"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script></body>
+</html>

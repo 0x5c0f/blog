@@ -1,13 +1,23 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Redis - 标签 - 一个曾经的小码农...</title>
-        <link>http://localhost:1313/tags/redis/</link>
-        <description>Redis - 标签 - 一个曾经的小码农...</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://localhost:1313/tags/redis/" rel="self" type="application/rss+xml" /><item>
-    <title>Redis集群及redis代理配置</title>
-    <link>http://localhost:1313/2022/redis%E9%9B%86%E7%BE%A4%E5%8F%8Aredis%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</link>
-    <pubDate>Wed, 22 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-                        <name>0x5c0f</name><uri>https://tools.0x5c0f.cc</uri><email>mail@0x5c0f.cc</email></author><guid>http://localhost:1313/2022/redis%E9%9B%86%E7%BE%A4%E5%8F%8Aredis%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</guid>
-    <description><![CDATA[Redis集群及redis代理predixy配置]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Redis - 标签 - 一个曾经的小码农...</title>
+    <link>http://localhost:1313/tags/redis/</link>
+    <description>一个曾经的小码农...</description>
+    <generator>Hugo 0.134.1 &amp; FixIt v0.3.14</generator>
+    <language>zh-cn</language>
+    <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
+    <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
+    <lastBuildDate>Wed, 22 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis集群及redis代理配置</title>
+      <link>http://localhost:1313/posts/linux/redis%E9%9B%86%E7%BE%A4%E5%8F%8Aredis%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
+      <guid>http://localhost:1313/posts/linux/redis%E9%9B%86%E7%BE%A4%E5%8F%8Aredis%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</guid>
+      <category domain="http://localhost:1313/categories/linux/">Linux</category>
+      <category domain="http://localhost:1313/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category>
+      <description>Redis集群及redis代理predixy配置</description>
+    </item>
+  </channel>
 </rss>

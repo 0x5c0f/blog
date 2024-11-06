@@ -1,15 +1,15 @@
 # About
 
 
-<!--more-->
+&lt;!--more--&gt;
 
-> 本站由[`Hugo`](https://gohugo.io/)强力驱动，使用**简洁**、**优雅**且**高效**的[`DoIt`](https://github.com/HEIGE-PCloud/DoIt)博客主题
+&gt; 本站由[`Hugo`](https://gohugo.io/)强力驱动，使用**简洁**、**优雅**且**高效**的[`FixIt`](https://github.com/hugo-fixit/FixIt)博客主题
 
-{{< admonition type=tip title="提示"  open=true >}}
+{{&lt; admonition type=tip title=&#34;提示&#34;  open=true &gt;}}
 又一天过去了，今天过得怎么样，梦想是不是更远了 ..   
-{{< /admonition >}}
+{{&lt; /admonition &gt;}}
 
-<br/>
+&lt;br/&gt;
 
 - [x] 2022年6月21日，我终于准备好了开始迁移博客了。
 
@@ -36,3 +36,11 @@
 - [x] 2024年05月20日，为网站添加一个监控状态页面 [**`[status]`**](/pagestatus) 。
 
 - [x] 2024年09月09日，主题更新，每个页面都得强制加一个摘要了，好烦，又还原不会去了。
+
+- [x] 2024年11月06日，花了一些时间，把主题从 [~~`DoIt`~~](https://github.com/HEIGE-PCloud/DoIt) 切换到了 [`FixIt`](https://github.com/hugo-fixit/FixIt)，不知道是否完全兼容，不兼容的地方看到在调整吧。
+
+---
+
+> 作者:   
+> URL: http://localhost:1313/about/  
+
