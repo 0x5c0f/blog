@@ -533,5 +533,5 @@ public class CharactorTool {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/java/%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/java/%E6%B1%89%E5%AD%97%E8%BD%AC%E6%8B%BC%E9%9F%B3/  
 

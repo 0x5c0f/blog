@@ -289,5 +289,5 @@ Filesystem         Size  Used Avail Use% Mounted on
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F_glusterfs/  
+> URL: https://blog.0x5c0f.cc/posts/linux/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F_glusterfs/  
 

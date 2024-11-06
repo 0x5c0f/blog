@@ -189,5 +189,5 @@ upstream graylog_server {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/  
+> URL: https://blog.0x5c0f.cc/posts/linux/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/  
 

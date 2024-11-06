@@ -472,5 +472,5 @@ $(&#34;input[name=&#39;decAmountInput&#39;]&#34;).keypress(function (event) {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/javascript/%E5%B8%AE%E5%8A%A9%E7%B1%BB/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/javascript/%E5%B8%AE%E5%8A%A9%E7%B1%BB/  
 

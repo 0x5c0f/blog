@@ -78,5 +78,5 @@ POSIX字符类是一个形如`[:...:]`的特殊元序列（`meta sequence`），
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/  
+> URL: https://blog.0x5c0f.cc/posts/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/  
 

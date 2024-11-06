@@ -47,5 +47,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/  
+> URL: https://blog.0x5c0f.cc/posts/linux/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/  
 

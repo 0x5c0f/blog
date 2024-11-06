@@ -214,5 +214,5 @@ export https_proxy=https://127.0.0.1:8118
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/pptp%E7%9B%B8%E5%85%B3/  
+> URL: https://blog.0x5c0f.cc/posts/linux/pptp%E7%9B%B8%E5%85%B3/  
 

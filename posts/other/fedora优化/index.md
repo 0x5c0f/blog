@@ -169,5 +169,5 @@ $&gt; gsettings set org.gnome.software allow-updates false
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/other/fedora%E4%BC%98%E5%8C%96/  
+> URL: https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/  
 

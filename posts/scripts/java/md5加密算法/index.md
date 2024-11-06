@@ -389,5 +389,5 @@ public class MD5 {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/java/md5%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/java/md5%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/  
 

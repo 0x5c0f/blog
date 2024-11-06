@@ -80,5 +80,5 @@ sudo update-ca-trust
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/other/%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90%E5%8F%8A%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0/  
+> URL: https://blog.0x5c0f.cc/posts/other/%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90%E5%8F%8A%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0/  
 

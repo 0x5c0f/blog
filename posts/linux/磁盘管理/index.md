@@ -47,5 +47,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/  
+> URL: https://blog.0x5c0f.cc/posts/linux/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/  
 

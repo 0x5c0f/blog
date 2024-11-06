@@ -206,5 +206,5 @@ linux服务器下的PHP，没有PHP线程安全和非线程安全版的区分
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/  
+> URL: https://blog.0x5c0f.cc/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/  
 

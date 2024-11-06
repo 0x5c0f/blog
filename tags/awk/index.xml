@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Awk - 标签 - 一个曾经的小码农...</title>
-    <link>http://localhost:1313/tags/awk/</link>
+    <link>https://blog.0x5c0f.cc/tags/awk/</link>
     <description>一个曾经的小码农...</description>
     <generator>Hugo 0.134.1 &amp; FixIt v0.3.14</generator>
     <language>zh-cn</language>
     <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
     <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
     <lastBuildDate>Thu, 23 Jun 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/awk/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.0x5c0f.cc/tags/awk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AWK常用(半草稿)</title>
-      <link>http://localhost:1313/posts/linux/awk%E5%B8%B8%E7%94%A8/</link>
+      <link>https://blog.0x5c0f.cc/posts/linux/awk%E5%B8%B8%E7%94%A8/</link>
       <pubDate>Thu, 23 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/linux/awk%E5%B8%B8%E7%94%A8/</guid>
-      <category domain="http://localhost:1313/categories/linux/">Linux</category>
-      <category domain="http://localhost:1313/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category>
+      <guid>https://blog.0x5c0f.cc/posts/linux/awk%E5%B8%B8%E7%94%A8/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category>
+      <category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category>
       <description>AWK常用</description>
     </item>
   </channel>

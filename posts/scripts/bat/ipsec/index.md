@@ -214,5 +214,5 @@ exit
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/bat/ipsec/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/bat/ipsec/  
 

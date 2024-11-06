@@ -782,5 +782,5 @@ public class TimeUtil s {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/java/%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%A4%84%E7%90%86%E7%BB%84%E4%BB%B6/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/java/%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96%E5%A4%84%E7%90%86%E7%BB%84%E4%BB%B6/  
 

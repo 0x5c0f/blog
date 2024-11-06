@@ -170,5 +170,5 @@ END { actions }
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/awk%E5%B8%B8%E7%94%A8/  
+> URL: https://blog.0x5c0f.cc/posts/linux/awk%E5%B8%B8%E7%94%A8/  
 

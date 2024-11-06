@@ -621,5 +621,5 @@ fi
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/shellscript%E7%9B%B8%E5%85%B3/  
+> URL: https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/  
 

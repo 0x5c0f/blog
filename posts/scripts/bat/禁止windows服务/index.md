@@ -143,5 +143,5 @@ sc config SQLWriter start= disabled
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/bat/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/bat/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/  
 

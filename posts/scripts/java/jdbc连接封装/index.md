@@ -279,5 +279,5 @@ if (rs != null) {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/java/jdbc%E8%BF%9E%E6%8E%A5%E5%B0%81%E8%A3%85/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/java/jdbc%E8%BF%9E%E6%8E%A5%E5%B0%81%E8%A3%85/  
 

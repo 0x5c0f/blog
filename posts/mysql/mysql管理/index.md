@@ -145,5 +145,5 @@ show variables
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/mysql/mysql%E7%AE%A1%E7%90%86/  
+> URL: https://blog.0x5c0f.cc/posts/mysql/mysql%E7%AE%A1%E7%90%86/  
 

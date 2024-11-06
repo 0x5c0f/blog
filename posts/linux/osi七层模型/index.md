@@ -86,5 +86,5 @@ OSI 模型是从上往下的，越底层越接近硬件，越往上越接近软�
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/  
+> URL: https://blog.0x5c0f.cc/posts/linux/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/  
 

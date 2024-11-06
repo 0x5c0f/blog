@@ -521,5 +521,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/  
+> URL: https://blog.0x5c0f.cc/posts/linux/umask%E7%A0%81%E6%9D%83%E9%99%90%E5%AF%B9%E7%85%A7%E8%A1%A8/  
 

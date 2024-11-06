@@ -193,5 +193,5 @@ $&gt; systemctl status badvpn-tun2socks.service
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/  
+> URL: https://blog.0x5c0f.cc/posts/linux/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/  
 

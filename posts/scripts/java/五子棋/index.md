@@ -762,5 +762,5 @@ class ChessWindowEvent extends WindowAdapter{
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/java/%E4%BA%94%E5%AD%90%E6%A3%8B/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/java/%E4%BA%94%E5%AD%90%E6%A3%8B/  
 

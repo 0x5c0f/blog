@@ -85,5 +85,5 @@ $&gt; plink.exe -ssh -i sshrsa.ppk 9022:10.0.1.12:22 root@10.0.1.12
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/  
+> URL: https://blog.0x5c0f.cc/posts/linux/ssh%E9%9A%A7%E9%81%93%E7%9B%B8%E5%85%B3/  
 

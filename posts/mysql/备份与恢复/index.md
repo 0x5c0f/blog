@@ -201,5 +201,5 @@ mysql&gt; alter table &lt;table_name&gt; import tablespace;
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/mysql/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/  
+> URL: https://blog.0x5c0f.cc/posts/mysql/%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/  
 

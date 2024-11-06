@@ -232,5 +232,5 @@ zabbix 前端配置,我是直接固定一个主机来还专门作这个的.配�
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/python/%E5%85%A8%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4/  
+> URL: https://blog.0x5c0f.cc/posts/python/%E5%85%A8%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4/  
 

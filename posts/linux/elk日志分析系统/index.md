@@ -371,5 +371,5 @@ kibana 不会自动加载elasticsearch的索引，需要自己配置。这儿根
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/elk%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F/  
+> URL: https://blog.0x5c0f.cc/posts/linux/elk%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E7%B3%BB%E7%BB%9F/  
 

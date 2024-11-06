@@ -351,5 +351,5 @@ for i in c :
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/python/%E5%87%BD%E6%95%B0%E4%B8%80/  
+> URL: https://blog.0x5c0f.cc/posts/python/%E5%87%BD%E6%95%B0%E4%B8%80/  
 

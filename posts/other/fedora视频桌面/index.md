@@ -136,5 +136,5 @@ environment=DISPLAY=:1      # 注意: 这个极其重要，必须配置，不然
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/other/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/  
+> URL: https://blog.0x5c0f.cc/posts/other/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/  
 

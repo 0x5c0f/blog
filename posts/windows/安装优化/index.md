@@ -125,5 +125,5 @@ Workstation (美国服务器不要关)
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/windows/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/  
+> URL: https://blog.0x5c0f.cc/posts/windows/%E5%AE%89%E8%A3%85%E4%BC%98%E5%8C%96/  
 

@@ -47,5 +47,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/netstat%E5%91%BD%E4%BB%A4/  
+> URL: https://blog.0x5c0f.cc/posts/linux/netstat%E5%91%BD%E4%BB%A4/  
 

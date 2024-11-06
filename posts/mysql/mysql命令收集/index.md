@@ -123,5 +123,5 @@ mysql -u root -ppwd -e &#39;SHOW /*!50000 GLOBAL */ STATUS LIKE &#34;Innodb_log_
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/mysql/mysql%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/  
+> URL: https://blog.0x5c0f.cc/posts/mysql/mysql%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/  
 

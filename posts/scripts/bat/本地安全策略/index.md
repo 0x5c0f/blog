@@ -40,5 +40,5 @@ reg add &#34;HKEY_CURRENT_USER\Control Panel\International&#34; /v sTimeFormat /
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/  
 

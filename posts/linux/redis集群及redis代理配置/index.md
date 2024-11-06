@@ -107,5 +107,5 @@ ClusterServerPool {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/redis%E9%9B%86%E7%BE%A4%E5%8F%8Aredis%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/  
+> URL: https://blog.0x5c0f.cc/posts/linux/redis%E9%9B%86%E7%BE%A4%E5%8F%8Aredis%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/  
 

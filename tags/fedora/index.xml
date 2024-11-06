@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fedora - 标签 - 一个曾经的小码农...</title>
-    <link>http://localhost:1313/tags/fedora/</link>
+    <link>https://blog.0x5c0f.cc/tags/fedora/</link>
     <description>一个曾经的小码农...</description>
     <generator>Hugo 0.134.1 &amp; FixIt v0.3.14</generator>
     <language>zh-cn</language>
     <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
     <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
     <lastBuildDate>Tue, 30 Apr 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/fedora/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.0x5c0f.cc/tags/fedora/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fedora视频桌面</title>
-      <link>http://localhost:1313/posts/other/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</link>
+      <link>https://blog.0x5c0f.cc/posts/other/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/other/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</guid>
-      <category domain="http://localhost:1313/categories/linux/">Linux</category>
-      <category domain="http://localhost:1313/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</category>
+      <guid>https://blog.0x5c0f.cc/posts/other/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category>
+      <category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</category>
       <description>fedora视频桌面</description>
     </item>
     <item>
       <title>FEDORA优化</title>
-      <link>http://localhost:1313/posts/other/fedora%E4%BC%98%E5%8C%96/</link>
+      <link>https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/</link>
       <pubDate>Mon, 28 Feb 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/other/fedora%E4%BC%98%E5%8C%96/</guid>
-      <category domain="http://localhost:1313/categories/linux/">Linux</category>
-      <category domain="http://localhost:1313/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</category>
+      <guid>https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category>
+      <category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</category>
       <description>fedora优化</description>
     </item>
   </channel>

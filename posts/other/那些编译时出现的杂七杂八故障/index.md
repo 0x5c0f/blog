@@ -66,5 +66,5 @@ sudo yum install xz-devel
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/other/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/  
+> URL: https://blog.0x5c0f.cc/posts/other/%E9%82%A3%E4%BA%9B%E7%BC%96%E8%AF%91%E6%97%B6%E5%87%BA%E7%8E%B0%E7%9A%84%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E6%95%85%E9%9A%9C/  
 

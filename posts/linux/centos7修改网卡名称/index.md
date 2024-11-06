@@ -15,5 +15,5 @@ CentOS 7的默认网卡和设备名称都是随机的，根据需要有时候需
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/  
+> URL: https://blog.0x5c0f.cc/posts/linux/centos7%E4%BF%AE%E6%94%B9%E7%BD%91%E5%8D%A1%E5%90%8D%E7%A7%B0/  
 

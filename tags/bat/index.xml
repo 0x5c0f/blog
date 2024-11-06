@@ -2,61 +2,61 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bat - 标签 - 一个曾经的小码农...</title>
-    <link>http://localhost:1313/tags/bat/</link>
+    <link>https://blog.0x5c0f.cc/tags/bat/</link>
     <description>一个曾经的小码农...</description>
     <generator>Hugo 0.134.1 &amp; FixIt v0.3.14</generator>
     <language>zh-cn</language>
     <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
     <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
     <lastBuildDate>Thu, 06 Apr 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/bat/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.0x5c0f.cc/tags/bat/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>常用的BAT脚本语法</title>
-      <link>http://localhost:1313/posts/windows/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
+      <link>https://blog.0x5c0f.cc/posts/windows/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</link>
       <pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/windows/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
-      <category domain="http://localhost:1313/categories/windows/">Windows</category>
-      <category domain="http://localhost:1313/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category>
+      <guid>https://blog.0x5c0f.cc/posts/windows/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/windows/">Windows</category>
+      <category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category>
       <description>常用的BAT脚本语法</description>
     </item>
     <item>
       <title>IIS命令操作</title>
-      <link>http://localhost:1313/posts/scripts/bat/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</link>
+      <link>https://blog.0x5c0f.cc/posts/scripts/bat/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/scripts/bat/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</guid>
-      <category domain="http://localhost:1313/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
+      <guid>https://blog.0x5c0f.cc/posts/scripts/bat/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
       <description>IIS命令操作</description>
     </item>
     <item>
       <title>windows 本地安全策略设置</title>
-      <link>http://localhost:1313/posts/scripts/bat/ipsec/</link>
+      <link>https://blog.0x5c0f.cc/posts/scripts/bat/ipsec/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/scripts/bat/ipsec/</guid>
-      <category domain="http://localhost:1313/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
+      <guid>https://blog.0x5c0f.cc/posts/scripts/bat/ipsec/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
       <description>IPSEC</description>
     </item>
     <item>
       <title>本地安全策略-安全选项</title>
-      <link>http://localhost:1313/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</link>
+      <link>https://blog.0x5c0f.cc/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</guid>
-      <category domain="http://localhost:1313/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
+      <guid>https://blog.0x5c0f.cc/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
       <description>本地安全策略</description>
     </item>
     <item>
       <title>关闭短文建生成注册</title>
-      <link>http://localhost:1313/posts/scripts/bat/%E5%85%B3%E9%97%AD%E7%9F%AD%E6%96%87%E5%BB%BA%E7%94%9F%E6%88%90%E6%B3%A8%E5%86%8C/</link>
+      <link>https://blog.0x5c0f.cc/posts/scripts/bat/%E5%85%B3%E9%97%AD%E7%9F%AD%E6%96%87%E5%BB%BA%E7%94%9F%E6%88%90%E6%B3%A8%E5%86%8C/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/scripts/bat/%E5%85%B3%E9%97%AD%E7%9F%AD%E6%96%87%E5%BB%BA%E7%94%9F%E6%88%90%E6%B3%A8%E5%86%8C/</guid>
-      <category domain="http://localhost:1313/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
+      <guid>https://blog.0x5c0f.cc/posts/scripts/bat/%E5%85%B3%E9%97%AD%E7%9F%AD%E6%96%87%E5%BB%BA%E7%94%9F%E6%88%90%E6%B3%A8%E5%86%8C/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
       <description>关闭短文建生成注册</description>
     </item>
     <item>
       <title>禁止windows服务</title>
-      <link>http://localhost:1313/posts/scripts/bat/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/</link>
+      <link>https://blog.0x5c0f.cc/posts/scripts/bat/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/</link>
       <pubDate>Fri, 24 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/scripts/bat/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/</guid>
-      <category domain="http://localhost:1313/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
+      <guid>https://blog.0x5c0f.cc/posts/scripts/bat/%E7%A6%81%E6%AD%A2windows%E6%9C%8D%E5%8A%A1/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E5%B9%B4%E7%9A%84%E6%94%B6%E8%97%8F/">那些年的收藏</category>
       <description>禁止windows服务</description>
     </item>
   </channel>

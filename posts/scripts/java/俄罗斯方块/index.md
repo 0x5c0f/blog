@@ -1219,5 +1219,5 @@ class ControlPanel extends JPanel {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/java/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/java/%E4%BF%84%E7%BD%97%E6%96%AF%E6%96%B9%E5%9D%97/  
 

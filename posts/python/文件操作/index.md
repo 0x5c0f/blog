@@ -88,5 +88,5 @@ with open(&#34;file1.md&#34;,&#34;r&#34;,encoding=&#34;utf-8&#34;) as f1,\
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/python/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/  
+> URL: https://blog.0x5c0f.cc/posts/python/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/  
 

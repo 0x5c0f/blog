@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>系统 - 标签 - 一个曾经的小码农...</title>
-    <link>http://localhost:1313/tags/%E7%B3%BB%E7%BB%9F/</link>
+    <link>https://blog.0x5c0f.cc/tags/%E7%B3%BB%E7%BB%9F/</link>
     <description>一个曾经的小码农...</description>
     <generator>Hugo 0.134.1 &amp; FixIt v0.3.14</generator>
     <language>zh-cn</language>
     <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
     <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
     <lastBuildDate>Tue, 05 Jul 2022 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.0x5c0f.cc/tags/%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>系统管理</title>
-      <link>http://localhost:1313/posts/linux/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
+      <link>https://blog.0x5c0f.cc/posts/linux/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</link>
       <pubDate>Tue, 05 Jul 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>http://localhost:1313/posts/linux/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
-      <category domain="http://localhost:1313/categories/linux/">Linux</category>
+      <guid>https://blog.0x5c0f.cc/posts/linux/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category>
       <description>系统管理</description>
     </item>
   </channel>

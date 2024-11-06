@@ -43,5 +43,5 @@ SELECT TABLE_SCHEMA, SUM(DATA_LENGTH)/1024/1024 as size_mb FROM TABLES GROUP BY 
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/mysql/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/  
+> URL: https://blog.0x5c0f.cc/posts/mysql/mysql%E7%9B%91%E6%8E%A7%E6%8C%87%E6%A0%87/  
 

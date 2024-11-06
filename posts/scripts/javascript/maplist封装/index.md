@@ -297,5 +297,5 @@ EventHandler.detachEvent = function (obj, eventname, func) {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/javascript/maplist%E5%B0%81%E8%A3%85/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/javascript/maplist%E5%B0%81%E8%A3%85/  
 

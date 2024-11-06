@@ -99,5 +99,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/iptables%E5%B8%B8%E7%94%A8/  
+> URL: https://blog.0x5c0f.cc/posts/linux/iptables%E5%B8%B8%E7%94%A8/  
 

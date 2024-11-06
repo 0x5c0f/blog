@@ -90,5 +90,5 @@ $&gt; /opt/mysql56/bin/mysqld_safe --defaults-file=/data/mysql56/3307/etc/my.cnf
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/mysql/mysql%E5%AE%89%E8%A3%85/  
+> URL: https://blog.0x5c0f.cc/posts/mysql/mysql%E5%AE%89%E8%A3%85/  
 

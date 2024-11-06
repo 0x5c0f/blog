@@ -112,5 +112,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/  
+> URL: https://blog.0x5c0f.cc/posts/linux/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/  
 

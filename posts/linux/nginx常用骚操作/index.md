@@ -121,5 +121,5 @@ location /frps/ {
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/  
+> URL: https://blog.0x5c0f.cc/posts/linux/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/  
 

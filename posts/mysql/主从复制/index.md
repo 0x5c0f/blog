@@ -332,5 +332,5 @@ graph TD;
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/mysql/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/  
+> URL: https://blog.0x5c0f.cc/posts/mysql/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/  
 

@@ -92,5 +92,5 @@ pause
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/scripts/bat/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/  
+> URL: https://blog.0x5c0f.cc/posts/scripts/bat/iis%E5%91%BD%E4%BB%A4%E6%93%8D%E4%BD%9C/  
 

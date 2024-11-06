@@ -9,5 +9,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/  
+> URL: https://blog.0x5c0f.cc/posts/linux/tcp.ip%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0/  
 

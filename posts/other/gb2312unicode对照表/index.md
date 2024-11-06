@@ -7452,5 +7452,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/other/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/  
+> URL: https://blog.0x5c0f.cc/posts/other/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/  
 

@@ -133,5 +133,5 @@ mysql&gt; purge binary logs to &#39;mysql-bin.000020&#39;;
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/mysql/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/  
+> URL: https://blog.0x5c0f.cc/posts/mysql/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/  
 

@@ -128,5 +128,5 @@ sftp&gt;
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: http://localhost:1313/posts/linux/sftp%E6%90%AD%E5%BB%BA/  
+> URL: https://blog.0x5c0f.cc/posts/linux/sftp%E6%90%AD%E5%BB%BA/  
 
