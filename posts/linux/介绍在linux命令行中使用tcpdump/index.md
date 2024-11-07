@@ -404,4 +404,4 @@ reading from file webserver.pcap, link-type LINUX_SLL (Linux cooked)
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/  
-
+> 转载 URL: https://opensource.com/article/18/10/introduction-tcpdump

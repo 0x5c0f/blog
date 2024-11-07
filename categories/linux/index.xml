@@ -104,6 +104,16 @@
       <description>内网.外网.宽带.带宽.流量.网速之间的区别与联系</description>
     </item>
     <item>
+      <title>node-exporter 连接数相关指标</title>
+      <link>https://blog.0x5c0f.cc/posts/linux/prometheus_%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87/</link>
+      <pubDate>Thu, 21 Sep 2023 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
+      <guid>https://blog.0x5c0f.cc/posts/linux/prometheus_%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category>
+      <category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category>
+      <category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category>
+      <description>node-exporter 连接数相关指标</description>
+    </item>
+    <item>
       <title>NGINX中变量详解</title>
       <link>https://blog.0x5c0f.cc/posts/linux/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/</link>
       <pubDate>Mon, 20 Mar 2023 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
