@@ -549,6 +549,11 @@ $&gt; docker compose ps --format &#34;table {{.Service}}:{{.Name}}\t{{.ID}}&#34;
 $&gt; gzip -c a.log &gt;/tmp/a.log.gz &amp;&amp; &gt; a.log
 ```
 
+# 将图片转化为指定大小，并且在图片高宽度不够时候，用透明背景填充 
+```bash
+$&gt; ffmpeg -i input.(png|svg|..) -vf &#34;scale=944:944:force_original_aspect_ratio=decrease,pad=944:944:(944-iw)/2:(944-ih)/2:color=0x00000000&#34; output.png
+```
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  

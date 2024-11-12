@@ -19,7 +19,7 @@ $&gt; sudo dnf install gnome-tweak-tool
 ### Recent(Item)s (fedora 38 已无，暂为找到替代方案)
 ### Topicons plus git(fedora 38 已无,切换为 AppIndicator and KStatusNotifierItem Support)
 ### Drop down terminal(fedora 38 已无)
-### Clipboard indicator(可以切换为 Clipboard History 或者 Pano) 
+### Clipboard indicator(可以切换为 Clipboard History 或者 Pano 、 或者使用 copyq (推荐) ) 
 ### Todo.txt 
 ### Bottompanel(将任务栏放到下面,与windows list 和 Dash to panel 扩展冲突)
 

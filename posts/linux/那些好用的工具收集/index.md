@@ -46,7 +46,7 @@
 $&gt; zenity --help
 ```
 
-# 9. `sysdig` 系统性能监控和故障诊断工具 
+# 9. 系统性能监控和故障诊断工具 `sysdig` 
 ```bash
 ## fedora 下，新版已经不支持 dkms,使用需要使用 --modern-bpf
 ## https://github.com/draios/sysdig/issues/2035 
@@ -64,12 +64,16 @@ $&gt; sysdig -c topfiles_bytes
 $&gt; csysdig -vcontainers
 ```
 
-# 10.  `yazi` 终端文件管理工具，支持文件预览
+# 10. 终端文件管理工具，支持文件预览 `yazi` 
 &gt; https://github.com/sxyazi/yazi
 
-# 11. `Linux` 下 `TCP/UDP` 端口转发工具 
+# 11. Linux 下 `TCP/UDP` 端口转发工具 
 &gt; https://github.com/samhocevar/rinetd 
 
+# 12. Linux 下好用的剪贴板管理工具 `copyq`
+```bash
+[root@01 ~]# sudo dnf install -y copyq
+```
 
 ---
 
