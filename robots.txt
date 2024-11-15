@@ -1,0 +1,13 @@
+User-agent: Sosospider
+Disallow: /
+
+User-agent: sogou spider
+Disallow: /
+
+User-agent: YodaoBot
+Disallow: /
+
+User-agent: *
+Allow: /
+
+Sitemap: https://blog.0x5c0f.cc/sitemap.xml

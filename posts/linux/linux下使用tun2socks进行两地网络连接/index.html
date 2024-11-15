@@ -10,8 +10,8 @@
   <meta itemprop="name" content="Linux下使用tun2socks进行两地网络连接">
   <meta itemprop="description" content="Linux下使用tun2socks进行两地网络连接">
   <meta itemprop="datePublished" content="2024-06-14T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2024-06-14T00:00:00+00:00">
-  <meta itemprop="wordCount" content="361">
+  <meta itemprop="dateModified" content="2024-11-14T00:00:00+00:00">
+  <meta itemprop="wordCount" content="379">
   <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_avatar.png">
   <meta itemprop="keywords" content="Linux,Windows,优化,解决方案"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5/">
   <meta property="og:site_name" content="一个曾经的小码农...">
@@ -21,7 +21,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2024-06-14T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-06-14T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-11-14T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="Windows">
     <meta property="article:tag" content="优化">
@@ -46,8 +46,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5\/"
-    },"genre": "posts","keywords": "linux, windows, 优化, 解决方案","wordcount":  361 ,
-    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5\/","datePublished": "2024-06-14T00:00:00+00:00","dateModified": "2024-06-14T00:00:00+00:00","publisher": {
+    },"genre": "posts","keywords": "linux, windows, 优化, 解决方案","wordcount":  379 ,
+    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/linux%E4%B8%8B%E4%BD%BF%E7%94%A8tun2socks%E8%BF%9B%E8%A1%8C%E4%B8%A4%E5%9C%B0%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5\/","datePublished": "2024-06-14T00:00:00+00:00","dateModified": "2024-11-14T00:00:00+00:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -123,15 +123,8 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Linux下使用tun2socks进行两地网络连接</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/windows/" class="post-category" title="分类 - Windows"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Windows</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2024-06-14 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-06-14">2024-06-14</time></span>&nbsp;<span title="361 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 400 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 2 分钟</span>&nbsp;</div>
-    </div><div class="content" id="content"><div class="details admonition note open">
-      <div class="details-summary admonition-title">
-        <i class="icon fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i>注意<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
-      </div>
-      <div class="details-content">
-        <div class="admonition-content">本文最后更新于 2024-06-14，文中内容可能已过时。</div>
-      </div>
-    </div><br />
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/windows/" class="post-category" title="分类 - Windows"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Windows</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2024-06-14 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2024-06-14">2024-06-14</time></span>&nbsp;<span title="更新于 2024-11-14 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2024-11-14">2024-11-14</time></span>&nbsp;<span title="379 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 400 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 2 分钟</span>&nbsp;</div>
+    </div><div class="content" id="content"><br />
 <p>  之前写了一个关于<a href="https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/"target="_blank" rel="external nofollow noopener noreferrer"><code>内网回拨解决方案</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>, 主要是介绍在<code>PPTP</code>不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是<code>badvpn</code>, 但该仓库已经归档很久了。这篇介绍另一个工具 <a href="https://github.com/xjasonlyu/tun2socks"target="_blank" rel="external nofollow noopener noreferrer"><code>tun2socks</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 来替代<code>badvpn</code>。</p>
 <p>  关于为什么记录这个，可以翻看之前的文章<a href="https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/"target="_blank" rel="external nofollow noopener noreferrer"><code>内网回拨解决方案</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>, 本篇只记录相关的整合脚本。</p>
 <h2 id="tun2socks-安装" class="heading-element"><span><code>tun2socks</code> 安装</span>
@@ -314,6 +307,7 @@
 </span><span class="lnt">18
 </span><span class="lnt">19
 </span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">## tun2socks 日志级别 [debug|info|warning|error|silent] (default &#34;info&#34;)</span>
@@ -335,7 +329,8 @@
 </span></span><span class="line"><span class="cl"><span class="na">ROUTE_HOST</span><span class="o">=</span><span class="s">&#34;&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 支持配置多个 空格隔开   </span>
-</span></span><span class="line"><span class="cl"><span class="na">SOCKS_ROUTE</span><span class="o">=</span><span class="s">&#34;${ROUTE_HOST}&#34;</span></span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl"><span class="na">SOCKS_ROUTE</span><span class="o">=</span><span class="s">&#34;${ROUTE_HOST}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># SOCKS_ROUTE=&#34;${IPSB_HOST} ${DOCKER_HOST} $(curl -s https://api.github.com/meta | jq -r &#39;[.web[] | select(contains(\&#34;:\&#34;) | not)] | join(\&#34; \&#34;)&#39;)&#34;</span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
 </ul>
@@ -405,7 +400,7 @@
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="更新于 2024-06-14 00:00:00">更新于 2024-06-14&nbsp;</span>
+        <span title="更新于 2024-11-14 00:00:00">更新于 2024-11-14&nbsp;</span>
       </div><div class="post-info-license">
             <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
           </div></div><div class="post-info-line">

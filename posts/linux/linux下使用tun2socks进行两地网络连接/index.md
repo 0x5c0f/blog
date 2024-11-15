@@ -104,6 +104,7 @@
 
     # 支持配置多个 空格隔开   
     SOCKS_ROUTE=&#34;${ROUTE_HOST}&#34;
+    # SOCKS_ROUTE=&#34;${IPSB_HOST} ${DOCKER_HOST} $(curl -s https://api.github.com/meta | jq -r &#39;[.web[] | select(contains(\&#34;:\&#34;) | not)] | join(\&#34; \&#34;)&#39;)&#34;
     ```
 
 ### 用于管理 `tun2socks` 服务的 `systemd`
