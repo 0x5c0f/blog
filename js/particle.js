@@ -5,6 +5,9 @@
  * @last update: 2024-11-14
  */
 
+// 使用 FixIt 主题的设备检测
+var isMobile = window.matchMedia("only screen and (max-width: 680px)").matches;
+
 // 默认配置
 var defaultConfig = {
     // 画布配置
@@ -22,7 +25,7 @@ var defaultConfig = {
     },
 
     // 粒子配置
-    particleCount: 210,                 // 粒子数量
+    particleCount: isMobile ? 105 : 210,                 // 粒子数量
     particleSize: 3,                   // 粒子大小(像素)
 
     // 连线配置
@@ -33,7 +36,7 @@ var defaultConfig = {
     moveSpeed: 1,                      // 移动速度
 
     // 鼠标交互配置
-    mouseEffect: true,                 // 是否启用鼠标效果
+    mouseEffect: !isMobile,                 // 是否启用鼠标效果
     mouseRadius: 300,                  // 鼠标影响半径
     orbitRadius: 80,                   // 鼠标周围轨道半径
     rotationSpeed: 0.001              // 轨道旋转速度
@@ -224,6 +227,11 @@ var defaultConfig = {
                         this._onThemeChange();
                     });
                 }
+
+                // 只在非移动设备上添加鼠标事件监听
+                if (!isMobile) {
+                    window.addEventListener("mousemove", this._onMouseMove.bind(this));
+                }
             },
             //生成一条丝带
             addParticle: function () {
@@ -359,8 +367,12 @@ var defaultConfig = {
             _onMouseMove: function (e) {
                 // 只在启用鼠标效果时更新鼠标位置
                 if (this._options.mouseEffect) {
-                    this._mouse.x = e.clientX;
-                    this._mouse.y = e.clientY;
+                    var rect = this._canvas.getBoundingClientRect();
+                    var scaleX = this._canvas.width / rect.width;    // 处理画布缩放
+                    var scaleY = this._canvas.height / rect.height;
+                    
+                    this._mouse.x = (e.clientX - rect.left) * scaleX;
+                    this._mouse.y = (e.clientY - rect.top) * scaleY;
                 }
             },
             // 添加主题更新方法
