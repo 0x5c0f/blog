@@ -33,9 +33,9 @@
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" title="那些杂七杂八的记录(一) - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/" title="那些杂七杂八的记录(二)" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/" title="Shellscript相关" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/index.md" title="那些杂七杂八的记录(一) - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" title="那些杂七杂八的记录(一) - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/" title="那些杂七杂八的记录(二)" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/" title="Shellscript相关" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/index.md" title="那些杂七杂八的记录(一) - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.15e423324cbcea0e3ecd64d4a9b67da150f62705c51372e0db75402ffa747440b56712045dd98d7d9aa799812e0e08e3afa417318aeb393b2e6ab24a4b65b750.css" integrity="sha512-FeQjMky86g4+zWTUqbZ9oVD2JwXFE3Lg23VAL/p0dEC1ZxIEXdmNfZqnmYEuDgjjr6QXMYrrOTsuarJKS2W3UA=="><link rel="preload" href="/lib/fontawesome-free/all.min.cf780ba5def29277f562835b0b3a9129ce2aca8afc81a294d6a9a7f824a1c5bb81bac00d23d42946884606b7821642b12e17a2e92f424171446db2aea8b8340c.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.cf780ba5def29277f562835b0b3a9129ce2aca8afc81a294d6a9a7f824a1c5bb81bac00d23d42946884606b7821642b12e17a2e92f424171446db2aea8b8340c.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -52,7 +52,7 @@
         "name": "0x5c0f"
       },"description": "那些杂七杂八的记录(一)"
   }
-  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  </script><script src="/js/head/color-scheme.min.e4582484625e45df8e4adbb4cc376382a2cba293ce791cf7e64b7d91903cb3c5ca0e91d3f65981dd654cffb16766c9ba00adc5f156d21c61355858e9efc36d60.js" integrity="sha512-5FgkhGJeRd+OStu0zDdjgqLLopPOeRz35kt9kZA8s8XKDpHT9lmB3WVM/7FnZsm6AK3F8VbSHGE1WFjp78NtYA=="></script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
@@ -129,56 +129,112 @@
         </div>
         <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#gpg-对称加密">gpg 对称加密</a></li>
-    <li><a href="#gpg-非对称加密">gpg 非对称加密</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#文件描述符">文件描述符</a></li>
-    <li><a href="#标准重定向">标准重定向</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#单位换算">单位换算</a></li>
-    <li><a href="#mailx-smtp使用ssl时邮件发送报错-error-in-certificate-peers-certificate-issuer-is-not-recognized">mailx smtp使用ssl时，邮件发送报错 &ldquo;Error in certificate: Peer’s certificate issuer is not recognized.&rdquo;</a></li>
-    <li><a href="#jenkins-设置国内插件源">jenkins 设置国内插件源</a></li>
-  </ul>
-
-  <ul>
-    <li><a href="#rabbitmq-ssl-证书配置">rabbitmq ssl 证书配置</a></li>
-    <li><a href="#prometheus-不同指标计间的计算方法">prometheus 不同指标计间的计算方法</a></li>
-    <li><a href="#iis-http-强制跳转-https">IIS http 强制跳转 https</a></li>
-    <li><a href="#find-文件性能提升">find 文件性能提升</a></li>
-    <li><a href="#压力测试-ab-命令解释">压力测试 `ab`` 命令解释</a></li>
-    <li><a href="#https页面加载http资源报错的方法">https页面加载http资源报错的方法</a></li>
-    <li><a href="#mysql-授权-all-privileges-时当前用户是具备执行-alter-user-的权限的但仅限于修改自己的密码无法修改其他用户">mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户</a></li>
-    <li><a href="#windows-iis-反向代理配置">Windows IIS 反向代理配置</a></li>
-    <li><a href="#亚马逊存储桶">亚马逊存储桶</a>
+    <li>
       <ul>
-        <li><a href="#存储桶规则创建及示例">存储桶规则创建及示例</a></li>
-        <li><a href="#亚马逊用户策略">亚马逊用户策略</a></li>
+        <li><a href="#gnupg-加密与解密">GnuPG 加密与解密</a>
+          <ul>
+            <li><a href="#gpg-对称加密">gpg 对称加密</a></li>
+            <li><a href="#gpg-非对称加密">gpg 非对称加密</a></li>
+          </ul>
+        </li>
+        <li><a href="#docker-创建-dns-server">DOCKER 创建 DNS SERVER</a></li>
+        <li><a href="#dotnet-环境搭建">dotnet 环境搭建</a></li>
+        <li><a href="#在linux中删除virbr0接口">在Linux中删除virbr0接口</a></li>
+        <li><a href="#linux-杀毒软件-clamav">Linux 杀毒软件 clamav</a></li>
+        <li><a href="#linux-合并文件系统-margerfs">linux 合并文件系统 margerfs</a></li>
+        <li><a href="#linux-sftp-搭建">linux sftp 搭建</a></li>
+        <li><a href="#监听本地网卡上没有的ip地址">监听本地网卡上没有的IP地址</a></li>
+        <li><a href="#腾讯云第二块网卡绑定公网ip">腾讯云第二块网卡绑定公网ip</a></li>
+        <li><a href="#shell-反弹">shell 反弹</a></li>
+        <li><a href="#nginx-获取cdn真实用户ip">nginx 获取cdn真实用户ip</a></li>
+        <li><a href="#virtualbox---从主机端口80到virtualbox端口80的端口转发不起作用">virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用</a></li>
+        <li><a href="#服务器默认端口优化">服务器默认端口优化</a></li>
+        <li><a href="#linux-下hosts文件和dns服务器的响应顺序">linux 下hosts文件和dns服务器的响应顺序</a></li>
+        <li><a href="#git-提交类型">git 提交类型</a></li>
+        <li><a href="#linux-通过s3fs挂载七牛云存储">linux 通过s3fs挂载七牛云存储</a></li>
+        <li><a href="#普通用户校验是否有权限通过dockersock操作-docker">普通用户校验是否有权限通过docker.sock操作 docker</a></li>
+        <li><a href="#rdesktop-远程桌面工具安装">rdesktop 远程桌面工具安装</a></li>
+        <li><a href="#umask-计算方法">Umask 计算方法</a></li>
+        <li><a href="#输入输出重定向">输入输出重定向</a>
+          <ul>
+            <li><a href="#文件描述符">文件描述符</a></li>
+            <li><a href="#标准重定向">标准重定向</a></li>
+          </ul>
+        </li>
+        <li><a href="#linux-下挂载-esxi-的-vmfs-文件系统">linux 下挂载 esxi 的 vmfs 文件系统</a></li>
+        <li><a href="#cp-mv-进度条补丁">cp mv 进度条补丁</a></li>
+        <li><a href="#更改docker容器中的时间而不影响宿主机">更改docker容器中的时间而不影响宿主机</a></li>
+        <li><a href="#ubuntudebian切换shelldashbash">ubuntu/debian切换shell（dash/bash）</a></li>
+        <li><a href="#openvpn-指定路由配置">openvpn 指定路由配置</a></li>
+        <li><a href="#svg-背景透明图片">svg 背景透明图片</a></li>
+        <li><a href="#centos-启用zram服务器内存过低可用于替代swap">CentOS 启用zram(服务器内存过低，可用于替代swap)</a></li>
+        <li><a href="#virtualbox-nat端口映射配置">virtualbox NAT端口映射配置</a></li>
+        <li><a href="#单位换算">单位换算</a></li>
+        <li><a href="#mailx-smtp使用ssl时邮件发送报错-error-in-certificate-peers-certificate-issuer-is-not-recognized">mailx smtp使用ssl时，邮件发送报错 &ldquo;Error in certificate: Peer’s certificate issuer is not recognized.&rdquo;</a></li>
+        <li><a href="#jenkins-设置国内插件源">jenkins 设置国内插件源</a></li>
+        <li><a href="#etcsysconfignetwork-scripts-为空">/etc/sysconfig/network-scripts 为空</a></li>
+        <li><a href="#双网卡优先级配置">双网卡优先级配置</a></li>
+        <li><a href="#网卡连接后执行某个脚本">网卡连接后执行某个脚本</a></li>
+        <li><a href="#网卡配置文件固定路由设置">网卡配置文件固定路由设置</a></li>
+        <li><a href="#acmesh-证书安装---reloadcmd无效问题">acme.sh 证书安装 <code>--reloadcmd</code>无效问题</a></li>
+        <li><a href="#openai-api接口反向代理实现国内直接使用">openai api接口反向代理实现国内直接使用</a></li>
+        <li><a href="#云安全组配置规范">云安全组配置规范</a></li>
+        <li><a href="#webmin-密码修改">webmin 密码修改</a></li>
+        <li><a href="#记录一个nginx-反代规则">记录一个nginx 反代规则</a></li>
+        <li><a href="#debian-pull-镜像-408-错误">debian pull 镜像 408 错误</a></li>
+        <li><a href="#在bash脚本中使用别名alias的方式">在bash脚本中使用别名(alias)的方式</a></li>
+        <li><a href="#rabbitmq-ssl-证书配置">rabbitmq ssl 证书配置</a></li>
+        <li><a href="#prometheus-不同指标计间的计算方法">prometheus 不同指标计间的计算方法</a></li>
+        <li><a href="#iis-http-强制跳转-https">IIS http 强制跳转 https</a></li>
+        <li><a href="#find-文件性能提升">find 文件性能提升</a></li>
+        <li><a href="#压力测试-ab-命令解释">压力测试 `ab`` 命令解释</a></li>
+        <li><a href="#https页面加载http资源报错的方法">https页面加载http资源报错的方法</a></li>
+        <li><a href="#mysql-授权-all-privileges-时当前用户是具备执行-alter-user-的权限的但仅限于修改自己的密码无法修改其他用户">mysql 授权 ALL PRIVILEGES 时，当前用户是具备执行 ALTER USER 的权限的，但仅限于修改自己的密码，无法修改其他用户</a></li>
+        <li><a href="#windows-iis-反向代理配置">Windows IIS 反向代理配置</a></li>
+        <li><a href="#亚马逊存储桶">亚马逊存储桶</a>
+          <ul>
+            <li><a href="#存储桶规则创建及示例">存储桶规则创建及示例</a></li>
+            <li><a href="#亚马逊用户策略">亚马逊用户策略</a></li>
+          </ul>
+        </li>
+        <li><a href="#gnome-shell-终端设置-title">gnome-shell 终端设置 title</a></li>
+        <li><a href="#阿里云安装-alinux-操作系统安装-docker">阿里云安装 alinux 操作系统安装 docker</a></li>
+        <li><a href="#亚马逊cdn-添加-elb-作为后端源指定多备用域名无效有其他衍生问题-待继续测试">亚马逊cdn 添加 elb 作为后端源，指定多备用域名无效(有其他衍生问题, 待继续测试)</a></li>
+        <li><a href="#亚马逊调整-ebs-卷大小后扩展文件系统磁盘扩容">亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)</a></li>
+        <li><a href="#亚马逊加速器配置">亚马逊加速器配置</a></li>
+        <li><a href="#阿里云磁盘分区扩容">阿里云磁盘分区扩容</a></li>
+        <li><a href="#网络故障记录">网络故障记录</a></li>
+        <li><a href="#linux-桌面环境下绑定指定唤起协议">linux 桌面环境下，绑定指定唤起协议</a></li>
+        <li><a href="#解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题">解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</a></li>
+        <li><a href="#grafana-查询错误-a-got-error-input-data-must-be-a-wide-series-but-got-type-long-input-refid">grafana 查询错误 <code>[A] got error: input data must be a wide series but got type long (input refid)</code></a></li>
+        <li><a href="#通过yum安装的mysql进行升级的时候报错-xxx-fileetcpkirpm-gpgrpm-gpg-key-mysql">通过yum安装的mysql进行升级的时候报错 <code>xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql</code></a></li>
+        <li><a href="#nginx配置特定方法请求时进行密码认证">nginx配置特定方法请求时进行密码认证</a></li>
+        <li><a href="#服务器资源不够导致的问题">服务器资源不够导致的问题</a></li>
+        <li><a href="#通过systemd服务配置文件修改进程优先级">通过<code>systemd</code>服务配置文件修改进程优先级</a></li>
+        <li><a href="#git-删除最近几次提交记录">git 删除最近几次提交记录</a></li>
       </ul>
     </li>
-    <li><a href="#gnome-shell-终端设置-title">gnome-shell 终端设置 title</a></li>
-    <li><a href="#阿里云安装-alinux-操作系统安装-docker">阿里云安装 alinux 操作系统安装 docker</a></li>
-    <li><a href="#亚马逊cdn-添加-elb-作为后端源指定多备用域名无效有其他衍生问题-待继续测试">亚马逊cdn 添加 elb 作为后端源，指定多备用域名无效(有其他衍生问题, 待继续测试)</a></li>
   </ul>
 </nav></div>
       </div><div class="content" id="content"><h2 id="gnupg-加密与解密" class="heading-element"><span>GnuPG 加密与解密</span>
   <a href="#gnupg-%e5%8a%a0%e5%af%86%e4%b8%8e%e8%a7%a3%e5%af%86" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="gpg-对称加密" class="heading-element"><span>gpg 对称加密</span>
+</h2><h3 id="gpg-对称加密" class="heading-element"><span>gpg 对称加密</span>
   <a href="#gpg-%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><p>加密:  <code>gpg -c &lt;file&gt;</code>， 输入两次加密密码，完成后生成文件<code>&lt;file&gt;.gpg</code>(加密后源文件保留)<br>
-解密:  <code>gpg &lt;file&gt;.gpg</code>, 输入加密密码,正确后生成文件<code>&lt;file&gt;</code>(解密后加密文件保留)</p>
-<h2 id="gpg-非对称加密" class="heading-element"><span>gpg 非对称加密</span>
+</h3><ul>
+<li>加密:  <code>gpg -c &lt;file&gt;</code>， 输入两次加密密码，完成后生成文件<code>&lt;file&gt;.gpg</code>(加密后源文件保留)</li>
+<li>解密:  <code>gpg &lt;file&gt;.gpg</code>, 输入加密密码,正确后生成文件<code>&lt;file&gt;</code>(解密后加密文件保留)</li>
+</ul>
+<h3 id="gpg-非对称加密" class="heading-element"><span>gpg 非对称加密</span>
   <a href="#gpg-%e9%9d%9e%e5%af%b9%e7%a7%b0%e5%8a%a0%e5%af%86" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><p>非对称加密/解密文件时，<code>Server</code> 生成私钥与公钥，并把公钥发送给<code>Client</code>, <code>Client</code> 使用公钥加密数据，并把加密后的数据传给<code>Server</code> ，<code>Server</code> 最后使用自己的私钥解密数据。</p>
+</h3><ul>
+<li>
+<p>非对称加密/解密文件时，<code>Server</code> 生成私钥与公钥，并把公钥发送给<code>Client</code>, <code>Client</code> 使用公钥加密数据，并把加密后的数据传给<code>Server</code> ，<code>Server</code> 最后使用自己的私钥解密数据。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -230,7 +286,9 @@
 </span></span><span class="line"><span class="cl">$&gt; gpg -d &lt;file&gt;.gpg 
 </span></span><span class="line"><span class="cl">&lt;file&gt; </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="docker-创建-dns-server" class="heading-element"><span>DOCKER 创建 DNS SERVER</span>
+</div></li>
+</ul>
+<h2 id="docker-创建-dns-server" class="heading-element"><span>DOCKER 创建 DNS SERVER</span>
   <a href="#docker-%e5%88%9b%e5%bb%ba-dns-server" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -724,11 +782,11 @@
   <a href="#%e8%be%93%e5%85%a5%e8%be%93%e5%87%ba%e9%87%8d%e5%ae%9a%e5%90%91" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="文件描述符" class="heading-element"><span>文件描述符</span>
+</h2><h3 id="文件描述符" class="heading-element"><span>文件描述符</span>
   <a href="#%e6%96%87%e4%bb%b6%e6%8f%8f%e8%bf%b0%e7%ac%a6" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><table>
+</h3><table>
   <thead>
       <tr>
           <th style="text-align: left">文件描述符</th>
@@ -758,11 +816,11 @@
       </tr>
   </tbody>
 </table>
-<h2 id="标准重定向" class="heading-element"><span>标准重定向</span>
+<h3 id="标准重定向" class="heading-element"><span>标准重定向</span>
   <a href="#%e6%a0%87%e5%87%86%e9%87%8d%e5%ae%9a%e5%90%91" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><blockquote>
+</h3><blockquote>
 <p><a href="https://aimuke.github.io/linux/2019/05/29/redirect/"target="_blank" rel="external nofollow noopener noreferrer">https://aimuke.github.io/linux/2019/05/29/redirect/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
 </blockquote>
 <table>
@@ -2330,6 +2388,6 @@
         </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="--fi-progress-start: left; top: 0;"></div><noscript>
     <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
   </noscript>
-</div><link rel="stylesheet" href="/lib/waline/waline.css"><link rel="preload" href="/lib/katex/katex.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.css"></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/waline/waline.js" defer></script><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/katex/katex.min.js" defer></script><script src="/lib/katex/auto-render.min.js" defer></script><script src="/lib/katex/copy-tex.min.js" defer></script><script src="/lib/katex/mhchem.min.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script src="/js/flyfish.min.js" defer></script><script src="/js/particle.min.js" defer></script><script src="/js/watermark.seal.min.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"waline":{"copyright":true,"dark":"html[data-theme='dark']","el":"#waline","emoji":["//unpkg.com/@waline/emojis@1.1.0/weibo"],"highlighter":false,"imageUploader":false,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"search":false,"serverURL":"https://talk.51ac.cc","texRenderer":false}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.14"};</script><script src="/js/theme.min.js" defer></script></body>
+</div><link rel="stylesheet" href="/lib/waline/waline.592474683f9a7e26a3ec0a03302179ef85d5457a785d0169b5d2da8e6d90ae1bc0a6d76fe8d5fc3abb1c32bcc04a2a406fc4a6caed9486d92d008377241e4e01.css" integrity="sha512-WSR0aD+afiaj7AoDMCF574XVRXp4XQFptdLajm2QrhvAptdv6NX8OrscMrzASipAb8Smyu2UhtktAIN3JB5OAQ=="><link rel="preload" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/waline/waline.98ecca1d4f7c68e39a0b907706ae2807cc57f450402d006f1372eda8c70e3d1b9e3aee0eb442a47a16ac3b147371044f51545b1f50fa2bf0166432121614d006.js" integrity="sha512-mOzKHU98aOOaC5B3Bq4oB8xX9FBALQBvE3LtqMcOPRueOu4OtEKkehasOxRzcQRPUVRbH1D6K/AWZDISFhTQBg==" defer></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/flyfish.min.a12b95990d66e6f4dde0ee1a4a7d9cdef9f9a9a0927070db387bdd6a85fef55dd66cb0f5d331e3e138ef33ca128cd0ba3033caeafd43def1c6be5f62ad54426e.js" integrity="sha512-oSuVmQ1m5vTd4O4aSn2c3vn5qaCScHDbOHvdaoX+9V3WbLD10zHj4TjvM8oSjNC6MDPK6v1D3vHGvl9irVRCbg==" defer></script><script src="/js/particle.min.588848842d469bb9c7241a862c5966626d688f2c74f98aa2479c90d8fa58b6035a789112e004b47e9d26f5691f9fa5a2b005bec5bb5a65b22491deb1d1475f46.js" integrity="sha512-WIhIhC1Gm7nHJBqGLFlmYm1ojyx0+YqiR5yQ2PpYtgNaeJES4AS0fp0m9Wkfn6WisAW+xbtaZbIkkd6x0UdfRg==" defer></script><script src="/js/watermark.seal.min.4f6a0005b52d37ba4cb9834457b07fa37c4e5addfd7906b5192031ec97efa20fcd4ae370f5a512ebdfdf877f3f768497be452c363600d6bd1d03b06fb958778b.js" integrity="sha512-T2oABbUtN7pMuYNEV7B/o3xOWt39eQa1GSAx7Jfvog/NSuNw9aUS69/fh38/doSXvkUsNjYA1r0dA7BvuVh3iw==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"waline":{"copyright":true,"dark":"html[data-theme='dark']","el":"#waline","emoji":["//unpkg.com/@waline/emojis@1.1.0/weibo"],"highlighter":false,"imageUploader":false,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"search":false,"serverURL":"https://talk.51ac.cc","texRenderer":false}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.14"};</script><script src="/js/theme.min.bbf4c57f51869fef50ec8f961c6b54edfa66d0aa413bbd7cf68ed5de576d4f2e3a90625ade820652b1d8c46f18e99927c947c30136d3f415b5b8208cba576af2.js" integrity="sha512-u/TFf1GGn+9Q7I+WHGtU7fpm0KpBO7189o7V3ldtTy46kGJa3oIGUrHYxG8Y6ZknyUfDATbT9BW1uCCMuldq8g==" defer></script></body>
 </html>

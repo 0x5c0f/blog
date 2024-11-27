@@ -51,6 +51,7 @@ export PROMPT_COMMAND=&#34;${PROMPT_COMMAND}; __GIT_BRANCH__=\&#34;\$(__git_ps1 
 
 ## Virtualbox 中使用 Cloud 系统镜像快速创建虚拟机
 &amp;emsp;&amp;emsp;以[`Alibaba Cloud Linux 3`](https://mirrors.aliyun.com/alinux/3/image/)云镜像为例，下载[`aliyun_3_x64_20G_nocloud_alibase_20240528.vhd`](https://alinux3.oss-cn-hangzhou.aliyuncs.com/aliyun_3_x64_20G_nocloud_alibase_20240528.vhd) 和 [`seed.img`](https://alinux3.oss-cn-hangzhou.aliyuncs.com/seed.img), `seed.img`是 `cloud-init` 数据源，可以自己创建参考[`官方文档`](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)或者[`阿里云文档`](https://help.aliyun.com/zh/alinux/getting-started/use-alibaba-cloud-linux-3-images-in-an-on-premises-environment?spm=a2c4g.11186623.0.0.36534cfcWFRMKk#section-eyk-z6n-5ot)的生成示例。   
+
 ### 虚拟机创建和配置  
 - 新建虚拟机， `虚拟机光盘`无需指定，`类型`和`版本`按照自己使用的云镜像指定，然后一直下一步, `虚拟硬盘`选择`不添加虚拟硬盘`，  然后点击下一步， 直到完成创建。  
 - 完成创建后, `右键`创建好的虚拟机，选择`设置`， 理论上所有设置都可以使用默认值， 只需要更改一个地方。  

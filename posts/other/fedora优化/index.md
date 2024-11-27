@@ -40,8 +40,10 @@ $&gt; sudo dnf install inkscape       # 矢量图画画工具
 $&gt; sudo dnf install sleek      # todo 任务(https://github.com/ransome1/sleek)
 $&gt; sudo dnf install libreoffice-langpack-zh-Hans.x86_64   # libreoffice的中文语言包 
 $&gt; sudo pip3 install bpython
-# https://linux.cn/article-11434-1.html
-# sudo dnf install SDL2 android-tools # 安卓投屏工具 
+
+# https://flathub.org/zh-Hans/apps/io.github.flattool.Warehouse             # flatpak 管理工具
+# https://flathub.org/zh-Hans/apps/com.github.tchx84.Flatseal               # flatpak 权限管理工具
+# https://flathub.org/zh-Hans/apps/io.github.giantpinkrobots.flatsweep      # flatpak 卸载残留清理工具(fedora38下运行不稳定)
 ```
 
 # 5. 安装`ficx`输入法
