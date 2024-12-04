@@ -33,7 +33,7 @@
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/" title="NGINX中变量详解 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="运维常见面试题" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/windows/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/" title="常用的BAT脚本语法" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/index.md" title="NGINX中变量详解 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.15e423324cbcea0e3ecd64d4a9b67da150f62705c51372e0db75402ffa747440b56712045dd98d7d9aa799812e0e08e3afa417318aeb393b2e6ab24a4b65b750.css" integrity="sha512-FeQjMky86g4+zWTUqbZ9oVD2JwXFE3Lg23VAL/p0dEC1ZxIEXdmNfZqnmYEuDgjjr6QXMYrrOTsuarJKS2W3UA=="><link rel="preload" href="/lib/fontawesome-free/all.min.cf780ba5def29277f562835b0b3a9129ce2aca8afc81a294d6a9a7f824a1c5bb81bac00d23d42946884606b7821642b12e17a2e92f424171446db2aea8b8340c.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/" title="NGINX中变量详解 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="运维常见面试题" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/windows/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/" title="常用的BAT脚本语法" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/index.md" title="NGINX中变量详解 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.180f49bb74aac7ee38959d0058e1b9126a18b0dad12d2f5e73019f770be5f9c4375ff8d6f84421986de0169782ed438ba297089c0e5c33ec7e01ac09e56f70da.css" integrity="sha512-GA9Ju3Sqx+44lZ0AWOG5EmoYsNrRLS9ecwGfdwvl+cQ3X/jW+EQhmG3gFpeC7UOLopcInA5cM+x+AawJ5W9w2g=="><link rel="preload" href="/lib/fontawesome-free/all.min.cf780ba5def29277f562835b0b3a9129ce2aca8afc81a294d6a9a7f824a1c5bb81bac00d23d42946884606b7821642b12e17a2e92f424171446db2aea8b8340c.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.cf780ba5def29277f562835b0b3a9129ce2aca8afc81a294d6a9a7f824a1c5bb81bac00d23d42946884606b7821642b12e17a2e92f424171446db2aea8b8340c.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
   {
@@ -145,210 +145,210 @@
 </h2><table>
   <thead>
       <tr>
-          <th style="text-align: left">-</th>
-          <th style="text-align: left">-</th>
+          <th>-</th>
+          <th>-</th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left"><code>$http_user_agent</code></td>
-          <td style="text-align: left">客户端UA信息</td>
+          <td><code>$http_user_agent</code></td>
+          <td>客户端UA信息</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$http_cookie	</code></td>
-          <td style="text-align: left">客户端COOKIE</td>
+          <td><code>$http_cookie	</code></td>
+          <td>客户端COOKIE</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$cookie_name	</code></td>
-          <td style="text-align: left">参考$arg_name的用法</td>
+          <td><code>$cookie_name	</code></td>
+          <td>参考$arg_name的用法</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$arg_name	</code></td>
-          <td style="text-align: left">获取URI中的GET参数，比方说http://localhost:8080/test?class=3，则用$arg_class获取。<br/>注：<br/>1）不区分大小写，例如CLASS=2同样使用$arg_class获取；<br/>2）如果参数escape编码了，使用set_unescape_uri 反编码，<br/>例如：<br/>set_unescape_uri $name $arg_name;<br/>set_unescape_uri $class $arg_class;<br/>echo “name: $name”;<br/>echo “class: $class”</td>
+          <td><code>$arg_name	</code></td>
+          <td>获取URI中的GET参数，比方说http://localhost:8080/test?class=3，则用$arg_class获取。<br/>注：<br/>1）不区分大小写，例如CLASS=2同样使用$arg_class获取；<br/>2）如果参数escape编码了，使用set_unescape_uri 反编码，<br/>例如：<br/>set_unescape_uri $name $arg_name;<br/>set_unescape_uri $class $arg_class;<br/>echo “name: $name”;<br/>echo “class: $class”</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$args	</code></td>
-          <td style="text-align: left">获取url中的GET参数字符串,www.129.com/?name=a1&amp;b=b1，$args=name=a1&amp;b=b1</td>
+          <td><code>$args	</code></td>
+          <td>获取url中的GET参数字符串,www.129.com/?name=a1&amp;b=b1，$args=name=a1&amp;b=b1</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$binary_remote_addr</code></td>
-          <td style="text-align: left">二进制格式的客户端地址，例如\xC0\xA8P\x81，表示为192.168.80.1</td>
+          <td><code>$binary_remote_addr</code></td>
+          <td>二进制格式的客户端地址，例如\xC0\xA8P\x81，表示为192.168.80.1</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$body_bytes_sent</code></td>
-          <td style="text-align: left">响应体的大小，即使发生了中断或者是放弃，也是一样的准确。</td>
+          <td><code>$body_bytes_sent</code></td>
+          <td>响应体的大小，即使发生了中断或者是放弃，也是一样的准确。</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$bytes_sent</code></td>
-          <td style="text-align: left">number of bytes sent to a client</td>
+          <td><code>$bytes_sent</code></td>
+          <td>number of bytes sent to a client</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$connection</code></td>
-          <td style="text-align: left">connection serial number</td>
+          <td><code>$connection</code></td>
+          <td>connection serial number</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$connection_requests</code></td>
-          <td style="text-align: left">current number of requests made through a connection</td>
+          <td><code>$connection_requests</code></td>
+          <td>current number of requests made through a connection</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$content_length</code></td>
-          <td style="text-align: left">请求头部信息中的Content-Length</td>
+          <td><code>$content_length</code></td>
+          <td>请求头部信息中的Content-Length</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$content_type</code></td>
-          <td style="text-align: left">请求头部信息中的Content-Type</td>
+          <td><code>$content_type</code></td>
+          <td>请求头部信息中的Content-Type</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$document_root</code></td>
-          <td style="text-align: left">变量的值为当前请求的location（http，server，location，location中的if）中root指令中指定的值，或alias的值</td>
+          <td><code>$document_root</code></td>
+          <td>变量的值为当前请求的location（http，server，location，location中的if）中root指令中指定的值，或alias的值</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$document_uri</code></td>
-          <td style="text-align: left">同$uri</td>
+          <td><code>$document_uri</code></td>
+          <td>同$uri</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$host</code></td>
-          <td style="text-align: left">该变量的值等于请求头中Host的值。如果Host无效时，那么就是处理该请求的server的名称。<br/>在下列情况中，$host变量的取值不同于$http_host变量。<br/>1) 当请求头中的Host字段未指定（使用默认值）或者为空值，那么$host等于server_name指令指定的值。<br/>2) 当Host字段包含端口是，$host并不包含端口号。另外，从0.8.17之后的nginx中，$host的值总是小写。</td>
+          <td><code>$host</code></td>
+          <td>该变量的值等于请求头中Host的值。如果Host无效时，那么就是处理该请求的server的名称。<br/>在下列情况中，$host变量的取值不同于$http_host变量。<br/>1) 当请求头中的Host字段未指定（使用默认值）或者为空值，那么$host等于server_name指令指定的值。<br/>2) 当Host字段包含端口是，$host并不包含端口号。另外，从0.8.17之后的nginx中，$host的值总是小写。</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$hostname</code></td>
-          <td style="text-align: left">有gethostname返回值设置机器名</td>
+          <td><code>$hostname</code></td>
+          <td>有gethostname返回值设置机器名</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$http_name</code></td>
-          <td style="text-align: left">该变量的值为HTTP 请求头HEADER，具体使用时会转换为小写，并且将“——”（破折号）转换为“_”(下划线)。例如$http_Connection</td>
+          <td><code>$http_name</code></td>
+          <td>该变量的值为HTTP 请求头HEADER，具体使用时会转换为小写，并且将“——”（破折号）转换为“_”(下划线)。例如$http_Connection</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$https</code></td>
-          <td style="text-align: left">“on” if connection operates in SSL mode, or an empty string otherwise</td>
+          <td><code>$https</code></td>
+          <td>“on” if connection operates in SSL mode, or an empty string otherwise</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$is_args</code></td>
-          <td style="text-align: left">“?” if a request line has arguments, or an empty string otherwise</td>
+          <td><code>$is_args</code></td>
+          <td>“?” if a request line has arguments, or an empty string otherwise</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$limit_rate</code></td>
-          <td style="text-align: left">该变量允许限制连接速率，参考 <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate"target="_blank" rel="external nofollow noopener noreferrer">limit_rate<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></td>
+          <td><code>$limit_rate</code></td>
+          <td>该变量允许限制连接速率，参考 <a href="http://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate"target="_blank" rel="external nofollow noopener noreferrer">limit_rate<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$msec</code></td>
-          <td style="text-align: left">current time in seconds with the milliseconds resolution (1.3.9, 1.2.6)</td>
+          <td><code>$msec</code></td>
+          <td>current time in seconds with the milliseconds resolution (1.3.9, 1.2.6)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$nginx_version</code></td>
-          <td style="text-align: left">版本</td>
+          <td><code>$nginx_version</code></td>
+          <td>版本</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$pid</code></td>
-          <td style="text-align: left">Pid</td>
+          <td><code>$pid</code></td>
+          <td>Pid</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$pipe</code></td>
-          <td style="text-align: left">“p” if request was pipelined, “.” otherwise (1.3.12, 1.2.7)</td>
+          <td><code>$pipe</code></td>
+          <td>“p” if request was pipelined, “.” otherwise (1.3.12, 1.2.7)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$query_string</code></td>
-          <td style="text-align: left">同$args</td>
+          <td><code>$query_string</code></td>
+          <td>同$args</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$realpath_root</code></td>
-          <td style="text-align: left">an absolute pathname corresponding to the root or alias directive’s value for the current request, with all symbolic links resolved to real paths</td>
+          <td><code>$realpath_root</code></td>
+          <td>an absolute pathname corresponding to the root or alias directive’s value for the current request, with all symbolic links resolved to real paths</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$remote_addr</code></td>
-          <td style="text-align: left">客户端的IP地址</td>
+          <td><code>$remote_addr</code></td>
+          <td>客户端的IP地址</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$remote_port</code></td>
-          <td style="text-align: left">客户端连接端口</td>
+          <td><code>$remote_port</code></td>
+          <td>客户端连接端口</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$remote_user</code></td>
-          <td style="text-align: left">变量等于用户的名字，基本身份验证模块使用</td>
+          <td><code>$remote_user</code></td>
+          <td>变量等于用户的名字，基本身份验证模块使用</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request</code></td>
-          <td style="text-align: left">full original request line</td>
+          <td><code>$request</code></td>
+          <td>full original request line</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_body</code></td>
-          <td style="text-align: left">该变量包含了请求体的主要信息。该变量与proxy_pass或者fastcgi_pass相关</td>
+          <td><code>$request_body</code></td>
+          <td>该变量包含了请求体的主要信息。该变量与proxy_pass或者fastcgi_pass相关</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_body_file</code></td>
-          <td style="text-align: left">客户端请求体的临时文件</td>
+          <td><code>$request_body_file</code></td>
+          <td>客户端请求体的临时文件</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_completion</code></td>
-          <td style="text-align: left">如果请求成功完成，那么显示“OK”。如果请求没有完成或者请求不是该请求系列的最后一部分，那么它的值为空。</td>
+          <td><code>$request_completion</code></td>
+          <td>如果请求成功完成，那么显示“OK”。如果请求没有完成或者请求不是该请求系列的最后一部分，那么它的值为空。</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_filename</code></td>
-          <td style="text-align: left">该变量等于当前请求文件的路径，有指令root或者alias和URI构成</td>
+          <td><code>$request_filename</code></td>
+          <td>该变量等于当前请求文件的路径，有指令root或者alias和URI构成</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_id</code></td>
-          <td style="text-align: left">unique request identifier generated from 16 random bytes, in hexadecimal (1.11.0)</td>
+          <td><code>$request_id</code></td>
+          <td>unique request identifier generated from 16 random bytes, in hexadecimal (1.11.0)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_length</code></td>
-          <td style="text-align: left">request length (including request line, header, and request body) (1.3.12, 1.2.7)</td>
+          <td><code>$request_length</code></td>
+          <td>request length (including request line, header, and request body) (1.3.12, 1.2.7)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_method</code></td>
-          <td style="text-align: left">该变量的值通常是GET或者POST。</td>
+          <td><code>$request_method</code></td>
+          <td>该变量的值通常是GET或者POST。</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_time</code></td>
-          <td style="text-align: left">request processing time in seconds with a milliseconds resolution (1.3.9, 1.2.6); time elapsed since the first bytes were read from the client</td>
+          <td><code>$request_time</code></td>
+          <td>request processing time in seconds with a milliseconds resolution (1.3.9, 1.2.6); time elapsed since the first bytes were read from the client</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$request_uri</code></td>
-          <td style="text-align: left">该变量的值等于原始的URI请求，就是说从客户端收到的参数包括了原始请求的URI，该值是不可以被修改的，不包含主机名，例如“/foo/bar.php?arg=baz”。</td>
+          <td><code>$request_uri</code></td>
+          <td>该变量的值等于原始的URI请求，就是说从客户端收到的参数包括了原始请求的URI，该值是不可以被修改的，不包含主机名，例如“/foo/bar.php?arg=baz”。</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$scheme</code></td>
-          <td style="text-align: left">功能：该变量表示HTTP scheme（例如HTTP，HTTPS），根据实际使用情况来决定，例如：rewrite  ^ $scheme://example.com$uri redirect;</td>
+          <td><code>$scheme</code></td>
+          <td>功能：该变量表示HTTP scheme（例如HTTP，HTTPS），根据实际使用情况来决定，例如：rewrite  ^ $scheme://example.com$uri redirect;</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$sent_http_name</code></td>
-          <td style="text-align: left">arbitrary response header field; the last part of a variable name is the field name converted to lower case with dashes replaced by underscores</td>
+          <td><code>$sent_http_name</code></td>
+          <td>arbitrary response header field; the last part of a variable name is the field name converted to lower case with dashes replaced by underscores</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$server_addr</code></td>
-          <td style="text-align: left">该变量的值等于服务器的地址。通常来说，在完成一次系统调用之后就会获取变量的值，为了避开系统钓鱼，那么必须在listen指令中使用bind参数。</td>
+          <td><code>$server_addr</code></td>
+          <td>该变量的值等于服务器的地址。通常来说，在完成一次系统调用之后就会获取变量的值，为了避开系统钓鱼，那么必须在listen指令中使用bind参数。</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$server_name</code></td>
-          <td style="text-align: left">该变量为server的名字。</td>
+          <td><code>$server_name</code></td>
+          <td>该变量为server的名字。</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$server_port</code></td>
-          <td style="text-align: left">该变量等于接收请求的端口</td>
+          <td><code>$server_port</code></td>
+          <td>该变量等于接收请求的端口</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$server_protocol</code></td>
-          <td style="text-align: left">该变量的值为请求协议的值，通常是HTTP/1.0或者HTTP/1.1</td>
+          <td><code>$server_protocol</code></td>
+          <td>该变量的值为请求协议的值，通常是HTTP/1.0或者HTTP/1.1</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$status</code></td>
-          <td style="text-align: left">response status (1.3.2, 1.2.2)</td>
+          <td><code>$status</code></td>
+          <td>response status (1.3.2, 1.2.2)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$tcpinfo_rtt, $tcpinfo_rttvar, $tcpinfo_snd_cwnd, $tcpinfo_rcv_space</code></td>
-          <td style="text-align: left">information about the client TCP connection; available on systems that support the TCP_INFO socket option</td>
+          <td><code>$tcpinfo_rtt, $tcpinfo_rttvar, $tcpinfo_snd_cwnd, $tcpinfo_rcv_space</code></td>
+          <td>information about the client TCP connection; available on systems that support the TCP_INFO socket option</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$time_iso8601</code></td>
-          <td style="text-align: left">local time in the ISO 8601 standard format (1.3.12, 1.2.7)</td>
+          <td><code>$time_iso8601</code></td>
+          <td>local time in the ISO 8601 standard format (1.3.12, 1.2.7)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$time_local</code></td>
-          <td style="text-align: left">local time in the Common Log Format (1.3.12, 1.2.7)</td>
+          <td><code>$time_local</code></td>
+          <td>local time in the Common Log Format (1.3.12, 1.2.7)</td>
       </tr>
       <tr>
-          <td style="text-align: left"><code>$uri</code></td>
-          <td style="text-align: left">该变量的值等于当前请求中的URI（没有参数，不包括$args）的值。<br/>它的值不同于request_uri，由浏览器客户端发送的request_uri的值。<br/>例如，可能会被内部重定向或者使用index。<br/>另外需要注意：$uri不包含主机名，例如 “/foo/bar.html”<br/>当前判断<code>URL= $scheme://$server_name/$uri</code></td>
+          <td><code>$uri</code></td>
+          <td>该变量的值等于当前请求中的URI（没有参数，不包括$args）的值。<br/>它的值不同于request_uri，由浏览器客户端发送的request_uri的值。<br/>例如，可能会被内部重定向或者使用index。<br/>另外需要注意：$uri不包含主机名，例如 “/foo/bar.html”<br/>当前判断<code>URL= $scheme://$server_name/$uri</code></td>
       </tr>
   </tbody>
 </table>
@@ -378,15 +378,15 @@
       </noscript></div></article>
 
   <aside class="toc" id="toc-auto" aria-label="目录"></aside></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {document.getElementById("show-ip").innerHTML = data.ip;if (data.country !== "CN") {document.querySelectorAll(".footer-line.beian").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.134.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.14"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+    <div class="footer-container"><div class="footer-line"><div id="show-ip"></div><script>document.addEventListener("DOMContentLoaded", function () {fetch("https://ipinfo.io/json?token=c9716df22a6255").then(function (response) {return response.json();}).then(function (data) {if (data.country !== "CN") {document.querySelectorAll(".footer-line.beian").forEach(function (el) {el.style.display = "none";});}}).catch(function (error) {document.getElementById("show-ip").innerHTML = "unknown";console.error("状态请求失败:", error);});});</script><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.139.3"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.15"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">
               <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
   </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
-        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="--fi-progress-start: left; top: 0;"></div><noscript>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
     <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
   </noscript>
 </div><link rel="stylesheet" href="/lib/waline/waline.592474683f9a7e26a3ec0a03302179ef85d5457a785d0169b5d2da8e6d90ae1bc0a6d76fe8d5fc3abb1c32bcc04a2a406fc4a6caed9486d92d008377241e4e01.css" integrity="sha512-WSR0aD+afiaj7AoDMCF574XVRXp4XQFptdLajm2QrhvAptdv6NX8OrscMrzASipAb8Smyu2UhtktAIN3JB5OAQ=="><link rel="preload" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/waline/waline.98ecca1d4f7c68e39a0b907706ae2807cc57f450402d006f1372eda8c70e3d1b9e3aee0eb442a47a16ac3b147371044f51545b1f50fa2bf0166432121614d006.js" integrity="sha512-mOzKHU98aOOaC5B3Bq4oB8xX9FBALQBvE3LtqMcOPRueOu4OtEKkehasOxRzcQRPUVRbH1D6K/AWZDISFhTQBg==" defer></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/flyfish.min.0eec81126fcbf9acdd8822230a054ace628f45c447b3e64d8cc605a5c7ed796b4cd8e2a74036508511adaf34638f511b9b7f97afab7453568b5de38eeec03f64.js" integrity="sha512-DuyBEm/L+azdiCIjCgVKzmKPRcRHs+ZNjMYFpcfteWtM2OKnQDZQhRGtrzRjj1Ebm3+Xr6t0U1aLXeOO7sA/ZA==" defer></script><script src="/js/particle.min.96823a8231f76a63d3cc8862d94a470715719141f9a060c72989859ccc9a8cd34bb67cf9933153001ef9067880b8366e7f340d74716975c2d29ef1556fec2a61.js" integrity="sha512-loI6gjH3amPTzIhi2UpHBxVxkUH5oGDHKYmFnMyajNNLtnz5kzFTAB75BniAuDZufzQNdHFpdcLSnvFVb+wqYQ==" defer></script><script src="/js/watermark.seal.min.8d27fdaab4d3747c33493284790a4504c2088d20446971fbe72c4be2b32f6679627f12a946702f3665b72fe63bee1188bb97bb96d73705d8d97c157d483a9ffc.js" integrity="sha512-jSf9qrTTdHwzSTKEeQpFBMIIjSBEaXH75yxL4rMvZnlifxKpRnAvNmW3L+Y77hGIu5e7ltc3BdjZfBV9SDqf/A==" defer></script><script src="/js/ext-utils.fa3322f18282047a47c77285ab5abddbc1b1c3619055bedc10caf579fe086307510cb59634b4d3671831316ff0f2128e1fdabdceef438180444ad52f15c91f19.js" integrity="sha512-+jMi8YKCBHpHx3KFq1q928Gxw2GQVb7cEMr1ef4IYwdRDLWWNLTTZxgxMW/w8hKOH9q9zu9DgYBEStUvFckfGQ==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"waline":{"copyright":true,"dark":"html[data-theme='dark']","el":"#waline","emoji":["//unpkg.com/@waline/emojis@1.1.0/weibo"],"highlighter":false,"imageUploader":false,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"search":false,"serverURL":"https://talk.51ac.cc","texRenderer":false}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.14"};</script><script src="/js/theme.min.bbf4c57f51869fef50ec8f961c6b54edfa66d0aa413bbd7cf68ed5de576d4f2e3a90625ade820652b1d8c46f18e99927c947c30136d3f415b5b8208cba576af2.js" integrity="sha512-u/TFf1GGn+9Q7I+WHGtU7fpm0KpBO7189o7V3ldtTy46kGJa3oIGUrHYxG8Y6ZknyUfDATbT9BW1uCCMuldq8g==" defer></script></body>
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/waline/waline.98ecca1d4f7c68e39a0b907706ae2807cc57f450402d006f1372eda8c70e3d1b9e3aee0eb442a47a16ac3b147371044f51545b1f50fa2bf0166432121614d006.js" integrity="sha512-mOzKHU98aOOaC5B3Bq4oB8xX9FBALQBvE3LtqMcOPRueOu4OtEKkehasOxRzcQRPUVRbH1D6K/AWZDISFhTQBg==" defer></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.96823a8231f76a63d3cc8862d94a470715719141f9a060c72989859ccc9a8cd34bb67cf9933153001ef9067880b8366e7f340d74716975c2d29ef1556fec2a61.js" integrity="sha512-loI6gjH3amPTzIhi2UpHBxVxkUH5oGDHKYmFnMyajNNLtnz5kzFTAB75BniAuDZufzQNdHFpdcLSnvFVb+wqYQ==" defer></script><script src="/js/watermark.seal.min.8d27fdaab4d3747c33493284790a4504c2088d20446971fbe72c4be2b32f6679627f12a946702f3665b72fe63bee1188bb97bb96d73705d8d97c157d483a9ffc.js" integrity="sha512-jSf9qrTTdHwzSTKEeQpFBMIIjSBEaXH75yxL4rMvZnlifxKpRnAvNmW3L+Y77hGIu5e7ltc3BdjZfBV9SDqf/A==" defer></script><script src="/js/ext-utils.fa3322f18282047a47c77285ab5abddbc1b1c3619055bedc10caf579fe086307510cb59634b4d3671831316ff0f2128e1fdabdceef438180444ad52f15c91f19.js" integrity="sha512-+jMi8YKCBHpHx3KFq1q928Gxw2GQVb7cEMr1ef4IYwdRDLWWNLTTZxgxMW/w8hKOH9q9zu9DgYBEStUvFckfGQ==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"waline":{"copyright":true,"dark":"html[data-theme='dark']","el":"#waline","emoji":["//unpkg.com/@waline/emojis@1.1.0/weibo"],"highlighter":false,"imageUploader":false,"lang":"zh-cn","login":"disable","meta":["nick","mail","link"],"pageSize":10,"search":false,"serverURL":"https://talk.51ac.cc","texRenderer":false}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.15"};</script><script src="/js/theme.min.21d1fa1233dd4fdb7faabd61cb87cb699293a20f17e6091d4b764cb5fd4ef81968079ca4039870916987c3f173935e00a3caa9af063788e7363b81deae304ed2.js" integrity="sha512-IdH6EjPdT9t/qr1hy4fLaZKTog8X5gkdS3ZMtf1O+BloB5ykA5hwkWmHw/Fzk14Ao8qprwY3iOc2O4HerjBO0g==" defer></script></body>
 </html>
