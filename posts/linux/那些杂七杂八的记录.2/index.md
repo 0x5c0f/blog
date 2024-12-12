@@ -185,6 +185,16 @@ $&gt; java -jar ./canal2sql-1.1.3.jar -mode file -ddl &#39;/tmp/database.sql&#39
 
 - 这个问题感觉还是比较经典的，比如 用容器部署的主备，应用和主备环境不处于同一主机， 也会出现类似问题。应该是容器化部署类的都会产生，架构方面应该可以解决，但是没有找到合适的解决方案。
 
+## docker pull 超时问题 
+- 正常来说，此类问题应该通过 `registry-mirrors` 项配置镜像加速地址解决，但是现在这个镜像加速器能用的越来越少了，今天发现了一个新的方案，通过设置 `http_proxy` 和 `https_proxy` 代理解决，配置如下：
+    ```ini
+    ### Editing /etc/systemd/system/docker.service.d/override.conf
+    ### Anything between here and the comment below will become the contents of the drop-in file
+    [Service]
+    Environment=&#34;ALL_PROXY=socks5://127.0.0.1:1080&#34;
+    Environment=&#34;NO_PROXY=localhost,127.0.0.1,.example.com&#34;
+    ```
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
