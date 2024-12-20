@@ -107,6 +107,8 @@ log_queries_not_using_indexes = on
 ; 查询结果小于多少行的将不会记录,此参数需要参考者设置  
 ; min_examined_row_limit=100
 
+; fix: Got an error reading communication packets 
+max_allowed_packet = 16M
 
 ; mysql 优化 start
 open_files_limit = 65535

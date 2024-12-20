@@ -195,6 +195,16 @@ $&gt; java -jar ./canal2sql-1.1.3.jar -mode file -ddl &#39;/tmp/database.sql&#39
     Environment=&#34;NO_PROXY=localhost,127.0.0.1,.example.com&#34;
     ```
 
+## mysql 日志出现大量的 Got an error reading communication packets 
+```ini
+# 该问题多数出现于 8.0 以下, 默认设置1M，8.0以上默认设置64M
+# max_allowed_packet 设置太小，数据包过大时导致连接中断
+# 临时解决: SET GLOBAL max_allowed_packet = 16777216;  -- 设置为16M
+# 永久解决: 修改配置文件
+[mysqld]
+max_allowed_packet = 16M    # 大多数情况下，16M 到 64M 已足够
+```
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
