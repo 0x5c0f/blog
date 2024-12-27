@@ -69,6 +69,10 @@ events:
     type: success
     node: dot
 
+  - timestamp: 2024-12-12
+    content: 把评论系统从[~~**`Waline`**~~](https://talk.51ac.cc)切换到 [`Gitalk`](https://github.com/gitalk/gitalk) 了，不过之前的评论并没有跟着迁移。
+    type: primary
+
 ```
 
 ---

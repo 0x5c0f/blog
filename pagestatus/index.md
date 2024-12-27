@@ -43,7 +43,6 @@
 
 &lt;iframe src=&#34;https://status.51ac.cc/#sheethi8&#34; width=&#34;98%&#34; height=&#34;280&#34; frameborder=&#34;0&#34; scrolling=&#34;auto&#34;&gt;&lt;/iframe&gt;
 
-&lt;iframe src=&#34;https://status.51ac.cc/#iav5iyie&#34; width=&#34;98%&#34; height=&#34;280&#34; frameborder=&#34;0&#34; scrolling=&#34;auto&#34;&gt;&lt;/iframe&gt;
 
 ---
 
