@@ -26,7 +26,11 @@ class KeybindCustom {
       const searchInput = document.getElementById(SEARCH_INPUT_ID);
 
       if (event.key === "/") {
-        if (document.activeElement !== searchInput) {
+        if (document.activeElement !== searchInput 
+          && document.activeElement.tagName !== 'TEXTAREA'
+          && document.activeElement.tagName !== 'INPUT'
+          && document.activeElement.tagName !== 'PRE'
+        ) {
           event.preventDefault();
 
           if (searchToggle) {
