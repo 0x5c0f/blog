@@ -1,4 +1,4 @@
-# FEDORA优化
+# Fedora优化
 
 
 {{&lt; admonition type=info title=&#34;前言&#34; open=true &gt;}}

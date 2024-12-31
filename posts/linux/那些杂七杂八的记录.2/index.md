@@ -205,6 +205,11 @@ $&gt; java -jar ./canal2sql-1.1.3.jar -mode file -ddl &#39;/tmp/database.sql&#39
 max_allowed_packet = 16M    # 大多数情况下，16M 到 64M 已足够
 ```
 
+## Windows 如何解除文件锁定
+***文件锁定会导致该文件无法删除***
+1. 利用第三方工具，比如 [`Unlocker`](https://www.iobit.com/en/iobit-unlocker.php)解锁文件   
+2. 利用`Microsoft`官方工具 [`Process Explorer`](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer)(打开`Process Explorer`，点击`Find`选项卡，然后选择`Find Handle or DLL`，输入文件名来搜索,然后右键点击进程，结束`进程`或者结束`进程树`。在或者找到对应的 `Handles`，右键 `Close Handle`，建议优选`Close Handle`)
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
