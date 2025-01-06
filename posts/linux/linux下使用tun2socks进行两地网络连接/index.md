@@ -3,9 +3,9 @@
 
 &lt;br /&gt;
 
-&amp;emsp;&amp;emsp;之前写了一个关于[`内网回拨解决方案`](https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/), 主要是介绍在`PPTP`不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是`badvpn`, 但该仓库已经归档很久了。这篇介绍另一个工具 [`tun2socks`](https://github.com/xjasonlyu/tun2socks) 来替代`badvpn`。
+&amp;emsp;&amp;emsp;之前写了一个关于[`内网回拨解决方案`](https://blog.0x5c0f.cc/posts/linux/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88), 主要是介绍在`PPTP`不好用的情况下，两地机房网络如何进行内网连接，该篇推荐使用的是`badvpn`, 但该仓库已经归档很久了。这篇介绍另一个工具 [`tun2socks`](https://github.com/xjasonlyu/tun2socks) 来替代`badvpn`。
 
-&amp;emsp;&amp;emsp;关于为什么记录这个，可以翻看之前的文章[`内网回拨解决方案`](https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/), 本篇只记录相关的整合脚本。
+&amp;emsp;&amp;emsp;关于为什么记录这个，可以翻看之前的文章[`内网回拨解决方案`](https://blog.0x5c0f.cc/posts/linux/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88), 本篇只记录相关的整合脚本。
 
 ## `tun2socks` 安装
 - 在 [`https://github.com/xjasonlyu/tun2socks/releases`](https://github.com/xjasonlyu/tun2socks/releases) 中找到适合自己系统的二进制程序，下载后解压到`/usr/local/bin`下即可。
@@ -134,7 +134,7 @@ $&gt; sudo systemctl start tun2socks.service
 
 ## 其他信息
 - `windows` 理论可用，可参考脚本进行调整
-- 其他信息参考 [`内网回拨解决方案`](https://blog.0x5c0f.cc/2019/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88/) 
+- 其他信息参考 [`内网回拨解决方案`](https://blog.0x5c0f.cc/posts/linux/%E5%86%85%E7%BD%91%E5%9B%9E%E6%8B%A8%E6%96%B9%E6%A1%88) 
 
 
 ---
