@@ -210,6 +210,24 @@ max_allowed_packet = 16M    # 大多数情况下，16M 到 64M 已足够
 1. 利用第三方工具，比如 [`Unlocker`](https://www.iobit.com/en/iobit-unlocker.php)解锁文件   
 2. 利用`Microsoft`官方工具 [`Process Explorer`](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer)(打开`Process Explorer`，点击`Find`选项卡，然后选择`Find Handle or DLL`，输入文件名来搜索,然后右键点击进程，结束`进程`或者结束`进程树`。在或者找到对应的 `Handles`，右键 `Close Handle`，建议优选`Close Handle`)
 
+## 为 Makefile 生成帮助文档 
+```makefile
+.PHONY: help
+help: ## 显示所有可用命令
+	@echo &#34;可用命令：&#34;
+	@grep -E &#39;^[a-zA-Z_-]&#43;:.*?## .*$$&#39; $(MAKEFILE_LIST) | awk &#39;BEGIN {FS = &#34;:.*?## &#34;}; {printf &#34;\033[36m%-20s\033[0m %s\n&#34;, $$1, $$2}&#39;
+```
+
+## Systemd 守护桌面程序
+```bash
+# 以本文记录时间时候最新的QQ Linux版 3.0.0 为例，fedora33 下经常崩溃，用systemd守护其运行，在QQ崩溃时自动重启QQ
+# 运行以下命令以启动systemd守护进程 
+$&gt; /usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
+# 替换默认 /usr/share/applications/qq.desktop的执行命令 Exec=/usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
+# 日志检查，可以定位当前用户的日志看(或者 systemctl --user list-units run-*|grep qq，查询到systemd-run启动的service，直接定位)
+$&gt; journalctl -f -u user@${UID}.service
+```
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  

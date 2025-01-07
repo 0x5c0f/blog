@@ -67,20 +67,6 @@ openssl aes-256-cfb -d -salt -in ssh.key.pem.enc -out ssh_key.pem.tar.gz
 
 ```
 
-# 免密登陆
-
-```bash
-# 172.16.10.11 无密码登陆 172.16.10.12
-# 172.16.10.11 生成秘钥
-# rsa 默认 2048
-ssh-keygen -t rsa -b 2048
-#  然后一直回车，可以设置认证密码
-# id_rsa 私钥(不要外传)
-# id_rsa.pub (公钥导入本地authorized_keys(600)中，将私钥传给客户端，客户端即可通过私钥连接当前服务器)
-# 将本地的秘钥复制到服务器上就可以了,或者拷贝追加到服务器的authorized_keys文件中，即可本地登陆远程主机
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@172.16.10.12
-```
-
 # 手动检测: 每分钟连接次数
 
 ```bash
@@ -410,16 +396,6 @@ WantedBy=multi-user.target
 
 ```
 
-# systemd 守护桌面程序
-```bash
-# 以最新的QQ Linux版 3.0.0 为例，fedora33 下经常崩溃，用systemd守护其运行，在QQ崩溃时自动重启QQ
-# 运行以下命令以启动systemd守护进程 
-$&gt; /usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
-# 替换默认 /usr/share/applications/qq.desktop的执行命令 Exec=/usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
-# 日志检查，可以定位当前用户的日志看(或者 systemctl --user list-units run-*|grep qq，查询到systemd-run启动的service，直接定位)
-$&gt; journalctl -f -u user@${UID}.service
-```
-
 # 证书相关操作 
 ```bash
 #CA合并
@@ -552,6 +528,11 @@ $&gt; gzip -c a.log &gt;/tmp/a.log.gz &amp;&amp; &gt; a.log
 # 将图片转化为指定大小，并且在图片高宽度不够时候，用透明背景填充 
 ```bash
 $&gt; ffmpeg -i input.(png|svg|..) -vf &#34;scale=944:944:force_original_aspect_ratio=decrease,pad=944:944:(944-iw)/2:(944-ih)/2:color=0x00000000&#34; output.png
+```
+
+# Pwgen 创建密码, 忽略特定字符串
+```bash
+$&gt; alias pwgen=&#34;pwgen -s -r \\\`\\~\\!\\#\\$\\&amp;\\(\\)\\_\\-\\&#43;\\=\\{\\}\\[\\]\\\\\\|\\;\\:\\&#39;\\\&#34;\\,\\&lt;\\&gt;\\?\\/&#34;
 ```
 
 ---
