@@ -228,6 +228,16 @@ $&gt; /usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
 $&gt; journalctl -f -u user@${UID}.service
 ```
 
+## CentOS 7 系统安装其他 GLIBC 版本 
+***`DevToolSet（Developer Toolset）`是 `Red Hat` 和 `CentOS` 提供的一组开发工具集合，旨在为开发者提供最新的编译器、调试器和其他开发工具，同时保持系统稳定性。它允许用户在不升级整个系统的情况下使用更新的工具链(包含 `GCC`、`GDB`、`Binutils` 等工具的更新版本)。***  
+```bash
+$&gt; sudo yum install centos-release-scl
+# 需要什么版本就是 devtoolset-xxxx-gcc* 
+$&gt; sudo yum install devtoolset-8-gcc*
+# 激活
+$&gt; scl enable devtoolset-8 bash
+```
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  

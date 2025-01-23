@@ -6,39 +6,43 @@
 # 1. 文件内容搜索工具(ag)
 ```bash
 # 类似于grep
-[root@01 ~]# yum install the_silver_searcher 
-[root@01 ~]# ag &#34;hello&#34; ./example
+$&gt; yum install the_silver_searcher 
+$&gt; ag &#34;hello&#34; ./example
 ```
 
 # 2. mysql 命令补全工具，可替代mysql命令
 &gt; [https://github.com/dbcli](https://github.com/dbcli) 
 ```bash
-[root@01 ~]# pip install -U mycli
-[root@01 ~]# mycli 
+$&gt; pip install -U mycli
+$&gt; mycli 
 ```
 
 # 3. 多线程下载工具(axel)
 ```bash
-[root@01 ~]# yum install axel
-[root@01 ~]# axel -n 10 http(ftp)://example.com/example.iso
+$&gt; yum install axel
+$&gt; axel -n 10 http(ftp)://example.com/example.iso
 ```
+
 # 4. 终端命令补全
 ```bash
-[root@01 ~]# yum install bash-completion -y 
+$&gt; yum install bash-completion -y 
 ```
+
 # 5. linux 硬件查看神器
 ```bash
-[root@01 ~]#  yum install inxi -y
+$&gt;  yum install inxi -y
 ```
+
 # 6. linux Script 终端记录神器  
 &gt; [https://asciinema.org/](https://asciinema.org/)  
 ```bash
-[root@01 ~]# pip3 install asciinema
+$&gt; pip3 install asciinema
 ```
+
 # 7. linux 文件加密与解密工具 
 &gt; [https://linux.cn/article-10632-1.html](https://linux.cn/article-10632-1.html)  
 ```bash
-[root@01 ~]# wget -O /usr/local/bin/toplip https://2ton.com.au/standalone_binaries/toplip &amp;&amp; chmod &#43;x /usr/local/bin/toplip  
+$&gt; wget -O /usr/local/bin/toplip https://2ton.com.au/standalone_binaries/toplip &amp;&amp; chmod &#43;x /usr/local/bin/toplip  
 ```
 
 # 8. zenity - display GTK&#43; dialogs( 图形界面操纵工具 )
@@ -72,7 +76,13 @@ $&gt; csysdig -vcontainers
 
 # 12. Linux 下好用的剪贴板管理工具 `copyq`
 ```bash
-[root@01 ~]# sudo dnf install -y copyq
+$&gt; sudo dnf install -y copyq
+```
+
+# 13. runlike 显示正在运行的容器 docker run 命令
+```bash
+# alias runlike=&#34;docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike&#34;
+$&gt; pip install runlike
 ```
 
 ---
