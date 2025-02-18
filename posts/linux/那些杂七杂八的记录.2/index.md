@@ -238,6 +238,37 @@ $&gt; sudo yum install devtoolset-8-gcc*
 $&gt; scl enable devtoolset-8 bash
 ```
 
+## MySQL 出现 KILLED 或者 Waiting for table metadata lock 
+1. 使用 `show processlist` 获取到线程`id`  
+2. 获取操作系统线程`ID`, 如 `1213`(`SELECT THREAD_OS_ID FROM performance_schema.threads WHERE processlist_id=1213`)  
+3. 使用 `pstack` 诊断 `pstack 13133 &gt; /root/mysql_thread_13133.txt`
+4. 自己分析生成文件或者扔给`gpt`看
+
+
+## MySQL 连接数被打满 `to many connections`，无法登陆 `mysql` 的情况下处理方案(网络搜集-未测试) 
+```bash
+$&gt; gdb -p $(pidof mysqld) -batch -ex 
+&#34;set global max_connections=1500&#34;
+```
+
+## Prometheus Error scraping target: cannot parse Content-Type &#34;text/plain; charset=utf-8,gb2312,gbk&#34; and no fallback_scrape_protocol for target mime: invalid media parameter
+
+- `Prometheus V3` 版本对于 `Content-Type` 进行了更严格的校验, 参见 [`#15777`](https://github.com/prometheus/prometheus/issues/15777)、[`Prometheus Docs#scrape-protocols`](https://prometheus.io/docs/prometheus/latest/migration/#scrape-protocols) , 解决方案：`Prometheus` 使用 `V2` 版本，或者指标请求返回的 `charset` 只有一个，如 `utf-8`。(官方推荐的设置方案这边没有测试成功)
+
+## vscode 开启类似 pycharm 的代码提示及包自动导入功能
+```json
+    // 需要安装插件 Pylance 
+    &#34;python.languageServer&#34;: &#34;Pylance&#34;,
+    &#34;python.analysis.autoImportCompletions&#34;: true,
+    &#34;python.analysis.autoSearchPaths&#34;: true,
+    &#34;editor.quickSuggestions&#34;: {
+        &#34;other&#34;: &#34;on&#34;,
+        &#34;comments&#34;: &#34;on&#34;,
+        &#34;strings&#34;: &#34;on&#34;
+    }
+```
+
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  

@@ -10,8 +10,8 @@
   <meta itemprop="name" content="那些杂七杂八的记录(二)">
   <meta itemprop="description" content="那些杂七杂八的记录(二)">
   <meta itemprop="datePublished" content="2021-08-04T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-01-06T00:00:00+00:00">
-  <meta itemprop="wordCount" content="803">
+  <meta itemprop="dateModified" content="2025-02-18T00:00:00+00:00">
+  <meta itemprop="wordCount" content="916">
   <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
   <meta itemprop="keywords" content="Linux,解决方案"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/">
   <meta property="og:site_name" content="一个曾经的小码农...">
@@ -21,7 +21,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2021-08-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-01-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-02-18T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
     <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
@@ -44,8 +44,8 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2\/"
-    },"genre": "posts","keywords": "linux, 解决方案","wordcount":  803 ,
-    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2025-01-06T00:00:00+00:00","publisher": {
+    },"genre": "posts","keywords": "linux, 解决方案","wordcount":  916 ,
+    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2025-02-18T00:00:00+00:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -135,13 +135,487 @@
   </div>
   <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"><div class="white-noise-mixer">
+    <style>
+         
+        :root {
+            --bg-color-light: #ffffff;
+            --text-color-light: #333;
+            --border-color-light: #4a90e2;
+    
+            --bg-color-dark: #2c2c2c;
+            --text-color-dark: #f0f0f0;
+            --border-color-dark: #1e90ff;
+    
+            --highlight-bg-color: #357ab8;
+            --highlight-bg-color-dark: #1e90ff;
+        }
+    
+         
+        .white-noise-mixer {
+            font-family: Arial, sans-serif;
+            padding: 25px;  
+            border-radius: 15px;  
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  
+            max-width: 400px;  
+            box-sizing: border-box;
+            margin: 20px auto;  
+            border: 2px solid var(--border-color-light);  
+            transition: transform 0.3s, box-shadow 0.3s;  
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+        }
+    
+         
+        body.light .white-noise-mixer {
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+        }
+    
+         
+        body.dark .white-noise-mixer {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+            border: 2px solid var(--border-color-dark);  
+        }
+    
+        .white-noise-mixer:hover {
+            transform: translateY(-5px);  
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);  
+        }
+    
+        .white-noise-mixer .wnm-header {
+            background-color: var(--border-color-light);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;  
+            margin-bottom: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
+            cursor: pointer;  
+            transition: background-color 0.3s, box-shadow 0.3s;  
+        }
+    
+         
+        .white-noise-mixer .wnm-header.highlighted {
+            background-color: var(--highlight-bg-color);  
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  
+        }
+    
+         
+        body.dark .white-noise-mixer .wnm-header.highlighted {
+            background-color: var(--highlight-bg-color-dark);  
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);  
+        }
+    
+        .white-noise-mixer .sound-selection {
+            margin-bottom: 25px;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+        }
+    
+        .white-noise-mixer .sound-selection.collapsed {
+            max-height: 0;
+            opacity: 0;
+            margin-bottom: 0;
+        }
+    
+        .white-noise-mixer .sound-selection h2 {
+            margin-bottom: 15px;
+            font-size: 22px;
+            text-align: center;
+            color: var(--border-color-light);  
+        }
+    
+        .white-noise-mixer .sound-category {
+            margin-bottom: 35px;
+        }
+    
+        .white-noise-mixer .sound-category h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: var(--border-color-light);
+            text-align: left;
+        }
+    
+         
+        .white-noise-mixer .sound-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);  
+            gap: 10px;  
+        }
+    
+        .white-noise-mixer .sound-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #e6edf4;
+            padding: 10px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+            position: relative;
+            aspect-ratio: 1 / 1;  
+            text-align: center;
+            border: 1px solid transparent;  
+            color: inherit;  
+        }
+    
+         
+        .white-noise-mixer .sound-option.selected {
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.6);
+            transform: scale(1.05);
+            border: 2px solid var(--border-color-light);  
+            background-color: #d0e4f5;  
+        }
+    
+         
+        body.dark .white-noise-mixer .sound-option.selected {
+            box-shadow: 0 4px 12px rgba(30, 144, 255, 0.6);
+            border: 2px solid var(--border-color-dark);
+            background-color: #1a2a3a;
+        }
+    
+        .white-noise-mixer .sound-option:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+    
+        .white-noise-mixer .sound-option .sound-label {
+            font-size: 14px;
+            margin-bottom: 10px;
+            word-break: break-word;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: inherit;  
+        }
+    
+        .white-noise-mixer .sound-option .volume-slider-container {
+            width: 100%;
+            margin-top: 5px;
+        }
+    
+        .white-noise-mixer .sound-option input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+        }
+    
+         
+        .white-noise-mixer .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+    
+        .white-noise-mixer .controls button {
+            padding: 10px 20px;
+            background-color: var(--border-color-light);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+    
+        .white-noise-mixer .controls button:hover {
+            background-color: var(--highlight-bg-color);
+            transform: scale(1.05);
+        }
+    
+         
+        .white-noise-mixer .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+    
+        .white-noise-mixer .pagination-controls button {
+            padding: 5px 10px;
+            background-color: var(--border-color-light);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            font-size: 12px;
+        }
+    
+        .white-noise-mixer .pagination-controls button:disabled {
+            background-color: #a0a0a0;
+            cursor: not-allowed;
+            transform: none;
+        }
+    
+        .white-noise-mixer .pagination-controls button:hover:not(:disabled) {
+            background-color: var(--highlight-bg-color);
+            transform: scale(1.05);
+        }
+    
+        .white-noise-mixer .pagination-controls .page-info {
+            font-size: 12px;
+            color: var(--border-color-light);
+        }
+    
+         
+        body.dark .white-noise-mixer .pagination-controls button {
+            background-color: var(--border-color-dark);
+        }
+    
+        body.dark .white-noise-mixer .pagination-controls button:hover:not(:disabled) {
+            background-color: #1c86ee;
+        }
+    
+        body.dark .white-noise-mixer .pagination-controls .page-info {
+            color: var(--border-color-dark);
+        }
+    </style>
+
+    <div class="wnm-header" role="button" aria-expanded="true" aria-controls="sound-selection">
+        混合白噪音播放器
+    </div>
+
+    <div class="sound-selection">
+        
+        <div class="sound-category">
+            <h3>自然声音</h3>
+            <div class="sound-options">
+                <div class="sound-option" data-sound="nature/campfire">
+                    <div class="sound-label">营火声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                <div class="sound-option" data-sound="nature/river">
+                    <div class="sound-label">河流声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                <div class="sound-option" data-sound="nature/waves">
+                    <div class="sound-label">海浪声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                <div class="sound-option" data-sound="nature/wind">
+                    <div class="sound-label">风声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                <div class="sound-option" data-sound="nature/wind-in-trees">
+                    <div class="sound-label">树林中的风声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                <div class="sound-option" data-sound="nature/walk-on-leaves">
+                    <div class="sound-label">树叶上行走的声音</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="pagination-controls">
+                <button class="prev-page">上一页</button>
+                <span class="page-info">第 1 页，共 2 页</span>
+                <button class="next-page">下一页</button>
+            </div>
+        </div>
+        
+        
+        <div class="sound-category">
+            <h3>动物声音</h3>
+            <div class="sound-options">
+                <div class="sound-option" data-sound="animals/birds">
+                    <div class="sound-label">鸟鸣声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                <div class="sound-option" data-sound="animals/cat-purring">
+                    <div class="sound-label">猫咪呼噜声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                <div class="sound-option" data-sound="animals/wolf">
+                    <div class="sound-label">狼嚎声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                <div class="sound-option" data-sound="animals/owl">
+                    <div class="sound-label">猫头鹰叫声</div>
+                    <div class="volume-slider-container">
+                        <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="pagination-controls">
+                <button class="prev-page">上一页</button>
+                <span class="page-info">第 1 页，共 1 页</span>
+                <button class="next-page">下一页</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button id="play-button">播放</button>
+        <button id="pause-button">暂停</button>
+    </div>
+
+    <script>
+        (() => {
+            console.log("混合白噪音播放器，音频来源 https://github.com/remvze/moodist")
+
+            
+            const audioElements = {};
+
+            document.querySelectorAll('.sound-option').forEach(option => {
+                const label = option.querySelector('.sound-label');
+                const originalText = label.textContent;
+
+                if (originalText.length > 3) {
+                    label.textContent = originalText.slice(0, 3) + '...';
+                    label.title = originalText; 
+                }
+                
+                const soundPath = option.getAttribute('data-sound');
+                const audio = new Audio(`https://static.0x5c0f.cc/sounds/${soundPath}.mp3`);
+                
+                
+                audio.loop = true;
+                audioElements[soundPath] = audio;
+
+                
+                option.addEventListener('click', () => {
+                    if (audio.paused) {
+                        audio.play();
+                        option.classList.add('selected');
+                    } else {
+                        audio.pause();
+                        option.classList.remove('selected');
+                    }
+                });
+            });
+
+            
+            const playButton = document.getElementById('play-button');
+            playButton.addEventListener('click', () => {
+                document.querySelectorAll('.sound-option.selected').forEach(option => {
+                    const soundPath = option.getAttribute('data-sound');
+                    audioElements[soundPath].play();
+                });
+            });
+
+            
+            const pauseButton = document.getElementById('pause-button');
+            pauseButton.addEventListener('click', () => {
+                document.querySelectorAll('.sound-option.selected').forEach(option => {
+                    const soundPath = option.getAttribute('data-sound');
+                    audioElements[soundPath].pause();
+                });
+            });
+
+            
+            const soundCategories = document.querySelectorAll('.sound-category');
+
+            soundCategories.forEach(category => {
+                const soundOptions = category.querySelectorAll('.sound-option');
+                const prevPageButton = category.querySelector('.prev-page');
+                const nextPageButton = category.querySelector('.next-page');
+                const pageInfo = category.querySelector('.page-info');
+
+                const soundsPerPage = 3; 
+                let currentPage = 1;
+                const totalSounds = soundOptions.length;
+                const totalPages = Math.ceil(totalSounds / soundsPerPage) || 1;
+
+                function updatePagination() {
+                    
+                    soundOptions.forEach((option) => {
+                        option.style.display = 'none';
+                    });
+
+                    
+                    const start = (currentPage - 1) * soundsPerPage;
+                    const end = start + soundsPerPage;
+
+                    
+                    for (let i = start; i < end && i < totalSounds; i++) {
+                        soundOptions[i].style.display = 'flex';
+                    }
+
+                    
+                    prevPageButton.disabled = currentPage === 1;
+                    nextPageButton.disabled = currentPage === totalPages;
+
+                    
+                    if (pageInfo) {
+                        pageInfo.textContent = `第 ${currentPage} 页，共 ${totalPages} 页`;
+                    }
+                }
+
+                
+                updatePagination();
+
+                
+                prevPageButton.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        updatePagination();
+                    }
+                });
+
+                nextPageButton.addEventListener('click', () => {
+                    if (currentPage < totalPages) {
+                        currentPage++;
+                        updatePagination();
+                    }
+                });
+            });
+
+            
+            document.querySelectorAll('.volume-slider').forEach(slider => {
+                slider.addEventListener('input', (e) => {
+                    const sliderElement = e.target;
+                    const soundOption = sliderElement.closest('.sound-option');
+                    const soundPath = soundOption.getAttribute('data-sound');
+                    const audio = audioElements[soundPath];
+                    audio.volume = sliderElement.value;
+                });
+            });
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+        })();
+    </script>
+</div></aside>
 
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>那些杂七杂八的记录(二)</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2021-08-04 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2021-08-04">2021-08-04</time></span>&nbsp;<span title="更新于 2025-01-06 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-01-06">2025-01-06</time></span>&nbsp;<span title="803 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 900 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;</div>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2021-08-04 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2021-08-04">2021-08-04</time></span>&nbsp;<span title="更新于 2025-02-18 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-02-18">2025-02-18</time></span>&nbsp;<span title="916 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1000 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 5 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -176,6 +650,10 @@
         <li><a href="#为-makefile-生成帮助文档">为 Makefile 生成帮助文档</a></li>
         <li><a href="#systemd-守护桌面程序">Systemd 守护桌面程序</a></li>
         <li><a href="#centos-7-系统安装其他-glibc-版本">CentOS 7 系统安装其他 GLIBC 版本</a></li>
+        <li><a href="#mysql-出现-killed-或者-waiting-for-table-metadata-lock">MySQL 出现 KILLED 或者 Waiting for table metadata lock</a></li>
+        <li><a href="#mysql-连接数被打满-to-many-connections无法登陆-mysql-的情况下处理方案网络搜集-未测试">MySQL 连接数被打满 <code>to many connections</code>，无法登陆 <code>mysql</code> 的情况下处理方案(网络搜集-未测试)</a></li>
+        <li><a href="#prometheus-error-scraping-target-cannot-parse-content-type-textplain-charsetutf-8gb2312gbk-and-no-fallback_scrape_protocol-for-target-mime-invalid-media-parameter">Prometheus Error scraping target: cannot parse Content-Type &ldquo;text/plain; charset=utf-8,gb2312,gbk&rdquo; and no fallback_scrape_protocol for target mime: invalid media parameter</a></li>
+        <li><a href="#vscode-开启类似-pycharm-的代码提示及包自动导入功能">vscode 开启类似 pycharm 的代码提示及包自动导入功能</a></li>
       </ul>
     </li>
   </ul>
@@ -644,11 +1122,68 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 激活</span>
 </span></span><span class="line"><span class="cl">$&gt; scl <span class="nb">enable</span> devtoolset-8 bash</span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="mysql-出现-killed-或者-waiting-for-table-metadata-lock" class="heading-element"><span>MySQL 出现 KILLED 或者 Waiting for table metadata lock</span>
+  <a href="#mysql-%e5%87%ba%e7%8e%b0-killed-%e6%88%96%e8%80%85-waiting-for-table-metadata-lock" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ol>
+<li>使用 <code>show processlist</code> 获取到线程<code>id</code></li>
+<li>获取操作系统线程<code>ID</code>, 如 <code>1213</code>(<code>SELECT THREAD_OS_ID FROM performance_schema.threads WHERE processlist_id=1213</code>)</li>
+<li>使用 <code>pstack</code> 诊断 <code>pstack 13133 &gt; /root/mysql_thread_13133.txt</code></li>
+<li>自己分析生成文件或者扔给<code>gpt</code>看</li>
+</ol>
+<h2 id="mysql-连接数被打满-to-many-connections无法登陆-mysql-的情况下处理方案网络搜集-未测试" class="heading-element"><span>MySQL 连接数被打满 <code>to many connections</code>，无法登陆 <code>mysql</code> 的情况下处理方案(网络搜集-未测试)</span>
+  <a href="#mysql-%e8%bf%9e%e6%8e%a5%e6%95%b0%e8%a2%ab%e6%89%93%e6%bb%a1-to-many-connections%e6%97%a0%e6%b3%95%e7%99%bb%e9%99%86-mysql-%e7%9a%84%e6%83%85%e5%86%b5%e4%b8%8b%e5%a4%84%e7%90%86%e6%96%b9%e6%a1%88%e7%bd%91%e7%bb%9c%e6%90%9c%e9%9b%86-%e6%9c%aa%e6%b5%8b%e8%af%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; gdb -p <span class="k">$(</span>pidof mysqld<span class="k">)</span> -batch -ex 
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;set global max_connections=1500&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="prometheus-error-scraping-target-cannot-parse-content-type-textplain-charsetutf-8gb2312gbk-and-no-fallback_scrape_protocol-for-target-mime-invalid-media-parameter" class="heading-element"><span>Prometheus Error scraping target: cannot parse Content-Type &ldquo;text/plain; charset=utf-8,gb2312,gbk&rdquo; and no fallback_scrape_protocol for target mime: invalid media parameter</span>
+  <a href="#prometheus-error-scraping-target-cannot-parse-content-type-textplain-charsetutf-8gb2312gbk-and-no-fallback_scrape_protocol-for-target-mime-invalid-media-parameter" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ul>
+<li><code>Prometheus V3</code> 版本对于 <code>Content-Type</code> 进行了更严格的校验, 参见 <a href="https://github.com/prometheus/prometheus/issues/15777"target="_blank" rel="external nofollow noopener noreferrer"><code>#15777</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>、<a href="https://prometheus.io/docs/prometheus/latest/migration/#scrape-protocols"target="_blank" rel="external nofollow noopener noreferrer"><code>Prometheus Docs#scrape-protocols</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> , 解决方案：<code>Prometheus</code> 使用 <code>V2</code> 版本，或者指标请求返回的 <code>charset</code> 只有一个，如 <code>utf-8</code>。(官方推荐的设置方案这边没有测试成功)</li>
+</ul>
+<h2 id="vscode-开启类似-pycharm-的代码提示及包自动导入功能" class="heading-element"><span>vscode 开启类似 pycharm 的代码提示及包自动导入功能</span>
+  <a href="#vscode-%e5%bc%80%e5%90%af%e7%b1%bb%e4%bc%bc-pycharm-%e7%9a%84%e4%bb%a3%e7%a0%81%e6%8f%90%e7%a4%ba%e5%8f%8a%e5%8c%85%e8%87%aa%e5%8a%a8%e5%af%bc%e5%85%a5%e5%8a%9f%e8%83%bd" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl">    <span class="c1">// 需要安装插件 Pylance 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s2">&#34;python.languageServer&#34;</span><span class="err">:</span> <span class="s2">&#34;Pylance&#34;</span><span class="err">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;python.analysis.autoImportCompletions&#34;</span><span class="err">:</span> <span class="kc">true</span><span class="err">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;python.analysis.autoSearchPaths&#34;</span><span class="err">:</span> <span class="kc">true</span><span class="err">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;editor.quickSuggestions&#34;</span><span class="err">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;other&#34;</span><span class="p">:</span> <span class="s2">&#34;on&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;comments&#34;</span><span class="p">:</span> <span class="s2">&#34;on&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;strings&#34;</span><span class="p">:</span> <span class="s2">&#34;on&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
 </div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod">
-        <span title="更新于 2025-01-06 00:00:00">更新于 2025-01-06&nbsp;</span>
+        <span title="更新于 2025-02-18 00:00:00">更新于 2025-02-18&nbsp;</span>
       </div><div class="post-info-license">
             <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
           </div></div><div class="post-info-line">
