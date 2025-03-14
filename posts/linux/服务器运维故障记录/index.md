@@ -149,6 +149,11 @@
   ```
 - 解决方案:  此项问题产生原因不知道，但解决方案是，为该目录添加 `IIS_USER` 用户权限，注意需要附加 `修改` 权限 
 
+# IIS 站点访问报错, 编译器错误消息: CS0016
+- 异常体现: 编译器错误消息: CS0016: 未能写入输出文件“c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\3469ad80\70ace2d2\App_global.asax.adikutzi.dll”--“拒绝访问。 ”
+
+- 解决方案: 此问题的确为授权问题导致的，为 C:\Windows\temp 目录，添加 IIS_USER 的常规权限(可能要细分权限) 即可 
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
