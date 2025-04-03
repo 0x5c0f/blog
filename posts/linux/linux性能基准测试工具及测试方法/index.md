@@ -107,7 +107,7 @@ $&gt; sar -n DEV 5
 ```
 
 ## 网络带宽
-宽带测速还有个工具-`iptraf-ng` 
+宽带测速还有个工具-`iperf3` 
 
 &gt; https://iperf.fr/iperf-download.php  
 

@@ -268,6 +268,18 @@ $&gt; gdb -p $(pidof mysqld) -batch -ex
     }
 ```
 
+## 雷池(SafeLine) 在更新控制台证书后，导致前端访问报告错误 ERR_SSL_VERSION_OR_CIPHER_MISMATCH
+***该解决方案来自官方微信群80***
+- 临时解决: 登陆 `mgt` 容器, 复制 `/app/cert/default.crt` 和 `/app/cert/default.key` 并覆盖 `/app/cert/mgt.crt` 和 `/app/cert/mgt.key`， 然后重启 `nginx` 进程(注意是进程，不是 `mgt` 容器)
+- 永久解决：执行 `docker exec safeline-pg psql -U safeline-ce -c &#34;delete from mgt_options where key = &#39;mgt_cert&#39;;&#34;` 并重启 `mgt` 容器；
+
+## PgSql 备份与恢复
+```bash
+$&gt; pg_restore -U postgres -h 127.0.0.1 -p 5432 -d &lt;database&gt; -C /tmp/&lt;database&gt;.dump
+
+# 强制清理已有对象再恢复（类似 mysql 的 DROP &#43; CREATE）
+$&gt; pg_restore -U postgres -h 127.0.0.1 -d &lt;database&gt; --clean --if-exists /tmp/&lt;database&gt;.dump
+```
 
 ---
 
