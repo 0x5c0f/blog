@@ -1,11 +1,11 @@
 # Starting
 
 
-&gt; 第一篇文章当然是`hello world`了 
-&lt;!--more--&gt;
+> 第一篇文章当然是`hello world`了 
+<!--more-->
 
 ```bash
-    echo &#34;hello world !&#34;
+    echo "hello world !"
 ```
 
 ---

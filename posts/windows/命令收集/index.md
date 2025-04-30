@@ -4,31 +4,31 @@
 # 1. windows 服务安装卸载
 ```batch
 :: 注意空格
-sc create &#34;Memcached_11233&#34; start= auto binPath= &#34;D:\box\memcached\memcached.exe -d runservice  -m 128 -c 512 -p 11233 -l 127.0.0.1&#34;  DisplayName= &#34;Memcached_11233&#34; 
+sc create "Memcached_11233" start= auto binPath= "D:\box\memcached\memcached.exe -d runservice  -m 128 -c 512 -p 11233 -l 127.0.0.1"  DisplayName= "Memcached_11233" 
 ----
 sc delete Memcached_11233
 ```
 
 # 2. 删除`windows\temp` 5天前以sess*开头的文件
 ```batch
-forfiles /p &#34;C:\Windows\Temp&#34; /s /d -5 /m sess* /c &#34;cmd /c del /f /q /s @path&#34;
+forfiles /p "C:\Windows\Temp" /s /d -5 /m sess* /c "cmd /c del /f /q /s @path"
 ```
 
 # 3. windows 端口转发  
 ```bat
 :: 转发不生效需先安装 ipv6 
-C:\&gt; netsh interface ipv6 install
+C:\> netsh interface ipv6 install
 
 :: 转发本机ip端口 到其他服务器ip端口
 :: netsh interface portproxy add v4tov4 listenaddress=[外网IP] listenport=[外网端口] connectaddress=[内网IP] connectport=[内网端口]
-C:\&gt; netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=10055 connectaddress=10.42.0.58 connectport=10050
+C:\> netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=10055 connectaddress=10.42.0.58 connectport=10050
 
 :: 查看已设置的转发 
-C:\&gt; netsh interface portproxy show all
+C:\> netsh interface portproxy show all
 
 :: 删除端口转发
 :: netsh interface portproxy delete v4tov4 listenaddress=[外网IP] listenport=[外网端口]
-C:\&gt; netsh interface portproxy delete v4tov4 listenaddress=0.0.0.0 listenport=10055
+C:\> netsh interface portproxy delete v4tov4 listenaddress=0.0.0.0 listenport=10055
 
 ```
 
@@ -44,14 +44,14 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpCl
 ```batch
 @echo off
 title mysql-client
-set &#34;Ymd=%date:~,4%%date:~5,2%%date:~8,2%&#34;
+set "Ymd=%date:~,4%%date:~5,2%%date:~8,2%"
 echo %Ymd%
 C:
-&#34;D:\xx\mysqldump.exe&#34; -h&lt;ip&gt; -P&lt;port&gt; -u&lt;user&gt; -p&lt;passwrod&gt; -R &lt;数据库名称&gt;  &gt; D:\DatabaseBak\xxx_%Ymd%.sql
+"D:\xx\mysqldump.exe" -h<ip> -P<port> -u<user> -p<passwrod> -R <数据库名称>  > D:\DatabaseBak\xxx_%Ymd%.sql
 ```
 # 6. 查看80端口连接数
 ```batch 
-netstat -an -p tcp | find /c &#34;80&#34;
+netstat -an -p tcp | find /c "80"
 ```
 # 7. windows 时间获取方式 
 ```bat
@@ -137,17 +137,17 @@ mkdir %CURRENT_DATE_TIME_STAMP%
 
 # 9. windows前台程序运行到后台
 ```vb
-&#39; 运行到后台
-&#39; start.vbs 
-Set ws = CreateObject(&#34;Wscript.Shell&#34;)  
-ws.run &#34;example.exe&#34;,vbhide
+' 运行到后台
+' start.vbs 
+Set ws = CreateObject("Wscript.Shell")  
+ws.run "example.exe",vbhide
 
-&#39;
-&#39; 程序关闭
-&#39; stop.vbs
+'
+' 程序关闭
+' stop.vbs
 Dim Wsh
-Set Wsh = WScript.CreateObject(&#34;WScript.Shell&#34;)
-Wsh.Run &#34;taskkill /f /im example.exe&#34;,0
+Set Wsh = WScript.CreateObject("WScript.Shell")
+Wsh.Run "taskkill /f /im example.exe",0
 Set Wsh=NoThing
 WScript.quit
 ```

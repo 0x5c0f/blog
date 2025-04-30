@@ -3,15 +3,15 @@
 
 # Atlas
 
-{{&lt; admonition type=tip title=&#34;主要功能&#34; open=true &gt;}}
+{{< admonition type=tip title="主要功能" open=true >}}
 - 读写分离
 - 从库负载均衡
 - IP 过滤
 - SQL 语句黑白名单
 - 自动分表
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
-&gt; https://github.com/Qihoo360/Atlas
+> https://github.com/Qihoo360/Atlas
 
 - 接 MHA 高可用集群后，软件也可单独使用
 - 注意事项:
@@ -21,11 +21,11 @@
 ## 安装
 
 ```bash
-$&gt; yum install Atlas-2.2.1.el6.x86_64.rpm
+$> yum install Atlas-2.2.1.el6.x86_64.rpm
 # 配置文件(可动态修改，不用重启)
 
-$&gt; cd /usr/local/mysql-proxy/conf &amp;&amp; cp -v test.cnf instance.cnf
-$&gt; vim /usr/local/mysql-proxy/conf/instance.cnf
+$> cd /usr/local/mysql-proxy/conf && cp -v test.cnf instance.cnf
+$> vim /usr/local/mysql-proxy/conf/instance.cnf
 [mysql-proxy]
 
 # 带#号的为非必需的配置项目
@@ -45,7 +45,7 @@ proxy-read-only-backend-addresses = 10.0.2.25:3305@1,10.0.2.27:3305@1
 
 #用户名与其对应的加密过的MySQL密码，密码使用PREFIX/bin目录下的加密程序encrypt加密，下行的user1和user2为示例，将其替换为你的MySQL的用户名和加密密码！
 # 此处配的的密码为前端DBA、程序等用户连接mysql的用户名密码，必须在此处声明一下
-pwds = user1:&#43;jKsgB3YAG8=, user2:GS&#43;tr4TPgqc=
+pwds = user1:+jKsgB3YAG8=, user2:GS+tr4TPgqc=
 
 #设置Atlas的运行方式，设为true时为守护进程方式，设为false时为前台方式，一般开发调试时设为false，线上运行时设为true,true后面不能有空格。
 daemon = true

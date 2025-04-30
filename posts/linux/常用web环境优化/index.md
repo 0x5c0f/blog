@@ -1,9 +1,9 @@
 # 常用web环境优化
 
 
-{{&lt; admonition type=info title=&#34;前言&#34; open=true &gt;}}
+{{< admonition type=info title="前言" open=true >}}
 一篇包含tomcat、nginx、php等相关参数及性能的优化文件，看了很多，但却不能完全记住，整理一篇用于备忘。  
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 # 1. tomcat 服务调优  
 - `tomcat: 8.5.59`  
@@ -12,7 +12,7 @@
     - 新建普通用户，切换到普通用户，启动`tomcat`  
     
 - `telnet`管理端口保护   
-    - 修改配置文件`/pathto/tomcat/conf/server.xml`,22行左右的`&lt;Server port=&#34;8005&#34; shutdown=&#34;SHUTDOWN&#34;&gt;` `8005`端口和`SHUTDOWN`(区分大小写)关键字,防止`tomcat`被远程关闭   
+    - 修改配置文件`/pathto/tomcat/conf/server.xml`,22行左右的`<Server port="8005" shutdown="SHUTDOWN">` `8005`端口和`SHUTDOWN`(区分大小写)关键字,防止`tomcat`被远程关闭   
     
 - `ajp` 连接端口保护  
     - `ajp` 是`apache`和`tomcat`相互沟通的一个渠道，如果不使用，可以注释掉或者修改端口 `/pathto/tomcat/conf/server.xml: 123 `。  
@@ -27,17 +27,17 @@
     - 可修改`conf/web.xml`中关于`error-page`的相关配置(实际上个人在`5.8`中好像没有找到这块的),也可以修改站点中`WEB-INF/web.xml`中的错误页  
 
 - 访问控制限制 
-    - `conf/server.xml: Host` 下添加`&lt;Valve className=&#34;org.apache.catalina.valves.RemoteAddrValve&#34; allow=&#34;10.0.2.*&#34;/&gt;`
+    - `conf/server.xml: Host` 下添加`<Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="10.0.2.*"/>`
     
 - 启动脚本权限修正`744`  
 
 - 应用自动部署 
-    - `conf/server.xml: 158` 修改参数`unpackWARs`和`autoDeploy`: `&lt;Host name=&#34;localhost&#34; appBase=&#34;webapps&#34; unpackWARs=&#34;false&#34; autoDeploy=&#34;false&#34;&gt;`  
+    - `conf/server.xml: 158` 修改参数`unpackWARs`和`autoDeploy`: `<Host name="localhost" appBase="webapps" unpackWARs="false" autoDeploy="false">`  
 
 
 ## 1.2. 性能优化 
 - 屏蔽dns查询  
-    - `enableLookups=&#34;false&#34;`: `69 : /pathto/tomcat/conf/server.xml`(配置默认端口那儿)  
+    - `enableLookups="false"`: `69 : /pathto/tomcat/conf/server.xml`(配置默认端口那儿)  
 
 - jvm 调优  
     - `JAVA_OPTS=`根据监控协调参数。  
@@ -45,10 +45,10 @@
 - 启用`nio2`(conf/server.xml)
 ***Nio2启用后zabbix带有的模板监控会出现大量的监控项无效，Object or attribute not found. 此问题暂时还未找到解决方案***    
 ```  
-&lt;Connector executor=&#34;tomcatThreadPool&#34; port=&#34;8080&#34; enableLookups=&#34;false&#34; 
-        protocol=&#34;org.apache.coyote.http11.Http11Nio2Protocol&#34;
-        connectionTimeout=&#34;20000&#34;
-        redirectPort=&#34;8443&#34; /&gt;  
+<Connector executor="tomcatThreadPool" port="8080" enableLookups="false" 
+        protocol="org.apache.coyote.http11.Http11Nio2Protocol"
+        connectionTimeout="20000"
+        redirectPort="8443" />  
 ```  
 
 # 2. tmpfs 一种基于内存的文件系统
@@ -59,98 +59,98 @@ mount -t tmpfs -o size=1024M tmpfs /mnt/usb02
 
 # 3. nginx 优化
 
-nginx 规则匹配优先级: `=` &gt; `完整路径` &gt; `^~` &gt; `~|~*` &gt; `部分起始路径` &gt; `/`    
-&lt;span id=&#34;30&#34;&gt;&lt;/span&gt;
-&lt;details&gt;
-&lt;summary style=&#34;font-size:18px;color:blue&#34;&gt;防止SQL注入、XSS攻击的实践配置方法&lt;/summary&gt;
+nginx 规则匹配优先级: `=` > `完整路径` > `^~` > `~|~*` > `部分起始路径` > `/`    
+<span id="30"></span>
+<details>
+<summary style="font-size:18px;color:blue">防止SQL注入、XSS攻击的实践配置方法</summary>
 
 ```bash
 if ($request_method !~* GET|POST) { return 444; }
 #使用444错误代码可以更加减轻服务器负载压力。
-if ($query_string ~* &#34;(\$|&#39;|--|[&#43;|(%20|%2F)]union[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]insert[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]drop[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]truncate[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]update[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]from[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]grant[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]exec[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]where[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]select[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]and[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]or[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]count[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]exec[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]chr[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]mid[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]like[&#43;|(%20|%2F)]|[&#43;|(%20|%2F)]iframe[&#43;|(%20|%2F)]|[\&lt;|%3C]script[\&gt;|%3E]|javascript|alert|webscan|dbappsecurity|style|confirm\(|innerhtml|innertext)(.*)$&#34;) { return 555; }
+if ($query_string ~* "(\$|'|--|[+|(%20|%2F)]union[+|(%20|%2F)]|[+|(%20|%2F)]insert[+|(%20|%2F)]|[+|(%20|%2F)]drop[+|(%20|%2F)]|[+|(%20|%2F)]truncate[+|(%20|%2F)]|[+|(%20|%2F)]update[+|(%20|%2F)]|[+|(%20|%2F)]from[+|(%20|%2F)]|[+|(%20|%2F)]grant[+|(%20|%2F)]|[+|(%20|%2F)]exec[+|(%20|%2F)]|[+|(%20|%2F)]where[+|(%20|%2F)]|[+|(%20|%2F)]select[+|(%20|%2F)]|[+|(%20|%2F)]and[+|(%20|%2F)]|[+|(%20|%2F)]or[+|(%20|%2F)]|[+|(%20|%2F)]count[+|(%20|%2F)]|[+|(%20|%2F)]exec[+|(%20|%2F)]|[+|(%20|%2F)]chr[+|(%20|%2F)]|[+|(%20|%2F)]mid[+|(%20|%2F)]|[+|(%20|%2F)]like[+|(%20|%2F)]|[+|(%20|%2F)]iframe[+|(%20|%2F)]|[\<|%3C]script[\>|%3E]|javascript|alert|webscan|dbappsecurity|style|confirm\(|innerhtml|innertext)(.*)$") { return 555; }
 
-if ($uri ~* &#34;(/~).*&#34;) { return 501; }
-if ($uri ~* &#34;(\\x.)&#34;) { return 501; }
+if ($uri ~* "(/~).*") { return 501; }
+if ($uri ~* "(\\x.)") { return 501; }
 
-if ($query_string ~* &#34;[;&#39;&lt;&gt;].*&#34;) { return 509; }
-if ($request_uri ~ &#34; &#34;) { return 509; }
-if ($request_uri ~ &#34;(\/\.&#43;)&#34;) { return 509; }
-if ($request_uri ~ &#34;(\.&#43;\/)&#34;) { return 509; }
+if ($query_string ~* "[;'<>].*") { return 509; }
+if ($request_uri ~ " ") { return 509; }
+if ($request_uri ~ "(\/\.+)") { return 509; }
+if ($request_uri ~ "(\.+\/)") { return 509; }
 
 # sql 注入
-# if ($uri ~* &#34;(insert|select|delete|update|count|master|truncate|declare|exec|\*|\&#39;)(.*)$&#34; ) { return 508; }
-if ($query_string ~ &#34;concat.*\(&#34;) { return 508; }
-if ($query_string ~ &#34;union.*select.*\(&#34;) { return 508; }
-if ($query_string ~ &#34;union.*all.*select.*&#34;) { return 508; }
-if ($request_uri ~* &#34;(cost\()|(concat\()&#34;) { return 508; }
+# if ($uri ~* "(insert|select|delete|update|count|master|truncate|declare|exec|\*|\')(.*)$" ) { return 508; }
+if ($query_string ~ "concat.*\(") { return 508; }
+if ($query_string ~ "union.*select.*\(") { return 508; }
+if ($query_string ~ "union.*all.*select.*") { return 508; }
+if ($request_uri ~* "(cost\()|(concat\()") { return 508; }
 
-if ($request_uri ~* &#34;[&#43;|(%20|%2F)]union[&#43;|(%20|%2F)]&#34;) { return 508; }
-if ($request_uri ~* &#34;[&#43;|(%20|%2F)]and[&#43;|(%20|%2F)]&#34;) { return 508; }
-if ($request_uri ~* &#34;[&#43;|(%20|%2F)]select[&#43;|(%20|%2F)]&#34;) { return 508; }
-if ($request_uri ~* &#34;[&#43;|(%20|%2F)]or[&#43;|(%20|%2F)]&#34;) { return 508; }
-if ($request_uri ~* &#34;[&#43;|(%20|%2F)]delete[&#43;|(%20|%2F)]&#34;) { return 508; }
-if ($request_uri ~* &#34;[&#43;|(%20|%2F)]update[&#43;|(%20|%2F)]&#34;) { return 508; }
-if ($request_uri ~* &#34;[&#43;|(%20|%2F)]insert[&#43;|(%20|%2F)]&#34;) { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]union[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]and[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]select[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]or[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]delete[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]update[+|(%20|%2F)]") { return 508; }
+if ($request_uri ~* "[+|(%20|%2F)]insert[+|(%20|%2F)]") { return 508; }
 
 ## 常见漏洞利用
-if ($query_string ~ &#34;(&lt;|%3C).*script.*(&gt;|%3E)&#34;) { return 403; }
-if ($query_string ~ &#34;GLOBALS(=|\[|\%[0-9A-Z]{0,2})&#34;) { return 403; }
-if ($query_string ~ &#34;_REQUEST(=|\[|\%[0-9A-Z]{0,2})&#34;) { return 403; }
-if ($query_string ~ &#34;proc/self/environ&#34;) { return 403; }
-if ($query_string ~ &#34;mosConfig_[a-zA-Z_]{1,21}(=|\%3D)&#34;) { return 403; }
-if ($query_string ~ &#34;base64_(en|de)code\(.*\)&#34;) { return 403; }
+if ($query_string ~ "(<|%3C).*script.*(>|%3E)") { return 403; }
+if ($query_string ~ "GLOBALS(=|\[|\%[0-9A-Z]{0,2})") { return 403; }
+if ($query_string ~ "_REQUEST(=|\[|\%[0-9A-Z]{0,2})") { return 403; }
+if ($query_string ~ "proc/self/environ") { return 403; }
+if ($query_string ~ "mosConfig_[a-zA-Z_]{1,21}(=|\%3D)") { return 403; }
+if ($query_string ~ "base64_(en|de)code\(.*\)") { return 403; }
 
 # 垃圾邮件字段
-if ($query_string ~ &#34;\b(ultram|unicauca|valium|viagra|vicodin|xanax|ypxaieo)\b&#34;) { return 507; }
-if ($query_string ~ &#34;\b(erections|hoodia|huronriveracres|impotence|levitra|libido)\b&#34;) { return 507; }
-if ($query_string ~ &#34;\b(ambien|bluespill|cialis|cocaine|ejaculation|erectile)\b&#34;) { return 507; }
-if ($query_string ~ &#34;\b(lipitor|phentermin|pro[sz]ac|sandyauer|tramadol|troyhamby)\b&#34;) { return 507; }
+if ($query_string ~ "\b(ultram|unicauca|valium|viagra|vicodin|xanax|ypxaieo)\b") { return 507; }
+if ($query_string ~ "\b(erections|hoodia|huronriveracres|impotence|levitra|libido)\b") { return 507; }
+if ($query_string ~ "\b(ambien|bluespill|cialis|cocaine|ejaculation|erectile)\b") { return 507; }
+if ($query_string ~ "\b(lipitor|phentermin|pro[sz]ac|sandyauer|tramadol|troyhamby)\b") { return 507; }
 
 ## 文件注入
-if ($query_string ~ &#34;[a-zA-Z0-9_]=http://&#34;) { return 444; }
-if ($query_string ~ &#34;[a-zA-Z0-9_]=(\.\.//?)&#43;&#34;) { return 444; }
-if ($query_string ~ &#34;[a-zA-Z0-9_]=/([a-z0-9_.]//?)&#43;&#34;) { return 444; }
+if ($query_string ~ "[a-zA-Z0-9_]=http://") { return 444; }
+if ($query_string ~ "[a-zA-Z0-9_]=(\.\.//?)+") { return 444; }
+if ($query_string ~ "[a-zA-Z0-9_]=/([a-z0-9_.]//?)+") { return 444; }
 
-# if ($http_user_agent ~* &#34;spider&#34;) { return 508; } 
-#if ($http_user_agent ~ &#34;Wget&#34;) {
+# if ($http_user_agent ~* "spider") { return 508; } 
+#if ($http_user_agent ~ "Wget") {
 #    return 508;
 #}
-# if ($http_user_agent ~* &#34;~17ce.com&#34;) { return 508; }
+# if ($http_user_agent ~* "~17ce.com") { return 508; }
 
-if ($http_user_agent ~* &#34;(YisouSpider|ApacheBench|Jmeter|JoeDog|Havij|masscan|mail2000|github|Java|python)&#34;) { return 508; }
+if ($http_user_agent ~* "(YisouSpider|ApacheBench|Jmeter|JoeDog|Havij|masscan|mail2000|github|Java|python)") { return 508; }
 
-if ($http_user_agent ~* &#34;WebBench*&#34;) { return 508; }
-if ($http_user_agent ~* &#34;Nmap Scripting Engine&#34;) { return 508; }
-if ($http_user_agent ~* &#34;Indy Library&#34;) { return 508; }
-if ($http_user_agent ~ &#34;^$&#34;) { return 508; }
-if ($http_user_agent ~ &#34;libwww-perl&#34;) { return 508; }
-if ($http_user_agent ~ &#34;GetRight&#34;) { return 508; }
-if ($http_user_agent ~ &#34;GetWeb!&#34;) { return 508; }
-if ($http_user_agent ~ &#34;Go!Zilla&#34;) { return 508; }
-if ($http_user_agent ~ &#34;Download Demon&#34;) { return 508; }
-if ($http_user_agent ~ &#34;Go-Ahead-Got-It&#34;) { return 508; }
-if ($http_user_agent ~ &#34;TurnitinBot&#34;) { return 508; }
-if ($http_user_agent ~ &#34;GrabNet&#34;) { return 508; }
+if ($http_user_agent ~* "WebBench*") { return 508; }
+if ($http_user_agent ~* "Nmap Scripting Engine") { return 508; }
+if ($http_user_agent ~* "Indy Library") { return 508; }
+if ($http_user_agent ~ "^$") { return 508; }
+if ($http_user_agent ~ "libwww-perl") { return 508; }
+if ($http_user_agent ~ "GetRight") { return 508; }
+if ($http_user_agent ~ "GetWeb!") { return 508; }
+if ($http_user_agent ~ "Go!Zilla") { return 508; }
+if ($http_user_agent ~ "Download Demon") { return 508; }
+if ($http_user_agent ~ "Go-Ahead-Got-It") { return 508; }
+if ($http_user_agent ~ "TurnitinBot") { return 508; }
+if ($http_user_agent ~ "GrabNet") { return 508; }
 
-location ~* &#34;(&amp;pws=0|_vti_|\(null\)|\{\$itemURL\}|echo(.*)kae|boot\.ini|etc/passwd|eval\(|self/environ|(wp-)?config\.|cgi-|muieblack)&#34; { return 403; }
-location ~* &#34;/(^$|mobiquo|phpinfo|shell|sqlpatch|thumb|thumb_editor|thumbopen|timthumb|webshell|config|configuration)\.php&#34; { return 403; }
-location ~* &#34;(&#39;|\&#34;)(.*)(drop|insert|md5|select|union)&#34; { return 403; }
-location ~* &#34;(https?|ftp|php):/&#34; { return 403; }
-location ~* &#34;(=&#39;|=%27|/&#39;/?).&#34; { return 403; }
+location ~* "(&pws=0|_vti_|\(null\)|\{\$itemURL\}|echo(.*)kae|boot\.ini|etc/passwd|eval\(|self/environ|(wp-)?config\.|cgi-|muieblack)" { return 403; }
+location ~* "/(^$|mobiquo|phpinfo|shell|sqlpatch|thumb|thumb_editor|thumbopen|timthumb|webshell|config|configuration)\.php" { return 403; }
+location ~* "('|\")(.*)(drop|insert|md5|select|union)" { return 403; }
+location ~* "(https?|ftp|php):/" { return 403; }
+location ~* "(='|=%27|/'/?)." { return 403; }
 ```
-&lt;/details&gt;
+</details>
 
 ## 3.1. 版本号隐藏  
 1. 修改文件: 修改`nginx.conf`,在`http`标签中添加`server_tokens off;`参数,然后`reload`  
 2. 编译修改:   
     - 修改`nginx`源码文件`/pathto/nginx-x.xx.x/src/core/nginx.h`,`nginx`版本号参数`NGINX_VERSION`，软件名称 `NGINX_VAR`，`NGINX_VER`   
     - 修改`nginx`源码文件`49: /pathto/nginx-x.xx.x/src/http/ngx_http_header_filter_module.c` ,值 `Server: xxxx`（curl 显示的页面）  
-    - 修改`nginx`源码文件`36: /pathto/nginx-x.xx.x/src/http/ngx_http_special_response.c`,值 `&lt;hr&gt;&lt;center&gt;xxxx&lt;/center&gt;`(错误页面:例如502)   
+    - 修改`nginx`源码文件`36: /pathto/nginx-x.xx.x/src/http/ngx_http_special_response.c`,值 `<hr><center>xxxx</center>`(错误页面:例如502)   
     - 正常编译安装  
 
 ## 3.2. 更改nginx默认用户
-1. 修改配置文件: `/pathto/nginx/conf/nginx.conf`,值 `user nobody` 为 `user &lt;user&gt; &lt;group&gt;`;  
-2. 编译时指定默认用户: `--user=&lt;user&gt; --group=&lt;group&gt;`  
+1. 修改配置文件: `/pathto/nginx/conf/nginx.conf`,值 `user nobody` 为 `user <user> <group>`;  
+2. 编译时指定默认用户: `--user=<user> --group=<group>`  
 
 ## 3.3. 优化wroker进程数  
 ```bash
@@ -304,16 +304,16 @@ location ~ .*\.(gif|jpg|jpeg|png|bmp|swf){
 ### 3.12.1. 切割示例  
 ```bash
 #!/bin/bash
-# 40 23 * * * /bin/bash /opt/sh/cut_nginx_all.sh &gt;&gt; /dev/null 2&gt;&amp;1 
-time=`date &#43;&#34;%Y-%m-%d&#34;`
-log_path=&#34;/opt/nginxssl/logs&#34;
-pid_path=&#34;/opt/nginxssl/logs/nginx.pid&#34;
-new_dir=&#34;/opt/logs/nginxlogs&#34;
+# 40 23 * * * /bin/bash /opt/sh/cut_nginx_all.sh >> /dev/null 2>&1 
+time=`date +"%Y-%m-%d"`
+log_path="/opt/nginxssl/logs"
+pid_path="/opt/nginxssl/logs/nginx.pid"
+new_dir="/opt/logs/nginxlogs"
 # nginx web 日志 (www.log) ，以空格隔开，无需后缀 
 logs_names=(www www1)
 cd $new_dir
 num=${#logs_names[@]} 
-for((i=0;i&lt;num ;i&#43;&#43;));do
+for((i=0;i<num ;i++));do
   mv ${log_path}/${logs_names[i]}.log ${new_dir}/${logs_names[i]}_${time}.log
   tar czf ${logs_names[i]}_${time}.tar.gz ${logs_names[i]}_${time}.log
   rm ${logs_names[i]}_${time}.log
@@ -371,7 +371,7 @@ if ($remote_addr = 10.0.0.7 ) {
     return 403;
 }
 if ($remote_addr = xx.xx.xx.xx ) {
-    set $allow_access_root &#39;true&#39;;
+    set $allow_access_root 'true';
 }
 ```
 ### 3.13.3. 配置nginx禁止非法域名解析  
@@ -391,7 +391,7 @@ server {
 示例:
 ```nginx
 # server 
-location ~* ^.&#43;\.(jpg|png|swf|flv)$ {
+location ~* ^.+\.(jpg|png|swf|flv)$ {
    valid_referers none bloked *.example.com;
    if ($invalid_referer) {
        #rewrite ^/ https://www.example.com/daolian.png;
@@ -429,7 +429,7 @@ Sitemap: https://www.example.com/sitemap.xml
 示例:  
 ```nginx 
 # server|location 
-if ($http_user_agent ~* &#34;LWP::Simple|BBBike|wget&#34;) {
+if ($http_user_agent ~* "LWP::Simple|BBBike|wget") {
     return 403;
 }
 ```
@@ -493,7 +493,7 @@ disable_functions = phpinfo
 expose_php = Off 
 ; 关闭注册全局变量,5.5以上已无该参数  
 register_globals = Off
-; 防止sql注入(打开后自动把用户体检对sql的查询进行转换,例如把&#39;转换为\),默认Off,5.5以上已无该参数
+; 防止sql注入(打开后自动把用户体检对sql的查询进行转换,例如把'转换为\),默认Off,5.5以上已无该参数
 magic_quotes_gpc = On 
 ; 错误信息输出控制,默认On 
 ; 建议在关闭display_errors后能够把错误信息记录下来，便于查找服务器运行的原因: 
@@ -530,7 +530,7 @@ php.ini 修改
 ; 调整php session 信息存放类型,默认文件 files  
 session.save_handler = memcache  
 ; session 保存位置,默认tmp 
-session.save_path = &#34;tcp://10.0.0.18:11211&#34;
+session.save_path = "tcp://10.0.0.18:11211"
 ```
 ## 4.2. php-fpm 调优 
 ### 4.2.1. php-fpm.conf 调优

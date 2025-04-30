@@ -26,7 +26,7 @@ openssl rsa -in ca.key -out ca.key
   | `/CN=` | `Common Name` 域名或`IP`  | `blog.0x5c0f.cc` |
 
 ```bash
-openssl req -utf8 -x509 -new -nodes -key ca.key -sha512 -days 18250 -out ca.pem -subj &#34;/C=CN/ST=CQ/O=0x5c0f/CN=0x5c0f/emailAddress=mail@0x5c0f.cc&#34;
+openssl req -utf8 -x509 -new -nodes -key ca.key -sha512 -days 18250 -out ca.pem -subj "/C=CN/ST=CQ/O=0x5c0f/CN=0x5c0f/emailAddress=mail@0x5c0f.cc"
 ```
 
 ## 1.3. 生成证书私钥
@@ -36,13 +36,13 @@ openssl genrsa -out server.key 4096
 
 ## 1.4. 生成域名签名
 ```bash
-openssl req -new -key server.key -out server.csr -subj &#34;/C=CN/ST=CQ/O=0x5c0f/CN=0x5c0f.cc/emailAddress=mail@0x5c0f.cc&#34;
+openssl req -new -key server.key -out server.csr -subj "/C=CN/ST=CQ/O=0x5c0f/CN=0x5c0f.cc/emailAddress=mail@0x5c0f.cc"
 ```
 
 ## 1.5. 创建扩展
 - 后续有新域名,直接加入进去即可  
 ```bash
-cat &gt; server.ext &lt;&lt;EOF
+cat > server.ext <<EOF
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
@@ -63,7 +63,7 @@ openssl x509 -req -in server.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out s
 
 ## 1.7. 可信列表添加
 ### 1.7.1. linux 
-&gt; [https://qastack.cn/unix/90450/adding-a-self-signed-certificate-to-the-trusted-list](https://qastack.cn/unix/90450/adding-a-self-signed-certificate-to-the-trusted-list)  
+> [https://qastack.cn/unix/90450/adding-a-self-signed-certificate-to-the-trusted-list](https://qastack.cn/unix/90450/adding-a-self-signed-certificate-to-the-trusted-list)  
 
 - 以`fedroa32`为例  
 ```
@@ -73,7 +73,7 @@ sudo update-ca-trust
 
 ### 1.7.2. windows 
 - 以`win 10`为例
-1. `win &#43; R` 打开运行窗口, 键入 `mmc` 然后回车, 选择 `文件`-`添加/删除单元节点`。选择`证书`-`添加`，打开选项卡自行判断选择，完成即可。 
+1. `win + R` 打开运行窗口, 键入 `mmc` 然后回车, 选择 `文件`-`添加/删除单元节点`。选择`证书`-`添加`，打开选项卡自行判断选择，完成即可。 
 
 2. 上述完成后，在`mmc`控制台中就可以看到证书节点, 展开`证书`-`受信任的根证书颁发机构`，选择其下面`证书`,然后右键 `所有任务`-`导入`,导入生成的`ca.pem`即可，退出时会提示存储控制台的信息，可以忽略 
 

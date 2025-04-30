@@ -2,7 +2,7 @@
 
 
 # java 的jdbc 连接封装 
-{{&lt; highlight java &gt;}}
+{{< highlight java >}}
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,13 +18,13 @@ import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 public class DB {
     // 数据库驱动类
-    private final static String DRIVER_NAME = &#34;oracle.jdbc.driver.OracleDriver&#34;;
+    private final static String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
     // 数据库URL地址
-    private static final String URL = &#34;jdbc:oracle:thin:@localhost:1521:orcl&#34;;
+    private static final String URL = "jdbc:oracle:thin:@localhost:1521:orcl";
     // 数据库用户名
-    private static final String USERNAME = &#34;scott&#34;;
+    private static final String USERNAME = "scott";
     // 密码
-    private static final String PASSWORD = &#34;tiger&#34;;
+    private static final String PASSWORD = "tiger";
     private Connection con = null;
     private PreparedStatement ps = null;
     private ResultSet rs = null;
@@ -50,14 +50,14 @@ public class DB {
     public ResultSet executeQuery(String sql, Object...params) throws ClassNotFoundException, SQLException {
         con = this.getConnection();
         ps = con.prepareStatement(sql);
-        for (int i = 0; i &lt; params.length; i&#43;&#43;) {
+        for (int i = 0; i < params.length; i++) {
             Object o = params[i];
             if (o instanceof Date) {
                 Date d = (Date) o;
                 Timestamp t = new Timestamp(d.getTime());
-                ps.setTimestamp(i &#43; 1, t);
+                ps.setTimestamp(i + 1, t);
             } else {
-                ps.setObject(i &#43; 1, o);
+                ps.setObject(i + 1, o);
             }
         }
         rs = ps.executeQuery();
@@ -78,14 +78,14 @@ public class DB {
         ps = con.prepareStatement(sql);
         // 传递参数
         if (list != null) {
-            for (int i = 0; i &lt; list.size(); i&#43;&#43;) {
+            for (int i = 0; i < list.size(); i++) {
                 Object o = list.get(i);
                 if (o instanceof Date) {
                     Date d = (Date) o;
                     Timestamp t = new Timestamp(d.getTime());
-                    ps.setTimestamp(i &#43; 1, t);
+                    ps.setTimestamp(i + 1, t);
                 } else {
-                    ps.setObject(i &#43; 1, o);
+                    ps.setObject(i + 1, o);
                 }
             }
         }
@@ -95,14 +95,14 @@ public class DB {
     public int executeUpdate(String sql, Object...params) throws ClassNotFoundException, SQLException {
         con = this.getConnection();
         ps = con.prepareStatement(sql);
-        for (int i = 0; i &lt; params.length; i&#43;&#43;) {
+        for (int i = 0; i < params.length; i++) {
             Object o = params[i];
             if (o instanceof Date) {
                 Date d = (Date) o;
                 Timestamp t = new Timestamp(d.getTime());
-                ps.setTimestamp(i &#43; 1, t);
+                ps.setTimestamp(i + 1, t);
             } else {
-                ps.setObject(i &#43; 1, o);
+                ps.setObject(i + 1, o);
             }
         }
         return ps.executeUpdate();
@@ -116,14 +116,14 @@ public class DB {
         con = this.getConnection();
         ps = con.prepareStatement(sql);
         if (list != null) {
-            for (int i = 0; i &lt; list.size(); i&#43;&#43;) {
+            for (int i = 0; i < list.size(); i++) {
                 Object o = list.get(i);
                 if (o instanceof Date) {
                     Date d = (Date) o;
                     Timestamp t = new Timestamp(d.getTime());
-                    ps.setTimestamp(i &#43; 1, t);
+                    ps.setTimestamp(i + 1, t);
                 } else {
-                    ps.setObject(i &#43; 1, o);
+                    ps.setObject(i + 1, o);
                 }
             }
         }
@@ -139,16 +139,16 @@ public class DB {
      public void prepareCall(String storename, Object... params)
                  throws ClassNotFoundException, SQLException {
           con = this.getConnection();
-          String str = &#34; call &#34;&#43; storename;
+          String str = " call "+ storename;
           cs = con.prepareCall(str);
-           for (int i = 0; i &lt; params.length; i&#43;&#43;) {
+           for (int i = 0; i < params.length; i++) {
                 Object o = params[i];
                  if (o instanceof Date) {
                       Date d = (Date) o;
                       Timestamp t = new Timestamp(d.getTime());
-                      cs.setTimestamp(i &#43; 1, t);
+                      cs.setTimestamp(i + 1, t);
                 } else {
-                      cs.setObject(i &#43; 1, o);
+                      cs.setObject(i + 1, o);
                 }
           }
 
@@ -158,40 +158,40 @@ public class DB {
      /**
      * 调用有输出参数 (输出参数类型只能为Stirng类型的数据)的存储过程
      *
-     * @throws List&lt;Integer&gt; 指定注册类型
+     * @throws List<Integer> 指定注册类型
      * @throws SQLException
      * @throws ClassNotFoundException
      */
-     public List&lt;String&gt; prepareCall(String storename, List&lt;Integer&gt; list,
+     public List<String> prepareCall(String storename, List<Integer> list,
                 Object.. . params) throws ClassNotFoundException, SQLException {
           con = this.getConnection();
-          String str = &#34; call &#34;&#43; storename;
+          String str = " call "+ storename;
           cs = con.prepareCall(str);
-          List&lt;Integer&gt; klist = new ArrayList&lt;Integer&gt;();
-          List&lt;String&gt; relist = new ArrayList&lt;String&gt;();
+          List<Integer> klist = new ArrayList<Integer>();
+          List<String> relist = new ArrayList<String>();
            if (params.length != 0) {
-                 for (int i = 0; i &lt; params.length; i&#43;&#43;) {
+                 for (int i = 0; i < params.length; i++) {
                       Object o = params[i];
                        if (o instanceof Date) {
                             Date d = (Date) o;
                             Timestamp t = new Timestamp(d.getTime());
-                            cs.setTimestamp(i &#43; 1, t);
+                            cs.setTimestamp(i + 1, t);
                       } else {
-                            cs.setObject(i &#43; 1, o);
+                            cs.setObject(i + 1, o);
                       }
 
-                       if (params.length - 1 == i &amp;&amp; list.size() != 0) {
+                       if (params.length - 1 == i && list.size() != 0) {
 
-                             for (int k = 0; k &lt; list.size(); k&#43;&#43;) {
-                                  cs.registerOutParameter((i &#43; (k &#43; 2)), list.get(k));
-                                  klist.add(i&#43;(k&#43; 2));
+                             for (int k = 0; k < list.size(); k++) {
+                                  cs.registerOutParameter((i + (k + 2)), list.get(k));
+                                  klist.add(i+(k+ 2));
                             }
 
                       }
                 }
           }
           cs.execute();
-           for(int i = 0;i&lt;klist.size();i&#43;&#43;){
+           for(int i = 0;i<klist.size();i++){
                 relist.add(cs.getString(klist.get(i)));
           }
            return relist;
@@ -218,9 +218,9 @@ public class DB {
     
     public static void main(String[] args) {
         DB db = new DB();
-        String sql = &#34;insert into tab_message values(mesid_seq.nextval,?,?,?,sysdate,0)&#34;;
+        String sql = "insert into tab_message values(mesid_seq.nextval,?,?,?,sysdate,0)";
         try {
-            db.executeUpdate(sql, &#34;短信内容&#34;, &#34;zhangsan&#34;, &#34;admin&#34;);
+            db.executeUpdate(sql, "短信内容", "zhangsan", "admin");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -230,10 +230,10 @@ public class DB {
         }
     }
 }
-{{&lt; /highlight &gt;}}
+{{< /highlight >}}
 
 #  ODBC 连接配置 
-ODBC配置：开始--&gt;管理工具 --&gt;数据源--&gt; 用户DSN--&gt;添加 --&gt;选择`Oracle in OraDb10g_home1`--&gt;完成  
+ODBC配置：开始-->管理工具 -->数据源--> 用户DSN-->添加 -->选择`Oracle in OraDb10g_home1`-->完成  
 `Data Source Name`中填`JdbcOdbc`  
 `Description`为描述可不填  
 `TNS Service Name`中选择`Oracle`  
@@ -249,15 +249,15 @@ ResultSet rs = null;
 
 下面的是需要处理异常的代码段:
 ```java
-Class.forName( &#34;sun.jdbc.odbc.JdbcOdbcDriver&#34; );
-String url = &#34;jdbc:odbc:JdbcOdbc&#34; ;
-con = DriverManager.getConnection(url, &#34;cxd&#34;, &#34;cxd&#34; );
-String sql = &#34;select * from code where username =&#39;name&#39; and userpassword =&#39;password&#39; &#34;;
+Class.forName( "sun.jdbc.odbc.JdbcOdbcDriver" );
+String url = "jdbc:odbc:JdbcOdbc" ;
+con = DriverManager.getConnection(url, "cxd", "cxd" );
+String sql = "select * from code where username ='name' and userpassword ='password' ";
 pst = con.prepareStatement(sql);
 rs = pst.executeQuery(); //执行查询操作
-String sql = &#34;delete from name &#34;;
+String sql = "delete from name ";
 pst = con.prepareStatement(sql);
-pst.executeUpdate(); //执行删除操作&lt;增删改都使用它&gt;
+pst.executeUpdate(); //执行删除操作<增删改都使用它>
 ```
 //任何时候都要进行关闭       
 ```java

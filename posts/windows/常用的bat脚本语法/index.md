@@ -1,6 +1,6 @@
 # 常用的BAT脚本语法
 
-&lt;br/&gt;  
+<br/>  
 
 我们在日常工作中常常会遇到一些需要重复进行的工作，又或者我们的项目在转交客户时需要去简化配置过程  
 这时我们就需要使用到一些自动化部署操作，我们常常会采用脚本来完成这部分功能  
@@ -10,9 +10,9 @@
 - Bat脚本常用语法  
 - Bat脚本进阶内容  
 
-{{&lt; admonition type=quote title=&#34;&#34; open=true &gt;}}
+{{< admonition type=quote title="" open=true >}}
 [https://www.cnblogs.com/qiuluoyuweiliang/p/17288356.html](https://www.cnblogs.com/qiuluoyuweiliang/p/17288356.html)
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 
 ---

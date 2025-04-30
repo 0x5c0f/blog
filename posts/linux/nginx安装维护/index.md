@@ -6,7 +6,7 @@
 - 服务器：centos7  
 # 依赖安装  
 ```bash
-[root@00 software]# yum install -y gcc glibc gcc-c&#43;&#43; pcre-devel openssl-devel git #安装依赖关系 
+[root@00 software]# yum install -y gcc glibc gcc-c++ pcre-devel openssl-devel git #安装依赖关系 
 [root@00 software]# mkdir /opt/software
 [root@00 software]# cd /opt/software
 [root@00 software]# wget http://nginx.org/download/nginx-1.14.2.tar.gz
@@ -22,15 +22,15 @@
 [root@00 software]# cd nginx-1.14.2
 [root@00 nginx-1.14.2]# useradd -d /var/ftproot -s /sbin/nologin www  -u 1002
 # 负载均衡模块添加,添加对应版本的补丁
-# [root@00 nginx-1.14.2]# patch -p1 &lt; ../nginx_upstream_check_module/check_1.14.0&#43;.patch
+# [root@00 nginx-1.14.2]# patch -p1 < ../nginx_upstream_check_module/check_1.14.0+.patch
 # 
 # 隐藏默认版本号，隐藏默认标识 
-# sed -i &#39;s#&#34;1.14.2&#34;#&#34;&#34;#g&#39; ./src/core/nginx.h
-# sed -i &#39;s#&#34;NGINX&#34;#&#34;0x5c0f&#34;#g&#39; ./src/core/nginx.h
-# sed -i &#39;s#&#34;nginx/&#34;#&#34;0x5c0f/&#34;#g&#39; ./src/core/nginx.h
-# sed -i &#39;s#&#34;Server: nginx&#34;#&#34;Server: 0x5c0f&#34;#g&#39; ./src/http/ngx_http_header_filter_module.c
-# sed -i &#39;s#&lt;center&gt;nginx&lt;/center&gt;#&lt;center&gt;0x5c0f&lt;/center&gt;#g&#39; ./src/http/ngx_http_special_response.c
-# grep &#34;0x5c0f&#34; ./src/http/ngx_http_header_filter_module.c ./src/http/ngx_http_special_response.c ./src/core/nginx.h 
+# sed -i 's#"1.14.2"#""#g' ./src/core/nginx.h
+# sed -i 's#"NGINX"#"0x5c0f"#g' ./src/core/nginx.h
+# sed -i 's#"nginx/"#"0x5c0f/"#g' ./src/core/nginx.h
+# sed -i 's#"Server: nginx"#"Server: 0x5c0f"#g' ./src/http/ngx_http_header_filter_module.c
+# sed -i 's#<center>nginx</center>#<center>0x5c0f</center>#g' ./src/http/ngx_http_special_response.c
+# grep "0x5c0f" ./src/http/ngx_http_header_filter_module.c ./src/http/ngx_http_special_response.c ./src/core/nginx.h 
 
 
 [root@00 nginx-1.14.2]# ./configure --user=www --group=www --with-http_ssl_module --with-http_stub_status_module --prefix=/opt/nginx-1.14.2 
@@ -39,50 +39,50 @@
 # --add-module=../nginx-module-vts/ (负载均衡模块编译，新增时注意保留原有参数)
 # 
 checking for OS
- &#43; Linux 2.6.32-71.el6.i686 i686
+ + Linux 2.6.32-71.el6.i686 i686
 checking for C compiler ... found
- &#43; using GNU C compiler
- &#43; gcc version: 4.4.4 20100726 (Red Hat 4.4.4-13) (GCC)
+ + using GNU C compiler
+ + gcc version: 4.4.4 20100726 (Red Hat 4.4.4-13) (GCC)
 checking for gcc -pipe switch ... found
 checking for -Wl,-E switch ... found
 checking for gcc builtin atomic operations ... found
 checking for C99 variadic macros ... found
 checking for gcc variadic macros ... found
 -----忽略部分内容-----
- nginx path prefix: &#34;/opt/nginx-1.14.2&#34;
- nginx binary file: &#34;/opt/nginx-1.14.2/sbin/nginx&#34;
- nginx modules path: &#34;/opt/nginx-1.14.2/modules&#34;
- nginx configuration prefix: &#34;/opt/nginx-1.14.2/conf&#34;
- nginx configuration file: &#34;/opt/nginx-1.14.2/conf/nginx.conf&#34;
- nginx pid file: &#34;/opt/nginx-1.14.2/logs/nginx.pid&#34;
- nginx error log file: &#34;/opt/nginx-1.14.2/logs/error.log&#34;
- nginx http access log file: &#34;/opt/nginx-1.14.2/logs/access.log&#34;
- nginx http client request body temporary files: &#34;client_body_temp&#34;
- nginx http proxy temporary files: &#34;proxy_temp&#34;
- nginx http fastcgi temporary files: &#34;fastcgi_temp&#34;
- nginx http uwsgi temporary files: &#34;uwsgi_temp&#34;
- nginx http scgi temporary files: &#34;scgi_temp&#34;
+ nginx path prefix: "/opt/nginx-1.14.2"
+ nginx binary file: "/opt/nginx-1.14.2/sbin/nginx"
+ nginx modules path: "/opt/nginx-1.14.2/modules"
+ nginx configuration prefix: "/opt/nginx-1.14.2/conf"
+ nginx configuration file: "/opt/nginx-1.14.2/conf/nginx.conf"
+ nginx pid file: "/opt/nginx-1.14.2/logs/nginx.pid"
+ nginx error log file: "/opt/nginx-1.14.2/logs/error.log"
+ nginx http access log file: "/opt/nginx-1.14.2/logs/access.log"
+ nginx http client request body temporary files: "client_body_temp"
+ nginx http proxy temporary files: "proxy_temp"
+ nginx http fastcgi temporary files: "fastcgi_temp"
+ nginx http uwsgi temporary files: "uwsgi_temp"
+ nginx http scgi temporary files: "scgi_temp"
 [root@00 software]# make
 make -f objs/Makefile
-make[1]: Entering directory `/opt/software/nginx-1.14.2&#39;
+make[1]: Entering directory `/opt/software/nginx-1.14.2'
 cc -c -pipe  -O -W -Wall -Wpointer-arith -Wno-unused-parameter -Werror -g  -I src/core -I src/event -I src/event/modules -I src/os/unix -I objs \
         -o objs/src/core/nginx.o \
         src/core/nginx.c
 -----忽略部分内容-----
-sed -e &#34;s|%%PREFIX%%|/opt/nginx-1.14.2|&#34; \
-        -e &#34;s|%%PID_PATH%%|/opt/nginx-1.14.2/logs/nginx.pid|&#34; \
-        -e &#34;s|%%CONF_PATH%%|/opt/nginx-1.14.2/conf/nginx.conf|&#34; \
-        -e &#34;s|%%ERROR_LOG_PATH%%|/opt/nginx-1.14.2/logs/error.log|&#34; \
-        &lt; man/nginx.8 &gt; objs/nginx.8
-make[1]: Leaving directory `/opt/software/nginx-1.14.2&#39;
+sed -e "s|%%PREFIX%%|/opt/nginx-1.14.2|" \
+        -e "s|%%PID_PATH%%|/opt/nginx-1.14.2/logs/nginx.pid|" \
+        -e "s|%%CONF_PATH%%|/opt/nginx-1.14.2/conf/nginx.conf|" \
+        -e "s|%%ERROR_LOG_PATH%%|/opt/nginx-1.14.2/logs/error.log|" \
+        < man/nginx.8 > objs/nginx.8
+make[1]: Leaving directory `/opt/software/nginx-1.14.2'
 [root@00 nginx-1.14.2]# make install
 make -f objs/Makefile install
-make[1]: Entering directory `/opt/software/nginx-1.14.2&#39;
-test -d &#39;/opt/nginx-1.14.2&#39; || mkdir -p &#39;/opt/nginx-1.14.2&#39;
-test -d &#39;/opt/nginx-1.14.2/sbin&#39; \
-        || mkdir -p &#39;/opt/nginx-1.14.2/sbin&#39;
+make[1]: Entering directory `/opt/software/nginx-1.14.2'
+test -d '/opt/nginx-1.14.2' || mkdir -p '/opt/nginx-1.14.2'
+test -d '/opt/nginx-1.14.2/sbin' \
+        || mkdir -p '/opt/nginx-1.14.2/sbin'
 ----忽略部分内容-----
-make[1]: Leaving directory `/opt/software/nginx-1.14.2&#39;
+make[1]: Leaving directory `/opt/software/nginx-1.14.2'
 [root@00 nginx-1.14.2]# ln -s /opt/nginx-1.14.2/ /opt/nginxssl #创建软连接,用于版本控制,此步骤可以不做
 # 负载均衡模块显示配置  
 # 1. 需要在 upstream 模块中添加检测 # check interval=3000 rise=2 fall=5 timeout=1000 type=http;(每隔3秒检测一次,请求2次正常则标记realserver状态为up,如果检测5次都失败,则标记realserver的状态为down,超过时间为1秒，检查协议为http)

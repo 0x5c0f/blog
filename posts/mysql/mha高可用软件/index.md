@@ -5,9 +5,9 @@
 # MHA(Master HA) 高可用软件
 自动主从切换工具 
 
-&gt; https://github.com/yoshinorim/mha4mysql-manager  
+> https://github.com/yoshinorim/mha4mysql-manager  
 
-&gt; https://github.com/yoshinorim/mha4mysql-node 
+> https://github.com/yoshinorim/mha4mysql-node 
 
 # 基础环境 
 环境准备(1管理, 1主2从): 
@@ -20,22 +20,22 @@
 - 关闭所有节点`relay_log`自动清理功能
 ```bash
 # 临时 
-sql&gt; set global relay_log_purge = 0;
+sql> set global relay_log_purge = 0;
 
 # 永久
-$&gt; vim /etc/my.cnf
+$> vim /etc/my.cnf
 relay_log_purge = 0
 ```
 - 设置从库只读功
 ```bash
-sql&gt; set global read_only=1
+sql> set global read_only=1
 ```
 - 各个节点互连
 ```bash
-$&gt; ssh-keygen 
-$&gt; ssh-copy-id root@10.0.2.25
-$&gt; ssh-copy-id root@10.0.2.26
-$&gt; ssh-copy-id root@10.0.2.27
+$> ssh-keygen 
+$> ssh-copy-id root@10.0.2.25
+$> ssh-copy-id root@10.0.2.26
+$> ssh-copy-id root@10.0.2.27
 
 ```
 
@@ -43,26 +43,26 @@ $&gt; ssh-copy-id root@10.0.2.27
 ```bash
 ## 所有节点安装mha node软件包
 # mha node 软件包依赖
-$&gt; yum install perl-DBD-MySQL -y 
+$> yum install perl-DBD-MySQL -y 
 
 ## mha node 软件安装
-$&gt; yum install -y mha4mysql-node-0.58-0.el7.centos.noarch.rpm
+$> yum install -y mha4mysql-node-0.58-0.el7.centos.noarch.rpm
 
 ## 主库添加MHA管理用户
-$&gt; mysql -uroot -e &#34;grant all privileges on *.* to mha@&#39;10.0.2.%&#39; identified by &#39;mha&#39;;&#34;
+$> mysql -uroot -e "grant all privileges on *.* to mha@'10.0.2.%' identified by 'mha';"
 
 ## 管理机安装manager软件(管理节点安装，建议独立一台或非主节点服务器)
 # 依赖环境
-$&gt; yum install perl-Config-Tiny epel-release perl-Log-Dispatch perl-Parallel-ForkManager perl-Time-HiRes -y 
+$> yum install perl-Config-Tiny epel-release perl-Log-Dispatch perl-Parallel-ForkManager perl-Time-HiRes -y 
 
 # mha manager 软件安装
-$&gt; yum install perl-Config-Tiny epel-release perl-Log-Dispatch perl-Parallel-ForkManager perl-Time-HiRes -y 
-$&gt; yum install mha4mysql-manager-0.58-0.el7.centos.noarch.rpm -y
+$> yum install perl-Config-Tiny epel-release perl-Log-Dispatch perl-Parallel-ForkManager perl-Time-HiRes -y 
+$> yum install mha4mysql-manager-0.58-0.el7.centos.noarch.rpm -y
 
 # 创建配置文件目录 
-$&gt; mkdir /etc/mha
-$&gt; mkdir -p /var/log/mha/app1
-$&gt; vim /etc/mha/app1.cnf
+$> mkdir /etc/mha
+$> mkdir -p /var/log/mha/app1
+$> vim /etc/mha/app1.cnf
 [server default]
 # 用于管理stop slave,change master,reset slave等操作的账号，缺省为root
 user=mha
@@ -87,7 +87,7 @@ repl_password=123123
 # 访问MHA manger和MHA mysql节点的OS系统帐号 
 ssh_user=root
 
-# &gt; https://www.cnblogs.com/xiaoboluo768/p/5973827.html
+# > https://www.cnblogs.com/xiaoboluo768/p/5973827.html
 # 故障时自动调用的脚本，一般用于自动vip漂移
 master_ip_failover_script=/usr/local/bin/master_ip_failover
 
@@ -121,17 +121,17 @@ master_binlog_dir=/data/mysqldb/binlog-server
 
 # 状态检查
 ## 互信状态检查 
-$&gt; masterha_check_ssh --conf=/etc/mha/app1.cnf
+$> masterha_check_ssh --conf=/etc/mha/app1.cnf
 
 ## 主从状态检查 
-$&gt; masterha_check_repl --conf=/etc/mha/app1.cnf
+$> masterha_check_repl --conf=/etc/mha/app1.cnf
 
 
 # 开启MHA --remove_dead_master_conf 自动将故障节点从配置文件中移除 --ignore_last_failover
-$&gt; nohup masterha_manager --conf=/etc/mha/app1.cnf --remove_dead_master_conf --ignore_last_failover &lt; /dev/null &gt; /var/log/mha/app1/manager.log 2&gt;&amp;1 &amp;
+$> nohup masterha_manager --conf=/etc/mha/app1.cnf --remove_dead_master_conf --ignore_last_failover < /dev/null > /var/log/mha/app1/manager.log 2>&1 &
 
 # 查看MHA状态
-$&gt; masterha_check_status --conf=/etc/mha/app1.cnf 
+$> masterha_check_status --conf=/etc/mha/app1.cnf 
 
 ```
 
@@ -144,7 +144,7 @@ $&gt; masterha_check_status --conf=/etc/mha/app1.cnf
 # MHA binlongserver 
 ```bash
 # 1. binlogserver配置，要求一台额外的机器，mysql 5.6以上，支持gtid并开启, 其作用是用于同步主库的binlog内容
-$&gt; vim /etc/mha/app1.cnf 
+$> vim /etc/mha/app1.cnf 
 # 必须叫这个名字binlog1，是MHA定义好的 
 [binlog1]
 # 永远不会被选主
@@ -156,15 +156,15 @@ master_binlog_dir=/data/mysqldb/binlog-server
 
 
 # 2. 配置节点创建对应目录(权限)
-$&gt; mkdir -p /data/mysqldb/binlog-server
+$> mkdir -p /data/mysqldb/binlog-server
 
 # 3. 拉取主库的binlog日志,先确认下主库是从多少开始的  show binary logs; 需全部拉取下来
 # binlog拉取本身和mha没什么关系，但需要在mha启动是前处理好，否这mha将无法正常启动 
-$&gt; cd /data/mysqldb/binlog-server &amp;&amp; mysqlbinlog -R --host=10.0.2.26 --user=mha --password=mha --raw --stop-never mysql-bin.000001 &amp;
+$> cd /data/mysqldb/binlog-server && mysqlbinlog -R --host=10.0.2.26 --user=mha --password=mha --raw --stop-never mysql-bin.000001 &
 
 # 4. 重启mha 
-$&gt; masterha_stop --conf=/etc/mha/app1.cnf 
-$&gt; nohup masterha_manager --conf=/etc/mha/app1.cnf --remove_dead_master_conf --ignore_last_failover &lt; /dev/null &gt; /var/log/mha/app1/manager.log 2&gt;&amp;1 &amp; 
+$> masterha_stop --conf=/etc/mha/app1.cnf 
+$> nohup masterha_manager --conf=/etc/mha/app1.cnf --remove_dead_master_conf --ignore_last_failover < /dev/null > /var/log/mha/app1/manager.log 2>&1 & 
 
 # 5. 故障演示 
 # 主库宕机，binlogserver自动停止，manager也会自动停止
@@ -180,10 +180,10 @@ $&gt; nohup masterha_manager --conf=/etc/mha/app1.cnf --remove_dead_master_conf 
 mha提供了vip接口,使用脚本自己实现，源码包中也提供了模板(perl，看不懂，找的这个虽然也是perl的)，配置文件`/etc/mha/app1.cnf`中`[server default]`下添加`master_ip_failover_script=/usr/local/bin/master_ip_failover` , 然后在主库上，手动生成第一个vip地址`ip addr add 10.0.2.8/24 dev eth0 `,以下为脚本内容 
 
 ```pl
-$&gt; vim  /usr/local/bin/master_ip_failover  # 注意执行权限 
+$> vim  /usr/local/bin/master_ip_failover  # 注意执行权限 
 #!/usr/bin/env perl
 use strict;
-use warnings FATAL =&gt; &#39;all&#39;;
+use warnings FATAL => 'all';
 
 use Getopt::Long;
 
@@ -192,52 +192,52 @@ my (
     $orig_master_port, $new_master_host, $new_master_ip,    $new_master_port
 );
 
-my $vip = &#39;10.0.2.8/24&#39;;  # Virtual IP
+my $vip = '10.0.2.8/24';  # Virtual IP
 
 # 通过ip绑定的ifconfig 无法查看到
-my $ssh_start_vip = &#34;/sbin/ip addr add $vip dev eth0&#34;;
-my $ssh_stop_vip = &#34;/sbin/ip addr del $vip dev eth0&#34;;  # 
+my $ssh_start_vip = "/sbin/ip addr add $vip dev eth0";
+my $ssh_stop_vip = "/sbin/ip addr del $vip dev eth0";  # 
 
-# my $key = &#34;1&#34;;
-# my $ssh_start_vip = &#34;/sbin/ifconfig eth0:$key $vip&#34;;
-# my $ssh_stop_vip = &#34;/sbin/ifconfig eth0:$key down&#34;;
+# my $key = "1";
+# my $ssh_start_vip = "/sbin/ifconfig eth0:$key $vip";
+# my $ssh_stop_vip = "/sbin/ifconfig eth0:$key down";
 
-$ssh_user = &#34;root&#34;;
+$ssh_user = "root";
 GetOptions(
-    &#39;command=s&#39;          =&gt; \$command,
-    &#39;ssh_user=s&#39;         =&gt; \$ssh_user,
-    &#39;orig_master_host=s&#39; =&gt; \$orig_master_host,
-    &#39;orig_master_ip=s&#39;   =&gt; \$orig_master_ip,
-    &#39;orig_master_port=i&#39; =&gt; \$orig_master_port,
-    &#39;new_master_host=s&#39;  =&gt; \$new_master_host,
-    &#39;new_master_ip=s&#39;    =&gt; \$new_master_ip,
-    &#39;new_master_port=i&#39;  =&gt; \$new_master_port,
+    'command=s'          => \$command,
+    'ssh_user=s'         => \$ssh_user,
+    'orig_master_host=s' => \$orig_master_host,
+    'orig_master_ip=s'   => \$orig_master_ip,
+    'orig_master_port=i' => \$orig_master_port,
+    'new_master_host=s'  => \$new_master_host,
+    'new_master_ip=s'    => \$new_master_ip,
+    'new_master_port=i'  => \$new_master_port,
 );
 
-exit &amp;main();
+exit &main();
 
 sub main {
 
-    print &#34;\n\nIN SCRIPT TEST====$ssh_stop_vip==$ssh_start_vip===\n\n&#34;;
+    print "\n\nIN SCRIPT TEST====$ssh_stop_vip==$ssh_start_vip===\n\n";
 
-    if ( $command eq &#34;stop&#34; || $command eq &#34;stopssh&#34; ) {
+    if ( $command eq "stop" || $command eq "stopssh" ) {
 
         # $orig_master_host, $orig_master_ip, $orig_master_port are passed.
         # If you manage master ip address at global catalog database,
         # invalidate orig_master_ip here.
         my $exit_code = 1;
         eval {
-            print &#34;Disabling the VIP on old master: $orig_master_host \n&#34;;
-            &amp;stop_vip();
+            print "Disabling the VIP on old master: $orig_master_host \n";
+            &stop_vip();
             $exit_code = 0;
         };
         if ($@) {
-            warn &#34;Got Error: $@\n&#34;;
+            warn "Got Error: $@\n";
             exit $exit_code;
         }
         exit $exit_code;
     }
-    elsif ( $command eq &#34;start&#34; ) {
+    elsif ( $command eq "start" ) {
 
         # all arguments are passed.
         # If you manage master ip address at global catalog database,
@@ -245,8 +245,8 @@ sub main {
         # You can also grant write access (create user, set read_only=0, etc) here.
         my $exit_code = 10;
         eval {
-            print &#34;Enabling the VIP - $vip on the new master - $new_master_host \n&#34;;
-            &amp;start_vip();
+            print "Enabling the VIP - $vip on the new master - $new_master_host \n";
+            &start_vip();
             $exit_code = 0;
         };
         if ($@) {
@@ -255,29 +255,29 @@ sub main {
         }
         exit $exit_code;
     }
-    elsif ( $command eq &#34;status&#34; ) {
-        print &#34;Checking the Status of the script.. OK \n&#34;;
-        `ssh $ssh_user\@cluster1 \&#34; $ssh_start_vip \&#34;`;
+    elsif ( $command eq "status" ) {
+        print "Checking the Status of the script.. OK \n";
+        `ssh $ssh_user\@cluster1 \" $ssh_start_vip \"`;
         exit 0;
     }
     else {
-        &amp;usage();
+        &usage();
         exit 1;
     }
 }
 
 # A simple system call that enable the VIP on the new master
 sub start_vip() {
-    `ssh $ssh_user\@$new_master_host \&#34; $ssh_start_vip \&#34;`;
+    `ssh $ssh_user\@$new_master_host \" $ssh_start_vip \"`;
 }
 # A simple system call that disable the VIP on the old_master
 sub stop_vip() {
-    `ssh $ssh_user\@$orig_master_host \&#34; $ssh_stop_vip \&#34;`;
+    `ssh $ssh_user\@$orig_master_host \" $ssh_stop_vip \"`;
 }
 
 sub usage {
     print
-    &#34;Usage: master_ip_failover --command=start|stop|stopssh|status --orig_master_host=host --orig_master_ip=ip --orig_master_port=port --new_master_host=host --new_master_ip=ip --new_master_port=port\n&#34;;
+    "Usage: master_ip_failover --command=start|stop|stopssh|status --orig_master_host=host --orig_master_ip=ip --orig_master_port=port --new_master_host=host --new_master_ip=ip --new_master_port=port\n";
 }
 ```
 

@@ -14,12 +14,12 @@
 
 
 - 查看字符集默认校验规则 
-`SELECT c.CHARACTER_SET_NAME ,c.COLLATION_NAME FROM INFORMATION_SCHEMA.COLLATIONS c WHERE c.IS_DEFAULT  = &#39;yes&#39;;`
+`SELECT c.CHARACTER_SET_NAME ,c.COLLATION_NAME FROM INFORMATION_SCHEMA.COLLATIONS c WHERE c.IS_DEFAULT  = 'yes';`
 
 - 利用`CONCAT`拼接逐表备份语句
 ```sql
-select concat(&#34;mysqldump -uroot --default-character-set=utf8mb4 --single-transaction -R -E &#34; ,t.TABLE_SCHEMA ,&#34; &#34;,t.TABLE_NAME ,&#34; | gzip &gt; /data/backup/&#34;,t.TABLE_SCHEMA ,&#34;_&#34; ,date_format(now(),&#39;%Y%m%d%k%i&#39;) ,&#34;/&#34; ,t.TABLE_NAME ,&#34;.sql.gz&#34;) from information_schema.TABLES t where t.TABLE_SCHEMA = &#39;mysql&#39; into outfile &#39;/tmp/mysql.sql&#39; ;
--- into outfile &#39;/tmp/mysql.sql&#39; 
+select concat("mysqldump -uroot --default-character-set=utf8mb4 --single-transaction -R -E " ,t.TABLE_SCHEMA ," ",t.TABLE_NAME ," | gzip > /data/backup/",t.TABLE_SCHEMA ,"_" ,date_format(now(),'%Y%m%d%k%i') ,"/" ,t.TABLE_NAME ,".sql.gz") from information_schema.TABLES t where t.TABLE_SCHEMA = 'mysql' into outfile '/tmp/mysql.sql' ;
+-- into outfile '/tmp/mysql.sql' 
 -- 需设置安全路径 /etc/my.cnf:[mysqld] secure-file-priv=/tmp ,重启 
 ```
 
@@ -30,12 +30,12 @@ select table_schema,count(table_name) from `TABLES` group by table_schema;
 
 - 统计某个库下的所有表的行数(监控)  
 ```sql
-select table_name,table_rows from tables where table_schema=&#39;zabbix&#39;
+select table_name,table_rows from tables where table_schema='zabbix'
 ```
 
 - 统计某个数据库的数据量 
 ```sql
-select table_schema,sum(avg_row_length*table_rows&#43;index_length)/1024/1024 as size_mb from information_schema.tables group by table_schema;
+select table_schema,sum(avg_row_length*table_rows+index_length)/1024/1024 as size_mb from information_schema.tables group by table_schema;
 
 SELECT TABLE_SCHEMA, SUM(DATA_LENGTH)/1024/1024 as size_mb FROM TABLES GROUP BY TABLE_SCHEMA;
 ```

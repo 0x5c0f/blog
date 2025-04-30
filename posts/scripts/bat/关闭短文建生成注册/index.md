@@ -5,7 +5,7 @@
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\FileSystem]
-&#34;NtfsDisable8dot3NameCreation&#34;=dword:00000001
+"NtfsDisable8dot3NameCreation"=dword:00000001
 ```
 
 

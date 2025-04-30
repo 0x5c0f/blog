@@ -2,7 +2,7 @@
 
 
 # java 日期格式化处理组件 
-{{&lt; highlight java &gt;}}
+{{< highlight java >}}
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,19 +28,19 @@ public class TimeUtil s {
             Date time;
             SimpleDateFormat format;
             String strtime;         
-             if (intDate &gt; 0) {
+             if (intDate > 0) {
                    try {
                          long c_unix_time2 = intDate;
                         time = new Date();
                         time.setTime(c_unix_time2 * 1000);
-                        format = new SimpleDateFormat(&#34;yyyy-MM-dd HH:mm:ss&#34;, Locale.getDefault());
+                        format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
                         strtime = format.format(time);
                   } catch (Exception ex) {
-                        strtime = &#34;&#34;;
+                        strtime = "";
                         ex.printStackTrace();
                   }
             } else {
-                  strtime = &#34;&#34;;
+                  strtime = "";
             }
              return strtime;
       }
@@ -55,7 +55,7 @@ public class TimeUtil s {
             Date time;
             SimpleDateFormat format;
             String strtime;         
-             if (intDate &gt; 0) {
+             if (intDate > 0) {
                    try {
                          long c_unix_time2 = intDate;
                         time = new Date();
@@ -66,15 +66,15 @@ public class TimeUtil s {
                         }
                          else
                         {
-                              format = new SimpleDateFormat(&#34;yyyy-MM-dd HH:mm:ss&#34;, Locale.getDefault());
+                              format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
                         }
                         strtime = format.format(time);
                   } catch (Exception ex) {
-                        strtime = &#34;&#34;;
+                        strtime = "";
                         ex.printStackTrace();
                   }
             } else {
-                  strtime = &#34;&#34;;
+                  strtime = "";
             }
              return strtime;
       }
@@ -89,19 +89,19 @@ public class TimeUtil s {
             Date time;
             SimpleDateFormat format;
             String strtime;               
-             if (intDate &gt; 0) {
+             if (intDate > 0) {
                    try {
                          long c_unix_time2 = intDate;
                         time = new Date();
                         time.setTime(c_unix_time2 * 1000);
-                        format = new SimpleDateFormat(&#34;yyyy-MM-dd&#34; , Locale.getDefault());
+                        format = new SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault());
                         strtime = format.format(time);
                   } catch (Exception ex) {
-                        strtime = &#34;&#34;;
+                        strtime = "";
                         ex.printStackTrace();
                   }
             } else {
-                  strtime = &#34;&#34;;
+                  strtime = "";
             }
              return strtime;
       }
@@ -117,7 +117,7 @@ public class TimeUtil s {
             Date time = new Date();
             SimpleDateFormat format;
             String strtime;   
-             if (intDate &gt; 0)
+             if (intDate > 0)
             {
                    try {
                          long c_unix_time2 = intDate;
@@ -125,11 +125,11 @@ public class TimeUtil s {
                         format = new SimpleDateFormat(_format, Locale.getDefault());
                         strtime = format.format(time);
                   } catch (Exception ex) {
-                        strtime = &#34;&#34;;
+                        strtime = "";
                         ex.printStackTrace();
                   }
             } else {
-                  strtime = &#34;&#34;;
+                  strtime = "";
             }
              return strtime;
       }
@@ -141,7 +141,7 @@ public class TimeUtil s {
        */
        public static Date formatIntToDate(long intDate) {
             Date time = new Date();
-             if(intDate&gt;0){
+             if(intDate>0){
                   time.setTime(intDate * 1000);
             }
              return time;
@@ -154,10 +154,10 @@ public class TimeUtil s {
        */
        public static Date formatStringToDate(String strDate) {
             SimpleDateFormat format;
-             if (strDate.trim().equals(&#34;&#34; ))
+             if (strDate.trim().equals("" ))
                    return null ;
              try {
-                  format = new SimpleDateFormat(&#34;yyyy-MM-dd HH:mm:ss&#34; , Locale
+                  format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss" , Locale
                               . getDefault());
                    return format.parse(strDate);
             } catch (Exception ex) {
@@ -171,10 +171,10 @@ public class TimeUtil s {
        */
        public static Date formatStrToDate(String strDate) {
             SimpleDateFormat format;
-             if (strDate.trim().equals(&#34;&#34; ))
+             if (strDate.trim().equals("" ))
                    return null ;
              try {
-                  format = new SimpleDateFormat(&#34;yyyy-MM-dd&#34; , Locale
+                  format = new SimpleDateFormat("yyyy-MM-dd" , Locale
                               . getDefault());
                    return format.parse(strDate);
             } catch (Exception ex) {
@@ -204,16 +204,16 @@ public class TimeUtil s {
        public static long formatDateStringToInt(String strDate) {
             SimpleDateFormat format;
             Date time;
-             if (strDate.trim().equals(&#34;&#34; ))
+             if (strDate.trim().equals("" ))
                    return -1;
-            String strAry[] = strDate.split( &#34;:&#34;);
-             if (strAry.length &gt; 1)
-                  format = new SimpleDateFormat(&#34;yyyy-MM-dd HH:mm:ss&#34; , Locale
+            String strAry[] = strDate.split( ":");
+             if (strAry.length > 1)
+                  format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss" , Locale
                               . getDefault());
              else
-                  format = new SimpleDateFormat(&#34;yyyy-MM-dd&#34; , Locale.getDefault());
+                  format = new SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault());
              try {
-                  time = format.parse(strDate &#43; &#34;:00&#34;);
+                  time = format.parse(strDate + ":00");
                    return time.getTime() / 1000;
             } catch (Exception e) {
                    return -1;
@@ -243,10 +243,10 @@ public class TimeUtil s {
        * @return String 字符串时间
        */
        public static String formatLongDateToString(Date p_date) {
-            String strtime = &#34;&#34;;
+            String strtime = "";
             SimpleDateFormat format;
-             if (formatDateToInt(p_date) &gt; 0) {
-                  format = new SimpleDateFormat(&#34;yyyy-MM-dd HH:mm:ss&#34; , Locale
+             if (formatDateToInt(p_date) > 0) {
+                  format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss" , Locale
                               . getDefault());
                   strtime = format.format(p_date);
             }
@@ -259,9 +259,9 @@ public class TimeUtil s {
        * @return String 字符串时间
        */
        public static String formatShortDateToString(Date p_date) {
-            String strtime = &#34;&#34;;
+            String strtime = "";
             SimpleDateFormat format;
-            format = new SimpleDateFormat(&#34;yyyy-MM-dd&#34; , Locale.getDefault());
+            format = new SimpleDateFormat("yyyy-MM-dd" , Locale.getDefault());
             strtime = format.format(p_date);
              return strtime;
       }
@@ -272,7 +272,7 @@ public class TimeUtil s {
        * @return String 字符串时间
        */
        public static String getCurrentDate(String format) {
-            String currentDate = &#34;&#34;;
+            String currentDate = "";
              try {
                   Calendar calendar = Calendar. getInstance();
                   SimpleDateFormat simpleDateFormat;
@@ -280,7 +280,7 @@ public class TimeUtil s {
                   simpleDateFormat = new SimpleDateFormat(format);
                   currentDate = simpleDateFormat.format(date);
             } catch (Exception e) {
-                  currentDate = &#34;&#34;;
+                  currentDate = "";
             }
              return currentDate;
  
@@ -324,7 +324,7 @@ public class TimeUtil s {
        public static int getMonthOfDate(java.util .Date p_date) {
             java. util.Calendar c = java.util .Calendar.getInstance();
             c.setTime(p_date);
-             return c.get(java.util.Calendar. MONTH) &#43; 1;
+             return c.get(java.util.Calendar. MONTH) + 1;
       }
       
        /**
@@ -342,11 +342,11 @@ public class TimeUtil s {
        * 比较两个字符串时间相差的年数,只要年份不同，不到一年的，返回一年
        * @param startTime 一个源时间数据(格式要求： yyyy- MM-dd hh:mm 或 yyyy- MM-dd hh:mm:ss)
        * @param endTime 一个目标时间数据(格式要求： yyyy- MM-dd hh:mm 或 yyyy- MM-dd hh:mm:ss)
-       * @return 如果endTime&gt;startTime返回正整数,否则返回负整数,相等则返回0
+       * @return 如果endTime>startTime返回正整数,否则返回负整数,相等则返回0
        */
        public static long yearBetween(String startTime, String endTime) {
              long distanceYear = 0;
-            String[] date = dateBetween(startTime,endTime).split(&#34;:&#34;);
+            String[] date = dateBetween(startTime,endTime).split(":");
              if (date.length != 6) {
                    int year = Integer.parseInt(date[0]);
                   distanceYear = year;
@@ -358,15 +358,15 @@ public class TimeUtil s {
        * 比较两个字符串时间相差的月数
        * @param startTime 一个源时间数据(格式要求： yyyy- MM-dd hh:mm 或 yyyy- MM-dd hh:mm:ss)
        * @param endTime 一个目标时间数据(格式要求： yyyy- MM-dd hh:mm 或 yyyy- MM-dd hh:mm:ss)
-       * @return 如果endTime&gt;startTime返回正整数,否则返回负整数,相等则返回0
+       * @return 如果endTime>startTime返回正整数,否则返回负整数,相等则返回0
        */
        public static long monthBetween(String startTime, String endTime) {
              long distanceDay = 0;
-            String[] date = dateBetween(startTime,endTime).split(&#34;:&#34;);
+            String[] date = dateBetween(startTime,endTime).split(":");
              if(date.length == 6){
                    int year = Integer.parseInt(date[0]);
                    int month = Integer.parseInt(date[1]);
-                  distanceDay = year*12&#43;month;
+                  distanceDay = year*12+month;
             }
              return distanceDay;
       }
@@ -375,13 +375,13 @@ public class TimeUtil s {
        * 比较两个字符串时间相差的天数
        * @param startTime 一个源时间数据(格式要求： yyyy- MM-dd hh:mm 或 yyyy- MM-dd hh:mm:ss)
        * @param endTime 一个目标时间数据(格式要求： yyyy- MM-dd hh:mm 或 yyyy- MM-dd hh:mm:ss)
-       * @return  如果endTime&gt;startTime返回正整数,否则返回负整数,相等则返回0
+       * @return  如果endTime>startTime返回正整数,否则返回负整数,相等则返回0
        */
        public static long daysBetween(String startTime, String endTime) {
-            SimpleDateFormat format = new SimpleDateFormat(&#34;yyyy-MM-dd hh:mm:ss&#34;);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
              long distanceDay = 0;
              try {
-                   if (StringUtils. isNotBlank(startTime) &amp;&amp; StringUtils.isNotBlank(endTime)) {
+                   if (StringUtils. isNotBlank(startTime) && StringUtils.isNotBlank(endTime)) {
                         Date startDate = format.parse(startTime);
                         Date endDate = format.parse(endTime);
                         distanceDay = (endDate.getTime() - startDate.getTime())/(1000*60*60*24);
@@ -396,10 +396,10 @@ public class TimeUtil s {
        * 比较两个字符串时间相差的小时数
        * @param startTime 一个源数据时间(格式要求： yyyy- MM-dd hh:mm 或 yyyy- MM-dd hh:mm:ss)
        * @param endTime 一个目标数据时间(格式要求： yyyy- MM-dd hh:mm 或 yyyy- MM-dd hh:mm:ss)
-       * @return 返回两个时间相差的小时数,如果endTime&gt;startTime返回正整数,否则返回负整数,相等则返回0
+       * @return 返回两个时间相差的小时数,如果endTime>startTime返回正整数,否则返回负整数,相等则返回0
        */
        public static long timeBetween(String startTime, String endTime) {
-            SimpleDateFormat format = new SimpleDateFormat(&#34;yyyy-MM-dd hh:mm&#34;);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
              long distanceTime = 0;
              try {
                   Date startDate = format.parse(startTime);
@@ -423,10 +423,10 @@ public class TimeUtil s {
        * return 输出格式为 年:月:日:时:分:秒
        */    
        private static String dateBetween(String startTime, String endTime) {
-            String date = &#34;&#34;;
-            SimpleDateFormat format = new SimpleDateFormat(&#34;yyyy-MM-dd hh:mm&#34;);
+            String date = "";
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
              try {
-                   if (StringUtils. isNotBlank(startTime) &amp;&amp; StringUtils.isNotBlank(endTime)) {
+                   if (StringUtils. isNotBlank(startTime) && StringUtils.isNotBlank(endTime)) {
                         Date startDate = format.parse(startTime);
                         Date endDate = format.parse(endTime);
                          int year = endDate.getYear () - startDate.getYear();
@@ -435,7 +435,7 @@ public class TimeUtil s {
                          int hour = endDate.getHours()-startDate.getHours();
                          int minute = endDate.getMinutes() - startDate.getMinutes ();
                          int second = endDate.getSeconds() - startDate.getSeconds ();
-                        date = year &#43; &#34;:&#34; &#43; month &#43; &#34;:&#34; &#43; day &#43; &#34;:&#34; &#43; hour &#43; &#34;:&#34; &#43; minute &#43; &#34;:&#34; &#43; second;
+                        date = year + ":" + month + ":" + day + ":" + hour + ":" + minute + ":" + second;
                   }
             } catch (Exception e) {
                   e.printStackTrace();
@@ -447,7 +447,7 @@ public class TimeUtil s {
        * 两个字符串日期时间进行大小比较
        * @param src_time 源时间数据
        * @param dest_time 目标时间数据
-       * @return 如果dest_time&gt;src_time则返回true,否则返回false
+       * @return 如果dest_time>src_time则返回true,否则返回false
        */
        public static boolean timeCompare(String src_time, String dest_time,String _format) {
              boolean flag = false;
@@ -456,7 +456,7 @@ public class TimeUtil s {
                   Date start = format.parse(src_time);
                   Date end = format.parse(dest_time);
                    long time = (end.getTime() - start.getTime());
-                   if (time &gt; 0)
+                   if (time > 0)
                         flag = true;
             } catch (Exception e) {
                   e.printStackTrace();
@@ -475,14 +475,14 @@ public class TimeUtil s {
                    return 0;
             }
              int days = 0;
-            SimpleDateFormat sdf = new SimpleDateFormat(&#34;yyyy-MM-dd&#34; );
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd" );
              try {
                   Date sdate = sdf.parse(begin);
                   Date edate = sdf.parse(end);
                    long times = edate.getTime() - sdate.getTime();
                   days = ( int) (times / 86400000);// 24 * 60 * 60 * 1000 = 86400000
             } catch (Exception pe) {
-                   //log.warn(&#34;计算两个日期的时间发生异常，可能是日期的格式有错,请用 yyyy-MM-dd 格式&#34;);
+                   //log.warn("计算两个日期的时间发生异常，可能是日期的格式有错,请用 yyyy-MM-dd 格式");
                   pe.printStackTrace();
             }
              return days;
@@ -527,8 +527,8 @@ public class TimeUtil s {
      * @return
      */
        public static String getWeekday(String date) {// 必须yyyy-MM- dd
-            SimpleDateFormat sd = new SimpleDateFormat(&#34;yyyy-MM-dd&#34; );
-            SimpleDateFormat sdw = new SimpleDateFormat(&#34;E&#34; );
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd" );
+            SimpleDateFormat sdw = new SimpleDateFormat("E" );
             Date d = null;
              try {
                   d = sd.parse(date);
@@ -538,19 +538,19 @@ public class TimeUtil s {
              return sdw.format(d);
       }
        /**
-       * 将&#34;00:00:00&#34; 格式的时分秒转换成秒
+       * 将"00:00:00" 格式的时分秒转换成秒
        * @author yhg
        * @param date
        * @return
        */
        public static long getSecond(String date){
              long secondLong = 0;
-             if(date != null &amp;&amp; !&#34;&#34;.equals(date)){
-                  String[] timeStr = date.split( &#34;:&#34;);
+             if(date != null && !"".equals(date)){
+                  String[] timeStr = date.split( ":");
                    long hour= Integer.valueOf(timeStr[0]).intValue() * 3600;
                    long minute = Integer.valueOf(timeStr[1]).intValue() * 60;
                    long second = Integer.valueOf(timeStr[2]).intValue();
-                  secondLong = hour&#43;minute&#43;second;
+                  secondLong = hour+minute+second;
             }
              return secondLong;
           }
@@ -562,7 +562,7 @@ public class TimeUtil s {
        public static int getData(String data){
                 Calendar cal = Calendar. getInstance();  
                 cal.set(Calendar.YEAR ,Integer.parseInt (data.substring(0,4)));  
-                cal.set(Calendar.MONTH ,Integer.parseInt (data.substring(data.indexOf(&#34;-&#34; )&#43;1,data.length()))-1);  
+                cal.set(Calendar.MONTH ,Integer.parseInt (data.substring(data.indexOf("-" )+1,data.length()))-1);  
                 int maxDate = cal.getActualMaximum(Calendar.DATE); //当前月最大天数
                 return maxDate;
                
@@ -611,20 +611,20 @@ public class TimeUtil s {
             }
       }
        public void testTime(){
-            String strarttime = &#34;2010-11-01&#34;;
-               String endtime = &#34;2010-12-31&#34;;
+            String strarttime = "2010-11-01";
+               String endtime = "2010-12-31";
                int days = TimeUtils. getBetweenDays(strarttime, endtime);
-               DateFormat df = new SimpleDateFormat(&#34;yyyy-MM-dd&#34; );
-               Date dateTime = Time Utils.getDate (strarttime, &#34;yyyy-MM-dd&#34;);
+               DateFormat df = new SimpleDateFormat("yyyy-MM-dd" );
+               Date dateTime = Time Utils.getDate (strarttime, "yyyy-MM-dd");
                Calendar dateCal = Calendar. getInstance();
                dateCal.setTime(dateTime);
                int weeknum = 2;
-               for (int i = 1; i &lt;= days&#43;1; i&#43;&#43;) {
+               for (int i = 1; i <= days+1; i++) {
                      int dayOfWeek = dateCal.get(Calendar.DAY_OF_WEEK);
                      if(weeknum != 1){
                            if (dayOfWeek == Calendar.SUNDAY) {
-                                    i &#43;=  weeknum * 7;
-                                    dateCal.add(Calendar. DATE, weeknum * 7&#43;1);// 将日期设为下一天
+                                    i +=  weeknum * 7;
+                                    dateCal.add(Calendar. DATE, weeknum * 7+1);// 将日期设为下一天
                                     strarttime = df.format(dateCal.getTime());
                                      continue;
                               }
@@ -637,8 +637,8 @@ public class TimeUtil s {
        public static boolean isLastdayByMonth(String currenttime){
              boolean istrue = false;
             Date todate = formatStrToDate(currenttime);
-            Date secdate = new   Date(todate.getYear(),todate.getMonth (),todate.getDate()&#43;1);
-            istrue = secdate.getDate() &lt; 2 ? true : false;
+            Date secdate = new   Date(todate.getYear(),todate.getMonth (),todate.getDate()+1);
+            istrue = secdate.getDate() < 2 ? true : false;
              return istrue;
       }
       
@@ -650,7 +650,7 @@ public class TimeUtil s {
        public static int getMonthOfDate(Long dateTime) {
          java. util.Calendar c = java.util .Calendar.getInstance();
          c.setTimeInMillis(dateTime*1000);
-         return c.get( java.util.Calendar. MONTH ) &#43; 1;
+         return c.get( java.util.Calendar. MONTH ) + 1;
       }
       
        /**
@@ -684,25 +684,25 @@ public class TimeUtil s {
          return c.get( java.util.Calendar. HOUR_OF_DAY );
       }
        public static void main(String[] args){
-            String strarttime = &#34;2010-09-08&#34;;
-               String endtime = &#34;2010-12-31&#34;;
+            String strarttime = "2010-09-08";
+               String endtime = "2010-12-31";
                int days = TimeUtils. getBetweenDays(strarttime, endtime);
-               DateFormat df = new SimpleDateFormat(&#34;yyyy-MM-dd&#34; );
-               Date dateTime = Time Utils.getDate (strarttime, &#34;yyyy-MM-dd&#34;);
+               DateFormat df = new SimpleDateFormat("yyyy-MM-dd" );
+               Date dateTime = Time Utils.getDate (strarttime, "yyyy-MM-dd");
                Calendar dateCal = Calendar. getInstance();
                dateCal.setTime(dateTime);
                Calendar timeCal = Calendar. getInstance();
                int mnnum = 2;
                boolean istrue = false;
-               for (int i = 1; i &lt;= days&#43;1; i&#43;&#43;) {
+               for (int i = 1; i <= days+1; i++) {
                      istrue = isLastdayByMonth(strarttime);
                      if(mnnum != 1){
                            if (istrue) {
                                  String timeday = strarttime;
-                                 Date weekTime = TimeUtils.getDate(timeday, &#34;yyyy-MM-dd&#34; );
+                                 Date weekTime = TimeUtils.getDate(timeday, "yyyy-MM-dd" );
                                  timeCal.setTime(weekTime);
-                                  for(int k = 0;k&lt; mnnum;k&#43;&#43;){
-                                    i &#43;= getData(timeday.substring(0, 7));
+                                  for(int k = 0;k< mnnum;k++){
+                                    i += getData(timeday.substring(0, 7));
                                     timeCal.add(Calendar. MONTH, 1);// 将日期设为一个月
                                     timeday = df.format(timeCal.getTime());
                                   }
@@ -733,7 +733,7 @@ public class TimeUtil s {
                   Date end = formatIntToDate(ends);
                   String startStr = format.format(start);
                   String endStr = format.format(end);
-                  System. out.println(&#34;startStr=&#34; &#43; startStr &#43; &#34;,endStr=&#34; &#43; endStr);
+                  System. out.println("startStr=" + startStr + ",endStr=" + endStr);
                   Date tarS = format.parse(startStr);
                   Date tarE = format.parse(endStr);
                   flag = tarE.after(tarS);
@@ -755,8 +755,8 @@ public class TimeUtil s {
             Calendar cal1 = Calendar. getInstance();
             cal1.set(-4712, 0, 1, 0, 0, 0);
             cal1.add(Calendar. DATE, dateLong);
-            String tempDateString = cal1.get(Calendar. YEAR) &#43; &#34;-&#34; &#43; (String.format(&#34;%1$02d&#34;, cal1.get(Calendar. MONTH)&#43;1)) &#43; &#34;-&#34; &#43; String.format(&#34;%1$02d&#34;, cal1.get(Calendar. DAY_OF_MONTH));
-             return tempDateString &#43; &#34; 00:00:00&#34; ;
+            String tempDateString = cal1.get(Calendar. YEAR) + "-" + (String.format("%1$02d", cal1.get(Calendar. MONTH)+1)) + "-" + String.format("%1$02d", cal1.get(Calendar. DAY_OF_MONTH));
+             return tempDateString + " 00:00:00" ;
       }
       
        /**
@@ -770,14 +770,14 @@ public class TimeUtil s {
             Calendar cal = Calendar. getInstance();
             cal.set(-4712, 0, 1, 0, 0, 0);
             Calendar cal2 = Calendar. getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat(&#34;yyyy-MM-dd HH:mm:ss&#34;);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date d = sdf.parse(dateString);
             cal2.setTime(d);
-             long dif = (cal2.getTimeInMillis() - cal.getTimeInMillis())/(3600*24*1000)&#43;1;
+             long dif = (cal2.getTimeInMillis() - cal.getTimeInMillis())/(3600*24*1000)+1;
              return dif;
       }
 }
-{{&lt; /highlight &gt;}}
+{{< /highlight >}}
 
 ---
 

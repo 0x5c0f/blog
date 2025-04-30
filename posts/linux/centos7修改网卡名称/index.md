@@ -1,9 +1,9 @@
 # Centos7修改网卡名称
 
 
-{{&lt; admonition type=info open=true &gt;}}
+{{< admonition type=info open=true >}}
 CentOS 7的默认网卡和设备名称都是随机的，根据需要有时候需要修改网卡为以`eth`开头的。以下整理了两种比较靠谱的。  
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 
 ## 1. 安装过程中修改  

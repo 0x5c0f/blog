@@ -1,9 +1,9 @@
 # Vsftpd安装配置
 
 
-{{&lt; admonition type=note title=&#34;&#34; open=true &gt;}}
+{{< admonition type=note title="" open=true >}}
 文章于最后提交日修改过一次，但没有测试，不知道有没有改错   
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 包含虚拟用户和本地用户配置，另还有一个[`pure-ftp`](#1),据说配置便捷不过没有用过  
 此篇内容就是完全的一个个人记录了，其他人估计是看不懂的。  
@@ -27,7 +27,7 @@
 完毕！
 
 [root@00 vsftpd]# cp -v /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.default 
-[root@00 vsftpd]# grep -v &#34;#&#34; /etc/vsftpd/vsftpd.conf.default &gt;/etc/vsftpd/vsftpd.conf # 清空文件注释 此步骤可以不做
+[root@00 vsftpd]# grep -v "#" /etc/vsftpd/vsftpd.conf.default >/etc/vsftpd/vsftpd.conf # 清空文件注释 此步骤可以不做
 ```
 
 ### 1.1.1. 创建虚拟用户配置文件
@@ -94,18 +94,18 @@ anon_other_write_enable=YES
 ### 1.1.4. 修改selinux安全上下文(如果关闭selinux 忽略此步)
 ```bash
 [root@00 vsftpd]# getsebool -a|grep ftp
-ftpd_anon_write --&gt; off
-ftpd_connect_all_unreserved --&gt; off
-ftpd_connect_db --&gt; off
-ftpd_full_access --&gt; off
-ftpd_use_cifs --&gt; off
-ftpd_use_fusefs --&gt; off
-ftpd_use_nfs --&gt; off
-ftpd_use_passive_mode --&gt; off
-httpd_can_connect_ftp --&gt; off
-httpd_enable_ftp_server --&gt; off
-tftp_anon_write --&gt; off
-tftp_home_dir --&gt; off
+ftpd_anon_write --> off
+ftpd_connect_all_unreserved --> off
+ftpd_connect_db --> off
+ftpd_full_access --> off
+ftpd_use_cifs --> off
+ftpd_use_fusefs --> off
+ftpd_use_nfs --> off
+ftpd_use_passive_mode --> off
+httpd_can_connect_ftp --> off
+httpd_enable_ftp_server --> off
+tftp_anon_write --> off
+tftp_home_dir --> off
 [root@00 vsftpd]# setsebool -P ftpd_full_access=on  
 ```
 ### 1.1.5. 取消防火墙对于ftp的限制(firewalld ，iptables 请自行参考相关配置) 
@@ -145,7 +145,7 @@ Loading mirror speeds from cached hostfile
             
 完毕！
 [root@cloud ~]# mv /etc/vsftpd/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak  #情况文件注释 此步骤可以不做
-[root@cloud ~]# grep -v &#34;#&#34; /etc/vsftpd/vsftpd.conf.bak &gt;/etc/vsftpd/vsftpd.conf # 清空文件注释 此步骤可以不做 
+[root@cloud ~]# grep -v "#" /etc/vsftpd/vsftpd.conf.bak >/etc/vsftpd/vsftpd.conf # 清空文件注释 此步骤可以不做 
 ```
 
 ### 2.1.1. 修改配置文件
@@ -173,18 +173,18 @@ tcp_wrappers=YES                  #限制访问（/etc/hosts.allow,/etc/hosts.de
 ### 2.1.2. 修改selinux安全上下文，关闭的就不用管他了
 ```bash
 [root@cloud vsftpd]# getsebool -a|grep ftp
-ftpd_anon_write --&gt; off
-ftpd_connect_all_unreserved --&gt; off
-ftpd_connect_db --&gt; off
-ftpd_full_access --&gt; off
-ftpd_use_cifs --&gt; off
-ftpd_use_fusefs --&gt; off
-ftpd_use_nfs --&gt; off
-ftpd_use_passive_mode --&gt; off
-httpd_can_connect_ftp --&gt; off
-httpd_enable_ftp_server --&gt; off
-tftp_anon_write --&gt; off
-tftp_home_dir --&gt; off
+ftpd_anon_write --> off
+ftpd_connect_all_unreserved --> off
+ftpd_connect_db --> off
+ftpd_full_access --> off
+ftpd_use_cifs --> off
+ftpd_use_fusefs --> off
+ftpd_use_nfs --> off
+ftpd_use_passive_mode --> off
+httpd_can_connect_ftp --> off
+httpd_enable_ftp_server --> off
+tftp_anon_write --> off
+tftp_home_dir --> off
 [root@cloud vsftpd]# setsebool -P ftpd_full_access=on   
 ```
 
@@ -207,7 +207,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/vsftpd.service → /
 
 # 3. 此处记录下pure-ftp的相关信息,以备查验  
 
-&gt; [https://github.com/jedisct1/pure-ftpd](https://github.com/jedisct1/pure-ftpd)  
+> [https://github.com/jedisct1/pure-ftpd](https://github.com/jedisct1/pure-ftpd)  
 
 ## 3.1. 编译参数 
 ```
@@ -233,7 +233,7 @@ PureFTPd有很多的编译配置选项，下面就列出部分主要的配置
 --with-nonroot          普通模式或者说是限制模式. 如果你在该服务器上没有root权限
 那只有启用该项
 --with-peruserlimits    支持每个用户的并发限制
---with-language =        语言支持&lt; english | traditional-chinese | simplified-chinese&gt; 
+--with-language =        语言支持< english | traditional-chinese | simplified-chinese> 
 --with-ldap             在LDAP目录中提供用户数据库
 --with-mysql            在MySQL数据库中存放用户数据
 --with-pgsql            在PostgreSQL数据库中存放用户数据
@@ -245,7 +245,7 @@ PureFTPd有很多的编译配置选项，下面就列出部分主要的配置
 
 ChrootEveryone yes
  
-# 如果前一个指令被设置为了 &#34;no&#34;，下面组的成员(GID)就不受主目录的限制了。而其他的用户还是
+# 如果前一个指令被设置为了 "no"，下面组的成员(GID)就不受主目录的限制了。而其他的用户还是
 # 会被限制在自己的主目录里。如果你不想把任何用户限制在自己的主目录里，只要注释掉 ChrootEveryone
 # 和 TrustedGID 就可以了。
 
@@ -267,12 +267,12 @@ Daemonize yes
 
 MaxClientsPerIP 8
 
-# 如果你要记录所有的客户命令，设置这个指令为 &#34;yes&#34;。
+# 如果你要记录所有的客户命令，设置这个指令为 "yes"。
 # This directive can be duplicated to also log server responses.
 
 VerboseLog no
 
-# 即使客户端没有发送 &#39;-a&#39; 选项也列出隐藏文件( dot-files )。
+# 即使客户端没有发送 '-a' 选项也列出隐藏文件( dot-files )。
 
 DisplayDotFiles yes
 
@@ -285,7 +285,7 @@ AnonymousOnly no
 NoAnonymous no
 
 # Syslog facility (auth, authpriv, daemon, ftp, security, user, local*)
-# 缺省的功能( facility )是 &#34;ftp&#34;。 &#34;none&#34; 将禁止日志。
+# 缺省的功能( facility )是 "ftp"。 "none" 将禁止日志。
 
 SyslogFacility ftp
 
@@ -294,7 +294,7 @@ SyslogFacility ftp
 # FortunesFile /usr/share/fortune/zippy
 
 # 在日志文件中不解析主机名。日志没那么详细的话，就使用更少的带宽。在一个访问量很大 
-# 的站点中，设置这个指令为 &#34;yes&#34; ，如果你没有一个能工作的DNS的话。
+# 的站点中，设置这个指令为 "yes" ，如果你没有一个能工作的DNS的话。
 
 DontResolve yes
 
@@ -337,7 +337,7 @@ MaxIdleTime 15
 # 为密码错误而使 SQL 认证失败的话，认证就会在此结束了。认证方式由它们被给出来的顺序而被链
 # 接了起来。
 
-# &#39;ls&#39; 命令的递归限制。第一个参数给出文件显示的最大数目。第二个参数给出最大的子目录深度。
+# 'ls' 命令的递归限制。第一个参数给出文件显示的最大数目。第二个参数给出最大的子目录深度。
 
 LimitRecursion 2000 8
 
@@ -368,7 +368,7 @@ MaxLoad 4
 
 # UserRatio 1 10
 
-# 不接受所有者为 &#34;ftp&#34; 的文件的下载。例如：那些匿名用户上传后未被本地管理员验证的文件。
+# 不接受所有者为 "ftp" 的文件的下载。例如：那些匿名用户上传后未被本地管理员验证的文件。
 
 AntiWarez yes
 
@@ -389,7 +389,7 @@ ClientCharset gbk
 
 # UserBandwidth 8
 
-# 新建目录及文件的属性掩码值。&lt;文件掩码&gt;;:&lt;目录掩码&gt;; .
+# 新建目录及文件的属性掩码值。<文件掩码>;:<目录掩码>; .
 # 177:077 if you feel paranoid.
 
 Umask 133:022
@@ -406,12 +406,12 @@ AllowUserFXP yes
 
 AllowAnonymousFXP no
 
-# 用户不能删除和写点文件（文件名以 &#39;.&#39; 开头的文件），即使用户是文件的所有者也不行。
+# 用户不能删除和写点文件（文件名以 '.' 开头的文件），即使用户是文件的所有者也不行。
 # 如果 TrustedGID 指令是 enabled ，文件所属组用户能够访问点文件(dot-files)。
 
 ProhibitDotFilesWrite no
 
-# 禁止读点文件（文件名以 &#39;.&#39; 开头的文件） (.history, .ssh...)
+# 禁止读点文件（文件名以 '.' 开头的文件） (.history, .ssh...)
 
 ProhibitDotFilesRead no
 
@@ -435,7 +435,7 @@ AnonymousCantUpload no
 # LogPID yes
 
 # 使用类似于Apache的格式创建一个额外的日志文件，如：
-# fw.c9x.org - jedi [13/Dec/1975] &#34;GET /ftp/linux.tar.bz2&#34; 200 21809338
+# fw.c9x.org - jedi [13/Dec/1975] "GET /ftp/linux.tar.bz2" 200 21809338
 # 这个日志文件能被 www 流量分析器处理。
 
 # AltLog clf:/var/log/pureftpd.log
@@ -486,11 +486,11 @@ AnonymousCantUpload no
 
 MaxDiskUsage 99
 
-# 如果你不想要你的用户重命名文件的话，就设置为 &#39;yes&#39; 。
+# 如果你不想要你的用户重命名文件的话，就设置为 'yes' 。
 
 # NoRename yes
 
-# 是 &#39;customer proof&#39; : 工作区(workaround)反对普通的客户错误，类似于：&#39;chmod 0 public_html&#39; 的错误。
+# 是 'customer proof' : 工作区(workaround)反对普通的客户错误，类似于：'chmod 0 public_html' 的错误。
 # 那是一个有效的命令，不过，将导致无知的客户所定他们自己的文件，将使你的技术支持忙于愚蠢的的问题中。
 # 如果你确信你所有的用户都有基本的Unix知识的话，这个特性将没什么用了。不过，如果你是一个主机提供商
 # 的话，启用它。
@@ -499,7 +499,7 @@ CustomerProof yes
 
 # 每一个用户的并发限制。只有在添加了 --with-peruserlimits 编译选项进行编译后，这个指令才起
 # 作用。(大部分的二进制的发布版本就是例子)
-# 格式是 : &lt;每一个用户最大允许的进程&gt;;:&lt;最大的匿名用户进程&gt;;
+# 格式是 : <每一个用户最大允许的进程>;:<最大的匿名用户进程>;
 # 例如： 3:20 意思是同一个认证用户最大可以有3个同时活动的进程。而且同时最多只能有20个匿名用户进程。
 
 # PerUserLimits 3:20

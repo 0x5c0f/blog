@@ -1,7 +1,7 @@
 # IIS命令操作
 
 # 1. IIS 站点部署
-{{&lt; highlight batch &gt;}}
+{{< highlight batch >}}
 @echo off
 
 title Industrial belt project deployment script 
@@ -42,11 +42,11 @@ pause
   if errorlevel 1 goto Error
   
   echo Creating site for %%a
-  %AppCmd% add site /name:%%a /bindings:&#34;http://%%a:%BackPort%&#34; /physicalpath:%SitePath%\%%a
+  %AppCmd% add site /name:%%a /bindings:"http://%%a:%BackPort%" /physicalpath:%SitePath%\%%a
   if errorlevel 1 goto Error
   
   echo Associating application pool for %%a
-  %AppCmd% set site /site.name:%%a /[path=&#39;/&#39;].applicationPool:%%a
+  %AppCmd% set site /site.name:%%a /[path='/'].applicationPool:%%a
   if errorlevel 1 goto Error
 
   echo.
@@ -62,10 +62,10 @@ exit
 
 :End
 pause
-{{&lt; /highlight &gt;}}
+{{< /highlight >}}
 
 # 2. IIS 站点域名修改 
-{{&lt; highlight batch &gt;}}
+{{< highlight batch >}}
 @echo off
 
 title update site bind domain 
@@ -81,13 +81,13 @@ set NewDomainName=example.com
 :: set LogPath=D:/iislogs/
 :: /logfile.directory:%LogPath%
 
-%AppCmd% set SITE &#34;www.%DomainName%&#34; /bindings:&#34;http://www.%NewDomainName%:%BackPort%&#34;
-:: %AppCmd% set SITE &#34;www.%DomainName%&#34; /bindings:&#34;http://www.%NewDomainName%:%BackPort%,http://www.%NewDomainName%:%BackPort%&#34;
+%AppCmd% set SITE "www.%DomainName%" /bindings:"http://www.%NewDomainName%:%BackPort%"
+:: %AppCmd% set SITE "www.%DomainName%" /bindings:"http://www.%NewDomainName%:%BackPort%,http://www.%NewDomainName%:%BackPort%"
 
 echo The execution is complete, please check the execution result...
 
 pause
-{{&lt; /highlight &gt;}}
+{{< /highlight >}}
 
 ---
 

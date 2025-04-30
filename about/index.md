@@ -1,13 +1,13 @@
 # About
 
 
-&lt;!--more--&gt;
+<!--more-->
 
-&gt; 本站由[`Hugo`](https://gohugo.io/)强力驱动，使用**简洁**、**优雅**且**高效**的[`FixIt`](https://github.com/hugo-fixit/FixIt)博客主题
+> 本站由[`Hugo`](https://gohugo.io/)强力驱动，使用**简洁**、**优雅**且**高效**的[`FixIt`](https://github.com/hugo-fixit/FixIt)博客主题
 
 ## 又一天过去了，今天过得怎么样，梦想是不是更远了 ..   
 
-&lt;br/&gt;
+<br/>
 
 ```timeline {animation=true}
 events:
@@ -77,6 +77,6 @@ events:
 
 ---
 
-> 作者:   
+> 作者: <no value>  
 > URL: https://blog.0x5c0f.cc/about/  
 

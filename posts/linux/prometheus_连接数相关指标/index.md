@@ -1,11 +1,11 @@
 # Node-Exporter 连接数相关指标
 
 
-{{&lt; admonition type=quote title=&#34;以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接&#34; open=true &gt;}}
+{{< admonition type=quote title="以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接" open=true >}}
 
-&gt; [node-export中连接数相关指标](https://mutoulazy.github.io/2020/02/12/kubernetes/prometheus/node-export%E4%B8%AD%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87/#udp%E4%B8%8Eudp-lite%E7%9A%84%E5%8C%BA%E5%88%AB)
+> [node-export中连接数相关指标](https://mutoulazy.github.io/2020/02/12/kubernetes/prometheus/node-export%E4%B8%AD%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87/#udp%E4%B8%8Eudp-lite%E7%9A%84%E5%8C%BA%E5%88%AB)
 
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 # `TCP`相关指标
 | 名称                                   | 类型      | 单位    | 说明                                                                |

@@ -2,40 +2,40 @@
 
 
 # java 汉字和unicode互转 
-{{&lt; highlight java &gt;}}
+{{< highlight java >}}
 import java.io.UnsupportedEncodingException;
 public class UnicodeConverter {
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String s = &#34; \t小\u51AC&#34;;
-        System.out.println(&#34;Original:\t\t&#34; &#43; s);
+        String s = " \t小\u51AC";
+        System.out.println("Original:\t\t" + s);
         s = toEncodedUnicode(s, true);
-        System.out.println(&#34;to unicode:\t\t&#34; &#43; s);
+        System.out.println("to unicode:\t\t" + s);
         s = fromEncodedUnicode(s.toCharArray(), 0, s.length());
-        System.out.println(&#34;from unicode:\t&#34; &#43; s);
+        System.out.println("from unicode:\t" + s);
     }
     private static final char[] hexDigit = {
-        &#39;0&#39;,
-        &#39;1&#39;,
-        &#39;2&#39;,
-        &#39;3&#39;,
-        &#39;4&#39;,
-        &#39;5&#39;,
-        &#39;6&#39;,
-        &#39;7&#39;,
-        &#39;8&#39;,
-        &#39;9&#39;,
-        &#39;A&#39;,
-        &#39;B&#39;,
-        &#39;C&#39;,
-        &#39;D&#39;,
-        &#39;E&#39;,
-        &#39;F&#39;
+        '0',
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F'
     };
     private static char toHex(int nibble) {
-        return hexDigit[(nibble &amp; 0xF)];
+        return hexDigit[(nibble & 0xF)];
     }
     /**
-     * 将字符串编码成 Unicode 形式的字符串. 如 &#34;小&#34; to &#34;\u5c0f&#34;
+     * 将字符串编码成 Unicode 形式的字符串. 如 "小" to "\u5c0f"
      * Converts unicodes to encoded \\uxxxx and escapes
      * special characters with a preceding slash
      * 
@@ -48,60 +48,60 @@ public class UnicodeConverter {
     public static String toEncodedUnicode(String theString, boolean escapeSpace) {
         int len = theString.length();
         int bufLen = len * 2;
-        if (bufLen &lt; 0) {
+        if (bufLen < 0) {
             bufLen = Integer.MAX_VALUE;
         }
         StringBuffer outBuffer = new StringBuffer(bufLen);
-        for (int x = 0; x &lt; len; x&#43;&#43;) {
+        for (int x = 0; x < len; x++) {
             char aChar = theString.charAt(x);
             // Handle common case first, selecting largest block that
             // avoids the specials below
-            if ((aChar &gt; 61) &amp;&amp; (aChar &lt; 127)) {
-                if (aChar == &#39;\\&#39;) {
-                    outBuffer.append(&#39;\\&#39;);
-                    outBuffer.append(&#39;\\&#39;);
+            if ((aChar > 61) && (aChar < 127)) {
+                if (aChar == '\\') {
+                    outBuffer.append('\\');
+                    outBuffer.append('\\');
                     continue;
                 }
                 outBuffer.append(aChar);
                 continue;
             }
             switch (aChar) {
-                case &#39; &#39;:
-                    if (x == 0 || escapeSpace) outBuffer.append(&#39;\\&#39;);
-                    outBuffer.append(&#39; &#39;);
+                case ' ':
+                    if (x == 0 || escapeSpace) outBuffer.append('\\');
+                    outBuffer.append(' ');
                     break;
-                case &#39;\t&#39;:
-                    outBuffer.append(&#39;\\&#39;);
-                    outBuffer.append(&#39;t&#39;);
+                case '\t':
+                    outBuffer.append('\\');
+                    outBuffer.append('t');
                     break;
-                case &#39;\n&#39;:
-                    outBuffer.append(&#39;\\&#39;);
-                    outBuffer.append(&#39;n&#39;);
+                case '\n':
+                    outBuffer.append('\\');
+                    outBuffer.append('n');
                     break;
-                case &#39;\r&#39;:
-                    outBuffer.append(&#39;\\&#39;);
-                    outBuffer.append(&#39;r&#39;);
+                case '\r':
+                    outBuffer.append('\\');
+                    outBuffer.append('r');
                     break;
-                case &#39;\f&#39;:
-                    outBuffer.append(&#39;\\&#39;);
-                    outBuffer.append(&#39;f&#39;);
+                case '\f':
+                    outBuffer.append('\\');
+                    outBuffer.append('f');
                     break;
-                case &#39;=&#39;: // Fall through
-                case &#39;:&#39;: // Fall through
-                case &#39;#&#39;: // Fall through
-                case &#39;!&#39;:
-                    outBuffer.append(&#39;\\&#39;);
+                case '=': // Fall through
+                case ':': // Fall through
+                case '#': // Fall through
+                case '!':
+                    outBuffer.append('\\');
                     outBuffer.append(aChar);
                     break;
                 default:
-                    if ((aChar &lt; 0x0020) || (aChar &gt; 0x007e)) {
+                    if ((aChar < 0x0020) || (aChar > 0x007e)) {
                         // 每个unicode有16位，每四位对应的16进制从高位保存到低位
-                        outBuffer.append(&#39;\\&#39;);
-                        outBuffer.append(&#39;u&#39;);
-                        outBuffer.append(toHex((aChar &gt;&gt; 12) &amp; 0xF));
-                        outBuffer.append(toHex((aChar &gt;&gt; 8) &amp; 0xF));
-                        outBuffer.append(toHex((aChar &gt;&gt; 4) &amp; 0xF));
-                        outBuffer.append(toHex(aChar &amp; 0xF));
+                        outBuffer.append('\\');
+                        outBuffer.append('u');
+                        outBuffer.append(toHex((aChar >> 12) & 0xF));
+                        outBuffer.append(toHex((aChar >> 8) & 0xF));
+                        outBuffer.append(toHex((aChar >> 4) & 0xF));
+                        outBuffer.append(toHex(aChar & 0xF));
                     } else {
                         outBuffer.append(aChar);
                     }
@@ -110,7 +110,7 @@ public class UnicodeConverter {
         return outBuffer.toString();
     }
     /**
-     * 从 Unicode 形式的字符串转换成对应的编码的特殊字符串。 如 &#34;\u5c0f&#34; to &#34;小&#34;.
+     * 从 Unicode 形式的字符串转换成对应的编码的特殊字符串。 如 "\u5c0f" to "小".
      * Converts encoded \\uxxxx to unicode chars
      * and changes special saved chars to their original forms
      * 
@@ -128,70 +128,70 @@ public class UnicodeConverter {
         char aChar;
         char[] out = new char[len]; // 只短不长
         int outLen = 0;
-        int end = off &#43; len;
-        while (off &lt; end) {
-            aChar = in [off&#43;&#43;];
-            if (aChar == &#39;\\&#39;) {
-                aChar = in [off&#43;&#43;];
-                if (aChar == &#39;u&#39;) {
+        int end = off + len;
+        while (off < end) {
+            aChar = in [off++];
+            if (aChar == '\\') {
+                aChar = in [off++];
+                if (aChar == 'u') {
                     // Read the xxxx
                     int value = 0;
-                    for (int i = 0; i &lt; 4; i&#43;&#43;) {
-                        aChar = in [off&#43;&#43;];
+                    for (int i = 0; i < 4; i++) {
+                        aChar = in [off++];
                         switch (aChar) {
-                            case &#39;0&#39;:
-                            case &#39;1&#39;:
-                            case &#39;2&#39;:
-                            case &#39;3&#39;:
-                            case &#39;4&#39;:
-                            case &#39;5&#39;:
-                            case &#39;6&#39;:
-                            case &#39;7&#39;:
-                            case &#39;8&#39;:
-                            case &#39;9&#39;:
-                                value = (value &lt;&lt; 4) &#43; aChar - &#39;0&#39;;
+                            case '0':
+                            case '1':
+                            case '2':
+                            case '3':
+                            case '4':
+                            case '5':
+                            case '6':
+                            case '7':
+                            case '8':
+                            case '9':
+                                value = (value << 4) + aChar - '0';
                                 break;
-                            case &#39;a&#39;:
-                            case &#39;b&#39;:
-                            case &#39;c&#39;:
-                            case &#39;d&#39;:
-                            case &#39;e&#39;:
-                            case &#39;f&#39;:
-                                value = (value &lt;&lt; 4) &#43; 10 &#43; aChar - &#39;a&#39;;
+                            case 'a':
+                            case 'b':
+                            case 'c':
+                            case 'd':
+                            case 'e':
+                            case 'f':
+                                value = (value << 4) + 10 + aChar - 'a';
                                 break;
-                            case &#39;A&#39;:
-                            case &#39;B&#39;:
-                            case &#39;C&#39;:
-                            case &#39;D&#39;:
-                            case &#39;E&#39;:
-                            case &#39;F&#39;:
-                                value = (value &lt;&lt; 4) &#43; 10 &#43; aChar - &#39;A&#39;;
+                            case 'A':
+                            case 'B':
+                            case 'C':
+                            case 'D':
+                            case 'E':
+                            case 'F':
+                                value = (value << 4) + 10 + aChar - 'A';
                                 break;
                             default:
-                                throw new IllegalArgumentException(&#34;Malformed \\uxxxx encoding.&#34;);
+                                throw new IllegalArgumentException("Malformed \\uxxxx encoding.");
                         }
                     }
-                    out[outLen&#43;&#43;] = (char) value;
+                    out[outLen++] = (char) value;
                 } else {
-                    if (aChar == &#39;t&#39;) {
-                        aChar = &#39;\t&#39;;
-                    } else if (aChar == &#39;r&#39;) {
-                        aChar = &#39;\r&#39;;
-                    } else if (aChar == &#39;n&#39;) {
-                        aChar = &#39;\n&#39;;
-                    } else if (aChar == &#39;f&#39;) {
-                        aChar = &#39;\f&#39;;
+                    if (aChar == 't') {
+                        aChar = '\t';
+                    } else if (aChar == 'r') {
+                        aChar = '\r';
+                    } else if (aChar == 'n') {
+                        aChar = '\n';
+                    } else if (aChar == 'f') {
+                        aChar = '\f';
                     }
-                    out[outLen&#43;&#43;] = aChar;
+                    out[outLen++] = aChar;
                 }
             } else {
-                out[outLen&#43;&#43;] = (char) aChar;
+                out[outLen++] = (char) aChar;
             }
         }
         return new String(out, 0, outLen);
     }
 }
-{{&lt; /highlight &gt;}} 
+{{< /highlight >}} 
 
 
 ---

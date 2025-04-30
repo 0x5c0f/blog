@@ -21,7 +21,7 @@
   - `relay-log.info`: 存储从库`SQL`线程已经执行过的`relaylog`日志位置  
 
 # 3. 主从复制原理
-&amp;emsp;&amp;emsp;从库通过`IO线程`,读取`master.info`中的信息,获取到连接及上次请求主库的`binlog`的位置,然后`IO线程`使用获取到的连接连接到主库,主库获取到从库发来的位置信息和现有二进制日志进行对比,如果有新二进制日志,会通过`dump thread`发送给相关信息给从库,从库通过`IO线程`,接受主库发来的二进制日志后,存储到`TCP/IP`缓存中,并返回`ACK`确认给主库,主库收到`ACK`后,就认为任务复制完成了,可以继续其他工作。从库此时将更新`master.info`的二进制位置信息,`IO线程`会将`TCP/IP`缓存中的日志，会存储到`relay-log`日志文件中。然后`SQL线程`读取`relay-log.info`上次执行到的日志位置(此位置信息不一定与`binlog`日志位置相同),以这个日志位置为起点继续执行`relay-log`日志。`SQL线程`执行完成所有`relay`之后，会更新`relay-log.info`信息为新的位置信息。（至此一次复制完成）
+&emsp;&emsp;从库通过`IO线程`,读取`master.info`中的信息,获取到连接及上次请求主库的`binlog`的位置,然后`IO线程`使用获取到的连接连接到主库,主库获取到从库发来的位置信息和现有二进制日志进行对比,如果有新二进制日志,会通过`dump thread`发送给相关信息给从库,从库通过`IO线程`,接受主库发来的二进制日志后,存储到`TCP/IP`缓存中,并返回`ACK`确认给主库,主库收到`ACK`后,就认为任务复制完成了,可以继续其他工作。从库此时将更新`master.info`的二进制位置信息,`IO线程`会将`TCP/IP`缓存中的日志，会存储到`relay-log`日志文件中。然后`SQL线程`读取`relay-log.info`上次执行到的日志位置(此位置信息不一定与`binlog`日志位置相同),以这个日志位置为起点继续执行`relay-log`日志。`SQL线程`执行完成所有`relay`之后，会更新`relay-log.info`信息为新的位置信息。（至此一次复制完成）
 
 # 4. 主从复制实践  
 ## 4.1. my.cnf 
@@ -36,49 +36,49 @@ binlog_format = row
 ```
 ## 4.2. 备份 
 ```bash
-$&gt; mysqldump --defaults-file=/data/mysql57/3307/etc/my.cnf -A -R -B --triggers --master-data=2 --single-transaction &gt; /tmp/aa.sql 
-$&gt; sed -n &#39;22p&#39; /tmp/aa.sql 
--- CHANGE MASTER TO MASTER_LOG_FILE=&#39;mysql-bin.000004&#39;, MASTER_LOG_POS=596; 
+$> mysqldump --defaults-file=/data/mysql57/3307/etc/my.cnf -A -R -B --triggers --master-data=2 --single-transaction > /tmp/aa.sql 
+$> sed -n '22p' /tmp/aa.sql 
+-- CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.000004', MASTER_LOG_POS=596; 
 
 ```
 
 ## 4.3. 授权 
 ```bash
-$&gt; grant replication slave on *.* to repl@&#39;10.0.2.%&#39; identified by &#39;gC74lgK9sSkzwBbrztd3&#39;; 
-$&gt; flush privileges;
+$> grant replication slave on *.* to repl@'10.0.2.%' identified by 'gC74lgK9sSkzwBbrztd3'; 
+$> flush privileges;
 ```
 
 ## 4.4. 备库导入数据 
 ```bash
-$&gt; mysql &lt; /tmp/aa.sql 
+$> mysql < /tmp/aa.sql 
 ```
 
 ## 4.5. 备库指定与主库的同步信息并启动同步
 ```sql
 --- 指定同步连接信息(从库) 
-mysql&gt; change master to MASTER_HOST=&#39;10.0.2.25&#39;,
-  MASTER_USER=&#39;repl&#39;,
-  MASTER_PASSWORD=&#39;gC74lgK9sSkzwBbrztd3&#39;,
+mysql> change master to MASTER_HOST='10.0.2.25',
+  MASTER_USER='repl',
+  MASTER_PASSWORD='gC74lgK9sSkzwBbrztd3',
   MASTER_PORT=3307,
-  MASTER_LOG_FILE=&#39;mysql-bin.000004&#39;,
+  MASTER_LOG_FILE='mysql-bin.000004',
   MASTER_LOG_POS=596,
   MASTER_CONNECT_RETRY=3;
 
 --- 若初次搭建则(或从0开始全同步)
-mysql&gt; change master to MASTER_HOST=&#39;10.0.2.25&#39;,
-  MASTER_USER=&#39;repl&#39;,
-  MASTER_PASSWORD=&#39;gC74lgK9sSkzwBbrztd3&#39;,
+mysql> change master to MASTER_HOST='10.0.2.25',
+  MASTER_USER='repl',
+  MASTER_PASSWORD='gC74lgK9sSkzwBbrztd3',
   MASTER_PORT=3307,
   MASTER_AUTO_POSITION=1;
 
 --- 启动同步 
-mysql&gt; start slave
+mysql> start slave
 --- 查看启动状态 
-mysql&gt; show slave status\G 
+mysql> show slave status\G 
 ```
 ## 4.6. 主从状态信息介绍  
 ```bash
-mysql&gt; show slave status\G 
+mysql> show slave status\G 
 Slave_IO_Running              | Yes
 Slave_SQL_Running             | Yes
 ## 最后一次IO的错误号码 
@@ -96,10 +96,10 @@ Seconds_Behind_Master         | 0
 1. 主库连接不上: 防火墙、网络、连接信息错误(`ip`、`passwd`、`port`、`user`)、域名解析(`skip-name-resolve`)  
   -  解决方案: 
   ```sql
-    mysql&gt; stop slave;
-    mysql&gt; reset slave all;
-    mysql&gt; change master to ....;
-    mysql&gt; start slave;
+    mysql> stop slave;
+    mysql> reset slave all;
+    mysql> change master to ....;
+    mysql> start slave;
   ```
 2. 主库二进制日志文件丢失或损坏  
   - 解决方案: 重新备份恢复，在重新构建主从 
@@ -114,7 +114,7 @@ Seconds_Behind_Master         | 0
   - `change master to ...`
   - `start slave `
 #### 4.6.1.2. 案例2 
-- 主库的二进制日志被清理(1.`reset master`;2.binlog文件找不到/损坏/断节/物理删除/名字被修改等),从库请求日志出现`Slave_IO_Running: No`(`Last_IO_Error: xxxx could not find next log;the first evnet &#39;mysql-bin.xxxxx&#39;`) 
+- 主库的二进制日志被清理(1.`reset master`;2.binlog文件找不到/损坏/断节/物理删除/名字被修改等),从库请求日志出现`Slave_IO_Running: No`(`Last_IO_Error: xxxx could not find next log;the first evnet 'mysql-bin.xxxxx'`) 
 - 解决方案: 
   - 使用备份恢复，重新初始化主从 
   
@@ -125,14 +125,14 @@ Seconds_Behind_Master         | 0
     ## 1. 直接重建主从同步(推荐)
     ## 2. 一切以主库为准，创建失败时候删除从库多余的重启同步即可
     ## 3. 执行忽略操作(此操作有一定风险，出非明确知道在干什么，否则不建议使用)
-    mysql&gt; stop slave;
-    mysql&gt; set global sql_slave_skip_counter = 1; ## 将同步移动至下一个操作，如果多次不同步，可重复操作此项
-    mysql&gt; start slave;
+    mysql> stop slave;
+    mysql> set global sql_slave_skip_counter = 1; ## 将同步移动至下一个操作，如果多次不同步，可重复操作此项
+    mysql> start slave;
     ## 4. 同3,只是在配置文件中忽略对应编码 
-    $&gt; vim my.cnf
+    $> vim my.cnf
     slave-skip-errors = 1032,1062,1007 
     ## 5. 为防止SQL线程故障，一般会设置从库只读(只针对普通用户)
-    mysql&gt; set global read_only=1;  ## $&gt; my.cnf: read_only=1   
+    mysql> set global read_only=1;  ## $> my.cnf: read_only=1   
   ```
 
 ## 4.7. 延迟同步(故障) 
@@ -164,9 +164,9 @@ Seconds_Behind_Master         | 0
   - SQL线程延时，数据已经写入到relaylog，SQL线程慢点执行 
   ```sql
   -- 从库执行 
-  mysql&gt; stop slave ; 
-  mysql&gt; CHANGE MASTER TO MASTER_DELAY = 3600; -- 建议3-6小时  
-  mysql&gt; start slave ; 
+  mysql> stop slave ; 
+  mysql> CHANGE MASTER TO MASTER_DELAY = 3600; -- 建议3-6小时  
+  mysql> start slave ; 
   ```
 - 案例: 主库误操作，删库 
   1. 停止主库业务
@@ -174,8 +174,8 @@ Seconds_Behind_Master         | 0
   3. 手工模拟sql线程工作，并截止到误操作之前 
     - 读取relay-log.info,获取到上次执行到的位置,作为继续执行relay-log的起点，分析relay-log内容，获取到误操作的位置点，截取这段日志，恢复到从库
     - 找到起点位置`show slave status\G`,`Relay_Log_file:db01-relay-bin.000002`;`Relay_Log_Pos:283` 
-    - 找到误删除的位置，`show relaylog events in &#39;db01-relay-bin.000002&#39;`,找到误删行的`Pos`值
-    - 截取同步日志 `mysqlbinlog --start-position=283 --stop-position=693 db01-relay-bin.000002 &gt; relay.sql`
+    - 找到误删除的位置，`show relaylog events in 'db01-relay-bin.000002'`,找到误删行的`Pos`值
+    - 截取同步日志 `mysqlbinlog --start-position=283 --stop-position=693 db01-relay-bin.000002 > relay.sql`
     - 恢复relaylog
   4. 切换从库为主库 
 
@@ -206,24 +206,24 @@ Seconds_Behind_Master         | 0
 - 尽可能保证主从数据一致性问题，牺牲主库一定的业务性能。实现过程，保证IO线程将日志从TCP/IP缓存，写入到relaylog才会返回ACK给主库。因此回阻塞主库的commit操作，这里会有个超时时间，10秒，如果从库还没有返回ACK，将会强制切换为一部复制过程。
 ```sql 
 -- 主执行 加载插件(默认就有该组建)
-INSTALL PLUGIN rpl_semi_sync_master SONAME &#39;semisync_master.so&#39;;
+INSTALL PLUGIN rpl_semi_sync_master SONAME 'semisync_master.so';
 -- 从执行 加载插件(默认就有该组建)
-mysql&gt; INSTALL PLUGIN rpl_semi_sync_slave SONAME &#39;semisync_slave.so&#39;;
+mysql> INSTALL PLUGIN rpl_semi_sync_slave SONAME 'semisync_slave.so';
 -- 查看是否加载成功 
-mysql&gt; show plugins;
+mysql> show plugins;
 
 -- 主启动 
-mysql&gt; SET GLOBAL rpl_semi_sync_master_enabled = 1;
+mysql> SET GLOBAL rpl_semi_sync_master_enabled = 1;
 -- 从启动 
-mysql&gt; SET GLOBAL rpl_semi_sync_slave_enabled = 1;
+mysql> SET GLOBAL rpl_semi_sync_slave_enabled = 1;
 
 -- 重启从库上的IO线程 
-mysql&gt; stop slave io_thread;
-mysql&gt; start slave io_thread;
+mysql> stop slave io_thread;
+mysql> start slave io_thread;
 
 -- 查看主/备是否在运行 
-mysql&gt; show status like &#39;Rpl_semi_sync_master_status&#39;;
-mysql&gt; show status like &#39;Rpl_semi_sync_slave_status&#39;;
+mysql> show status like 'Rpl_semi_sync_master_status';
+mysql> show status like 'Rpl_semi_sync_slave_status';
 
 --- 默认情况下,到达10秒还没有返回ack,从中关系自动切换为普通复制 
 rpl_semi_sync_master_timeout | 10000 
@@ -248,30 +248,30 @@ log-slave-updates=1
 ### 4.11.1. GTID 从库误写入操作处理
 - 注入空事务的方法:
 ```sql
-mysql&gt; stop slave;
-mysql&gt; set gtid_next=&#39;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:2&#39;; --gtid_next 为slave sql thread 报错的GTID，或者是想要跳过的gtid
-mysql&gt; begin;commit;
-mysql&gt; set gtid_next=&#39;AUTOMATIC&#39;;
-mysql&gt; start slave 
+mysql> stop slave;
+mysql> set gtid_next='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:2'; --gtid_next 为slave sql thread 报错的GTID，或者是想要跳过的gtid
+mysql> begin;commit;
+mysql> set gtid_next='AUTOMATIC';
+mysql> start slave 
 ```
 - 最好的解决方案是：重新构建主从环境
 
 ### 4.11.2. 构建一主2从的GTID的复制环境  
 ```sql
 -- 主库创建复制用户
-$&gt; reset master;
-$&gt; grant replication slave on *.* to repl@&#39;10.0.2.%&#39; identified by &#39;gC74lgK9sSkzwBbrztd3&#39;; 
-$&gt; flush privileges;
+$> reset master;
+$> grant replication slave on *.* to repl@'10.0.2.%' identified by 'gC74lgK9sSkzwBbrztd3'; 
+$> flush privileges;
 
 -- 从库连接 
-$&gt; reset master;
-mysql&gt; change master to MASTER_HOST=&#39;10.0.2.25&#39;,
-  MASTER_USER=&#39;repl&#39;,
-  MASTER_PASSWORD=&#39;gC74lgK9sSkzwBbrztd3&#39;,
+$> reset master;
+mysql> change master to MASTER_HOST='10.0.2.25',
+  MASTER_USER='repl',
+  MASTER_PASSWORD='gC74lgK9sSkzwBbrztd3',
   MASTER_PORT=3307,
   MASTER_AUTO_POSITION=1;
 
-$&gt; show slave status\G
+$> show slave status\G
 -- 以下值，正常情况下应该和主库`show master status`的Executed_Gtid_Set值相同，如果不同则可能从库已经产生了写入
 -- 接收到的
 Retrieved_Gtid_set: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:1 
@@ -284,35 +284,35 @@ Executed_Gtid_Set: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx:1
 ```mermaid
 graph TD;
 
-主节点 --&gt; 从节点
+主节点 --> 从节点
 ```
 --- 
 ### 4.12.2. 一主多从 
 ```mermaid
 graph TD;
 
-主节点 --&gt; 从节点1
-主节点 --&gt; 从节点2
-主节点 --&gt; 从节点3
+主节点 --> 从节点1
+主节点 --> 从节点2
+主节点 --> 从节点3
 ```
 --- 
 ### 4.12.3. 多级主从
 ```mermaid
 graph TD;
 
-主节点 --&gt;|全复制| 子主节点 
-subgraph &#39;&#39; 
-    子主节点 --&gt;|分段复制| 子从节点1
-    子主节点 --&gt;|分段复制| 子从节点2
-    子主节点 --&gt;|分段复制| 子从节点3
+主节点 -->|全复制| 子主节点 
+subgraph '' 
+    子主节点 -->|分段复制| 子从节点1
+    子主节点 -->|分段复制| 子从节点2
+    子主节点 -->|分段复制| 子从节点3
 end
 ```
 --- 
 ### 4.12.4. 双主 
 ```mermaid
 graph TD;
-  主节点 --&gt;|全复制| 子主节点 
-  子主节点 --&gt;|全复制| 主节点  
+  主节点 -->|全复制| 子主节点 
+  子主节点 -->|全复制| 主节点  
 ```
 
 ## 4.13. 高性能架构 
@@ -324,7 +324,7 @@ graph TD;
 多活: 主机宕机不需要切换
 1. 单活:MMM架构 -- mysql -- mmm (google)
 2. 单活:MHA架构 -- mysql-master-ha (日本DeNa)
-3. 多活:MGR(组复制) - 5.7 新特性  MySQL Group replication(5.7.17&#43;)  --&gt; Innodb Cluster 
+3. 多活:MGR(组复制) - 5.7 新特性  MySQL Group replication(5.7.17+)  --> Innodb Cluster 
 4. 多活: MariaDB Galera Cluster架构， PXC(Percona XtraDB Cluster)、MySQL Cluster 架构
 
 

@@ -1,33 +1,33 @@
-# Redis主从复制&#43;哨兵
+# Redis主从复制+哨兵
 
 
 # 1. 测试版本: redis 6.2.14 
 ```bash
-$&gt; make PREFIX=/opt/redis-server/6.2.14 install
-$&gt; mkdir -p /opt/redis-server/6.2.14/{data,logs,etc}
-$&gt; mkdir -p /opt/redis-server/6.2.14/sentinel_data/26379
+$> make PREFIX=/opt/redis-server/6.2.14 install
+$> mkdir -p /opt/redis-server/6.2.14/{data,logs,etc}
+$> mkdir -p /opt/redis-server/6.2.14/sentinel_data/26379
 ```
 
 ## 1.1 配置文件额外修改以下参数(多少个节点，多少个独立配置文件)
 ```ini
 # 配置  redis.conf 
-masterauth &lt;password&gt;                       # 与redis.conf中密码一致(此项在每个节点都要配置)
-slaveof &lt;masterip&gt; &lt;masterport&gt;         # 指定主节点ip和端口(此项只在从节点上进行配置)
+masterauth <password>                       # 与redis.conf中密码一致(此项在每个节点都要配置)
+slaveof <masterip> <masterport>         # 指定主节点ip和端口(此项只在从节点上进行配置)
 
 # 配置 sentinel.conf 
-port:     &lt;port&gt;                                  # 21
-pidfile:  /pathto/sentinel_&lt;port&gt;.pid        # 31 
-logfile:  /pathto/logs/sentinel_&lt;port&gt;.log   # 36
-dir:      /path/sentinel_data/&lt;port&gt;         # 64 
+port:     <port>                                  # 21
+pidfile:  /pathto/sentinel_<port>.pid        # 31 
+logfile:  /pathto/logs/sentinel_<port>.log   # 36
+dir:      /path/sentinel_data/<port>         # 64 
 
 
-##  &lt;master-name&gt; 主节点名称, 可以自定义
-##  &lt;master-ip&gt; &lt;master-port&gt; 主节点ip和端口
-##  &lt;quorum&gt; 指定需要有2个以上sentinel节点认为redis主节点失效, 才是真的失效, 一般为: sentinel总数/2&#43;1
-sentinel monitor &lt;master-name&gt; &lt;master-ip&gt; &lt;master-port&gt; &lt;quorum&gt;    # 84 , 此项每个节点都要配置 
+##  <master-name> 主节点名称, 可以自定义
+##  <master-ip> <master-port> 主节点ip和端口
+##  <quorum> 指定需要有2个以上sentinel节点认为redis主节点失效, 才是真的失效, 一般为: sentinel总数/2+1
+sentinel monitor <master-name> <master-ip> <master-port> <quorum>    # 84 , 此项每个节点都要配置 
 
 
-sentinel auth-pass mymaster &lt;password&gt;               # 105 插入 此项, 与redis.conf中密码一致(此项在每个节点都要配置)
+sentinel auth-pass mymaster <password>               # 105 插入 此项, 与redis.conf中密码一致(此项在每个节点都要配置)
 sentinel down-after-milliseconds mymaster 30000      # 125 此项是指定 主机节点多少毫秒无响应，则认为挂了, 默认30s
 
 ## 主备切换时, 最多有多少个slave同时对新的master进行同步, 这里设置为默认的1

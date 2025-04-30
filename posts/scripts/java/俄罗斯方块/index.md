@@ -31,32 +31,32 @@ public class ErsBlocksGame extends JFrame {
        private ControlPanel ctrlPanel;
 
        private JMenuBar bar = new JMenuBar();
-       private JMenu mGame = new JMenu(&#34;游戏&#34; ),
-                  mControl = new JMenu(&#34;控制 &#34;),
-                  mWindowStyle = new JMenu(&#34;游戏风格 &#34;),
-                  mInfo = new JMenu(&#34;信息 &#34;);
-       private JMenuItem miNewGame = new JMenuItem(&#34;新游戏&#34; ),
-                  miSetBlockColor = new JMenuItem(&#34;设置方块颜色 ...&#34;),
-                  miSetBackColor = new JMenuItem(&#34;设置背景颜色 ...&#34;),
-                  miTurnHarder = new JMenuItem(&#34;升高游戏难度 &#34;),
-                  miTurnEasier = new JMenuItem(&#34;降低游戏难度 &#34;),
-                  miExit = new JMenuItem(&#34;退出 &#34;),
+       private JMenu mGame = new JMenu("游戏" ),
+                  mControl = new JMenu("控制 "),
+                  mWindowStyle = new JMenu("游戏风格 "),
+                  mInfo = new JMenu("信息 ");
+       private JMenuItem miNewGame = new JMenuItem("新游戏" ),
+                  miSetBlockColor = new JMenuItem("设置方块颜色 ..."),
+                  miSetBackColor = new JMenuItem("设置背景颜色 ..."),
+                  miTurnHarder = new JMenuItem("升高游戏难度 "),
+                  miTurnEasier = new JMenuItem("降低游戏难度 "),
+                  miExit = new JMenuItem("退出 "),
 
-                  miPlay = new JMenuItem(&#34;开始 &#34;),
-                  miPause = new JMenuItem(&#34;暂停 &#34;),
-                  miResume = new JMenuItem(&#34;恢复 &#34;),
-                  miStop = new JMenuItem(&#34;中止游戏 &#34;),
+                  miPlay = new JMenuItem("开始 "),
+                  miPause = new JMenuItem("暂停 "),
+                  miResume = new JMenuItem("恢复 "),
+                  miStop = new JMenuItem("中止游戏 "),
 
-                  miAuthor = new JMenuItem(&#34;版本：俄罗斯方块 1.0&#34;),
-                  miSourceInfo = new JMenuItem(&#34;源代码由 Java实现&#34;);
+                  miAuthor = new JMenuItem("版本：俄罗斯方块 1.0"),
+                  miSourceInfo = new JMenuItem("源代码由 Java实现");
 
        private JCheckBoxMenuItem
-              miAsWindows = new JCheckBoxMenuItem(&#34;Windows&#34;),
-                  miAsMotif = new JCheckBoxMenuItem(&#34;Motif&#34;),
-                  miAsMetal = new JCheckBoxMenuItem(&#34;Metal&#34;, true);
+              miAsWindows = new JCheckBoxMenuItem("Windows"),
+                  miAsMotif = new JCheckBoxMenuItem("Motif"),
+                  miAsMetal = new JCheckBoxMenuItem("Metal", true);
 
        //主游戏类的构造方法@param title String，窗口标题
-      @SuppressWarnings( &#34;deprecation&#34;)
+      @SuppressWarnings( "deprecation")
        public ErsBlocksGame(String title) {
              super(title);
             setSize( 315, 392 );
@@ -88,7 +88,7 @@ public class ErsBlocksGame extends JFrame {
             canvas.fanning();
       }
 
-       //让游戏&#34;复位 &#34;
+       //让游戏"复位 "
        public void reset() {
             ctrlPanel.reset();
             canvas.reset();
@@ -156,7 +156,7 @@ public class ErsBlocksGame extends JFrame {
 
        //用户设置游戏难度，@param level int,游戏难度1－ MAX_LEVEL
        public void setLevel(int level) {
-             if (level &lt; 11 &amp;&amp; level &gt; 0) ctrlPanel.setLevel(level);
+             if (level < 11 && level > 0) ctrlPanel.setLevel(level);
       }
 
        //得到游戏积分, @return int, 积分。
@@ -176,8 +176,8 @@ public class ErsBlocksGame extends JFrame {
        //@return boolean, ture-update successufl, false-update fail
        public boolean levelUpdate() {
              int curLevel = getLevel();
-             if (curLevel &lt; MAX_LEVEL) {
-                  setLevel(curLevel &#43; 1);
+             if (curLevel < MAX_LEVEL) {
+                  setLevel(curLevel + 1);
                   canvas.resetScoreForLevelUpdate();
                    return true ;
             }
@@ -194,7 +194,7 @@ public class ErsBlocksGame extends JFrame {
 
        //报告游戏结束了
        private void reportGameOver() {
-            JOptionPane.showMessageDialog( this, &#34;Game Over!&#34; );
+            JOptionPane.showMessageDialog( this, "Game Over!" );
       }
 
        //建立并设置窗口菜单
@@ -238,7 +238,7 @@ public class ErsBlocksGame extends JFrame {
             miSetBlockColor.addActionListener( new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
                         Color newFrontColor = JColorChooser.showDialog(
-                            ErsBlocksGame. this,&#34; 设置方块颜色 &#34;,
+                            ErsBlocksGame. this," 设置方块颜色 ",
                  canvas.getBlockColor());
                          if (newFrontColor != null)
                               canvas.setBlockColor(newFrontColor);
@@ -247,7 +247,7 @@ public class ErsBlocksGame extends JFrame {
             miSetBackColor.addActionListener( new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
                         Color newBackColor = JColorChooser.showDialog(
-                           ErsBlocksGame. this, &#34; 设置方块颜色 &#34;,
+                           ErsBlocksGame. this, " 设置方块颜色 ",
                            canvas.getBackgroundColor());
                          if (newBackColor != null)
                               canvas.setBackgroundColor(newBackColor);
@@ -256,13 +256,13 @@ public class ErsBlocksGame extends JFrame {
             miTurnHarder.addActionListener( new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
                          int curLevel = getLevel();
-                         if (curLevel &lt; MAX_LEVEL) setLevel(curLevel &#43; 1);
+                         if (curLevel < MAX_LEVEL) setLevel(curLevel + 1);
                   }
             });
             miTurnEasier.addActionListener( new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
                          int curLevel = getLevel();
-                         if (curLevel &gt; 1) setLevel(curLevel - 1);
+                         if (curLevel > 1) setLevel(curLevel - 1);
                   }
             });
             miExit.addActionListener( new ActionListener() {
@@ -292,7 +292,7 @@ public class ErsBlocksGame extends JFrame {
             });
             miAsWindows.addActionListener( new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
-                        String plaf = &#34;com.sun.java.swing.plaf.windows.WindowsLookAndFeel&#34; ;
+                        String plaf = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel" ;
                         setWindowStyle(plaf);
                         canvas.fanning();
                         ctrlPanel.fanning();
@@ -303,7 +303,7 @@ public class ErsBlocksGame extends JFrame {
             });
             miAsMotif.addActionListener( new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
-                        String plaf = &#34;com.sun.java.swing.plaf.motif.MotifLookAndFeel&#34; ;
+                        String plaf = "com.sun.java.swing.plaf.motif.MotifLookAndFeel" ;
                         setWindowStyle(plaf);
                         canvas.fanning();
                         ctrlPanel.fanning();
@@ -314,7 +314,7 @@ public class ErsBlocksGame extends JFrame {
             });
             miAsMetal.addActionListener( new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
-                        String plaf = &#34;javax.swing.plaf.metal.MetalLookAndFeel&#34; ;
+                        String plaf = "javax.swing.plaf.metal.MetalLookAndFeel" ;
                         setWindowStyle(plaf);
                         canvas.fanning();
                         ctrlPanel.fanning();
@@ -385,10 +385,10 @@ public class ErsBlocksGame extends JFrame {
 
              //检查画布中是否有全填满的行，如果有就删除之
              public void checkFullLine() {
-                   for (int i = 0; i &lt; canvas.getRows(); i&#43;&#43;) {
+                   for (int i = 0; i < canvas.getRows(); i++) {
                          int row = -1;
                          boolean fullLineColorBox = true;
-                         for (int j = 0; j &lt; canvas.getCols(); j&#43;&#43;) {
+                         for (int j = 0; j < canvas.getCols(); j++) {
                                if (!canvas.getBox(i, j).isColorBox()) {
                                     fullLineColorBox = false;
                                      break;
@@ -404,7 +404,7 @@ public class ErsBlocksGame extends JFrame {
              //根据最顶行是否被占，判断游戏是否已经结束了。
              //@return boolean, true-游戏结束了，false-游戏未结束
              private boolean isGameOver() {
-                   for (int i = 0; i &lt; canvas.getCols(); i&#43;&#43;) {
+                   for (int i = 0; i < canvas.getCols(); i++) {
                         ErsBox box = canvas.getBox( 0, i);
                          if (box.isColorBox()) return true;
                   }
@@ -414,12 +414,12 @@ public class ErsBlocksGame extends JFrame {
 
        //程序入口函数, @param args String[], 附带的命令行参数
        public static void main(String[] args) {
-             new ErsBlocksGame(&#34;俄罗斯方块 &#34;);
+             new ErsBlocksGame("俄罗斯方块 ");
       }
 }
 
 /**
- * 画布类，内有&lt;行数&gt; * &lt; 列数&gt;个方格类实例。
+ * 画布类，内有<行数> * < 列数>个方格类实例。
  * 继承自JPanel类。
  * ErsBlock 线程类动态改变画布类的方格颜色，画布类通过
  * 检查方格颜色来体现ErsBlock块的移动情况。
@@ -441,8 +441,8 @@ class GameCanvas extends JPanel {
              this.cols = cols;
 
             boxes = new ErsBox[rows][cols];
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++) {
                         boxes[i][j] = new ErsBox(false);
                   }
             }
@@ -543,8 +543,8 @@ class GameCanvas extends JPanel {
        * @return ErsBox, 在row行col 列的方格的引用
        */
        public ErsBox getBox(int row, int col) {
-             if (row &lt; 0 || row &gt; boxes.length - 1
-                    || col &lt; 0 || col &gt; boxes[0].length - 1)
+             if (row < 0 || row > boxes.length - 1
+                    || col < 0 || col > boxes[0].length - 1)
                    return null ;
              return (boxes[row][col]);
       }
@@ -557,8 +557,8 @@ class GameCanvas extends JPanel {
              super.paintComponent(g);
 
             g.setColor(frontColor);
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++) {
                         g.setColor(boxes[i][j] .isColorBox() ? frontColor : backColor);
                         g.fill3DRect(j * boxWidth, i * boxHeight,
                                 boxWidth, boxHeight, true);
@@ -579,13 +579,13 @@ class GameCanvas extends JPanel {
        * @param row int, 要清除的行，是由 ErsBoxesGame类计算的
        */
        public synchronized void removeLine(int row) {
-             for (int i = row; i &gt; 0; i--) {
-                   for (int j = 0; j &lt; cols; j&#43;&#43;)
+             for (int i = row; i > 0; i--) {
+                   for (int j = 0; j < cols; j++)
                         boxes[i][j] = (ErsBox) boxes[i - 1][j]. clone();
             }
 
-            score &#43;= ErsBlocksGame.PER_LINE_SCORE;
-            scoreForLevelUpdate &#43;= ErsBlocksGame.PER_LINE_SCORE;
+            score += ErsBlocksGame.PER_LINE_SCORE;
+            scoreForLevelUpdate += ErsBlocksGame.PER_LINE_SCORE;
             repaint();
       }
 
@@ -595,8 +595,8 @@ class GameCanvas extends JPanel {
        public void reset() {
             score = 0;
             scoreForLevelUpdate = 0;
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;)
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++)
                         boxes[i][j] .setColor(false);
             }
 
@@ -703,11 +703,11 @@ class ErsBlock extends Thread {
        */
        public final static int[][] STYLES = { // 共28种状态
             { 0x0f00, 0x4444 , 0x0f00, 0x4444}, // 长条型的四种状态
-            { 0x04e0, 0x0464 , 0x00e4, 0x04c4}, // &#39;T&#39;型的四种状态
-            { 0x4620, 0x6c00 , 0x4620, 0x6c00}, // 反&#39;Z&#39;型的四种状态
-            { 0x2640, 0xc600 , 0x2640, 0xc600}, // &#39;Z&#39;型的四种状态
-            { 0x6220, 0x1700 , 0x2230, 0x0740}, // &#39;7&#39;型的四种状态
-            { 0x6440, 0x0e20 , 0x44c0, 0x8e00}, // 反&#39;7&#39;型的四种状态
+            { 0x04e0, 0x0464 , 0x00e4, 0x04c4}, // 'T'型的四种状态
+            { 0x4620, 0x6c00 , 0x4620, 0x6c00}, // 反'Z'型的四种状态
+            { 0x2640, 0xc600 , 0x2640, 0xc600}, // 'Z'型的四种状态
+            { 0x6220, 0x1700 , 0x2230, 0x0740}, // '7'型的四种状态
+            { 0x6440, 0x0e20 , 0x44c0, 0x8e00}, // 反'7'型的四种状态
             { 0x0660, 0x0660 , 0x0660, 0x0660}, // 方块的四种状态
       };
 
@@ -732,11 +732,11 @@ class ErsBlock extends Thread {
              this.canvas = canvas;
 
              int key = 0x8000;
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
-                         boolean isColor = ((style &amp; key) != 0);
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++) {
+                         boolean isColor = ((style & key) != 0);
                         boxes[i][j] = new ErsBox(isColor);
-                        key &gt;&gt;= 1;
+                        key >>= 1;
                   }
             }
 
@@ -750,12 +750,12 @@ class ErsBlock extends Thread {
              while (moving) {
                    try {
                         sleep(BETWEEN_LEVELS_DEGRESS_TIME
-                                * (ErsBlocksGame.MAX_LEVEL - level &#43; LEVEL_FLATNESS_GENE));
+                                * (ErsBlocksGame.MAX_LEVEL - level + LEVEL_FLATNESS_GENE));
                   } catch (InterruptedException ie) {
                         ie.printStackTrace();
                   }
                    //后边的moving是表示在等待的 100毫秒间，moving没被改变
-                   if (!pausing) moving = (moveTo(y &#43; 1, x) &amp;&amp; moving);
+                   if (!pausing) moving = (moveTo(y + 1, x) && moving);
             }
       }
 
@@ -770,24 +770,24 @@ class ErsBlock extends Thread {
        * 块向右移动一格
        */
        public void moveRight() {
-            moveTo(y, x &#43; 1);
+            moveTo(y, x + 1);
       }
 
        /**
        * 块向下落一格
        */
        public void moveDown() {
-            moveTo(y &#43; 1, x);
+            moveTo(y + 1, x);
       }
 
        /**
        * 块变型
        */
        public void turnNext() {
-             for (int i = 0; i &lt; BLOCK_KIND_NUMBER; i&#43;&#43;) {
-                   for (int j = 0; j &lt; BLOCK_STATUS_NUMBER; j&#43;&#43;) {
+             for (int i = 0; i < BLOCK_KIND_NUMBER; i++) {
+                   for (int j = 0; j < BLOCK_STATUS_NUMBER; j++) {
                          if (STYLES[i][j] == style) {
-                               int newStyle = STYLES[i][(j &#43; 1) % BLOCK_STATUS_NUMBER];
+                               int newStyle = STYLES[i][(j + 1) % BLOCK_STATUS_NUMBER];
                               turnTo(newStyle);
                                return;
                         }
@@ -820,10 +820,10 @@ class ErsBlock extends Thread {
        * 将当前块从画布的对应位置移除，要等到下次重画画布时才能反映出来
        */
        private void earse() {
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++) {
                          if (boxes[i][j].isColorBox()) {
-                              ErsBox box = canvas.getBox(i &#43; y, j &#43; x);
+                              ErsBox box = canvas.getBox(i + y, j + x);
                                if (box == null) continue;
                               box.setColor( false);
                         }
@@ -835,10 +835,10 @@ class ErsBlock extends Thread {
        * 让当前块放置在画布的对应位置上，要等到下次重画画布时才能看见
        */
        private void display() {
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++) {
                          if (boxes[i][j].isColorBox()) {
-                              ErsBox box = canvas.getBox(y &#43; i, x &#43; j);
+                              ErsBox box = canvas.getBox(y + i, x + j);
                                if (box == null) continue;
                               box.setColor( true);
                         }
@@ -854,10 +854,10 @@ class ErsBlock extends Thread {
        */
        private boolean isMoveAble(int newRow, int newCol) {
             earse();
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++) {
                          if (boxes[i][j].isColorBox()) {
-                              ErsBox box = canvas.getBox(newRow &#43; i, newCol &#43; j);
+                              ErsBox box = canvas.getBox(newRow + i, newCol + j);
                                if (box == null || (box.isColorBox())) {
                                     display();
                                      return false ;
@@ -897,16 +897,16 @@ class ErsBlock extends Thread {
        private boolean isTurnAble(int newStyle) {
              int key = 0x8000;
             earse();
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
-                         if ((newStyle &amp; key) != 0) {
-                              ErsBox box = canvas.getBox(y &#43; i, x &#43; j);
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++) {
+                         if ((newStyle & key) != 0) {
+                              ErsBox box = canvas.getBox(y + i, x + j);
                                if (box == null || box.isColorBox()) {
                                     display();
                                      return false ;
                               }
                         }
-                        key &gt;&gt;= 1;
+                        key >>= 1;
                   }
             }
             display();
@@ -923,11 +923,11 @@ class ErsBlock extends Thread {
 
             earse();
              int key = 0x8000;
-             for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                   for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
-                         boolean isColor = ((newStyle &amp; key) != 0);
+             for (int i = 0; i < boxes.length; i++) {
+                   for (int j = 0; j < boxes[i] .length; j++) {
+                         boolean isColor = ((newStyle & key) != 0);
                         boxes[i][j] .setColor(isColor);
-                        key &gt;&gt;= 1;
+                        key >>= 1;
                   }
             }
             style = newStyle;
@@ -946,15 +946,15 @@ class ErsBlock extends Thread {
  */
 class ControlPanel extends JPanel {
        private JTextField
-              tfLevel = new JTextField(&#34;&#34;&#43; ErsBlocksGame.DEFAULT_LEVEL),
-      tfScore = new JTextField(&#34;0&#34;);
+              tfLevel = new JTextField(""+ ErsBlocksGame.DEFAULT_LEVEL),
+      tfScore = new JTextField("0");
 
        private JButton
-              btPlay = new JButton(&#34;开始 &#34;),
-      btPause = new JButton(&#34;暂停 &#34;),
-      btStop = new JButton(&#34;中止游戏 &#34;),
-      btTurnLevelUp = new JButton(&#34;增加难度 &#34;),
-      btTurnLevelDown = new JButton(&#34;降低难度 &#34;);
+              btPlay = new JButton("开始 "),
+      btPause = new JButton("暂停 "),
+      btStop = new JButton("中止游戏 "),
+      btTurnLevelUp = new JButton("增加难度 "),
+      btTurnLevelDown = new JButton("降低难度 ");
 
        private JPanel plTip = new JPanel(new BorderLayout());
        private TipPanel plTipBlock = new TipPanel();
@@ -976,13 +976,13 @@ class ControlPanel extends JPanel {
             setLayout( new GridLayout(3, 1, 0, 4 ));
              this.game = game;
 
-            plTip.add( new JLabel(&#34;下一个方块 &#34;), BorderLayout.NORTH);
+            plTip.add( new JLabel("下一个方块 "), BorderLayout.NORTH);
             plTip.add(plTipBlock);
             plTip.setBorder(border);
 
-            plInfo.add( new JLabel(&#34;难度系数 &#34;));
+            plInfo.add( new JLabel("难度系数 "));
             plInfo.add(tfLevel);
-            plInfo.add( new JLabel(&#34;得分 &#34;));
+            plInfo.add( new JLabel("得分 "));
             plInfo.add(tfScore);
             plInfo.setBorder(border);
 
@@ -1009,7 +1009,7 @@ class ControlPanel extends JPanel {
             });
             btPause.addActionListener( new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
-                         if (btPause.getText().equals(new String(&#34;Pause&#34; ))) {
+                         if (btPause.getText().equals(new String("Pause" ))) {
                               game.pauseGame();
                         } else {
                               game.resumeGame();
@@ -1025,8 +1025,8 @@ class ControlPanel extends JPanel {
                    public void actionPerformed(ActionEvent ae) {
                          try {
                                int level = Integer.parseInt(tfLevel.getText());
-                               if (level &lt; ErsBlocksGame.MAX_LEVEL)
-                                    tfLevel.setText( &#34;&#34;&#43; (level &#43; 1));
+                               if (level < ErsBlocksGame.MAX_LEVEL)
+                                    tfLevel.setText( ""+ (level + 1));
                         } catch (NumberFormatException e) {
                         }
                         requestFocus();
@@ -1036,8 +1036,8 @@ class ControlPanel extends JPanel {
                    public void actionPerformed(ActionEvent ae) {
                          try {
                                int level = Integer.parseInt(tfLevel.getText());
-                               if (level &gt; 1)
-                                    tfLevel.setText( &#34;&#34;&#43; (level - 1));
+                               if (level > 1)
+                                    tfLevel.setText( ""+ (level - 1));
                         } catch (NumberFormatException e) {
                         }
                         requestFocus();
@@ -1052,11 +1052,11 @@ class ControlPanel extends JPanel {
 
             timer = new Timer(500, new ActionListener() {
                    public void actionPerformed(ActionEvent ae) {
-                        tfScore.setText( &#34;&#34;&#43; game.getScore());
+                        tfScore.setText( ""+ game.getScore());
                          int scoreForLevelUpdate =
                                 game.getScoreForLevelUpdate();
-                         if (scoreForLevelUpdate &gt;= ErsBlocksGame.PER_LEVEL_SCORE
-                                &amp;&amp; scoreForLevelUpdate &gt; 0)
+                         if (scoreForLevelUpdate >= ErsBlocksGame.PER_LEVEL_SCORE
+                                && scoreForLevelUpdate > 0)
                               game.levelUpdate();
                   }
             });
@@ -1089,25 +1089,25 @@ class ControlPanel extends JPanel {
        * @param level 修改后的游戏难度等级
        */
        public void setLevel(int level) {
-             if (level &gt; 0 &amp;&amp; level &lt; 11) tfLevel.setText( &#34;&#34;&#43; level);
+             if (level > 0 && level < 11) tfLevel.setText( ""+ level);
       }
 
        /**
-       * 设置&#34;开始&#34; 按钮的状态。
+       * 设置"开始" 按钮的状态。
        */
        public void setPlayButtonEnable(boolean enable) {
             btPlay.setEnabled(enable);
       }
 
        public void setPauseButtonLabel(boolean pause) {
-            btPause.setText(pause ? &#34;暂停&#34;: &#34;继续&#34; );
+            btPause.setText(pause ? "暂停": "继续" );
       }
 
        /**
        * 重置控制面板
        */
        public void reset() {
-            tfScore.setText( &#34;0&#34;);
+            tfScore.setText( "0");
             plTipBlock.setStyle( 0);
       }
 
@@ -1133,8 +1133,8 @@ class ControlPanel extends JPanel {
              * 预显窗口类构造函数
              */
              public TipPanel() {
-                   for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                         for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;)
+                   for (int i = 0; i < boxes.length; i++) {
+                         for (int j = 0; j < boxes[i] .length; j++)
                               boxes[i][j] = new ErsBox(false);
                   }
             }
@@ -1169,13 +1169,13 @@ class ControlPanel extends JPanel {
                    if (!isTiled) fanning();
 
                    int key = 0x8000;
-                   for (int i = 0; i &lt; boxes.length; i&#43;&#43;) {
-                         for (int j = 0; j &lt; boxes[i] .length; j&#43;&#43;) {
-                              Color color = (((key &amp; style) != 0) ? frontColor : backColor);
+                   for (int i = 0; i < boxes.length; i++) {
+                         for (int j = 0; j < boxes[i] .length; j++) {
+                              Color color = (((key & style) != 0) ? frontColor : backColor);
                               g.setColor(color);
                               g.fill3DRect(j * boxWidth, i * boxHeight,
                                       boxWidth, boxHeight, true);
-                              key &gt;&gt;= 1;
+                              key >>= 1;
                         }
                   }
             }

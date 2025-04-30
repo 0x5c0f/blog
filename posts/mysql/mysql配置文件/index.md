@@ -2,10 +2,10 @@
 
 
 # 修改配置文件(默认的/etc/my.cnf是mariadb的)
-&gt; https://blog.51cto.com/moerjinrong/2092791  
+> https://blog.51cto.com/moerjinrong/2092791  
 
 
-参数优先级: `命令行参数指定` &gt; `配置文件 my.cnf(指定配置文件&gt;数据目录下的配置文件&gt;etc下的配置文件)` &gt; `默认参数`  
+参数优先级: `命令行参数指定` > `配置文件 my.cnf(指定配置文件>数据目录下的配置文件>etc下的配置文件)` > `默认参数`  
 ## 标签配置分类
 标签用某个特定的标签值来表示以下内容针对于某个程序(命令)体现的,一般可分文`[client]`、`[server]`两大类  
 - `[client]`: 针对全部客户端 
@@ -33,7 +33,7 @@
 port={{ MYSQL_PORT|default(3306) }}
 default-character-set = utf8
 socket = {{ DATA_ROOT }}/mysql.sock
-; prompt = &#39;\u@\h [\d] &gt;\_&#39;
+; prompt = '\u@\h [\d] >\_'
 
 [mysqld]
 port={{ MYSQL_PORT|default(3306) }}
@@ -67,7 +67,7 @@ log-error={{ DATA_ROOT }}/logs/mysqld.log
 skip-name-resolve
 
 ; 二进制日志控制 start
-; 建议设置全备&#43;1天
+; 建议设置全备+1天
 ; expire_logs_days = 8
 
 ; 各个节点不一样 
@@ -118,7 +118,7 @@ open_files_limit = 65535
 [mysqldump]
 quick
 max_allowed_packet = 128M
-; mysqldump -uroot -p -A -R --triggers --master-data=2 --single-transaction|gzip &gt; /backup/all_$(date &#43;&#34;%F-%T&#34;).sql.gz 
+; mysqldump -uroot -p -A -R --triggers --master-data=2 --single-transaction|gzip > /backup/all_$(date +"%F-%T").sql.gz 
 ; ignore-table=database.table
 ```
 

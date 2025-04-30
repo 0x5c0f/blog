@@ -4,8 +4,8 @@
 # 1. 前言  
  分布式文件存储
 实验环境：  
-&amp;emsp; 1. `centos7.x` 2台 (node11，node12)  
-&amp;emsp; 2. `glusterfs 4.1.6`  
+&emsp; 1. `centos7.x` 2台 (node11，node12)  
+&emsp; 2. `glusterfs 4.1.6`  
 
 
 # 2. 安装  
@@ -26,7 +26,7 @@
 [root@node11 ~]# glusterfs -V               # 查看版本信息  
 glusterfs 4.1.6
 Repository revision: git://git.gluster.org/glusterfs.git
-Copyright (c) 2006-2016 Red Hat, Inc. &lt;https://www.gluster.org/&gt;
+Copyright (c) 2006-2016 Red Hat, Inc. <https://www.gluster.org/>
 GlusterFS comes with ABSOLUTELY NO WARRANTY.
 It is licensed to you under your choice of the GNU Lesser
 General Public License, version 3 or any later version (LGPLv3

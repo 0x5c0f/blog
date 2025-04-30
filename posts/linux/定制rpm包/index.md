@@ -1,14 +1,14 @@
 # 定制rpm包
 
 
-{{&lt; admonition type=quote title=&#34;本文参照以下引用实践编写&#34; open=true &gt;}}
-&gt; https://www.zyops.com/autodeploy-rpm/
-{{&lt; /admonition &gt;}}
+{{< admonition type=quote title="本文参照以下引用实践编写" open=true >}}
+> https://www.zyops.com/autodeploy-rpm/
+{{< /admonition >}}
 
 # 1. FPM 打包工具
 FPM的作者是jordansissel   
 FPM的github：
-&gt; https://github.com/jordansissel/fpm   
+> https://github.com/jordansissel/fpm   
 
 FPM功能简单说就是将一种类型的包转换成另一种类型，其具体工功能实现实际上是对于rpmbuild命令的一个封装  
 
@@ -72,13 +72,13 @@ ln -s /opt/nginx-1.14.2/ /opt/nginxssl
 ```
 ## 2.3. 打包
 ```bash
-[root@00 ~]# fpm -s dir -t rpm --description &#39;nginx&#39; -n nginx -v 1.14.2 -d &#39;pcre-devel,openssl-devel&#39; --post-install /opt/sh/nginx.rpm.sh -C /opt/nginx-1.6.2/ -f /opt/nginx-1.6.2/  
+[root@00 ~]# fpm -s dir -t rpm --description 'nginx' -n nginx -v 1.14.2 -d 'pcre-devel,openssl-devel' --post-install /opt/sh/nginx.rpm.sh -C /opt/nginx-1.6.2/ -f /opt/nginx-1.6.2/  
 # 安装好的，复制完整结构内容到一个目录，打包那个目录内的内容是一样的效果 
-# such as: fpm -s dir -t rpm --description &#34;badvpn binary for fc32, Source: https://github.com/ambrop72/badvpn &#34; --rpm-summary &#39;badvpn&#39; --url &#39;https://tools.0x5c0f.cc&#39; --license &#39;3-clause BSD license&#39; --iteration fc32 -m 0x5c0f --vendor mail@0x5c0f.cc -n badvpn -v &#39;1.999.130-v1.0&#39; -C . 
+# such as: fpm -s dir -t rpm --description "badvpn binary for fc32, Source: https://github.com/ambrop72/badvpn " --rpm-summary 'badvpn' --url 'https://tools.0x5c0f.cc' --license '3-clause BSD license' --iteration fc32 -m 0x5c0f --vendor mail@0x5c0f.cc -n badvpn -v '1.999.130-v1.0' -C . 
 # 
-no value for epoch is set, defaulting to nil {:level=&gt;:warn}
-no value for epoch is set, defaulting to nil {:level=&gt;:warn}
-Created package {:path=&gt;&#34;nginx-1.14.2-1.x86_64.rpm&#34;}
+no value for epoch is set, defaulting to nil {:level=>:warn}
+no value for epoch is set, defaulting to nil {:level=>:warn}
+Created package {:path=>"nginx-1.14.2-1.x86_64.rpm"}
 [root@oldboy ~]# ll -h nginx-1.14.2-1.x86_64.rpm 
 -rw-r--r-- 1 root root 6.7M Nov  1 10:02 nginx-1.14.2-1.x86_64.rpm
 ```

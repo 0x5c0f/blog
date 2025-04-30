@@ -2,7 +2,7 @@
 
 
 # 1. 计划任务配置中/etc/crontab和crontab -e的区别
-&gt; https://blog.csdn.net/qq_36937234/article/details/80558871
+> https://blog.csdn.net/qq_36937234/article/details/80558871
 ## 1.1. 二者差异  
 1. 级别差异  
 `/etc/crontab`是系统级别的crontab，系统的设置  
@@ -11,13 +11,13 @@ linux下实际保存在`/var/spool/cron/username`中
 **有些系统设置即使用root账号`crontab -e`也不行，必须放到`/etc/crontab`中**  
 2. 语法区别  
 /etc/crontab 有用户字段  
-`*/5 * * * * root /root/scripts/refresh.sh &gt;/dev/null 2&gt;&amp;1`   
+`*/5 * * * * root /root/scripts/refresh.sh >/dev/null 2>&1`   
 crontab -e中不能设置用户字段  
-`1 * */1 * * /bin/sh /root/scripts/refresh.sh &gt; /dev/nul 2&gt;&amp;1`   
+`1 * */1 * * /bin/sh /root/scripts/refresh.sh > /dev/nul 2>&1`   
 ## 1.2. 注意点   
 1. `/var/spool/clientmqueue`目录过大，占用磁盘满了  
 原因：`/var/spool/clientmqueue`是如果系统中有用户开启了cron，而cron中执行的程序有输出内容，输出内容会以邮件形式发给cron的用户，而sendmail没有启动所以就产生了这些文件  
-解决：将输出重定向，如`&gt; /dev/null` 2&gt;&amp;1，补充：错误输出也要重定向  
+解决：将输出重定向，如`> /dev/null` 2>&1，补充：错误输出也要重定向  
 2. `/etc/crontab`的读写权限 
 不要随意改动这个文件的读写权限，这个文件应该设置成644或者600，否则会报`(system) BAD　FILE MODE (/etc/crontab )`  
 3. 手动能够执行，但是crontab脚本里面不执行  
@@ -33,7 +33,7 @@ HOME=/
 
 
 # 3. HTTP 响应码分类 
-&gt; [https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status) 
+> [https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status) 
 
 # 4. Git 和 SVN的区别  
 1. `git`是分布式的，`svn`是集中式的   

@@ -2,75 +2,75 @@
 
 
 # -
-&amp;emsp;&amp;emsp;想了一下，网络上关于`fedora`桌面的美化似乎还是很少的,这对于我大`fedora`发展似乎是很不利的，凭什么`ubuntu`就可以有那么多的好东西。  
+&emsp;&emsp;想了一下，网络上关于`fedora`桌面的美化似乎还是很少的,这对于我大`fedora`发展似乎是很不利的，凭什么`ubuntu`就可以有那么多的好东西。  
 
 目前正常来说，我们能做的似乎只有简单的修改下壁纸，我记得不知道是那个`fedora`版本，在设置里面就是可以直接设置壁纸轮换的，但是现在似乎没有这个功能了(至少`fedora 32`是不能直接设置轮换了),不过可以通过另外的方式解决。这就是下面要说的第一种美化。 
 
 # 壁纸轮换  
 **`Dynamic Wallpaper Editor`这个工具可以通过`gui`界面完成轮换壁纸的设置**  
-&amp;emsp;&amp;emsp;壁纸轮换实际上在32中默认不能直接设置了(忘记了以前是不是可以)，但是如果你仔细的话，在设置那儿你可以看到有一个壁纸不一样，那个壁纸右下角有一个表一样的小图标，那个就是一个轮换壁纸，虽然不能直接设置轮换，但gnome仍然是支持的，那个壁纸的配置文件是`/usr/share/backgrounds/gnome/adwaita-timed.xml`,具体引用配置文件的地方是`/usr/share/gnome-background-properties/adwaita.xml`,因此我们只需要按照他的格式配置一个就可以实现壁纸轮换的功能了。  
+&emsp;&emsp;壁纸轮换实际上在32中默认不能直接设置了(忘记了以前是不是可以)，但是如果你仔细的话，在设置那儿你可以看到有一个壁纸不一样，那个壁纸右下角有一个表一样的小图标，那个就是一个轮换壁纸，虽然不能直接设置轮换，但gnome仍然是支持的，那个壁纸的配置文件是`/usr/share/backgrounds/gnome/adwaita-timed.xml`,具体引用配置文件的地方是`/usr/share/gnome-background-properties/adwaita.xml`,因此我们只需要按照他的格式配置一个就可以实现壁纸轮换的功能了。  
 
 ```xml
-$&gt; sudo cp /usr/share/backgrounds/gnome/adwaita-timed.xml /home/cxd/.backgrounds/stars-timed.xml  
-$&gt; sudo vim /home/cxd/.backgrounds/stars-timed.xml 
+$> sudo cp /usr/share/backgrounds/gnome/adwaita-timed.xml /home/cxd/.backgrounds/stars-timed.xml  
+$> sudo vim /home/cxd/.backgrounds/stars-timed.xml 
 
-&lt;background&gt;
-    &lt;starttime&gt;
-        &lt;year&gt;2020&lt;/year&gt;
-        &lt;month&gt;8&lt;/month&gt;
-        &lt;day&gt;17&lt;/day&gt;
-        &lt;hour&gt;1&lt;/hour&gt;
-        &lt;minute&gt;00&lt;/minute&gt;
-        &lt;second&gt;00&lt;/second&gt;
-    &lt;/starttime&gt;
+<background>
+    <starttime>
+        <year>2020</year>
+        <month>8</month>
+        <day>17</day>
+        <hour>1</hour>
+        <minute>00</minute>
+        <second>00</second>
+    </starttime>
 
-    &lt;static&gt;
-        &lt;duration&gt;4000.0&lt;/duration&gt;
-        &lt;file&gt;/home/cxd/.backgrounds/stars/00001.jpg&lt;/file&gt;
-    &lt;/static&gt;
+    <static>
+        <duration>4000.0</duration>
+        <file>/home/cxd/.backgrounds/stars/00001.jpg</file>
+    </static>
     
-    &lt;transition type=&#34;overlay&#34;&gt;
-        &lt;duration&gt;847.0&lt;/duration&gt;
-        &lt;from&gt;/home/cxd/.backgrounds/stars/00001.jpg&lt;/from&gt;
-        &lt;to&gt;/home/cxd/.backgrounds/stars/00050.jpg&lt;/to&gt;
-    &lt;/transition&gt;
+    <transition type="overlay">
+        <duration>847.0</duration>
+        <from>/home/cxd/.backgrounds/stars/00001.jpg</from>
+        <to>/home/cxd/.backgrounds/stars/00050.jpg</to>
+    </transition>
 
-    &lt;static&gt;
-        &lt;duration&gt;4000.0&lt;/duration&gt;
-        &lt;file&gt;/home/cxd/.backgrounds/stars/00050.jpg&lt;/file&gt;
-    &lt;/static&gt;
+    <static>
+        <duration>4000.0</duration>
+        <file>/home/cxd/.backgrounds/stars/00050.jpg</file>
+    </static>
 
-&lt;/background&gt;
+</background>
 ```
-&amp;emsp;&amp;emsp;以上是我自己配置的一部分,`static`是指定某一张壁纸展示的时间(秒)和文件位置, `transition`是指定从那一张壁纸轮换到那一张壁纸，轮换需要多少时间(秒),这个设置可以让轮换的时候看起来比较平滑，过渡的时候有点朦胧的感觉。当然也可以不用设置，不过切换的时候感觉有点怪异就是了,另外时间需要总和为`86400`即一天,似乎也可以不用，每怎么详细测试过。 
+&emsp;&emsp;以上是我自己配置的一部分,`static`是指定某一张壁纸展示的时间(秒)和文件位置, `transition`是指定从那一张壁纸轮换到那一张壁纸，轮换需要多少时间(秒),这个设置可以让轮换的时候看起来比较平滑，过渡的时候有点朦胧的感觉。当然也可以不用设置，不过切换的时候感觉有点怪异就是了,另外时间需要总和为`86400`即一天,似乎也可以不用，每怎么详细测试过。 
 ```xml
-$&gt; vim /home/cxd/.backgrounds/stars.xml
-&lt;?xml version=&#34;1.0&#34;?&gt;
-&lt;!DOCTYPE wallpapers SYSTEM &#34;gnome-wp-list.dtd&#34;&gt;
-&lt;!-- /usr/share/gnome-background-properties --&gt;
-&lt;wallpapers&gt;
-  &lt;wallpaper deleted=&#34;false&#34;&gt;
-    &lt;name&gt;Default Background&lt;/name&gt;
-    &lt;filename&gt;/home/cxd/.backgrounds/stars-timed.xml&lt;/filename&gt;
-    &lt;options&gt;zoom&lt;/options&gt;
-    &lt;shade_type&gt;solid&lt;/shade_type&gt;
-    &lt;pcolor&gt;#3465a4&lt;/pcolor&gt;
-    &lt;scolor&gt;#000000&lt;/scolor&gt;
-  &lt;/wallpaper&gt;
-&lt;/wallpapers&gt;
-$&gt; sudo ln -s /home/cxd/.backgrounds/stars.xml /usr/share/gnome-background-properties/stars.xml # 不行的话直接copy到后面的那个目录里面区就可以了
+$> vim /home/cxd/.backgrounds/stars.xml
+<?xml version="1.0"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<!-- /usr/share/gnome-background-properties -->
+<wallpapers>
+  <wallpaper deleted="false">
+    <name>Default Background</name>
+    <filename>/home/cxd/.backgrounds/stars-timed.xml</filename>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#3465a4</pcolor>
+    <scolor>#000000</scolor>
+  </wallpaper>
+</wallpapers>
+$> sudo ln -s /home/cxd/.backgrounds/stars.xml /usr/share/gnome-background-properties/stars.xml # 不行的话直接copy到后面的那个目录里面区就可以了
 ```
-这个配置文件是用来接入系统的，如果你没有分离两个`/usr`和`/home`的话，直接做个软链接应该就可以了，或者直接`copy`到`/usr/share/gnome-background-properties/`里面区也行。 一般上面两步处理完就可以直接在`设置 &gt; 背景` 就可以看到你刚刚配置的那个轮换壁纸了，如果看不到，你可以注销登陆或者`alt&#43;f2`然后输入 `r` 重启 `gnome`也可以。  
+这个配置文件是用来接入系统的，如果你没有分离两个`/usr`和`/home`的话，直接做个软链接应该就可以了，或者直接`copy`到`/usr/share/gnome-background-properties/`里面区也行。 一般上面两步处理完就可以直接在`设置 > 背景` 就可以看到你刚刚配置的那个轮换壁纸了，如果看不到，你可以注销登陆或者`alt+f2`然后输入 `r` 重启 `gnome`也可以。  
 
-&amp;emsp;&amp;emsp;***实际上关于壁纸轮换还有个骚操作，就是用定时任务***
+&emsp;&emsp;***实际上关于壁纸轮换还有个骚操作，就是用定时任务***
 ```bash
-$&gt; 0 */5 * * * /bin/bash -c &#39;DISPLAY=:0 GSETTINGS_BACKEND=dconf /usr/bin/gsettings set org.gnome.desktop.background picture-uri &#34;file:///home/&lt;User&gt;/.local/share/backgrounds/0$(shuf -i 0-8 -n 1).png&#34;&#39;
+$> 0 */5 * * * /bin/bash -c 'DISPLAY=:0 GSETTINGS_BACKEND=dconf /usr/bin/gsettings set org.gnome.desktop.background picture-uri "file:///home/<User>/.local/share/backgrounds/0$(shuf -i 0-8 -n 1).png"'
 ## 需要注意的事，这个切换时间不能太短，否则容易导致桌面崩溃 
 ```
 
 
 # 视频壁纸  
-&gt; https://www.linuxuprising.com/2019/05/livestream-wallpaper-for-your-gnome.html  
+> https://www.linuxuprising.com/2019/05/livestream-wallpaper-for-your-gnome.html  
 
 关于视频壁纸，这应该是很多人想要的，但网络上似乎没有很明确的安装方法，以下我根据多方资料整理出来了一个可用的方案.
 
@@ -82,21 +82,21 @@ $&gt; 0 */5 * * * /bin/bash -c &#39;DISPLAY=:0 GSETTINGS_BACKEND=dconf /usr/bin/
   
 `mplayer`需要启用`rpmfusion`库，安装完后直接`dnf`安装就可以了    
 ```bash
-$&gt; sudo dnf install https://mirrors.ustc.edu.cn/rpmfusion/free/fedora/rpmfusion-free-release-38.noarch.rpm
-$&gt; sudo dnf install mplayer
+$> sudo dnf install https://mirrors.ustc.edu.cn/rpmfusion/free/fedora/rpmfusion-free-release-38.noarch.rpm
+$> sudo dnf install mplayer
 ```
 
 源码位置:   
-&gt;[https://github.com/ujjwal96/xwinwrap#installing](https://github.com/ujjwal96/xwinwrap#installing)  
+>[https://github.com/ujjwal96/xwinwrap#installing](https://github.com/ujjwal96/xwinwrap#installing)  
 
 安装编译: 
 ```bash
-$&gt; git clone https://github.com/r00tdaemon/xwinwrap.git
-$&gt; cd xwinwrap
+$> git clone https://github.com/r00tdaemon/xwinwrap.git
+$> cd xwinwrap
 
 # fedora 38 
-$&gt; sudo dnf install libX11-devel libXext-devel libXrender-devel libXrandr-dev gcc -y
-$&gt; make 
+$> sudo dnf install libX11-devel libXext-devel libXrender-devel libXrandr-dev gcc -y
+$> make 
 ```
 
 将编译后产生的文件`xwinwrap`复制到`/usr/local/bin/`下，并赋执行权限即可。  
@@ -106,7 +106,7 @@ $&gt; make
 以上环境准备完成。下面简述下我的配置。    
 `xwinwrap`启动方式(实际命令说明不做说明了，自己`-h`就了解了，东西不多)  
 ```bash
-$&gt; /usr/local/bin/xwinwrap -ni -o 1 -fdt -fs -s -st -sp -b -nf -- mplayer -nolirc -framedrop -nosound -loop 0 -wid WID -quiet /home/cxd/.backgrounds/stars/00000.mp4
+$> /usr/local/bin/xwinwrap -ni -o 1 -fdt -fs -s -st -sp -b -nf -- mplayer -nolirc -framedrop -nosound -loop 0 -wid WID -quiet /home/cxd/.backgrounds/stars/00000.mp4
 ```
 以上命令终端执行后实际上桌面就已经可以看到效果了  
 

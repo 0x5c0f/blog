@@ -3,7 +3,7 @@
 
 # java 下的  MD5 算法  
 
-{{&lt; highlight java &gt;}}
+{{< highlight java >}}
 /************************************************
 MD5 算法的Java Bean
 @author:Topcat Tuppin
@@ -121,9 +121,9 @@ public class MD5 {
         md5Init();
         md5Update(inbuf.getBytes(), inbuf.length());
         md5Final();
-        digestHexStr = &#34;&#34;;
-        for (int i = 0; i &lt; 16; i&#43;&#43;) {
-            digestHexStr &#43;= byteHEX(digest[i]);
+        digestHexStr = "";
+        for (int i = 0; i < 16; i++) {
+            digestHexStr += byteHEX(digest[i]);
         }
         return digestHexStr;
     }
@@ -147,10 +147,10 @@ public class MD5 {
         简单的位运算，可能出于效率的考虑把它们实现成了宏，在java中，我们把它们
        实现成了private方法，名字保持了原来C中的。 */
     private long F(long x, long y, long z) {
-        return (x &amp; y) | ((~x) &amp; z);
+        return (x & y) | ((~x) & z);
     }
     private long G(long x, long y, long z) {
-        return (x &amp; z) | (y &amp; (~z));
+        return (x & z) | (y & (~z));
     }
     private long H(long x, long y, long z) {
         return x ^ y ^ z;
@@ -164,27 +164,27 @@ public class MD5 {
        Rotation is separate from addition to prevent recomputation.
     */
     private long FF(long a, long b, long c, long d, long x, long s, long ac) {
-        a &#43;= F(b, c, d) &#43; x &#43; ac;
-        a = ((int) a &lt;&lt; s) | ((int) a &gt;&gt;&gt; (32 - s));
-        a &#43;= b;
+        a += F(b, c, d) + x + ac;
+        a = ((int) a << s) | ((int) a >>> (32 - s));
+        a += b;
         return a;
     }
     private long GG(long a, long b, long c, long d, long x, long s, long ac) {
-        a &#43;= G(b, c, d) &#43; x &#43; ac;
-        a = ((int) a &lt;&lt; s) | ((int) a &gt;&gt;&gt; (32 - s));
-        a &#43;= b;
+        a += G(b, c, d) + x + ac;
+        a = ((int) a << s) | ((int) a >>> (32 - s));
+        a += b;
         return a;
     }
     private long HH(long a, long b, long c, long d, long x, long s, long ac) {
-        a &#43;= H(b, c, d) &#43; x &#43; ac;
-        a = ((int) a &lt;&lt; s) | ((int) a &gt;&gt;&gt; (32 - s));
-        a &#43;= b;
+        a += H(b, c, d) + x + ac;
+        a = ((int) a << s) | ((int) a >>> (32 - s));
+        a += b;
         return a;
     }
     private long II(long a, long b, long c, long d, long x, long s, long ac) {
-        a &#43;= I(b, c, d) &#43; x &#43; ac;
-        a = ((int) a &lt;&lt; s) | ((int) a &gt;&gt;&gt; (32 - s));
-        a &#43;= b;
+        a += I(b, c, d) + x + ac;
+        a = ((int) a << s) | ((int) a >>> (32 - s));
+        a += b;
         return a;
     }
     /*
@@ -194,16 +194,16 @@ public class MD5 {
     private void md5Update(byte[] inbuf, int inputLen) {
         int i, index, partLen;
         byte[] block = new byte[64];
-        index = (int)(count[0] &gt;&gt;&gt; 3) &amp; 0x3F;
+        index = (int)(count[0] >>> 3) & 0x3F;
         // /* Update number of bits */
-        if ((count[0] &#43;= (inputLen &lt;&lt; 3)) &lt; (inputLen &lt;&lt; 3)) count[1]&#43;&#43;;
-        count[1] &#43;= (inputLen &gt;&gt;&gt; 29);
+        if ((count[0] += (inputLen << 3)) < (inputLen << 3)) count[1]++;
+        count[1] += (inputLen >>> 29);
         partLen = 64 - index;
         // Transform as many times as possible.
-        if (inputLen &gt;= partLen) {
+        if (inputLen >= partLen) {
             md5Memcpy(buffer, inbuf, index, 0, partLen);
             md5Transform(buffer);
-            for (i = partLen; i &#43; 63 &lt; inputLen; i &#43;= 64) {
+            for (i = partLen; i + 63 < inputLen; i += 64) {
                 md5Memcpy(block, inbuf, 0, i, 64);
                 md5Transform(block);
             }
@@ -221,8 +221,8 @@ public class MD5 {
         ///* Save number of bits */
         Encode(bits, count, 8);
         ///* Pad out to 56 mod 64.
-        index = (int)(count[0] &gt;&gt;&gt; 3) &amp; 0x3f;
-        padLen = (index &lt; 56) ? (56 - index) : (120 - index);
+        index = (int)(count[0] >>> 3) & 0x3f;
+        padLen = (index < 56) ? (56 - index) : (120 - index);
         md5Update(PADDING, padLen);
         ///* Append length (before padding) */
         md5Update(bits, 8);
@@ -234,7 +234,7 @@ public class MD5 {
         */
     private void md5Memcpy(byte[] output, byte[] input, int outpos, int inpos, int len) {
         int i;
-        for (i = 0; i &lt; len; i&#43;&#43;) output[outpos &#43; i] = input[inpos &#43; i];
+        for (i = 0; i < len; i++) output[outpos + i] = input[inpos + i];
     }
     /*
        md5Transform是MD5核心变换程序，有md5Update调用，block是分块的原始字节
@@ -311,21 +311,21 @@ public class MD5 {
         d = II(d, a, b, c, x[11], S42, 0xbd3af235 L); /* 62 */
         c = II(c, d, a, b, x[2], S43, 0x2ad7d2bb L); /* 63 */
         b = II(b, c, d, a, x[9], S44, 0xeb86d391 L); /* 64 */
-        state[0] &#43;= a;
-        state[1] &#43;= b;
-        state[2] &#43;= c;
-        state[3] &#43;= d;
+        state[0] += a;
+        state[1] += b;
+        state[2] += c;
+        state[3] += d;
     }
     /*Encode把long数组按顺序拆成byte数组，因为java的long类型是64bit的，
       只拆低32bit，以适应原始C实现的用途
     */
     private void Encode(byte[] output, long[] input, int len) {
         int i, j;
-        for (i = 0, j = 0; j &lt; len; i&#43;&#43;, j &#43;= 4) {
-            output[j] = (byte)(input[i] &amp; 0xff L);
-            output[j &#43; 1] = (byte)((input[i] &gt;&gt;&gt; 8) &amp; 0xff L);
-            output[j &#43; 2] = (byte)((input[i] &gt;&gt;&gt; 16) &amp; 0xff L);
-            output[j &#43; 3] = (byte)((input[i] &gt;&gt;&gt; 24) &amp; 0xff L);
+        for (i = 0, j = 0; j < len; i++, j += 4) {
+            output[j] = (byte)(input[i] & 0xff L);
+            output[j + 1] = (byte)((input[i] >>> 8) & 0xff L);
+            output[j + 2] = (byte)((input[i] >>> 16) & 0xff L);
+            output[j + 3] = (byte)((input[i] >>> 24) & 0xff L);
         }
     }
     /*Decode把byte数组按顺序合成成long数组，因为java的long类型是64bit的，
@@ -333,58 +333,58 @@ public class MD5 {
     */
     private void Decode(long[] output, byte[] input, int len) {
         int i, j;
-        for (i = 0, j = 0; j &lt; len; i&#43;&#43;, j &#43;= 4) output[i] = b2iu(input[j]) | (b2iu(input[j &#43; 1]) &lt;&lt; 8) | (b2iu(input[j &#43; 2]) &lt;&lt; 16) | (b2iu(input[j &#43; 3]) &lt;&lt; 24);
+        for (i = 0, j = 0; j < len; i++, j += 4) output[i] = b2iu(input[j]) | (b2iu(input[j + 1]) << 8) | (b2iu(input[j + 2]) << 16) | (b2iu(input[j + 3]) << 24);
         return;
     }
     /*
       b2iu是我写的一个把byte按照不考虑正负号的原则的＂升位＂程序，因为java没有unsigned运算
     */
     public static long b2iu(byte b) {
-        return b &lt; 0 ? b &amp; 0x7F &#43; 128 : b;
+        return b < 0 ? b & 0x7F + 128 : b;
     }
     /*byteHEX()，用来把一个byte类型的数转换成十六进制的ASCII表示，
     因为java中的byte的toString无法实现这一点，我们又没有C语言中的
-      sprintf(outbuf ,&#34;%02X&#34;,ib)
+      sprintf(outbuf ,"%02X",ib)
     */
     public static String byteHEX(byte ib) {
         char[] Digit = {
-            &#39;0&#39;,
-            &#39;1&#39;,
-            &#39;2&#39;,
-            &#39;3&#39;,
-            &#39;4&#39;,
-            &#39;5&#39;,
-            &#39;6&#39;,
-            &#39;7&#39;,
-            &#39;8&#39;,
-            &#39;9&#39;,
-            &#39;A&#39;,
-            &#39;B&#39;,
-            &#39;C&#39;,
-            &#39;D&#39;,
-            &#39;E&#39;,
-            &#39;F&#39;
+            '0',
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            'A',
+            'B',
+            'C',
+            'D',
+            'E',
+            'F'
         };
         char[] ob = new char[2];
-        ob[0] = Digit[(ib &gt;&gt;&gt; 4) &amp; 0X0F];
-        ob[1] = Digit[ib &amp; 0X0F];
+        ob[0] = Digit[(ib >>> 4) & 0X0F];
+        ob[1] = Digit[ib & 0X0F];
         String s = new String(ob);
         return s;
     }
     public static void main(String args[]) {
         MD5 m = new MD5();
         if (Array.getLength(args) == 0) { //如果没有参数，执行标准的Test Suite
-            System.out.println(&#34;MD5 Test suite:&#34;);
-            System.out.println(&#34;MD5(\&#34;\&#34;):&#34; &#43; m.getMD5ofStr(&#34;&#34;));
-            System.out.println(&#34;MD5(\&#34;a\&#34;):&#34; &#43; m.getMD5ofStr(&#34;a&#34;));
-            System.out.println(&#34;MD5(\&#34;abc\&#34;):&#34; &#43; m.getMD5ofStr(&#34;abc&#34;));
-            System.out.println(&#34;MD5(\&#34;message digest\&#34;):&#34; &#43; m.getMD5ofStr(&#34;message digest&#34;));
-            System.out.println(&#34;MD5(\&#34;abcdefghijklmnopqrstuvwxyz\&#34;):&#34; &#43; m.getMD5ofStr(&#34;abcdefghijklmnopqrstuvwxyz&#34;));
-            System.out.println(&#34;MD5(\&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\&#34;):&#34; &#43; m.getMD5ofStr(&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#34;));
-        } else System.out.println(&#34;MD5(&#34; &#43; args[0] &#43; &#34;)=&#34; &#43; m.getMD5ofStr(args[0]));
+            System.out.println("MD5 Test suite:");
+            System.out.println("MD5(\"\"):" + m.getMD5ofStr(""));
+            System.out.println("MD5(\"a\"):" + m.getMD5ofStr("a"));
+            System.out.println("MD5(\"abc\"):" + m.getMD5ofStr("abc"));
+            System.out.println("MD5(\"message digest\"):" + m.getMD5ofStr("message digest"));
+            System.out.println("MD5(\"abcdefghijklmnopqrstuvwxyz\"):" + m.getMD5ofStr("abcdefghijklmnopqrstuvwxyz"));
+            System.out.println("MD5(\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789\"):" + m.getMD5ofStr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"));
+        } else System.out.println("MD5(" + args[0] + ")=" + m.getMD5ofStr(args[0]));
     }
 }
-{{&lt; /highlight &gt;}}
+{{< /highlight >}}
 
 ---
 

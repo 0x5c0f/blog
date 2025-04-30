@@ -4,7 +4,7 @@
 # nfs 服务 
 ## 部署
 ```bash
-$&gt; yum install nfs-utils rpcbind &amp;&amp; mkdir /nfsshare &amp;&amp; chown nfsnobody. nfsshare
+$> yum install nfs-utils rpcbind && mkdir /nfsshare && chown nfsnobody. nfsshare
 ```
 ## 配置文件说明
 - `/etc/exports` 用于管理贡献相关配置的文件
@@ -24,24 +24,24 @@ $&gt; yum install nfs-utils rpcbind &amp;&amp; mkdir /nfsshare &amp;&amp; chown 
 
 ## 启动和检查本地共享情况
 ```bash
-$&gt; systemctl restart nfs
-$&gt;  showmount -e 127.0.0.1
+$> systemctl restart nfs
+$>  showmount -e 127.0.0.1
 Export list for 127.0.0.1:
 /nfsshare *
 
-$&gt; cat /var/lib/nfs/etab 
+$> cat /var/lib/nfs/etab 
 /nfsshare       *(rw,sync,wdelay,hide,nocrossmnt,insecure,root_squash,no_all_squash,no_subtree_check,secure_locks,acl,no_pnfs,anonuid=65534,anongid=65534,sec=sys,rw,insecure,root_squash,no_all_squash)
 ```
 
 ## nfs挂载
 ```bash
-$&gt; mount.nfs 127.0.0.1:/nfsshare /mnt # 127.0.0.1:/nfshare /mnt nfs defaults 0 0  &gt;&gt; /etc/fstab
+$> mount.nfs 127.0.0.1:/nfsshare /mnt # 127.0.0.1:/nfshare /mnt nfs defaults 0 0  >> /etc/fstab
 ```
 
 # autofs 自动挂载 使用systemd automount替代
 ```bash
 # 创建systemd mount和automount节点，文件名命名规范:挂载到/mnt/other下,名字则必须为: mnt-other.mount 和 mnt-other.automount  
-$&gt; vim /etc/systemd/system/mnt-other.automount 
+$> vim /etc/systemd/system/mnt-other.automount 
 [Unit]
 Documentation=man:fstab(5) man:systemd-fstab-generator(8)
 
@@ -52,7 +52,7 @@ Type=nfs                        # 挂载系统类型
 Options=defaults                # 挂载参数
 
 
-$&gt; vim /etc/systemd/system/mnt-other.automount  
+$> vim /etc/systemd/system/mnt-other.automount  
 [Unit]
 Documentation=man:fstab(5) man:systemd-fstab-generator(8)
 
@@ -64,9 +64,9 @@ TimeoutIdleSec=12               # 超时时间，多少秒未操作自动卸载�
 WantedBy=multi-user.target
 
 # 创建完成后重载配置
-$&gt; systemctl daemon-reload
+$> systemctl daemon-reload
 # 激活 automount 并加入开机启动项
-$&gt; systemctl enable --now  mnt-other.automount
+$> systemctl enable --now  mnt-other.automount
 
 # 另：automount 在centos 7下可通过fstab配置默认参数noauto,x-systemd.automount 自动创建(systemctl daemon-reload),创建于/run/systemd/generator/下   
 ```

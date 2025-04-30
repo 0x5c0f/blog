@@ -4,18 +4,18 @@
 `supervisor` 一个简单的python编写的进程管理器，功能类似是将普通进程以守护进程的形式运行到后台  
 
 `supervisord-monitor` 一个集中的管理前端  
-&gt; https://github.com/mlazarov/supervisord-monitor  
+> https://github.com/mlazarov/supervisord-monitor  
 
 # 1. 安装 
 ```bash
-$&gt; pip3 install supervisor
+$> pip3 install supervisor
 ```
 # 配置及启动
 ```bash
 # 生成配置文件 
-$&gt; echo_supervisord_conf &gt; /etc/supervisord.conf
+$> echo_supervisord_conf > /etc/supervisord.conf
 # 创建systemd 管理脚本
-$&gt; vim /etc/systemd/system/supervisord.service
+$> vim /etc/systemd/system/supervisord.service
 [Unit]
 Description=Process Monitoring and Control Daemon
 After=rc-local.service
@@ -32,8 +32,8 @@ LimitNPROC=65535
 WantedBy=multi-user.target
 
 # # #  
-$&gt; systemctl daemon-reload
-$&gt; systemctl start supervisord
+$> systemctl daemon-reload
+$> systemctl start supervisord
 # 
 # supervisorctl status：查看所有进程的状态
 # supervisorctl stop es：停止es
@@ -50,8 +50,8 @@ file=/tmp/supervisor.sock   ; the path to the socket file
 
 [inet_http_server]         ; inet (TCP) server disabled by default
 port=0.0.0.0:9001
-; username=&lt;username&gt;
-; password=&lt;password&gt;
+; username=<username>
+; password=<password>
 
 [supervisord]
 logfile=/tmp/supervisord.log 
@@ -65,7 +65,7 @@ minfds=1024                  ; 这个是最少系统空闲的文件描述符，�
 minprocs=200                 ; 最小可用的进程描述符，低于这个值supervisor也将不会正常启动;default 200
 ;directory=/tmp              ; default is not to cd during start
 ;nocleanup=false             ; 为false时，启动会清除历史的子进程日志; default false
-;childlogdir=/tmp            ; &#39;AUTO&#39; child log dir, default $TEMP(python -c &#34;import tempfile;print tempfile.gettempdir()&#34;) 
+;childlogdir=/tmp            ; 'AUTO' child log dir, default $TEMP(python -c "import tempfile;print tempfile.gettempdir()") 
 environment=TZ=Asia/Shanghai ; environment=TZ=Asia/Shanghai,TZ=Asia/Shanghai,
 
 [rpcinterface:supervisor]
@@ -88,14 +88,14 @@ serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 ; stdout_logfile_maxbytes=50MB
 ; stdout_logfile_backups=10
 ; ; environment=TZ=Asia/Shanghai 
-; ; exitcodes=CODE1,CODE2    ; 允许的进程退出码。以&#34;,&#34;分隔，默认为0,2。
+; ; exitcodes=CODE1,CODE2    ; 允许的进程退出码。以","分隔，默认为0,2。
 
 [include]
 files = /etc/supervisord.d/*.ini
 ```
 ## 3.1. 配置参数说明
 
-&gt; https://blog.csdn.net/lvmuheng/article/details/72367849
+> https://blog.csdn.net/lvmuheng/article/details/72367849
 
 ```
 [unix_http_server]            
@@ -160,13 +160,13 @@ minprocs=200                 ; 最小可用的进程描述符，低于这个值s
                                默认是false，有调试需求的同学可以设置为true。。。非必须设置
 ;childlogdir=/tmp            ; 当子进程日志路径为AUTO的时候，子进程日志文件的存放路径。
                                默认路径是这个东西，执行下面的这个命令看看就OK了，处理的东西就默认路径
-                               python -c &#34;import tempfile;print tempfile.gettempdir()&#34;
+                               python -c "import tempfile;print tempfile.gettempdir()"
                                非必须设置
-;environment=KEY=&#34;value&#34;     ; 这个是用来设置环境变量的，supervisord在linux中启动默认继承了linux的
+;environment=KEY="value"     ; 这个是用来设置环境变量的，supervisord在linux中启动默认继承了linux的
                                环境变量，在这里可以设置supervisord进程特有的其他环境变量。
                                supervisord启动子进程时，子进程会拷贝父进程的内存空间内容。 所以设置的
                                这些环境变量也会被子进程继承。
-                               小例子：environment=name=&#34;haha&#34;,age=&#34;hehe&#34;
+                               小例子：environment=name="haha",age="hehe"
                                默认为不设置。。。非必须设置
 ;strip_ansi=false            ; 这个选项如果设置为true，会清除子进程日志中的所有ANSI 序列。什么是ANSI
                                序列呢？就是我们的\n,\t这些东西。
@@ -198,14 +198,14 @@ serverurl=unix:///tmp/supervisor.sock ; 这个是supervisorctl本地连接superv
                                必须设置
 
 ; The below sample program section shows all possible program subsection values,
-; create one or more &#39;real&#39; program: sections to be able to control them under
+; create one or more 'real' program: sections to be able to control them under
 ; supervisor.
 
-;[program:theprogramname]      ;这个就是咱们要管理的子进程了，&#34;:&#34;后面的是名字，最好别乱写和实际进程
+;[program:theprogramname]      ;这个就是咱们要管理的子进程了，":"后面的是名字，最好别乱写和实际进程
                                 有点关联最好。这样的program我们可以设置一个或多个，一个program就是
                                 要被管理的一个进程
 ;command=/bin/cat              ; 这个就是我们的要启动进程的命令路径了，可以带参数
-                                例子：/home/test.py -a &#39;hehe&#39;
+                                例子：/home/test.py -a 'hehe'
                                 有一点需要注意的是，我们的command只能是那种在终端运行的进程，不能是
                                 守护进程。这个想想也知道了，比如说command=service httpd start。
                                 httpd这个进程被linux的service管理了，我们的supervisor再去启动这个命令
@@ -277,11 +277,11 @@ serverurl=unix:///tmp/supervisor.sock ; 这个是supervisorctl本地连接superv
 ;stderr_logfile_backups=10     ; 这个也是
 ;stderr_capture_maxbytes=1MB   ; 这个一样，和stdout_capture一样。 默认为0，关闭状态
 ;stderr_events_enabled=false   ; 这个也是一样，默认为false
-;environment=A=&#34;1&#34;,B=&#34;2&#34;       ; 这个是该子进程的环境变量，和别的子进程是不共享的
+;environment=A="1",B="2"       ; 这个是该子进程的环境变量，和别的子进程是不共享的
 ;serverurl=AUTO                ; 
 
 ; The below sample eventlistener section shows all possible
-; eventlistener subsection values, create one or more &#39;real&#39;
+; eventlistener subsection values, create one or more 'real'
 ; eventlistener: sections to be able to handle event notifications
 ; sent by supervisor.
 
@@ -326,12 +326,12 @@ serverurl=unix:///tmp/supervisor.sock ; 这个是supervisorctl本地连接superv
 ;stderr_logfile_maxbytes=1MB   ; 这个也是
 ;stderr_logfile_backups        ; 这个不说了
 ;stderr_events_enabled=false   ; 这个也是错的，listener不能发送event
-;environment=A=&#34;1&#34;,B=&#34;2&#34;       ; 这个是该子进程的环境变量
+;environment=A="1",B="2"       ; 这个是该子进程的环境变量
                                  默认为空。。。非必须设置
 ;serverurl=AUTO                ; override serverurl computation (childutils)
 
 ; The below sample group section shows all possible group values,
-; create one or more &#39;real&#39; group: sections to create &#34;heterogeneous&#34;
+; create one or more 'real' group: sections to create "heterogeneous"
 ; process groups.
 
 ;[group:thegroupname]  ;这个东西就是给programs分组，划分到组里面的program。我们就不用一个一个去操作了
@@ -343,7 +343,7 @@ serverurl=unix:///tmp/supervisor.sock ; 这个是supervisorctl本地连接superv
 ;priority=999                  ; 优先级，相对于组和组之间说的
                                  默认999。。非必须选项
 
-; The [include] section can just contain the &#34;files&#34; setting.  This
+; The [include] section can just contain the "files" setting.  This
 ; setting can list multiple files (separated by whitespace or
 ; newlines).  It can also contain wildcards.  The filenames are
 ; interpreted as relative to this file.  Included files *cannot*

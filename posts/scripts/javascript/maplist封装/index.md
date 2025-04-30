@@ -54,7 +54,7 @@ Util.$ = function (objid) {
   return document.getElementById(objid);
 };
 //浏览器的判断，true为IE，false为Firefox
-Util.ie = navigator.appName.indexOf(&#34;Microsoft&#34;) != -1 ? true : false;
+Util.ie = navigator.appName.indexOf("Microsoft") != -1 ? true : false;
 
 function Iterator(iteratorArray) {
   this.itArr = iteratorArray;
@@ -63,7 +63,7 @@ function Iterator(iteratorArray) {
 
 Iterator.prototype = {
   hasNext: function () {
-    if (this.index &#43; 1 &gt;= this.itArr.length) {
+    if (this.index + 1 >= this.itArr.length) {
       return false;
     } else {
       return true;
@@ -71,7 +71,7 @@ Iterator.prototype = {
   },
 
   next: function () {
-    this.index&#43;&#43;;
+    this.index++;
     return this.itArr[this.index];
   },
 };
@@ -85,7 +85,7 @@ Map.prototype = {
     if (!this.containsKey(key)) {
       this.arr.push([key, value]);
     } else {
-      for (var i = 0; i &lt; this.arr.length; i&#43;&#43;) {
+      for (var i = 0; i < this.arr.length; i++) {
         if (this.arr[i][0] == key) {
           this.arr[i][1] = value;
           return;
@@ -95,7 +95,7 @@ Map.prototype = {
   },
 
   get: function (key) {
-    for (var i = 0; i &lt; this.arr.length; i&#43;&#43;) {
+    for (var i = 0; i < this.arr.length; i++) {
       if (this.arr[i][0] == key) {
         return this.arr[i][1];
       }
@@ -104,7 +104,7 @@ Map.prototype = {
   },
 
   remove: function (key) {
-    for (var i = 0; i &lt; this.arr.length; i&#43;&#43;) {
+    for (var i = 0; i < this.arr.length; i++) {
       if (this.arr[i][0] == key) {
         this.arr.splice(i, 1);
         return;
@@ -113,7 +113,7 @@ Map.prototype = {
   },
 
   containsKey: function (key) {
-    for (var i = 0; i &lt; this.arr.length; i&#43;&#43;) {
+    for (var i = 0; i < this.arr.length; i++) {
       if (this.arr[i][0] == key) {
         return true;
       }
@@ -123,7 +123,7 @@ Map.prototype = {
 
   keySet: function () {
     var l = new List();
-    for (var i = 0; i &lt; this.arr.length; i&#43;&#43;) {
+    for (var i = 0; i < this.arr.length; i++) {
       l.add(this.arr[i][0]);
     }
     return l;
@@ -131,7 +131,7 @@ Map.prototype = {
 
   values: function () {
     var l = new List();
-    for (var i = 0; i &lt; this.arr.length; i&#43;&#43;) {
+    for (var i = 0; i < this.arr.length; i++) {
       l.add(this.arr[i][1]);
     }
     return l;
@@ -147,7 +147,7 @@ Map.prototype = {
 
   iterator: function () {
     var vs = new Array();
-    for (var i = 0; i &lt; this.arr.length; i&#43;&#43;) {
+    for (var i = 0; i < this.arr.length; i++) {
       vs.push(this.arr[i][1]);
     }
     var it = new Iterator(vs);
@@ -197,17 +197,17 @@ List.prototype = {
 function Url(urlstr) {
   this.paraMap = new Map();
 
-  if (urlstr.indexOf(&#34;?&#34;) &gt; -1) {
+  if (urlstr.indexOf("?") > -1) {
     urlstr = urlstr.substr(1);
   }
-  if (urlstr.indexOf(&#34;&amp;&#34;) &gt; -1) {
-    var pvarr = urlstr.split(&#34;&amp;&#34;);
-    for (var i = 0; i &lt; pvarr.length; i&#43;&#43;) {
-      var pv = pvarr[i].split(&#34;=&#34;);
+  if (urlstr.indexOf("&") > -1) {
+    var pvarr = urlstr.split("&");
+    for (var i = 0; i < pvarr.length; i++) {
+      var pv = pvarr[i].split("=");
       this.paraMap.put(pv[0], pv[1]);
     }
   } else {
-    var pv = urlstr.split(&#34;=&#34;);
+    var pv = urlstr.split("=");
     this.paraMap.put(pv[0], pv[1]);
   }
 }
@@ -221,28 +221,28 @@ Url.prototype = {
 function EventType() {}
 
 //鼠标单击
-EventType.click = Util.ie ? &#34;onclick&#34; : &#34;click&#34;;
-EventType.rclick = Util.ie ? &#34;oncontextmenu&#34; : &#34;contextmenu&#34;;
-EventType.mousedown = Util.ie ? &#34;onmousedown&#34; : &#34;mousedown&#34;;
-EventType.mousemove = Util.ie ? &#34;onmousemove&#34; : &#34;mousemove&#34;;
-EventType.mouseup = Util.ie ? &#34;onmouseup&#34; : &#34;mouseup&#34;;
-EventType.mouseover = Util.ie ? &#34;onmouseover&#34; : &#34;mouseover&#34;;
-EventType.mouseout = Util.ie ? &#34;onmouseout&#34; : &#34;mouseout&#34;;
-EventType.scroll = Util.ie ? &#34;onscroll&#34; : &#34;scroll&#34;;
-EventType.focus = Util.ie ? &#34;onfocus&#34; : &#34;focus&#34;;
-EventType.blur = Util.ie ? &#34;onblur&#34; : &#34;blur&#34;;
-EventType.change = Util.ie ? &#34;onchange&#34; : &#34;change&#34;;
-EventType.keypress = Util.ie ? &#34;onkeypress&#34; : &#34;keypress&#34;;
-EventType.keydown = Util.ie ? &#34;onkeydown&#34; : &#34;keydown&#34;;
-EventType.keyup = Util.ie ? &#34;onkeyup&#34; : &#34;keyup&#34;;
-EventType.submit = Util.ie ? &#34;onsubmit&#34; : &#34;submit&#34;;
+EventType.click = Util.ie ? "onclick" : "click";
+EventType.rclick = Util.ie ? "oncontextmenu" : "contextmenu";
+EventType.mousedown = Util.ie ? "onmousedown" : "mousedown";
+EventType.mousemove = Util.ie ? "onmousemove" : "mousemove";
+EventType.mouseup = Util.ie ? "onmouseup" : "mouseup";
+EventType.mouseover = Util.ie ? "onmouseover" : "mouseover";
+EventType.mouseout = Util.ie ? "onmouseout" : "mouseout";
+EventType.scroll = Util.ie ? "onscroll" : "scroll";
+EventType.focus = Util.ie ? "onfocus" : "focus";
+EventType.blur = Util.ie ? "onblur" : "blur";
+EventType.change = Util.ie ? "onchange" : "change";
+EventType.keypress = Util.ie ? "onkeypress" : "keypress";
+EventType.keydown = Util.ie ? "onkeydown" : "keydown";
+EventType.keyup = Util.ie ? "onkeyup" : "keyup";
+EventType.submit = Util.ie ? "onsubmit" : "submit";
 
 function EventHandler() {}
 
 //创建事件对象
 EventHandler.createEvent = function (func) {
   var argarr = [];
-  for (var i = 1; i &lt; arguments.length; i&#43;&#43;) argarr.push(arguments[i]);
+  for (var i = 1; i < arguments.length; i++) argarr.push(arguments[i]);
   return function () {
     func.apply(window, argarr);
   };

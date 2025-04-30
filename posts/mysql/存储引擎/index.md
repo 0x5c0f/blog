@@ -3,7 +3,7 @@
 
 # 1. mysql 存储引擎  
 ## 1.1. 引擎分类 
-可以表述为`mysql`的`&#39;文件系统&#39;`, 存储引擎可以针对单表来进行设置。 
+可以表述为`mysql`的`'文件系统'`, 存储引擎可以针对单表来进行设置。 
 `mysql`提供的有(最常用的`InnoDB`、`MyISAM`) :  
 - `InnoDB`
 - `MyISAM`
@@ -22,13 +22,13 @@
 ## 1.2. InnoDB 
 ```sql
 --- 查看默认的数据库引擎 
-mysql&gt; select @@default_storage_engine; 
+mysql> select @@default_storage_engine; 
 
 --- 查看当前数据库支持的数据库引擎  
-mysql&gt; show engines;
+mysql> show engines;
 
 --- 查看某个表所使用的存储引擎  
-mysql&gt; show create table city     --- show table status like &#39;city&#39;\G --- select t.TABLE_NAME,t.TABLE_SCHEMA, t.ENGINE from `TABLES` t where t.TABLE_SCHEMA = &#39;world&#39;
+mysql> show create table city     --- show table status like 'city'\G --- select t.TABLE_NAME,t.TABLE_SCHEMA, t.ENGINE from `TABLES` t where t.TABLE_SCHEMA = 'world'
 
 ```
 ## 1.3. 引擎设置 
@@ -40,11 +40,11 @@ default-storage-engine=InnoDB
 ```
 3. 使用`SET`命令为当前客户机会话设置  
 ```sql
-mysql&gt; SET @@storage-engine=InnoDB
+mysql> SET @@storage-engine=InnoDB
 ```
 4. 在建表语句(`CREATE TABLE`)中指定(开发规范)  
 ```sql
-mysql&gt; CREATE TABLE T(I INT) ENGINE = InnoDB 
+mysql> CREATE TABLE T(I INT) ENGINE = InnoDB 
 ```
 
 ## 1.4. 表空间 
@@ -52,7 +52,7 @@ mysql&gt; CREATE TABLE T(I INT) ENGINE = InnoDB
 - 独立表空间： 主要存放用户数据 
 
 ### 1.4.1. 表空间设置
-查看: `show variables like &#39;innodb_data_file_path&#39;`
+查看: `show variables like 'innodb_data_file_path'`
 ```ini
 [mysqld]
 ; 第一个ibdata 必定是一个固定大小的，若在启动后修改，则需要设置与实际大小一致，不能多也不能少，第二个则不受限制(默认是下12M)
@@ -86,7 +86,7 @@ innodb_data_file_path=ibdata1:512M;ibdata2:512M:autoextend
     AUTOCOMMIT=0
     ```
 2. 隐式提交   
-&gt; https://www.cnblogs.com/kerrycode/p/8649101.html  
+> https://www.cnblogs.com/kerrycode/p/8649101.html  
 
 
 - `START TRANSACTION` 
@@ -103,10 +103,10 @@ innodb_data_file_path=ibdata1:512M;ibdata2:512M:autoextend
 
 
 ## 1.7. RODO 
-- &#34;重做日志&#34;,是事务日志的一种 ,在事务`ACID`中,实现的是`&#34;D&#34;`持久化的作用
+- "重做日志",是事务日志的一种 ,在事务`ACID`中,实现的是`"D"`持久化的作用
 
 ## 1.8. UNDO 
-- &#34;回滚日志&#34;,是事务日志的一种,在事务`ACID`中,实现的是`&#34;A&#34;`、&#34;`C`&#34;,原子性和一致性的作用
+- "回滚日志",是事务日志的一种,在事务`ACID`中,实现的是`"A"`、"`C`",原子性和一致性的作用
 
 ## 1.9. mysql 四种隔离级别
 - `READ UNCOMMITTED`
@@ -115,7 +115,7 @@ innodb_data_file_path=ibdata1:512M;ibdata2:512M:autoextend
   - 允许事务查看其他事务所进行的已提交更改
 - `REPEATABLE READ***`
   - 确保每个事务的`SELECT`输出一致
-  - `InnoDB`的默认级别(`show variables like &#39;%iso%&#39;`)
+  - `InnoDB`的默认级别(`show variables like '%iso%'`)
 - `SERIALIZABLE`
   - 将一个事务的结果与其他事务完全隔离 
 

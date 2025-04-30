@@ -2,12 +2,12 @@
 
 
 
-{{&lt; admonition type=note title=&#34;前言&#34; open=true &gt;}}
+{{< admonition type=note title="前言" open=true >}}
 记录一个php的安装过程，仅作为个人使用记录，可参考  
 基础环境:  
 1. CentOS 7.6  
 2. php 5.6.38  
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 
 # 2. 安装
@@ -16,13 +16,13 @@
 [root@00 ~]# mkdir /opt/software
 [root@00 ~]# cd /opt/software
 [root@00 software]# useradd -d /var/ftproot -s /sbin/nologin www 
-[root@00 software]# yum install -y zlib-devel libxml2-devel libjpeg-devel libjpeg-turbo-devel freetype-devel libpng-devel gd-devel libcurl-devel libxslt-devel openssl openssl-devel mhash libmcrypt-devel mcrypt gcc glibc gcc-c&#43;&#43;
+[root@00 software]# yum install -y zlib-devel libxml2-devel libjpeg-devel libjpeg-turbo-devel freetype-devel libpng-devel gd-devel libcurl-devel libxslt-devel openssl openssl-devel mhash libmcrypt-devel mcrypt gcc glibc gcc-c++
 
 [root@00 software]# wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.15.tar.gz --no-check-certificate
 [root@00 software]# tar xzf libiconv-1.15.tar.gz
 [root@00 software]# cd libiconv-1.15
 [root@00 libiconv-1.15]# ./configure --prefix=/usr/local/libiconv  
-[root@00 libiconv-1.15]# make &amp;&amp; make install 
+[root@00 libiconv-1.15]# make && make install 
 ## ----  过程省略  ---- ##
 ## ----  过程错误自行排查  ---- ##
 [root@00 libiconv-1.15]# cd /opt/software
@@ -32,7 +32,7 @@
 [root@00 php-5.6.38]# cd php-5.6.38
 ## 标准的生产环境编译参数(nginx)
 ## ------------------------ ##
-## apache取消以下参数(apache&#43;php时是不需要将php启动的，php是将模块直接编译进入apache的)  
+## apache取消以下参数(apache+php时是不需要将php启动的，php是将模块直接编译进入apache的)  
 ## --enable-opcache=no
 ## --enable-fpm
 ## --with-fpm-user=www 
@@ -93,7 +93,7 @@
 # --enable-zend-multibyte  
 
 
-[root@00 php-5.6.38]# make &amp;&amp; make install
+[root@00 php-5.6.38]# make && make install
 ## ----  过程省略  ---- ##
 ## ----  过程错误自行排查  ---- ##
 [root@00 php-5.6.38]# cp -v ./php.ini-production /opt/php5.6.38/etc/php.ini
@@ -110,7 +110,7 @@
 扩展安装的操作步骤(以xcache为例):   
 1. 下载需要安装的扩展源码，解压进去后，先执行 `/opt/php5.6.38/bin/phpize` 生成`configure`配置文件   
 2. 配置当前扩展编译`./configure --enable-xcache --with-php-config=/opt/php5.6.38/bin/php-config `   
-3. 编译并安装 `make &amp;&amp; make install`,编译并安装成功后会在`/opt/php5.6.38/lib/php/extensions`目录下生成对应目录，里面包含一个`xcache.so`的文件.  
+3. 编译并安装 `make && make install`,编译并安装成功后会在`/opt/php5.6.38/lib/php/extensions`目录下生成对应目录，里面包含一个`xcache.so`的文件.  
 
 
 # 3. 相关参数说明  
@@ -143,26 +143,26 @@ rlimit_files = 65535
 ```
 
 详细参数说明:  
-&gt; https://secure.php.net/manual/zh/install.fpm.configuration.php  
+> https://secure.php.net/manual/zh/install.fpm.configuration.php  
 
 
 # 4. windows_php   
 
 1. `iis` 可直接安装为`web-platfrom`，然后搜索`php manager`
-    &gt; https://www.iis.net/downloads/microsoft/web-platform-installer  
+    > https://www.iis.net/downloads/microsoft/web-platform-installer  
 
 2. 若无法正常使用，需要先安装`vc2012`
-  - 故障: `php7.x vc15`安装时候只安装`vc&#43;&#43; 2015`不行(这个对应关系不是很清楚),此处安装[`2015、2017、2019、2022合并包`](https://docs.microsoft.com/zh-CN/cpp/windows/latest-supported-vc-redist?view=msvc-170)后成功运行 
+  - 故障: `php7.x vc15`安装时候只安装`vc++ 2015`不行(这个对应关系不是很清楚),此处安装[`2015、2017、2019、2022合并包`](https://docs.microsoft.com/zh-CN/cpp/windows/latest-supported-vc-redist?view=msvc-170)后成功运行 
 
 3. 若`1`无法安装，一般只是`php manager`无法安装，而`url`重写模块是安装好了的，这个时候直接去`github`上去下载一个整合的phpmanager，安装即可。
-    &gt; https://github.com/phpmanager/phpmanager/releases/tag/v2.0  
+    > https://github.com/phpmanager/phpmanager/releases/tag/v2.0  
 
 4. 上述第三步，也有可能`url`重写模块也未安装成功，这个时候需要去`microsoft`官网下载一个重写模块即可。另如果通过为`web-platfrom`安装`phpmanager`失败后安装的`url`重写模块，可能会导致`iis`中的`.net`程序异常，这个时候也需要手动卸载通过`web-platfrom`安装的`url`重写模块，然后安装`microsoft`下载的对应重写模块，理论上来说`iis`中安装的这个应该就是官网提供的，但是我遇到过的一次就是不行，卸载后重新安装官网的后,`.net`就正常了。  
     - [rewrite_x64_zh-CN.msi for microsoft](http://download.microsoft.com/download/4/E/7/4E7ECE9A-DF55-4F90-A354-B497072BDE0A/rewrite_x64_zh-CN.msi)  
 
     - [rewrite_x86_zh-CN.msi for microsoft](http://download.microsoft.com/download/4/9/C/49CD28DB-4AA6-4A51-9437-AA001221F606/rewrite_x86_zh-CN.msi)
 
-5. 扩展 `pdo_sqlsrv` (`windows` &#43; `drivers_3.2`)
+5. 扩展 `pdo_sqlsrv` (`windows` + `drivers_3.2`)
     - 遇到了一个坑，`php5.6`添加`pdo_sqlsrv`模块无论是 `nts` 还是 `ts`的 ，从官方直接下载下来的 `dll` 打死进加载不了，后来找到了一个非官方的，导入进去，然后就可以了，我也是哔了狗了(这些模块的dll可以去`phpstudy`中`copy`，他们是集成好了的)。   
 
 # 5. 额外扩展
@@ -175,7 +175,7 @@ yum install re2c
 
 ./configure --enable-memcache --with-php-config=/opt/php-server/bin/php-config --with-zlib-dir
 
-make &amp;&amp; make install
+make && make install
 
 extension=memcache.so
 ```
@@ -193,13 +193,13 @@ wget https://github.com/phpredis/phpredis/archive/4.3.0.tar.gz
 extension=redis.so 
 ```
 - `memcache` 管理工具 
-&gt; [http://www.junopen.com/memadmin/](http://www.junopen.com/memadmin/)
+> [http://www.junopen.com/memadmin/](http://www.junopen.com/memadmin/)
 
 
 # 6. php版本选择  
 windos服务器：  
-1. 如果你是PHP&#43;IIS；请选择：PHP非线程安全（None Thread Safe(NTS)）；   
-2. 如果你是PHP&#43;apache；请选择：PHP线程安全（Thread Safe（TS））  
+1. 如果你是PHP+IIS；请选择：PHP非线程安全（None Thread Safe(NTS)）；   
+2. 如果你是PHP+apache；请选择：PHP线程安全（Thread Safe（TS））  
 linux服务器：  
 linux服务器下的PHP，没有PHP线程安全和非线程安全版的区分  
 

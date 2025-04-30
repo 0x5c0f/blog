@@ -1,7 +1,7 @@
 # Redis集群及redis代理配置
 
 
-&lt;!--more--&gt;
+<!--more-->
 
 # 1. 测试版本: redis 5.0.9 
 
@@ -46,10 +46,10 @@ cluster-node-timeout 15000
 
 
 ## 1.4. redis 代理(一个服务器上部署，看需要部署多节点)
-&gt; https://juejin.im/post/6863701563685371917
+> https://juejin.im/post/6863701563685371917
  
 ```bash
-yum install libstdc&#43;&#43;-static gcc gcc-c&#43;&#43; -y
+yum install libstdc++-static gcc gcc-c++ -y
 
 git clone https://github.com/joyieldInc/predixy.git
 
@@ -89,12 +89,12 @@ ClusterServerPool {
    ServerRetryTimeout 1
    KeepAlive 120
    Servers {
-       &#43; 192.16.10.200:6371
-       &#43; 192.16.10.200:6372
-       &#43; 192.16.10.200:6373
-       &#43; 192.16.10.201:6375
-       &#43; 192.16.10.201:6376
-       &#43; 192.16.10.201:6377
+       + 192.16.10.200:6371
+       + 192.16.10.200:6372
+       + 192.16.10.200:6373
+       + 192.16.10.201:6375
+       + 192.16.10.201:6376
+       + 192.16.10.201:6377
    }
 }
 

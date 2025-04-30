@@ -1,31 +1,31 @@
 # Linux性能测试之性能测试指标(转载)
 
 
-{{&lt; admonition type=quote title=&#34;Linux 性能测试之性能测试指标详解(原文)&#34; open=true &gt;}}
+{{< admonition type=quote title="Linux 性能测试之性能测试指标详解(原文)" open=true >}}
 https://blog.csdn.net/u010521062/article/details/115908166
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
-{{&lt; admonition type=&#34;info&#34; title=&#34;前言&#34; open=true &gt;}}
+{{< admonition type="info" title="前言" open=true >}}
 性能测试指标是衡量系统性能的评价标准，常用的系统性能测试指标包括：响应时间、并发用户/并发、点击率、吞吐量、TPS/QPS、PV/UV；Linux服务器常用的性能指标包括：CPU使用率、内存占用率、磁盘IO、系统平均负载等。 
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 
 # 1. 系统性能测试指标
 ## 1.1. 响应时间
-&amp;emsp;&amp;emsp;响应时间是指某个请求或操作从发出到接收到反馈所消耗的时间，包括应用服务器（客户端）处理时间、网络传输时间以及数据库服务器处理时间。比如一个页面从点击/输入到完全加载的时间；完成一次增加、删除、修改或者查询动作的事务响应时间等。
+&emsp;&emsp;响应时间是指某个请求或操作从发出到接收到反馈所消耗的时间，包括应用服务器（客户端）处理时间、网络传输时间以及数据库服务器处理时间。比如一个页面从点击/输入到完全加载的时间；完成一次增加、删除、修改或者查询动作的事务响应时间等。
 
-&amp;emsp;&amp;emsp;一个请求在网络上的传输往往要经历多个网络节点才能到达目标服务器，我们假设请求经历了三个网络节点的传输时间B1、B2、B3，客户端的处理时间为A，服务器的响应时间为C。则一次请求的完整路径可以描述为下图：
+&emsp;&emsp;一个请求在网络上的传输往往要经历多个网络节点才能到达目标服务器，我们假设请求经历了三个网络节点的传输时间B1、B2、B3，客户端的处理时间为A，服务器的响应时间为C。则一次请求的完整路径可以描述为下图：
 
 ```mermaid
 graph RL;
     
-服务器C --&gt;|反馈|节点B3--&gt;节点B2--&gt;节点B1--&gt;|反馈|客户端A
-客户端A --&gt;|请求| 节点B1--&gt;节点B2--&gt;节点B3--&gt;|请求|服务器C
+服务器C -->|反馈|节点B3-->节点B2-->节点B1-->|反馈|客户端A
+客户端A -->|请求| 节点B1-->节点B2-->节点B3-->|请求|服务器C
 ```
 
-客户端从发出请求到接收到服务器反馈的完整链路时间为`A—&gt;B1—&gt;B2—&gt;B3—&gt;C`（节点处理时间都包括接收和发送两个过程）。  
+客户端从发出请求到接收到服务器反馈的完整链路时间为`A—>B1—>B2—>B3—>C`（节点处理时间都包括接收和发送两个过程）。  
 则请求的响应时间为：
-`响应时间=A&#43;B1&#43;B2&#43;B3&#43;C`
+`响应时间=A+B1+B2+B3+C`
 
 ## 1.2. 并发
 - 并发是指多个用户在同一时期内进行相同的事务处理或操作。由于用户在进行一系列操作流程时有一定的时间间隔（即用户思考时间）或者服务器处理请求有先后顺序，于是，就产生了绝对并发和相对并发概念的区分。
@@ -80,7 +80,7 @@ graph RL;
 - CPU使用率是单位时间内服务器CPU的使用统计，可以用除CPU空闲时间外其他时间占总CPU时间的百分比来表示，即：`CPU使用率=1-CPU空闲时间/总CPU时间`
 
     - 命令：#top //top工具间隔3s会动态滚动更新一次数据   
-    {{&lt; image src=&#34;/images/top_cpu.png&#34; caption=&#34;&#34; src_s=&#34;/images/top_cpu.png&#34; src_l=&#34;/images/top_cpu.png&#34; title=&#34;&#34; &gt;}}
+    {{< image src="/images/top_cpu.png" caption="" src_s="/images/top_cpu.png" src_l="/images/top_cpu.png" title="" >}}
     | 字段                  | 说明                                                                                          |
     | --------------------- | --------------------------------------------------------------------------------------------- |
     | `us (user) `          | 用户态的CPU使用时间比例，是用户运行程序的真正时间，它不包括后面的ni时间；                     |
@@ -94,7 +94,7 @@ graph RL;
 
 - 在性能测试中，系统整体的CPU使用率可以用（1-id）来计算。当us很高时，说明CPU时间主要消耗在用户代码上，可以从用户代码角度考虑优化性能；当sy很高时，说明CPU时间主要消耗在内核上，可以从是否系统调用频繁、CPU进程或线程切换频繁角度考虑性能的优化；当wa很高时，说明有进程在进行频繁的IO操作，可能是磁盘IO或者网络IO。
 
-- 一般情况下，如果`%us&#43;%sy&lt;=70%`，我们可以认为系统的运行状态良好。
+- 一般情况下，如果`%us+%sy<=70%`，我们可以认为系统的运行状态良好。
 
 ## 2.2. 内存占用率
 - Linux的系统内存管理机制遵循内存利用率最大化的原则。内核会将空余的内存划分为cached（不属于free），对于有频繁读取操作的文件或数据会被保存在cached中。因此，对于linux系统来说，可用于分配的内存不止free的内存，同时还包括cached的内存（其实还包括buffers的内存）。
@@ -103,23 +103,23 @@ graph RL;
 
 - top工具既可以查看系统CPU使用情况，也可以查看系统内存使用信息。  
     - 命令：#top  
-    {{&lt; image src=&#34;/images/top_mem.png&#34; caption=&#34;&#34; src_s=&#34;/images/top_mem.png&#34; src_l=&#34;/images/top_mem.png&#34; title=&#34;&#34; &gt;}}  
+    {{< image src="/images/top_mem.png" caption="" src_s="/images/top_mem.png" src_l="/images/top_mem.png" title="" >}}  
     在性能测试中，经常会用到系统已用内存、物理已用内存、系统内存占用率以及物理内存占用率这几个指标，它们的计算公式如下：  
     系统已用内存`MemUsed=MemTotal-MemFree` //包含buffers和cached  
-    物理已用内存`-/&#43;Used= MemTotal-MemFree-MemBuffers-MemCached`  
+    物理已用内存`-/+Used= MemTotal-MemFree-MemBuffers-MemCached`  
     系统内存占用率`MemUsed%=（MemUsed/ MemTotal）*100%`  
-    物理内存占用率`-/&#43;Used%=(-/&#43;Used/ MemTotal）*100%`  
+    物理内存占用率`-/+Used%=(-/+Used/ MemTotal）*100%`  
 
-- 一般情况下，`系统内存占用率&lt;=70%`，我们可以认为系统的内存使用情况良好，如果超出则说明系统内存资源紧张。  
+- 一般情况下，`系统内存占用率<=70%`，我们可以认为系统的内存使用情况良好，如果超出则说明系统内存资源紧张。  
 
 ## 2.3. 系统平均负载
 - 当发现系统出现卡断或者运行不顺畅时，我们可以通过uptime，top或者w命令来查看系统的负载情况。
 - uptime  
-{{&lt; image src=&#34;/images/uptime.png&#34; caption=&#34;&#34; src_s=&#34;/images/uptime.png&#34; src_l=&#34;/images/uptime.png&#34; title=&#34;&#34; &gt;}}  
+{{< image src="/images/uptime.png" caption="" src_s="/images/uptime.png" src_l="/images/uptime.png" title="" >}}  
 - top  
-{{&lt; image src=&#34;/images/top_load.png&#34; caption=&#34;&#34; src_s=&#34;/images/top_load.png&#34; src_l=&#34;/images/top_load.png&#34; title=&#34;&#34; &gt;}}  
+{{< image src="/images/top_load.png" caption="" src_s="/images/top_load.png" src_l="/images/top_load.png" title="" >}}  
 - w  
-{{&lt; image src=&#34;/images/w.png&#34; caption=&#34;&#34; src_s=&#34;/images/w.png&#34; src_l=&#34;/images/w.png&#34; title=&#34;&#34; &gt;}}  
+{{< image src="/images/w.png" caption="" src_s="/images/w.png" src_l="/images/w.png" title="" >}}  
 - Linux的load average表示系统负载的平均值，显示的三个数值分别表示1分钟、5分钟和15分钟内的平均负载情况。这里的平均负载是指单位时间内，系统处于可运行状态和不可中断状态的平均进程数，可以简单的理解为平均负载就是系统平均活跃进程数。  
 
 - 其中可运行状态是指正在使用CPU或者正在等待CPU的进程（处于R状态：Running或者Runnable的进程）；不可中断状态的进程指的是正处于内核态关键流程中的进程，处于这个流程的进程是不可打断的，比如等待硬件设备的I/O响应。
@@ -141,7 +141,7 @@ graph RL;
 - Linux服务器性能除了CPU和内存外，还有磁盘IO也是一种常用的性能指标。
 
 - 命令：#`iostat –x –k 2 3` //每隔2S输出磁盘IO的使用情况，共采样3
-{{&lt; image src=&#34;/images/iostat.png&#34; caption=&#34;&#34; src_s=&#34;/images/iostat.png&#34; src_l=&#34;/images/iostat.png&#34; title=&#34;&#34; &gt;}}  
+{{< image src="/images/iostat.png" caption="" src_s="/images/iostat.png" src_l="/images/iostat.png" title="" >}}  
 | 字段     | 说明                                                                        |
 | -------- | --------------------------------------------------------------------------- |
 | rrqm/s   | 每秒对该设备的读请求被合并次数，文件系统会对读取同块(block)的请求进行合并； |
@@ -156,7 +156,7 @@ graph RL;
 | svctm    | 平均每次IO请求的处理时间(毫秒为单位)；                                      |
 | %util    | 采用周期内用于IO操作的时间比率，即IO队列非空的时间比率；                    |
 
-- 在性能测试中，我们可以重点关注`iowait%`和`%util`参数。其中`iowait%` 表示CPU等待IO时间占整个CPU周期的百分比，如果`iowait`值超过50%，或者明显大于`%system`、`%user`以及`%idle`，表示IO可能存在问题了；`%util`表示磁盘忙碌的情况，一般`%util&lt;=70%`表示该磁盘IO使用状态良好。
+- 在性能测试中，我们可以重点关注`iowait%`和`%util`参数。其中`iowait%` 表示CPU等待IO时间占整个CPU周期的百分比，如果`iowait`值超过50%，或者明显大于`%system`、`%user`以及`%idle`，表示IO可能存在问题了；`%util`表示磁盘忙碌的情况，一般`%util<=70%`表示该磁盘IO使用状态良好。
 
 ## 2.5. linux常用性能命令
 - `CPU` : `cat /proc/cpuinfo`、`top`、`lscpu`

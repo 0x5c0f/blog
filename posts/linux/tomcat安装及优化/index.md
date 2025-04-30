@@ -16,7 +16,7 @@ export TOMCAT_HOME=/opt/tomcat-8.5.59
 
 ## 日志 
 - `catalina.out` 为主要日志文件，会随着时间不断增加  
-- `catalina.$(date &#43;&#34;%Y-%m-%d&#34;).log` 为`catalina.out`的每日切割文件(实际好像不是，`tomcat`不会自动切割日志) 
+- `catalina.$(date +"%Y-%m-%d").log` 为`catalina.out`的每日切割文件(实际好像不是，`tomcat`不会自动切割日志) 
 
 ## 多实例
 多实例就是多个`tomcat`，然后修改下端口就行了
@@ -26,30 +26,30 @@ export TOMCAT_HOME=/opt/tomcat-8.5.59
 - `jps -lvm`  
 - `show-busy-java-threads`  
 
-查询到繁忙的`java`进程`pid`后,通过`jstack &lt;pid&gt;`查询详细信息，然后发送给开发人员即可  
+查询到繁忙的`java`进程`pid`后,通过`jstack <pid>`查询详细信息，然后发送给开发人员即可  
 
 ### zabbix 监控 
  **系统尽量不要使用纯数字作为主机名**   
 1. `tomcat` 开启远程监控功能  
 ```bash
-$&gt; vim &#43;124 /opt/tomcat-8.5.59/bin/catalina.sh # 124 
-CATALINA_OPTS=&#34;$CATALINA_OPTS
+$> vim +124 /opt/tomcat-8.5.59/bin/catalina.sh # 124 
+CATALINA_OPTS="$CATALINA_OPTS
 -Dcom.sun.management.jmxremote 
 -Dcom.sun.management.jmxremote.port=12345 
 -Dcom.sun.management.jmxremote.authenticate=false 
 -Dcom.sun.management.jmxremote.ssl=false 
 -Djava.rmi.server.hostsname=10.0.2.20       # tomcat服务器的ip
-&#34;
+"
 ```
 2. `zabbix_server` 启动并配置 `JavaGateway`
 ```bash
-$&gt; vim /opt/zabbix-server/etc/zabbix_server.conf    # 282
+$> vim /opt/zabbix-server/etc/zabbix_server.conf    # 282
 JavaGateway=10.0.2.11
 JavaGatewayPort=10052
 StartJavaPollers=5
 
-$&gt; systemctl restart zabbix_server.service  
-$&gt; /opt/zabbix-server/sbin/zabbix_java/startup.sh
+$> systemctl restart zabbix_server.service  
+$> /opt/zabbix-server/sbin/zabbix_java/startup.sh
 
 # 前端添加jmx 监控, 完成 
 ```
@@ -68,7 +68,7 @@ location / {
 ```
 
 ### 具体优化见
-&gt; {{&lt; link &#34;/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96&#34; 常用web环境优化 &gt;}} 
+> {{< link "/2020/%E5%B8%B8%E7%94%A8web%E7%8E%AF%E5%A2%83%E4%BC%98%E5%8C%96" 常用web环境优化 >}} 
 
 
 ---

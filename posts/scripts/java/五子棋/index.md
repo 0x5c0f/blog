@@ -11,9 +11,9 @@ import javax.swing.JPanel;
  *main方法创建了ChessFrame类的一个实例对象（cf），
  *并启动屏幕显示显示该实例对象。
  **/
-@SuppressWarnings(&#34;serial&#34;)
+@SuppressWarnings("serial")
 public class FiveChessAppletDemo {
-      @SuppressWarnings( &#34;deprecation&#34;)
+      @SuppressWarnings( "deprecation")
        public static void main(String args[]){
             ChessFrame cf = new ChessFrame();
             cf.show();
@@ -24,8 +24,8 @@ public class FiveChessAppletDemo {
  *类ChessFrame主要功能是创建五子棋游戏主窗体和菜单
  **/
 class ChessFrame extends JFrame implements ActionListener {
-       private String[] strsize={&#34;20x15&#34;,&#34;30x20&#34;, &#34;40x30&#34;};
-       private String[] strmode={&#34;人机对弈 &#34;,&#34; 人人对弈 &#34;};
+       private String[] strsize={"20x15","30x20", "40x30"};
+       private String[] strmode={"人机对弈 "," 人人对弈 "};
        public static boolean iscomputer=true,checkcomputer= true;
        private int width,height;
        private ChessModel cm;
@@ -33,27 +33,27 @@ class ChessFrame extends JFrame implements ActionListener {
       
        //构造五子棋游戏的主窗体
        public ChessFrame() {
-             this.setTitle( &#34;五子棋游戏&#34;);
+             this.setTitle( "五子棋游戏");
             cm= new ChessModel(1);
             mp= new MainPanel(cm);
             Container con= this.getContentPane();
-            con.add(mp, &#34;Center&#34;);
+            con.add(mp, "Center");
              this.setResizable( false);
              this.addWindowListener( new ChessWindowEvent());
             MapSize( 20,15 );
             JMenuBar mbar = new JMenuBar();
              this.setJMenuBar(mbar);
-            JMenu gameMenu = new JMenu(&#34;游戏 &#34;);
+            JMenu gameMenu = new JMenu("游戏 ");
             mbar.add(makeMenu(gameMenu, new Object[] {
-                   &#34;开局&#34;, &#34;棋盘&#34; ,&#34;模式 &#34;, null , &#34;退出 &#34;
+                   "开局", "棋盘" ,"模式 ", null , "退出 "
                   }, this));
-            JMenu lookMenu = new JMenu(&#34;视图 &#34;);
+            JMenu lookMenu = new JMenu("视图 ");
             mbar.add(makeMenu(lookMenu, new Object[] {
-                   &#34;Metal&#34;,&#34;Motif&#34; ,&#34;Windows&#34;
+                   "Metal","Motif" ,"Windows"
                   }, this));
-            JMenu helpMenu = new JMenu(&#34;帮助 &#34;);
+            JMenu helpMenu = new JMenu("帮助 ");
             mbar.add(makeMenu(helpMenu, new Object[] {
-                   &#34;关于&#34;
+                   "关于"
             }, this));
       }
 
@@ -66,14 +66,14 @@ class ChessFrame extends JFrame implements ActionListener {
                   m = new JMenu((String)parent);
              else
                    return null ;
-             for(int i = 0; i &lt; items.length; i&#43;&#43;)
+             for(int i = 0; i < items.length; i++)
                    if(items[i] == null)
                         m.addSeparator();
-                   else if (items[i] == &#34;棋盘&#34; ){
-                        JMenu jm = new JMenu(&#34;棋盘 &#34;);
+                   else if (items[i] == "棋盘" ){
+                        JMenu jm = new JMenu("棋盘 ");
                         ButtonGroup group= new ButtonGroup();
                         JRadioButtonMenuItem rmenu;
-                         for (int j=0;j&lt;strsize.length;j&#43;&#43;){
+                         for (int j=0;j<strsize.length;j++){
                               rmenu=makeRadioButtonMenuItem(strsize[j],target);
                                if (j==0 )
                                     rmenu.setSelected( true);
@@ -81,11 +81,11 @@ class ChessFrame extends JFrame implements ActionListener {
                               group.add(rmenu);
                         }
                         m.add(jm);
-                  } else if (items[i] == &#34;模式&#34; ){
-                        JMenu jm = new JMenu(&#34;模式 &#34;);
+                  } else if (items[i] == "模式" ){
+                        JMenu jm = new JMenu("模式 ");
                         ButtonGroup group= new ButtonGroup();
                         JRadioButtonMenuItem rmenu;
-                         for (int h=0;h&lt;strmode.length;h&#43;&#43;){
+                         for (int h=0;h<strmode.length;h++){
                               rmenu=makeRadioButtonMenuItem(strmode[h],target);
                                if(h==0 )
                                     rmenu.setSelected( true);
@@ -128,7 +128,7 @@ class ChessFrame extends JFrame implements ActionListener {
     }
    
     public void MapSize(int w,int h){
-      setSize(w * 20&#43;50 , h * 20&#43; 100 );
+      setSize(w * 20+50 , h * 20+ 100 );
       if( this.checkcomputer)
              this.iscomputer= true;
       else
@@ -143,69 +143,69 @@ class ChessFrame extends JFrame implements ActionListener {
    
     public void restart(){
       int modeChess = cm.getModeChess();
-      if(modeChess &lt;= 3 &amp;&amp; modeChess &gt;= 1){
+      if(modeChess <= 3 && modeChess >= 1){
             cm = new ChessModel(modeChess);
             MapSize(cm.getWidth(),cm.getHeight());
       }else{
-            System.out.println( &#34;\u81EA\u5B9A\u4E49&#34; );
+            System.out.println( "\u81EA\u5B9A\u4E49" );
       }
     }
    
     public void actionPerformed(ActionEvent e){
       String arg=e.getActionCommand();
       try{
-             if (arg.equals(&#34;Windows&#34;))
+             if (arg.equals("Windows"))
                   UIManager.setLookAndFeel(
-                         &#34;com.sun.java.swing.plaf.windows.WindowsLookAndFeel&#34; );
-             else if (arg.equals(&#34;Motif&#34;))
+                         "com.sun.java.swing.plaf.windows.WindowsLookAndFeel" );
+             else if (arg.equals("Motif"))
                         UIManager.setLookAndFeel(
-                               &#34;com.sun.java.swing.plaf.motif.MotifLookAndFeel&#34; );
+                               "com.sun.java.swing.plaf.motif.MotifLookAndFeel" );
                    else
                         UIManager.setLookAndFeel(
-                               &#34;javax.swing.plaf.metal.MetalLookAndFeel&#34; );
+                               "javax.swing.plaf.metal.MetalLookAndFeel" );
                   SwingUtilities.updateComponentTreeUI( this);
             } catch(Exception ee){}
-             if(arg.equals(&#34;20x15&#34;)){
+             if(arg.equals("20x15")){
                    this.width= 20;
                    this.height= 15;
                   cm= new ChessModel(1);
                   MapSize( this.width, this.height);
                   SwingUtilities.updateComponentTreeUI( this);
             }
-             if(arg.equals(&#34;30x20&#34;)){
+             if(arg.equals("30x20")){
                    this.width= 30;
                    this.height= 20;
                   cm= new ChessModel(2);
                   MapSize( this.width, this.height);
                   SwingUtilities.updateComponentTreeUI( this);
             }
-             if(arg.equals(&#34;40x30&#34;)){
+             if(arg.equals("40x30")){
                    this.width= 40;
                    this.height= 30;
                   cm= new ChessModel(3);
                   MapSize( this.width, this.height);
                   SwingUtilities.updateComponentTreeUI( this);
             }
-             if(arg.equals(&#34;人机对弈 &#34;)){
+             if(arg.equals("人机对弈 ")){
                    this.checkcomputer= true;
                    this.iscomputer= true;
                   cm= new ChessModel(cm.getModeChess());
                   MapSize(cm.getWidth(),cm.getHeight());
                   SwingUtilities.updateComponentTreeUI( this);
             }
-             if(arg.equals(&#34;人人对弈 &#34;)){
+             if(arg.equals("人人对弈 ")){
                    this.checkcomputer= false;
                    this.iscomputer= false;
                   cm= new ChessModel(cm.getModeChess());
                   MapSize(cm.getWidth(),cm.getHeight());
                   SwingUtilities.updateComponentTreeUI( this);
             }
-             if(arg.equals(&#34;开局 &#34;)){
+             if(arg.equals("开局 ")){
                   restart();
             }
-             if(arg.equals(&#34;关于 &#34;))
-                  JOptionPane.showMessageDialog( this, &#34; 五子棋游戏测试版本 &#34;, &#34; 关于&#34;, 0);
-             if(arg.equals(&#34;退出 &#34;))
+             if(arg.equals("关于 "))
+                  JOptionPane.showMessageDialog( this, " 五子棋游戏测试版本 ", " 关于", 0);
+             if(arg.equals("退出 "))
                   System.exit( 0);
       }
 }
@@ -249,9 +249,9 @@ class ChessModel {
              this.width = width;
              this.height = height;
              this.modeChess = modeChess;
-            arrMapShow = new int [width&#43;1][height&#43; 1];
-             for(int i = 0; i &lt;= width; i&#43;&#43;){
-                   for(int j = 0; j &lt;= height; j&#43;&#43;){
+            arrMapShow = new int [width+1][height+ 1];
+             for(int i = 0; i <= width; i++){
+                   for(int j = 0; j <= height; j++){
                         arrMapShow[i][j] = - 5;
                   }
             }
@@ -297,9 +297,9 @@ class ChessModel {
 
        //判断下子的横向、纵向坐标是否越界
        private boolean badxy(int x, int y){
-             if(x &gt;= width&#43;20 || x &lt; 0)
+             if(x >= width+20 || x < 0)
                    return true ;
-             return y &gt;= height&#43;20 || y &lt; 0;
+             return y >= height+20 || y < 0;
       }
 
        //计算棋盘上某一方格上八个方向棋子的最大值，
@@ -345,14 +345,14 @@ class ChessModel {
        public void computerDo(int width, int height){
              int max_black,max_white,max_temp,max=0;
             setisOdd( true);
-            System.out.println( &#34;计算机走棋 ...&#34;);
-             for(int i = 0; i &lt;= width; i&#43;&#43;){
-                   for(int j = 0; j &lt;= height; j&#43;&#43;){
+            System.out.println( "计算机走棋 ...");
+             for(int i = 0; i <= width; i++){
+                   for(int j = 0; j <= height; j++){
                          if(!chessExist(i,j)){//算法判断是否下子
                               max_white=checkMax(i,j, 2);// 判断白子的最大值
                               max_black=checkMax(i,j, 1);// 判断黑子的最大值
                               max_temp=Math.max(max_white,max_black);
-                               if(max_temp&gt;max){
+                               if(max_temp>max){
                                     max=max_temp;
                                      this.x=i;
                                      this.y=j;
@@ -392,114 +392,114 @@ class ChessModel {
              int x_temp=x,y_temp=y;
              int x_temp1=x_temp,y_temp1=y_temp;
              //judge right
-             for(int i=1;i&lt; 5;i&#43;&#43;){
-                  x_temp1&#43;= 1;
-                   if(x_temp1&gt;this.width)
+             for(int i=1;i< 5;i++){
+                  x_temp1+= 1;
+                   if(x_temp1>this.width)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==black_or_white)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
              //judge left
             x_temp1=x_temp;
-             for(int i=1;i&lt; 5;i&#43;&#43;){
+             for(int i=1;i< 5;i++){
                   x_temp1-= 1;
-                   if(x_temp1&lt;0)
+                   if(x_temp1<0)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==black_or_white)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
-             if(num&lt;5)
+             if(num<5)
                   max_temp=num;
 
              //judge up
             x_temp1=x_temp;
             y_temp1=y_temp;
             num= 0;
-             for(int i=1;i&lt; 5;i&#43;&#43;){
+             for(int i=1;i< 5;i++){
                   y_temp1-= 1;
-                   if(y_temp1&lt;0)
+                   if(y_temp1<0)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==black_or_white)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
              //judge down
             y_temp1=y_temp;
-             for(int i=1;i&lt; 5;i&#43;&#43;){
-                  y_temp1&#43;= 1;
-                   if(y_temp1&gt;this.height)
+             for(int i=1;i< 5;i++){
+                  y_temp1+= 1;
+                   if(y_temp1>this.height)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==black_or_white)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
-             if(num&gt;max_temp&amp;&amp;num&lt;5)
+             if(num>max_temp&&num<5)
                   max_temp=num;
 
              //judge left_up
             x_temp1=x_temp;
             y_temp1=y_temp;
             num= 0;
-             for(int i=1;i&lt; 5;i&#43;&#43;){
+             for(int i=1;i< 5;i++){
                   x_temp1-= 1;
                   y_temp1-= 1;
-                   if(y_temp1&lt;0 || x_temp1&lt;0)
+                   if(y_temp1<0 || x_temp1<0)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==black_or_white)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
              //judge right_down
             x_temp1=x_temp;
             y_temp1=y_temp;
-             for(int i=1;i&lt; 5;i&#43;&#43;){
-                  x_temp1&#43;= 1;
-                  y_temp1&#43;= 1;
-                   if(y_temp1&gt;this.height || x_temp1&gt;this.width)
+             for(int i=1;i< 5;i++){
+                  x_temp1+= 1;
+                  y_temp1+= 1;
+                   if(y_temp1>this.height || x_temp1>this.width)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==black_or_white)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
-             if(num&gt;max_temp&amp;&amp;num&lt;5)
+             if(num>max_temp&&num<5)
                   max_temp=num;
 
              //judge right_up
             x_temp1=x_temp;
             y_temp1=y_temp;
             num= 0;
-             for(int i=1;i&lt; 5;i&#43;&#43;){
-                  x_temp1&#43;= 1;
+             for(int i=1;i< 5;i++){
+                  x_temp1+= 1;
                   y_temp1-= 1;
-                   if(y_temp1&lt;0 || x_temp1&gt;this.width)
+                   if(y_temp1<0 || x_temp1>this.width)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==black_or_white)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
              //judge left_down
             x_temp1=x_temp;
             y_temp1=y_temp;
-             for(int i=1;i&lt; 5;i&#43;&#43;){
+             for(int i=1;i< 5;i++){
                   x_temp1-= 1;
-                  y_temp1&#43;= 1;
-                   if(y_temp1&gt;this.height || x_temp1&lt;0)
+                  y_temp1+= 1;
+                   if(y_temp1>this.height || x_temp1<0)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==black_or_white)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
-             if(num&gt;max_temp&amp;&amp;num&lt;5)
+             if(num>max_temp&&num<5)
                   max_temp=num;
             max_num=max_temp;
              return max_num;
@@ -516,23 +516,23 @@ class ChessModel {
                   arrvalue= 1;
              int x_temp1=x_temp,y_temp1=y_temp;
              //判断右边
-             for(int i=1;i&lt; 6;i&#43;&#43;){
-                  x_temp1&#43;= 1;
-                   if(x_temp1&gt;this.width)
+             for(int i=1;i< 6;i++){
+                  x_temp1+= 1;
+                   if(x_temp1>this.width)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==arrvalue)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
              //判断左边
             x_temp1=x_temp;
-             for(int i=1;i&lt; 6;i&#43;&#43;){
+             for(int i=1;i< 6;i++){
                   x_temp1-= 1;
-                   if(x_temp1&lt;0)
+                   if(x_temp1<0)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==arrvalue)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
@@ -543,23 +543,23 @@ class ChessModel {
             x_temp1=x_temp;
             y_temp1=y_temp;
             num= 1;
-             for(int i=1;i&lt; 6;i&#43;&#43;){
+             for(int i=1;i< 6;i++){
                   y_temp1-= 1;
-                   if(y_temp1&lt;0)
+                   if(y_temp1<0)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==arrvalue)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
              //判断下方
             y_temp1=y_temp;
-             for(int i=1;i&lt; 6;i&#43;&#43;){
-                  y_temp1&#43;= 1;
-                   if(y_temp1&gt;this.height)
+             for(int i=1;i< 6;i++){
+                  y_temp1+= 1;
+                   if(y_temp1>this.height)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==arrvalue)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
@@ -570,26 +570,26 @@ class ChessModel {
             x_temp1=x_temp;
             y_temp1=y_temp;
             num= 1;
-             for(int i=1;i&lt; 6;i&#43;&#43;){
+             for(int i=1;i< 6;i++){
                   x_temp1-= 1;
                   y_temp1-= 1;
-                   if(y_temp1&lt;0 || x_temp1&lt;0)
+                   if(y_temp1<0 || x_temp1<0)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==arrvalue)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
              //判断右下
             x_temp1=x_temp;
             y_temp1=y_temp;
-             for(int i=1;i&lt; 6;i&#43;&#43;){
-            x_temp1&#43;= 1;
-            y_temp1&#43;= 1;
-             if(y_temp1&gt;this.height || x_temp1&gt;this.width)
+             for(int i=1;i< 6;i++){
+            x_temp1+= 1;
+            y_temp1+= 1;
+             if(y_temp1>this.height || x_temp1>this.width)
                    break;
                    if(this .arrMapShow[x_temp1][y_temp1]==arrvalue)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
@@ -600,26 +600,26 @@ class ChessModel {
             x_temp1=x_temp;
             y_temp1=y_temp;
             num= 1;
-             for(int i=1;i&lt; 6;i&#43;&#43;){
-                  x_temp1&#43;= 1;
+             for(int i=1;i< 6;i++){
+                  x_temp1+= 1;
                   y_temp1-= 1;
-                   if(y_temp1&lt;0 || x_temp1&gt;this.width)
+                   if(y_temp1<0 || x_temp1>this.width)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==arrvalue)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
              //判断左下
             x_temp1=x_temp;
             y_temp1=y_temp;
-             for(int i=1;i&lt; 6;i&#43;&#43;){
+             for(int i=1;i< 6;i++){
                   x_temp1-= 1;
-                  y_temp1&#43;= 1;
-                   if(y_temp1&gt;this.height || x_temp1&lt;0)
+                  y_temp1+= 1;
+                   if(y_temp1>this.height || x_temp1<0)
                          break;
                    if(this .arrMapShow[x_temp1][y_temp1]==arrvalue)
-                        num&#43;&#43;;
+                        num++;
                    else
                          break;
             }
@@ -630,13 +630,13 @@ class ChessModel {
 
        //赢棋后的提示
        public void showSuccess(JPanel jp){
-            JOptionPane.showMessageDialog(jp, &#34;你赢了，好厉害!&#34;, &#34;win&#34;,
+            JOptionPane.showMessageDialog(jp, "你赢了，好厉害!", "win",
                   JOptionPane.INFORMATION_MESSAGE);
       }
       
        //输棋后的提示
        public void showDefeat(JPanel jp){
-            JOptionPane.showMessageDialog(jp, &#34;你输了，请重新开始!&#34;, &#34;lost&#34;,
+            JOptionPane.showMessageDialog(jp, "你输了，请重新开始!", "lost",
                   JOptionPane.INFORMATION_MESSAGE);
       }
 }
@@ -670,8 +670,8 @@ class MainPanel extends JPanel
        //然后调用draw方法在棋盘上画出相应的棋子
        public void paintComponent(Graphics g){
              super.paintComponent(g);
-             for(int j = 0; j &lt;= height; j&#43;&#43;){
-                   for(int i = 0; i &lt;= width; i&#43;&#43;){
+             for(int j = 0; j <= height; j++){
+                   for(int i = 0; i <= width; i++){
                          int v = cm.getarrMapShow()[i][j];
                         draw(g, i, j, v);
                   }
@@ -680,10 +680,10 @@ class MainPanel extends JPanel
 
        //根据提供的棋子信息（颜色、坐标）画棋子
        public void draw(Graphics g, int i, int j, int v){
-             int x = 20 * i&#43;20;
-             int y = 20 * j&#43;20;
+             int x = 20 * i+20;
+             int y = 20 * j+20;
              //画棋盘
-             if(i!=width &amp;&amp; j!=height){
+             if(i!=width && j!=height){
                   g.setColor(Color.white);
                   g.drawRect(x,y, 20,20 );
             }
@@ -712,10 +712,10 @@ class MainPanel extends JPanel
        public void mousePressed(MouseEvent evt){
              int x = (evt.getX()-10) / 20;
              int y = (evt.getY()-10) / 20;
-            System.out.println(x&#43; &#34; &#34;&#43;y);
+            System.out.println(x+ " "+y);
              if (evt.getModifiers()==MouseEvent.BUTTON1_MASK){
                   cm.play(x,y);
-                  System.out.println(cm.getisOdd()&#43; &#34; &#34;&#43;cm.getarrMapShow()[x][y]);
+                  System.out.println(cm.getisOdd()+ " "+cm.getarrMapShow()[x][y]);
                   repaint();
                    if(cm.judgeSuccess(x,y,cm.getisOdd())){
                         cm.showSuccess( this);
@@ -723,7 +723,7 @@ class MainPanel extends JPanel
                         ChessFrame.iscomputer= false;
                   }
                    //判断是否为人机对弈
-                   if(ChessFrame.iscomputer&amp;&amp;!cm.getisExist()){
+                   if(ChessFrame.iscomputer&&!cm.getisExist()){
                         cm.computerDo(cm.getWidth(),cm.getHeight());
                         repaint();
                          if(cm.judgeSuccess(cm.getX(),cm.getY(),cm.getisOdd())){

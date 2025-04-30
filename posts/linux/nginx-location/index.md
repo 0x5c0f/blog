@@ -33,7 +33,7 @@ server {
 `handled requests`          :  已经处理完毕的请求数  
 `Reading:`                  :  nginx 读取到客户端的header信息数  
 `Writing`                   :  返回给客户端的header信息数  
-`Waiting`                   :  已经处理完等待下一次请求制定的驻留数(在开启keep-alive时，该值等于active-(reading&#43;writing))  
+`Waiting`                   :  已经处理完等待下一次请求制定的驻留数(在开启keep-alive时，该值等于active-(reading+writing))  
 
 ## 2.3. nginx 日志  
 日志语法(配置于http标签内):  
@@ -52,7 +52,7 @@ log_format  name    string ...;
 
 ## 2.4. nginx location  
 ### 2.4.1. location 作用  
-&amp;emsp;根据用户请求的`URI`来执行不同的应用。  
+&emsp;根据用户请求的`URI`来执行不同的应用。  
 - `uri` 只可意会，不可言传的东西  
 
 ### 2.4.2. location 语法:  
@@ -133,17 +133,17 @@ location ~* \.(gif|jpg|jpeg)$ {
 
 请求结果:  
 ```bash
-[root@00 ~]# curl -s -o /dev/null -I -w &#34;%{http_code}\n&#34; http://www.example.com
+[root@00 ~]# curl -s -o /dev/null -I -w "%{http_code}\n" http://www.example.com
 402
-[root@00 ~]# curl -s -o /dev/null -I -w &#34;%{http_code}\n&#34; http://www.example.com/
+[root@00 ~]# curl -s -o /dev/null -I -w "%{http_code}\n" http://www.example.com/
 402
-[root@00 ~]# curl -s -o /dev/null -I -w &#34;%{http_code}\n&#34; http://www.example.com/index.html
+[root@00 ~]# curl -s -o /dev/null -I -w "%{http_code}\n" http://www.example.com/index.html
 401
-[root@00 ~]# curl -s -o /dev/null -I -w &#34;%{http_code}\n&#34; http://www.example.com/documents/index.html
+[root@00 ~]# curl -s -o /dev/null -I -w "%{http_code}\n" http://www.example.com/documents/index.html
 403
-[root@00 ~]# curl -s -o /dev/null -I -w &#34;%{http_code}\n&#34; http://www.example.com/images/1.jpg
+[root@00 ~]# curl -s -o /dev/null -I -w "%{http_code}\n" http://www.example.com/images/1.jpg
 404
-[root@00 ~]# curl -s -o /dev/null -I -w &#34;%{http_code}\n&#34; http://www.example.com/documents/1.jpg
+[root@00 ~]# curl -s -o /dev/null -I -w "%{http_code}\n" http://www.example.com/documents/1.jpg
 ```
 
 匹配优先级:
@@ -157,7 +157,7 @@ location ~* \.(gif|jpg|jpeg)$ {
 | `location /document/ { `           | 匹配常规字符串，如果有正则则优先匹配正则 |
 | `location / {`                    | 所有location都不匹配后的默认匹配规则     |
 
-注: 优先级为： `=` &gt; `完整路径` &gt; `^~` &gt; `~|~*` &gt; `部分起始路径` &gt; `/`
+注: 优先级为： `=` > `完整路径` > `^~` > `~|~*` > `部分起始路径` > `/`
 
 ## 2.5. nginx Rewrite  
 用于实现伪静态，URL改写，必须安装PCRE的软件的支持，nginx编译默认安装Rewrite模块
@@ -170,7 +170,7 @@ location ~* \.(gif|jpg|jpeg)$ {
 | `$remote_port`        | 客户端port，如：50472                                                                                                     |
 | `$remote_user`        | 已经经过Auth Basic Module验证的用户名                                                                                     |
 | `$host`               | 请求主机头字段，否则为服务器名称，如:blog.sakmon.com                                                                      |
-| `$request`            | 用户请求信息，如：GET ?a=1&amp;b=2 HTTP/1.1                                                                                   |
+| `$request`            | 用户请求信息，如：GET ?a=1&b=2 HTTP/1.1                                                                                   |
 | `$request_filename`   | 当前请求的文件的路径名，由root或alias和URI request组合而成，如：/2013/81.html                                             |
 | `$status`             | 请求的响应状态码,如:200                                                                                                   |
 | `$body_bytes_sent`    | 响应时送出的body字节数数量。即使连接中断，这个数据也是精确的,如：40                                                       |
@@ -178,19 +178,19 @@ location ~* \.(gif|jpg|jpeg)$ {
 | `$content_type`       | 等于请求行的“Content_Type”的值                                                                                            |
 | `$http_referer`       | 引用地址                                                                                                                  |
 | `$http_user_agent`    | 客户端agent信息,如：Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36 |
-| `$args`               | 与$query_string相同 等于当中URL的参数(GET)，如a=1&amp;b=2                                                                     |
+| `$args`               | 与$query_string相同 等于当中URL的参数(GET)，如a=1&b=2                                                                     |
 | `$document_uri`       | 与$uri相同 这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html                                              |
 | `$document_root`      | 针对当前请求的根路径设置值                                                                                                |
 | `$hostname`           | 如：centos53.localdomain                                                                                                  |
 | `$http_cookie`        | 客户端cookie信息                                                                                                          |
 | `$cookie_COOKIE`      | cookie COOKIE变量的值                                                                                                     |
-| `$is_args`            | 如果有$args参数，这个变量等于”?”，否则等于”&#34;，空值，如?                                                                   |
+| `$is_args`            | 如果有$args参数，这个变量等于”?”，否则等于”"，空值，如?                                                                   |
 | `$limit_rate`         | 这个变量可以限制连接速率，0表示不限速                                                                                     |
-| `$query_string`       | 与$args相同 等于当中URL的参数(GET)，如a=1&amp;b=2                                                                             |
+| `$query_string`       | 与$args相同 等于当中URL的参数(GET)，如a=1&b=2                                                                             |
 | `$request_body`       | 记录POST过来的数据信息                                                                                                    |
 | `$request_body_file`  | 客户端请求主体信息的临时文件名                                                                                            |
 | `$request_method`     | 客户端请求的动作，通常为GET或POST,如：GET                                                                                 |
-| `$request_uri`        | 包含请求参数的原始URI，不包含主机名，如：/2013/81.html?a=1&amp;b=2                                                            |
+| `$request_uri`        | 包含请求参数的原始URI，不包含主机名，如：/2013/81.html?a=1&b=2                                                            |
 | `$scheme`             | HTTP方法（如http，https）,如：http                                                                                        |
 | `$uri`                | 这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html                                                         |
 | `$request_completion` | 如果请求结束，设置为OK. 当请求未结束或如果该请求不是请求链串的最后一个时，为空(Empty)，如：OK                             |

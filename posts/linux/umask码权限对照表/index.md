@@ -1,6 +1,6 @@
 # Umask码权限对照表
 
-&lt;!--more--&gt;
+<!--more-->
 
 # Umask 码权限对照表
 | umask | file | dir |

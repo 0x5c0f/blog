@@ -4,11 +4,11 @@
 # 1. 记录一个草稿 
 
 参考文献 : 
-&gt; [http://www.zsythink.net/archives/2450](http://www.zsythink.net/archives/2450)  
+> [http://www.zsythink.net/archives/2450](http://www.zsythink.net/archives/2450)  
 
-&gt; [http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/](http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/) 
+> [http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/](http://codelife.me/blog/2012/12/09/three-types-of-ssh-turneling/) 
 
-&gt; [https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html](https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html)  
+> [https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html](https://www.ibm.com/developerworks/cn/linux/l-cn-sshforward/index.html)  
 
 
 主机定义 :  
@@ -20,7 +20,7 @@
 # 2. 本地转发
 ## 命令格式 
 ```bash
-ssh -L &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;SSH hostname&gt;
+ssh -L <local port>:<remote host>:<remote port> <SSH hostname>
 ```
 
 ## 2.1. 隧道搭建(serverA 执行) 
@@ -42,7 +42,7 @@ ssh root@127.0.0.1 -P9022
 例如: serverB 可以连接serverC, 但serverC 不能访问serverB , serverC 和 serverD 可以相互访问,若 serverD(或serverC) 需要访问serverB的ssh服务  
 ## 命令格式 
 ```bash
-ssh -R &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;SSH hostname&gt; 
+ssh -R <local port>:<remote host>:<remote port> <SSH hostname> 
 ```
 ## 3.1. 隧道搭建(serverB 执行) 
 ```bash
@@ -65,7 +65,7 @@ ssh root@127.0.0.1 -P9023
 有点类似`shadowsocks`
 ## 命令格式
 ```bash
-ssh -D &lt;local port&gt; &lt;SSH Server&gt;
+ssh -D <local port> <SSH Server>
 ```
 ## 4.1. 隧道搭建(serverA 执行) 
 ```bash
@@ -79,7 +79,7 @@ ssh -D &lt;local port&gt; &lt;SSH Server&gt;
 # 5. windows 端口转发 
 `plink.exe`是`putty`的附属工具 .
 ```bat
-$&gt; plink.exe -ssh -i sshrsa.ppk 9022:10.0.1.12:22 root@10.0.1.12  
+$> plink.exe -ssh -i sshrsa.ppk 9022:10.0.1.12:22 root@10.0.1.12  
 ```
 
 ---

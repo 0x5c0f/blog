@@ -18,7 +18,7 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 
 ## 2. 通过命令`update-alternatives` 管理
 多版本共存时切换很方便： 
-&gt; http://www.open-open.com/lib/view/open1452089422355.html 
+> http://www.open-open.com/lib/view/open1452089422355.html 
 ```shell
 ## 第一个参数--install表示向update-alternatives注册服务名。
 ## 第二个参数是注册最终地址，成功后将会把命令在这个固定的目的地址做真实命令的软链，以后管理就是管理这个软链；

@@ -2,11 +2,11 @@
 
 
 # Mysql  Errcode: 24 - Too many open files 
-&gt; [https://blog.csdn.net/weixin_36343850/article/details/86293700](https://blog.csdn.net/weixin_36343850/article/details/86293700)   
+> [https://blog.csdn.net/weixin_36343850/article/details/86293700](https://blog.csdn.net/weixin_36343850/article/details/86293700)   
 
 原因：打开文件数量太多，超出了`open_files_limit`这个参数的限制，在一个表中有多个分区的时候，这种情况更容易发生。  
 解决方法： 
-- 查看 `open_files_limit`参数, 使用`show variables like &#39;%open%&#39;;`就可以看到了   
+- 查看 `open_files_limit`参数, 使用`show variables like '%open%';`就可以看到了   
 - 修改 `open_files_limit`参数  
  在网上找了很多资料，有的说直接在`/etc/mysql/mysql.conf.d/mysqld.cnf`文件中的`[mysqld]`部分添加`open_files_limit`参数，比如`open_files_limit=10240`，并且在`/etc/security/limits.conf` 添加`mysql soft nofile 10240`和`mysql hard nofile 10240`这两个参数然后重启`MySQL`，但是发现不能生效。  
 - 以下方法可用： 
@@ -40,8 +40,8 @@
 
 # zabbix 自动发现异常错误  
 -  具体错误表现  
-1. `Cannot create item: item with the same key &#34;domain.status[{#DOMAIN_NAME},http_code]&#34; already exists.`  
-2. `Cannot accurately apply filter: no value received for macro &#34;{#DOMAINNAME}&#34;.`  
+1. `Cannot create item: item with the same key "domain.status[{#DOMAIN_NAME},http_code]" already exists.`  
+2. `Cannot accurately apply filter: no value received for macro "{#DOMAINNAME}".`  
 - 解决方案  
   - 这个是特么的自动发现脚本返回值的`key`必须用`{}`括起来,不然你即使是`json`格式他也不会认, 网上那些这个抄那个的坑货就只知道变量要大写，还有个坑告诉我要使用宏,用了宏就是第二个问题,不用第一个，这我是记得很清楚，宏并不是必定要有的啊，我以前写也基本没有加过。 我特么也是蠢了，写了这么多的自动发现，居然没有注意要括起来。 
 
@@ -55,7 +55,7 @@
 问题描述: 后端是`dotnet`应用，反向代理时候域名请求页面部分`css`/`js`资源返回`502`错误。直接请求报错的`css`/`js`又是正常的，前端绕过`nginx`直接访问`dotnet`所有返回又是正常的。只有经过`nginx`会出现该问题。
 解决过程：
   - 网上搜索到很多的解决方案，这一个感觉有点用，但***并没有解决我的问题***,说的是`header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502`，这个问题提出的解决是，增大`proxy_buffer_size`/`proxy_buffers`/`proxy_busy_buffers_size`,不过还是记录下，毕竟不是每个问题原因都一样。
-  - 这是我当时参考的第二个方案,根据官方文档[`https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive),调整了`upstream`中`keepalive`,我原来设置的是`2`,现调整为`16`,并设置了`Connection &#34;Keep-Alive&#34;;`(这个设置是为了保持`http/1.0`持久链接，官方不建议使用此参数，但我这边`websokcet`和`http/1.0`,单独设置一个并没有效果，所以两个都设置了)。这个方案当时解决了一部分的问题。但根本并未得到解决。
+  - 这是我当时参考的第二个方案,根据官方文档[`https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive`](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive),调整了`upstream`中`keepalive`,我原来设置的是`2`,现调整为`16`,并设置了`Connection "Keep-Alive";`(这个设置是为了保持`http/1.0`持久链接，官方不建议使用此参数，但我这边`websokcet`和`http/1.0`,单独设置一个并没有效果，所以两个都设置了)。这个方案当时解决了一部分的问题。但根本并未得到解决。
   - 然后最终的方案，重启应用服务器，问题完全解决！！！
 
 原因分析：突然不知道怎么下笔了，反正就是系统tcp连接过多，最开始体现就是出现大量的`CLOSE_WAIT`,当时重启了对应占用的程序，清理一些连接，出现一定的好转，但也仅仅出现了好转，后面可能由于某些原因，导致重启应用也无法解决了，最后重启服务器，问题完全解决。 应该不是每个人都是这个原因，不过可以参考下。
@@ -63,21 +63,21 @@
 # nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常 
 在我的部署模式中，很多时候都是`docker`与实际应用环境混合部署(多环境，单节点)，大多的结构是 `docker`运行程序环境，`nginx`反向代理到`docker`暴露的端口，从而实现应用的正常访问。我这次遇到的这个问题，最开始的时候我以为是`cdn`的问题，因为当时我没有通过`cdn`直达服务器的时候访问都是正常的，然后通过`cdn`后，页面大多数请求就都出现了`502`等状态，这个时候我联系了运营商，他们说回源链接被断开了，是不是服务器上有相关安全策略，仔细的想了下，服务器上除了开启了`iptables`外，并没有其他的安全设置，正没有头绪的时候，突然想到`docker`需要依赖`iptables`转发，是不是这个原因导致防火墙又有问题了(因为之前我调整iptables的时候，导致过docker容器无法连接网络😥)，于是我把防火墙一关，然后`cdn`回源就正常了。 后续的处理，我关闭了服务器防火墙设置，重启了`docker`，重建了容器(防止容器网络出现问题，同时让`docker`重新创建自己的规则链)。对外的防火墙采用云防火墙现在公网流入流量。上面其他记录的故障中，估计也有这个原因导致的，但是不知道怎么调好了。(TODO:// 一个人运维好难，有点啥问题都不知道该找谁讨论下，全靠自己摸索)
 
-# nginx: [emerg] location &#34;&lt;xxxxxxxx&gt;&#34; cannot be inside the exact location &#34;/favicon.ico&#34; in xxxxxx
+# nginx: [emerg] location "<xxxxxxxx>" cannot be inside the exact location "/favicon.ico" in xxxxxx
 我这边遇到的此类问题多数为在`location =/xxx {`下继续`include`了`location` ,清除后解决
 
 
 # IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)
 - 处理: 
-配置编辑器 --&gt; `system.web/httpHandlers/` --&gt; 点击 `Count` 右侧的小点展开, 然后添加`Path:WebResource.axd`、`type: System.Web.Handlers.AssemblyResourceLoader`,  `validate: True` , `verb: GET` ，完成后关闭   
+配置编辑器 --> `system.web/httpHandlers/` --> 点击 `Count` 右侧的小点展开, 然后添加`Path:WebResource.axd`、`type: System.Web.Handlers.AssemblyResourceLoader`,  `validate: True` , `verb: GET` ，完成后关闭   
 ```xml
-&lt;configuration&gt;
-   &lt;system.web&gt;
-       &lt;httpHandlers&gt;
-           &lt;add path=&#34;WebResource.axd&#34; verb=&#34;GET&#34; type=&#34;System.Web.Handlers.AssemblyResourceLoader&#34; validate=&#34;True&#34; /&gt;
-       &lt;tpHandlers&gt;
-   &lt;/system.web&gt;
-&lt;/configuration&gt;
+<configuration>
+   <system.web>
+       <httpHandlers>
+           <add path="WebResource.axd" verb="GET" type="System.Web.Handlers.AssemblyResourceLoader" validate="True" />
+       <tpHandlers>
+   </system.web>
+</configuration>
 ```
 
 # IIS 如何修改文件上传限制
@@ -97,16 +97,16 @@
 
 现在，您已成功修改了IIS中的文件上传限制。请注意，这些设置可能会对整个站点或虚拟目录产生影响，因此请确保根据需要进行适当的调整。
 ```xml
-&lt;configuration&gt;
-    &lt;system.webServer&gt;
-        &lt;security&gt;
-            &lt;requestFiltering&gt;
-                &lt;!-- 100M --&gt;
-                &lt;requestLimits maxAllowedContentLength=&#34;100000000&#34; /&gt; 
-            &lt;/requestFiltering&gt;
-        &lt;/security&gt;
-    &lt;/system.webServer&gt;
-&lt;/configuration&gt;
+<configuration>
+    <system.webServer>
+        <security>
+            <requestFiltering>
+                <!-- 100M -->
+                <requestLimits maxAllowedContentLength="100000000" /> 
+            </requestFiltering>
+        </security>
+    </system.webServer>
+</configuration>
 ```
 
 # IIS .net 项目 post 无法提交数据
@@ -128,7 +128,7 @@
 
   异常详细信息: System.UnauthorizedAccessException: 对路径“xxxx.JPG”的访问被拒绝。
 
-  ASP.NET 无权访问所请求的资源。请考虑对 ASP.NET 请求标识授予访问此资源的权限。ASP.NET 有一个在应用程序没有模拟时使用的基进程标识(通常，在 IIS 5 上为 {MACHINE}\ASPNET，在 IIS 6 和 IIS 7 上为网络服务，在 IIS 7.5 上为配置的应用程序池标识)。如果应用程序正在通过 &lt;identity impersonate=&#34;true&#34;/&gt; 模拟，则标识将为匿名用户(通常为 IUSR_MACHINENAME)或经过身份验证的请求用户。
+  ASP.NET 无权访问所请求的资源。请考虑对 ASP.NET 请求标识授予访问此资源的权限。ASP.NET 有一个在应用程序没有模拟时使用的基进程标识(通常，在 IIS 5 上为 {MACHINE}\ASPNET，在 IIS 6 和 IIS 7 上为网络服务，在 IIS 7.5 上为配置的应用程序池标识)。如果应用程序正在通过 <identity impersonate="true"/> 模拟，则标识将为匿名用户(通常为 IUSR_MACHINENAME)或经过身份验证的请求用户。
 
   要将 ASP.NET 访问权限授予某个文件，请在文件资源管理器中右击该文件，选择“属性”，然后选择“安全”选项卡。单击“添加”添加适当的用户或组。突出显示 ASP.NET 帐户，选中所需访问权限对应的框。
 
@@ -139,12 +139,12 @@
   堆栈跟踪:
 
   [DirectoryNotFoundException: 未能找到路径“xxxxxx”的一部分。]
-  System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath) &#43;490
-  System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost) &#43;833
-  System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy) &#43;144
-  System.IO.FileStream..ctor(String path, FileMode mode) &#43;91
+  System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath) +490
+  System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost) +833
+  System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy) +144
+  System.IO.FileStream..ctor(String path, FileMode mode) +91
   HTYD.Merchant.Controllers.ExportController.DownloadFile(String fPath) in xxxx.cs:192
-  System.Web.Mvc.&lt;&gt;c__DisplayClass1.&lt;WrapVoidAction&gt;b__0(ControllerBase controller, Object[] parameters) &#43;15
+  System.Web.Mvc.<>c__DisplayClass1.<WrapVoidAction>b__0(ControllerBase controller, Object[] parameters) +15
   .....
   ```
 - 解决方案:  此项问题产生原因不知道，但解决方案是，为该目录添加 `IIS_USER` 用户权限，注意需要附加 `修改` 权限 

@@ -1,9 +1,9 @@
 # Sersync实时同步工具
 
 
-{{&lt; admonition type=info title=&#34;简介&#34; open=true &gt;}}
-一个可以实时同步的工具，但不能单独运行，需要配合rsync使用，相当于inotify&#43;rsync,但是比他们效率更高，基于块复制。
-{{&lt; /admonition &gt;}}
+{{< admonition type=info title="简介" open=true >}}
+一个可以实时同步的工具，但不能单独运行，需要配合rsync使用，相当于inotify+rsync,但是比他们效率更高，基于块复制。
+{{< /admonition >}}
 
 
 ## 1.1. 程序说明
@@ -32,8 +32,8 @@ cp ./GNU-Linux-x86/sersync2 /opt/sersync/bin
 ```
 [root@11 bin]# /opt/sersync/bin/sersync2 -h # 中文帮助文档，很清晰
 set the system param
-execute：echo 50000000 &gt; /proc/sys/fs/inotify/max_user_watches
-execute：echo 327679 &gt; /proc/sys/fs/inotify/max_queued_events
+execute：echo 50000000 > /proc/sys/fs/inotify/max_user_watches
+execute：echo 327679 > /proc/sys/fs/inotify/max_queued_events
 parse the command param
 _______________________________________________________
 参数-d:启用守护进程模式
@@ -49,74 +49,74 @@ ________________________________________________________________
 
 ### 1.4.2. 配置文件
 ```xml
-&lt;!-- 就是一个xml文件 --&gt;
-&lt;?xml version=&#34;1.0&#34; encoding=&#34;ISO-8859-1&#34;?&gt;
-&lt;head version=&#34;2.5&#34;&gt;
-    &lt;host hostip=&#34;localhost&#34; port=&#34;8008&#34;&gt;&lt;/host&gt;
-    &lt;debug start=&#34;false&#34;/&gt;
-    &lt;fileSystem xfs=&#34;false&#34;/&gt; &lt;!-- xfs 文件系统建议开启 --&gt;
-    &lt;filter start=&#34;false&#34;&gt; &lt;!-- start=&#34;true&#34; 开启排除文件,默认关闭,不过开启时第一次不能进行初始同步，可能是bug，也可能本身是这么设定的  --&gt;
-		&lt;exclude expression=&#34;(.*)\.svn&#34;&gt;&lt;/exclude&gt;
-		&lt;exclude expression=&#34;(.*)\.gz&#34;&gt;&lt;/exclude&gt;
-		&lt;exclude expression=&#34;^info/*&#34;&gt;&lt;/exclude&gt;
-		&lt;exclude expression=&#34;^static/*&#34;&gt;&lt;/exclude&gt;
-		&lt;exclude expression=&#34;(.*)/core\.[0-9]&#43;$&#34;&gt;&lt;/exclude&gt;
-    &lt;/filter&gt;
-    &lt;inotify&gt;
-		&lt;delete start=&#34;true&#34;/&gt;
-		&lt;createFolder start=&#34;true&#34;/&gt;
-		&lt;createFile start=&#34;true&#34;/&gt;
-		&lt;closeWrite start=&#34;true&#34;/&gt;
-		&lt;moveFrom start=&#34;true&#34;/&gt;
-		&lt;moveTo start=&#34;true&#34;/&gt;
-		&lt;attrib start=&#34;false&#34;/&gt;
-		&lt;modify start=&#34;false&#34;/&gt;
-    &lt;/inotify&gt;
+<!-- 就是一个xml文件 -->
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<head version="2.5">
+    <host hostip="localhost" port="8008"></host>
+    <debug start="false"/>
+    <fileSystem xfs="false"/> <!-- xfs 文件系统建议开启 -->
+    <filter start="false"> <!-- start="true" 开启排除文件,默认关闭,不过开启时第一次不能进行初始同步，可能是bug，也可能本身是这么设定的  -->
+		<exclude expression="(.*)\.svn"></exclude>
+		<exclude expression="(.*)\.gz"></exclude>
+		<exclude expression="^info/*"></exclude>
+		<exclude expression="^static/*"></exclude>
+		<exclude expression="(.*)/core\.[0-9]+$"></exclude>
+    </filter>
+    <inotify>
+		<delete start="true"/>
+		<createFolder start="true"/>
+		<createFile start="true"/>
+		<closeWrite start="true"/>
+		<moveFrom start="true"/>
+		<moveTo start="true"/>
+		<attrib start="false"/>
+		<modify start="false"/>
+    </inotify>
 
-    &lt;sersync&gt;&lt;!-- 实际上就是rsync的命令及相关参数 --&gt;
-	&lt;localpath watch=&#34;/data/www&#34;&gt; &lt;!-- 同步的源,本地同步路径 --&gt;
-	    &lt;remote ip=&#34;172.16.10.11&#34; name=&#34;demo&#34;/&gt; &lt;!-- ip:rsync 服务的ip name:同步的模块(可跟上目录) --&gt;
-	    &lt;!--&lt;remote ip=&#34;192.168.8.39&#34; name=&#34;tongbu&#34;/&gt;--&gt;
-	    &lt;!--&lt;remote ip=&#34;192.168.8.40&#34; name=&#34;tongbu&#34;/&gt;--&gt;
-	&lt;/localpath&gt;
-	&lt;rsync&gt;
-	    &lt;commonParams params=&#34;-avz&#34;/&gt;
-	    &lt;auth start=&#34;true&#34; users=&#34;rsync_backup&#34; passwordfile=&#34;/etc/rsync.pas&#34;/&gt;
-	    &lt;userDefinedPort start=&#34;false&#34; port=&#34;874&#34;/&gt;&lt;!--  port=874 --&gt;
-	    &lt;timeout start=&#34;false&#34; time=&#34;100&#34;/&gt;&lt;!-- timeout=100 --&gt;
-	    &lt;ssh start=&#34;false&#34;/&gt;
-	&lt;/rsync&gt;
-	&lt;failLog path=&#34;/opt/sersync/logs/rsync_fail_log.sh&#34; timeToExecute=&#34;60&#34;/&gt;&lt;!--default every 60mins execute once--&gt;
-	&lt;crontab start=&#34;false&#34; schedule=&#34;600&#34;&gt;&lt;!--600mins--&gt;
-	    &lt;crontabfilter start=&#34;false&#34;&gt;
-		&lt;exclude expression=&#34;*.php&#34;&gt;&lt;/exclude&gt;
-		&lt;exclude expression=&#34;info/*&#34;&gt;&lt;/exclude&gt;
-	    &lt;/crontabfilter&gt;
-	&lt;/crontab&gt;
-	&lt;plugin start=&#34;false&#34; name=&#34;command&#34;/&gt;
-    &lt;/sersync&gt;
+    <sersync><!-- 实际上就是rsync的命令及相关参数 -->
+	<localpath watch="/data/www"> <!-- 同步的源,本地同步路径 -->
+	    <remote ip="172.16.10.11" name="demo"/> <!-- ip:rsync 服务的ip name:同步的模块(可跟上目录) -->
+	    <!--<remote ip="192.168.8.39" name="tongbu"/>-->
+	    <!--<remote ip="192.168.8.40" name="tongbu"/>-->
+	</localpath>
+	<rsync>
+	    <commonParams params="-avz"/>
+	    <auth start="true" users="rsync_backup" passwordfile="/etc/rsync.pas"/>
+	    <userDefinedPort start="false" port="874"/><!--  port=874 -->
+	    <timeout start="false" time="100"/><!-- timeout=100 -->
+	    <ssh start="false"/>
+	</rsync>
+	<failLog path="/opt/sersync/logs/rsync_fail_log.sh" timeToExecute="60"/><!--default every 60mins execute once-->
+	<crontab start="false" schedule="600"><!--600mins-->
+	    <crontabfilter start="false">
+		<exclude expression="*.php"></exclude>
+		<exclude expression="info/*"></exclude>
+	    </crontabfilter>
+	</crontab>
+	<plugin start="false" name="command"/>
+    </sersync>
 
-    &lt;plugin name=&#34;command&#34;&gt;
-	&lt;param prefix=&#34;/bin/sh&#34; suffix=&#34;&#34; ignoreError=&#34;true&#34;/&gt;	&lt;!--prefix /opt/tongbu/mmm.sh suffix--&gt;
-	&lt;filter start=&#34;false&#34;&gt;
-	    &lt;include expression=&#34;(.*)\.php&#34;/&gt;
-	    &lt;include expression=&#34;(.*)\.sh&#34;/&gt;
-	&lt;/filter&gt;
-    &lt;/plugin&gt;
+    <plugin name="command">
+	<param prefix="/bin/sh" suffix="" ignoreError="true"/>	<!--prefix /opt/tongbu/mmm.sh suffix-->
+	<filter start="false">
+	    <include expression="(.*)\.php"/>
+	    <include expression="(.*)\.sh"/>
+	</filter>
+    </plugin>
 
-    &lt;plugin name=&#34;socket&#34;&gt;
-	&lt;localpath watch=&#34;/opt/tongbu&#34;&gt;
-	    &lt;deshost ip=&#34;192.168.138.20&#34; port=&#34;8009&#34;/&gt;
-	&lt;/localpath&gt;
-    &lt;/plugin&gt;
-    &lt;plugin name=&#34;refreshCDN&#34;&gt;
-	&lt;localpath watch=&#34;/data0/htdocs/cms.xoyo.com/site/&#34;&gt;
-	    &lt;cdninfo domainname=&#34;ccms.chinacache.com&#34; port=&#34;80&#34; username=&#34;xxxx&#34; passwd=&#34;xxxx&#34;/&gt;
-	    &lt;sendurl base=&#34;http://pic.xoyo.com/cms&#34;/&gt;
-	    &lt;regexurl regex=&#34;false&#34; match=&#34;cms.xoyo.com/site([/a-zA-Z0-9]*).xoyo.com/images&#34;/&gt;
-	&lt;/localpath&gt;
-    &lt;/plugin&gt;
-&lt;/head&gt;
+    <plugin name="socket">
+	<localpath watch="/opt/tongbu">
+	    <deshost ip="192.168.138.20" port="8009"/>
+	</localpath>
+    </plugin>
+    <plugin name="refreshCDN">
+	<localpath watch="/data0/htdocs/cms.xoyo.com/site/">
+	    <cdninfo domainname="ccms.chinacache.com" port="80" username="xxxx" passwd="xxxx"/>
+	    <sendurl base="http://pic.xoyo.com/cms"/>
+	    <regexurl regex="false" match="cms.xoyo.com/site([/a-zA-Z0-9]*).xoyo.com/images"/>
+	</localpath>
+    </plugin>
+</head>
 ```
 
 ---

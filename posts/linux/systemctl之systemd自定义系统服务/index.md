@@ -1,16 +1,16 @@
 # Systemctl之systemd自定义系统服务
 
 
-{{&lt; admonition type=quote title=&#34;以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接&#34; open=true &gt;}}
+{{< admonition type=quote title="以下为资料来源,由本站收集重新整理发布,仅用于个人收藏,转载请直接标注以下来源连接" open=true >}}
 
-&gt; [http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)  
+> [http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)  
 
-&gt; [http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html) 
+> [http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html) 
 
 
-&gt; [http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html](http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html)  
+> [http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html](http://www.ruanyifeng.com/blog/2018/03/systemd-timer.html)  
 
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 ------  
 
@@ -18,26 +18,26 @@
 `Unit` 定义启动顺序与依赖关系  
 
 单元(Unit)是 `Systemd` 的最小功能单位，是单个进程的描述。一个个小的单元互相调用和依赖，组成一个庞大的任务管理系统   
-&lt;details&gt;
-&lt;summary&gt; 其他的单元类型 &lt;/summary&gt;
+<details>
+<summary> 其他的单元类型 </summary>
 
-&gt; [https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files)  
-&gt; `Systemd` 根据他们描述的资源类型对单位进行分类。确定单元类型的最简单方法是使用其类型后缀，该后缀附加到资源名称的末尾。  
-&gt; 以下列表描述了可用于以下各项的单位类型`systemd`:    
-&gt; - `.service`: 服务单元描述如何管理服务器上的服务或应用程序。这将包括如何启动或停止服务，应在何种情况下自动启动服务，以及相关软件的依赖关系和订购信息。
-&gt; - `.socket`: 套接字单元文件描述网络或`IPC`套接字，或`systemd`用于基于套接字的激活的FIFO缓冲区。这些`.service`文件始终具有一个关联文件，该文件将在本单元定义的套接字上看到活动时启动。
-&gt; - `.device`: 描述已被指定为需要`systemd`管理的设备`udev`或`sysfs`文件系统的单元。并非所有设备都有`.device`文件。`.device`可能需要单元的一些场景是用于订购，安装和访问设备。
-&gt; - `.mount`: 此单元定义要由其管理的系统上的挂载点`systemd`。这些以安装路径命名，斜杠更改为破折号。其中的条目`/etc/fstab`可以自动创建单位。
-&gt; - `.automount`: 一个`.automount`单元配置将自动挂载的挂载点。这些必须以它们引用的挂载点命名，并且必须具有匹配`.mount`单元以定义挂载的细节。
-&gt; - `.swap`: 此单元描述系统上的交换空间。这些单元的名称必须反映空间的设备或文件路径。
-&gt; - `.target`: 目标单元用于在启动或更改状态时为其他单元提供同步点。它们还可用于使系统进入新状态。其他单位指定它们与目标的关系以与目标的操作联系起来。
-&gt; - `.path`: 此单元定义可用于基于路径的激活的路径。默认情况下，`.service`当路径达到指定状态时，将启动相同基本名称的单元。这用于`inotify`监视更改的路径。
-&gt; - `.timer`: .timer单元定义将由其管理的计时器`systemd`，类似于`cron`延迟或计划激活的作业。达到计时器时将启动匹配单元。
-&gt; - `.snapshot`: 命令`.snapshot`自动创建一个单元`systemctl snapshot`。它允许您在进行更改后重建系统的当前状态。快照不会跨会话生存，并用于回滚临时状态。
-&gt; - `.slice`: `.slice`单元与`Linux`控制组节点关联，允许限制资源或将资源分配给与该片关联的任何进程。该名称反映了它在`cgroup`树中的层次结构位置。默认情况下，单位会根据其类型放置在某些切片中。
-&gt; - `.scope`: 范围单元`systemd`由从其总线接口接收的信息自动创建。这些用于管理外部创建的系统进程集。
+> [https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files](https://www.digitalocean.com/community/tutorials/understanding-systemd-units-and-unit-files)  
+> `Systemd` 根据他们描述的资源类型对单位进行分类。确定单元类型的最简单方法是使用其类型后缀，该后缀附加到资源名称的末尾。  
+> 以下列表描述了可用于以下各项的单位类型`systemd`:    
+> - `.service`: 服务单元描述如何管理服务器上的服务或应用程序。这将包括如何启动或停止服务，应在何种情况下自动启动服务，以及相关软件的依赖关系和订购信息。
+> - `.socket`: 套接字单元文件描述网络或`IPC`套接字，或`systemd`用于基于套接字的激活的FIFO缓冲区。这些`.service`文件始终具有一个关联文件，该文件将在本单元定义的套接字上看到活动时启动。
+> - `.device`: 描述已被指定为需要`systemd`管理的设备`udev`或`sysfs`文件系统的单元。并非所有设备都有`.device`文件。`.device`可能需要单元的一些场景是用于订购，安装和访问设备。
+> - `.mount`: 此单元定义要由其管理的系统上的挂载点`systemd`。这些以安装路径命名，斜杠更改为破折号。其中的条目`/etc/fstab`可以自动创建单位。
+> - `.automount`: 一个`.automount`单元配置将自动挂载的挂载点。这些必须以它们引用的挂载点命名，并且必须具有匹配`.mount`单元以定义挂载的细节。
+> - `.swap`: 此单元描述系统上的交换空间。这些单元的名称必须反映空间的设备或文件路径。
+> - `.target`: 目标单元用于在启动或更改状态时为其他单元提供同步点。它们还可用于使系统进入新状态。其他单位指定它们与目标的关系以与目标的操作联系起来。
+> - `.path`: 此单元定义可用于基于路径的激活的路径。默认情况下，`.service`当路径达到指定状态时，将启动相同基本名称的单元。这用于`inotify`监视更改的路径。
+> - `.timer`: .timer单元定义将由其管理的计时器`systemd`，类似于`cron`延迟或计划激活的作业。达到计时器时将启动匹配单元。
+> - `.snapshot`: 命令`.snapshot`自动创建一个单元`systemctl snapshot`。它允许您在进行更改后重建系统的当前状态。快照不会跨会话生存，并用于回滚临时状态。
+> - `.slice`: `.slice`单元与`Linux`控制组节点关联，允许限制资源或将资源分配给与该片关联的任何进程。该名称反映了它在`cgroup`树中的层次结构位置。默认情况下，单位会根据其类型放置在某些切片中。
+> - `.scope`: 范围单元`systemd`由从其总线接口接收的信息自动创建。这些用于管理外部创建的系统进程集。
 
-&lt;/details&gt;
+</details>
 
 
 ```ini
@@ -45,8 +45,8 @@ Description=当前服务的描述
 Documentation=给出文档的位置,一般就是服务启动命令的帮助文档  
 After=表示如果此字段标记的服务若需要启动,那么当前定义的服务需要在此标记服务器启动之后.  
 Before=表示如果此字段标记的服务若需要启动,那么当前定义的服务需要在此标记服务器启动之前.  
-Wants=表示此字段标记的服务与当前定义服务存在&#34;弱依赖&#34;关系,即表示当前定义的节点服务启动失败或者停止运行,不影响当前定义的服务继续执行.  
-Requires=表示此字段标记的服务与当前定义服务存在&#34;强依赖&#34;关系,即表示当前定义的节点服务启动失败或者停止运行,那么当前定义的服务也必须停止.  
+Wants=表示此字段标记的服务与当前定义服务存在"弱依赖"关系,即表示当前定义的节点服务启动失败或者停止运行,不影响当前定义的服务继续执行.  
+Requires=表示此字段标记的服务与当前定义服务存在"强依赖"关系,即表示当前定义的节点服务启动失败或者停止运行,那么当前定义的服务也必须停止.  
 ```
 
 
@@ -123,118 +123,118 @@ WantedBy=表示该服务所在的Target
 ## 5.1. systemctl 系统相关
 ```bash
 # 重启系统
-$&gt; sudo systemctl reboot
+$> sudo systemctl reboot
 
 # 关闭系统，切断电源
-$&gt; sudo systemctl poweroff
+$> sudo systemctl poweroff
 
 # CPU停止工作
-$&gt; sudo systemctl halt
+$> sudo systemctl halt
 
 # 暂停系统
-$&gt; sudo systemctl suspend
+$> sudo systemctl suspend
 
 # 让系统进入冬眠状态
-$&gt; sudo systemctl hibernate
+$> sudo systemctl hibernate
 
 # 让系统进入交互式休眠状态
-$&gt; sudo systemctl hybrid-sleep
+$> sudo systemctl hybrid-sleep
 
 # 启动进入救援状态（单用户状态）
-$&gt; sudo systemctl rescue
+$> sudo systemctl rescue
 ```
 
 ## 5.2. systemd-analyze命令用于查看启动耗时 
 ```bash
 # 查看启动耗时
-$&gt; systemd-analyze
+$> systemd-analyze
 
 # 查看每个服务的启动耗时
-$&gt; systemd-analyze blame
+$> systemd-analyze blame
 
 # 显示瀑布状的启动过程流
-$&gt; systemd-analyze critical-chain
+$> systemd-analyze critical-chain
 
 # 显示指定服务的启动流
-$&gt; systemd-analyze critical-chain atd.service
+$> systemd-analyze critical-chain atd.service
 ```
 
 ## 5.3. loginctl命令用于查看当前登录的用户 
 ```bash
 # 列出当前session
-$&gt; loginctl list-sessions
+$> loginctl list-sessions
 
 # 列出当前登录用户
-$&gt; loginctl list-users
+$> loginctl list-users
 
 # 列出显示指定用户的信息
-$&gt; loginctl show-user ruanyf
+$> loginctl show-user ruanyf
 ```
 
 ## 5.4. systemctl 状态查询命令  
 ```bash
 # 显示某个 Unit 是否正在运行
-$&gt; systemctl is-active application.service
+$> systemctl is-active application.service
 
 # 显示某个 Unit 是否处于启动失败状态
-$&gt; systemctl is-failed application.service
+$> systemctl is-failed application.service
 
 # 显示某个 Unit 服务是否建立了启动链接
-$&gt; systemctl is-enabled application.service
+$> systemctl is-enabled application.service
 ```
 
 ## 5.5. 系统日志管理
 ```bash 
 # 查看所有日志（默认情况下 ，只保存本次启动的日志）
-$&gt; sudo journalctl
+$> sudo journalctl
 
 # 查看内核日志（不显示应用日志）
-$&gt; sudo journalctl -k
+$> sudo journalctl -k
 
 # 查看系统本次启动的日志
-$&gt; sudo journalctl -b
-$&gt; sudo journalctl -b -0
+$> sudo journalctl -b
+$> sudo journalctl -b -0
 
 # 查看上一次启动的日志（需更改设置）
-$&gt; sudo journalctl -b -1
+$> sudo journalctl -b -1
 
 # 查看指定时间的日志
-$&gt; sudo journalctl --since=&#34;2012-10-30 18:17:16&#34;
-$&gt; sudo journalctl --since &#34;20 min ago&#34;
-$&gt; sudo journalctl --since yesterday
-$&gt; sudo journalctl --since &#34;2015-01-10&#34; --until &#34;2015-01-11 03:00&#34;
-$&gt; sudo journalctl --since 09:00 --until &#34;1 hour ago&#34;
+$> sudo journalctl --since="2012-10-30 18:17:16"
+$> sudo journalctl --since "20 min ago"
+$> sudo journalctl --since yesterday
+$> sudo journalctl --since "2015-01-10" --until "2015-01-11 03:00"
+$> sudo journalctl --since 09:00 --until "1 hour ago"
 
 # 显示尾部的最新10行日志
-$&gt; sudo journalctl -n
+$> sudo journalctl -n
 
 # 显示尾部指定行数的日志
-$&gt; sudo journalctl -n 20
+$> sudo journalctl -n 20
 
 # 实时滚动显示最新日志
-$&gt; sudo journalctl -f
+$> sudo journalctl -f
 
 # 查看指定服务的日志
-$&gt; sudo journalctl /usr/lib/systemd/systemd
+$> sudo journalctl /usr/lib/systemd/systemd
 
 # 查看指定进程的日志
-$&gt; sudo journalctl _PID=1
+$> sudo journalctl _PID=1
 
 # 查看某个路径的脚本的日志
-$&gt; sudo journalctl /usr/bin/bash
+$> sudo journalctl /usr/bin/bash
 
 # 查看指定用户的日志
-$&gt; sudo journalctl _UID=33 --since today
+$> sudo journalctl _UID=33 --since today
 
 # 查看某个 Unit 的日志
-$&gt; sudo journalctl -u nginx.service
-$&gt; sudo journalctl -u nginx.service --since today
+$> sudo journalctl -u nginx.service
+$> sudo journalctl -u nginx.service --since today
 
 # 实时滚动显示某个 Unit 的最新日志
-$&gt; sudo journalctl -u nginx.service -f
+$> sudo journalctl -u nginx.service -f
 
 # 合并显示多个 Unit 的日志
-$&gt; journalctl -u nginx.service -u php-fpm.service --since today
+$> journalctl -u nginx.service -u php-fpm.service --since today
 
 # 查看指定优先级（及其以上级别）的日志，共有8级
 # 0: emerg
@@ -245,30 +245,30 @@ $&gt; journalctl -u nginx.service -u php-fpm.service --since today
 # 5: notice
 # 6: info
 # 7: debug
-$&gt; sudo journalctl -p err -b
+$> sudo journalctl -p err -b
 
 # 日志默认分页输出，--no-pager 改为正常的标准输出
-$&gt; sudo journalctl --no-pager
+$> sudo journalctl --no-pager
 
 # 以 JSON 格式（单行）输出
-$&gt; sudo journalctl -b -u nginx.service -o json
+$> sudo journalctl -b -u nginx.service -o json
 
 # 以 JSON 格式（多行）输出，可读性更好
-$&gt; sudo journalctl -b -u nginx.service -o json-pretty
+$> sudo journalctl -b -u nginx.service -o json-pretty
 
 # 显示日志占据的硬盘空间
-$&gt; sudo journalctl --disk-usage
+$> sudo journalctl --disk-usage
 
 # 指定日志文件占据的最大空间
-$&gt; sudo journalctl --vacuum-size=1G
+$> sudo journalctl --vacuum-size=1G
 
 # 指定日志文件保存多久
-$&gt; sudo journalctl --vacuum-time=1years
+$> sudo journalctl --vacuum-time=1years
 ```
 
 ------  
 
-&lt;span id=&#34;timer&#34;&gt;&lt;/span&gt;
+<span id="timer"></span>
 1. 对于`[Timer]`节点, `Systemd` 提供以下一些字段。  
     - `OnActiveSec`：定时器生效后，多少时间开始执行任务  
     - `OnBootSec`：系统启动后，多少时间开始执行任务  
@@ -278,7 +278,7 @@ $&gt; sudo journalctl --vacuum-time=1years
             - `OnUnitActiveSec=1h` 表示一小时执行一次任务
             - `OnUnitActiveSec=*-*-* 02:00:00`表示每天凌晨两点执行  
             - `OnUnitActiveSec=Mon *-*-* 02:00:00`表示每周一凌晨两点执行  
-            - &gt; 官方文档 [https://www.freedesktop.org/software/systemd/man/systemd.time.html](https://www.freedesktop.org/software/systemd/man/systemd.time.html)
+            - > 官方文档 [https://www.freedesktop.org/software/systemd/man/systemd.time.html](https://www.freedesktop.org/software/systemd/man/systemd.time.html)
     - `OnUnitInactiveSec`： 定时器上次关闭后多少时间，再次执行  
     - `OnCalendar`：基于绝对时间，而不是相对时间执行  
     - `AccuracySec`：如果因为各种原因，任务必须推迟执行，推迟的最大秒数，默认是60秒  

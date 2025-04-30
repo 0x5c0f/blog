@@ -1,7 +1,7 @@
 # Elk日志分析系统
 
 
-elk日志收集系统，elasticsearch(存储&#43;搜索)&#43;logstash(收集)&#43;kibana(展示)综合技术,简称elk  
+elk日志收集系统，elasticsearch(存储+搜索)+logstash(收集)+kibana(展示)综合技术,简称elk  
 
 搭建环境:  
 - virtualbox5.1.26 
@@ -14,7 +14,7 @@ elasticsearch 部署需要安装jdk,openjdk和oraclejdk都可以,由于系统当
 ```bash
 [root@11 ~]# yum install java-1.8.0-openjdk -y
 [root@11 ~]# java -version
-openjdk version &#34;1.8.0_141&#34;
+openjdk version "1.8.0_141"
 OpenJDK Runtime Environment (build 1.8.0_141-b16)
 OpenJDK 64-Bit Server VM (build 25.141-b16, mixed mode) 
 ```
@@ -46,7 +46,7 @@ path.logs: /var/log/elasticsearch   #日志文件位置
 bootstrap.memory_lock: true         #保证数据不会写入交换分区，生产环境建议打开，保证性能(可能会导致启动失败，失败时关闭)
 network.host: 172.16.67.11          #此参数配置的就是自己的ip，多个ip建议配置，默认0.0.0.0（集群机器需要修改此节点名称）
 http.port: 9200                     #默认端口
-#discovery.zen.ping.unicast.hosts: [&#34;172.16.67.11&#34;, &#34;172.16.67.12&#34;] #集群配置项，elasticsearch分为组播和单播两种模式。组播所有集群机器的都在同一个组里面，单播
+#discovery.zen.ping.unicast.hosts: ["172.16.67.11", "172.16.67.12"] #集群配置项，elasticsearch分为组播和单播两种模式。组播所有集群机器的都在同一个组里面，单播
 #表示让我们个告诉其他人，除了这台机器还有那些机器，一般默认就可以了（这个地方用virtualbox的nat网络模式作测试的时候，默认的组播模式是无法使用的，需要配置为单播
 #模式），这儿可能对于这个组播和单播描述的不是很对，要想详细了解的，自己去查询相关资料吧。还有这个只需要有一台机器配置就可以了。
 
@@ -76,8 +76,8 @@ drwxr-xr-x. 8 root root 4096 8月  17 03:12 kopf
 浏览器访问：http://172.16.67.11:9200/_pulgin/head,http://172.16.67.11:9200/_pulgin/kopf
 
 信息:  
-添加方式：点击‘复合查询’-&#39;查询&#39;，  
-第一栏，实际就是你的ip&#43;端口，这个是默认填写好了的。  
+添加方式：点击‘复合查询’-'查询'，  
+第一栏，实际就是你的ip+端口，这个是默认填写好了的。  
 第二栏，选择post,内容/index-demo/test  
 第三栏，实际就是一个json串，随便录入后提交就可以了，然后提交就可以了。  
 添加过后在重新刷新上述页面,就可以看到数据了,上图中的圈中,第一个代表的集群健康值,绿色代表健康,黄色代表警告-没有主分片丢失,红色代表存在数据丢失,  
@@ -104,24 +104,24 @@ enabled=1
 [root@11 ~]# yum install -y logstash
 #----------过程省略-----------
 #----------测试模块start-----------
-[root@11 ~]# /opt/logstash/bin/logstash -e &#34;input { stdin{} } output { stdout{codec =&gt; rubydebug} }&#34; # =&gt; 这儿表示的是等号；stdout {} 格式化输出到前台
+[root@11 ~]# /opt/logstash/bin/logstash -e "input { stdin{} } output { stdout{codec => rubydebug} }" # => 这儿表示的是等号；stdout {} 格式化输出到前台
 Settings: Default pipeline workers: 4
 Pipeline main started
 hello logstash #输入内容
 {
-       &#34;message&#34; =&gt; &#34;hello logstash&#34;,
-      &#34;@version&#34; =&gt; &#34;1&#34;,
-    &#34;@timestamp&#34; =&gt; &#34;2017-08-17T17:06:19.892Z&#34;,
-          &#34;host&#34; =&gt; &#34;11&#34;
+       "message" => "hello logstash",
+      "@version" => "1",
+    "@timestamp" => "2017-08-17T17:06:19.892Z",
+          "host" => "11"
 }
-[root@11 ~]# /opt/logstash/bin/logstash -e &#39;input { stdin{} } output { elasticsearch { hosts =&gt; [&#34;172.16.67.11:9200&#34;] index =&gt; &#34;logstash-%{&#43;YYYY.MM.dd}&#34; } }&#39;
+[root@11 ~]# /opt/logstash/bin/logstash -e 'input { stdin{} } output { elasticsearch { hosts => ["172.16.67.11:9200"] index => "logstash-%{+YYYY.MM.dd}" } }'
 Settings: Default pipeline workers: 4
 Pipeline main started
 haha        # 读取并写入elasticsearch中,按照日期兴建索引,注意此处是不会打印的
 123         # 若要既打印也输出,需要增加其他插件代码.如:output { stdout {} elasticsearch 
-asdf        # { hosts =&gt; [&#34;172.16.67.11:9200&#34;] index =&gt; &#34;logstash-%{&#43;YYYY.MM.dd}&#34; } }
+asdf        # { hosts => ["172.16.67.11:9200"] index => "logstash-%{+YYYY.MM.dd}" } }
 eeeeeeeee   # 
-# 访问 http://172.16.67.11:9200/_plugin/head 地址下的&#39;数据浏览&#39;查看是否添加成功 
+# 访问 http://172.16.67.11:9200/_plugin/head 地址下的'数据浏览'查看是否添加成功 
 #----------测试模块end----------- 
 ```
 ### 配置方式
@@ -141,11 +141,11 @@ filter {
  
 output {
     elasticsearch {
-        hosts =&gt; [&#34;172.16.67.11:9200&#34;]
-        index =&gt; &#34;logstash-%{&#43;YYYY.MM.dd}&#34;
+        hosts => ["172.16.67.11:9200"]
+        index => "logstash-%{+YYYY.MM.dd}"
     }
     stdout {
-        codec =&gt; rubydebug
+        codec => rubydebug
     }
 }
 [root@11 ~]# /opt/logstash/bin/logstash -f /etc/logstash/conf.d/demo.conf  # 测试配置文件 
@@ -153,19 +153,19 @@ Settings: Default pipeline workers: 4
 Pipeline main started
 ceshi
 {
-       &#34;message&#34; =&gt; &#34;ceshi&#34;,
-      &#34;@version&#34; =&gt; &#34;1&#34;,
-    &#34;@timestamp&#34; =&gt; &#34;2017-08-17T18:08:22.003Z&#34;,
-          &#34;host&#34; =&gt; &#34;11&#34;
+       "message" => "ceshi",
+      "@version" => "1",
+    "@timestamp" => "2017-08-17T18:08:22.003Z",
+          "host" => "11"
 }
 66666666
 {
-       &#34;message&#34; =&gt; &#34;66666666&#34;,
-      &#34;@version&#34; =&gt; &#34;1&#34;,
-    &#34;@timestamp&#34; =&gt; &#34;2017-08-17T18:08:37.970Z&#34;,
-          &#34;host&#34; =&gt; &#34;11&#34;
+       "message" => "66666666",
+      "@version" => "1",
+    "@timestamp" => "2017-08-17T18:08:37.970Z",
+          "host" => "11"
 }
-# 同样的访问 http://172.16.67.11:9200/_plugin/head 地址下的&#39;数据浏览&#39;查看是否添加成功  
+# 同样的访问 http://172.16.67.11:9200/_plugin/head 地址下的'数据浏览'查看是否添加成功  
 ```
 
 #### elasticsearch 从文件读取
@@ -173,9 +173,9 @@ ceshi
 [root@11 ~]# vim /etc/logstash/conf.d/file.conf 
 input {
     file {
-        path =&gt; [&#34;/var/log/messages&#34;,&#34;/var/log/secure&#34;]
-        type =&gt; &#34;system-log&#34;
-        start_position =&gt; &#34;beginning&#34;
+        path => ["/var/log/messages","/var/log/secure"]
+        type => "system-log"
+        start_position => "beginning"
     }
 }
  
@@ -184,37 +184,37 @@ filter {
  
 output {
      elasticsearch {
-        hosts =&gt; [&#34;172.16.67.11:9200&#34;]
-        index =&gt; &#34;system-log-%{&#43;YYYY.MM}&#34;   
+        hosts => ["172.16.67.11:9200"]
+        index => "system-log-%{+YYYY.MM}"   
     }
     stdout { 
-        codec =&gt; rubydebug
+        codec => rubydebug
     }
 }
 [root@11 ~]# /opt/logstash/bin/logstash -f /etc/logstash/conf.d/file.conf 
 Settings: Default pipeline workers: 4
 Pipeline main started 
 {
-       &#34;message&#34; =&gt; &#34;Aug 16 23:27:41 11 kernel: pid_max: default: 32768 minimum: 301&#34;,
-      &#34;@version&#34; =&gt; &#34;1&#34;,
-    &#34;@timestamp&#34; =&gt; &#34;2017-08-17T19:19:34.437Z&#34;,
-          &#34;path&#34; =&gt; &#34;/var/log/messages&#34;,
-          &#34;host&#34; =&gt; &#34;11&#34;,
-          &#34;type&#34; =&gt; &#34;system-log&#34;
+       "message" => "Aug 16 23:27:41 11 kernel: pid_max: default: 32768 minimum: 301",
+      "@version" => "1",
+    "@timestamp" => "2017-08-17T19:19:34.437Z",
+          "path" => "/var/log/messages",
+          "host" => "11",
+          "type" => "system-log"
 }
 #------省略很多很多数据------
 #------ logstash if语法------
 [root@11 ~]# vim /etc/logstash/conf.d/file.conf 
 input {
     file {
-        path =&gt; [&#34;/var/log/messages&#34;,&#34;/var/log/secure&#34;]
-        type =&gt; &#34;system-log&#34;
-        start_position =&gt; &#34;beginning&#34;
+        path => ["/var/log/messages","/var/log/secure"]
+        type => "system-log"
+        start_position => "beginning"
     }
     file {
-        path =&gt; &#34;/var/log/elasticsearch/myes.log&#34;
-        type =&gt; &#34;es-log&#34;
-        start_position =&gt; &#34;beginning&#34;
+        path => "/var/log/elasticsearch/myes.log"
+        type => "es-log"
+        start_position => "beginning"
     }
 }
  
@@ -222,17 +222,17 @@ filter {
 }
  
 output {
-    if [type] == &#34;system-log&#34; {
+    if [type] == "system-log" {
         elasticsearch {
-            hosts =&gt; [&#34;172.16.67.11:9200&#34;]
-            index =&gt; &#34;system-log-%{&#43;YYYY.MM}&#34;
+            hosts => ["172.16.67.11:9200"]
+            index => "system-log-%{+YYYY.MM}"
         }
     }
  
-    if [type] == &#34;es-log&#34; {
+    if [type] == "es-log" {
         elasticsearch {
-            hosts =&gt; [&#34;172.16.67.11:9200&#34;]
-            index =&gt; &#34;es-log-%{&#43;YYYY.MM}&#34;
+            hosts => ["172.16.67.11:9200"]
+            index => "es-log-%{+YYYY.MM}"
         }
     }
 }
@@ -245,10 +245,10 @@ Pipeline main started
 [root@11 ~]# vim /etc/logstash/conf.d/codec.conf 
 input {
     stdin {
-        codec =&gt; multiline {
-            pattern =&gt; &#34;^\[&#34;            #正则表达式
-            negate =&gt; true              #合并上级菜单
-            what =&gt; &#34;previous&#34;          #
+        codec => multiline {
+            pattern => "^\["            #正则表达式
+            negate => true              #合并上级菜单
+            what => "previous"          #
         }
     }
 }
@@ -258,7 +258,7 @@ filter {
  
 output {
     stdout {
-        codec =&gt; rubydebug
+        codec => rubydebug
     }
 }
 [root@11 conf.d]# /opt/logstash/bin/logstash -f /etc/logstash/conf.d/codec.conf 
@@ -270,31 +270,31 @@ jlkjljl
 kkkhhh
 [                   # 当匹配到以[开头时候,合并前面的全部内容
 {
-    &#34;@timestamp&#34; =&gt; &#34;2017-08-18T06:50:14.066Z&#34;,
-       &#34;message&#34; =&gt; &#34;[kjkjljlkjl\nkl;k;k;hj\njlkjljl\nkkkhhh&#34;,
-      &#34;@version&#34; =&gt; &#34;1&#34;,
-          &#34;tags&#34; =&gt; [
-        [0] &#34;multiline&#34;
+    "@timestamp" => "2017-08-18T06:50:14.066Z",
+       "message" => "[kjkjljlkjl\nkl;k;k;hj\njlkjljl\nkkkhhh",
+      "@version" => "1",
+          "tags" => [
+        [0] "multiline"
     ],
-          &#34;host&#34; =&gt; &#34;11&#34;
+          "host" => "11"
 }
 #------------演示测试 end ------------------
 #------------加入具体搜集-----------
 [root@11 ~]# vim /etc/logstash/conf.d/file.conf 
 input {
     file {
-        path =&gt; [&#34;/var/log/messages&#34;,&#34;/var/log/secure&#34;]
-        type =&gt; &#34;system-log&#34;
-        start_position =&gt; &#34;beginning&#34;
+        path => ["/var/log/messages","/var/log/secure"]
+        type => "system-log"
+        start_position => "beginning"
     }
     file {
-        path =&gt; &#34;/var/log/elasticsearch/myes.log&#34;               #这个日志文件小了 好像是不会被收集的？
-        type =&gt; &#34;es-log&#34;
-        start_position =&gt; &#34;beginning&#34;
-        codec =&gt; multiline {
-            pattern =&gt; &#34;^\[&#34;
-            negate =&gt; true
-            what =&gt; &#34;previous&#34;
+        path => "/var/log/elasticsearch/myes.log"               #这个日志文件小了 好像是不会被收集的？
+        type => "es-log"
+        start_position => "beginning"
+        codec => multiline {
+            pattern => "^\["
+            negate => true
+            what => "previous"
         }
  
      }
@@ -304,17 +304,17 @@ filter {
 }
  
 output {
-    if [type] == &#34;system-log&#34; {
+    if [type] == "system-log" {
         elasticsearch {
-            hosts =&gt; [&#34;172.16.67.11:9200&#34;]
-            index =&gt; &#34;system-log-%{&#43;YYYY.MM}&#34;
+            hosts => ["172.16.67.11:9200"]
+            index => "system-log-%{+YYYY.MM}"
         }
     }
  
-    if [type] == &#34;es-log&#34; {
+    if [type] == "es-log" {
         elasticsearch {
-            hosts =&gt; [&#34;172.16.67.11:9200&#34;]
-            index =&gt; &#34;es-log-%{&#43;YYYY.MM}&#34;
+            hosts => ["172.16.67.11:9200"]
+            index => "es-log-%{+YYYY.MM}"
         }
     }
 }
@@ -344,9 +344,9 @@ enabled=1
  #----------过程省略-----------
  [root@12 ~]# vim /opt/kibana/config/kibana.yml 
  server.port: 5601                                  #默认端口
- server.host: &#34;0.0.0.0&#34;                             #主机地址
- elasticsearch.url: &#34;http://172.16.67.11:9200&#34;      #elasticsearch 地址
- kibana.index: &#34;.kibana&#34;                            #kibana 的索引 
+ server.host: "0.0.0.0"                             #主机地址
+ elasticsearch.url: "http://172.16.67.11:9200"      #elasticsearch 地址
+ kibana.index: ".kibana"                            #kibana 的索引 
  ```
 
 #### 启动kibana
@@ -363,9 +363,9 @@ tcp        0      0 0.0.0.0:5601                0.0.0.0:*                   LIST
 
 打开访问：http://172.16.67.12:5601   
 
-kibana 不会自动加载elasticsearch的索引，需要自己配置。这儿根据自己已经创建了的索引配置，如上面创建的logstash-%{&#43;YYYY.MM.dd},下面勾选“Use event times to create index names [DEPRECATED]”
+kibana 不会自动加载elasticsearch的索引，需要自己配置。这儿根据自己已经创建了的索引配置，如上面创建的logstash-%{+YYYY.MM.dd},下面勾选“Use event times to create index names [DEPRECATED]”
 
-然后下面会自动匹配elasticsearch中存在的logstash-YYYY.MM.DD的索引，点击创建就可以了，如果需要显示其他的索引，左侧点击&#34;add new &#34;新增就可以了。
+然后下面会自动匹配elasticsearch中存在的logstash-YYYY.MM.DD的索引，点击创建就可以了，如果需要显示其他的索引，左侧点击"add new "新增就可以了。
 
 
 ---

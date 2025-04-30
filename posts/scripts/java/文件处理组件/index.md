@@ -1,7 +1,7 @@
 # Java文件处理组件
 
 
-{{&lt; highlight java &gt;}}
+{{< highlight java >}}
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -28,7 +28,7 @@ public class FileOperUtil {
           if (file.isDirectory()) {
                File[] files = file.listFiles();
                int len = files.length ;
-               for (int i = 0; i &lt; len; i&#43;&#43;) {
+               for (int i = 0; i < len; i++) {
                     deleteFile(files[i].getAbsolutePath());
                }
           }
@@ -48,7 +48,7 @@ public class FileOperUtil {
                     myFilePath.mkdir();
                }
           } catch (Exception e) {
-               RecordLog.printLog(&#34;新建目录,&#34;&#43;folderPath&#43; &#34;,出错,&#34;&#43;e.getMessage(), RecordLog.LOG_LEVEL_ERROR);
+               RecordLog.printLog("新建目录,"+folderPath+ ",出错,"+e.getMessage(), RecordLog.LOG_LEVEL_ERROR);
                e.printStackTrace();
           }
      }
@@ -86,7 +86,7 @@ public class FileOperUtil {
                java.io.File myDelFile = new java.io.File(filePath);
                myDelFile.delete();
           } catch (Exception e) {
-               RecordLog.printLog(&#34;删除文件,&#34;&#43;filePathAndName&#43; &#34;,出错,&#34;&#43;e.getMessage(), RecordLog.LOG_LEVEL_ERROR);
+               RecordLog.printLog("删除文件,"+filePathAndName+ ",出错,"+e.getMessage(), RecordLog.LOG_LEVEL_ERROR);
                e.printStackTrace();
           }
      }
@@ -106,7 +106,7 @@ public class FileOperUtil {
                java.io.File myFilePath = new java.io.File(filePath);
                flag = myFilePath.delete(); //删除空文件夹
           } catch (Exception e) {
-               RecordLog.printLog(&#34;删除文件夹,&#34;&#43;folderPath&#43;&#34;,出错,&#34; &#43;e.getMessage(), RecordLog .LOG_LEVEL_ERROR);
+               RecordLog.printLog("删除文件夹,"+folderPath+",出错," +e.getMessage(), RecordLog .LOG_LEVEL_ERROR);
                e.printStackTrace();
           }
           return flag;
@@ -126,18 +126,18 @@ public class FileOperUtil {
           }
           String[] tempList = file.list();
           File temp = null;
-          for (int i = 0; i &lt; tempList.length; i&#43;&#43;) {
+          for (int i = 0; i < tempList.length; i++) {
                if (path.endsWith(File.separator)) {
-                    temp = new File(path &#43; tempList[i]);
+                    temp = new File(path + tempList[i]);
                } else {
-                    temp = new File(path &#43; File.separator &#43; tempList[i]);
+                    temp = new File(path + File.separator + tempList[i]);
                }
                if (temp.isFile()) {
                     temp.delete();
                }
                if (temp.isDirectory()) {
-                    delAllFile(path &#43; &#34;/&#34; &#43; tempList[i]); // 先删除文件夹里面的文件
-                    delFolder(path &#43; &#34;/&#34; &#43; tempList[i]); // 再删除空文件夹
+                    delAllFile(path + "/" + tempList[i]); // 先删除文件夹里面的文件
+                    delFolder(path + "/" + tempList[i]); // 再删除空文件夹
                }
           }
      }
@@ -157,7 +157,7 @@ public class FileOperUtil {
                     FileOutputStream fs = new FileOutputStream(newPath);
                     byte[] buffer = new byte[1444];
                     while ((byteread = inStream.read(buffer)) != -1) {
-                         bytesum &#43;= byteread; // 字节数 文件大小
+                         bytesum += byteread; // 字节数 文件大小
                          System. out.println(bytesum);
                          fs.write(buffer, 0, byteread);
                     }
@@ -176,16 +176,16 @@ public class FileOperUtil {
                File a = new File(oldPath);
                String[] file = a.list();
                File temp = null;
-               for (int i = 0; i &lt; file.length; i&#43;&#43;) {
+               for (int i = 0; i < file.length; i++) {
                     if (oldPath.endsWith(File.separator)) {
-                         temp = new File(oldPath &#43; file[i]);
+                         temp = new File(oldPath + file[i]);
                     } else {
-                         temp = new File(oldPath &#43; File.separator &#43; file[i]);
+                         temp = new File(oldPath + File.separator + file[i]);
                     }
                     if (temp.isFile()) {
                          FileInputStream input = new FileInputStream(temp);
                          FileOutputStream output = new FileOutputStream(newPath
-                                   &#43; &#34;/&#34; &#43; (temp.getName()).toString());
+                                   + "/" + (temp.getName()).toString());
                          byte[] b = new byte[1024 * 5];
                          int len;
                          while ((len = input.read(b)) != -1) {
@@ -196,11 +196,11 @@ public class FileOperUtil {
                          input.close();
                     }
                     if (temp.isDirectory()) {// 如果是子文件夹
-                         copyFolder(oldPath &#43; &#34;/&#34; &#43; file[i], newPath &#43; &#34;/&#34; &#43; file[i]);
+                         copyFolder(oldPath + "/" + file[i], newPath + "/" + file[i]);
                     }
                }
           } catch (Exception e) {
-               RecordLog.printLog(&#34;复制整个文件夹内容操作出错,&#34; &#43;e.getMessage(), RecordLog .LOG_LEVEL_ERROR);
+               RecordLog.printLog("复制整个文件夹内容操作出错," +e.getMessage(), RecordLog .LOG_LEVEL_ERROR);
                e.printStackTrace();
           }
      }
@@ -229,20 +229,20 @@ public class FileOperUtil {
      }
    
      public static void main(String[] args){
-          rename(&#34;d:/aaa&#34;, &#34;av.xml&#34;,&#34;ne.xml&#34; );
+          rename("d:/aaa", "av.xml","ne.xml" );
      }
    
      public static boolean rename(String filepath,String srcname,String destname){
           boolean flag = false;
-          File f = new File(filepath&#43;File.separator&#43;srcname);
+          File f = new File(filepath+File.separator+srcname);
           String c = f.getParent();
-          File mm = new File(c &#43; File.separator &#43; destname);
+          File mm = new File(c + File.separator + destname);
           if (f.renameTo(mm))
                flag = true;
           return flag;
      }
 }
-{{&lt; /highlight &gt;}}
+{{< /highlight >}}
 
 ---
 

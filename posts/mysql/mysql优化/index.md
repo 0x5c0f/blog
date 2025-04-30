@@ -4,7 +4,7 @@
 # 1. Mysql 优化
 ## 1.1. 索引优化 
 1. 索引的种类
-    - B树(b-tree B&#43;tree B*tree); 
+    - B树(b-tree B+tree B*tree); 
     - R树; 
     - Hash索引
     - 全文索引
@@ -22,50 +22,50 @@
 - 主键索引  
 ```sql
 --- 创建主键索引(推荐)
-create table `&lt;table_name&gt;` (
+create table `<table_name>` (
 `id` int(4) not null auto_increment,
 `name` char(20) not null,
 primary key (`id`)
 ) engine=innodb default charset=utf8
 
 --- 创建主键索引 
-create table `&lt;table_name&gt;` (
+create table `<table_name>` (
 `id` int(4) not null,
 `name` char(20) not null
 ) engine=innodb default charset=utf8
 
-alter table &lt;table_name&gt; change id id int(4) primary key not null auto_increment
+alter table <table_name> change id id int(4) primary key not null auto_increment
 
 ```
 - 普通索引(`MUL`)  
 ```sql
 --- 创建索引
-mysql&gt; alter table &lt;table_name&gt; add index &lt;index_name&gt;(&lt;column_name&gt;);  # create index &lt;index_name&gt; on &lt;table_name&gt;(&lt;column_name&gt;);
+mysql> alter table <table_name> add index <index_name>(<column_name>);  # create index <index_name> on <table_name>(<column_name>);
 
 --- 删除索引
-mysql&gt; alter table &lt;table_name&gt; drop index &lt;index_name&gt;;    # drop index &lt;index_name&gt; on &lt;table_name&gt;;
+mysql> alter table <table_name> drop index <index_name>;    # drop index <index_name> on <table_name>;
 
 --- 查看索引信息
-mysql&gt; show index from &lt;table_name&gt;;
+mysql> show index from <table_name>;
 ```
 - 唯一索引   
 ```sql
-mysql&gt; create unique index &lt;index_name&gt; on &lt;table_name&gt;(&lt;column_name&gt;)
+mysql> create unique index <index_name> on <table_name>(<column_name>)
 ```
 - 前缀索引  
 ```sql
 --- create index idx_phoneNum on phone(phoneNum(3)) 
-mysql&gt; create index &lt;index_name&gt; on &lt;table_name&gt;(&lt;column_name&gt;(&lt;length&gt;))  
+mysql> create index <index_name> on <table_name>(<column_name>(<length>))  
 ```
 - 联合索引 
 ```sql
 # index(a,b,c)
 # a, ab, abc ,ac 走索引, 其他关联查询均不走索引(如 b,bc,c )
-mysql&gt; alter table &lt;table_name&gt; add index &lt;index_name&gt;(&lt;cloumn_name1&gt;,&lt;cloumn_name2&gt;,&lt;cloumn_name3&gt;)
+mysql> alter table <table_name> add index <index_name>(<cloumn_name1>,<cloumn_name2>,<cloumn_name3>)
 ```
 ### 1.1.2. 查看某个语句在查询时是否使用了索引,使用了那些索引  
 ```sql
-mysql&gt; explain select * from world.city where Name = &#39;Chongqing&#39;\G
+mysql> explain select * from world.city where Name = 'Chongqing'\G
 ***************************[ 1. row ]***************************
 id            | 1
 select_type   | SIMPLE
@@ -78,18 +78,18 @@ ref           | const
 rows          | 1
 Extra         | Using index condition
 
--- type: 表示mysql在表中找到所需行的方式,又称&#34;访问类型&#34;
+-- type: 表示mysql在表中找到所需行的方式,又称"访问类型"
 --- 常见类型有: ALL,index,range,ref,eq_ref, const,system, NULL 从左到又,性能从差到好 
 --- ALL: 全表扫描,未使用索引查询(1. 语句写的有问题, 2. 索引问题) 
 
 --- index: 全索引扫描
 ---- explain select count(*) from city ;
 
---- range: 范围扫描, 关键字包含 &gt;、&lt;、&gt;=、&lt;=、between...and、in()、or、like &#39;x%&#39;
----- explain select * from city where `CountryCode` like &#39;CH%&#39;
+--- range: 范围扫描, 关键字包含 >、<、>=、<=、between...and、in()、or、like 'x%'
+---- explain select * from city where `CountryCode` like 'CH%'
 
 --- ref: 使用非唯一索引(即非主键或唯一索引)扫描或者唯一的前缀扫描，返回匹配某个单独值的记录行
----- explain select * from city where Name = &#39;Chongqing&#39;
+---- explain select * from city where Name = 'Chongqing'
 
 --- eq_ref: 类似ref，区别就是在使用的索引是唯一索引，对于每个索引键值，表中只有一条记录匹配(join条件使用的是primary key 或者 unique key)
 
@@ -147,7 +147,7 @@ Extra         | Using index condition
 
 SQL改写成以下语句：  
 - `selec  * from tab  order by  price  limit 10`  # 需要在price列上建立索引 
-- `select  * from  tab where name=&#39;zhangsan&#39;`     # name列没有索引  
+- `select  * from  tab where name='zhangsan'`     # name列没有索引  
 改：  
   - 换成有索引的列作为查询条件  
   - 将name列建立索引  
@@ -158,7 +158,7 @@ SQL改写成以下语句：
 查询的结果集，超过了总数行数30%，优化器觉得就没有必要走索引了。  
 假如：tab表 id，name    id:1-100w  ，id列有索引  
  
-`select * from tab  where id&gt;500000; ` 
+`select * from tab  where id>500000; ` 
  
 如果业务允许，可以使用limit控制。  
 怎么改写 ？  
@@ -169,7 +169,7 @@ SQL改写成以下语句：
 索引有自我维护的能力。  
 对于表内容变化比较频繁的情况下，有可能会出现索引失效。 
  
-- 查询条件使用函数在索引列上，或者对索引列进行运算，运算包括(&#43;，-，*，/，! 等)  
+- 查询条件使用函数在索引列上，或者对索引列进行运算，运算包括(+，-，*，/，! 等)  
 例子：  
 错误的例子：`select * from test where id-1=9;`  
 正确的例子：`select * from test where id=10; ` 
@@ -179,7 +179,7 @@ SQL改写成以下语句：
 由于表的字段tu_mdn定义为varchar2(20),但在查询时把该字段作为number类型以where条件传给数据库,  
 这样会导致索引失效.   
 错误的例子：`select * from test where tu_mdn=13333333333`;  
-正确的例子：`select * from test where tu_mdn=&#39;13333333333&#39;`;  
+正确的例子：`select * from test where tu_mdn='13333333333'`;  
 
 
 ---

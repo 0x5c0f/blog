@@ -1,16 +1,16 @@
 # Nginx主配置文件nginx.conf超详细中文详解
 
 
-{{&lt; admonition type=note open=true &gt;}}
+{{< admonition type=note open=true >}}
 本文原文出自老男孩微信公众号:`oldboyedu`, 原文连接已经丢失，现收集于网络转载文本，用于个人整理记录  
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
 # 1. 作者简介
 老男孩，北京老男孩IT教育创始人，畅销图书作者，51CTO金牌讲师，16年运维经验及培训经验， IT界顶级Linux集群架构实战与教育专家。  
 国内IT教育实战心理学运维思想体系创始人，将心理学运维思想大量应用于教学培训实践，成就屌丝无数。所教学生平均就业工资及后期发展速度连续多年在国内同行业排名第一！  
 老男孩老师个人博客：  
-&gt; http://oldboy.blog.51cto.com  
-&gt; http://blog.oldboyedu.com  
+> http://oldboy.blog.51cto.com  
+> http://blog.oldboyedu.com  
 
 
 # 2. Nginx核心配置文件nginx.conf史上最细中文详解
@@ -79,7 +79,7 @@ http{
     #设置服务器端传送http响应信息到客户端的超时时间
     send_timeout 60s;
     #设定访问日志的日志记录格式，每列细节参考《跟老男孩学linux运维》:Web集群实战
-    log_format main  &#39;$remote_addr - $remote_user$time_local] &#34;$request&#34; &#39; &#39;$status $body_bytes_sent &#34;$http_referer&#34; &#39;  &#39;&#34;$http_user_agent&#34;$http_x_forwarded_for&#34;&#39;;
+    log_format main  '$remote_addr - $remote_user$time_local] "$request" ' '$status $body_bytes_sent "$http_referer" '  '"$http_user_agent"$http_x_forwarded_for"';
 
     #FastCGI参数是和动态服务器交互起作用的参数
     #设定Nginx服务器和后端FastCGI服务器连接的超时时间

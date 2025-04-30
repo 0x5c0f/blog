@@ -1,17 +1,17 @@
 # 正则表达式介绍
 
 
-{{&lt; admonition type=info title=&#34;前言&#34; open=true &gt;}}
+{{< admonition type=info title="前言" open=true >}}
 最近在写一个脚本,需要使用到正则表达式,作为曾经的一个开发,正则还是知道一些的,但是写着写着发现不对,但在测试器里面,正则又是正确的,虽然直到shell正则并不是标准的perl正则,但也一直没有查询到到底那些支持,那些不支持,翻了很久终于在google上找到了一篇介绍这些区别的文章,此处记录下,以备查验。  
-{{&lt; /admonition &gt;}}
+{{< /admonition >}}
 
-{{&lt; admonition type=quote title=&#34;原文来源&#34; open=true &gt;}}
-&gt; [http://man.linuxde.net/docs/shell_regex.html](http://man.linuxde.net/docs/shell_regex.html)  
-{{&lt; /admonition &gt;}}
+{{< admonition type=quote title="原文来源" open=true >}}
+> [http://man.linuxde.net/docs/shell_regex.html](http://man.linuxde.net/docs/shell_regex.html)  
+{{< /admonition >}}
 
-{{&lt; admonition type=quote title=&#34;引入扩展&#34; open=true &gt;}}
-&gt; [https://tool.oschina.net/uploads/apidocs/jquery/regexp.html](https://tool.oschina.net/uploads/apidocs/jquery/regexp.html)  
-{{&lt; /admonition &gt;}}
+{{< admonition type=quote title="引入扩展" open=true >}}
+> [https://tool.oschina.net/uploads/apidocs/jquery/regexp.html](https://tool.oschina.net/uploads/apidocs/jquery/regexp.html)  
+{{< /admonition >}}
 
 
 # 1. 正则表达式的分类
@@ -26,33 +26,33 @@
 | `\`        | 转义符，将特殊字符进行转义，忽略其特殊意义        | `a\.b`匹配`a.b`，但不能匹配`ajb`，`.`被转义为特殊意义                    | `\`           | `\`              | `\`            | `\`          |
 | `^`        | 匹配行首，`awk`中，`^`则是匹配字符串的开始        | `^tux`匹配以`tux`开头的行                                                | `^`           | `^`              | `^`            | `^`          |
 | `$`        | 匹配行尾，`awk`中，`$`则是匹配字符串的结尾        | `tux$`匹配以`tux`结尾的行                                                | `$`           | `$`              | `$`            | `$`          |
-| `.`        | 匹配除换行符`\n`之外的任意单个字符，`awk`中则可以 | `ab.`匹配`abc`或`ab&#43;`，不可匹配`abcd`或`abde`，只能匹配单字符            | `.`           | `.`              | `.`            | `.`          |
+| `.`        | 匹配除换行符`\n`之外的任意单个字符，`awk`中则可以 | `ab.`匹配`abc`或`ab+`，不可匹配`abcd`或`abde`，只能匹配单字符            | `.`           | `.`              | `.`            | `.`          |
 | `[]`       | 匹配包含在`[字符]`之中的任意一个字符              | `coo[kl]`可以匹配`cook`或`cool`                                          | `[]`          | `[]`             | `[]`           | `[]`         |
 | `[^]`      | 匹配`[^字符]`之外的任意一个字符                   | `123[^45]`不可以匹配`1234`或`1235`，但`1231`、`1232`、`1236`、`1237`可以 | `[^]`         | `[^]`            | `[^]`          | `[^]`        |
 | `[-]`      | 匹配`[]`中指定范围内的任意一个字符，要写成递增    | `[0-9]`可以匹配`1`、`2`或`3`等其中任意一个数字                           | `[-]`         | `[-]`            | `[-]`          | `[-]`        |
 | `?`        | 匹配之前的项`1`次或者`0`次                        | `colou?r`可以匹配`color`或者`colour`，不能匹配`colouur`                  | 不支持        | `?`              | `?`            | `?`          |
-| `&#43;`        | 匹配之前的项`1`次或者多次                         | `sa-6&#43;`匹配`sa-6`、`sa-666`，不能匹配`sa-`                               | 不支持        | `&#43;`              | `&#43;`            | `&#43;`          |
+| `+`        | 匹配之前的项`1`次或者多次                         | `sa-6+`匹配`sa-6`、`sa-666`，不能匹配`sa-`                               | 不支持        | `+`              | `+`            | `+`          |
 | `*`        | 匹配之前的项`0`次或者多次                         | `co*l`匹配`cl`、`col`、`cool`、`coool`等                                 | `*`           | `*`              | `*`            | `*`          |
 | `()`       | 匹配表达式，创建一个用于匹配的子串                | `ma(tri)?`匹配`max`或`maxtrix`                                           | 不支持        | `()`             | `()`           | `()`         |
 | `{n}`      | 匹配之前的项`n`次，`n`是可以为`0`的正整数         | `[0-9]{3}`匹配任意一个三位数，可以扩展为`[0-9][0-9][0-9]`                | 不支持        | `{n}`            | `{n}`          | `{n}`        |
 | `{n,}`     | 之前的项至少需要匹配`n`次                         | `[0-9]{2,}`匹配任意一个两位数或更多位数                                  | 不支持        | `{n,}`           | `{n,}`         | `{n,}`       |
-| `{n,m}`    | 指定之前的项至少匹配`n`次，最多匹配`m`次，`n&lt;=m`  | `[0-9]{2,5}`匹配从两位数到五位数之间的任意一个数字                       | 不支持        | `{n,m}`          | `{n,m}`        | `{n,m}`      |
+| `{n,m}`    | 指定之前的项至少匹配`n`次，最多匹配`m`次，`n<=m`  | `[0-9]{2,5}`匹配从两位数到五位数之间的任意一个数字                       | 不支持        | `{n,m}`          | `{n,m}`        | `{n,m}`      |
 | `|`        | 交替匹配                                          | 两边的任意一项`ab(c|d)`匹配`abc`或`abd`                                  | 不支持        | `|`              | `|`            | `|`          |
 
 # 3. POSIX字符类
 POSIX字符类是一个形如`[:...:]`的特殊元序列（`meta sequence`），他可以用于匹配特定的字符范围。  
 | 正则表达式   | 描述                                         | 示例              | `Basic RegEx` | `Extended RegEx` | `Python RegEx` | `Perl regEx` |
 | ------------ | -------------------------------------------- | ----------------- | ------------- | ---------------- | -------------- | ------------ |
-| `[:alnum:]`  | 匹配任意一个字母或数字字符                   | `[[:alnum:]]&#43;`    | `[:alnum:]`   | `[:alnum:]`      | `[:alnum:]`    | `[:alnum:]`  |
+| `[:alnum:]`  | 匹配任意一个字母或数字字符                   | `[[:alnum:]]+`    | `[:alnum:]`   | `[:alnum:]`      | `[:alnum:]`    | `[:alnum:]`  |
 | `[:alpha:]`  | 匹配任意一个字母字符（包括大小写字母）       | `[[:alpha:]]{4}`  | `[:alpha:]`   | `[:alpha:]`      | `[:alpha:]`    | `[:alpha:]`  |
 | `[:blank:]`  | 空格与制表符（横向和纵向）                   | `[[:blank:]]*`    | `[:blank:]`   | `[:blank:]`      | `[:blank:]`    | `[:blank:]`  |
 | `[:digit:]`  | 匹配任意一个数字字符                         | `[[:digit:]]?`    | `[:digit:]`   | `[:digit:]`      | `[:digit:]`    | `[:digit:]`  |
 | `[:lower:]`  | 匹配小写字母                                 | `[[:lower:]]{5,}` | `[:lower:]`   | `[:lower:]`      | `[:lower:]`    | `[:lower:]`  |
-| `[:upper:]`  | 匹配大写字母                                 | `([[:upper:]]&#43;)?` | `[:upper:]`   | `[:upper:]`      | `[:upper:]`    | `[:upper:]`  |
+| `[:upper:]`  | 匹配大写字母                                 | `([[:upper:]]+)?` | `[:upper:]`   | `[:upper:]`      | `[:upper:]`    | `[:upper:]`  |
 | `[:punct:]`  | 匹配标点符号                                 | `[[:punct:]]`     | `[:punct:]`   | `[:punct:]`      | `[:punct:]`    | `[:punct:]`  |
-| `[:space:]`  | 匹配一个包括换行符、回车等在内的所有空白符   | `[[:space:]]&#43;`    | `[:space:]`   | `[:space:]`      | `[:space:]`    | `[:space:]`  |
+| `[:space:]`  | 匹配一个包括换行符、回车等在内的所有空白符   | `[[:space:]]+`    | `[:space:]`   | `[:space:]`      | `[:space:]`    | `[:space:]`  |
 | `[:graph:]`  | 匹配任何一个可以看得见的且可以打印的字符     | `[[:graph:]]`     | `[:graph:]`   | `[:graph:]`      | `[:graph:]`    | `[:graph:]`  |
-| `[:xdigit:]` | 任何一个十六进制数（即：`0-9，a-f，A-F`）    | `[[:xdigit:]]&#43;`   | `[:xdigit:]`  | `[:xdigit:]`     | `[:xdigit:]`   | `[:xdigit:]` |
+| `[:xdigit:]` | 任何一个十六进制数（即：`0-9，a-f，A-F`）    | `[[:xdigit:]]+`   | `[:xdigit:]`  | `[:xdigit:]`     | `[:xdigit:]`   | `[:xdigit:]` |
 | `[:cntrl:]`  | 任何一个控制字符（ASCII字符集中的前32个字符) | `[[:cntrl:]]`     | `[:cntrl:]`   | `[:cntrl:]`      | `[:cntrl:]`    | `[:cntrl:]`  |
 | `[:print:]`  | 任何一个可以打印的字符                       | `[[:print:]]`     | `[:print:]`   | `[:print:]`      | `[:print:]`    | `[:print:]`  |
 
@@ -64,8 +64,8 @@ POSIX字符类是一个形如`[:...:]`的特殊元序列（`meta sequence`），
 | `\B`       | 非单词边界                    | `cool\B` 匹配`coolant`，不匹配`cool`   | `\B`          | `\B`             | `\B`           | `\B`         |
 | `\d`       | 单个数字字符                  | `b\db` 匹配`b2b`，不匹配`bcb`          | 不支持        | 不支持           | `\d`           | `\d`         |
 | `\D`       | 单个非数字字符                | `b\Db` 匹配`bcb`，不匹配`b2b`          | 不支持        | 不支持           | `\D`           | `\D`         |
-| `\w`       | 单个单词字符（字母、数字与_） | `\w` 匹配`1`或`a`，不匹配`&amp;`           | `\w`          | `\w`             | `\w`           | `\w`         |
-| `\W`       | 单个非单词字符                | `\W` 匹配`&amp;`，不匹配`1`或`a`           | `\W`          | `\W`             | `\W`           | `\W`         |
+| `\w`       | 单个单词字符（字母、数字与_） | `\w` 匹配`1`或`a`，不匹配`&`           | `\w`          | `\w`             | `\w`           | `\w`         |
+| `\W`       | 单个非单词字符                | `\W` 匹配`&`，不匹配`1`或`a`           | `\W`          | `\W`             | `\W`           | `\W`         |
 | `\n`       | 换行符                        | `\n` 匹配一个新行                      | 不支持        | 不支持           | `\n`           | `\n`         |
 | `\s`       | 单个空白字符                  | `x\sx` 匹配`x x`，不匹配`xx`           | 不支持        | 不支持           | `\s`           | `\s`         |
 | `\S`       | 单个非空白字符                | `x\S\x` 匹配`xkx`，不匹配`xx`          | 不支持        | 不支持           | `\S`           | `\S`         |

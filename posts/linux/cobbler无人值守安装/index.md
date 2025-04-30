@@ -1,9 +1,9 @@
 # Cobbler无人值守安装
 
 
-{{&lt; admonition type=quote title=&#34;文章来源&#34; open=true &gt;}}
-&gt; [https://www.linuxprobe.com/cobbler-installation-server.html](https://www.linuxprobe.com/cobbler-installation-server.html)
-{{&lt; /admonition &gt;}}
+{{< admonition type=quote title="文章来源" open=true >}}
+> [https://www.linuxprobe.com/cobbler-installation-server.html](https://www.linuxprobe.com/cobbler-installation-server.html)
+{{< /admonition >}}
 
 # 1. Cobbler 运行流程
 
@@ -34,16 +34,16 @@
 
 ### 2.1.1. 首先安装 epel-release，Cobbler 和 tftp-server 在 base 源中是没有的  
 ```bash
-$&gt; yum install -y epel-release
+$> yum install -y epel-release
 ```
 
 ### 2.1.2. 安装 Cobbler 其实有一部分软件会被当做依赖进行安装上去，比如 tftp 和 httpd 服务，我们这里为了方便可以一并安装，避免后续出现相关问题。  
 ```bash
-$&gt; yum install -y cobbler cobbler-web dhcp tftp-server pykickstart httpd rsync xinetd 
+$> yum install -y cobbler cobbler-web dhcp tftp-server pykickstart httpd rsync xinetd 
 ```
 **注意: 必须把yum源配好，否则无法全部安装以上软件！**
 ```bash
-$&gt; vim /etc/yum.repos.d/CentOS-Base.repo
+$> vim /etc/yum.repos.d/CentOS-Base.repo
 #在CentOS-Base.repo配置文件中添加以下源
 [aliyun-os]
 name=aliyun-os
@@ -74,7 +74,7 @@ httpd #Apache Web 服务
 
 ### 2.1.4. Cobbler 工作目录介绍
 ```bash
-$&gt; ls /etc/cobbler/
+$> ls /etc/cobbler/
 auth.conf         genders.template        named.template  secondary.template  zone.template
 cheetah_macros    import_rsync_whitelist  power           settings            zone_templates
 cobbler_bash      iso                     pxe             tftpd.template
@@ -109,52 +109,52 @@ dnsmasq.template  mongodb.conf            rsync.template  version
 ```
 ### 2.1.5. 首先启动 Cobbler 和 httpd 服务
 ```bash
-$&gt; systemctl start cobblerd httpd
+$> systemctl start cobblerd httpd
 ```
 
 ### 2.1.6. 检查配置
 ```bash
-$&gt; cobbler check
+$> cobbler check
 The following are potential configuration items that you may want to fix:
 
-1 : The &#39;server&#39; field in /etc/cobbler/settings must be set to something other than localhost, or kickstarting features will not work.  This should be a resolvable hostname or IP for the boot server as reachable by all machines that will use it.
-2 : For PXE to be functional, the &#39;next_server&#39; field in /etc/cobbler/settings must be set to something other than 127.0.0.1, and should match the IP of the boot server on the PXE network.
-3 : change &#39;disable&#39; to &#39;no&#39; in /etc/xinetd.d/tftp
-4 : Some network boot-loaders are missing from /var/lib/cobbler/loaders, you may run &#39;cobbler get-loaders&#39; to download them, or, if you only want to handle x86/x86_64 netbooting, you may ensure that you have installed a *recent* version of the syslinux package installed and can ignore this message entirely.  Files in this directory, should you want to support all architectures, should include pxelinux.0, menu.c32, elilo.efi, and yaboot. The &#39;cobbler get-loaders&#39; command is the easiest way to resolve these requirements.
+1 : The 'server' field in /etc/cobbler/settings must be set to something other than localhost, or kickstarting features will not work.  This should be a resolvable hostname or IP for the boot server as reachable by all machines that will use it.
+2 : For PXE to be functional, the 'next_server' field in /etc/cobbler/settings must be set to something other than 127.0.0.1, and should match the IP of the boot server on the PXE network.
+3 : change 'disable' to 'no' in /etc/xinetd.d/tftp
+4 : Some network boot-loaders are missing from /var/lib/cobbler/loaders, you may run 'cobbler get-loaders' to download them, or, if you only want to handle x86/x86_64 netbooting, you may ensure that you have installed a *recent* version of the syslinux package installed and can ignore this message entirely.  Files in this directory, should you want to support all architectures, should include pxelinux.0, menu.c32, elilo.efi, and yaboot. The 'cobbler get-loaders' command is the easiest way to resolve these requirements.
 5 : enable and start rsyncd.service with systemctl
 6 : debmirror package is not installed, it will be required to manage debian deployments and repositories
-7 : The default password used by the sample templates for newly installed machines (default_password_crypted in /etc/cobbler/settings) is still set to &#39;cobbler&#39; and should be changed, try: &#34;openssl passwd -1 -salt &#39;random-phrase-here&#39; &#39;your-password-here&#39;&#34; to generate new one
+7 : The default password used by the sample templates for newly installed machines (default_password_crypted in /etc/cobbler/settings) is still set to 'cobbler' and should be changed, try: "openssl passwd -1 -salt 'random-phrase-here' 'your-password-here'" to generate new one
 8 : fencing tools were not found, and are required to use the (optional) power management features. install cman or fence-agents to use them
 
-Restart cobblerd and then run &#39;cobbler sync&#39; to apply changes.
+Restart cobblerd and then run 'cobbler sync' to apply changes.
 ```
 
 以上问题我们需要逐步解决。  
 
 - 问题 1：修改 `server` 地址为 `192.168.1.7`
 ```bash
-$&gt; vim /etc/cobbler/settings
+$> vim /etc/cobbler/settings
 改：390 server: 127.0.1
 为：390 server: 192.168.1.7
 ```
 - 问题 2：修改 `next_server` 地址为 `192.168.1.7`
 ```bash
-$&gt; vim /etc/cobbler/settings
+$> vim /etc/cobbler/settings
 改：278 next_server: 127.0.1
 为：278 next_server: 192.168.1.7
 ```
 - 问题 3：修改 `tftp` 服务被 `xinetd` 服务管理
 ```bash
-$&gt; vim /etc/xinetd.d/tftp
+$> vim /etc/xinetd.d/tftp
 改：14 disable = yes
 为：14 disable = no
 顺便修改 xinetd 和 tftpd 服务开机启动
-$&gt; systemctl start xinetd tftp &amp;&amp; systemctl enable xinetd tftp
+$> systemctl start xinetd tftp && systemctl enable xinetd tftp
 ```
 
 - 问题 4：下载操作系统引导文件
 ```bash
-$&gt; cobbler get-loaders
+$> cobbler get-loaders
 task started: 2020-01-04_031204_get_loaders
 task started (id=Download Bootloader Content, time=Sat Jan  4 03:12:04 2020)
 downloading https://cobbler.github.io/loaders/README to /var/lib/cobbler/loaders/README
@@ -171,7 +171,7 @@ downloading https://cobbler.github.io/loaders/grub-0.97-x86_64.efi to /var/lib/c
 ```
 - 问题 5：修改 `rsyncd` 服务为开机自启动状态并启用它。
 ```bash
-$&gt; systemctl start rsyncd &amp;&amp; systemctl enable rsyncd
+$> systemctl start rsyncd && systemctl enable rsyncd
 ```
 
 - 问题 6：关于 `debian` 相关部署管理配置，忽略。
@@ -181,11 +181,11 @@ deployments and repositories # debmirror 包尚未安装，需要它来管理 de
 ```
 - 问题 7：修改操作系统默认密码
 ```bash
-$&gt; openssl passwd -1 -salt &#39;root&#39; &#39;123456&#39;
+$> openssl passwd -1 -salt 'root' '123456'
 $1$root$j0bp.KLPyr.u9kgQ428D10
-$&gt; vim /etc/cobbler/settings
-改：101 default_password_crypted: &#34;$1$mF86/UHC$WvcIcX2t6crBz2onWxyac.&#34;
-为：101 default_password_crypted: &#34;$1$root$j0bp.KLPyr.u9kgQ428D10&#34;
+$> vim /etc/cobbler/settings
+改：101 default_password_crypted: "$1$mF86/UHC$WvcIcX2t6crBz2onWxyac."
+为：101 default_password_crypted: "$1$root$j0bp.KLPyr.u9kgQ428D10"
 注：root 为用户描述，123456 为密码
 ```
 
@@ -197,7 +197,7 @@ management features. install cman or fence-agents to use them
 
 修改完以上配置就可以检查 `DHCP` 配置了，由于 `Cobbler` 自动管理 `DHCP` 服务，我们只需要修改 `Cobbler` 中的模板配置文件即可。
 ```bash
-$&gt; vim /etc/cobbler/dhcp.template
+$> vim /etc/cobbler/dhcp.template
 改：22 option routers 192.168.1.5; #修改默认网关地址
 为：22 option routers 192.168.1.1; #以实际的网关为准
 改：23 option domain-name-servers 192.168.1.1; #修改 DNS 地址
@@ -219,26 +219,26 @@ $&gt; vim /etc/cobbler/dhcp.template
 
 ### 2.1.7. 修改 Cobbler 管理 dhcp 服务
 ```bash
-$&gt; vim /etc/cobbler/settings
+$> vim /etc/cobbler/settings
 改：242 manage_dhcp: 0
 为：242 manage_dhcp: 1
 ```
 ### 2.1.8. 同步配置文件，需要先重启 Cobblerd
 ```bash
-$&gt; systemctl restart cobblerd
-$&gt; cobbler sync
+$> systemctl restart cobblerd
+$> cobbler sync
 task started: 2020-01-04_032552_sync
 task started (id=Sync, time=Sat Jan  4 03:25:52 2020)
 running pre-sync triggers
 cleaning trees
 removing: /var/lib/tftpboot/grub/images
 copying bootloaders
-trying hardlink /var/lib/cobbler/loaders/pxelinux.0 -&gt; /var/lib/tftpboot/pxelinux.0
-trying hardlink /var/lib/cobbler/loaders/menu.c32 -&gt; /var/lib/tftpboot/menu.c32
-trying hardlink /var/lib/cobbler/loaders/yaboot -&gt; /var/lib/tftpboot/yaboot
-trying hardlink /usr/share/syslinux/memdisk -&gt; /var/lib/tftpboot/memdisk
-trying hardlink /var/lib/cobbler/loaders/grub-x86.efi -&gt; /var/lib/tftpboot/grub/grub-x86.efi
-trying hardlink /var/lib/cobbler/loaders/grub-x86_64.efi -&gt; /var/lib/tftpboot/grub/grub-x86_64.efi
+trying hardlink /var/lib/cobbler/loaders/pxelinux.0 -> /var/lib/tftpboot/pxelinux.0
+trying hardlink /var/lib/cobbler/loaders/menu.c32 -> /var/lib/tftpboot/menu.c32
+trying hardlink /var/lib/cobbler/loaders/yaboot -> /var/lib/tftpboot/yaboot
+trying hardlink /usr/share/syslinux/memdisk -> /var/lib/tftpboot/memdisk
+trying hardlink /var/lib/cobbler/loaders/grub-x86.efi -> /var/lib/tftpboot/grub/grub-x86.efi
+trying hardlink /var/lib/cobbler/loaders/grub-x86_64.efi -> /var/lib/tftpboot/grub/grub-x86_64.efi
 copying distros to tftpboot
 copying images
 generating PXE configuration files
@@ -269,29 +269,29 @@ running shell triggers from /var/lib/cobbler/triggers/change/*
 重新检查，剩下 2 个可以忽略的问题。  
 
 ```bash
-$&gt; cobbler check
+$> cobbler check
 The following are potential configuration items that you may want to fix:
 
 1 : debmirror package is not installed, it will be required to manage debian deployments and repositories
 2 : fencing tools were not found, and are required to use the (optional) power management features. install cman or fence-agents to use them
 
-Restart cobblerd and then run &#39;cobbler sync&#39; to apply changes.
+Restart cobblerd and then run 'cobbler sync' to apply changes.
 ```
 
 ### 2.1.9. 挂载光驱
 ```bash
-$&gt; mount /dev/sr0 /mnt
+$> mount /dev/sr0 /mnt
 ```
 ### 2.1.10. 导入镜像
 ```bash
-$&gt; cobbler import --path=/mnt/ --name=CentOS-7.6 --arch=x86_64
+$> cobbler import --path=/mnt/ --name=CentOS-7.6 --arch=x86_64
 task started: 2020-01-04_033346_import
 task started (id=Media import, time=Sat Jan 4 03:33:46 2020)
 Found a candidate signature: breed=redhat, version=rhel6
 Found a matching signature: breed=redhat, version=rhel6
 Adding distros from path /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64:
 creating new distro: CentOS-7.6-x86_64
-trying symlink: /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64 -&gt; /var/www/cobbler/links/CentOS-7.6-x86_64
+trying symlink: /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64 -> /var/www/cobbler/links/CentOS-7.6-x86_64
 creating new profile: CentOS-7.6-x86_64
 associating repos
 checking for rsync repo(s)
@@ -307,7 +307,7 @@ Keeping repodata as-is :/var/www/cobbler/ks_mirror/CentOS-7.6-x86_64/repodata
 
 ### 2.1.11. 查看镜像，上面是镜像名称，下面是启动菜单。
 ```bash
-$&gt; cobbler list
+$> cobbler list
 distros:
 CentOS-7.6-x86_64
 
@@ -316,8 +316,8 @@ CentOS-7.6-x86_64
 ```
 ### 2.1.12. 同步 Cobbler 配置
 ```bash
-$&gt; systemctl restart cobblerd
-$&gt; cobbler sync
+$> systemctl restart cobblerd
+$> cobbler sync
 ```
 
 至此，搭建 Cobbler 无人值守安装服务器完成！

@@ -33,7 +33,7 @@
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="运维常见面试题 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/sftp%E6%90%AD%E5%BB%BA/" title="SFTP搭建" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/" title="NGINX中变量详解" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/index.md" title="运维常见面试题 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.8066a9eb18f0b7481729f4e9bf05039c295d216dc44d94e1a2702958d854d62b607ac7248796a4452c13d8fa218cf36325c1928ccea6a01cb13d90ca6eef13d2.css" integrity="sha512-gGap6xjwt0gXKfTpvwUDnCldIW3ETZThonApWNhU1itgesckh5akRSwT2PohjPNjJcGSjM6moByxPZDKbu8T0g=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" title="运维常见面试题 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/sftp%E6%90%AD%E5%BB%BA/" title="SFTP搭建" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/" title="NGINX中变量详解" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/index.md" title="运维常见面试题 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.3dfa226de8a8bb4d325c0d271e3bba9d2cf3997b5786e7ab0b39ed100be2ff8b76f677423a90331e65cecf30e70590f7b21224a9284966e820a802c41aa2e673.css" integrity="sha512-Pfoibeiou00yXA0nHju6nSzzmXtXhuerCzntEAvi/4t29ndCOpAzHmXOzzDnBZD3shIkqShJZuggqALEGqLmcw=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
   {
@@ -217,7 +217,7 @@
     <li><a href="#50-修改线上业务配置文件流程">50. 修改线上业务配置文件流程</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><div class="details admonition warning open">
+      </div><div class="content" id="content"><div class="expiration-reminder details admonition warning open">
       <div class="details-summary admonition-title">
         <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
       </div>
@@ -225,7 +225,7 @@
         <div class="admonition-content">本文最后更新于 2022-12-30，文中内容可能已过时。</div>
       </div>
     </div><hr>
-<h2 id="1-请简述osi七层网络模型有哪些层及各自的含义" class="heading-element"><span>1. 请简述OSI七层网络模型有哪些层及各自的含义</span>
+<h2 class="heading-element" id="1-请简述osi七层网络模型有哪些层及各自的含义"><span>1. 请简述OSI七层网络模型有哪些层及各自的含义</span>
   <a href="#1-%e8%af%b7%e7%ae%80%e8%bf%b0osi%e4%b8%83%e5%b1%82%e7%bd%91%e7%bb%9c%e6%a8%a1%e5%9e%8b%e6%9c%89%e5%93%aa%e4%ba%9b%e5%b1%82%e5%8f%8a%e5%90%84%e8%87%aa%e7%9a%84%e5%90%ab%e4%b9%89" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -238,13 +238,13 @@
 <li><code>表示层</code>：数据格式标识，基本压缩加密功能。</li>
 <li><code>应用层</code>：各种应用软件，包括 Web 应用。</li>
 </ul>
-<h2 id="2-在linux的lvm分区格式下请简述给根分区磁盘扩容的步骤" class="heading-element"><span>2. 在Linux的LVM分区格式下，请简述给根分区磁盘扩容的步骤.</span>
+<h2 class="heading-element" id="2-在linux的lvm分区格式下请简述给根分区磁盘扩容的步骤"><span>2. 在Linux的LVM分区格式下，请简述给根分区磁盘扩容的步骤.</span>
   <a href="#2-%e5%9c%a8linux%e7%9a%84lvm%e5%88%86%e5%8c%ba%e6%a0%bc%e5%bc%8f%e4%b8%8b%e8%af%b7%e7%ae%80%e8%bf%b0%e7%bb%99%e6%a0%b9%e5%88%86%e5%8c%ba%e7%a3%81%e7%9b%98%e6%89%a9%e5%ae%b9%e7%9a%84%e6%ad%a5%e9%aa%a4" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><ul>
 <li>这个分3种
-<h2 id="第一种方法" class="heading-element"><span>第一种方法:</span>
+<h2 class="heading-element" id="第一种方法"><span>第一种方法:</span>
   <a href="#%e7%ac%ac%e4%b8%80%e7%a7%8d%e6%96%b9%e6%b3%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -257,7 +257,7 @@
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">growpart /dev/vda <span class="m">1</span>
 </span></span><span class="line"><span class="cl">resize2fs /dev/vda1    </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="第二种方法" class="heading-element"><span>第二种方法:</span>
+</div><h2 class="heading-element" id="第二种方法"><span>第二种方法:</span>
   <a href="#%e7%ac%ac%e4%ba%8c%e7%a7%8d%e6%96%b9%e6%b3%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -270,7 +270,7 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">partpeobe /dev/sda
 </span></span><span class="line"><span class="cl">resize2fs /dev/vda1    </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="第三种方法" class="heading-element"><span>第三种方法:</span>
+</div><h2 class="heading-element" id="第三种方法"><span>第三种方法:</span>
   <a href="#%e7%ac%ac%e4%b8%89%e7%a7%8d%e6%96%b9%e6%b3%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -289,7 +289,7 @@
 </div>
 </div></li>
 </ul>
-<h2 id="3-讲述一下tomcat800580098080三个端口的含义" class="heading-element"><span>3. 讲述一下Tomcat8005、8009、8080三个端口的含义？</span>
+<h2 class="heading-element" id="3-讲述一下tomcat800580098080三个端口的含义"><span>3. 讲述一下Tomcat8005、8009、8080三个端口的含义？</span>
   <a href="#3-%e8%ae%b2%e8%bf%b0%e4%b8%80%e4%b8%8btomcat800580098080%e4%b8%89%e4%b8%aa%e7%ab%af%e5%8f%a3%e7%9a%84%e5%90%ab%e4%b9%89" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -298,21 +298,21 @@
 <li><code>8009</code>：为AJP端口，即容器使用，如Apache能通过AJP协议访问Tomcat的8009端口来实现功能</li>
 <li><code>8080</code>：一般应用使用</li>
 </ul>
-<h2 id="4-简述dns进行域名解析的过程" class="heading-element"><span>4. 简述DNS进行域名解析的过程？</span>
+<h2 class="heading-element" id="4-简述dns进行域名解析的过程"><span>4. 简述DNS进行域名解析的过程？</span>
   <a href="#4-%e7%ae%80%e8%bf%b0dns%e8%bf%9b%e8%a1%8c%e5%9f%9f%e5%90%8d%e8%a7%a3%e6%9e%90%e7%9a%84%e8%bf%87%e7%a8%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p>  迭代查询（返回最优结果）、递归查询（本地找DNS）用户要访问 <a href="https://www.baidu.com"target="_blank" rel="external nofollow noopener noreferrer">www.baidu.com<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>，会先找本机的host文件，再找本地设置的DNS服务器，如果也没有找到，就去网络中找根服务器，根服务器反馈结果，说只能提供一级域名服务器.cn，就去找一级域名服务器，一级域名服务器说只能提供二级域名服务器.com.cn,就去找二级域名服务器，二级域服务器只能提供三级域名服务器.baidu.com.cn，就去找三级域名服务器，三级域名服务器正好有这个网站www.baidu.com，然后发给请求的服务器，保存一份之后，再发给客户端。</p>
-<h2 id="5-讲一下keepalived的工作原理" class="heading-element"><span>5. 讲一下Keepalived的工作原理？</span>
+<h2 class="heading-element" id="5-讲一下keepalived的工作原理"><span>5. 讲一下Keepalived的工作原理？</span>
   <a href="#5-%e8%ae%b2%e4%b8%80%e4%b8%8bkeepalived%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p>  在一个虚拟路由器中，只有作为MASTER的VRRP(虚拟路由冗余协议)路由器会一直发送VRRP通告信息，BACKUP不会抢占MASTER，除非它的优先级更高。当MASTER不可用时(BACKUP收不到通告信息)多台BACKUP中优先级最高的这台会被抢占为MASTER。这种抢占是非常快速的(&lt;1s)，以保证服务的连续性由于安全性考虑，VRRP包使用了加密协议进行加密。BACKUP不会发送通告信息，只会接收通告信息。</p>
-<h2 id="6-lvsnginxhaproxy有什么区别工作中你怎么选择" class="heading-element"><span>6. LVS、Nginx、HAproxy有什么区别？工作中你怎么选择？</span>
+<h2 class="heading-element" id="6-lvsnginxhaproxy有什么区别工作中你怎么选择"><span>6. LVS、Nginx、HAproxy有什么区别？工作中你怎么选择？</span>
   <a href="#6-lvsnginxhaproxy%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab%e5%b7%a5%e4%bd%9c%e4%b8%ad%e4%bd%a0%e6%80%8e%e4%b9%88%e9%80%89%e6%8b%a9" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="lvs" class="heading-element"><span>LVS：</span>
+</h2><h2 class="heading-element" id="lvs"><span>LVS：</span>
   <a href="#lvs" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -323,7 +323,7 @@
 <li>应用范围比较广，可以对所有应用做负载均衡；</li>
 <li>配置简单，因为没有可太多配置的东西，所以并不需要太多接触，大大减少了人为出错的几率；</li>
 </ul>
-<h2 id="lvs的缺点" class="heading-element"><span>LVS的缺点：</span>
+<h2 class="heading-element" id="lvs的缺点"><span>LVS的缺点：</span>
   <a href="#lvs%e7%9a%84%e7%bc%ba%e7%82%b9" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -331,7 +331,7 @@
 <li>软件本身不支持正则处理，不能做动静分离，这就凸显了Nginx/HAProxy+Keepalived的优势。</li>
 <li>如果网站应用比较庞大，LVS/DR+Keepalived就比较复杂了，特别是后面有Windows Server应用的机器，实施及配置还有维护过程就比较麻烦，相对而言，Nginx/HAProxy+Keepalived就简单多了。</li>
 </ul>
-<h2 id="nginx" class="heading-element"><span>Nginx：</span>
+<h2 class="heading-element" id="nginx"><span>Nginx：</span>
   <a href="#nginx" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -343,7 +343,7 @@
 <li>Nginx不仅仅是一款优秀的负载均衡器/反向代理软件，它同时也是功能强大的Web应用服务器。Nginx在处理静态页面、特别是抗高并发方面相对apache有优势；</li>
 <li>Nginx作为Web反向代理加速缓存越来越成熟，速度比传统的Squid服务器更快</li>
 </ul>
-<h2 id="nginx的缺点" class="heading-element"><span>Nginx的缺点：</span>
+<h2 class="heading-element" id="nginx的缺点"><span>Nginx的缺点：</span>
   <a href="#nginx%e7%9a%84%e7%bc%ba%e7%82%b9" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -352,7 +352,7 @@
 <li>Nginx仅能支持http、https和Email协议</li>
 <li>Nginx的Session的保持，Cookie的引导能力相对欠缺。</li>
 </ul>
-<h2 id="haproxy" class="heading-element"><span>HAProxy：</span>
+<h2 class="heading-element" id="haproxy"><span>HAProxy：</span>
   <a href="#haproxy" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -364,17 +364,17 @@
 <li>HAProxy可以对Mysql读进行负载均衡，对后端的MySQL节点进行检测和负载均衡，不过在后端的MySQL slaves数量超过10台时性能不如LVS；</li>
 <li>HAProxy的算法较多，达到8种；</li>
 </ul>
-<h2 id="工作选择" class="heading-element"><span>工作选择：</span>
+<h2 class="heading-element" id="工作选择"><span>工作选择：</span>
   <a href="#%e5%b7%a5%e4%bd%9c%e9%80%89%e6%8b%a9" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p>HAproxy和Nginx由于可以做七层的转发，所以URL和目录的转发都可以做在很大并发量的时候我们就要选择LVS，像中小型公司的话并发量没那么大选择HAproxy或者Nginx足已，由于HAproxy由是专业的代理服务器配置简单，所以中小型企业推荐使用HAproxy。</p>
-<h2 id="7-docker的工作原理是什么讲一下" class="heading-element"><span>7. docker的工作原理是什么，讲一下</span>
+<h2 class="heading-element" id="7-docker的工作原理是什么讲一下"><span>7. docker的工作原理是什么，讲一下</span>
   <a href="#7-docker%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e6%98%af%e4%bb%80%e4%b9%88%e8%ae%b2%e4%b8%80%e4%b8%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p>docker是一个Client-Server结构的系统，docker守护进程运行在宿主机上，守护进程从客户端接受命令并管理运行在主机上的容器，容器是一个运行时环境，这就是我们说的集装箱。</p>
-<h2 id="8-docker的组成包含哪几大部分" class="heading-element"><span>8. docker的组成包含哪几大部分</span>
+<h2 class="heading-element" id="8-docker的组成包含哪几大部分"><span>8. docker的组成包含哪几大部分</span>
   <a href="#8-docker%e7%9a%84%e7%bb%84%e6%88%90%e5%8c%85%e5%90%ab%e5%93%aa%e5%87%a0%e5%a4%a7%e9%83%a8%e5%88%86" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -386,7 +386,7 @@
 <li><code>docker container</code>：容器，一个系统级别的服务，拥有自己的ip和系统目录结构；运行容器前需要本地存在对应的镜像，如果本地不存在该镜像则就去镜像仓库下载。</li>
 <li><code>docker</code>： 使用客户端-服务器 (C/S) 架构模式，使用远程api来管理和创建docker容器。docker 容器通过 docker 镜像来创建。容器与镜像的关系类似于面向对象编程中的对象与类。</li>
 </ul>
-<h2 id="9-docker与传统虚拟机的区别什么" class="heading-element"><span>9. docker与传统虚拟机的区别什么？</span>
+<h2 class="heading-element" id="9-docker与传统虚拟机的区别什么"><span>9. docker与传统虚拟机的区别什么？</span>
   <a href="#9-docker%e4%b8%8e%e4%bc%a0%e7%bb%9f%e8%99%9a%e6%8b%9f%e6%9c%ba%e7%9a%84%e5%8c%ba%e5%88%ab%e4%bb%80%e4%b9%88" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -401,7 +401,7 @@
 <li>虚拟化创建是分钟级别的，Docker容器创建是秒级别的，Docker的快速迭代性，决定了无论是开发、测试、部署都可以节省大量时间;</li>
 <li>虚拟机可以通过镜像实现环境交付的一致性，但镜像分发无法体系化，Docker在Dockerfile中记录了容器构建过程，可在集群中实现快速分发和快速部署。from wljslmz</li>
 </ul>
-<h2 id="10-docker技术的三大核心概念是什么" class="heading-element"><span>10. docker技术的三大核心概念是什么？</span>
+<h2 class="heading-element" id="10-docker技术的三大核心概念是什么"><span>10. docker技术的三大核心概念是什么？</span>
   <a href="#10-docker%e6%8a%80%e6%9c%af%e7%9a%84%e4%b8%89%e5%a4%a7%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -410,7 +410,7 @@
 <li><code>容器</code>：容器是基于镜像创建的，是镜像运行起来之后的一个实例，容器才是真正运行业务程序的地方。如果把镜像比作程序里面的类，那么容器就是对象。</li>
 <li><code>镜像仓库</code>：存放镜像的地方，研发工程师打包好镜像之后需要把镜像上传到镜像仓库中去，然后就可以运行有仓库权限的人拉取镜像来运行容器了。</li>
 </ul>
-<h2 id="11-centos镜像几个g但是docker-centos镜像才几百兆这是为什么" class="heading-element"><span>11. centos镜像几个G，但是docker centos镜像才几百兆，这是为什么？</span>
+<h2 class="heading-element" id="11-centos镜像几个g但是docker-centos镜像才几百兆这是为什么"><span>11. centos镜像几个G，但是docker centos镜像才几百兆，这是为什么？</span>
   <a href="#11-centos%e9%95%9c%e5%83%8f%e5%87%a0%e4%b8%aag%e4%bd%86%e6%98%afdocker-centos%e9%95%9c%e5%83%8f%e6%89%8d%e5%87%a0%e7%99%be%e5%85%86%e8%bf%99%e6%98%af%e4%b8%ba%e4%bb%80%e4%b9%88" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -422,7 +422,7 @@
 <p>而对于容器镜像而言，所有容器都是共享宿主机的Linux 内核的，而对于docker镜像而言，docker镜像只需要提供一个很小的rootfs即可，只需要包含最基本的命令，工具，程序库即可，所有docker镜像才会这么小。</p>
 </li>
 </ul>
-<h2 id="12-讲一下镜像的分层结构以及为什么要使用镜像的分层结构" class="heading-element"><span>12. 讲一下镜像的分层结构以及为什么要使用镜像的分层结构？</span>
+<h2 class="heading-element" id="12-讲一下镜像的分层结构以及为什么要使用镜像的分层结构"><span>12. 讲一下镜像的分层结构以及为什么要使用镜像的分层结构？</span>
   <a href="#12-%e8%ae%b2%e4%b8%80%e4%b8%8b%e9%95%9c%e5%83%8f%e7%9a%84%e5%88%86%e5%b1%82%e7%bb%93%e6%9e%84%e4%bb%a5%e5%8f%8a%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e4%bd%bf%e7%94%a8%e9%95%9c%e5%83%8f%e7%9a%84%e5%88%86%e5%b1%82%e7%bb%93%e6%9e%84" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -434,7 +434,7 @@
 <p>分层机构最大的一个好处就是 ：共享资源。比如：有多个镜像都从相同的 base 镜像构建而来，那么 Docker Host 只需在磁盘上保存一份 base 镜像；同时内存中也只需加载一份 base 镜像，就可以为所有容器服务了。而且镜像的每一层都可以被共享。</p>
 </li>
 </ul>
-<h2 id="13-讲一下容器的copy-on-write特性修改容器里面的内容会修改镜像吗" class="heading-element"><span>13. 讲一下容器的copy-on-write特性，修改容器里面的内容会修改镜像吗？</span>
+<h2 class="heading-element" id="13-讲一下容器的copy-on-write特性修改容器里面的内容会修改镜像吗"><span>13. 讲一下容器的copy-on-write特性，修改容器里面的内容会修改镜像吗？</span>
   <a href="#13-%e8%ae%b2%e4%b8%80%e4%b8%8b%e5%ae%b9%e5%99%a8%e7%9a%84copy-on-write%e7%89%b9%e6%80%a7%e4%bf%ae%e6%94%b9%e5%ae%b9%e5%99%a8%e9%87%8c%e9%9d%a2%e7%9a%84%e5%86%85%e5%ae%b9%e4%bc%9a%e4%bf%ae%e6%94%b9%e9%95%9c%e5%83%8f%e5%90%97" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -455,7 +455,7 @@
 <p>只有当需要修改时才复制一份数据，这种特性被称作 Copy-on-Write。可见，容器层保存的是镜像变化的部分，不会对镜像本身进行任何修改。</p>
 </li>
 </ul>
-<h2 id="14-简单描述一下dockerfile的整个构建镜像过程" class="heading-element"><span>14. 简单描述一下Dockerfile的整个构建镜像过程</span>
+<h2 class="heading-element" id="14-简单描述一下dockerfile的整个构建镜像过程"><span>14. 简单描述一下Dockerfile的整个构建镜像过程</span>
   <a href="#14-%e7%ae%80%e5%8d%95%e6%8f%8f%e8%bf%b0%e4%b8%80%e4%b8%8bdockerfile%e7%9a%84%e6%95%b4%e4%b8%aa%e6%9e%84%e5%bb%ba%e9%95%9c%e5%83%8f%e8%bf%87%e7%a8%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -466,12 +466,12 @@
 <li>Dockerfile编写完成就可以构建镜像了，使用docker build -t 镜像名:tag . 命令来构建镜像，最后一个点是表示当前目录，docker会默认寻找当前目录下的Dockerfile文件来构建镜像，如果不使用默认，可以使用-f参数来指定dockerfile文件，如：docker build -t 镜像名:tag -f /xx/xxx/Dockerfile ；</li>
 <li>使用docker build命令构建之后，docker就会将当前目录下所有的文件发送给docker daemon，顺序执行Dockerfile文件里的指令，在这过程中会生成临时容器，在临时容器里面安装RUN指定的命令，安装成功后，docker底层会使用类似于docker commit命令来将容器保存为镜像，然后删除临时容器，以此类推，一层层的构建镜像，运行临时容器安装软件，直到最后的镜像构建成功。</li>
 </ul>
-<h2 id="15-dockerfile构建镜像出现异常如何排查" class="heading-element"><span>15. Dockerfile构建镜像出现异常，如何排查？</span>
+<h2 class="heading-element" id="15-dockerfile构建镜像出现异常如何排查"><span>15. Dockerfile构建镜像出现异常，如何排查？</span>
   <a href="#15-dockerfile%e6%9e%84%e5%bb%ba%e9%95%9c%e5%83%8f%e5%87%ba%e7%8e%b0%e5%bc%82%e5%b8%b8%e5%a6%82%e4%bd%95%e6%8e%92%e6%9f%a5" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p>  首先，Dockerfile是一层一层的构建镜像，期间会产生一个或多个临时容器，构建过程中其实就是在临时容器里面安装应用，如果因为临时容器安装应用出现异常导致镜像构建失败，这时容器虽然被清理掉了，但是期间构建的中间镜像还在，那么我们可以根据异常时上一层已经构建好的临时镜像，将临时镜像运行为容器，然后在容器里面运行安装命令来定位具体的异常。</p>
-<h2 id="16-dockerfile的基本指令有哪些" class="heading-element"><span>16. Dockerfile的基本指令有哪些？</span>
+<h2 class="heading-element" id="16-dockerfile的基本指令有哪些"><span>16. Dockerfile的基本指令有哪些？</span>
   <a href="#16-dockerfile%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%8c%87%e4%bb%a4%e6%9c%89%e5%93%aa%e4%ba%9b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -488,12 +488,12 @@
 <li><code>CMD</code>：指定容器启动时默认运行哪些命令，如果有多个CMD，则只有最后一个生效，另外，CMD指令可以被docker run之后的参数替换；</li>
 <li><code>ENTRYOINT</code>：指定容器启动时运行哪些命令，如果有多个ENTRYOINT，则只有最后一个生效，另外，如果Dockerfile中同时存在CMD和ENTRYOINT，那么CMD或docker run之后的参数将被当做参数传递给ENTRYOINT；</li>
 </ul>
-<h2 id="17-如何进入容器使用哪个命令" class="heading-element"><span>17. 如何进入容器？使用哪个命令?</span>
+<h2 class="heading-element" id="17-如何进入容器使用哪个命令"><span>17. 如何进入容器？使用哪个命令?</span>
   <a href="#17-%e5%a6%82%e4%bd%95%e8%bf%9b%e5%85%a5%e5%ae%b9%e5%99%a8%e4%bd%bf%e7%94%a8%e5%93%aa%e4%b8%aa%e5%91%bd%e4%bb%a4" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p>  进入容器有两种方法：docker attach、docker exec</p>
-<h2 id="18-什么是k8s说出你的理解" class="heading-element"><span>18. 什么是k8s？说出你的理解</span>
+<h2 class="heading-element" id="18-什么是k8s说出你的理解"><span>18. 什么是k8s？说出你的理解</span>
   <a href="#18-%e4%bb%80%e4%b9%88%e6%98%afk8s%e8%af%b4%e5%87%ba%e4%bd%a0%e7%9a%84%e7%90%86%e8%a7%a3" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -505,7 +505,7 @@
 <p>说简单点：k8s就是一个编排容器的系统，一个可以管理容器应用全生命周期的工具，从创建应用，应用的部署，应用提供服务，扩容缩容应用，应用更新，都非常的方便，而且还可以做到故障自愈，所以，k8s是一个非常强大的容器编排系统。</p>
 </li>
 </ul>
-<h2 id="19-k8s的组件有哪些作用分别是什么" class="heading-element"><span>19. k8s的组件有哪些，作用分别是什么？</span>
+<h2 class="heading-element" id="19-k8s的组件有哪些作用分别是什么"><span>19. k8s的组件有哪些，作用分别是什么？</span>
   <a href="#19-k8s%e7%9a%84%e7%bb%84%e4%bb%b6%e6%9c%89%e5%93%aa%e4%ba%9b%e4%bd%9c%e7%94%a8%e5%88%86%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -540,7 +540,7 @@
 </li>
 </ul>
 <hr>
-<h2 id="20-kubelet的功能作用是什么重点经常会问" class="heading-element"><span>20. kubelet的功能、作用是什么？（重点，经常会问）</span>
+<h2 class="heading-element" id="20-kubelet的功能作用是什么重点经常会问"><span>20. kubelet的功能、作用是什么？（重点，经常会问）</span>
   <a href="#20-kubelet%e7%9a%84%e5%8a%9f%e8%83%bd%e4%bd%9c%e7%94%a8%e6%98%af%e4%bb%80%e4%b9%88%e9%87%8d%e7%82%b9%e7%bb%8f%e5%b8%b8%e4%bc%9a%e9%97%ae" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -551,7 +551,7 @@
 <li><code>容器健康检查</code>：pod中可以定义启动探针、存活探针、就绪探针等3种，我们最常用的就是存活探针、就绪探针，kubelet 会定期调用容器中的探针来检测容器是否存活，是否就绪，如果是存活探针，则会根据探测结果对检查失败的容器进行相应的重启策略；</li>
 <li><code>Metrics Server资源监控</code>：在node节点上部署Metrics Server用于监控node节点、pod的CPU、内存、文件系统、网络使用等资源使用情况，而kubelet则通过Metrics Server获取所在节点及容器的上的数据。</li>
 </ul>
-<h2 id="21-kube-api-server的端口是多少各个pod是如何访问kube-api-server的" class="heading-element"><span>21. kube-api-server的端口是多少？各个pod是如何访问kube-api-server的？</span>
+<h2 class="heading-element" id="21-kube-api-server的端口是多少各个pod是如何访问kube-api-server的"><span>21. kube-api-server的端口是多少？各个pod是如何访问kube-api-server的？</span>
   <a href="#21-kube-api-server%e7%9a%84%e7%ab%af%e5%8f%a3%e6%98%af%e5%a4%9a%e5%b0%91%e5%90%84%e4%b8%aapod%e6%98%af%e5%a6%82%e4%bd%95%e8%ae%bf%e9%97%aekube-api-server%e7%9a%84" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -559,7 +559,7 @@
 <ul>
 <li>在命名空间的kube-system命名空间里，有一个名称为kube-api-master的pod，这个pod就是运行着kube-api-server进程，它绑定了master主机的ip地址和6443端口，但是在default命名空间下，存在一个叫kubernetes的服务，该服务对外暴露端口为443，目标端口6443，这个服务的ip地址是clusterip地址池里面的第一个地址，同时这个服务的yaml定义里面并没有指定标签选择器，也就是说这个kubernetes服务所对应的endpoint是手动创建的，该endpoint也是名称叫做kubernetes，该endpoint的yaml定义里面代理到master节点的6443端口，也就是kube-api-server的IP和端口。这样一来，其他pod访问kube-api-server的整个流程就是：pod创建后嵌入了环境变量，pod获取到了kubernetes这个服务的ip和443端口，请求到kubernetes这个服务其实就是转发到了master节点上的6443端口的kube-api-server这个pod里面。</li>
 </ul>
-<h2 id="22-k8s中命名空间的作用是什么" class="heading-element"><span>22. k8s中命名空间的作用是什么？</span>
+<h2 class="heading-element" id="22-k8s中命名空间的作用是什么"><span>22. k8s中命名空间的作用是什么？</span>
   <a href="#22-k8s%e4%b8%ad%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4%e7%9a%84%e4%bd%9c%e7%94%a8%e6%98%af%e4%bb%80%e4%b9%88" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -574,7 +574,7 @@
 <p>可以通过k8s的授权机制，将不同的namespace交给不同的租户进行管理，这样就实现了多租户的资源隔离，还可以结合k8s的资源配额机制，限定不同的租户能占用的资源，例如CPU使用量、内存使用量等等来实现租户可用资源的管理。</p>
 </li>
 </ul>
-<h2 id="23-pod资源控制器类型有哪些" class="heading-element"><span>23. pod资源控制器类型有哪些?</span>
+<h2 class="heading-element" id="23-pod资源控制器类型有哪些"><span>23. pod资源控制器类型有哪些?</span>
   <a href="#23-pod%e8%b5%84%e6%ba%90%e6%8e%a7%e5%88%b6%e5%99%a8%e7%b1%bb%e5%9e%8b%e6%9c%89%e5%93%aa%e4%ba%9b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -588,7 +588,7 @@
 <li><code>CronJob</code>：一个CronJob对象就像crontab(crontable)文件中的一行。它用Cron格式进行编写，并周期性地在给定的调度时间执行Job。</li>
 <li><code>ReplicationController</code>：ReplicationController确保在任何时候都有特定数量的Pod副本处于运行状态。换句话说，ReplicationController确保一个Pod或一组同类的Pod总是可用的。</li>
 </ul>
-<h2 id="24-nginx算法策略" class="heading-element"><span>24. nginx算法策略</span>
+<h2 class="heading-element" id="24-nginx算法策略"><span>24. nginx算法策略</span>
   <a href="#24-nginx%e7%ae%97%e6%b3%95%e7%ad%96%e7%95%a5" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -606,7 +606,7 @@
 使用最少连接的负载平衡，nginx将尝试不会使繁忙的应用程序服务器超载请求过多，而是将新请求分发给不太繁忙的服务器。</p>
 </li>
 </ul>
-<h2 id="25-nignx常用模块" class="heading-element"><span>25. nignx常用模块</span>
+<h2 class="heading-element" id="25-nignx常用模块"><span>25. nignx常用模块</span>
   <a href="#25-nignx%e5%b8%b8%e7%94%a8%e6%a8%a1%e5%9d%97" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -616,13 +616,13 @@
 <li><code>location</code></li>
 <li><code>proxy_pass</code></li>
 </ul>
-<h2 id="26-如何查看并且杀死僵尸进程" class="heading-element"><span>26. 如何查看并且杀死僵尸进程？</span>
+<h2 class="heading-element" id="26-如何查看并且杀死僵尸进程"><span>26. 如何查看并且杀死僵尸进程？</span>
   <a href="#26-%e5%a6%82%e4%bd%95%e6%9f%a5%e7%9c%8b%e5%b9%b6%e4%b8%94%e6%9d%80%e6%ad%bb%e5%83%b5%e5%b0%b8%e8%bf%9b%e7%a8%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p><code>top</code> —&gt; <code>task (line)</code> —&gt; <code>zombie</code>.<br>
 把父进程杀掉，父进程死后，过继给1号进程init，init 始终负责清理僵尸进程，它产生的所有僵尸进程跟着消失；如果你使用kill ，一般都不能杀掉 defunct进程.。用了kill -15,kill -9以后 之后反而会多出更多的僵尸进程。</p>
-<h2 id="27-搜索某个用户运行的进程" class="heading-element"><span>27. 搜索某个用户运行的进程</span>
+<h2 class="heading-element" id="27-搜索某个用户运行的进程"><span>27. 搜索某个用户运行的进程</span>
   <a href="#27-%e6%90%9c%e7%b4%a2%e6%9f%90%e4%b8%aa%e7%94%a8%e6%88%b7%e8%bf%90%e8%a1%8c%e7%9a%84%e8%bf%9b%e7%a8%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -633,7 +633,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pgrep -au www</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="28-查看某个端口正在被哪个进程使用" class="heading-element"><span>28. 查看某个端口正在被哪个进程使用</span>
+</div><h2 class="heading-element" id="28-查看某个端口正在被哪个进程使用"><span>28. 查看某个端口正在被哪个进程使用</span>
   <a href="#28-%e6%9f%a5%e7%9c%8b%e6%9f%90%e4%b8%aa%e7%ab%af%e5%8f%a3%e6%ad%a3%e5%9c%a8%e8%a2%ab%e5%93%aa%e4%b8%aa%e8%bf%9b%e7%a8%8b%e4%bd%bf%e7%94%a8" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -644,7 +644,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lsof -i :[port]</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="29-端口转发" class="heading-element"><span>29. 端口转发</span>
+</div><h2 class="heading-element" id="29-端口转发"><span>29. 端口转发</span>
   <a href="#29-%e7%ab%af%e5%8f%a3%e8%bd%ac%e5%8f%91" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -655,7 +655,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">iptables -t nat -A PREROUTING -d 10.0.0.8 -p tcp --dport 80 -j REDIRECT --to-ports 8080</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="30-查看http的并发请求数与其tcp连接状态" class="heading-element"><span>30 查看http的并发请求数与其TCP连接状态</span>
+</div><h2 class="heading-element" id="30-查看http的并发请求数与其tcp连接状态"><span>30 查看http的并发请求数与其TCP连接状态</span>
   <a href="#30-%e6%9f%a5%e7%9c%8bhttp%e7%9a%84%e5%b9%b6%e5%8f%91%e8%af%b7%e6%b1%82%e6%95%b0%e4%b8%8e%e5%85%b6tcp%e8%bf%9e%e6%8e%a5%e7%8a%b6%e6%80%81" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -666,7 +666,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">netstat -n|awk &#39;/^tcp/{++b[$NF]}END{for(a in b)print a,b[a]}&#39;</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="31-查看varlog目录下文件数" class="heading-element"><span>31. 查看/var/log目录下文件数</span>
+</div><h2 class="heading-element" id="31-查看varlog目录下文件数"><span>31. 查看/var/log目录下文件数</span>
   <a href="#31-%e6%9f%a5%e7%9c%8bvarlog%e7%9b%ae%e5%bd%95%e4%b8%8b%e6%96%87%e4%bb%b6%e6%95%b0" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -677,7 +677,7 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">ls</span> <span class="o">/</span><span class="k">var</span><span class="o">/</span><span class="nb">log</span><span class="o">/</span> <span class="o">-</span><span class="n">lR</span><span class="o">|</span><span class="n">grep</span><span class="s2">&#34;^-&#34;</span><span class="o">|</span><span class="n">wc</span><span class="o">-</span><span class="n">l</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="32-linux系统启动流程" class="heading-element"><span>32. linux系统启动流程</span>
+</div><h2 class="heading-element" id="32-linux系统启动流程"><span>32. linux系统启动流程</span>
   <a href="#32-linux%e7%b3%bb%e7%bb%9f%e5%90%af%e5%8a%a8%e6%b5%81%e7%a8%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -692,7 +692,7 @@
 <li><code>第八步</code>：执行不同运行级别的脚本程序</li>
 <li><code>第九步</code>：执行/etc/rc.d/rc.lo</li>
 </ul>
-<h2 id="33-linux文件类型" class="heading-element"><span>33. Linux文件类型</span>
+<h2 class="heading-element" id="33-linux文件类型"><span>33. Linux文件类型</span>
   <a href="#33-linux%e6%96%87%e4%bb%b6%e7%b1%bb%e5%9e%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -705,7 +705,7 @@
 <li><code>p</code>：pipe 即命名管道文件</li>
 <li><code>s</code>：socket 即套接字文件，用于实现两个进程进行通信</li>
 </ul>
-<h2 id="34-简述lvm如何给使用lvm的分区扩容" class="heading-element"><span>34. 简述lvm，如何给使用lvm的/分区扩容？</span>
+<h2 class="heading-element" id="34-简述lvm如何给使用lvm的分区扩容"><span>34. 简述lvm，如何给使用lvm的/分区扩容？</span>
   <a href="#34-%e7%ae%80%e8%bf%b0lvm%e5%a6%82%e4%bd%95%e7%bb%99%e4%bd%bf%e7%94%a8lvm%e7%9a%84%e5%88%86%e5%8c%ba%e6%89%a9%e5%ae%b9" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -734,7 +734,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="35-如何在文本里面进行复制粘贴删除行删除全部按行查找和按字母查找" class="heading-element"><span>35. 如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找。</span>
+<h2 class="heading-element" id="35-如何在文本里面进行复制粘贴删除行删除全部按行查找和按字母查找"><span>35. 如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找。</span>
   <a href="#35-%e5%a6%82%e4%bd%95%e5%9c%a8%e6%96%87%e6%9c%ac%e9%87%8c%e9%9d%a2%e8%bf%9b%e8%a1%8c%e5%a4%8d%e5%88%b6%e7%b2%98%e8%b4%b4%e5%88%a0%e9%99%a4%e8%a1%8c%e5%88%a0%e9%99%a4%e5%85%a8%e9%83%a8%e6%8c%89%e8%a1%8c%e6%9f%a5%e6%89%be%e5%92%8c%e6%8c%89%e5%ad%97%e6%af%8d%e6%9f%a5%e6%89%be" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -749,7 +749,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="36-符号链接与硬链接的区别" class="heading-element"><span>36. 符号链接与硬链接的区别</span>
+<h2 class="heading-element" id="36-符号链接与硬链接的区别"><span>36. 符号链接与硬链接的区别</span>
   <a href="#36-%e7%ac%a6%e5%8f%b7%e9%93%be%e6%8e%a5%e4%b8%8e%e7%a1%ac%e9%93%be%e6%8e%a5%e7%9a%84%e5%8c%ba%e5%88%ab" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -759,7 +759,7 @@
 <li>ln 3.txt 4.txt   这是硬链接，相当于复制，不可以跨分区，但修改3,4会跟着变，若删除3,4不受任何影响。</li>
 <li>ln -s 3.txt 4.txt  这是软连接，相当于快捷方式。修改4,3也会跟着变，若删除3,4就坏掉了。不可以用了。</li>
 </ul>
-<h2 id="37-什么是正向代理" class="heading-element"><span>37. 什么是正向代理？</span>
+<h2 class="heading-element" id="37-什么是正向代理"><span>37. 什么是正向代理？</span>
   <a href="#37-%e4%bb%80%e4%b9%88%e6%98%af%e6%ad%a3%e5%90%91%e4%bb%a3%e7%90%86" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -771,7 +771,7 @@
 <p>客户端才能使用正向代理。正向代理总结就一句话：代理端代理的是客户端。例如说：我们使用的OpenVPN 等等。</p>
 </li>
 </ul>
-<h2 id="38-什么是反向代理" class="heading-element"><span>38. 什么是反向代理？</span>
+<h2 class="heading-element" id="38-什么是反向代理"><span>38. 什么是反向代理？</span>
   <a href="#38-%e4%bb%80%e4%b9%88%e6%98%af%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -783,7 +783,7 @@
 <p>反向代理总结就一句话：代理端代理的是服务端</p>
 </li>
 </ul>
-<h2 id="39-什么是动态资源静态资源分离" class="heading-element"><span>39. 什么是动态资源、静态资源分离？</span>
+<h2 class="heading-element" id="39-什么是动态资源静态资源分离"><span>39. 什么是动态资源、静态资源分离？</span>
   <a href="#39-%e4%bb%80%e4%b9%88%e6%98%af%e5%8a%a8%e6%80%81%e8%b5%84%e6%ba%90%e9%9d%99%e6%80%81%e8%b5%84%e6%ba%90%e5%88%86%e7%a6%bb" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -810,7 +810,7 @@
 <p>相比本地的 Nginx 来说，CDN 服务器由于在国内有更多的节点，可以实现用户的就近访问。并且，CDN 服务可以提供更大的带宽，不像我们自己的应用服务，提供的带宽是有限的。</p>
 </li>
 </ul>
-<h2 id="40-网站登陆缓慢是什么原因" class="heading-element"><span>40. 网站登陆缓慢是什么原因?</span>
+<h2 class="heading-element" id="40-网站登陆缓慢是什么原因"><span>40. 网站登陆缓慢是什么原因?</span>
   <a href="#40-%e7%bd%91%e7%ab%99%e7%99%bb%e9%99%86%e7%bc%93%e6%85%a2%e6%98%af%e4%bb%80%e4%b9%88%e5%8e%9f%e5%9b%a0" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -820,7 +820,7 @@
 <li>网站的开发代码不够完善，例如mysql语句没有进行优化，导致数据库的读写相当耗费时间。</li>
 <li>数据库的瓶颈。当我们的数据库的数据变得越来越多的时候，那么对于数据库的读写压力肯定会变大。</li>
 </ul>
-<h2 id="41-a与b服务器不在同一网段怎么设置设置完还ping不通怎么排查" class="heading-element"><span>41. a与b服务器不在同一网段怎么设置?设置完还ping不通怎么排查?</span>
+<h2 class="heading-element" id="41-a与b服务器不在同一网段怎么设置设置完还ping不通怎么排查"><span>41. a与b服务器不在同一网段怎么设置?设置完还ping不通怎么排查?</span>
   <a href="#41-a%e4%b8%8eb%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%8d%e5%9c%a8%e5%90%8c%e4%b8%80%e7%bd%91%e6%ae%b5%e6%80%8e%e4%b9%88%e8%ae%be%e7%bd%ae%e8%ae%be%e7%bd%ae%e5%ae%8c%e8%bf%98ping%e4%b8%8d%e9%80%9a%e6%80%8e%e4%b9%88%e6%8e%92%e6%9f%a5" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -829,7 +829,7 @@
 <li>首先把不同IP段的服务器划分给不同的vlan</li>
 <li>在通过通过三层交换机添加虚拟IP路由实在不同网段的vlan的连接</li>
 </ul>
-<h2 id="42-在ab两台服务器之间通过一个服务器c做软路由使用给路由器c配置两块网卡并开启自身的路由功能" class="heading-element"><span>42. 在AB两台服务器之间通过一个服务器c做软路由使用给路由器c配置两块网卡并开启自身的路由功能</span>
+<h2 class="heading-element" id="42-在ab两台服务器之间通过一个服务器c做软路由使用给路由器c配置两块网卡并开启自身的路由功能"><span>42. 在AB两台服务器之间通过一个服务器c做软路由使用给路由器c配置两块网卡并开启自身的路由功能</span>
   <a href="#42-%e5%9c%a8ab%e4%b8%a4%e5%8f%b0%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b9%8b%e9%97%b4%e9%80%9a%e8%bf%87%e4%b8%80%e4%b8%aa%e6%9c%8d%e5%8a%a1%e5%99%a8c%e5%81%9a%e8%bd%af%e8%b7%af%e7%94%b1%e4%bd%bf%e7%94%a8%e7%bb%99%e8%b7%af%e7%94%b1%e5%99%a8c%e9%85%8d%e7%bd%ae%e4%b8%a4%e5%9d%97%e7%bd%91%e5%8d%a1%e5%b9%b6%e5%bc%80%e5%90%af%e8%87%aa%e8%ba%ab%e7%9a%84%e8%b7%af%e7%94%b1%e5%8a%9f%e8%83%bd" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -917,7 +917,7 @@
 </span></span><span class="line"><span class="cl">vi /etc/sysctl.conf
 </span></span><span class="line"><span class="cl">net.ipv4.ip_forword = 1</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="43-如果ping不通怎么排查" class="heading-element"><span>43. 如果PING不通怎么排查</span>
+</div><h2 class="heading-element" id="43-如果ping不通怎么排查"><span>43. 如果PING不通怎么排查</span>
   <a href="#43-%e5%a6%82%e6%9e%9cping%e4%b8%8d%e9%80%9a%e6%80%8e%e4%b9%88%e6%8e%92%e6%9f%a5" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -926,7 +926,7 @@
 <li>是否关闭了防火墙和selinux机制</li>
 <li>然后查看网卡和路由和网关是否配置正确</li>
 </ul>
-<h2 id="44-docker容器ping不通是什么原因" class="heading-element"><span>44. docker容器ping不通是什么原因?</span>
+<h2 class="heading-element" id="44-docker容器ping不通是什么原因"><span>44. docker容器ping不通是什么原因?</span>
   <a href="#44-docker%e5%ae%b9%e5%99%a8ping%e4%b8%8d%e9%80%9a%e6%98%af%e4%bb%80%e4%b9%88%e5%8e%9f%e5%9b%a0" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -950,7 +950,7 @@
 <p>查看网络配置ping网桥看是否能ping通，有可能是网桥的原因</p>
 </li>
 </ul>
-<h2 id="45-如果一台办公室内主机无法上网打不开网站请给出你的排查步骤" class="heading-element"><span>45. 如果一台办公室内主机无法上网(打不开网站)，请给出你的排查步骤?</span>
+<h2 class="heading-element" id="45-如果一台办公室内主机无法上网打不开网站请给出你的排查步骤"><span>45. 如果一台办公室内主机无法上网(打不开网站)，请给出你的排查步骤?</span>
   <a href="#45-%e5%a6%82%e6%9e%9c%e4%b8%80%e5%8f%b0%e5%8a%9e%e5%85%ac%e5%ae%a4%e5%86%85%e4%b8%bb%e6%9c%ba%e6%97%a0%e6%b3%95%e4%b8%8a%e7%bd%91%e6%89%93%e4%b8%8d%e5%bc%80%e7%bd%91%e7%ab%99%e8%af%b7%e7%bb%99%e5%87%ba%e4%bd%a0%e7%9a%84%e6%8e%92%e6%9f%a5%e6%ad%a5%e9%aa%a4" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -964,7 +964,7 @@
 <li>测试DNS的通畅。ping出对应IP。</li>
 <li>通过以上检查后，还在网管的路由器上进行检查。</li>
 </ul>
-<h2 id="46-如果我们的网站打开速度慢请说下您的排查思路" class="heading-element"><span>46. 如果我们的网站打开速度慢请说下您的排查思路?</span>
+<h2 class="heading-element" id="46-如果我们的网站打开速度慢请说下您的排查思路"><span>46. 如果我们的网站打开速度慢请说下您的排查思路?</span>
   <a href="#46-%e5%a6%82%e6%9e%9c%e6%88%91%e4%bb%ac%e7%9a%84%e7%bd%91%e7%ab%99%e6%89%93%e5%bc%80%e9%80%9f%e5%ba%a6%e6%85%a2%e8%af%b7%e8%af%b4%e4%b8%8b%e6%82%a8%e7%9a%84%e6%8e%92%e6%9f%a5%e6%80%9d%e8%b7%af" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1037,7 +1037,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="46-如何查看二进制文件的内容" class="heading-element"><span>46. 如何查看二进制文件的内容</span>
+<h2 class="heading-element" id="46-如何查看二进制文件的内容"><span>46. 如何查看二进制文件的内容</span>
   <a href="#46-%e5%a6%82%e4%bd%95%e6%9f%a5%e7%9c%8b%e4%ba%8c%e8%bf%9b%e5%88%b6%e6%96%87%e4%bb%b6%e7%9a%84%e5%86%85%e5%ae%b9" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1051,14 +1051,14 @@
 <code>-d</code>  是双字节十进制显示<br>
 <code>-x</code>  是双字节十六进制显示</li>
 </ul>
-<h2 id="47-你是怎么备份数据的包括数据库备份" class="heading-element"><span>47. 你是怎么备份数据的，包括数据库备份？</span>
+<h2 class="heading-element" id="47-你是怎么备份数据的包括数据库备份"><span>47. 你是怎么备份数据的，包括数据库备份？</span>
   <a href="#47-%e4%bd%a0%e6%98%af%e6%80%8e%e4%b9%88%e5%a4%87%e4%bb%bd%e6%95%b0%e6%8d%ae%e7%9a%84%e5%8c%85%e6%8b%ac%e6%95%b0%e6%8d%ae%e5%ba%93%e5%a4%87%e4%bb%bd" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><ul>
 <li>在生产环境下，不管是应用数据、还是数据库数据首先在部署的时候就会有主从架构、或者集群，这本身就是属于数据的热备份；其实考虑冷备份，用专门一台服务器做为备份服务器，比如可以用rsync+inotify配合计划任务来实现数据的冷备份，如果是发版的包备份，正常情况下有台发布服务器，每次发版都会保存好发版的包。</li>
 </ul>
-<h2 id="48-zabbix常用术语你知道几个" class="heading-element"><span>48. zabbix常用术语你知道几个？</span>
+<h2 class="heading-element" id="48-zabbix常用术语你知道几个"><span>48. zabbix常用术语你知道几个？</span>
   <a href="#48-zabbix%e5%b8%b8%e7%94%a8%e6%9c%af%e8%af%ad%e4%bd%a0%e7%9f%a5%e9%81%93%e5%87%a0%e4%b8%aa" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1076,7 +1076,7 @@
 <li><code>discovery rule</code>；模板可以直接链接至某个主机；应用（application）：一组item的集合；</li>
 <li><code>web场景（webscennario）</code>：用于检测web站点可用性的一个活多个HTTP请求；前端（frontend）：Zabbix的web接口；</li>
 </ul>
-<h2 id="49-虚拟化技术有哪些表现形式" class="heading-element"><span>49. 虚拟化技术有哪些表现形式</span>
+<h2 class="heading-element" id="49-虚拟化技术有哪些表现形式"><span>49. 虚拟化技术有哪些表现形式</span>
   <a href="#49-%e8%99%9a%e6%8b%9f%e5%8c%96%e6%8a%80%e6%9c%af%e6%9c%89%e5%93%aa%e4%ba%9b%e8%a1%a8%e7%8e%b0%e5%bd%a2%e5%bc%8f" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1085,7 +1085,7 @@
 <li><code>半虚拟化技术</code>：通过代码修改已有的系统，形成一种新的可虚拟化的系统，调用硬件资源去安装多个系统，整体速度上相对高一点，半虚拟化代表技术：Xen。</li>
 <li><code>轻量级虚拟化</code>：介于完全虚拟化、半虚拟化之间，轻量级虚拟化代表技术：Docker。</li>
 </ul>
-<h2 id="50-修改线上业务配置文件流程" class="heading-element"><span>50. 修改线上业务配置文件流程</span>
+<h2 class="heading-element" id="50-修改线上业务配置文件流程"><span>50. 修改线上业务配置文件流程</span>
   <a href="#50-%e4%bf%ae%e6%94%b9%e7%ba%bf%e4%b8%8a%e4%b8%9a%e5%8a%a1%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e6%b5%81%e7%a8%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1124,7 +1124,7 @@
   <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
       <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
     <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.139.3"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.16"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.147.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.20"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
@@ -1133,5 +1133,5 @@
     <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
   </noscript>
 </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.6955c00f427f31a16d1d426b9b0c310e3d610bdb3c7ff21dd63e2c8486e90b8aa706b076bb1d0c8819e944e92a38db3f347f987097325f72bdde194122568d82.css" integrity="sha512-aVXAD0J/MaFtHUJrmwwxDj1hC9s8f/Id1j4shIbpC4qnBrB2ux0MiBnpROkqONs/NH+YcJcyX3K93hlBIlaNgg=="><link rel="preload" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.b93e0f2f3177f5e2245296a45f9280980ea005c33850fd217771d2a6c7617a8cf2d7b609d579bfb96ef398d4e7b53364aa7893cb8cf3321f31dd05e828cce902.js" integrity="sha512-uT4PLzF39eIkUpakX5KAmA6gBcM4UP0hd3HSpsdheozy17YJ1Xm/uW7zmNTntTNkqniTy4zzMh8x3QXoKMzpAg==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2022-12-30T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"运维常见面试题"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.16"};</script><script src="/js/theme.min.08ac5c30d251cabd75da079a416025728537d4db9c743f13d6e5a4627326df290b8a0003a254450176ea10dc1d2084af1d8c57beceb4aba299e0162f7b3fcfb1.js" integrity="sha512-CKxcMNJRyr112geaQWAlcoU31NucdD8T1uWkYnMm3ykLigADolRFAXbqENwdIISvHYxXvs60q6KZ4BYvez/PsQ==" defer></script><script src="/lib/translate.min.1a38caaeafd7176713f44400741e50378c3f69739ab4e3c51224892099aeb57aa71f9e9b53195a17cb03a7ef6810b76be44c0937b4b4dd9f5db982ae0fa6c794.js" integrity="sha512-GjjKrq/XF2cT9EQAdB5QN4w/aXOatOPFEiSJIJmutXqnH56bUxlaF8sDp+9oELdr5EwJN7S03Z9duYKuD6bHlA==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/"}};</script><script src="/js/translate.fixit.min.d92024dffa4490c61c5d72b1aaf2e22d8358a831e04f5bec9afcf99a9ddd3c90fb3b0d8e3ba9243f3f6db85803d1413e0ef509c873d64b2e2a02b6d11da00a75.js" integrity="sha512-2SAk3/pEkMYcXXKxqvLiLYNYqDHgT1vsmvz5mp3dPJD7Ow2OO6kkPz9tuFgD0UE+DvUJyHPWSy4qArbRHaAKdQ==" defer></script></body>
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.b93e0f2f3177f5e2245296a45f9280980ea005c33850fd217771d2a6c7617a8cf2d7b609d579bfb96ef398d4e7b53364aa7893cb8cf3321f31dd05e828cce902.js" integrity="sha512-uT4PLzF39eIkUpakX5KAmA6gBcM4UP0hd3HSpsdheozy17YJ1Xm/uW7zmNTntTNkqniTy4zzMh8x3QXoKMzpAg==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2022-12-30T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"运维常见面试题"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.20"};</script><script src="/js/theme.min.4807c10b31d5f64caef015e07216aaf921774d77ab46d3c725db004dd9ba0b6e4574219fd6c188ce6ec3bd906b255f2dfbe6b7ad2a20c676e5e9e02989fe133f.js" integrity="sha512-SAfBCzHV9kyu8BXgchaq+SF3TXerRtPHJdsATdm6C25FdCGf1sGIzm7DvZBrJV8t++a3rSogxnbl6eApif4TPw==" defer></script><script src="/lib/translate.min.1a38caaeafd7176713f44400741e50378c3f69739ab4e3c51224892099aeb57aa71f9e9b53195a17cb03a7ef6810b76be44c0937b4b4dd9f5db982ae0fa6c794.js" integrity="sha512-GjjKrq/XF2cT9EQAdB5QN4w/aXOatOPFEiSJIJmutXqnH56bUxlaF8sDp+9oELdr5EwJN7S03Z9duYKuD6bHlA==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/"}};</script><script src="/js/translate.fixit.min.ab03e2ee13c4858806ccf9eb99fb353eac77a752b8d7467a0350c40fcb567ec979e41d8884da52e90309d248d602707ebc70c12fbce1902311aff3f00ae5ca80.js" integrity="sha512-qwPi7hPEhYgGzPnrmfs1Pqx3p1K410Z6A1DED8tWfsl55B2IhNpS6QMJ0kjWAnB+vHDBL7zhkCMRr/PwCuXKgA==" defer></script></body>
 </html>

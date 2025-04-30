@@ -1,13 +1,13 @@
 # 那些杂七杂八的记录(二)
 
 
-&lt;!--more--&gt;
+<!--more-->
 
 ## debian 12 下 ROOTN  用户，无法设置中文问题
-&amp;emsp;&amp;emsp; 具体体现是，系统无论如何设置，终端变量始终为 `LANG=C` 和 `LANGUAGE=C`, 检查了所有设置，最后发现在`~/.profile`中，设置了这两个变量，不知道为什么要这样干，删了重载下就可以了 
+&emsp;&emsp; 具体体现是，系统无论如何设置，终端变量始终为 `LANG=C` 和 `LANGUAGE=C`, 检查了所有设置，最后发现在`~/.profile`中，设置了这两个变量，不知道为什么要这样干，删了重载下就可以了 
 
 ## debian 系统下， vim 打开文件后鼠标选择为可视模式问题  
-- 全局修改: 编辑 `/usr/share/vim/vim82/defaults.vim` , 大概在 `80` 行: `if has(&#39;mouse&#39;)` 下，将 `set mouse=a` 改为 `set mouse=` 即可  
+- 全局修改: 编辑 `/usr/share/vim/vim82/defaults.vim` , 大概在 `80` 行: `if has('mouse')` 下，将 `set mouse=a` 改为 `set mouse=` 即可  
 
 ## nginx 添加 ssl 证书后 ， 浏览器仍然提示 `不安全(你与此网站之间建立的连接并非完全安全)`
 - 多数是因为混合内容，在网站页面文件中,包含了其他网站非`https`的资源  
@@ -17,15 +17,15 @@
 ```bash
 # ~/.bashrc 
 # need expand scripts: add https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh to profile.d
-_PS1_CMD_=&#34;\${VIRTUAL_ENV_PROMPT}\\\\[\\\\][\\[\$(tput sgr0)\\]\\[\\033[38;5;5m\\]\\u\\[\$(tput sgr0)\\]@\\[\$(tput sgr0)\\]\\[\\033[38;5;70m\\]\\h\\[\$(tput sgr0)\\] \\W]\\[\$(tput sgr0)\\]\\[\\033[38;5;77m\\]\${__GIT_BRANCH__}\\[\\033[38;5;9m\\][\\\$?]\\[\$(tput sgr0)\\]\\\\\$ \\[\$(tput sgr0)\\]&#34;
+_PS1_CMD_="\${VIRTUAL_ENV_PROMPT}\\\\[\\\\][\\[\$(tput sgr0)\\]\\[\\033[38;5;5m\\]\\u\\[\$(tput sgr0)\\]@\\[\$(tput sgr0)\\]\\[\\033[38;5;70m\\]\\h\\[\$(tput sgr0)\\] \\W]\\[\$(tput sgr0)\\]\\[\\033[38;5;77m\\]\${__GIT_BRANCH__}\\[\\033[38;5;9m\\][\\\$?]\\[\$(tput sgr0)\\]\\\\\$ \\[\$(tput sgr0)\\]"
 
-export PROMPT_COMMAND=&#34;${PROMPT_COMMAND}; __GIT_BRANCH__=\&#34;\$(__git_ps1 &#39;(%s)&#39;)\&#34;; PS1=\&#34;${_PS1_CMD_}\&#34;&#34;
+export PROMPT_COMMAND="${PROMPT_COMMAND}; __GIT_BRANCH__=\"\$(__git_ps1 '(%s)')\"; PS1=\"${_PS1_CMD_}\""
 
-# export PS1=&#34;[\[$(tput sgr0)\]\[\033[38;5;5m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;70m\]\h\[$(tput sgr0)\] \W]\[$(tput sgr0)\]\[\033[38;5;9m\][\$?]\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]&#34;
+# export PS1="[\[$(tput sgr0)\]\[\033[38;5;5m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;70m\]\h\[$(tput sgr0)\] \W]\[$(tput sgr0)\]\[\033[38;5;9m\][\$?]\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"
 ```
 
 ## windows 系统中代理设置问题
-- 系统设置中, 默认代理设置使用的是 `http` 模式，如果想要使用 `socks`模式，则在地址栏输入 `socks=&lt;proxy_ip&gt;`，端口为`socks`端口即可(`socks`模式仅在`win11`上进行测试，其他系统参考执行)  
+- 系统设置中, 默认代理设置使用的是 `http` 模式，如果想要使用 `socks`模式，则在地址栏输入 `socks=<proxy_ip>`，端口为`socks`端口即可(`socks`模式仅在`win11`上进行测试，其他系统参考执行)  
 
 ## windows 挂载 sshfs 方法
 **本方案看到别人成功过，但自己没有测试成功**  
@@ -36,8 +36,8 @@ export PROMPT_COMMAND=&#34;${PROMPT_COMMAND}; __GIT_BRANCH__=\&#34;\$(__git_ps1 
 
 ## Proxmox VE 中使用 Cloud 系统镜像快速创建虚拟机  
 
-&gt; [https://www.truenasscale.com/2022/05/24/1117.html](https://www.truenasscale.com/2022/05/24/1117.html)  
-&gt; [https://fairysen.com/742.html#toc-head-6](https://fairysen.com/742.html#toc-head-6)  
+> [https://www.truenasscale.com/2022/05/24/1117.html](https://www.truenasscale.com/2022/05/24/1117.html)  
+> [https://fairysen.com/742.html#toc-head-6](https://fairysen.com/742.html#toc-head-6)  
 
 1. 创建`虚拟机`, `操作系统`设置，选择 `不使用任何介质`
 2. `系统` 设置将 `SCSI控制器` 调整为 `VirtIO SCSI`, 机器可以设置为`q35`也可以默认
@@ -50,7 +50,7 @@ export PROMPT_COMMAND=&#34;${PROMPT_COMMAND}; __GIT_BRANCH__=\&#34;\$(__git_ps1 
 
 
 ## Virtualbox 中使用 Cloud 系统镜像快速创建虚拟机
-&amp;emsp;&amp;emsp;以[`Alibaba Cloud Linux 3`](https://mirrors.aliyun.com/alinux/3/image/)云镜像为例，下载[`aliyun_3_x64_20G_nocloud_alibase_20240528.vhd`](https://alinux3.oss-cn-hangzhou.aliyuncs.com/aliyun_3_x64_20G_nocloud_alibase_20240528.vhd) 和 [`seed.img`](https://alinux3.oss-cn-hangzhou.aliyuncs.com/seed.img), `seed.img`是 `cloud-init` 数据源，可以自己创建参考[`官方文档`](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)或者[`阿里云文档`](https://help.aliyun.com/zh/alinux/getting-started/use-alibaba-cloud-linux-3-images-in-an-on-premises-environment?spm=a2c4g.11186623.0.0.36534cfcWFRMKk#section-eyk-z6n-5ot)的生成示例。   
+&emsp;&emsp;以[`Alibaba Cloud Linux 3`](https://mirrors.aliyun.com/alinux/3/image/)云镜像为例，下载[`aliyun_3_x64_20G_nocloud_alibase_20240528.vhd`](https://alinux3.oss-cn-hangzhou.aliyuncs.com/aliyun_3_x64_20G_nocloud_alibase_20240528.vhd) 和 [`seed.img`](https://alinux3.oss-cn-hangzhou.aliyuncs.com/seed.img), `seed.img`是 `cloud-init` 数据源，可以自己创建参考[`官方文档`](https://cloudinit.readthedocs.io/en/latest/reference/examples.html)或者[`阿里云文档`](https://help.aliyun.com/zh/alinux/getting-started/use-alibaba-cloud-linux-3-images-in-an-on-premises-environment?spm=a2c4g.11186623.0.0.36534cfcWFRMKk#section-eyk-z6n-5ot)的生成示例。   
 
 ### 虚拟机创建和配置  
 - 新建虚拟机， `虚拟机光盘`无需指定，`类型`和`版本`按照自己使用的云镜像指定，然后一直下一步, `虚拟硬盘`选择`不添加虚拟硬盘`，  然后点击下一步， 直到完成创建。  
@@ -64,38 +64,38 @@ export PROMPT_COMMAND=&#34;${PROMPT_COMMAND}; __GIT_BRANCH__=\&#34;\$(__git_ps1 
 ```js
 // 当前测试版本为 8.2.2
 // 修改Web界面源代码 /usr/share/pve-manager/js/pvemanagerlib.js(注意备份)
-// 搜索到内容 `if (caps.nodes[&#39;Sys.Audit&#39;]) {`，大概在 43869 行, 注意搜索结果会有多个。
+// 搜索到内容 `if (caps.nodes['Sys.Audit']) {`，大概在 43869 行, 注意搜索结果会有多个。
 // 可以将前端界面修改为英文，然后随便改一个 gettext 内的内容刷新，看是否找对位置。
 // 添加菜单，完整内容如下 
-if (caps.nodes[&#39;Sys.Audit&#39;]) {
+if (caps.nodes['Sys.Audit']) {
     me.items.push(
         {
-            xtype: &#39;pveNodeSummary&#39;,
-            title: gettext(&#39;Summary&#39;),
-            iconCls: &#39;fa fa-book&#39;,
-            itemId: &#39;summary&#39;,
+            xtype: 'pveNodeSummary',
+            title: gettext('Summary'),
+            iconCls: 'fa fa-book',
+            itemId: 'summary',
         },
         {
-            xtype: &#39;pmxNotesView&#39;,
-            title: gettext(&#39;Notes&#39;),
-            iconCls: &#39;fa fa-sticky-note-o&#39;,
-            itemId: &#39;notes&#39;,
+            xtype: 'pmxNotesView',
+            title: gettext('Notes'),
+            iconCls: 'fa fa-sticky-note-o',
+            itemId: 'notes',
         },
         /// 添加内容开始
         {
-            xtype: &#39;prometheusMonitorView&#39;,
-            title: &#39;Prometheus 监控&#39;,
-            iconCls: &#39;fa fa-line-chart&#39;,
-            itemId: &#39;note-prometheus&#39;,
+            xtype: 'prometheusMonitorView',
+            title: 'Prometheus 监控',
+            iconCls: 'fa fa-line-chart',
+            itemId: 'note-prometheus',
         }
         /// 添加内容结束
     );
 }
 
 /// 在文件最末尾添加 
-Ext.define(&#39;PVE.node.PrometheusMonitor&#39;, {
-    extend: &#39;Ext.panel.Panel&#39;,
-    alias: &#39;widget.prometheusMonitorView&#39;,
+Ext.define('PVE.node.PrometheusMonitor', {
+    extend: 'Ext.panel.Panel',
+    alias: 'widget.prometheusMonitorView',
 
     scrollable: true,
     bodyPadding: 5,
@@ -104,18 +104,18 @@ Ext.define(&#39;PVE.node.PrometheusMonitor&#39;, {
         var me = this;
 
         var prometheusIframe = {
-            xtype: &#39;component&#39;,
+            xtype: 'component',
             autoEl: {
-                tag: &#39;iframe&#39;,
-                style: &#39;height: 100%; width: 100%; border: none;&#39;,
-                src: &#39;https://sogou.com&#39;,
+                tag: 'iframe',
+                style: 'height: 100%; width: 100%; border: none;',
+                src: 'https://sogou.com',
 				frameborder: 0,
-				scrolling: &#39;auto&#39;
+				scrolling: 'auto'
             }
         };
 
         Ext.apply(me, {
-            layout: &#39;fit&#39;,
+            layout: 'fit',
             items: [prometheusIframe]
         });
 
@@ -126,12 +126,12 @@ Ext.define(&#39;PVE.node.PrometheusMonitor&#39;, {
 
 
 ## binlog 解析工具
-&gt; https://github.com/zhuchao941/canal2sql  
+> https://github.com/zhuchao941/canal2sql  
 
 ```bash
 # 常用参数
 ## -sql_type: 只解析指定类型，支持 insert,update,delete,ddl。多个类型用逗号隔开，如--sql-type=insert,delete。可选。默认为insert,update,delete,ddl 
-## -filter: 白名单,指定导出，多个逗号隔开 &lt;库名&gt;.&lt;表名&gt;(db.*、*.*)
+## -filter: 白名单,指定导出，多个逗号隔开 <库名>.<表名>(db.*、*.*)
 ## -mode: online/file/aliyun，默认online
 ## --file_url: 离线的binlog文件，支持http url访问
 ## -B: 显示回滚sql
@@ -139,22 +139,22 @@ Ext.define(&#39;PVE.node.PrometheusMonitor&#39;, {
 
 
 # 1. 在线模式, 解析账户权限需要 SELECT, REPLICATION SLAVE, REPLICATION CLIENT 
-$&gt; java -jar canal2sql-1.1.3.jar -sql_type update,delete -filter &lt;database&gt;.&lt;tables&gt;  -mode file -file_url &#39;file:/tmp/mysql-bin.000016&#39; -uroot -P3306 -pxxxxx -hlocalhost
+$> java -jar canal2sql-1.1.3.jar -sql_type update,delete -filter <database>.<tables>  -mode file -file_url 'file:/tmp/mysql-bin.000016' -uroot -P3306 -pxxxxx -hlocalhost
 
 
 # 2. 离线模式
 ## 导出数据库标结构
-$&gt; mysqldump -uroot -pxxxxx -hlocalhost --set-gtid-purged=OFF --default-character-set=utf8mb4 --single-transaction -R -E -B -d &lt;database&gt; &gt; /tmp/database.sql
+$> mysqldump -uroot -pxxxxx -hlocalhost --set-gtid-purged=OFF --default-character-set=utf8mb4 --single-transaction -R -E -B -d <database> > /tmp/database.sql
 ## 
-$&gt; java -jar ./canal2sql-1.1.3.jar -mode file -ddl &#39;/tmp/database.sql&#39; -file_url &#39;http://localhost:8080/binlog/mysql-bin.000474&#39; 
+$> java -jar ./canal2sql-1.1.3.jar -mode file -ddl '/tmp/database.sql' -file_url 'http://localhost:8080/binlog/mysql-bin.000474' 
 ```
 
 ## 亚马逊云 EC2 Windows (2022) 安装 WSL 问题  
 - 注意: 虚拟化的`EC2 Windows`实例只支持`WSL 1`  
-&gt; https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/install-wsl-on-ec2-windows-instance.html  
+> https://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/install-wsl-on-ec2-windows-instance.html  
 
 ## 远程登陆 windows openssh 服务后， 无法执行 wsl 命令启动子系统 The file cannot be accessed by the system 
-- 使用绝对路径打开 `&#34;C:\Program Files\WSL\wsl.exe&#34;`  
+- 使用绝对路径打开 `"C:\Program Files\WSL\wsl.exe"`  
 
 ## WSL 子系统挂载权限问题
 - `windows`盘符默认挂载到`/mnt`目录下，且权限为`777`, 这不仅不方便，也有一些安全问题  
@@ -163,12 +163,12 @@ $&gt; java -jar ./canal2sql-1.1.3.jar -mode file -ddl &#39;/tmp/database.sql&#39
         [automount]
         enabled = true
         root = /mnt/
-        options = &#34;metadata,dmask=022,fmask=133&#34;
+        options = "metadata,dmask=022,fmask=133"
         mountFsTab = false
         ```
 - 如果这样创建文件仍然是`777`, 可以在`/etc/profile`中添加一些`umask`设定 
     ```ini
-    if [[ &#34;$(umask)&#34; == &#39;000&#39; ]]; then
+    if [[ "$(umask)" == '000' ]]; then
         umask 022
     fi
     ```
@@ -177,11 +177,11 @@ $&gt; java -jar ./canal2sql-1.1.3.jar -mode file -ddl &#39;/tmp/database.sql&#39
 
 ## Wazhu agent 激活变量参考
 
-&gt; https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/deployment-variables/deployment-variables-linux.html
+> https://documentation.wazuh.com/current/user-manual/agent/agent-enrollment/deployment-variables/deployment-variables-linux.html
 
 
 ## 跨 VPC 访问 Redis 主备，info replication 拿到的从库ip是 内网ip 
-- 这个问题初次发现是应用调用华为的云Redis发现的，云Redis是跨vpc部署的主备， 但是info replication 拿到的从库ip是内网ip，由于应用和redis实际环境不处于同一网络，导致应用访问超时，目前的解决是研发这边准备重写对应组件，但发现该组件作者已经解决了这个问题，升级到新版本后解决。 架构可以看成是  `用户: 192.168.2.8/24` 访问 `代理:192.168.2.10/24` ---&gt; `Redis主: 10.0.2.10/24`, 而 用户通过 `info replication` 拿到的却是 `10.0.2.10/24`，所以 `192.168.2.8/24` 肯定无法连接 `10.0.2.10/24`。  
+- 这个问题初次发现是应用调用华为的云Redis发现的，云Redis是跨vpc部署的主备， 但是info replication 拿到的从库ip是内网ip，由于应用和redis实际环境不处于同一网络，导致应用访问超时，目前的解决是研发这边准备重写对应组件，但发现该组件作者已经解决了这个问题，升级到新版本后解决。 架构可以看成是  `用户: 192.168.2.8/24` 访问 `代理:192.168.2.10/24` ---> `Redis主: 10.0.2.10/24`, 而 用户通过 `info replication` 拿到的却是 `10.0.2.10/24`，所以 `192.168.2.8/24` 肯定无法连接 `10.0.2.10/24`。  
 
 - 这个问题感觉还是比较经典的，比如 用容器部署的主备，应用和主备环境不处于同一主机， 也会出现类似问题。应该是容器化部署类的都会产生，架构方面应该可以解决，但是没有找到合适的解决方案。
 
@@ -191,8 +191,8 @@ $&gt; java -jar ./canal2sql-1.1.3.jar -mode file -ddl &#39;/tmp/database.sql&#39
     ### Editing /etc/systemd/system/docker.service.d/override.conf
     ### Anything between here and the comment below will become the contents of the drop-in file
     [Service]
-    Environment=&#34;ALL_PROXY=socks5://127.0.0.1:1080&#34;
-    Environment=&#34;NO_PROXY=localhost,127.0.0.1,.example.com&#34;
+    Environment="ALL_PROXY=socks5://127.0.0.1:1080"
+    Environment="NO_PROXY=localhost,127.0.0.1,.example.com"
     ```
 
 ## mysql 日志出现大量的 Got an error reading communication packets 
@@ -214,71 +214,71 @@ max_allowed_packet = 16M    # 大多数情况下，16M 到 64M 已足够
 ```makefile
 .PHONY: help
 help: ## 显示所有可用命令
-	@echo &#34;可用命令：&#34;
-	@grep -E &#39;^[a-zA-Z_-]&#43;:.*?## .*$$&#39; $(MAKEFILE_LIST) | awk &#39;BEGIN {FS = &#34;:.*?## &#34;}; {printf &#34;\033[36m%-20s\033[0m %s\n&#34;, $$1, $$2}&#39;
+	@echo "可用命令："
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 ```
 
 ## Systemd 守护桌面程序
 ```bash
 # 以本文记录时间时候最新的QQ Linux版 3.0.0 为例，fedora33 下经常崩溃，用systemd守护其运行，在QQ崩溃时自动重启QQ
 # 运行以下命令以启动systemd守护进程 
-$&gt; /usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
+$> /usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
 # 替换默认 /usr/share/applications/qq.desktop的执行命令 Exec=/usr/bin/systemd-run --property Restart=on-failure --user /opt/QQ/qq
 # 日志检查，可以定位当前用户的日志看(或者 systemctl --user list-units run-*|grep qq，查询到systemd-run启动的service，直接定位)
-$&gt; journalctl -f -u user@${UID}.service
+$> journalctl -f -u user@${UID}.service
 ```
 
 ## CentOS 7 系统安装其他 GLIBC 版本 
 ***`DevToolSet（Developer Toolset）`是 `Red Hat` 和 `CentOS` 提供的一组开发工具集合，旨在为开发者提供最新的编译器、调试器和其他开发工具，同时保持系统稳定性。它允许用户在不升级整个系统的情况下使用更新的工具链(包含 `GCC`、`GDB`、`Binutils` 等工具的更新版本)。***  
 ```bash
-$&gt; sudo yum install centos-release-scl
+$> sudo yum install centos-release-scl
 # 需要什么版本就是 devtoolset-xxxx-gcc* 
-$&gt; sudo yum install devtoolset-8-gcc*
+$> sudo yum install devtoolset-8-gcc*
 # 激活
-$&gt; scl enable devtoolset-8 bash
+$> scl enable devtoolset-8 bash
 ```
 
 ## MySQL 出现 KILLED 或者 Waiting for table metadata lock 
 1. 使用 `show processlist` 获取到线程`id`  
 2. 获取操作系统线程`ID`, 如 `1213`(`SELECT THREAD_OS_ID FROM performance_schema.threads WHERE processlist_id=1213`)  
-3. 使用 `pstack` 诊断 `pstack 13133 &gt; /root/mysql_thread_13133.txt`
+3. 使用 `pstack` 诊断 `pstack 13133 > /root/mysql_thread_13133.txt`
 4. 自己分析生成文件或者扔给`gpt`看
 
 
 ## MySQL 连接数被打满 `to many connections`，无法登陆 `mysql` 的情况下处理方案(网络搜集-未测试) 
 ```bash
-$&gt; gdb -p $(pidof mysqld) -batch -ex 
-&#34;set global max_connections=1500&#34;
+$> gdb -p $(pidof mysqld) -batch -ex 
+"set global max_connections=1500"
 ```
 
-## Prometheus Error scraping target: cannot parse Content-Type &#34;text/plain; charset=utf-8,gb2312,gbk&#34; and no fallback_scrape_protocol for target mime: invalid media parameter
+## Prometheus Error scraping target: cannot parse Content-Type "text/plain; charset=utf-8,gb2312,gbk" and no fallback_scrape_protocol for target mime: invalid media parameter
 
 - `Prometheus V3` 版本对于 `Content-Type` 进行了更严格的校验, 参见 [`#15777`](https://github.com/prometheus/prometheus/issues/15777)、[`Prometheus Docs#scrape-protocols`](https://prometheus.io/docs/prometheus/latest/migration/#scrape-protocols) , 解决方案：`Prometheus` 使用 `V2` 版本，或者指标请求返回的 `charset` 只有一个，如 `utf-8`。(官方推荐的设置方案这边没有测试成功)
 
 ## vscode 开启类似 pycharm 的代码提示及包自动导入功能
 ```json
     // 需要安装插件 Pylance 
-    &#34;python.languageServer&#34;: &#34;Pylance&#34;,
-    &#34;python.analysis.autoImportCompletions&#34;: true,
-    &#34;python.analysis.autoSearchPaths&#34;: true,
-    &#34;editor.quickSuggestions&#34;: {
-        &#34;other&#34;: &#34;on&#34;,
-        &#34;comments&#34;: &#34;on&#34;,
-        &#34;strings&#34;: &#34;on&#34;
+    "python.languageServer": "Pylance",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoSearchPaths": true,
+    "editor.quickSuggestions": {
+        "other": "on",
+        "comments": "on",
+        "strings": "on"
     }
 ```
 
 ## 雷池(SafeLine) 在更新控制台证书后，导致前端访问报告错误 ERR_SSL_VERSION_OR_CIPHER_MISMATCH
 ***该解决方案来自官方微信群80***
 - 临时解决: 登陆 `mgt` 容器, 复制 `/app/cert/default.crt` 和 `/app/cert/default.key` 并覆盖 `/app/cert/mgt.crt` 和 `/app/cert/mgt.key`， 然后重启 `nginx` 进程(注意是进程，不是 `mgt` 容器)
-- 永久解决：执行 `docker exec safeline-pg psql -U safeline-ce -c &#34;delete from mgt_options where key = &#39;mgt_cert&#39;;&#34;` 并重启 `mgt` 容器；
+- 永久解决：执行 `docker exec safeline-pg psql -U safeline-ce -c "delete from mgt_options where key = 'mgt_cert';"` 并重启 `mgt` 容器；
 
 ## PgSql 备份与恢复
 ```bash
-$&gt; pg_restore -U postgres -h 127.0.0.1 -p 5432 -d &lt;database&gt; -C /tmp/&lt;database&gt;.dump
+$> pg_restore -U postgres -h 127.0.0.1 -p 5432 -d <database> -C /tmp/<database>.dump
 
-# 强制清理已有对象再恢复（类似 mysql 的 DROP &#43; CREATE）
-$&gt; pg_restore -U postgres -h 127.0.0.1 -d &lt;database&gt; --clean --if-exists /tmp/&lt;database&gt;.dump
+# 强制清理已有对象再恢复（类似 mysql 的 DROP + CREATE）
+$> pg_restore -U postgres -h 127.0.0.1 -d <database> --clean --if-exists /tmp/<database>.dump
 ```
 
 ---

@@ -27,8 +27,8 @@
 
 ## 1.5. 禁止设置网卡为 Disable
 
-- 运行`gpedit.msc`- 用户配置-管理模板-网络-网络连接下的&#34;启用/禁用 LAN 链接的能力(`Ability to Enable/Disable a LAN connection`)&#34;设置为`Disabled `
-- 设置&#34;为管理员启用`windows2000`网路连接设置(`Enable Windows2000 Network Connections settings for Administrators`)&#34; 选项为`Enabled `
+- 运行`gpedit.msc`- 用户配置-管理模板-网络-网络连接下的"启用/禁用 LAN 链接的能力(`Ability to Enable/Disable a LAN connection`)"设置为`Disabled `
+- 设置"为管理员启用`windows2000`网路连接设置(`Enable Windows2000 Network Connections settings for Administrators`)" 选项为`Enabled `
 
 ## 1.6. IIS 安装后修改站点日志目录
 
@@ -74,13 +74,13 @@ Audit privilege use              Failure
 Audit process tracking           No auditing
 Audit system events              Success,Failure
 
-本地策略—&gt;用户权限分配
+本地策略—>用户权限分配
 关闭系统(shut down the system)：
 只有Administrators组、其它全部删除。 
 通过终端服务允许登陆(Allow log on through Terminal services)：
 只加入Administrators,Remote Desktop Users组，其他全部删除。
 
-C、本地策略——&gt;安全选项
+C、本地策略——>安全选项
 交互式登陆：不显示上次的用户名　　　　　　　启用
 网络访问：不允许SAM帐户和共享的匿名枚举　 	启用
 网络访问：不允许为网络身份验证储存凭证　　　启用

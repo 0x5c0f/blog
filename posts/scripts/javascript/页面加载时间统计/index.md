@@ -1,14 +1,14 @@
 # 页面加载时间统计
 
 
-&lt;!--more--&gt;
+<!--more-->
 
 ## js 组件
 - 直接保存为文件, 插入到 `html` 末尾即可, 用来统计当前页面的各类加载时间然后推送到远端(当然，后端需要自己构建接口)   
-- `&lt;script id=&#34;tracking-script&#34; src=&#34;./pcheck.js&#34; data-tracking-code=&#34;{{ TRACKING_CODE }}&#34;&gt;&lt;/script&gt;`  
+- `<script id="tracking-script" src="./pcheck.js" data-tracking-code="{{ TRACKING_CODE }}"></script>`  
   ```js
   // 采集信息推送目标
-  const apiUrl = &#34;//example.com/rz/api/v1/performance/webpage/data/&#34;;
+  const apiUrl = "//example.com/rz/api/v1/performance/webpage/data/";
 
   // 日志打印控制变量, 由后端服务控制
   let enableLog = true;
@@ -16,11 +16,11 @@
   // 获取跟踪代码
   function getTrackingCode() {
     try {
-      const currentScript = document.getElementById(&#34;performance-check-script&#34;);
-      return currentScript.getAttribute(&#34;data-tracking-code&#34;);
+      const currentScript = document.getElementById("performance-check-script");
+      return currentScript.getAttribute("data-tracking-code");
     } catch (error) {
       console.error(error);
-      console.log(&#39;请在引入该脚本的script标签上添加id=&#34;performance-check-script&#34;属性&#39;);
+      console.log('请在引入该脚本的script标签上添加id="performance-check-script"属性');
       return null;
     }
   }
@@ -28,15 +28,15 @@
   // 采集数据推送
   async function sendPerformanceData(data) {
     if (!data.tracking_code) {
-      if (enableLog) console.log(&#34;No tracking code provided. Skipping performance data collection.&#34;);
+      if (enableLog) console.log("No tracking code provided. Skipping performance data collection.");
       return;
     }
 
-    if (enableLog) console.log(&#34;Sending performance data:&#34;, data);
+    if (enableLog) console.log("Sending performance data:", data);
 
     const postOptions = {
-      method: &#34;POST&#34;,
-      headers: { &#34;Content-Type&#34;: &#34;application/json&#34; },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     };
 
@@ -44,12 +44,12 @@
       const response = await fetch(apiUrl, postOptions);
       if (response.ok) {
         const result = await response.json();
-        if (enableLog) console.log(&#34;Performance data sent successfully:&#34;, result);
+        if (enableLog) console.log("Performance data sent successfully:", result);
       } else {
         if (enableLog) console.error(`Request failed with status: ${response.status}`);
       }
     } catch (error) {
-      if (enableLog) console.error(&#34;Error sending performance data:&#34;, error);
+      if (enableLog) console.error("Error sending performance data:", error);
     }
   }
 
@@ -57,13 +57,13 @@
   async function collectPerformanceData() {
     const trackingCode = getTrackingCode();
     if (!trackingCode) {
-      if (enableLog) console.log(&#34;No tracking code provided. Skipping performance data collection.&#34;);
+      if (enableLog) console.log("No tracking code provided. Skipping performance data collection.");
       return;
     }
 
     let performanceData;
     if (window.PerformanceNavigationTiming) {
-      const entry = performance.getEntriesByType(&#34;navigation&#34;)[0];
+      const entry = performance.getEntriesByType("navigation")[0];
       performanceData = extractPerformanceDataFromNavigationEntry(entry);
     } else {
       performanceData = extractPerformanceDataFromTimingAPI();
@@ -109,10 +109,10 @@
 
   // 当脚本加载完成后立即执行
   (function () {
-    if (document.readyState === &#34;complete&#34;) {
+    if (document.readyState === "complete") {
       setTimeout(collectPerformanceData, 0);
     } else {
-      window.addEventListener(&#34;load&#34;, function () {
+      window.addEventListener("load", function () {
         setTimeout(collectPerformanceData, 0);
       });
     }

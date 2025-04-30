@@ -15,13 +15,13 @@ local               docker_data
 [root@00 ~]# docker volume inspect docker_data
 [
     {
-        &#34;CreatedAt&#34;: &#34;2019-03-04T14:20:40&#43;08:00&#34;,
-        &#34;Driver&#34;: &#34;local&#34;,
-        &#34;Labels&#34;: {},
-        &#34;Mountpoint&#34;: &#34;/var/lib/docker/volumes/docker_data/_data&#34;,
-        &#34;Name&#34;: &#34;docker_data&#34;,
-        &#34;Options&#34;: {},
-        &#34;Scope&#34;: &#34;local&#34;
+        "CreatedAt": "2019-03-04T14:20:40+08:00",
+        "Driver": "local",
+        "Labels": {},
+        "Mountpoint": "/var/lib/docker/volumes/docker_data/_data",
+        "Name": "docker_data",
+        "Options": {},
+        "Scope": "local"
     }
 ]
 # 挂载卷 

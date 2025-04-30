@@ -9,30 +9,30 @@
     |标识符|描述|文件要求|
     |-|-|-|
     |`r `|只读模式, 只允许读取文件内容|文件必须存在|
-    |`r&#43;`|读写模式, 可读可写,不分先后,但写入只能写&lt;br/&gt;入到末尾行|文件必须存在|
+    |`r+`|读写模式, 可读可写,不分先后,但写入只能写<br/>入到末尾行|文件必须存在|
     |`b`|二进制操作模式,使用场景一般文操作流文件|-|
     |`w `|新建模式, 写入新的文件内容|若存在文件,清空文件内容,不存在新建|
-    |`w&#43;`|写读模式, 可以边写边读,读是从实际的指针位&lt;br/&gt;置开始,可指定指针到开头读取写入内容|存在文件,清空文件内容,不存在新建|
-    |`a`|追加模式, 可写但不允许读,只允许从最后一&lt;br/&gt;行开始追加 |存在直接操作,不存在新建|
-    |`a&#43;`| 追加读模式, 可读可写,写只能写入到末尾行 |存在直接操作,不存在新建|
-    |`U`|表示在读取文件时候,将`\r\n`统一转成`\n`,&lt;br /&gt;使用场景一般是在`linux`上读取`win`的文件|-|
+    |`w+`|写读模式, 可以边写边读,读是从实际的指针位<br/>置开始,可指定指针到开头读取写入内容|存在文件,清空文件内容,不存在新建|
+    |`a`|追加模式, 可写但不允许读,只允许从最后一<br/>行开始追加 |存在直接操作,不存在新建|
+    |`a+`| 追加读模式, 可读可写,写只能写入到末尾行 |存在直接操作,不存在新建|
+    |`U`|表示在读取文件时候,将`\r\n`统一转成`\n`,<br />使用场景一般是在`linux`上读取`win`的文件|-|
 
 ## 1.1. 基础语法 
 
 ```python
 
-# 打开为文件对象, 默认 mode = &#34;r&#34;, encoding=&#34;系统编码&#34; 
-f = open(&#34;file.md&#34;) 
+# 打开为文件对象, 默认 mode = "r", encoding="系统编码" 
+f = open("file.md") 
 
 # 读取文件内容
 data = f.read()
 
-f1 = open(&#34;file1.md&#34;,&#34;w&#34;,encoding=&#34;utf-8&#34;)
+f1 = open("file1.md","w",encoding="utf-8")
 # 写入内容到文件 
-f1.write(&#34;hello python&#34;)
+f1.write("hello python")
 
-f2 = open(&#34;file1.md&#34;,&#34;a&#34;,encoding=&#34;utf-8&#34;)
-f2.write(&#34;hello python2&#34;)
+f2 = open("file1.md","a",encoding="utf-8")
+f2.write("hello python2")
 
 # 文件流关闭 在持续执行程序中必须在文件操作完毕后进行关闭
 f.close()
@@ -41,7 +41,7 @@ f.close()
 
 ## 1.2. 常规操作
 ```python
-f = open(&#34;file1.md&#34;,&#34;r&#34;,encoding=&#34;utf-8&#34;)
+f = open("file1.md","r",encoding="utf-8")
 # 打印一行 并将指针向下偏移一次
 print(f.readline())
 
@@ -73,13 +73,13 @@ f.truncate(6)
 
 ## 1.3. 文件读取 with语句
 ```python
-with open(&#34;file1.md&#34;,&#34;r&#34;,encoding=&#34;utf-8&#34;) as f:
+with open("file1.md","r",encoding="utf-8") as f:
     for line in f:
         print(line)
 
 # with 语句也可以同时打开多个文件 
-with open(&#34;file1.md&#34;,&#34;r&#34;,encoding=&#34;utf-8&#34;) as f1,\
-     open(&#34;file2.md&#34;,&#34;r&#34;,encoding=&#34;utf-8&#34;) as f2:
+with open("file1.md","r",encoding="utf-8") as f1,\
+     open("file2.md","r",encoding="utf-8") as f2:
     print(f1.readlines())
     print(f2.readlines())
 

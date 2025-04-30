@@ -71,7 +71,7 @@ class FarmMember(Farm):
 
     def Recruit(self, farmer_obj):
         # 重写
-        print(&#34;为农场申请了一个管理员 %s &#34; % farmer_obj.name)
+        print("为农场申请了一个管理员 %s " % farmer_obj.name)
         self.farmers.append(farmer_obj)
 
     def Info(self):
@@ -87,51 +87,51 @@ class Manager(FarmMember):
 
     def Info(self):
         #重写
-        print(&#39;&#39;&#39;
+        print('''
         --- 管理员 Info %s --- 
         名字 : %s 
         年龄 : %s 
         性别 : %s 
         地址 : %s 
-        &#39;&#39;&#39;%(self.name,self.name,self.age,self.sex,self.addr))
+        '''%(self.name,self.name,self.age,self.sex,self.addr))
 
     def Recruit(self,worker_obj):
         #重写
-        print(&#34;管理员招聘了一个名叫 %s 的员工 &#34; % worker_obj.name)
+        print("管理员招聘了一个名叫 %s 的员工 " % worker_obj.name)
         self.workers.append(worker_obj)
 
     def BuyAnimal(self,animal_obj):
         #重写
-        print(&#34;管理员购买了 %s 个 %s , 花费了 %s 元&#34;%(animal_obj.num, animal_obj.name ,(animal_obj.num * animal_obj.price)))
+        print("管理员购买了 %s 个 %s , 花费了 %s 元"%(animal_obj.num, animal_obj.name ,(animal_obj.num * animal_obj.price)))
 
     def SellAnimal(self,animal_obj):
         #重写
-        print(&#34;管理员出售了%s 个 %s, 卖了 %s 元&#34; % (animal_obj.num, animal_obj.name,(animal_obj.num * animal_obj.price)))
+        print("管理员出售了%s 个 %s, 卖了 %s 元" % (animal_obj.num, animal_obj.name,(animal_obj.num * animal_obj.price)))
 
     def Resign(self, worker_obj):
         #重写
-        print(&#34;管理员辞退了 %s &#34; % worker_obj.name)
+        print("管理员辞退了 %s " % worker_obj.name)
         self.workers.remove(worker_obj)
 
 class Home(object):
     def myHome(self):
-        print(&#34;我的家在 %s &#34; % self.addr)
+        print("我的家在 %s " % self.addr)
 
 class Worker(Manager, Home):
     def __init__(self,name,addr,age,sex,id):
-        # 广度查询 Manager --&gt; Home --&gt; Farm
+        # 广度查询 Manager --> Home --> Farm
         super(Worker,self).__init__(name, addr, age, sex)
         self.id = id
     def Info(self):
         # 重写
-        print(&#39;&#39;&#39;
+        print('''
         --- 工人信息 %s ---
         编号： %s
         名字： %s
         性别： %s
         年龄： %s
         家庭地址： %s
-        &#39;&#39;&#39; % (self.name,self.id,self.name,self.sex,self.age,self.addr))
+        ''' % (self.name,self.id,self.name,self.sex,self.age,self.addr))
 
 class Animals(Manager, FarmMember):
     def __init__(self,name,num,price):
@@ -142,28 +142,28 @@ class Animals(Manager, FarmMember):
 
     def Info(self):
         # 重写
-        print(&#39;&#39;&#39;
+        print('''
         --- 动物信息 %s 
         名字: %s 
         数量：%s
         单价：%s 
-        &#39;&#39;&#39; %(self.name,self.name,self.num,self.price))
+        ''' %(self.name,self.name,self.num,self.price))
 
 # 实例化农场
-fmmr = FarmMember(&#34;草原1号&#34;, &#34;山咔咔&#34;)
+fmmr = FarmMember("草原1号", "山咔咔")
 
 # 实例化管理员
-fr = Manager(&#34;张三&#34;, &#34;重庆&#34;, &#34;33&#34;, &#34;男&#34;)
+fr = Manager("张三", "重庆", "33", "男")
 fmmr.Recruit(fr)
 # 申请一个管理
 fr.Info()
 
 #实例化普通员工
-wr1 = Worker(&#34;李四&#34;,&#34;北京&#34;,&#34;21&#34;,&#34;男&#34;,1001)
+wr1 = Worker("李四","北京","21","男",1001)
 wr1.Info()
-wr2 = Worker(&#34;王五&#34;,&#34;上海&#34;,&#34;22&#34;,&#34;男&#34;,1002)
+wr2 = Worker("王五","上海","22","男",1002)
 wr2.Info()
-wr3 = Worker(&#34;赵六&#34;, &#34;广州&#34;, &#34;22&#34;, &#34;男&#34;, 1003)
+wr3 = Worker("赵六", "广州", "22", "男", 1003)
 wr3.Info()
 
 wr3.myHome()
@@ -174,14 +174,14 @@ fr.Recruit(wr2)
 fr.Recruit(wr3)
 
 # 实例化动物
-dw1 = Animals(&#34;小鸡&#34;,12,6.7)
-dw2 = Animals(&#34;小鸭&#34;,22,4.5)
+dw1 = Animals("小鸡",12,6.7)
+dw2 = Animals("小鸭",22,4.5)
 
 fr.BuyAnimal(dw1)
 fr.SellAnimal(dw2)
 fr.Resign(wr2)
 
-print(&#34;%s 管理员下的工人还有 &#34; % fr.name)
+print("%s 管理员下的工人还有 " % fr.name)
 for i in fr.workers:
     print(i.name)
 ```
@@ -201,7 +201,7 @@ for i in fr.workers:
 示例： 
 ```python
 class FarmMember(object):
-    addr = &#34;xxx.xxx&#34;
+    addr = "xxx.xxx"
 
     def __init__(self, title):
         self.title = title
@@ -210,69 +210,69 @@ class FarmMember(object):
 
     @classmethod
     def classGetAddr(cls, param):
-        print(&#34;动态方法: Farm 地址: %s 外部传递参数: %s&#34; % (cls.addr, param))
+        print("动态方法: Farm 地址: %s 外部传递参数: %s" % (cls.addr, param))
 
     @classmethod
     def classUpdateAddr(cls, param):
-        cls.addr = &#34;---.---&#34;
+        cls.addr = "---.---"
         cls.classGetAddr(param)
 
     @staticmethod
     def staticGetAddr(param):
-        print(&#34;静态方法: Farm 地址: %s 外部传递参数: %s &#34; % ( FarmMember.addr, param))
+        print("静态方法: Farm 地址: %s 外部传递参数: %s " % ( FarmMember.addr, param))
 
     @property
     def farmID(self):
-        &#34;&#34;&#34;getFarmID(self)&#34;&#34;&#34;
-        print(&#39;@property: addr = %s ,farmID = %s&#39; % (self.addr,self.__ID))
+        """getFarmID(self)"""
+        print('@property: addr = %s ,farmID = %s' % (self.addr,self.__ID))
 
     @farmID.setter
     def farmID(self,value):
-        &#34;&#34;&#34;setFarmID(self,value)&#34;&#34;&#34;
-        print(&#34;@farmID.setter : addr = %s, farmID = %s&#34; % (self.addr, value))
+        """setFarmID(self,value)"""
+        print("@farmID.setter : addr = %s, farmID = %s" % (self.addr, value))
         self.__ID = value
 
     @farmID.deleter
     def farmID(self):
-        print(&#34;@farmID.deleter : addr = %s, farmID = %s&#34; % (self.addr,self.__ID))
+        print("@farmID.deleter : addr = %s, farmID = %s" % (self.addr,self.__ID))
         del self.__ID
 
     def __getSystemID(self):
-        print(&#34;getSystemID: self.__systemID = %s&#34; % self.__systemID)
+        print("getSystemID: self.__systemID = %s" % self.__systemID)
 
     def __setSystemID(self, value):
-        &#34;&#34;&#34; 必须传递两个参数&#34;&#34;&#34;
-        print(&#34;setSystemID: self.__systemID = %s, value = %s&#34; %(self.__systemID,value))
+        """ 必须传递两个参数"""
+        print("setSystemID: self.__systemID = %s, value = %s" %(self.__systemID,value))
         self.__systemID = value
 
     def __delSystemID(self):
-        print(&#34;delSystemID: self.__systemID = %s&#34;%self.__systemID)
+        print("delSystemID: self.__systemID = %s"%self.__systemID)
         del self.__systemID
 
-    systemId = property(__getSystemID, __setSystemID, __delSystemID,&#34;systemID descript&#34;)
+    systemId = property(__getSystemID, __setSystemID, __delSystemID,"systemID descript")
 
 
-fr = FarmMember(&#34;fr title&#34;)
-fr.classGetAddr(&#34;实例对象访问&#34;)
-FarmMember.classGetAddr(&#34;类对象访问&#34;)
-print(&#34;---------&#34;)
+fr = FarmMember("fr title")
+fr.classGetAddr("实例对象访问")
+FarmMember.classGetAddr("类对象访问")
+print("---------")
 
-fr.staticGetAddr(&#34;实例对象访问&#34;)
-FarmMember.staticGetAddr(&#34;类对象访问&#34;)
-print(&#34;---------&#34;)
+fr.staticGetAddr("实例对象访问")
+FarmMember.staticGetAddr("类对象访问")
+print("---------")
 
-fr.classUpdateAddr(&#34;类对象修改类变量&#34;)
-print(&#34;---------&#34;)
+fr.classUpdateAddr("类对象修改类变量")
+print("---------")
 # 自动执行@property修饰的farmID方法,并返回函数结果
 fr.farmID
 # 自动执行 @farmID.setter修饰的farmID方法,并将1001赋值给方法的参数
-fr.farmID = &#34;1001&#34;
+fr.farmID = "1001"
 # 自动执行@farmID.deleter修饰的farmID方法
 del fr.farmID
 
-print(&#34;---------&#34;)
+print("---------")
 fr.systemId
-fr.systemId = &#34;900001&#34;
+fr.systemId = "900001"
 del fr.systemId
 print(FarmMember.systemId.__doc__)
 ```
@@ -296,21 +296,21 @@ class Judge(object):
         self.y = y
 
     def add(self):
-        print(&#34;x &#43; y = %s&#34; % (self.x &#43; self.y))
+        print("x + y = %s" % (self.x + self.y))
 
     def sub(self):
-        print(&#34;x - y = %s&#34; % (self.x - self.y))
+        print("x - y = %s" % (self.x - self.y))
 
 
 def multiply(self):
-    print(&#34;x * y = %s&#34; % (self.x * self.y))
+    print("x * y = %s" % (self.x * self.y))
 
 m = Judge(100, 200)
 
-cho = input(&#34;&gt;: &#34;).strip()
+cho = input(">: ").strip()
 
 if hasattr(m, cho):
-    if cho == &#34;sub&#34;:
+    if cho == "sub":
         # 这个方法实际上是用于删除属性变量的，如果要删除函数，必须使用类对象，而不是类实例对象
         delattr(Judge, cho)
         # delattr(m, cho) # AttributeError
@@ -318,21 +318,21 @@ if hasattr(m, cho):
         func = getattr(m, cho)       # 函数及变量，因此如果此处输入的cho为类变量，则将直接返回变量值
         func()
 else:
-    if cho == &#34;mul&#34;:
+    if cho == "mul":
         setattr(m, cho, multiply)
         # m.mul(m)     # 这个被调用的方法是cho的值,可以使用下面的方法进行调用
         func = getattr(m, cho)
         func(m)
     else:
-        print(&#34;input error &#34;)
+        print("input error ")
 
 print(hasattr(m, cho))
 
 ```
 
 # 8. 异常处理 
-&lt;details&gt;
-&lt;summary&gt; 常见异常 &lt;/summary&gt;
+<details>
+<summary> 常见异常 </summary>
 
 |异常名称| 描述|
 |-|-|
@@ -383,31 +383,31 @@ print(hasattr(m, cho))
 |`SyntaxWarning`| 可疑的语法的警告|
 |`UserWarning`| 用户代码生成的警告|
 
-&lt;/details&gt;
+</details>
 
 示例 1 :  
 ```python
 try:
     print(1/0)
 except ZeroDivisionError as e:
-    print(&#34;不能除以0&#34;,e)
+    print("不能除以0",e)
 except Exception as e :
     print(e)
 else:
-    print(&#34;当没有错误的时候执行这个位置。。。&#34;)
+    print("当没有错误的时候执行这个位置。。。")
 finally:
-    print(&#34;finally....&#34;)
+    print("finally....")
 ```
 
 示例 2 :  
 ```python
 class customException(Exception):
-    &#39;&#39;&#39;自定义异常&#39;&#39;&#39;
+    '''自定义异常'''
     def __init__(self,msg):
         self.message = msg 
 
 try:
-    raise customException(&#34;这是一个手动抛出的异常&#34;)
+    raise customException("这是一个手动抛出的异常")
 except customException as e:
     print(e)
 ```
@@ -425,17 +425,17 @@ if not condition:
 
 示例 : 
 ```python
-&gt;&gt;&gt; assert True 
+>>> assert True 
 
-&gt;&gt;&gt; assert False,&#34;Error info&#34;
+>>> assert False,"Error info"
 Traceback (most recent call last):
-  File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
+  File "<stdin>", line 1, in <module>
 AssertionError: Error info 
 
-&gt;&gt;&gt; assert 1&#43;1 == 3,&#34;1 &#43; 1 不等于 3 &#34;
+>>> assert 1+1 == 3,"1 + 1 不等于 3 "
 Traceback (most recent call last):
-  File &#34;&lt;stdin&gt;&#34;, line 1, in &lt;module&gt;
-AssertionError: 1 &#43; 1 不等于 3 
+  File "<stdin>", line 1, in <module>
+AssertionError: 1 + 1 不等于 3 
  
 ```
 

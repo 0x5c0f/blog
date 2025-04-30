@@ -2,13 +2,13 @@
 
 
 参考文献 :  
-&gt;  [https://wiki.jenkins.io/display/JENKINS/Jenkins&#43;behind&#43;an&#43;NGinX&#43;reverse&#43;proxy](https://wiki.jenkins.io/display/JENKINS/Jenkins&#43;behind&#43;an&#43;NGinX&#43;reverse&#43;proxy)  
+>  [https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy](https://wiki.jenkins.io/display/JENKINS/Jenkins+behind+an+NGinX+reverse+proxy)  
 
 
 以下为个人解决方案 :  
 `jenkins` 配置:  
-- 添加启动参数 `--prefix=/jenkins`，`docker`启动添加环境变量`JENKINS_OPTS=&#34;--prefix=/jenkins&#34;`    
-- 前端修改(`Jenkins` &gt; `Manage Jenkins` &gt; `Jenkins Location` &gt; `Jenkins URL`) 或者修改配置文件`/var/jenkins_home/jenkins.model.JenkinsLocationConfiguration.xml`中的`jenkinsUrl`，修改为`http(s)://www.example.com/jenkins/`,配置文件修改后需重启。  
+- 添加启动参数 `--prefix=/jenkins`，`docker`启动添加环境变量`JENKINS_OPTS="--prefix=/jenkins"`    
+- 前端修改(`Jenkins` > `Manage Jenkins` > `Jenkins Location` > `Jenkins URL`) 或者修改配置文件`/var/jenkins_home/jenkins.model.JenkinsLocationConfiguration.xml`中的`jenkinsUrl`，修改为`http(s)://www.example.com/jenkins/`,配置文件修改后需重启。  
 
 `nginx`配置:  
 ```bash

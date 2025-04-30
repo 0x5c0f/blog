@@ -1,7 +1,7 @@
 # 禁止windows服务
 
 
-{{&lt; highlight batch &gt;}}
+{{< highlight batch >}}
 @echo off
 color 0A
 title  ############ 禁用并停止系统服务 ###############
@@ -102,24 +102,24 @@ sc config SNMP= disabled
 
 echo 禁用coldfusion9相关服务
 echo 正在禁用ColdFusion 9 .NET Service服务
-net stop &#34;ColdFusion 9 .NET Service&#34;
-sc config &#34;ColdFusion 9 .NET Service&#34; start= disabled
+net stop "ColdFusion 9 .NET Service"
+sc config "ColdFusion 9 .NET Service" start= disabled
 
 echo 正在禁用ColdFusion 9 ODBC Agent服务
-net stop &#34;ColdFusion 9 ODBC Agent&#34;
-sc config &#34;ColdFusion 9 ODBC Agent&#34; start= disabled
+net stop "ColdFusion 9 ODBC Agent"
+sc config "ColdFusion 9 ODBC Agent" start= disabled
 
-echo 正在禁用&#34;ColdFusion 9 ODBC Server&#34;服务
-net stop &#34;ColdFusion 9 ODBC Server&#34;
-sc config &#34;ColdFusion 9 ODBC Server&#34; start= disabled
+echo 正在禁用"ColdFusion 9 ODBC Server"服务
+net stop "ColdFusion 9 ODBC Server"
+sc config "ColdFusion 9 ODBC Server" start= disabled
 
 echo 正在禁用ColdFusion 9 Solr Service服务
 net stop CF9solr
 sc config CF9solr start= disabled
 
 echo 正在禁用ColdFusion 9 Search Server服务
-net stop &#34;ColdFusion 9 Search Server&#34;
-sc config &#34;ColdFusion 9 Search Server&#34; start= disabled
+net stop "ColdFusion 9 Search Server"
+sc config "ColdFusion 9 Search Server" start= disabled
 
 echo 禁用sql2008相关服务
 echo 正在禁用SQL Server Integration Services 10.0服务
@@ -138,7 +138,7 @@ echo 正在禁用SQL Server VSS Writer服务
 net stop SQLWriter
 sc config SQLWriter start= disabled
 
-{{&lt; /highlight &gt;}}
+{{< /highlight >}}
 
 ---
 

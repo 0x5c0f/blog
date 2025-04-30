@@ -6,12 +6,12 @@
 ```ini
 set $is_matched 0;
 
-if ($http_user_agent ~* &#34;wget&#34;) {
-  set $is_matched &#34;${is_matched}1&#34;;
+if ($http_user_agent ~* "wget") {
+  set $is_matched "${is_matched}1";
 }
 
-if ($remote_addr ~ &#34;127.0.0.1|172.16.11.10&#34;) {
-  set $is_matched &#34;${is_matched}01&#34;;
+if ($remote_addr ~ "127.0.0.1|172.16.11.10") {
+  set $is_matched "${is_matched}01";
 }
 
 # 满足条件: 
@@ -24,7 +24,7 @@ http_user_agent == wget or remote_addr = ip
 http_user_agent == wget and remote_addr = ip 
 # is_matched 值为  0101 
 
-if ($is_matched = &#34;01&#34;){
+if ($is_matched = "01"){
   return 403;
 }
 
@@ -35,27 +35,27 @@ if ($is_matched = &#34;01&#34;){
 ```ini
 # http 
 map $http_x_forwarded_for $client_real_ip {
-	&#34;&#34; $remote_addr;
+	"" $remote_addr;
 	# fix: 兼容ipv6
-	~^(?P&lt;firstAddr&gt;[0-9a-fA-F:.]&#43;),?.*$ $firstAddr;
+	~^(?P<firstAddr>[0-9a-fA-F:.]+),?.*$ $firstAddr;
 }
 
 set $is_allow 0;
 # location,server
-if ( $client_real_ip ~* &#39;^(223)\.(193)\.(97)\.(.*)$&#39; ) {
+if ( $client_real_ip ~* '^(223)\.(193)\.(97)\.(.*)$' ) {
 	set $is_allow 1;
 }
 
-if ($client_real_ip ~ &#39;172.31.11.111|127.0.0.1&#39;){
+if ($client_real_ip ~ '172.31.11.111|127.0.0.1'){
 	set $is_allow 1; 
 }
 
-if ( $client_real_ip ~* &#34;172\.31\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)&#34; ) {
+if ( $client_real_ip ~* "172\.31\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)" ) {
 	set $is_allow 1; 
 }
 
 # and 实现
-if ( $is_allow = &#34;1&#34; ){
+if ( $is_allow = "1" ){
 	return 200;
 }
 
@@ -82,8 +82,8 @@ location /frps/ {
 		index index.php index.html index.htm;
 	}
 
-	location ~ /owa/.&#43;.php.*$ {
-		if ($fastcgi_script_name ~ /owa/(.&#43;.php.*)$) {
+	location ~ /owa/.+.php.*$ {
+		if ($fastcgi_script_name ~ /owa/(.+.php.*)$) {
 			set $valid_fastcgi_script_name $1;
 		}
 		fastcgi_pass   127.0.0.1:9000;
@@ -106,7 +106,7 @@ location /frps/ {
 # 这段配置的作用是 匹配任意域名，子域名(subdomain)、主域名(maindomain)、顶级域名(tld) , 子域名可有可无 
 # 然后根据匹配值 将root路径设置为 匹配到的值($host)
 	## server
-	server_name ~^(?:(?&lt;subdomain&gt;.&#43;)\.)?(?&lt;maindomain&gt;[^\.]&#43;)\.(?&lt;tld&gt;.&#43;)$;
+	server_name ~^(?:(?<subdomain>.+)\.)?(?<maindomain>[^\.]+)\.(?<tld>.+)$;
 
     set $root_path /data/wwwroot/$host;
 

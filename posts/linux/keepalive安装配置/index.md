@@ -48,7 +48,7 @@ vrrp_instance VI_1 {                # 定义实例信息，同主备节点实例
 nginx 存活检测(示例，实际可能需要更为详细的检测脚本) ，完成后需要修正`keepalive.service`在`nginx.service`后启动
 ```bash
 #!/bin/bash
-systemctl is-active nginx.service &gt;&amp; /dev/null || {
+systemctl is-active nginx.service >& /dev/null || {
     systemctl stop keepalived.service
 }
 ```
@@ -56,7 +56,7 @@ systemctl is-active nginx.service &gt;&amp; /dev/null || {
 ### 修改配置 /etc/keepalived/keepalived.conf 
 ```ini
 vrrp_script check_web {                         # 函数名(需放到实例与全局之间)
-    script &#34;/opt/sh/check_nginx_status.sh&#34;      # 监控脚本(需有执行权限)          
+    script "/opt/sh/check_nginx_status.sh"      # 监控脚本(需有执行权限)          
     interval  2                                 # 检查时间间隔(s)
     # weight  2                                   # 用于与执行结果判断而调整优先级的
 }

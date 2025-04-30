@@ -1,11 +1,11 @@
 # Haproxy部署与常用操作
 
 
-{{&lt; admonition type=quote title=&#34;本文参考以下内容, 由本站重新整理验证发布&#34; open=true &gt;}}
-&gt; [https://zhang.ge/5125.html](https://zhang.ge/5125.html)  
+{{< admonition type=quote title="本文参考以下内容, 由本站重新整理验证发布" open=true >}}
+> [https://zhang.ge/5125.html](https://zhang.ge/5125.html)  
 
-&gt; [https://www.kancloud.cn/tuna_dai_/day01/369367](https://www.kancloud.cn/tuna_dai_/day01/369367 )
-{{&lt; /admonition &gt;}}  
+> [https://www.kancloud.cn/tuna_dai_/day01/369367](https://www.kancloud.cn/tuna_dai_/day01/369367 )
+{{< /admonition >}}  
 
 # 1. 简介 
 - HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。  
@@ -31,7 +31,7 @@
 ## 3.1. 规划目录
 ```bash
 # haproxy chroot,需要设置所有用户均不具有写权限
-[root@00 haproxy-1.8.19]# mkdir /opt/haproxy/chroot &amp;&amp; chmod 440 /opt/haproxy/chroot 
+[root@00 haproxy-1.8.19]# mkdir /opt/haproxy/chroot && chmod 440 /opt/haproxy/chroot 
 # 主配置文件目录
 [root@00 haproxy-1.8.19]# mkdir /opt/haproxy/etc
 # 子配置文件目录，规划enabled 目录为 ready目录内正式启用的软连接文件
@@ -41,7 +41,7 @@
 /opt/haproxy/etc/
 ├── enabled
 │   ├── http
-│   │   └── example.cfg -&gt; ../../ready/http/example.cfg
+│   │   └── example.cfg -> ../../ready/http/example.cfg
 │   └── tcp
 ├── haproxy.cfg
 └── ready
@@ -195,7 +195,7 @@ frontend main
 　　use_backend imgserver if img   #如果上面定义的img规则被触发，即访问img.abc.com，就将请求分发到imgserver这个作用域。
 　　default_backend dynamic #不满足则响应backend的默认页面
 
-###### &gt;&gt; ################################# ACL ################################# &lt;&lt; ######
+###### >> ################################# ACL ################################# << ######
 ########ACL策略定义#########################
 #如果请求的域名满足正则表达式返回true -i是忽略大小写
 acl denali_policy hdr_reg(host) -i ^(www.inbank.com|image.inbank.com)$
@@ -222,7 +222,7 @@ reqisetbe ^[^\ ]*\ /(img|css)/ dynamic
 reqisetbe ^[^\ ]*\ /admin/stats stats
 #以上都不满足的时候使用默认mms_server的backend
 default_backend mms
-###### &gt;&gt; ################################# ACL ################################# &lt;&lt; ######
+###### >> ################################# ACL ################################# << ######
 
 
 ########backend后端配置##############
@@ -284,14 +284,14 @@ PID_FILE=$BASE_DIR/haproxy.pid
 DEFAULT_CONF=$BASE_DIR/etc/haproxy.cfg
 
 # COLOR print
-COLOR_RED=$(echo -e &#34;\e[31;49m&#34;)
-COLOR_GREEN=$(echo -e &#34;\e[32;49m&#34;)
-COLOR_RESET=$(echo -e &#34;\e[0m&#34;)
-info() { echo &#34;${COLOR_GREEN}$*${COLOR_RESET}&#34;; }
-warn() { echo &#34;${COLOR_RED}$*${COLOR_RESET}&#34;; }
+COLOR_RED=$(echo -e "\e[31;49m")
+COLOR_GREEN=$(echo -e "\e[32;49m")
+COLOR_RESET=$(echo -e "\e[0m")
+info() { echo "${COLOR_GREEN}$*${COLOR_RESET}"; }
+warn() { echo "${COLOR_RED}$*${COLOR_RESET}"; }
 
 print_usage() {
-    info &#34; Usage: $(basename $0) [start|stop|restart|status|test]&#34;
+    info " Usage: $(basename $0) [start|stop|restart|status|test]"
 }
 
 #get Expanding configuration
@@ -299,7 +299,7 @@ ext_configs() {
     CONFIGS=
     if [[ -d $BASE_DIR/etc/enabled ]]; then
         for FILE in $(find $BASE_DIR/etc/enabled -type l | sort -n); do
-            CONFIGS=&#34;$CONFIGS -f $FILE&#34;
+            CONFIGS="$CONFIGS -f $FILE"
         done
         echo $CONFIGS
     else
@@ -309,7 +309,7 @@ ext_configs() {
 # check process status
 check_process() {
     PID=$(get_pid)
-    if ps aux | awk &#39;{print $2}&#39; | grep -qw $PID 2&gt;/dev/null; then
+    if ps aux | awk '{print $2}' | grep -qw $PID 2>/dev/null; then
         true
     else
         false
@@ -318,49 +318,49 @@ check_process() {
 }
 # check Configuration file
 check_conf() {
-    $EXEC -c -f $DEFAULT_CONF $(ext_configs) &gt;/dev/null 2&gt;&amp;1
+    $EXEC -c -f $DEFAULT_CONF $(ext_configs) >/dev/null 2>&1
     return $?
 }
 get_pid() {
     if [[ -f $PID_FILE ]]; then
         cat $PID_FILE
     else
-        warn &#34; $PID_FILE not found!&#34;
+        warn " $PID_FILE not found!"
         exit 1
     fi
 }
 start() {
     if check_process; then
-        warn &#34; ${PROCESS_NAME} is already running!&#34;
+        warn " ${PROCESS_NAME} is already running!"
     else
-        $EXEC -f $DEFAULT_CONF $(ext_configs) &amp;&amp;
-            echo -e &#34; ${PROCESS_NAME} start                        [ $(info OK) ]&#34; ||
-            echo -e &#34; ${PROCESS_NAME} start                        [ $(warn Failed) ]&#34;
+        $EXEC -f $DEFAULT_CONF $(ext_configs) &&
+            echo -e " ${PROCESS_NAME} start                        [ $(info OK) ]" ||
+            echo -e " ${PROCESS_NAME} start                        [ $(warn Failed) ]"
     fi
 }
 
 stop() {
     if check_process; then
         PID=$(get_pid)
-        kill -9 $PID &gt;/dev/null 2&gt;&amp;1
-        echo -e &#34; ${PROCESS_NAME} stop                         [ $(info OK) ]&#34;
+        kill -9 $PID >/dev/null 2>&1
+        echo -e " ${PROCESS_NAME} stop                         [ $(info OK) ]"
     else
-        warn &#34; ${PROCESS_NAME} is not running!&#34;
+        warn " ${PROCESS_NAME} is not running!"
     fi
 }
 
 restart() {
     if ! check_process ; then
-        warn &#34; ${PROCESS_NAME} is not running! Starting Now...&#34;
+        warn " ${PROCESS_NAME} is not running! Starting Now..."
     fi
     if $(check_conf); then
         PID=$(get_pid)
-        $EXEC -f $DEFAULT_CONF $(ext_configs) -st $PID &amp;&amp;
-            echo -e &#34; ${PROCESS_NAME} restart                      [ $(info OK) ]&#34; ||
-            echo -e &#34; ${PROCESS_NAME} restart                      [ $(warn Failed) ]&#34;
+        $EXEC -f $DEFAULT_CONF $(ext_configs) -st $PID &&
+            echo -e " ${PROCESS_NAME} restart                      [ $(info OK) ]" ||
+            echo -e " ${PROCESS_NAME} restart                      [ $(warn Failed) ]"
     else
-        warn &#34; ${PROCESS_NAME} Configuration file is not valid, plz check!&#34;
-        echo -e &#34; ${PROCESS_NAME} restart                      [ $(warn Failed) ]&#34;
+        warn " ${PROCESS_NAME} Configuration file is not valid, plz check!"
+        echo -e " ${PROCESS_NAME} restart                      [ $(warn Failed) ]"
     fi
 }
 
@@ -369,27 +369,27 @@ if [[ $# != 1 ]]; then
     exit 1
 else
     case $1 in
-    &#34;start&#34; | &#34;START&#34;)
+    "start" | "START")
         start
         ;;
-    &#34;stop&#34; | &#34;STOP&#34;)
+    "stop" | "STOP")
         stop
         ;;
-    &#34;restart&#34; | &#34;RESTART&#34; | &#34;-r&#34;)
+    "restart" | "RESTART" | "-r")
         restart
         ;;
-    &#34;status&#34; | &#34;STATUS&#34;)
+    "status" | "STATUS")
         if check_process; then
-            info &#34;${PROCESS_NAME} is running OK!&#34;
+            info "${PROCESS_NAME} is running OK!"
         else
-            warn &#34; ${PROCESS_NAME} not running, plz check&#34;
+            warn " ${PROCESS_NAME} not running, plz check"
         fi
         ;;
-    &#34;test&#34; | &#34;TEST&#34; | &#34;-t&#34;)
+    "test" | "TEST" | "-t")
         if check_conf; then
-            info &#34; Configuration file test Successfully.&#34;
+            info " Configuration file test Successfully."
         else
-            warn &#34; Configuration file test failed.&#34;
+            warn " Configuration file test failed."
         fi
         ;;
     *)
@@ -410,9 +410,9 @@ fi
 1. 后端与haproxy socket 通信操作(需要socat支持)  
 ```bash
 #  节点启用维护模式
-#  echo &#34;disable server backend_www.example.com_1/node1&#34; |socat stdio /opt/haproxy/haproxy.sock
+#  echo "disable server backend_www.example.com_1/node1" |socat stdio /opt/haproxy/haproxy.sock
 #  节点关闭维护模式
-#  echo &#34;enable server backend_www.example.com_1/node1&#34; |socat stdio /opt/haproxy/haproxy.sock
+#  echo "enable server backend_www.example.com_1/node1" |socat stdio /opt/haproxy/haproxy.sock
 ```
 
 

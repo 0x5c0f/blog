@@ -8,7 +8,7 @@
 
 - `source script.sh` 或 `. script.sh`
   - 在此方法中执行,子 shell 中定义的变量,可在父 shell 中调用(其他方式父 shell 不能直接调用子 shell 的变量)
-- `bash(sh) &lt; script.sh` 或 `cat script.sh | bash(sh) `
+- `bash(sh) < script.sh` 或 `cat script.sh | bash(sh) `
 
 # 2. shell 脚本规范
 
@@ -30,8 +30,8 @@
 ## 4.1. 普通变量定义
 
 - `变量名=value`
-- `变量名=&#39;value&#39;`
-- `变量名=&#34;value&#34;`
+- `变量名='value'`
+- `变量名="value"`
 - `变量名=$(ls)`
 - `` 变量名=`ls`  ``
 
@@ -43,8 +43,8 @@
 
 - `a=123`
 - `b=123-$a` ## 当值没有单(双)引号的时候,变量的值为 123-变量 a 的值,若变量值出现空格，则值为第一个空格之前的数据
-- `c=&#39;123-$a&#39;` ## 当值存在单引号的时候,值为什么，打印结果则为什么，引号内内容视为一个整体
-- `d=&#34;123-$a&#34;` ## 当值为双引号的时候,若值中存在变量、命令(需要转义)等，会优先把变量、命令结果输出,在打印所有值
+- `c='123-$a'` ## 当值存在单引号的时候,值为什么，打印结果则为什么，引号内内容视为一个整体
+- `d="123-$a"` ## 当值为双引号的时候,若值中存在变量、命令(需要转义)等，会优先把变量、命令结果输出,在打印所有值
 
 # 5. 特殊、内置变量
 
@@ -52,10 +52,10 @@
 | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `$0`    | 获取当前执行脚本的名称,如果执行脚本带有路径,则包含脚本路径                                                                                                                                                                                                                                |
 | `$n`    | 获取当前执行脚本的第 n 个参数,n=1-9，n 为 0 时,表示脚本文件名,如果 n 大于 9,用大括号括起来${10},参数以空格隔开                                                                                                                                                                            |
-| `$*`    | 获取当前脚本所有传入的参数,将所有的参数视为单个字符串,相当于&#34;$1$2$3&#34;...                                                                                                                                                                                                                   |
+| `$*`    | 获取当前脚本所有传入的参数,将所有的参数视为单个字符串,相当于"$1$2$3"...                                                                                                                                                                                                                   |
 | `$#`    | 获取当前脚本传入参数的个数总数                                                                                                                                                                                                                                                            |
 | `$@`    | 获取当前脚本所有传入参数,将所有的参数分别传入至其他变量或脚本(获取脚本最后一个参数:`${@: -1}`                                                                                                                                                                                             | `eval echo \$$#`)
-| `$?`    | 确定上一个指令的返回值，0 成功, 非 0 不成功 &lt;br/&gt; `2`: 权限拒绝 ; &lt;br/&gt;`1-125`: 运行失败,参数传递错误 ; &lt;br/&gt;`126`: 找到该命令,但无法执行 ; &lt;br/&gt;`127`:未找到运行的命令 ; &lt;br/&gt;`128`: 命令被强行中断 ; &lt;br/&gt;脚本中一般用`exit 0` , 在执行脚本,返回值给$?, 函数中一般用return 返回值给`$?` |
+| `$?`    | 确定上一个指令的返回值，0 成功, 非 0 不成功 <br/> `2`: 权限拒绝 ; <br/>`1-125`: 运行失败,参数传递错误 ; <br/>`126`: 找到该命令,但无法执行 ; <br/>`127`:未找到运行的命令 ; <br/>`128`: 命令被强行中断 ; <br/>脚本中一般用`exit 0` , 在执行脚本,返回值给$?, 函数中一般用return 返回值给`$?` |
 | `$$`    | 当前脚本执行的进程号                                                                                                                                                                                                                                                                      |
 | `$!`    | 获得之前(上一个)进程 ID                                                                                                                                                                                                                                                                   |
 | `$_`    | 上一条命令的最后一个参数                                                                                                                                                                                                                                                                  |
@@ -65,7 +65,7 @@
 - `$*` 和 `$@` 的示例:
 
     ```bash
-    [root@00 ~]# set -- hello my  &#34;linux shell&#34;
+    [root@00 ~]# set -- hello my  "linux shell"
     [root@00 ~]# echo $#
     3
     [root@00 ~]# echo $1
@@ -74,11 +74,11 @@
     my
     [root@00 ~]# echo $3
     linux shell
-    [root@00 ~]# for i in &#34;$@&#34;; do echo $i;done
+    [root@00 ~]# for i in "$@"; do echo $i;done
     hello
     my
     linux shell
-    [root@00 ~]# for i in &#34;$*&#34;; do echo $i;done
+    [root@00 ~]# for i in "$*"; do echo $i;done
     hello my linux shell
     ```
 
@@ -105,53 +105,53 @@
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `${value:-word}`    | 如果变量`value`存在且非`null`，则返回变量的值,否则,返回`word`字符串. 例: `res=${value:-word}`,如果`value`未定义,则`res`的值为`word`                                                                           |
 | `${value:=word}`    | 如果变量`value`存在且非`null`，则返回变量的值,否则,则设置这个变量值为`word`. 例: `res=${value:=word}`,如果`value`未定义,则`res`的值为`word`,`value`值也为`word`                                               |
-| `${value:&#43;word}`    | 如果`value`存在且非`null`,则返回`word`,否则返回`null`.例`res=${value:&#43;word}`,如果`value`已经定义, 则`res`的值为`word`,如果`value`值未定义,则`res`值为`null(空)`                                               |
+| `${value:+word}`    | 如果`value`存在且非`null`,则返回`word`,否则返回`null`.例`res=${value:+word}`,如果`value`已经定义, 则`res`的值为`word`,如果`value`值未定义,则`res`值为`null(空)`                                               |
 | `${value:?message}` | 如果变量`value`存在且非`null`，则返回变量`value`的值，否则返回信息`bash: value: message`,例 `echo ${value:?is null}`,如果`value`值已定义，则返回`value`定义值,否者返回 `bash: value: is null`,退出状态码为`1` |
 
 # 8. 常见的运算符
 在Shell脚本中，`[]`和`[[]]`都用于条件测试，但它们之间存在一些重要的差异  
 - **兼容性**：`[]`是POSIX标准的测试语句，因此它在所有POSIX兼容的shell中都可以使用，包括bash、dash、ksh等。而`[[]]`是bash的扩展，只能在bash和一些兼容bash的shell中使用，如zsh。
-- **排序**：在`[[]]`中，你可以使用`&lt;`和`&gt;`来比较字符串的字典序。例如，`[[ &#34;abc&#34; &lt; &#34;def&#34; ]]`会返回真。而在`[]`中，这样的比较会导致语法错误。
-- **逻辑操作符**：在`[]`中，你需要使用`-a`和`-o`来表示逻辑与和逻辑或。例如，`[ &#34;$a&#34; -eq 1 -a &#34;$b&#34; -eq 2 ]`。而在`[[]]`中，你可以使用更直观的`&amp;&amp;`和`||`。例如，`[[ &#34;$a&#34; -eq 1 &amp;&amp; &#34;$b&#34; -eq 2 ]]`。
-- **字符串匹配**：在`[[]]`中，`==`右边的字符串会被视为模式，而在`[]`中，它只是一个普通的字符串。例如，`[[ &#34;$a&#34; == a* ]]`会检查`$a`是否以`a`开头，而`[ &#34;$a&#34; == a* ]`会检查`$a`是否等于字符串`a*`。
-- **正则匹配**：`[[]]`支持使用`=~`进行正则表达式匹配。例如，`[[ &#34;$a&#34; =~ ^a.* ]]`会检查`$a`是否以`a`开头。而`[]`不支持正则表达式。
-- **变量引用**：在`[]`中，如果一个变量未定义，那么它会被视为一个空字符串，除非你用双引号引起来。例如，如果`$a`未定义，那么`[ $a == &#34;&#34; ]`会导致语法错误，而`[ &#34;$a&#34; == &#34;&#34; ]`则不会。而在`[[]]`中，即使变量未定义，也不需要引号。
+- **排序**：在`[[]]`中，你可以使用`<`和`>`来比较字符串的字典序。例如，`[[ "abc" < "def" ]]`会返回真。而在`[]`中，这样的比较会导致语法错误。
+- **逻辑操作符**：在`[]`中，你需要使用`-a`和`-o`来表示逻辑与和逻辑或。例如，`[ "$a" -eq 1 -a "$b" -eq 2 ]`。而在`[[]]`中，你可以使用更直观的`&&`和`||`。例如，`[[ "$a" -eq 1 && "$b" -eq 2 ]]`。
+- **字符串匹配**：在`[[]]`中，`==`右边的字符串会被视为模式，而在`[]`中，它只是一个普通的字符串。例如，`[[ "$a" == a* ]]`会检查`$a`是否以`a`开头，而`[ "$a" == a* ]`会检查`$a`是否等于字符串`a*`。
+- **正则匹配**：`[[]]`支持使用`=~`进行正则表达式匹配。例如，`[[ "$a" =~ ^a.* ]]`会检查`$a`是否以`a`开头。而`[]`不支持正则表达式。
+- **变量引用**：在`[]`中，如果一个变量未定义，那么它会被视为一个空字符串，除非你用双引号引起来。例如，如果`$a`未定义，那么`[ $a == "" ]`会导致语法错误，而`[ "$a" == "" ]`则不会。而在`[[]]`中，即使变量未定义，也不需要引号。
 
 
 ## 8.1. 变量运算符
 
 |                                     运算符                                      | 说明                                                           |                                                               |
 | :-----------------------------------------------------------------------------: | :------------------------------------------------------------- | :------------------------------------------------------------ |
-|                                     `&#43;&#43; --`                                     | 自增与自减; 符号在前代表先运算在赋值，符号在后代表先赋值在运算 | -                                                             |
-|                                    `&#43; - ! ~`                                    | -                                                              | -                                                             |
+|                                     `++ --`                                     | 自增与自减; 符号在前代表先运算在赋值，符号在后代表先赋值在运算 | -                                                             |
+|                                    `+ - ! ~`                                    | -                                                              | -                                                             |
 |                                     `* / %`                                     | 乘、除、模                                                     | / 取整 ; % 取余                                               |
-|                                      `&#43; -`                                      | 加、减                                                         | -                                                             |
-|                                   `&lt; &lt;= &gt; &gt;=`                                   | 小于、小于等于、大于、大于等于                                 | -                                                             |
+|                                      `+ -`                                      | 加、减                                                         | -                                                             |
+|                                   `< <= > >=`                                   | 小于、小于等于、大于、大于等于                                 | -                                                             |
 |                                   `== != =~`                                    | 等于、不等于、正则匹配符                                       | `[[ $VAR =~ ^[a-zA-Z] ]]`,正则不可用引号括起来,变量可单双引号 |
-|                                     `&lt;&lt; &gt;&gt;`                                     | 位运算: 左移、右移                                             | 二进制计算                                                    |
-|                                      `&amp;&amp;`                                       | 逻辑的 `and`                                                   | `true &amp;&amp; false` ,结果 `false`                                 |
+|                                     `<< >>`                                     | 位运算: 左移、右移                                             | 二进制计算                                                    |
+|                                      `&&`                                       | 逻辑的 `and`                                                   | `true && false` ,结果 `false`                                 |
 | `          |                                                                | ` | 逻辑的 `or`                                                    | `true |     | false`,结果`true`                               |
-|                               `= &#43;= -= *= /= %=`                                | 赋值运算                                                       | `(a&#43;=b) == (a=a&#43;b)`; 其他同理                                 |
+|                               `= += -= *= /= %=`                                | 赋值运算                                                       | `(a+=b) == (a=a+b)`; 其他同理                                 |
 |                                      `**`                                       | 幕运算                                                         | `2**3=8`                                                      |
 
 ## 8.2. 算术运算符
 
-| 字符串比较运算符&lt;/br&gt;(建议在`(())`和`[[]]`中使用的) | 算术运算符&lt;/br&gt;(建议在`[]`以及`test`中使用的) | 说明                                                 |
+| 字符串比较运算符</br>(建议在`(())`和`[[]]`中使用的) | 算术运算符</br>(建议在`[]`以及`test`中使用的) | 说明                                                 |
 | :-------------------------------------------------: | :-------------------------------------------: | :--------------------------------------------------- |
 |                      `==`或`=`                      |                     `-eq`                     | 检测 2 个数是否相等，相等返回`true`                  |
 |                        `!=`                         |                     `-ne`                     | 检测 2 个数是否不相等，相等返回`true`                |
-|                         `&gt;`                         |                     `-gt`                     | 检测左边的数是否大于右边的，如果是，则返回`true`     |
-|                        `&gt;=`                         |                     `-ge`                     | 检测左边的数是否大于等于右边的，如果是，则返回`true` |
-|                         `&lt;`                         |                     `-lt`                     | 检测左边的数是否小于右边的，如果是，则返回`true`     |
-|                        `&lt;=`                         |                     `-le`                     | 检测左边的数是否小于等于右边的，如果是，则返回`true` |
+|                         `>`                         |                     `-gt`                     | 检测左边的数是否大于右边的，如果是，则返回`true`     |
+|                        `>=`                         |                     `-ge`                     | 检测左边的数是否大于等于右边的，如果是，则返回`true` |
+|                         `<`                         |                     `-lt`                     | 检测左边的数是否小于右边的，如果是，则返回`true`     |
+|                        `<=`                         |                     `-le`                     | 检测左边的数是否小于等于右边的，如果是，则返回`true` |
 
 ## 8.3. 逻辑运算符
 
-| 运算符&lt;/br&gt;(建议在`[[]]`中使用) | 运算符&lt;/br&gt;(建议在`[]`和`test`中使用) | 说明                                                                            |
+| 运算符</br>(建议在`[[]]`中使用) | 运算符</br>(建议在`[]`和`test`中使用) | 说明                                                                            |
 | :-----------------------------: | :-----------------------------------: | :------------------------------------------------------------------------------ |
 |               `!`               |                  `!`                  | 非运算，表达式为`true`，则返回`false`，否则返回`true`; 例: `[!false]`返回`true` |
 |            ``\|\|``             |                 `-o`                  | 或运算，有一个表达式为` true，则返回``true `                                    |
-|              `&amp;&amp;`               |                 `-a`                  | 与运算，2 个表达式都为` true，才返回``true `                                    |
+|              `&&`               |                 `-a`                  | 与运算，2 个表达式都为` true，才返回``true `                                    |
 
 ## 8.4. 条件判断符
 
@@ -171,7 +171,7 @@
 | `-r`             | 文件具有读权限，针对运行脚本的用户                                                       |
 | `-w`             | 文件具有写权限，针对运行脚本的用户                                                       |
 | `-x`             | 文件具有执行权限，针对运行脚本的用户                                                     |
-| `-u`             | set-user-id(suid)标志到文件，即普通用户可以使用的 root 权限文件，通过 chmod &#43;s file 实现 |
+| `-u`             | set-user-id(suid)标志到文件，即普通用户可以使用的 root 权限文件，通过 chmod +s file 实现 |
 | `-k`             | 设置粘贴位                                                                               |
 | `-O`             | 运行脚本的用户是文件的所有者                                                             |
 | `-G`             | 文件的 group-id 和运行脚本的用户相同                                                     |
@@ -188,33 +188,33 @@
 
 |  重定向操作符  | 功能                                                      |
 | :------------: | :-------------------------------------------------------- |
-|  `&lt; filename`  | 重定向输入                                                |
-|  `&gt; filename`  | 重定向输出                                                |
-| `&gt;&gt; filename`  | 追加输出                                                  |
-| `2&gt; filename`  | 重定向标准错误输出                                        |
-| `2&gt;&gt; filename` | 重定向和追加标准错误输出                                  |
-| `&amp;&gt; filename`  | 重定向标准输出和标准错误输出                              |
-| `&gt;&amp; filename`  | 重定向标准输出和标准错误输出(首选方式)                    |
-|     `2&gt;&amp;1`     | 将标准错误输出重定向到输出的去处                          |
-|     `1&gt;&amp;2`     | 将输出重定向到标准错误输出的去处                          |
-|      `&gt;`       | 重定向输出时忽略 noclobber                                |
-| `&lt;&gt; filename`  | 如果是一个设备文件(/dev),使用巍峨年作为标准输入和标准输出 |
+|  `< filename`  | 重定向输入                                                |
+|  `> filename`  | 重定向输出                                                |
+| `>> filename`  | 追加输出                                                  |
+| `2> filename`  | 重定向标准错误输出                                        |
+| `2>> filename` | 重定向和追加标准错误输出                                  |
+| `&> filename`  | 重定向标准输出和标准错误输出                              |
+| `>& filename`  | 重定向标准输出和标准错误输出(首选方式)                    |
+|     `2>&1`     | 将标准错误输出重定向到输出的去处                          |
+|     `1>&2`     | 将输出重定向到标准错误输出的去处                          |
+|      `>`       | 重定向输出时忽略 noclobber                                |
+| `<> filename`  | 如果是一个设备文件(/dev),使用巍峨年作为标准输入和标准输出 |
 
 # 9. 变量的数值运算
 
 - `(())`
-  - 代表直接进行运算:,如: `echo $((1&#43;1&#43;2))` 或 `((a=1&#43;1&#43;2)) ; echo $a`
+  - 代表直接进行运算:,如: `echo $((1+1+2))` 或 `((a=1+1+2)) ; echo $a`
 - `let`
-  - 将等式直接进行运算, 如: `i=1; i=i&#43;1 ; (echo $i) == i&#43;1`, 使用`let`将等式直接进行计算`i=1;let i=i&#43;1; (echo $i) == 2`
+  - 将等式直接进行运算, 如: `i=1; i=i+1 ; (echo $i) == i+1`, 使用`let`将等式直接进行计算`i=1;let i=i+1; (echo $i) == 2`
 - `expr`
-  - 只能用于整数的计算,可用于判断变量是否为整数(运算符号两边必须有空格,特殊符号需要需要转移), 如 `(expr 1 &#43; 1) == 2; (expr 1 &#43; 1.1) == (expr: non-integer argument)`
+  - 只能用于整数的计算,可用于判断变量是否为整数(运算符号两边必须有空格,特殊符号需要需要转移), 如 `(expr 1 + 1) == 2; (expr 1 + 1.1) == (expr: non-integer argument)`
   - 计算字符串长度`a=123456; expr length $a`
 - `bc`
-  - 可用于小数计算,进制之间的转换, 如: `(echo 1.1 &#43; 2| bc) == 3.1 `、`(echo &#34;obase=2;10&#34;|bc) == 1010 `
+  - 可用于小数计算,进制之间的转换, 如: `(echo 1.1 + 2| bc) == 3.1 `、`(echo "obase=2;10"|bc) == 1010 `
 - `$[]`
   - 这个和`(())` 类似
 - `typeset`
-  - 个人的理解就是定义多个 int 类型的变量,若定义变量值为非数字,则值将被赋予为 0(建议自行测试). 如: `a=0;typeset -i b=1 c=a;(echo $b $c) == (1 0)`、`a=&#34;bb&#34; ; b=&#34;123&#34;;typeset -i c=a d=b e=222; (echo $c $d $e) == (0 123 222)`
+  - 个人的理解就是定义多个 int 类型的变量,若定义变量值为非数字,则值将被赋予为 0(建议自行测试). 如: `a=0;typeset -i b=1 c=a;(echo $b $c) == (1 0)`、`a="bb" ; b="123";typeset -i c=a d=b e=222; (echo $c $d $e) == (0 123 222)`
 
 # 10. 变量读入
 
@@ -223,7 +223,7 @@
 - `-p` 设置提示信息; 
 - `-t` 设置输入等待时间(默认s),超过时间自动退出
     ```bash
-    [root@00 ~]#  read -p &#34;hello bash :&#34; num1 num2  # &#34; 和变量之间需要一个空格
+    [root@00 ~]#  read -p "hello bash :" num1 num2  # " 和变量之间需要一个空格
     hello bash : hello_1 hello_2
     [root@00 ~]#  echo $num1 $num2
     hello_1 hello_2
@@ -233,32 +233,32 @@
 
 ## 11.1. 方法
 
-1. `test &lt;表达式&gt;`,如: `test -f /etc/hosts`
-2. `[ &lt;表达式&gt; ]` ,如: `[ -f /etc/hosts ]`
-3. `[[ &lt;表达式&gt; ]]`,如: `[[ -f /etc/hosts ]]`、`[[ -d /etc &amp;&amp; -f /etc/hosts ]]`、`[[ -d /etc -a -f /etc/hosts ]]`、`[[ -d /etc || -f /etc/hosts ]]`、`[[ -d /etc -o -f /etc/hosts ]]`
+1. `test <表达式>`,如: `test -f /etc/hosts`
+2. `[ <表达式> ]` ,如: `[ -f /etc/hosts ]`
+3. `[[ <表达式> ]]`,如: `[[ -f /etc/hosts ]]`、`[[ -d /etc && -f /etc/hosts ]]`、`[[ -d /etc -a -f /etc/hosts ]]`、`[[ -d /etc || -f /etc/hosts ]]`、`[[ -d /etc -o -f /etc/hosts ]]`
 
 ## 11.2. 说明
 
 - 上述一和二是等等价的, 如: `test -f /etc/hosts == [ -f /etc/hosts ]`
-- `[[]]`与`[]`的区别是在`[[]]` 中可以使用通配符模式进行匹配(如`[[ hello == hell? ]] == true`:其匹配字符串或通配符时，可不需要引号,`[]`也可不需要引号,但据说有时候会出现故障,因此建议加上引号), `&amp;&amp;、||、&gt;、&lt;`等操作符也可以应用于`[[]]`中,但不能应用于`[]`中
+- `[[]]`与`[]`的区别是在`[[]]` 中可以使用通配符模式进行匹配(如`[[ hello == hell? ]] == true`:其匹配字符串或通配符时，可不需要引号,`[]`也可不需要引号,但据说有时候会出现故障,因此建议加上引号), `&&、||、>、<`等操作符也可以应用于`[[]]`中,但不能应用于`[]`中
 
 ## 11.3. 补充
 
 关于`()`、`(())`、`[]`、`[[]]`、`{}`几个的区别,接入一个很详细的文档,但是我表示没怎么看懂,先记录下来,以后慢慢看
 
-&gt; [https://blog.csdn.net/taiyang1987912/article/details/39551385](https://blog.csdn.net/taiyang1987912/article/details/39551385)
+> [https://blog.csdn.net/taiyang1987912/article/details/39551385](https://blog.csdn.net/taiyang1987912/article/details/39551385)
 
 # 12. 函数
 
 ## 12.1. 语法
 
 ```bash
-&lt;函数名&gt;(){
+<函数名>(){
     ...
     return n
 }
 
-function &lt;函数名&gt;(){
+function <函数名>(){
     ...
     return n
 }
@@ -279,7 +279,7 @@ function &lt;函数名&gt;(){
 
 ```bash
 case $VAR in
-    &#34;1&#34;|a) echo 1
+    "1"|a) echo 1
     ;;
     2|3) echo 2 or 3
     ;;
@@ -311,7 +311,7 @@ done
 
 ```bash
 # 示例1(文件最后一行内容需要换行符,否则将无法读取)
-exec &lt; file
+exec < file
 while read line; do
     echo $line
 done
@@ -324,7 +324,7 @@ done
 # 示例3,此方法根据评测据说效率最高 (文件最后一行内容需要换行符,否则将无法读取)
 while read line ; do
     ...
-done &lt; FILE
+done < FILE
 
 ```
 
@@ -334,10 +334,10 @@ select 可用于选择包含多个选项的菜单
 
 ```bash
 # set shuttle list
-PS3=&#34;请选择要操作的编号 : &#34;
+PS3="请选择要操作的编号 : "
 
 select shuttle in columbia endeavour challenger discovery atlantis enterprise pathfinder; do
-    echo &#34;$REPLY. $shuttle selected&#34;
+    echo "$REPLY. $shuttle selected"
 done
 ```
 
@@ -345,11 +345,11 @@ done
 
 ```bash
     # foreach
-    for i in &lt;...&gt; ; do
+    for i in <...> ; do
         ...
     done
     # for
-    for ((&lt;..&gt;;&lt;..&gt;; &lt;..&gt; )); do
+    for ((<..>;<..>; <..> )); do
         ...
     done
 ```
@@ -361,11 +361,11 @@ for i in {1..100}; do
     echo $i
 done
 
-for (( i = 0; i &lt; 100; i &#43;&#43; )); do
+for (( i = 0; i < 100; i ++ )); do
     echo $i
 done
 
-# echo {1..100}&#43; |sed &#39;s#\&#43;$##g&#39;|bc
+# echo {1..100}+ |sed 's#\+$##g'|bc
 
 ```
 
@@ -398,29 +398,29 @@ done
     #!/bin/bash
     for i in {1..20} ; do
         if [ $i -gt 10 ]; then
-            set -x              # &lt;&lt;====== 分段调试开始
-            echo &#34;i&gt;20: $i&#34;
-            set &#43;x              # &lt;&lt;====== 分段调试结束
+            set -x              # <<====== 分段调试开始
+            echo "i>20: $i"
+            set +x              # <<====== 分段调试结束
         else
-            echo &#34;i&lt;=10: $i&#34;
+            echo "i<=10: $i"
         fi
     done
     ```
 
 - 终端内
     ```bash
-    [root@00 ~]# set -x             # &lt;&lt;==== 调试启动
+    [root@00 ~]# set -x             # <<==== 调试启动
     [root@00 ~]# for i in 1 2 3 ; do echo $i ; done
-    &#43; for i in 1 2 3
-    &#43; echo 1
+    + for i in 1 2 3
+    + echo 1
     1
-    &#43; for i in 1 2 3
-    &#43; echo 2
+    + for i in 1 2 3
+    + echo 2
     2
-    &#43; for i in 1 2 3
-    &#43; echo 3
+    + for i in 1 2 3
+    + echo 3
     3
-    [root@00 ~]# set &#43;x             # &lt;&lt;==== 调试结束
+    [root@00 ~]# set +x             # <<==== 调试结束
     ```
 
 # 17. linux 信号
@@ -430,13 +430,13 @@ done
 | 信号 | -                 | 说明(`stty -a`查看键盘按键对应的信号)                                                  |
 | ---- | ----------------- | -------------------------------------------------------------------------------------- |
 | `1`  | `HUP`\|`SIGHUP`   | 挂起,通常因终端雕像或用户退出引发                                                      |
-| `2`  | `INT`\|`SIGINT`   | 中断,通常是按下`Ctrl&#43;C`引发                                                            |
-| `3`  | `QUIT`\|`SIGQUIT` | 退出,通常是按下`Ctrl&#43;/`引发                                                            |
+| `2`  | `INT`\|`SIGINT`   | 中断,通常是按下`Ctrl+C`引发                                                            |
+| `3`  | `QUIT`\|`SIGQUIT` | 退出,通常是按下`Ctrl+/`引发                                                            |
 | `6`  | `ABRT`\|`SIGABRT` | 终止,通常因为严重的执行错误而引发                                                      |
 | `9`  | `SIGKILL`         | 立即终止进程                                                                           |
 | `14` | `ALRM`\|`SIGALRM` | 报警,通常用来处理超时                                                                  |
 | `15` | `TERM`\|`SIGTERM` | 终止,通常在系统挂机时发送                                                              |
-| `20` | `TSTP`\|`SIGSTP`  | 停止进程的运行,但该型号可以被处理和忽略,用户键入`SUSP`字符(通常是`Ctrl&#43;z`)发出这个信号 |
+| `20` | `TSTP`\|`SIGSTP`  | 停止进程的运行,但该型号可以被处理和忽略,用户键入`SUSP`字符(通常是`Ctrl+z`)发出这个信号 |
 
 ## 17.2. trap 命令
 
@@ -448,23 +448,23 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
 
 示例:
 
-- `trap &#34;&#34; signals` 为空表示这个信号失效
-- `trap &#34;commands&#34; signals ` 表示收到`signals`信号时,信号功能副为同时执行`commands`命令
+- `trap "" signals` 为空表示这个信号失效
+- `trap "commands" signals ` 表示收到`signals`信号时,信号功能副为同时执行`commands`命令
 - `trap signals` 信号复原,取消已经设置的信号
     ```bash
     # 临时生效,终端退出失效
-    [root@00 ~]# trap &#34;&#34; 2  # 设置信号
+    [root@00 ~]# trap "" 2  # 设置信号
     [root@00 ~]# trap -p    # 打印设置信号
-    trap -- &#39;&#39; SIGINT
-    [root@00 ~]#            # &lt;&lt; 此时按Ctrl&#43;c  无任何反映
+    trap -- '' SIGINT
+    [root@00 ~]#            # << 此时按Ctrl+c  无任何反映
     [root@00 ~]# trap 2     # 信号复原
-    [root@00 ~]# ^C         # 复员后 Ctrl&#43;c
-    [root@00 ~]# ^C         # 复员后 Ctrl&#43;c
+    [root@00 ~]# ^C         # 复员后 Ctrl+c
+    [root@00 ~]# ^C         # 复员后 Ctrl+c
     ```
 
 # 18. Advanced Bash-Scripting Guide(Contributed Scripts)
 
-&gt; [http://tldp.org/LDP/abs/html/contributed-scripts.html](http://tldp.org/LDP/abs/html/contributed-scripts.html)
+> [http://tldp.org/LDP/abs/html/contributed-scripts.html](http://tldp.org/LDP/abs/html/contributed-scripts.html)
 
 # 19. getops
 - `example1`
@@ -474,20 +474,20 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
     # 长短选项兼容
 
     # ./scripts.sh -h
-    # ./scripts.sh -s &lt;values&gt;
-    # ./scripts.sh --src_dir &lt;values&gt;
-    # ./scripts.sh -k &lt;values&gt; 
-    # ./scripts.sh --key_prefix &lt;values&gt;
-    # ./scripts.sh -b &lt;values&gt;
-    # ./scripts.sh --bucket &lt;values&gt;
-    # ./scripts.sh -f &lt;values&gt;
-    # ./scripts.sh --file_type &lt;values&gt;
-    # ./scripts.sh --skip_fixed_strings &lt;values&gt;
-    # ./scripts.sh --skip_file_prefixes &lt;values&gt;
-    # ./scripts.sh --skip_path_prefixes &lt;values&gt;
+    # ./scripts.sh -s <values>
+    # ./scripts.sh --src_dir <values>
+    # ./scripts.sh -k <values> 
+    # ./scripts.sh --key_prefix <values>
+    # ./scripts.sh -b <values>
+    # ./scripts.sh --bucket <values>
+    # ./scripts.sh -f <values>
+    # ./scripts.sh --file_type <values>
+    # ./scripts.sh --skip_fixed_strings <values>
+    # ./scripts.sh --skip_file_prefixes <values>
+    # ./scripts.sh --skip_path_prefixes <values>
     # ...
 
-    while getopts &#34;hs:k:b:f:-:&#34; opt; do
+    while getopts "hs:k:b:f:-:" opt; do
     case $opt in
         s) SRC_DIR=$OPTARG;;
         k) KEY_PREFIX=$OPTARG;;
@@ -511,10 +511,10 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
             log_level) LOG_LEVEL=$2; shift;;
             log_file) LOG_FILE=$2; shift;;
             delete_on_success) DELETE_ON_SUCCESS=$2; shift;;
-            *) echo &#34;Invalid option: --$OPTARG&#34;; exit 1;;
+            *) echo "Invalid option: --$OPTARG"; exit 1;;
         esac;;
-        :) echo &#34;Option -$OPTARG requires an argument.&#34;; exit 1;;
-        \?) echo &#34;Invalid option: -$OPTARG&#34;; exit 1;;
+        :) echo "Option -$OPTARG requires an argument."; exit 1;;
+        \?) echo "Invalid option: -$OPTARG"; exit 1;;
     esac
     done
     ```
@@ -523,13 +523,13 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
     # scripts.sh -h
     # scripts.sh -a action
     # scripts.sh -a action -n step1 -n step2
-    # scripts.sh -a action -e &#34;var1=value1,var2=value2&#34;
+    # scripts.sh -a action -e "var1=value1,var2=value2"
 
-    declare -- ACTIONS=&#34;&#34;
-    declare -- STEPS=&#34;&#34;
-    declare -- ENV_VARS=&#34;&#34;
+    declare -- ACTIONS=""
+    declare -- STEPS=""
+    declare -- ENV_VARS=""
 
-    while getopts &#34;ha:n:e:&#34; opt; do
+    while getopts "ha:n:e:" opt; do
         case $opt in
         h)
             usage
@@ -539,18 +539,18 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
             ACTIONS=$OPTARG
             ;;
         n)
-            STEPS&#43;=$OPTARG&#34; &#34;
+            STEPS+=$OPTARG" "
             ;;
         e)
             ENV_VARS=$OPTARG
             ;;
         :)
-            echo &#34;Option -$OPTARG requires an argument.&#34; &gt;&amp;2
+            echo "Option -$OPTARG requires an argument." >&2
             usage
             exit 1
             ;;
         \?)
-            echo &#34;Invalid option: -$OPTARG&#34; &gt;&amp;2
+            echo "Invalid option: -$OPTARG" >&2
             usage
             exit 1
             ;;
@@ -561,10 +561,10 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
 
     # 将传入的key=value参数转换成环境变量
     # 例如: --env key=value
-    IFS=&#39;,&#39; read -ra ENV_ARR &lt;&lt;&lt;&#34;$ENV_VARS&#34;
-    for var in &#34;${ENV_ARR[@]}&#34;; do
-        IFS=&#39;=&#39; read -ra VAR_ARR &lt;&lt;&lt;&#34;$var&#34;
-        declare -g &#34;${VAR_ARR[0]}=${VAR_ARR[1]}&#34;
+    IFS=',' read -ra ENV_ARR <<<"$ENV_VARS"
+    for var in "${ENV_ARR[@]}"; do
+        IFS='=' read -ra VAR_ARR <<<"$var"
+        declare -g "${VAR_ARR[0]}=${VAR_ARR[1]}"
     done
     ```
 
@@ -575,27 +575,27 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
     # f d a 必须接受参数
     # s 参数可选
     #
-    ARGS=`getopt -o f:s::d:a: --long filename:,source::,desc:,action:: -- &#34;$@&#34;`
-    eval set -- &#34;$ARGS&#34;
+    ARGS=`getopt -o f:s::d:a: --long filename:,source::,desc:,action:: -- "$@"`
+    eval set -- "$ARGS"
 
     while true ; do
-        case &#34;$1&#34; in
+        case "$1" in
             -f|--filename)
                 fileName=$2 ; shift 2 ;;
             -s|--source)
-                case &#34;$2&#34; in
-                    &#34;&#34;) sourceDir=&#39;.&#39; ; shift 2 ;;
+                case "$2" in
+                    "") sourceDir='.' ; shift 2 ;;
                     *) sourceDir=$2 ; shift 2 ;;
                 esac ;;
             -d|--desc)
                 descDir=$2 ; shift 2;;
             -a|--action)
-                case &#34;$2&#34; in
-                    &#34;copy&#34;|&#34;move&#34;) action=$2 ; shift 2 ;;
-                                *) action=&#34;copy&#34; ; shift 2 ;;
+                case "$2" in
+                    "copy"|"move") action=$2 ; shift 2 ;;
+                                *) action="copy" ; shift 2 ;;
                 esac ;;
             --) shift ; break ;;
-            *) echo &#34;Internal error!&#34; ; exit 1 ;;
+            *) echo "Internal error!" ; exit 1 ;;
         esac
     done
     ```
@@ -605,16 +605,16 @@ trap 命令用于在接受到信号后将要采取的行动,常用于脚本程�
 - shellscript 中转义 !
   ```bash
   #!/bin/bash
-  echo -e &#34;\0041&#34;
-  echo -e &#34;#\0041/bin/bash&#34;
+  echo -e "\0041"
+  echo -e "#\0041/bin/bash"
   ```
 
 # 21. 将脚本以特定用户运行 
 ```bash
 # 一般放在 export PATH 之后 
-if [ &#34;$(id -u)&#34; -eq 0 ]; then
-  echo &#34;Switching to www user...&#34;
-  exec runuser -u www -- &#34;$0&#34; &#34;$@&#34;
+if [ "$(id -u)" -eq 0 ]; then
+  echo "Switching to www user..."
+  exec runuser -u www -- "$0" "$@"
 fi
 ```
 

@@ -2,7 +2,7 @@
 
 
 本文介绍的是一个关于站点全网页加载时间的一个脚本,前段时间在网络上找了很久关于在线站点全页加载的时间的,一直没有找到合适的,翻越了很久的github终于找到了一个比较适合我现在需求的一个项目,于是拿下来修改了下,目前这个有个问题是不能异步加载  
-&lt;!--more--&gt;
+<!--more-->
 
 参考项目:[https://github.com/donjajo/loady.git]  
 修改代码提交地址:[~~https://github.com/0x5c0f/zbx_page_load.git~~]  
@@ -28,14 +28,14 @@ debug=1
 
 class Loady:
     files = {
-     &#39;js&#39; : {},
-     &#39;css&#39; : {},
-     &#39;img&#39; : {}
+     'js' : {},
+     'css' : {},
+     'img' : {}
     }
 
     def __init__( self, url, headers = {} ):
         if not isinstance( headers, dict ):
-            raise ValueError( &#39;Headers argument must be dict instance&#39; )
+            raise ValueError( 'Headers argument must be dict instance' )
 
         self.url = url
         self.total_time = 0
@@ -47,72 +47,72 @@ class Loady:
         self.total_size = 0
 
     def _get( self, tag ):
-        &#34;&#34;&#34;Gets all site additional files and prepares their URL to be loaded&#34;&#34;&#34;
+        """Gets all site additional files and prepares their URL to be loaded"""
 
         # Get current URL data
         domain_scheme, domain, _, _, _, _ = urllib.parse.urlparse( self.url )
         urls = []
 
-        if tag == &#39;script&#39;:
+        if tag == 'script':
             # Get all script tag with src attribute
-            #			print(self.soup.find_all( &#39;script&#39;, { &#39;src&#39; : re.compile( r&#39;.*&#39; ) } ))
-            tags = self.soup.find_all( &#39;script&#39;, { &#39;src&#39; : re.compile( r&#39;.*&#39; ) } )
-        elif tag == &#39;img&#39;:
-            #			print(self.soup.find_all( &#39;img&#39;, { &#39;src&#39; : re.compile( r&#39;.*&#39; ) } ))
-            tags = self.soup.find_all( &#39;img&#39;, { &#39;src&#39; : re.compile( r&#39;.*&#39; ) } )
-        # elif tag is &#39;i&#39;:
-        # 	print(tags = self.soup.find_all(&#39;i&#39;, {&#39;style&#39;: re.compile(r&#39;.*&#39;)}))
-        # 	tags = self.soup.find_all(&#39;i&#39;, {&#39;style&#39;: re.compile(r&#39;.*&#39;)})
+            #			print(self.soup.find_all( 'script', { 'src' : re.compile( r'.*' ) } ))
+            tags = self.soup.find_all( 'script', { 'src' : re.compile( r'.*' ) } )
+        elif tag == 'img':
+            #			print(self.soup.find_all( 'img', { 'src' : re.compile( r'.*' ) } ))
+            tags = self.soup.find_all( 'img', { 'src' : re.compile( r'.*' ) } )
+        # elif tag is 'i':
+        # 	print(tags = self.soup.find_all('i', {'style': re.compile(r'.*')}))
+        # 	tags = self.soup.find_all('i', {'style': re.compile(r'.*')})
         else:
             # Get all link tag with rel=stylesheet
-            #			print(self.soup.find_all( &#39;link&#39;, { &#39;rel&#39; : &#39;stylesheet&#39; } ))
-            tags = self.soup.find_all( &#39;link&#39;, { &#39;rel&#39; : &#39;stylesheet&#39; } )
+            #			print(self.soup.find_all( 'link', { 'rel' : 'stylesheet' } ))
+            tags = self.soup.find_all( 'link', { 'rel' : 'stylesheet' } )
 
         for each_tag in tags:
             # Get the value of src or href
-            val = each_tag[ &#39;src&#39; ] if tag == &#39;script&#39; or tag == &#39;img&#39; else each_tag[ &#39;href&#39; ]
-            #val = &#39;&#39;
-            #if tag is &#39;script&#39; or tag is &#39;img&#39;:
-            #	val = each_tag[&#39;src&#39;]
+            val = each_tag[ 'src' ] if tag == 'script' or tag == 'img' else each_tag[ 'href' ]
+            #val = ''
+            #if tag is 'script' or tag is 'img':
+            #	val = each_tag['src']
             #else:
-            #	val = each_tag[&#39;href&#39;]
+            #	val = each_tag['href']
 
             # parse the URL of the gotten URL
             url = urllib.parse.urlparse( val )
 
             if not url[ 0 ] and url[ 1 ]:
                 # If URL has no scheme but has domain name, we assume it is a URL that supports HTTP(S). We just append the main site scheme to it
-                if not val.startswith(&#34;//&#34;):
-                    urls.append( &#39;{0}://{1}&#39;.format( domain_scheme, val ) )
+                if not val.startswith("//"):
+                    urls.append( '{0}://{1}'.format( domain_scheme, val ) )
                 else:
-                    urls.append( &#39;{0}:{1}&#39;.format( domain_scheme, val ) )
+                    urls.append( '{0}:{1}'.format( domain_scheme, val ) )
             elif not url[ 1 ]:
                 # URL has no domain, its a relative path. Append the domain name to it
-                if not val.startswith(&#34;/&#34;):
-                    urls.append( &#39;{0}://{1}/{2}&#39;.format( domain_scheme, domain, val ) )
+                if not val.startswith("/"):
+                    urls.append( '{0}://{1}/{2}'.format( domain_scheme, domain, val ) )
                 else:
-                    urls.append( &#39;{0}://{1}{2}&#39;.format( domain_scheme, domain, val ) )
+                    urls.append( '{0}://{1}{2}'.format( domain_scheme, domain, val ) )
             else:
                 # Its an absolute path, no issues bro!
                 urls.append( val )
 
-        if tag == &#39;script&#39;:
+        if tag == 'script':
             self.js = urls
-        elif tag == &#39;img&#39;:
+        elif tag == 'img':
             self.img = urls
         else:
             self.css = urls
 
     def _load( self, t ):
-        &#34;&#34;&#34;Load the gotten links, check for response time and size. Appends it to self.files object&#34;&#34;&#34;
+        """Load the gotten links, check for response time and size. Appends it to self.files object"""
         _link_obj = []
-        if t == &#39;script&#39;:
+        if t == 'script':
             _link_obj = self.js
-        elif t == &#39;img&#39;:
+        elif t == 'img':
             _link_obj = self.img
         else:
             _link_obj = self.css
-#		for link in ( self.js if t is &#39;script&#39; else self.css ):
+#		for link in ( self.js if t is 'script' else self.css ):
         for link in (_link_obj):
             if debug == 1:
                 print(link)
@@ -125,49 +125,49 @@ class Loady:
                 # Page loaded successfully
                 if r.status_code == 200:
                     # Get the size of page content
-                    size = sys.getsizeof(r.content) if t == &#39;img&#39; else sys.getsizeof(r.text)
+                    size = sys.getsizeof(r.content) if t == 'img' else sys.getsizeof(r.text)
                     # Add results to self.files object
-                    obj = &#39;&#39;
-                    if t == &#39;style&#39;:
-                        obj = &#39;css&#39;
-                    elif t == &#39;img&#39;:
-                        obj = &#39;img&#39;
+                    obj = ''
+                    if t == 'style':
+                        obj = 'css'
+                    elif t == 'img':
+                        obj = 'img'
                     else:
-                        obj = &#39;js&#39;
-                    self.files[obj][link] = {&#39;byte_size&#39;: size, &#39;load_time&#39;: response_time}
+                        obj = 'js'
+                    self.files[obj][link] = {'byte_size': size, 'load_time': response_time}
                     # Sum up total time to the existing load time
-                    self.total_time &#43;= response_time
-                    self.total_size &#43;= size
+                    self.total_time += response_time
+                    self.total_size += size
             except Exception as e:
                 if debug == 1:
                     print(e,link)
                 continue
 
     def get( self ):
-        &#34;&#34;&#34;Loads the main website, calculate response time, page size and get additional files in site&#34;&#34;&#34;
+        """Loads the main website, calculate response time, page size and get additional files in site"""
 
         start = time()
         r = requests.get( self.url, headers = self.http_headers )
         stop = time()
         if r.status_code == 200:
             response = r.text
-            self.total_time = self.total_time &#43; ( stop - start )
-            self.total_size &#43;= sys.getsizeof( response )
-            self.soup = BeautifulSoup( response, &#39;html.parser&#39; )
+            self.total_time = self.total_time + ( stop - start )
+            self.total_size += sys.getsizeof( response )
+            self.soup = BeautifulSoup( response, 'html.parser' )
 
-            self._get( &#39;script&#39; )
-            self._load( &#39;script&#39; )
-            self._get( &#39;style&#39; )
-            self._load( &#39;style&#39; )
-            self._get( &#39;img&#39; )
-            self._load(&#39;img&#39;)
+            self._get( 'script' )
+            self._load( 'script' )
+            self._get( 'style' )
+            self._load( 'style' )
+            self._get( 'img' )
+            self._load('img')
 
 
-load = Loady( sys.argv[1] , headers={ &#39;User-Agent&#39; : &#39;zabbix pageload monitor&#39; })
-#load = Loady( sys.argv[1], headers={ &#39;User-Agent&#39; : &#39;Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0&#39; })
+load = Loady( sys.argv[1] , headers={ 'User-Agent' : 'zabbix pageload monitor' })
+#load = Loady( sys.argv[1], headers={ 'User-Agent' : 'Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:57.0) Gecko/20100101 Firefox/57.0' })
 load.get()
-#print(&#34;{TIME:\&#34;&#34;,load.total_time,&#34;\&#34;}&#34;,sep=&#39;&#39;)
-# print(&#34;%.3f&#34;%load.total_time)
+#print("{TIME:\"",load.total_time,"\"}",sep='')
+# print("%.3f"%load.total_time)
 print( load.total_size ) # total load size
 # print( load.files )   #load file and load size
 ```
@@ -177,26 +177,26 @@ print( load.total_size ) # total load size
 #!/usr/bin/env python3
 #discover site
 
-file = open(&#34;/opt/sh/zbx_discover_site/site.txt&#34;)
-print(&#34;{&#34;)
-print(&#34;\t\&#34;data\&#34;:[&#34;)
+file = open("/opt/sh/zbx_discover_site/site.txt")
+print("{")
+print("\t\"data\":[")
 try:
 	lines = file.readlines();
 	count = 1
 	for line in lines:
-		line = line.strip(&#34;\n&#34;)
-		print(&#34;\t\t{&#34;)
-		print(&#34;\t\t\t\&#34;{#SITE}\&#34;:\&#34;&#34;,end=&#39;&#39;)
-		print(line,end=&#39;&#39;)
-		print(&#34;\&#34;&#34;)
-		print(&#34;\t\t}&#34;,end=&#39;&#39;)
-		if count &lt; len(lines):
-			print(&#34;,&#34;)
-		count = count &#43; 1
+		line = line.strip("\n")
+		print("\t\t{")
+		print("\t\t\t\"{#SITE}\":\"",end='')
+		print(line,end='')
+		print("\"")
+		print("\t\t}",end='')
+		if count < len(lines):
+			print(",")
+		count = count + 1
 finally:
 	file.close()
-print(&#34;\n\t]&#34;)
-print(&#34;}&#34;)
+print("\n\t]")
+print("}")
 ```
 站点配置文件`site.txt`  
 ```txt

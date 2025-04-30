@@ -26,11 +26,11 @@
 `mysql`原生自带的逻辑备份工具 
 
 优点是备份结果是sql语句，都是文本格式，便于查看即压缩, 缺点是效率较慢
-`mysqldump -A -R --triggers --master-data=2 --single-transaction | gzip &gt; /data/backup_all.sql.gz`  
+`mysqldump -A -R --triggers --master-data=2 --single-transaction | gzip > /data/backup_all.sql.gz`  
 参数:  
 - `-A`: 全库备份(会备份`mysql`库)
-  - `mysqldump -uroot -pxxx -A &gt; backup.sql`
-- `-B`： 增加建库(`create`)即&#34;`use 库`&#34;的语句，可以直接连接多个库名，同时备份多个库`-B 库1 库2`
+  - `mysqldump -uroot -pxxx -A > backup.sql`
+- `-B`： 增加建库(`create`)即"`use 库`"的语句，可以直接连接多个库名，同时备份多个库`-B 库1 库2`
 - `-R`: 备份存储过程和函数数据  
 - `--triggers`: 备份触发器数据 
 - `-F`: 在备份是自动刷新一个二进制日志,方便将来二进制日志截取时的起点 
@@ -42,13 +42,13 @@
 备份恢复:  
 ```sql
 -- 方法一 
---- mysql -uroot &lt; /data/backup_all.sql
+--- mysql -uroot < /data/backup_all.sql
 -- 方法二(建议使用)
-mysql&gt; set sql_log_bin=0 
-mysql&gt; source /data/backup_all.sql 
+mysql> set sql_log_bin=0 
+mysql> source /data/backup_all.sql 
 ...
 
-mysql&gt; 
+mysql> 
 ``` 
 `mysqldump`备份恢复案例: 
 ```sql
@@ -64,37 +64,37 @@ mysql&gt;
 
 -- 具体操作
 --- 1. 获取全备时刻的binlog号(:22) 
---- -- CHANGE MASTER TO MASTER_LOG_FILE=&#39;mysql-bin.000039&#39;, MASTER_LOG_POS=183021;
+--- -- CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.000039', MASTER_LOG_POS=183021;
 --- 2. 截取binlog从全备到删除时刻的binlog号   此处不能和前面交错截取，不然可能会出问题
-mysql&gt; show binlog events in &#39;mysql-bin.000002&#39;;  -- end: 183014
+mysql> show binlog events in 'mysql-bin.000002';  -- end: 183014
 
-$&gt; mysqlbinlog --no-defaults --start-position=183021 --stop-position=183014 /data/mysql56/3307/data/mysql-bin/mysql-bin.000039 &gt;&gt; /data/binlog.sql
+$> mysqlbinlog --no-defaults --start-position=183021 --stop-position=183014 /data/mysql56/3307/data/mysql-bin/mysql-bin.000039 >> /data/binlog.sql
 
 
 --- 临时关闭二进制日志信息 
-mysql&gt; set sql_log_bin=0
-mysql&gt; source /data/backup_all.sql 
-mysql&gt; source /data/binlog.sql
-mysql&gt; set sql_log_bin=1
+mysql> set sql_log_bin=0
+mysql> source /data/backup_all.sql 
+mysql> source /data/binlog.sql
+mysql> set sql_log_bin=1
 
 
 --- binlog自动清理 
-mysql&gt; show variables like &#39;%expire%&#39;;
-mysql&gt; set global expire_logs_days=8; -- 一般设置为全备&#43;1天 
+mysql> show variables like '%expire%';
+mysql> set global expire_logs_days=8; -- 一般设置为全备+1天 
 -- 永久生效 
 -- /etc/my.cnf 
 -- expire_logs_days=8 
 
 -- 手动清理二进制文件
-mysql&gt; purge binary logs before now() - interval 3 day; -- 3 天前
-mysql&gt; purage binary logs to &#39;mysql-bin.000010&#39;; -- 删除到
+mysql> purge binary logs before now() - interval 3 day; -- 3 天前
+mysql> purage binary logs to 'mysql-bin.000010'; -- 删除到
 
 -- 不要手动 rm mysql-bin.00000x 文件，否则会出现问题，解决方案 
 -- 1. 关闭 my.cnf binlog相关参数，删除mysql-bin.index文件,启动数据库
 -- 2. 关闭数据库，开启binlog相关参数，启动数据库
 
 -- 滚动一个新的日志(重启会自动滚动一个日志)  
-mysql&gt; flush logs;
+mysql> flush logs;
 ```
 
 ### `mysqlbinlog`
@@ -122,12 +122,12 @@ mysql&gt; flush logs;
 
 ```bash
 # 
-$&gt; wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.21/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.21-1.el7.x86_64.rpm
+$> wget https://downloads.percona.com/downloads/Percona-XtraBackup-2.4/Percona-XtraBackup-2.4.21/binary/redhat/7/x86_64/percona-xtrabackup-24-2.4.21-1.el7.x86_64.rpm
 
-$&gt; yum install -y percona-xtrabackup-24-2.4.21-1.el7.x86_64.rpm
+$> yum install -y percona-xtrabackup-24-2.4.21-1.el7.x86_64.rpm
 
 # 备份测试(需指定配置文件my.cnf、用户名、密码) 
-$&gt; innobackupex  /data/backup/
+$> innobackupex  /data/backup/
 /data/backup/
 └── 2021-01-19_16-01-57
     ├── mysql
@@ -138,7 +138,7 @@ $&gt; innobackupex  /data/backup/
     └── world
 
 # 全备份，不使用时间戳为备份目录 
-$&gt; innobackupex --no-timestamp /data/backup/full 
+$> innobackupex --no-timestamp /data/backup/full 
 2 [error opening dir]
 /data/backup/full
 ├── mysql
@@ -150,35 +150,35 @@ $&gt; innobackupex --no-timestamp /data/backup/full
 
 # 全备恢复示例  
 # 1. 恢复数据前的准备(合并xtabackup_log_file和备份的物理文件) 
-$&gt; innobackupex --apply-log --use-memory=32M /data/backup/full/
+$> innobackupex --apply-log --use-memory=32M /data/backup/full/
 # 2. 模拟故障 (停止数据库，删除数据)
 # 3. 恢复数据
 ## 3.1 直接复制全备数据进去即可(恢复时，需要确认数据路径为空，且数据库必须停止),单库直接复制测试可行   
-$&gt; cp -a /data/backup/full/* /data/mysql56/3307/data/ 
+$> cp -a /data/backup/full/* /data/mysql56/3307/data/ 
 ## 3.2 命令复制 
-$&gt; innobackupex --copy-back /data/backup/full/
+$> innobackupex --copy-back /data/backup/full/
 
 # 增量备份
 ## 增量备份是基于全备开始
 ## 1. 周一全备 
-$&gt; innobackupex --no-timestamp /data/backup/full
+$> innobackupex --no-timestamp /data/backup/full
 ## 数据写入 
 ## 2. 周二增量备份 基于那个全备进行增量备份 
-$&gt; innobackupex --incremental --no-timestamp --incremental-basedir=/data/backup/full /data/backup/inc1
+$> innobackupex --incremental --no-timestamp --incremental-basedir=/data/backup/full /data/backup/inc1
 ## 数据写入
 ## 3. 周三增量备份 基于那个备份(全备)进行增量备份
-$&gt; innobackupex --incremental --no-timestamp --incremental-basedir=/data/backup/inc1 /data/backup/inc2
+$> innobackupex --incremental --no-timestamp --incremental-basedir=/data/backup/inc1 /data/backup/inc2
 ## 数据损坏,准备恢复 
 
 ## 停止数据库 
 
 ## 数据恢复  --redo-only: 只将以提交的数据进行合并(除了最后一次不加外,每一次都需要添加)
-$&gt; innobackupex --apply-log --redo-only /data/backup/full/
-$&gt; innobackupex --apply-log --redo-only --incremental-dir=/data/backup/inc1 /data/backup/full
-$&gt; innobackupex --apply-log --incremental-dir=/data/backup/inc2 /data/backup/full
-$&gt; innobackupex --apply-log /data/backup/full/
+$> innobackupex --apply-log --redo-only /data/backup/full/
+$> innobackupex --apply-log --redo-only --incremental-dir=/data/backup/inc1 /data/backup/full
+$> innobackupex --apply-log --incremental-dir=/data/backup/inc2 /data/backup/full
+$> innobackupex --apply-log /data/backup/full/
 
-$&gt; innobackupex --copy-back /data/backup/full/
+$> innobackupex --copy-back /data/backup/full/
 
 # 单表恢复案例(单库恢复目前查询到的方案是,需要目前库和库中的表结构,然后通过concat批量拼接断开和连接语句然后,按照单表恢复案例批量操作) 
 ## 误删除数据库中的一个表,需要恢复,不需要恢复整个数据库(或者mysql) 
@@ -186,14 +186,14 @@ $&gt; innobackupex --copy-back /data/backup/full/
 ### 1. 删除数据库中的某个表(模拟演示)show bin
 ### 2. 创建与删除的表结构一模一样的表 
 ### 3. 删除创建表的表空间数据库文件(*.ibd),此处只能在数据库中的删除 
-### select concat(&#39;alter table &#39;,table_name,&#39; discard tablespace ;&#39;) from information_schema.tables where table_schema=&#39;&lt;database_name&gt;&#39; into outfile &#39;/tmp/&lt;database_name&gt;.sql&#39; ;
-#### into outfile &#39;/tmp/&lt;database_name&gt;.sql&#39; 
+### select concat('alter table ',table_name,' discard tablespace ;') from information_schema.tables where table_schema='<database_name>' into outfile '/tmp/<database_name>.sql' ;
+#### into outfile '/tmp/<database_name>.sql' 
 #### 需设置安全路径 /etc/my.cnf:[mysqld] secure-file-priv=/tmp ,重启 
-mysql&gt; alter table &lt;table_name&gt; discard tablespace; 
+mysql> alter table <table_name> discard tablespace; 
 ### 4. 复制全备中该删除表的*.ibd文件到mysql对应目录下,注意修正权限 
-$&gt; cp /data/backup/full/&lt;database_name&gt;/&lt;table_name&gt;.ibd /path/data/&lt;database_name&gt;/&lt;table_name&gt;.ibd
+$> cp /data/backup/full/<database_name>/<table_name>.ibd /path/data/<database_name>/<table_name>.ibd
 ### 5. 重新连接表空间数据文件 
-mysql&gt; alter table &lt;table_name&gt; import tablespace; 
+mysql> alter table <table_name> import tablespace; 
 ```
 
 

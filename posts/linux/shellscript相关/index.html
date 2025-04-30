@@ -33,7 +33,7 @@
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/" title="Shellscript相关 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" title="那些杂七杂八的记录(一)" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" title="常用命令收集" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/index.md" title="Shellscript相关 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.8066a9eb18f0b7481729f4e9bf05039c295d216dc44d94e1a2702958d854d62b607ac7248796a4452c13d8fa218cf36325c1928ccea6a01cb13d90ca6eef13d2.css" integrity="sha512-gGap6xjwt0gXKfTpvwUDnCldIW3ETZThonApWNhU1itgesckh5akRSwT2PohjPNjJcGSjM6moByxPZDKbu8T0g=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/" title="Shellscript相关 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.1/" title="那些杂七杂八的记录(一)" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/" title="常用命令收集" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/index.md" title="Shellscript相关 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.3dfa226de8a8bb4d325c0d271e3bba9d2cf3997b5786e7ab0b39ed100be2ff8b76f677423a90331e65cecf30e70590f7b21224a9284966e820a802c41aa2e673.css" integrity="sha512-Pfoibeiou00yXA0nHju6nSzzmXtXhuerCzntEAvi/4t29ndCOpAzHmXOzzDnBZD3shIkqShJZuggqALEGqLmcw=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
   {
@@ -225,14 +225,14 @@
     <li><a href="#21-将脚本以特定用户运行">21. 将脚本以特定用户运行</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><div class="details admonition warning open">
+      </div><div class="content" id="content"><div class="expiration-reminder details admonition warning open">
       <div class="details-summary admonition-title">
         <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
       </div>
       <div class="details-content">
         <div class="admonition-content">本文最后更新于 2024-07-23，文中内容可能已过时。</div>
       </div>
-    </div><h2 id="1-shell-脚本执行的几种方法" class="heading-element"><span>1. shell 脚本执行的几种方法</span>
+    </div><h2 class="heading-element" id="1-shell-脚本执行的几种方法"><span>1. shell 脚本执行的几种方法</span>
   <a href="#1-shell-%e8%84%9a%e6%9c%ac%e6%89%a7%e8%a1%8c%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -253,7 +253,7 @@
 <p><code>bash(sh) &lt; script.sh</code> 或 <code>cat script.sh | bash(sh) </code></p>
 </li>
 </ul>
-<h2 id="2-shell-脚本规范" class="heading-element"><span>2. shell 脚本规范</span>
+<h2 class="heading-element" id="2-shell-脚本规范"><span>2. shell 脚本规范</span>
   <a href="#2-shell-%e8%84%9a%e6%9c%ac%e8%a7%84%e8%8c%83" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -264,7 +264,7 @@
 <li>脚本以<code>.sh</code> 为扩展名</li>
 <li>成对书写符号、条件控制语句等。如: <code>[]</code>、<code>{}</code>、<code>if []; then fi</code></li>
 </ol>
-<h2 id="3-变量的设置与取消" class="heading-element"><span>3. 变量的设置与取消</span>
+<h2 class="heading-element" id="3-变量的设置与取消"><span>3. 变量的设置与取消</span>
   <a href="#3-%e5%8f%98%e9%87%8f%e7%9a%84%e8%ae%be%e7%bd%ae%e4%b8%8e%e5%8f%96%e6%b6%88" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -277,11 +277,11 @@
 <li>打印 : echo $变量名</li>
 <li>取消 : unset 变量名</li>
 </ul>
-<h2 id="4-变量定义" class="heading-element"><span>4. 变量定义</span>
+<h2 class="heading-element" id="4-变量定义"><span>4. 变量定义</span>
   <a href="#4-%e5%8f%98%e9%87%8f%e5%ae%9a%e4%b9%89" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="41-普通变量定义" class="heading-element"><span>4.1. 普通变量定义</span>
+</h2><h2 class="heading-element" id="41-普通变量定义"><span>4.1. 普通变量定义</span>
   <a href="#41-%e6%99%ae%e9%80%9a%e5%8f%98%e9%87%8f%e5%ae%9a%e4%b9%89" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -292,12 +292,12 @@
 <li><code>变量名=$(ls)</code></li>
 <li><code>变量名=`ls` </code></li>
 </ul>
-<h2 id="42-变量名定义要求" class="heading-element"><span>4.2. 变量名定义要求</span>
+<h2 class="heading-element" id="42-变量名定义要求"><span>4.2. 变量名定义要求</span>
   <a href="#42-%e5%8f%98%e9%87%8f%e5%90%8d%e5%ae%9a%e4%b9%89%e8%a6%81%e6%b1%82" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p>变量名一般由字母、数字、下划线组成</p>
-<h2 id="43-示例" class="heading-element"><span>4.3. 示例</span>
+<h2 class="heading-element" id="43-示例"><span>4.3. 示例</span>
   <a href="#43-%e7%a4%ba%e4%be%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -307,7 +307,7 @@
 <li><code>c='123-$a'</code> ## 当值存在单引号的时候,值为什么，打印结果则为什么，引号内内容视为一个整体</li>
 <li><code>d=&quot;123-$a&quot;</code> ## 当值为双引号的时候,若值中存在变量、命令(需要转义)等，会优先把变量、命令结果输出,在打印所有值</li>
 </ul>
-<h2 id="5-特殊内置变量" class="heading-element"><span>5. 特殊、内置变量</span>
+<h2 class="heading-element" id="5-特殊内置变量"><span>5. 特殊、内置变量</span>
   <a href="#5-%e7%89%b9%e6%ae%8a%e5%86%85%e7%bd%ae%e5%8f%98%e9%87%8f" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -405,7 +405,7 @@
 </div>
 </div></li>
 </ul>
-<h2 id="6-常用操作表达式" class="heading-element"><span>6. 常用操作表达式</span>
+<h2 class="heading-element" id="6-常用操作表达式"><span>6. 常用操作表达式</span>
   <a href="#6-%e5%b8%b8%e7%94%a8%e6%93%8d%e4%bd%9c%e8%a1%a8%e8%be%be%e5%bc%8f" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -463,7 +463,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="7-变量替换表" class="heading-element"><span>7. 变量替换表</span>
+<h2 class="heading-element" id="7-变量替换表"><span>7. 变量替换表</span>
   <a href="#7-%e5%8f%98%e9%87%8f%e6%9b%bf%e6%8d%a2%e8%a1%a8" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -493,7 +493,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="8-常见的运算符" class="heading-element"><span>8. 常见的运算符</span>
+<h2 class="heading-element" id="8-常见的运算符"><span>8. 常见的运算符</span>
   <a href="#8-%e5%b8%b8%e8%a7%81%e7%9a%84%e8%bf%90%e7%ae%97%e7%ac%a6" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -506,7 +506,7 @@
 <li><strong>正则匹配</strong>：<code>[[]]</code>支持使用<code>=~</code>进行正则表达式匹配。例如，<code>[[ &quot;$a&quot; =~ ^a.* ]]</code>会检查<code>$a</code>是否以<code>a</code>开头。而<code>[]</code>不支持正则表达式。</li>
 <li><strong>变量引用</strong>：在<code>[]</code>中，如果一个变量未定义，那么它会被视为一个空字符串，除非你用双引号引起来。例如，如果<code>$a</code>未定义，那么<code>[ $a == &quot;&quot; ]</code>会导致语法错误，而<code>[ &quot;$a&quot; == &quot;&quot; ]</code>则不会。而在<code>[[]]</code>中，即使变量未定义，也不需要引号。</li>
 </ul>
-<h2 id="81-变量运算符" class="heading-element"><span>8.1. 变量运算符</span>
+<h2 class="heading-element" id="81-变量运算符"><span>8.1. 变量运算符</span>
   <a href="#81-%e5%8f%98%e9%87%8f%e8%bf%90%e7%ae%97%e7%ac%a6" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -576,7 +576,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="82-算术运算符" class="heading-element"><span>8.2. 算术运算符</span>
+<h2 class="heading-element" id="82-算术运算符"><span>8.2. 算术运算符</span>
   <a href="#82-%e7%ae%97%e6%9c%af%e8%bf%90%e7%ae%97%e7%ac%a6" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -621,7 +621,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="83-逻辑运算符" class="heading-element"><span>8.3. 逻辑运算符</span>
+<h2 class="heading-element" id="83-逻辑运算符"><span>8.3. 逻辑运算符</span>
   <a href="#83-%e9%80%bb%e8%be%91%e8%bf%90%e7%ae%97%e7%ac%a6" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -651,7 +651,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="84-条件判断符" class="heading-element"><span>8.4. 条件判断符</span>
+<h2 class="heading-element" id="84-条件判断符"><span>8.4. 条件判断符</span>
   <a href="#84-%e6%9d%a1%e4%bb%b6%e5%88%a4%e6%96%ad%e7%ac%a6" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -769,7 +769,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="85-标准-io-重定向" class="heading-element"><span>8.5. 标准 I/O 重定向</span>
+<h2 class="heading-element" id="85-标准-io-重定向"><span>8.5. 标准 I/O 重定向</span>
   <a href="#85-%e6%a0%87%e5%87%86-io-%e9%87%8d%e5%ae%9a%e5%90%91" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -827,7 +827,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="9-变量的数值运算" class="heading-element"><span>9. 变量的数值运算</span>
+<h2 class="heading-element" id="9-变量的数值运算"><span>9. 变量的数值运算</span>
   <a href="#9-%e5%8f%98%e9%87%8f%e7%9a%84%e6%95%b0%e5%80%bc%e8%bf%90%e7%ae%97" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -864,11 +864,11 @@
 </ul>
 </li>
 </ul>
-<h2 id="10-变量读入" class="heading-element"><span>10. 变量读入</span>
+<h2 class="heading-element" id="10-变量读入"><span>10. 变量读入</span>
   <a href="#10-%e5%8f%98%e9%87%8f%e8%af%bb%e5%85%a5" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="101-read-bash-内置变量" class="heading-element"><span>10.1. read bash 内置变量</span>
+</h2><h2 class="heading-element" id="101-read-bash-内置变量"><span>10.1. read bash 内置变量</span>
   <a href="#101-read-bash-%e5%86%85%e7%bd%ae%e5%8f%98%e9%87%8f" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -890,11 +890,11 @@
 </div>
 </div></li>
 </ul>
-<h2 id="11-条件测试与比较" class="heading-element"><span>11. 条件测试与比较</span>
+<h2 class="heading-element" id="11-条件测试与比较"><span>11. 条件测试与比较</span>
   <a href="#11-%e6%9d%a1%e4%bb%b6%e6%b5%8b%e8%af%95%e4%b8%8e%e6%af%94%e8%be%83" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="111-方法" class="heading-element"><span>11.1. 方法</span>
+</h2><h2 class="heading-element" id="111-方法"><span>11.1. 方法</span>
   <a href="#111-%e6%96%b9%e6%b3%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -903,7 +903,7 @@
 <li><code>[ &lt;表达式&gt; ]</code> ,如: <code>[ -f /etc/hosts ]</code></li>
 <li><code>[[ &lt;表达式&gt; ]]</code>,如: <code>[[ -f /etc/hosts ]]</code>、<code>[[ -d /etc &amp;&amp; -f /etc/hosts ]]</code>、<code>[[ -d /etc -a -f /etc/hosts ]]</code>、<code>[[ -d /etc || -f /etc/hosts ]]</code>、<code>[[ -d /etc -o -f /etc/hosts ]]</code></li>
 </ol>
-<h2 id="112-说明" class="heading-element"><span>11.2. 说明</span>
+<h2 class="heading-element" id="112-说明"><span>11.2. 说明</span>
   <a href="#112-%e8%af%b4%e6%98%8e" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -911,19 +911,18 @@
 <li>上述一和二是等等价的, 如: <code>test -f /etc/hosts == [ -f /etc/hosts ]</code></li>
 <li><code>[[]]</code>与<code>[]</code>的区别是在<code>[[]]</code> 中可以使用通配符模式进行匹配(如<code>[[ hello == hell? ]] == true</code>:其匹配字符串或通配符时，可不需要引号,<code>[]</code>也可不需要引号,但据说有时候会出现故障,因此建议加上引号), <code>&amp;&amp;、||、&gt;、&lt;</code>等操作符也可以应用于<code>[[]]</code>中,但不能应用于<code>[]</code>中</li>
 </ul>
-<h2 id="113-补充" class="heading-element"><span>11.3. 补充</span>
+<h2 class="heading-element" id="113-补充"><span>11.3. 补充</span>
   <a href="#113-%e8%a1%a5%e5%85%85" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><p>关于<code>()</code>、<code>(())</code>、<code>[]</code>、<code>[[]]</code>、<code>{}</code>几个的区别,接入一个很详细的文档,但是我表示没怎么看懂,先记录下来,以后慢慢看</p>
 <blockquote>
-<p><a href="https://blog.csdn.net/taiyang1987912/article/details/39551385"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/taiyang1987912/article/details/39551385<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-<h2 id="12-函数" class="heading-element"><span>12. 函数</span>
+<p><a href="https://blog.csdn.net/taiyang1987912/article/details/39551385"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/taiyang1987912/article/details/39551385<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p></blockquote>
+<h2 class="heading-element" id="12-函数"><span>12. 函数</span>
   <a href="#12-%e5%87%bd%e6%95%b0" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="121-语法" class="heading-element"><span>12.1. 语法</span>
+</h2><h2 class="heading-element" id="121-语法"><span>12.1. 语法</span>
   <a href="#121-%e8%af%ad%e6%b3%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -950,7 +949,7 @@
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> n
 </span></span><span class="line"><span class="cl"><span class="o">}</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="122-调用" class="heading-element"><span>12.2. 调用</span>
+</div><h2 class="heading-element" id="122-调用"><span>12.2. 调用</span>
   <a href="#122-%e8%b0%83%e7%94%a8" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -970,7 +969,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="13-判断分支" class="heading-element"><span>13. 判断分支</span>
+<h2 class="heading-element" id="13-判断分支"><span>13. 判断分支</span>
   <a href="#13-%e5%88%a4%e6%96%ad%e5%88%86%e6%94%af" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1003,11 +1002,11 @@
 </span></span><span class="line"><span class="cl">    ...
 </span></span><span class="line"><span class="cl"><span class="k">fi</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="14-循环" class="heading-element"><span>14. 循环</span>
+</div><h2 class="heading-element" id="14-循环"><span>14. 循环</span>
   <a href="#14-%e5%be%aa%e7%8e%af" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="141-while-循环" class="heading-element"><span>14.1. while 循环</span>
+</h2><h2 class="heading-element" id="141-while-循环"><span>14.1. while 循环</span>
   <a href="#141-while-%e5%be%aa%e7%8e%af" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1032,7 +1031,7 @@
 </span></span><span class="line"><span class="cl">    ...
 </span></span><span class="line"><span class="cl"><span class="k">done</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="1411-文件读取示例" class="heading-element"><span>14.1.1. 文件读取示例</span>
+</div><h3 class="heading-element" id="1411-文件读取示例"><span>14.1.1. 文件读取示例</span>
   <a href="#1411-%e6%96%87%e4%bb%b6%e8%af%bb%e5%8f%96%e7%a4%ba%e4%be%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1071,7 +1070,7 @@
 </span></span><span class="line"><span class="cl">    ...
 </span></span><span class="line"><span class="cl"><span class="k">done</span> &lt; FILE</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="142-select-循环" class="heading-element"><span>14.2. select 循环</span>
+</div><h2 class="heading-element" id="142-select-循环"><span>14.2. select 循环</span>
   <a href="#142-select-%e5%be%aa%e7%8e%af" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1093,7 +1092,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$REPLY</span><span class="s2">. </span><span class="nv">$shuttle</span><span class="s2"> selected&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">done</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="143-for-循环" class="heading-element"><span>14.3. for 循环</span>
+</div><h2 class="heading-element" id="143-for-循环"><span>14.3. for 循环</span>
   <a href="#143-for-%e5%be%aa%e7%8e%af" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1118,7 +1117,7 @@
 </span></span><span class="line"><span class="cl">        ...
 </span></span><span class="line"><span class="cl">    <span class="k">done</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="1431-示例" class="heading-element"><span>14.3.1. 示例</span>
+</div><h3 class="heading-element" id="1431-示例"><span>14.3.1. 示例</span>
   <a href="#1431-%e7%a4%ba%e4%be%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1145,7 +1144,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># echo {1..100}+ |sed &#39;s#\+$##g&#39;|bc</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="15-shell-数组" class="heading-element"><span>15. shell 数组</span>
+</div><h2 class="heading-element" id="15-shell-数组"><span>15. shell 数组</span>
   <a href="#15-shell-%e6%95%b0%e7%bb%84" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1165,11 +1164,11 @@
 </ul>
 </li>
 </ol>
-<h2 id="16-shell-调试" class="heading-element"><span>16. shell 调试</span>
+<h2 class="heading-element" id="16-shell-调试"><span>16. shell 调试</span>
   <a href="#16-shell-%e8%b0%83%e8%af%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="161-全局调试" class="heading-element"><span>16.1. 全局调试</span>
+</h2><h2 class="heading-element" id="161-全局调试"><span>16.1. 全局调试</span>
   <a href="#161-%e5%85%a8%e5%b1%80%e8%b0%83%e8%af%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1180,7 +1179,7 @@
 <li><code>-e</code> 令脚本在发生错误时退出而不是继续运行</li>
 <li><code>-u</code> 检查是否使用了未赋值的变量</li>
 </ul>
-<h2 id="162-分段调试" class="heading-element"><span>16.2. 分段调试</span>
+<h2 class="heading-element" id="162-分段调试"><span>16.2. 分段调试</span>
   <a href="#162-%e5%88%86%e6%ae%b5%e8%b0%83%e8%af%95" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1246,11 +1245,11 @@
 </div>
 </div></li>
 </ul>
-<h2 id="17-linux-信号" class="heading-element"><span>17. linux 信号</span>
+<h2 class="heading-element" id="17-linux-信号"><span>17. linux 信号</span>
   <a href="#17-linux-%e4%bf%a1%e5%8f%b7" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h2 id="171-常用信号" class="heading-element"><span>17.1. 常用信号</span>
+</h2><h2 class="heading-element" id="171-常用信号"><span>17.1. 常用信号</span>
   <a href="#171-%e5%b8%b8%e7%94%a8%e4%bf%a1%e5%8f%b7" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1305,7 +1304,7 @@
       </tr>
   </tbody>
 </table>
-<h2 id="172-trap-命令" class="heading-element"><span>17.2. trap 命令</span>
+<h2 class="heading-element" id="172-trap-命令"><span>17.2. trap 命令</span>
   <a href="#172-trap-%e5%91%bd%e4%bb%a4" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1343,14 +1342,13 @@
 </div>
 </div></li>
 </ul>
-<h2 id="18-advanced-bash-scripting-guidecontributed-scripts" class="heading-element"><span>18. Advanced Bash-Scripting Guide(Contributed Scripts)</span>
+<h2 class="heading-element" id="18-advanced-bash-scripting-guidecontributed-scripts"><span>18. Advanced Bash-Scripting Guide(Contributed Scripts)</span>
   <a href="#18-advanced-bash-scripting-guidecontributed-scripts" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><blockquote>
-<p><a href="http://tldp.org/LDP/abs/html/contributed-scripts.html"target="_blank" rel="external nofollow noopener noreferrer">http://tldp.org/LDP/abs/html/contributed-scripts.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-<h2 id="19-getops" class="heading-element"><span>19. getops</span>
+<p><a href="http://tldp.org/LDP/abs/html/contributed-scripts.html"target="_blank" rel="external nofollow noopener noreferrer">http://tldp.org/LDP/abs/html/contributed-scripts.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p></blockquote>
+<h2 class="heading-element" id="19-getops"><span>19. getops</span>
   <a href="#19-getops" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1624,7 +1622,7 @@
 </div>
 </div></li>
 </ul>
-<h2 id="20-那些很神奇的操作" class="heading-element"><span>20. 那些很神奇的操作</span>
+<h2 class="heading-element" id="20-那些很神奇的操作"><span>20. 那些很神奇的操作</span>
   <a href="#20-%e9%82%a3%e4%ba%9b%e5%be%88%e7%a5%9e%e5%a5%87%e7%9a%84%e6%93%8d%e4%bd%9c" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1643,7 +1641,7 @@
 </div>
 </div></li>
 </ul>
-<h2 id="21-将脚本以特定用户运行" class="heading-element"><span>21. 将脚本以特定用户运行</span>
+<h2 class="heading-element" id="21-将脚本以特定用户运行"><span>21. 将脚本以特定用户运行</span>
   <a href="#21-%e5%b0%86%e8%84%9a%e6%9c%ac%e4%bb%a5%e7%89%b9%e5%ae%9a%e7%94%a8%e6%88%b7%e8%bf%90%e8%a1%8c" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
@@ -1690,7 +1688,7 @@
   <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
       <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
     <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.139.3"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.16"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.147.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.20"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
@@ -1699,5 +1697,5 @@
     <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
   </noscript>
 </div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.6955c00f427f31a16d1d426b9b0c310e3d610bdb3c7ff21dd63e2c8486e90b8aa706b076bb1d0c8819e944e92a38db3f347f987097325f72bdde194122568d82.css" integrity="sha512-aVXAD0J/MaFtHUJrmwwxDj1hC9s8f/Id1j4shIbpC4qnBrB2ux0MiBnpROkqONs/NH+YcJcyX3K93hlBIlaNgg=="><link rel="preload" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.b93e0f2f3177f5e2245296a45f9280980ea005c33850fd217771d2a6c7617a8cf2d7b609d579bfb96ef398d4e7b53364aa7893cb8cf3321f31dd05e828cce902.js" integrity="sha512-uT4PLzF39eIkUpakX5KAmA6gBcM4UP0hd3HSpsdheozy17YJ1Xm/uW7zmNTntTNkqniTy4zzMh8x3QXoKMzpAg==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2019-05-31T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"Shellscript相关"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.16"};</script><script src="/js/theme.min.08ac5c30d251cabd75da079a416025728537d4db9c743f13d6e5a4627326df290b8a0003a254450176ea10dc1d2084af1d8c57beceb4aba299e0162f7b3fcfb1.js" integrity="sha512-CKxcMNJRyr112geaQWAlcoU31NucdD8T1uWkYnMm3ykLigADolRFAXbqENwdIISvHYxXvs60q6KZ4BYvez/PsQ==" defer></script><script src="/lib/translate.min.1a38caaeafd7176713f44400741e50378c3f69739ab4e3c51224892099aeb57aa71f9e9b53195a17cb03a7ef6810b76be44c0937b4b4dd9f5db982ae0fa6c794.js" integrity="sha512-GjjKrq/XF2cT9EQAdB5QN4w/aXOatOPFEiSJIJmutXqnH56bUxlaF8sDp+9oELdr5EwJN7S03Z9duYKuD6bHlA==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/shellscript%E7%9B%B8%E5%85%B3/"}};</script><script src="/js/translate.fixit.min.d92024dffa4490c61c5d72b1aaf2e22d8358a831e04f5bec9afcf99a9ddd3c90fb3b0d8e3ba9243f3f6db85803d1413e0ef509c873d64b2e2a02b6d11da00a75.js" integrity="sha512-2SAk3/pEkMYcXXKxqvLiLYNYqDHgT1vsmvz5mp3dPJD7Ow2OO6kkPz9tuFgD0UE+DvUJyHPWSy4qArbRHaAKdQ==" defer></script></body>
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.b93e0f2f3177f5e2245296a45f9280980ea005c33850fd217771d2a6c7617a8cf2d7b609d579bfb96ef398d4e7b53364aa7893cb8cf3321f31dd05e828cce902.js" integrity="sha512-uT4PLzF39eIkUpakX5KAmA6gBcM4UP0hd3HSpsdheozy17YJ1Xm/uW7zmNTntTNkqniTy4zzMh8x3QXoKMzpAg==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2019-05-31T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"Shellscript相关"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.20"};</script><script src="/js/theme.min.4807c10b31d5f64caef015e07216aaf921774d77ab46d3c725db004dd9ba0b6e4574219fd6c188ce6ec3bd906b255f2dfbe6b7ad2a20c676e5e9e02989fe133f.js" integrity="sha512-SAfBCzHV9kyu8BXgchaq+SF3TXerRtPHJdsATdm6C25FdCGf1sGIzm7DvZBrJV8t++a3rSogxnbl6eApif4TPw==" defer></script><script src="/lib/translate.min.1a38caaeafd7176713f44400741e50378c3f69739ab4e3c51224892099aeb57aa71f9e9b53195a17cb03a7ef6810b76be44c0937b4b4dd9f5db982ae0fa6c794.js" integrity="sha512-GjjKrq/XF2cT9EQAdB5QN4w/aXOatOPFEiSJIJmutXqnH56bUxlaF8sDp+9oELdr5EwJN7S03Z9duYKuD6bHlA==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/shellscript%E7%9B%B8%E5%85%B3/"}};</script><script src="/js/translate.fixit.min.ab03e2ee13c4858806ccf9eb99fb353eac77a752b8d7467a0350c40fcb567ec979e41d8884da52e90309d248d602707ebc70c12fbce1902311aff3f00ae5ca80.js" integrity="sha512-qwPi7hPEhYgGzPnrmfs1Pqx3p1K410Z6A1DED8tWfsl55B2IhNpS6QMJ0kjWAnB+vHDBL7zhkCMRr/PwCuXKgA==" defer></script></body>
 </html>

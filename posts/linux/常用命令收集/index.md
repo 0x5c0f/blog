@@ -3,53 +3,53 @@
 
 引入一个更为专业的命令收集站点 :
 
-&gt; [https://www.commandlinefu.com/commands/browse](https://www.commandlinefu.com/commands/browse)
+> [https://www.commandlinefu.com/commands/browse](https://www.commandlinefu.com/commands/browse)
 
 # 统计第一列相同，第二列平均值
 
 ```bash
-cat xxx |awk &#39;{a[$1]&#43;=$2;c[$1]&#43;&#43;}END{l=asorti(a,b);for(i=1;i&lt;=l;i&#43;&#43;)print b[i],a[b[i]]/c[b[i]]}&#39;
+cat xxx |awk '{a[$1]+=$2;c[$1]++}END{l=asorti(a,b);for(i=1;i<=l;i++)print b[i],a[b[i]]/c[b[i]]}'
 ```
 
 # 时间段统计日志：
 
 ```bash
-sed -n &#39;/2018:02:30/,/2018:03:00/p&#39; www.log |awk &#39;{a[$1]&#43;=1;} END {for(i in a){print a[i]&#34; &#34;i;}}&#39; |sort -t &#34; &#34; -k 1 -n
-sed -n &#39;/2018:01:50/,/2018:02:00/p&#39; www.log |grep &#34;list?&#34; |awk &#39;{a[$1]&#43;=1;} END {for(i in a){print a[i]&#34; &#34;i;}}&#39; |sort -t &#34; &#34; -k 1 -n
+sed -n '/2018:02:30/,/2018:03:00/p' www.log |awk '{a[$1]+=1;} END {for(i in a){print a[i]" "i;}}' |sort -t " " -k 1 -n
+sed -n '/2018:01:50/,/2018:02:00/p' www.log |grep "list?" |awk '{a[$1]+=1;} END {for(i in a){print a[i]" "i;}}' |sort -t " " -k 1 -n
 ```
 
 # 按照 ip 排序
 
 ```bash
 # 升序
-sort -t&#39;.&#39; -k1,1n -k2,2n -k3,3n -k4,4n ip.txt
+sort -t'.' -k1,1n -k2,2n -k3,3n -k4,4n ip.txt
 # 降序
-sort -t&#39;.&#39; -k1,1nr -k2,2nr -k3,3nr -k4,4nr ip.txt
+sort -t'.' -k1,1nr -k2,2nr -k3,3nr -k4,4nr ip.txt
 ```
 
 # shell 中获取脚本绝对路径
 
 ```bash
-SHELL_DIR=$(dirname $(readlink -f &#34;$0&#34;))
+SHELL_DIR=$(dirname $(readlink -f "$0"))
 SHELL_DIR=$(cd `dirname $0`; pwd)
 ```
 
 # tailf 显示高亮
 
 ```bash
- tail -f www.log | perl -pe &#39;s/(\/pattern1\/pattern2)/\e[1;31m$1\e[0m/g&#39;
+ tail -f www.log | perl -pe 's/(\/pattern1\/pattern2)/\e[1;31m$1\e[0m/g'
 
- tail -f www.log |grep --color -E &#39;pattern|$&#39;
+ tail -f www.log |grep --color -E 'pattern|$'
 ```
 
 # openssl 通过证书加密解密大文件
 
 ```bash
-mkdir /etc/encrypt &amp;&amp; cd /etc/encrypt
+mkdir /etc/encrypt && cd /etc/encrypt
 
 openssl genrsa -out private.pem 2048
 openssl rsa -in private.pem -outform PEM -pubout -out public.pem
-openssl rand -base64 32 &gt; key.bin   # 远程传输建议每次都新建
+openssl rand -base64 32 > key.bin   # 远程传输建议每次都新建
 
 # 加密
 openssl rsautl -encrypt -pubin -inkey /etc/encrypt/public.pem -in /etc/encrypt/key.bin -out /etc/encrypt/key.bin.enc
@@ -61,7 +61,7 @@ openssl aes-256-cfb -d -a -pbkdf2 -in filename.gz.enc -out filename.gz -k $(cat 
 
 
 # 加密
-tar -czf - * |  openssl aes-256-cfb -salt -k &#34;8CASiU6zxAWy9QZ8wj&#43;MgIzqHsBnXjgkHNvWeJ0urHw=&#34; -out ssh.key.pem.enc
+tar -czf - * |  openssl aes-256-cfb -salt -k "8CASiU6zxAWy9QZ8wj+MgIzqHsBnXjgkHNvWeJ0urHw=" -out ssh.key.pem.enc
 
 openssl aes-256-cfb -d -salt -in ssh.key.pem.enc -out ssh_key.pem.tar.gz
 
@@ -70,26 +70,26 @@ openssl aes-256-cfb -d -salt -in ssh.key.pem.enc -out ssh_key.pem.tar.gz
 # 手动检测: 每分钟连接次数
 
 ```bash
-netstat -ntu | awk &#39;{print $5}&#39; |cut -d: -f1|sort|uniq -c |sort -n
-netstat -an |grep ^tcp.*:80|egrep -v &#39;LISTEN|127.0.0.1&#39;|awk -F&#34;[ ]&#43;|[:]&#34; &#39;{print $6}&#39;|sort|uniq -c|sort -rn
+netstat -ntu | awk '{print $5}' |cut -d: -f1|sort|uniq -c |sort -n
+netstat -an |grep ^tcp.*:80|egrep -v 'LISTEN|127.0.0.1'|awk -F"[ ]+|[:]" '{print $6}'|sort|uniq -c|sort -rn
 ```
 
 # linux 用 tcpdump 查看 80 端口访问有哪些 IP
 
 ```bash
-tcpdump -i eth0 -tnn dst port 80 -c 1000|awk -F&#34;.&#34; &#39;{print $1&#34;.&#34;$2&#34;.&#34;$3&#34;.&#34;$4}&#39;|sort|uniq -c|sort -rn|head -n20
+tcpdump -i eth0 -tnn dst port 80 -c 1000|awk -F"." '{print $1"."$2"."$3"."$4}'|sort|uniq -c|sort -rn|head -n20
 ```
 
 # 查看 linux 内存占用最高的 10 个进程
 
 ```bash
-ps aux|head -1 &amp;&amp; ps aux|grep -v PID|sort -rn -k &#43;4|head
+ps aux|head -1 && ps aux|grep -v PID|sort -rn -k +4|head
 ```
 
 # linux 查看 cpu 占用最高的 10 个进程
 
 ```bash
-ps aux|head -1;ps aux|grep -v PID|sort -rn -k &#43;3|head
+ps aux|head -1;ps aux|grep -v PID|sort -rn -k +3|head
 ```
 
 # linux 查看命令来源于那个包(yum 也适用)
@@ -144,7 +144,7 @@ rpm -ivh --aid  *.rpm
 # 清除僵死进程
 
 ```bash
-ps -eal | awk &#39;{ if ($2 == &#34;Z&#34;) {print $4}}&#39; | kill -9
+ps -eal | awk '{ if ($2 == "Z") {print $4}}' | kill -9
 ```
 
 # LNMP/LAMP 环境查看编译参数
@@ -173,20 +173,20 @@ taskset -c 0,1,2,3 /etc/init.d/mysql start
 # 类似tailf,但是针对命令
 # 查看当前目录内容变化
 # watch ls
-# watch &#34;netstat -ntu | awk &#39;{print $5}&#39; |cut -d: -f1|sort|uniq -c |sort -n&#34;
+# watch "netstat -ntu | awk '{print $5}' |cut -d: -f1|sort|uniq -c |sort -n"
 ```
 
 # 创建一个具有特定权限的空文件
 
 ```bash
-#install -b -m &lt;权限&gt; &lt;来源&gt; &lt;目标&gt;
+#install -b -m <权限> <来源> <目标>
 install -b -m 777 /dev/null file.txt
 ```
 
 # 创建一个具有特定权限的目录
 
 ```bash
-# install -d -o &lt;用户名&gt; -g &lt;用户组&gt; -m &lt;权限&gt; &lt;目标地址&gt;
+# install -d -o <用户名> -g <用户组> -m <权限> <目标地址>
 install -d -o www -g www -m 755  /run/php-fpm
 ```
 
@@ -208,8 +208,8 @@ mount -t tmpfs -o size=1024M tmpfs /mnt/usb02
 
 # 文件描述符相关
 
-&lt;details&gt;
-&lt;summary&gt;点击展开详细内容&lt;/summary&gt;
+<details>
+<summary>点击展开详细内容</summary>
 
 1.  系统最大打开的文件描述符数量
 
@@ -236,36 +236,36 @@ mount -t tmpfs -o size=1024M tmpfs /mnt/usb02
     - 获取某个程序打开的文件数量
       ```bash
       for i in `pidof dotnet`; do
-          lsof -p &#34;$i&#34; | wc -l ;
+          lsof -p "$i" | wc -l ;
       done
       ```
     - 获取某个程序打开的文件描述符数量
       ```bash
       for i in `pidof dotnet` ; do
-          echo -n &#34;$i : &#34;$(ll /proc/$i/fd|wc -l)
+          echo -n "$i : "$(ll /proc/$i/fd|wc -l)
       done
       ```
 
 3.  查看系统里占用 fd 最多的进程
 
 ```bash
-    lsof -n | awk &#39;{print $2}&#39; | sort | uniq -c | sort -nr |head -n 10
+    lsof -n | awk '{print $2}' | sort | uniq -c | sort -nr |head -n 10
     #第一列是占用的fd数量，第二列是进程的pid
 ```
 
-&lt;/details&gt;
+</details>
 
 # 字符串拆分
 
 ```bash
-echo &#34;hello&#34; |awk -F &#39;&#39; &#39;{for(i=1;i&lt;=NF;i&#43;&#43;)print $i}&#39;
-#echo &#34;hello&#34; |awk &#39;{split($0,a,&#34;&#39;&#39;&#34;);for(v in a)print a[v]}&#39;
+echo "hello" |awk -F '' '{for(i=1;i<=NF;i++)print $i}'
+#echo "hello" |awk '{split($0,a,"''");for(v in a)print a[v]}'
 ```
 
 # 去除文本第一行和最后一行
 
 ```bash
-seq 5 |awk&#39;NR&gt;2{print s}{s=$0}&#39;
+seq 5 |awk'NR>2{print s}{s=$0}'
 ```
 
 # 查看当前主机类型
@@ -277,15 +277,15 @@ cat /sys/class/dmi/id/product_name
 # find 查看特定后缀的文件
 
 ```bash
-# find ./ -regex &#34;.*\.tar.gz\|.*\.7z&#34;
-# find ./ -type f -regextype posix-extended -regex &#34;.*\.(tar.gz|7z)&#34;
+# find ./ -regex ".*\.tar.gz\|.*\.7z"
+# find ./ -type f -regextype posix-extended -regex ".*\.(tar.gz|7z)"
 ```
 
 # shell 范围随机数
 
 ```bash
-# echo $((RANDOM % (max - min) &#43; min))
-echo $((RANDOM % (99 - 80) &#43; 80))
+# echo $((RANDOM % (max - min) + min))
+echo $((RANDOM % (99 - 80) + 80))
 
 # shuf -i min-max -n 1
 shuf -i 0-8 -n 1
@@ -294,14 +294,14 @@ shuf -i 0-8 -n 1
 # linux 将时间戳转换为时间
 
 ```bash
-date &#43;&#34;%F_%T&#34; -d$timestamp
+date +"%F_%T" -d$timestamp
 ```
 
 # linux 远程桌面连接
 
 ```bash
 # freerdp-2.2.0-1.fc32.x86_64
-xfreerdp /v:&lt;hostip&gt; /u:&lt;username&gt; /drive:shares,&lt;本地目录&gt;
+xfreerdp /v:<hostip> /u:<username> /drive:shares,<本地目录>
 ```
 
 # linux 打包文件夹为 ISO 文件
@@ -313,9 +313,9 @@ mkisofs -o file.iso -J -R -V 01 file/
 
 # Docker 与 iptables 只允许特定 ip 访问 Docker 的服务(DOCKER-USER)
 
-&gt; https://blog.csdn.net/Liv2005/article/details/112850208
+> https://blog.csdn.net/Liv2005/article/details/112850208
 
-&gt; https://docs.docker.com/network/iptables/
+> https://docs.docker.com/network/iptables/
 
 ```bash
 # 允许172.31.10.0/24网段访问docker网络，eth0 为服务器对外通信网卡 
@@ -328,21 +328,21 @@ iptables -I DOCKER-USER -i eth0 ! -s 172.31.10.0/24 -j DROP
 
 ```bash
 # 从证书中提取
-openssl x509 -in domain.pem -pubkey  -noout &gt; public.pem
+openssl x509 -in domain.pem -pubkey  -noout > public.pem
 # 从私钥中提取
-openssl rsa -in private.key -pubout &gt; public.pem
+openssl rsa -in private.key -pubout > public.pem
 ```
 
 # 查看本地监听信息
 
 ```bash
-cat /proc/net/tcp | grep &#34; 0A &#34; | sed &#39;s/^[^:]*: \(..\)\(..\)\(..\)\(..\):\(....\).*/echo $((0x\4)).$((0x\3)).$((0x\2)).$((0x\1)):$((0x\5))/g&#39; | bash
+cat /proc/net/tcp | grep " 0A " | sed 's/^[^:]*: \(..\)\(..\)\(..\)\(..\):\(....\).*/echo $((0x\4)).$((0x\3)).$((0x\2)).$((0x\1)):$((0x\5))/g' | bash
 ```
 
 # 获取 ping 域名的 ip
 
 ```bash
-ping www.baidu.com -c 1 -w 1 | sed &#39;1{s/[^(]*(//;s/).*//;q}&#39;
+ping www.baidu.com -c 1 -w 1 | sed '1{s/[^(]*(//;s/).*//;q}'
 ```
 
 # 检查用户是否有操作 docker 权限
@@ -354,25 +354,25 @@ sudo -u zabbix curl --unix-socket /var/run/docker.sock --no-buffer -XGET v1.24/_
 # 分段压缩 
 ```bash
 # 压缩
-$&gt; tar czf - /pathto/dir01 /pathto/dir02 |split -d -b 2G - file.tgz.
+$> tar czf - /pathto/dir01 /pathto/dir02 |split -d -b 2G - file.tgz.
 # 解压
-$&gt; cat file.tgz* | tar xz 
+$> cat file.tgz* | tar xz 
 
 # 压缩
-$&gt; zip -s 100m -r myarchive.zip myfolder/
+$> zip -s 100m -r myarchive.zip myfolder/
 # 解压
-$&gt; unzip myarchive.zip
+$> unzip myarchive.zip
 ```
 
 # 临时移动工作路径执行命令
 ```
-$&gt; (cd /some/other/dir &amp;&amp; other-command)
+$> (cd /some/other/dir && other-command)
 ```
 
 # mount --bind 
 ```bash
 # 将 olddir 绑定到  newdir
-$&gt; mount -o bind olddir newdir
+$> mount -o bind olddir newdir
 
 # /etc/fstab
 # ro: 只读  rw: 只写
@@ -403,23 +403,23 @@ WantedBy=multi-user.target
 #nginx导入key和pem即可
 
 ## 查看远程证书相关信息  
-$&gt; echo | openssl s_client -connect tools.example.com:443 2&gt;&amp;- | sed -ne &#39;/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p&#39; &gt; remote-cert.pem \
-        &amp;&amp; openssl x509 -in remote-cert.pem -text \
-        &amp;&amp; rm remote-cert.pem
+$> echo | openssl s_client -connect tools.example.com:443 2>&- | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > remote-cert.pem \
+        && openssl x509 -in remote-cert.pem -text \
+        && rm remote-cert.pem
 #     查看证书到期时间       
-#     &amp;&amp; openssl x509 -in remote-cert.pem -enddate -noout      
+#     && openssl x509 -in remote-cert.pem -enddate -noout      
 
 ## 
-$&gt; openssl s_client -showcerts -connect tools.example.com:443 &lt;/dev/null | openssl x509 -inform PEM -noout -text     
+$> openssl s_client -showcerts -connect tools.example.com:443 </dev/null | openssl x509 -inform PEM -noout -text     
 
 ##  CA证书取消密码
-$&gt; openssl rsa -in &lt;ca-private-key-file&gt; -out &lt;ca-private-key-file&gt;.enc
+$> openssl rsa -in <ca-private-key-file> -out <ca-private-key-file>.enc
 ##  CA证书添加密码
-$&gt; openssl rsa -des3 -in &lt;ca-private-key-file&gt; -out &lt;ca-private-key-file&gt;.enc
+$> openssl rsa -des3 -in <ca-private-key-file> -out <ca-private-key-file>.enc
 
 # 证书生成 
 ## 创建ca私钥
-$&gt; openssl genrsa -des3 -out ca.key 4096
+$> openssl genrsa -des3 -out ca.key 4096
 
 ## 创建ca证书
 ### /C=CN：证书持有者所在国家的两字母代码
@@ -427,17 +427,17 @@ $&gt; openssl genrsa -des3 -out ca.key 4096
 ### /O=example：证书持有者的组织或公司名称
 ### /CN=example：证书持有者的通用名称（Common Name），一般为服务器的域名或客户端的用户名
 ### /emailAddress=mail@example.com：证书持有者的电子邮件地址。
-$&gt; openssl req -utf8 -x509 -new -nodes -key ca.key -sha512 -days 18250 -out ca.pem -subj &#34;/C=CN/ST=CQ/O=example/CN=example/emailAddress=mail@example.com&#34;
+$> openssl req -utf8 -x509 -new -nodes -key ca.key -sha512 -days 18250 -out ca.pem -subj "/C=CN/ST=CQ/O=example/CN=example/emailAddress=mail@example.com"
 
 # 创建服务器私钥
-$&gt; openssl genrsa -out server.key 4096
+$> openssl genrsa -out server.key 4096
 
 # 创建域名csr
-$&gt; openssl req -new -key server.key -out server.csr -subj &#34;/C=CN/ST=CQ/O=0x5c0f/CN=example.com/emailAddress=mail@example.com&#34;
+$> openssl req -new -key server.key -out server.csr -subj "/C=CN/ST=CQ/O=0x5c0f/CN=example.com/emailAddress=mail@example.com"
 
 
 # 创建扩展
-$&gt; cat &gt; server.ext &lt;&lt;EOF
+$> cat > server.ext <<EOF
 authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
@@ -451,29 +451,29 @@ IP.1 = 127.0.0.1
 EOF
 
 # 生成域名证书
-$&gt; openssl x509 -req -in server.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out server.crt -days 1825 -sha512 -extfile server.ext
+$> openssl x509 -req -in server.csr -CA ca.pem -CAkey ca.key -CAcreateserial -out server.crt -days 1825 -sha512 -extfile server.ext
 ```
 
 # linux 端口转发
 ```bash
 # linux 下端口转发
-$&gt; echo 1 &gt;/proc/sys/net/ipv4/ip_forward
+$> echo 1 >/proc/sys/net/ipv4/ip_forward
 
-$&gt; iptables -t nat -A POSTROUTING -j MASQUERADE
-$&gt; iptables -A FORWARD -i [内网网卡名称] -j ACCEPT
-$&gt; iptables -t nat -A POSTROUTING -s [内网网段] -o [外网网卡名称] -j MASQUERADE
-$&gt; iptables -t nat -A PREROUTING -p tcp -m tcp --dport [外网端口] -j DNAT --to-destination [内网地址]:[内网端口]
+$> iptables -t nat -A POSTROUTING -j MASQUERADE
+$> iptables -A FORWARD -i [内网网卡名称] -j ACCEPT
+$> iptables -t nat -A POSTROUTING -s [内网网段] -o [外网网卡名称] -j MASQUERADE
+$> iptables -t nat -A PREROUTING -p tcp -m tcp --dport [外网端口] -j DNAT --to-destination [内网地址]:[内网端口]
 ```
 
 # linux 下实现内网上公网
 ```bash
 # 允许NAT功能和网络包的转发(eth0 为可以连接公网的网卡)
-$&gt; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+$> iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 # 允许从内网到公网的数据包转发
-$&gt; sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+$> sudo iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
 # sudo iptables -A FORWARD -i eth1 -s 10.0.2.33 -o eth0 -j ACCEPT
 # 允许已经建立连接的流量转发
-$&gt; sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+$> sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 # sudo iptables -A FORWARD -i eth0 -d 10.0.2.33 -o eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 ```
 
@@ -481,58 +481,58 @@ $&gt; sudo iptables -A FORWARD -i eth0 -o eth1 -m state --state RELATED,ESTABLIS
 ```bash
 # 1. 通过top找到正在消耗 CPU 的 php-fpm 进程的 PID 
 # 2. 使用 strace 命令跟踪该进程：
-$&gt; strace -p &lt;PID&gt; -e trace=open,execve,stat
+$> strace -p <PID> -e trace=open,execve,stat
 # 3. 在输出中查找正在执行的 PHP 脚本
-$&gt; strace -p &lt;PID&gt; -e trace=open,execve,stat 2&gt;&amp;1 | grep &#39;\.php&#39;
+$> strace -p <PID> -e trace=open,execve,stat 2>&1 | grep '\.php'
 ```
 
 # 查询当前目录下 `md5` 相同的文件 
 ```bash
-$&gt; find . -type f -exec md5sum {} &#43; | sort | uniq -w32 -dD
+$> find . -type f -exec md5sum {} + | sort | uniq -w32 -dD
 # uniq -w32 -dD：找到重复的MD5哈希，并只打印重复的行
 ```
 
 # 查询当前目录下 `md5` 等于某个值并删除/移动
 ```bash
 # 删除
-$&gt; find . -type f -exec md5sum {} &#43; | grep &#39;your_md5_value&#39; | cut -d &#39; &#39; -f 2- | xargs rm
+$> find . -type f -exec md5sum {} + | grep 'your_md5_value' | cut -d ' ' -f 2- | xargs rm
 # 移动
-$&gt; find . -type f -exec md5sum {} &#43; | grep &#39;your_md5_value&#39; | cut -d &#39; &#39; -f 2- | xargs -I {} mv {} /path/to/destination/
+$> find . -type f -exec md5sum {} + | grep 'your_md5_value' | cut -d ' ' -f 2- | xargs -I {} mv {} /path/to/destination/
 ```
 
 # 通过 `skopeo` 命令查询 `docker` 仓库中特定容器存在那些版本，也可以用于管理
 ```bash
 # 查询 
-$&gt; skopeo list-tags docker://hub.example.com/0x5c0f/sshx
+$> skopeo list-tags docker://hub.example.com/0x5c0f/sshx
 # 删除
-$&gt; skopeo delete docker://hub.example.com/0x5c0f/sshx:2023121505
+$> skopeo delete docker://hub.example.com/0x5c0f/sshx:2023121505
 # ...
 ```
 
 # 查询 `docker` 运行容器的 `cpu` 占用信息，并按照 `cpu` 占用排序
 ```bash
-$&gt; watch -n 3 &#39;docker stats --no-stream --format &#34;table {{.Name}}\t{{.CPUPerc}}&#34; | sort -k 2 -r&#39;
+$> watch -n 3 'docker stats --no-stream --format "table {{.Name}}\t{{.CPUPerc}}" | sort -k 2 -r'
 ```
 
 # docker-compose 同时查询`服务名`、`容器名`、`容器id`  
 ```bash
 # 需要 docker-compose v2
-$&gt; docker compose ps --format &#34;table {{.Service}}:{{.Name}}\t{{.ID}}&#34; 
+$> docker compose ps --format "table {{.Service}}:{{.Name}}\t{{.ID}}" 
 ```
 
 # 实时写入的大文件压缩切割 
 ```bash
-$&gt; gzip -c a.log &gt;/tmp/a.log.gz &amp;&amp; &gt; a.log
+$> gzip -c a.log >/tmp/a.log.gz && > a.log
 ```
 
 # 将图片转化为指定大小，并且在图片高宽度不够时候，用透明背景填充 
 ```bash
-$&gt; ffmpeg -i input.(png|svg|..) -vf &#34;scale=944:944:force_original_aspect_ratio=decrease,pad=944:944:(944-iw)/2:(944-ih)/2:color=0x00000000&#34; output.png
+$> ffmpeg -i input.(png|svg|..) -vf "scale=944:944:force_original_aspect_ratio=decrease,pad=944:944:(944-iw)/2:(944-ih)/2:color=0x00000000" output.png
 ```
 
 # Pwgen 创建密码, 忽略特定字符串
 ```bash
-$&gt; alias pwgen=&#34;pwgen -s -r \\\`\\~\\!\\#\\$\\&amp;\\(\\)\\_\\-\\&#43;\\=\\{\\}\\[\\]\\\\\\|\\;\\:\\&#39;\\\&#34;\\,\\&lt;\\&gt;\\?\\/&#34;
+$> alias pwgen="pwgen -s -r \\\`\\~\\!\\#\\$\\&\\(\\)\\_\\-\\+\\=\\{\\}\\[\\]\\\\\\|\\;\\:\\'\\\"\\,\\<\\>\\?\\/"
 ```
 
 ---
