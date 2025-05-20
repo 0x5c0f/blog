@@ -281,6 +281,22 @@ $> pg_restore -U postgres -h 127.0.0.1 -p 5432 -d <database> -C /tmp/<database>.
 $> pg_restore -U postgres -h 127.0.0.1 -d <database> --clean --if-exists /tmp/<database>.dump
 ```
 
+## UFW 防火墙创建自定义规则
+```bash
+# 定义应用规则
+$> vim /etc/ufw/applications.d/samba
+[Samba]
+title=Samba File Sharing
+description=Allow Samba (NetBIOS/SMB) ports
+ports=137,138/udp|139,445/tcp
+
+# 更新 UFW 应用列表
+$> ufw app update samba
+
+# 开启应用规则
+$> ufw allow samba # ufw allow from <网段>/<子网掩码> to any port samba
+```
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
