@@ -297,6 +297,41 @@ $> ufw app update samba
 $> ufw allow samba # ufw allow from <网段>/<子网掩码> to any port samba
 ```
 
+## 利用 AWS CloudFront 的 CloudFront 函数 实现域名非www跳转www域名
+1. 编写 `CloudFront Function`
+- 创建一个 `CloudFront Function`，代码如下（直接处理请求并返回重定向）：
+    ```js
+    function handler(event) {
+        var request = event.request;
+        var host = request.headers.host.value;
+
+        // 判断是否是非 www 请求（例如 example.com）
+        if (host === 'example.com') {
+            return {
+                statusCode: 301,
+                statusDescription: 'Moved Permanently',
+                headers: {
+                    'location': { value: `https://www.${host}${request.uri}` },
+                    'cache-control': { value: 'max-age=3600' }
+                }
+            };
+        }
+
+        // 其他情况直接放行
+        return request;
+    }
+    ```
+2. 配置函数参数
+运行时版本：选择 `cloudfront-js-2.0`（最新 `JavaScript` 运行时）。   
+- 函数名称：例如 `redirect-non-www-to-www`。
+
+3. 关联到 `CloudFront` 分发
+- 在目标 `CloudFront` 分发（处理 `example.com` 的分发）的 行为（`Behaviors`） 中
+    - 找到需要修改的缓存行为（通常为 `Default (*)` 或自定义路径）。
+    - 在 函数关联 - 可选(`Function association - optional`) 中选择 请求查看器(`Viewer Requests`)：
+        - 函数类型(`Event type`)：选择`CloudFront Functions`
+        - 函数 ARN/名称(`Function ARN/Name`): 选择已发布的 `CloudFront Function` `redirect-non-www-to-www`。
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
