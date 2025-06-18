@@ -301,6 +301,7 @@ $> ufw allow samba # ufw allow from <网段>/<子网掩码> to any port samba
 1. 编写 `CloudFront Function`
 - 创建一个 `CloudFront Function`，代码如下（直接处理请求并返回重定向）：
     ```js
+    // version 1.0
     function handler(event) {
         var request = event.request;
         var host = request.headers.host.value;
@@ -312,6 +313,32 @@ $> ufw allow samba # ufw allow from <网段>/<子网掩码> to any port samba
                 statusDescription: 'Moved Permanently',
                 headers: {
                     'location': { value: `https://www.${host}${request.uri}` },
+                    'cache-control': { value: 'max-age=3600' }
+                }
+            };
+        }
+
+        // 其他情况直接放行
+        return request;
+    }
+
+    // version 2.0 - 未测试
+    function handler(event) {
+        var request = event.request;
+        var host = request.headers.host.value;
+
+        // 跳转规则列表
+        var redirectRules = {
+            'example.com': 'www.example.com'
+        };
+
+        // 检查当前host是否需要跳转
+        if (redirectRules.hasOwnProperty(host)) {
+            return {
+                statusCode: 301,
+                statusDescription: 'Moved Permanently',
+                headers: {
+                    'location': { value: `https://${redirectRules[host]}${request.uri}` },
                     'cache-control': { value: 'max-age=3600' }
                 }
             };

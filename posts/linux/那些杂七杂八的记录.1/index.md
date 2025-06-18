@@ -933,31 +933,30 @@ $> sudo resize2fs /dev/vdc
 - `原因`：当前主机是通过手动配置`ip`，而局域网`ip`是路由自动分配的，有其他同事在连接时候占用了当前主机配置的`ip`，从而`ip`重复导致了上诉问题。
 
 ## linux 桌面环境下，绑定指定唤起协议
-- 例如 `mailto://` 唤起指定的邮件应用,下面以`he3`的`appimage`程序为例
+- 例如 `mailto://` 可以唤起指定的邮件应用,下面以一个`appimage`程序为例，假设其唤醒协议是`ac://`
 ```bash
 # 创建一个desktop文件(~/.local/share/applications)
-$> vim ~/.local/share/applications/appimagekit-he3.desktop 
+$> vim ~/.local/share/applications/appimagekit-example.desktop 
 [Desktop Entry]
-Name=He3
-Comment=He3 desktop
+Name=Example
+Comment=Example desktop
 
-X-AppImage-Version=5.0.4
-Exec=/opt/tools/he3/he3.appImage %U
+Exec=/opt/tools/example.appImage %U
 
-Icon=/opt/tools/he3/he3.png
+Icon=Icon=/usr/share/icons/logo.svg
 
 Terminal=false
 Type=Application
 Categories=Application;Development;
 StartupNotify=true
-# 主要是这个 MimeType, he3 即为相关协议(浏览器请求 he3:// 打开此程序)
-MimeType=x-scheme-handler/he3;
+# 主要是这个 MimeType, ac 即为相关协议(浏览器请求 ac:// 打开此程序)
+MimeType=x-scheme-handler/ac;
 
 # 绑定协议到指定的应用上
-$> xdg-mime default appimagekit-he3.desktop x-scheme-handler/he3
+$> xdg-mime default appimagekit-example.desktop x-scheme-handler/ac
 
 # 查询已绑定的信息 
-$> xdg-mime query default x-scheme-handler/he3
+$> xdg-mime query default x-scheme-handler/ac
 ```
 
 ## 解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题) 
