@@ -359,6 +359,32 @@ $> ufw allow samba # ufw allow from <网段>/<子网掩码> to any port samba
         - 函数类型(`Event type`)：选择`CloudFront Functions`
         - 函数 ARN/名称(`Function ARN/Name`): 选择已发布的 `CloudFront Function` `redirect-non-www-to-www`。
 
+## chronyd 常用操作
+```bash
+# 允许其他机器使用本机的 chronyd 服务作为 时间源
+$> vim /etc/chrony/chrony.conf
+# 允许特定网段使用本机 chronyd 服务作为 时间源
+allow 172.16.0.0/16
+
+# # 允许远程机器使用 chronyc 控制 chronyd
+# # 监听所有地址（默认仅本地）
+# bindcmdaddress 0.0.0.0
+# # 允许该网段内的客户端发送控制命令
+# cmdallow 172.16.0.0/16
+
+## 重启 chronyd 服务
+
+# 查看同步状态
+$> chronyc tracking
+
+# 查看当前时间源
+$> chronyc sources -v
+
+# 强制重新同步
+$> chronyc makestep
+```
+
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  

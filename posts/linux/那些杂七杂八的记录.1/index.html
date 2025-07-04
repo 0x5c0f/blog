@@ -2196,7 +2196,7 @@
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><ul>
-<li>例如 <code>mailto://</code> 可以唤起指定的邮件应用,下面以一个<code>appimage</code>程序为例，假设其唤醒协议是<code>ac://</code></li>
+<li>例如 <code>mailto://</code> 可以唤起指定的邮件应用,下面以一个<code>appimage</code>程序为例，假设其唤醒协议是<code>folo://</code></li>
 </ul>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -2238,14 +2238,14 @@
 </span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>Application
 </span></span><span class="line"><span class="cl"><span class="nv">Categories</span><span class="o">=</span>Application<span class="p">;</span>Development<span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">StartupNotify</span><span class="o">=</span><span class="nb">true</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 主要是这个 MimeType, ac 即为相关协议(浏览器请求 ac:// 打开此程序)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">MimeType</span><span class="o">=</span>x-scheme-handler/ac<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 主要是这个 MimeType, folo 即为相关协议(浏览器请求 folo:// 打开此程序)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">MimeType</span><span class="o">=</span>x-scheme-handler/folo<span class="p">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 绑定协议到指定的应用上</span>
-</span></span><span class="line"><span class="cl">$&gt; xdg-mime default appimagekit-example.desktop x-scheme-handler/ac
+</span></span><span class="line"><span class="cl">$&gt; xdg-mime default appimagekit-example.desktop x-scheme-handler/folo
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 查询已绑定的信息 </span>
-</span></span><span class="line"><span class="cl">$&gt; xdg-mime query default x-scheme-handler/ac</span></span></code></pre></td></tr></table>
+</span></span><span class="line"><span class="cl">$&gt; xdg-mime query default x-scheme-handler/folo</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 class="heading-element" id="解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题"><span>解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)</span>
   <a href="#%e8%a7%a3%e5%86%b3-virtualbox-%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e5%ae%9a%e5%88%b6ip%e7%bd%91%e6%ae%b5%e7%9a%84%e9%97%ae%e9%a2%98%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e8%bf%9e%e6%8e%a5%e5%85%ac%e7%bd%91%e7%9a%84%e9%97%ae%e9%a2%98" class="heading-mark">

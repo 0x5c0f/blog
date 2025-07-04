@@ -301,7 +301,7 @@ date +"%F_%T" -d$timestamp
 
 ```bash
 # freerdp-2.2.0-1.fc32.x86_64
-xfreerdp /v:<hostip> /u:<username> /drive:shares,<本地目录>
+xfreerdp /cert:ignore /size:1920x1080 +clipboard /drive:share,<本地目录> /u:<用户名>  /v:<targetip> /p:<password>
 ```
 
 # linux 打包文件夹为 ISO 文件
@@ -533,6 +533,11 @@ $> ffmpeg -i input.(png|svg|..) -vf "scale=944:944:force_original_aspect_ratio=d
 # Pwgen 创建密码, 忽略特定字符串
 ```bash
 $> alias pwgen="pwgen -s -r \\\`\\~\\!\\#\\$\\&\\(\\)\\_\\-\\+\\=\\{\\}\\[\\]\\\\\\|\\;\\:\\'\\\"\\,\\<\\>\\?\\/"
+```
+
+## tee 为每一条日志记录插入时间戳
+```bash
+$> command 2>&1 | tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0 }' >> user/stdout_output.log)
 ```
 
 ---
