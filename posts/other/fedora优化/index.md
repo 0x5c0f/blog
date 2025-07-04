@@ -50,7 +50,11 @@ $> sudo pip3 install bpython
 > https://blog.csdn.net/qq23425352/article/details/107379335
 ```bash
 $> 
+# fcitx 
 $> sudo dnf install fcitx fcitx-{ui-light,qt{4,5},table,gtk{2,3},table-chinese,configtool,sunpinyin}
+# fcitx5 
+$> sudo dnf install fcitx5 fcitx5-{qt{5,6},configtool,gtk{2,3,4},lua,rime,table-extra,table-other,chinese-addons}
+
 $> sudo vim /etc/profile.d/fcitx.sh
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
