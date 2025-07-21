@@ -11,7 +11,7 @@
   <meta itemprop="description" content="收集了一些常用和有趣的命令">
   <meta itemprop="datePublished" content="2019-07-23T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-06-19T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1576">
+  <meta itemprop="wordCount" content="1602">
   <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
   <meta itemprop="keywords" content="Linux,解决方案"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/">
   <meta property="og:site_name" content="一个曾经的小码农...">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86\/"
-    },"genre": "posts","keywords": "linux, 解决方案","wordcount":  1576 ,
+    },"genre": "posts","keywords": "linux, 解决方案","wordcount":  1602 ,
     "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86\/","datePublished": "2019-07-23T00:00:00+00:00","dateModified": "2025-06-19T00:00:00+00:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -141,7 +141,7 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>常用命令收集</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2019-07-23 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-07-23">2019-07-23</time></span>&nbsp;<span title="更新于 2025-06-19 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-06-19">2025-06-19</time></span>&nbsp;<span title="1576 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1600 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 8 分钟</span>&nbsp;</div>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2019-07-23 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-07-23">2019-07-23</time></span>&nbsp;<span title="更新于 2025-06-19 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-06-19">2025-06-19</time></span>&nbsp;<span title="1602 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1700 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 8 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -206,6 +206,7 @@
     <li><a href="#pwgen-创建密码-忽略特定字符串">Pwgen 创建密码, 忽略特定字符串</a>
       <ul>
         <li><a href="#tee-为每一条日志记录插入时间戳">tee 为每一条日志记录插入时间戳</a></li>
+        <li><a href="#在未安装-ssnetstat等工具的机器上查询端口占用情况">在未安装 ss、netstat等工具的机器上查询端口占用情况</a></li>
       </ul>
     </li>
   </ul>
@@ -1239,6 +1240,17 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; <span class="nb">command</span> 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">|</span> tee &gt;<span class="o">(</span>awk <span class="s1">&#39;{ print strftime(&#34;[%Y-%m-%d %H:%M:%S]&#34;), $0 }&#39;</span> &gt;&gt; user/stdout_output.log<span class="o">)</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 class="heading-element" id="在未安装-ssnetstat等工具的机器上查询端口占用情况"><span>在未安装 ss、netstat等工具的机器上查询端口占用情况</span>
+  <a href="#%e5%9c%a8%e6%9c%aa%e5%ae%89%e8%a3%85-ssnetstat%e7%ad%89%e5%b7%a5%e5%85%b7%e7%9a%84%e6%9c%ba%e5%99%a8%e4%b8%8a%e6%9f%a5%e8%af%a2%e7%ab%af%e5%8f%a3%e5%8d%a0%e7%94%a8%e6%83%85%e5%86%b5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; cat /proc/net/tcp <span class="p">|</span> awk <span class="s1">&#39;NR&gt;1 {print $2}&#39;</span> <span class="p">|</span> cut -d: -f2 <span class="p">|</span> xargs -I<span class="o">{}</span> <span class="nb">printf</span> <span class="s2">&#34;%d\n&#34;</span> 0x<span class="o">{}</span> <span class="p">|</span> sort -n <span class="p">|</span> uniq</span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
   <div class="post-info">

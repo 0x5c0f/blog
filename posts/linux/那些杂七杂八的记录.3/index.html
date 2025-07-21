@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>那些杂七杂八的记录(三) - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
+<meta name="description" content="那些杂七杂八的记录(三)"><meta name="keywords" content='linux, 解决方案'>
+  <meta itemprop="name" content="那些杂七杂八的记录(三)">
+  <meta itemprop="description" content="那些杂七杂八的记录(三)">
+  <meta itemprop="datePublished" content="2021-08-04T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-06-17T00:00:00+00:00">
+  <meta itemprop="wordCount" content="277">
+  <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
+  <meta itemprop="keywords" content="Linux,解决方案"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/">
+  <meta property="og:site_name" content="一个曾经的小码农...">
+  <meta property="og:title" content="那些杂七杂八的记录(三)">
+  <meta property="og:description" content="那些杂七杂八的记录(三)">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-08-04T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-06-17T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="解决方案">
+    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
+  <meta name="twitter:title" content="那些杂七杂八的记录(三)">
+  <meta name="twitter:description" content="那些杂七杂八的记录(三)">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/" title="那些杂七杂八的记录(三) - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/redis%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B8%B8%E8%A7%813%E5%A4%A7%E9%97%AE%E9%A2%98/" title="Redis高并发常见3大问题" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/" title="那些杂七杂八的记录(二)" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/index.md" title="那些杂七杂八的记录(三) - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.3dfa226de8a8bb4d325c0d271e3bba9d2cf3997b5786e7ab0b39ed100be2ff8b76f677423a90331e65cecf30e70590f7b21224a9284966e820a802c41aa2e673.css" integrity="sha512-Pfoibeiou00yXA0nHju6nSzzmXtXhuerCzntEAvi/4t29ndCOpAzHmXOzzDnBZD3shIkqShJZuggqALEGqLmcw=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "那些杂七杂八的记录(三)",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3\/"
+    },"genre": "posts","keywords": "linux, 解决方案","wordcount":  277 ,
+    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3\/","datePublished": "2021-08-04T00:00:00+00:00","dateModified": "2025-06-17T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "0x5c0f"
+      },"description": "那些杂七杂八的记录(三)"
+  }
+  </script><script src="/js/head/color-scheme.min.e4582484625e45df8e4adbb4cc376382a2cba293ce791cf7e64b7d91903cb3c5ca0e91d3f65981dd654cffb16766c9ba00adc5f156d21c61355858e9efc36d60.js" integrity="sha512-5FgkhGJeRd+OStu0zDdjgqLLopPOeRz35kt9kZA8s8XKDpHT9lmB3WVM/7FnZsm6AK3F8VbSHGE1WFjp78NtYA=="></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item">
+              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
+              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language-switch auto d-none" aria-hidden="true">
+    <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
+          <a href="/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/" data-lang="zh-CN" class="menu-link text-secondary" title="简体中文">
+            <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
+          <a data-lang="english" class="menu-link" title="English">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> English</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="japanese" class="menu-link" title="日本語">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
+        </li></ul>
+  </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span id="translate" class="menu-system-item language-switch auto d-none" aria-hidden="true">
+    <span role="button" aria-label="选择语言" title="选择语言" data-current="简体中文">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+  </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>那些杂七杂八的记录(三)</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2021-08-04 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2021-08-04">2021-08-04</time></span>&nbsp;<span title="更新于 2025-06-17 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-06-17">2025-06-17</time></span>&nbsp;<span title="277 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 300 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 2 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#nginx-安装-modsecurity-waf-以增强网站安全">Nginx 安装 ModSecurity WAF 以增强网站安全</a>
+          <ul>
+            <li><a href="#modsecurity-waf-连接器扩展依赖">ModSecurity WAF 连接器扩展依赖</a></li>
+            <li><a href="#下载-modsecurity-waf-连接器">下载 ModSecurity WAF 连接器</a></li>
+            <li><a href="#编译安装">编译安装</a></li>
+            <li><a href="#创建配置文件目录">创建配置文件目录</a></li>
+            <li><a href="#核心规则配置">核心规则配置</a></li>
+            <li><a href="#下载-modsecurity-配置相关文件">下载 ModSecurity 配置相关文件</a></li>
+            <li><a href="#创建入口文件">创建入口文件</a></li>
+            <li><a href="#修改配置文件-modsecurityconf">修改配置文件 modsecurity.conf</a></li>
+            <li><a href="#修改-nginx-配置文件启用-modsecurity-waf">修改 nginx 配置文件启用 ModSecurity WAF</a></li>
+            <li><a href="#拦截测试">拦截测试</a></li>
+            <li><a href="#白名单添加方案">白名单添加方案</a></li>
+            <li><a href="#其他白名单方案未测试">其他白名单方案(未测试)</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><h2 class="heading-element" id="nginx-安装-modsecurity-waf-以增强网站安全"><span>Nginx 安装 ModSecurity WAF 以增强网站安全</span>
+  <a href="#nginx-%e5%ae%89%e8%a3%85-modsecurity-waf-%e4%bb%a5%e5%a2%9e%e5%bc%ba%e7%bd%91%e7%ab%99%e5%ae%89%e5%85%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><details>
+<summary> Nginx 安装 ModSecurity WAF 以增强网站安全 </summary>
+<h3 class="heading-element" id="modsecurity-waf-连接器扩展依赖"><span>ModSecurity WAF 连接器扩展依赖</span>
+  <a href="#modsecurity-waf-%e8%bf%9e%e6%8e%a5%e5%99%a8%e6%89%a9%e5%b1%95%e4%be%9d%e8%b5%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; yum install -y libmodsecurity-devel</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="下载-modsecurity-waf-连接器"><span>下载 ModSecurity WAF 连接器</span>
+  <a href="#%e4%b8%8b%e8%bd%bd-modsecurity-waf-%e8%bf%9e%e6%8e%a5%e5%99%a8" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; git clone https://github.com/owasp-modsecurity/ModSecurity-nginx.git</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="编译安装"><span>编译安装</span>
+  <a href="#%e7%bc%96%e8%af%91%e5%ae%89%e8%a3%85" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; <span class="nb">cd</span> /data/softsrc/openresty-1.21.4.1
+</span></span><span class="line"><span class="cl">$&gt; ./configure --prefix<span class="o">=</span>/opt/nginxss --add-module<span class="o">=</span>/pathto/ModSecurity-nginx <span class="o">&amp;&amp;</span> make <span class="o">&amp;&amp;</span> make install</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="创建配置文件目录"><span>创建配置文件目录</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e7%9b%ae%e5%bd%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; mkdir /opt/nginxssl/conf/modsec</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="核心规则配置"><span>核心规则配置</span>
+  <a href="#%e6%a0%b8%e5%bf%83%e8%a7%84%e5%88%99%e9%85%8d%e7%bd%ae" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; <span class="nb">cd</span> /opt/nginxssl/conf/modsec <span class="o">&amp;&amp;</span> git clone https://github.com/coreruleset/coreruleset.git
+</span></span><span class="line"><span class="cl">$&gt; <span class="nb">cd</span> /opt/nginxssl/conf/modsec/coreruleset <span class="o">&amp;&amp;</span> cp -v crs-setup.conf.example crs-setup.conf</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="下载-modsecurity-配置相关文件"><span>下载 ModSecurity 配置相关文件</span>
+  <a href="#%e4%b8%8b%e8%bd%bd-modsecurity-%e9%85%8d%e7%bd%ae%e7%9b%b8%e5%85%b3%e6%96%87%e4%bb%b6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; wget -O /opt/nginxssl/conf/modsec/modsecurity.conf https://raw.githubusercontent.com/SpiderLabs/ModSecurity/v3/master/modsecurity.conf-recommended
+</span></span><span class="line"><span class="cl">$&gt; wget -O /opt/nginxssl/conf/modsec/unicode.mapping https://raw.githubusercontent.com/SpiderLabs/ModSecurity/v3/master/unicode.mapping</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="创建入口文件"><span>创建入口文件</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e5%85%a5%e5%8f%a3%e6%96%87%e4%bb%b6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /opt/nginxssl/conf/modsec/main.conf
+</span></span><span class="line"><span class="cl">Include /opt/nginxssl/conf/conf/modsec/modsecurity.conf
+</span></span><span class="line"><span class="cl">Include /opt/nginxssl/conf/modsec/coreruleset/crs-setup.conf
+</span></span><span class="line"><span class="cl">Include /opt/nginxssl/conf/modsec/coreruleset/rules/*.conf</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="修改配置文件-modsecurityconf"><span>修改配置文件 modsecurity.conf</span>
+  <a href="#%e4%bf%ae%e6%94%b9%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6-modsecurityconf" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /opt/nginxssl/conf/modsec/modsecurity.conf
+</span></span><span class="line"><span class="cl"><span class="c1">## DetectionOnly 只记录，不拦截 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## On 拦截并记录</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Off 完全关闭</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># SecRuleEngine DetectionOnly</span>
+</span></span><span class="line"><span class="cl">SecRuleEngine On
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 以下为关键配置， 核心关注SecAuditLog 、 SecAuditLogFormat 配置</span>
+</span></span><span class="line"><span class="cl">SecAuditEngine RelevantOnly
+</span></span><span class="line"><span class="cl">SecAuditLog /var/log/modsec_audit.log 
+</span></span><span class="line"><span class="cl">SecAuditLogParts ABIJDEFHZ
+</span></span><span class="line"><span class="cl">SecAuditLogType Serial
+</span></span><span class="line"><span class="cl">SecAuditLogFormat JSON      <span class="c1"># 设置为 JSON 格式，方便查看</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="修改-nginx-配置文件启用-modsecurity-waf"><span>修改 nginx 配置文件启用 ModSecurity WAF</span>
+  <a href="#%e4%bf%ae%e6%94%b9-nginx-%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e5%90%af%e7%94%a8-modsecurity-waf" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /opt/nginxssl/conf/nginx.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># http or server or location</span>
+</span></span><span class="line"><span class="cl">modsecurity on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">modsecurity_rules_file /opt/nginxssl/conf/modsec/main.conf<span class="p">;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="拦截测试"><span>拦截测试</span>
+  <a href="#%e6%8b%a6%e6%88%aa%e6%b5%8b%e8%af%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; curl <span class="s2">&#34;http://127.0.0.1/?param=&lt;script&gt;alert(1)&lt;/script&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># sql 注入</span>
+</span></span><span class="line"><span class="cl">$&gt; curl <span class="s2">&#34;http://127.0.0.1/?param=1&#39; AND 1=1 UNION SELECT 1,2,3,4,5,6,7,8,9,10 FROM users WHERE &#39;1&#39;=&#39;1&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="白名单添加方案"><span>白名单添加方案</span>
+  <a href="#%e7%99%bd%e5%90%8d%e5%8d%95%e6%b7%bb%e5%8a%a0%e6%96%b9%e6%a1%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /opt/nginxssl/conf/modsec/modsecurity.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># SecRuleEngine 之后配置， 其中id 字段唯一</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 跳过 192.168.1.100 的全部 ModSecurity 检查</span>
+</span></span><span class="line"><span class="cl">SecRule REMOTE_ADDR <span class="s2">&#34;@ipMatch 192.168.1.100&#34;</span> <span class="s2">&#34;id:10000,phase:1,pass,nolog,ctl:ruleEngine=Off&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="其他白名单方案未测试"><span>其他白名单方案(未测试)</span>
+  <a href="#%e5%85%b6%e4%bb%96%e7%99%bd%e5%90%8d%e5%8d%95%e6%96%b9%e6%a1%88%e6%9c%aa%e6%b5%8b%e8%af%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 限制某路径仅特定 IP 可访问</span>
+</span></span><span class="line"><span class="cl"><span class="na">SecRule REQUEST_URI &#34;^/admin&#34; &#34;phase:1,deny,id:20001,msg:&#39;Forbidden access to /admin&#39;,chain&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">SecRule REMOTE_ADDR &#34;!@ipMatch 192.168.1.100&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁止某路径使用 GET 请求</span>
+</span></span><span class="line"><span class="cl"><span class="na">SecRule REQUEST_URI &#34;^/secure-action&#34; &#34;phase:1,deny,id:20002,msg:&#39;GET not allowed here&#39;,chain&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">SecRule REQUEST_METHOD &#34;@streq GET&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 仅允许特定 Referer 或 User-Agent 访问某路径</span>
+</span></span><span class="line"><span class="cl"><span class="na">SecRule REQUEST_URI &#34;^/api/private&#34; &#34;phase:1,deny,id:20003,msg:&#39;Blocked non-authorized client&#39;,chain&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="na">SecRule REQUEST_HEADERS:User-Agent &#34;!@streq MyTrustedClient/1.0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 还可以在不同的location下单独设置启用不同规则，用以实现多元化</span></span></span></code></pre></td></tr></table>
+</div>
+</div></details></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2025-06-17 00:00:00">更新于 2025-06-17&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-tag" title="标签 - 解决方案">解决方案</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/linux/redis%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B8%B8%E8%A7%813%E5%A4%A7%E9%97%AE%E9%A2%98/" class="post-nav-item" rel="prev" title="Redis高并发常见3大问题"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Redis高并发常见3大问题</a><a href="/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/" class="post-nav-item" rel="next" title="那些杂七杂八的记录(二)">那些杂七杂八的记录(二)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
+      </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.147.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.20"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.6955c00f427f31a16d1d426b9b0c310e3d610bdb3c7ff21dd63e2c8486e90b8aa706b076bb1d0c8819e944e92a38db3f347f987097325f72bdde194122568d82.css" integrity="sha512-aVXAD0J/MaFtHUJrmwwxDj1hC9s8f/Id1j4shIbpC4qnBrB2ux0MiBnpROkqONs/NH+YcJcyX3K93hlBIlaNgg=="><link rel="preload" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.b93e0f2f3177f5e2245296a45f9280980ea005c33850fd217771d2a6c7617a8cf2d7b609d579bfb96ef398d4e7b53364aa7893cb8cf3321f31dd05e828cce902.js" integrity="sha512-uT4PLzF39eIkUpakX5KAmA6gBcM4UP0hd3HSpsdheozy17YJ1Xm/uW7zmNTntTNkqniTy4zzMh8x3QXoKMzpAg==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":20},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2021-08-04T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"那些杂七杂八的记录(三)"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.20"};</script><script src="/js/theme.min.4807c10b31d5f64caef015e07216aaf921774d77ab46d3c725db004dd9ba0b6e4574219fd6c188ce6ec3bd906b255f2dfbe6b7ad2a20c676e5e9e02989fe133f.js" integrity="sha512-SAfBCzHV9kyu8BXgchaq+SF3TXerRtPHJdsATdm6C25FdCGf1sGIzm7DvZBrJV8t++a3rSogxnbl6eApif4TPw==" defer></script><script src="/lib/translate.min.1a38caaeafd7176713f44400741e50378c3f69739ab4e3c51224892099aeb57aa71f9e9b53195a17cb03a7ef6810b76be44c0937b4b4dd9f5db982ae0fa6c794.js" integrity="sha512-GjjKrq/XF2cT9EQAdB5QN4w/aXOatOPFEiSJIJmutXqnH56bUxlaF8sDp+9oELdr5EwJN7S03Z9duYKuD6bHlA==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/"}};</script><script src="/js/translate.fixit.min.ab03e2ee13c4858806ccf9eb99fb353eac77a752b8d7467a0350c40fcb567ec979e41d8884da52e90309d248d602707ebc70c12fbce1902311aff3f00ae5ca80.js" integrity="sha512-qwPi7hPEhYgGzPnrmfs1Pqx3p1K410Z6A1DED8tWfsl55B2IhNpS6QMJ0kjWAnB+vHDBL7zhkCMRr/PwCuXKgA==" defer></script></body>
+</html>
