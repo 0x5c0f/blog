@@ -29,15 +29,6 @@
       <description>一些常用、有趣的命令和代码片段</description>
     </item>
     <item>
-      <title>Shellscript相关</title>
-      <link>https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/</link>
-      <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
-      <guid>https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/</guid>
-      <category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category>
-      <category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category>
-      <description>Shellscript相关</description>
-    </item>
-    <item>
       <title>RabbitMQ单机环境搭建</title>
       <link>https://blog.0x5c0f.cc/posts/linux/rabbitmq%E5%8D%95%E6%9C%BA%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link>
       <pubDate>Tue, 31 Dec 2024 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
@@ -597,6 +588,15 @@
       <category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category>
       <category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category>
       <description>Nginx常用骚操作</description>
+    </item>
+    <item>
+      <title>Shellscript相关</title>
+      <link>https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Fri, 31 May 2019 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
+      <guid>https://blog.0x5c0f.cc/posts/linux/shellscript%E7%9B%B8%E5%85%B3/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category>
+      <category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category>
+      <description>Shellscript相关</description>
     </item>
     <item>
       <title>正则表达式介绍</title>
