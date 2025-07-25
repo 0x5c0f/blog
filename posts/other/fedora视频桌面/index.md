@@ -1,6 +1,9 @@
 # Fedora视频桌面
 
 
+**！！！终于让我找到了一个视频桌面工具，还是能用的 [`Hidamari`](https://flathub.org/apps/io.github.jeffshee.Hidamari)，三年！你知道这三年我是怎么过的么！！！**
+--- 
+
 # -
 &emsp;&emsp;想了一下，网络上关于`fedora`桌面的美化似乎还是很少的,这对于我大`fedora`发展似乎是很不利的，凭什么`ubuntu`就可以有那么多的好东西。  
 
