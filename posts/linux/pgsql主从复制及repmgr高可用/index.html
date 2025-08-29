@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>PostgreSQL主从复制及repmgr高可用 - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
+<meta name="description" content="PostgreSQL主从复制及repmgr高可用"><meta name="keywords" content='linux, 解决方案, 同步'>
+  <meta itemprop="name" content="PostgreSQL主从复制及repmgr高可用">
+  <meta itemprop="description" content="PostgreSQL主从复制及repmgr高可用">
+  <meta itemprop="datePublished" content="2025-08-29T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-08-29T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3072">
+  <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
+  <meta itemprop="keywords" content="Linux,解决方案,同步"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/">
+  <meta property="og:site_name" content="一个曾经的小码农...">
+  <meta property="og:title" content="PostgreSQL主从复制及repmgr高可用">
+  <meta property="og:description" content="PostgreSQL主从复制及repmgr高可用">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-29T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-08-29T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="解决方案">
+    <meta property="article:tag" content="同步">
+    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
+  <meta name="twitter:title" content="PostgreSQL主从复制及repmgr高可用">
+  <meta name="twitter:description" content="PostgreSQL主从复制及repmgr高可用">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/" title="PostgreSQL主从复制及repmgr高可用 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/redis%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B8%B8%E8%A7%813%E5%A4%A7%E9%97%AE%E9%A2%98/" title="Redis高并发常见3大问题" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/" title="那些杂七杂八的记录(三)" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/index.md" title="PostgreSQL主从复制及repmgr高可用 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.3dfa226de8a8bb4d325c0d271e3bba9d2cf3997b5786e7ab0b39ed100be2ff8b76f677423a90331e65cecf30e70590f7b21224a9284966e820a802c41aa2e673.css" integrity="sha512-Pfoibeiou00yXA0nHju6nSzzmXtXhuerCzntEAvi/4t29ndCOpAzHmXOzzDnBZD3shIkqShJZuggqALEGqLmcw=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "PostgreSQL主从复制及repmgr高可用",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8\/"
+    },"genre": "posts","keywords": "linux, 解决方案, 同步","wordcount":  3072 ,
+    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8\/","datePublished": "2025-08-29T00:00:00+00:00","dateModified": "2025-08-29T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "0x5c0f"
+      },"description": "PostgreSQL主从复制及repmgr高可用"
+  }
+  </script><script src="/js/head/color-scheme.min.e4582484625e45df8e4adbb4cc376382a2cba293ce791cf7e64b7d91903cb3c5ca0e91d3f65981dd654cffb16766c9ba00adc5f156d21c61355858e9efc36d60.js" integrity="sha512-5FgkhGJeRd+OStu0zDdjgqLLopPOeRz35kt9kZA8s8XKDpHT9lmB3WVM/7FnZsm6AK3F8VbSHGE1WFjp78NtYA=="></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item">
+              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
+              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language-switch auto d-none" aria-hidden="true">
+    <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
+          <a href="/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/" data-lang="zh-CN" class="menu-link text-secondary" title="简体中文">
+            <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
+          <a data-lang="english" class="menu-link" title="English">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> English</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="japanese" class="menu-link" title="日本語">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
+        </li></ul>
+  </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span id="translate" class="menu-system-item language-switch auto d-none" aria-hidden="true">
+    <span role="button" aria-label="选择语言" title="选择语言" data-current="简体中文">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+  </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>PostgreSQL主从复制及repmgr高可用</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2025-08-29 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-08-29">2025-08-29</time></span>&nbsp;<span title="3072 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3100 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 15 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基础环境信息">基础环境信息</a></li>
+    <li><a href="#环境搭建">环境搭建</a>
+      <ul>
+        <li><a href="#安装及配置">安装及配置</a></li>
+        <li><a href="#postgresql-数据目录迁移">PostgreSQL 数据目录迁移</a></li>
+        <li><a href="#初始化与主从复制">初始化与主从复制</a>
+          <ul>
+            <li><a href="#配置文件-postgresqlconf">配置文件 postgresql.conf</a></li>
+            <li><a href="#创建复制与管理用户">创建复制与管理用户</a></li>
+            <li><a href="#配置文件-pg_hbaconf">配置文件 pg_hba.conf</a></li>
+            <li><a href="#从库基准拷贝">从库基准拷贝</a></li>
+          </ul>
+        </li>
+        <li><a href="#repmgr-服务配置">repmgr 服务配置</a>
+          <ul>
+            <li><a href="#repmgr-数据库用户授权扩展">repmgr 数据库、用户、授权、扩展</a></li>
+            <li><a href="#repmgr-配置文件">repmgr 配置文件</a></li>
+            <li><a href="#创建默认的-pid-文件并更新权限">创建默认的 pid 文件，并更新权限</a></li>
+            <li><a href="#创建-vip-漂移管理脚本及亚马逊权限管理">创建 VIP 漂移管理脚本及亚马逊权限管理</a></li>
+          </ul>
+        </li>
+        <li><a href="#配置repmgrd服务">配置repmgrd服务</a>
+          <ul>
+            <li><a href="#注册及校验">注册及校验</a></li>
+            <li><a href="#主从切换测试">主从切换测试</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#其他">其他</a></li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><p><em><em>本文为<code>PostgreSQL</code>主从复制及<code>repmgr</code>高可用解决方案, 单主从架构, 适用于中小型数据库集群。文中记录为真是场景测试案例(未进行参数优化)，集群于亚马逊<code>EC2</code>，<code>VIP</code>能力由</em><code>亚马逊私有辅助IP</code><em>实现</em></em></p>
+<hr>
+<h2 class="heading-element" id="基础环境信息"><span>基础环境信息</span>
+  <a href="#%e5%9f%ba%e7%a1%80%e7%8e%af%e5%a2%83%e4%bf%a1%e6%81%af" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ul>
+<li>操作系统: <code>Ubuntu 24.04.3</code>、<code>4G</code>、<code>8vCPU</code>、<code>500G</code></li>
+<li>PostgreSQL: <code>16.10</code></li>
+<li>Repmgr: <code>5.5.0</code></li>
+<li>节点信息: <code>主-pgsql_node_01(10.0.2.113)</code>、<code>从-pgsql_node_02(10.0.3.114)</code></li>
+<li>VIP: <code>10.0.1.100</code></li>
+<li>资源环境: <code>AWS EC2</code></li>
+</ul>
+<h2 class="heading-element" id="环境搭建"><span>环境搭建</span>
+  <a href="#%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h2 class="heading-element" id="安装及配置"><span>安装及配置</span>
+  <a href="#%e5%ae%89%e8%a3%85%e5%8f%8a%e9%85%8d%e7%bd%ae" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在两台机器同时执行</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo apt update
+</span></span><span class="line"><span class="cl">$&gt; sudo apt install -y postgresql-common
+</span></span><span class="line"><span class="cl">$&gt; sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 PostgreSQL 16、repmgr， 此举将安装最新版的 PostgreSQL 16最新版本，截止文档编写</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># PostgreSQL 最新版本为 16.10 </span>
+</span></span><span class="line"><span class="cl">$&gt; sudo apt install -y postgresql-16 postgresql-client-16 postgresql-16-repmgr jq curl
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 版本验证</span>
+</span></span><span class="line"><span class="cl">$&gt; psql --version                                 <span class="c1"># 客户端版本</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql -c <span class="s1">&#39;SELECT version();&#39;</span>   <span class="c1"># 服务器版本</span>
+</span></span><span class="line"><span class="cl">$&gt; pg_lsclusters                                  <span class="c1"># 查看集群列表与监听端口</span>
+</span></span><span class="line"><span class="cl">$&gt; systemctl status postgresql@16-main</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 class="heading-element" id="postgresql-数据目录迁移"><span>PostgreSQL 数据目录迁移</span>
+  <a href="#postgresql-%e6%95%b0%e6%8d%ae%e7%9b%ae%e5%bd%95%e8%bf%81%e7%a7%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>此项根据自己需求看是否调整，可忽略此步骤</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 停止现有集群</span>
+</span></span><span class="line"><span class="cl">sudo pg_ctlcluster <span class="m">16</span> main stop
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 准备新目录</span>
+</span></span><span class="line"><span class="cl">sudo mkdir -p /data/_pgsql_data/16/main
+</span></span><span class="line"><span class="cl">sudo chown postgres:postgres /data/_pgsql_data -R
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 initdb 初始化到新目录</span>
+</span></span><span class="line"><span class="cl">sudo -u postgres /usr/lib/postgresql/16/bin/initdb -D /data/_pgsql_data/16/main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换配置到新目录</span>
+</span></span><span class="line"><span class="cl">sudo sed -i <span class="s2">&#34;s|^#\?data_directory =.*|data_directory = &#39;/data/_pgsql_data/16/main&#39;|&#34;</span> /etc/postgresql/16/main/postgresql.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5) 启动并验证</span>
+</span></span><span class="line"><span class="cl">sudo pg_ctlcluster <span class="m">16</span> main start
+</span></span><span class="line"><span class="cl">pg_lsclusters</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 class="heading-element" id="初始化与主从复制"><span>初始化与主从复制</span>
+  <a href="#%e5%88%9d%e5%a7%8b%e5%8c%96%e4%b8%8e%e4%b8%bb%e4%bb%8e%e5%a4%8d%e5%88%b6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 class="heading-element" id="配置文件-postgresqlconf"><span>配置文件 postgresql.conf</span>
+  <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6-postgresqlconf" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>主、从节点同时执行
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">$&gt; vim /etc/postgresql/16/main/postgresql.conf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">listen_addresses</span> <span class="o">=</span> <span class="s">&#39;*&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">wal_level</span> <span class="o">=</span> <span class="s">replica</span>
+</span></span><span class="line"><span class="cl"><span class="na">max_wal_senders</span> <span class="o">=</span> <span class="s">10</span>
+</span></span><span class="line"><span class="cl"><span class="na">max_replication_slots</span> <span class="o">=</span> <span class="s">10</span>
+</span></span><span class="line"><span class="cl"><span class="na">hot_standby</span> <span class="o">=</span> <span class="s">on</span>
+</span></span><span class="line"><span class="cl"><span class="na">wal_keep_size</span> <span class="o">=</span> <span class="s">512MB               # 该值理论上应该通过计算得出，但当前库主要用于测试和读取 512 是一个略微合理的值</span>
+</span></span><span class="line"><span class="cl"><span class="na">shared_buffers</span> <span class="o">=</span> <span class="s">2GB                # 推荐系统内存的25%(8G)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">password_encryption</span> <span class="o">=</span> <span class="s">scram-sha-256</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#  日志与慢查询</span>
+</span></span><span class="line"><span class="cl"><span class="na">logging_collector</span> <span class="o">=</span> <span class="s">on</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_directory</span> <span class="o">=</span> <span class="s">&#39;log&#39;                 # Debian系列 默认符号链接到 /var/log/postgresql</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_filename</span> <span class="o">=</span> <span class="s">&#39;postgresql-%Y-%m-%d.log&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_rotation_age</span> <span class="o">=</span> <span class="s">1d</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_rotation_size</span> <span class="o">=</span> <span class="s">10MB</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_line_prefix</span> <span class="o">=</span> <span class="s">&#39;%m [%p] %u@%d %r &#39; # 时间, PID, 用户@库, 远端地址</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_statement</span> <span class="o">=</span> <span class="s">&#39;ddl&#39;                 # 记录 DDL</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_duration</span> <span class="o">=</span> <span class="s">off</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_min_duration_statement</span> <span class="o">=</span> <span class="s">500ms    # 慢查询阈值</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># repmgr 主从切换要求归档</span>
+</span></span><span class="line"><span class="cl"><span class="na">archive_mode</span> <span class="o">=</span> <span class="s">on</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># # 这个目录需要主动维护</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># mkdir -p /data/_pgsql_data/wal_archive &amp;&amp; chown postgres:postgres /data/_pgsql_data/wal_archive</span>
+</span></span><span class="line"><span class="cl"><span class="na">archive_command</span> <span class="o">=</span> <span class="s">&#39;cp %p /data/_pgsql_data/wal_archive/%f&#39; </span>
+</span></span><span class="line"><span class="cl"><span class="na">shared_preload_libraries</span> <span class="o">=</span> <span class="s">&#39;repmgr&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">wal_log_hints</span> <span class="o">=</span> <span class="s">on</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">shared_preload_libraries</span> <span class="o">=</span> <span class="s">&#39;repmgr&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启 postgresql</span>
+</span></span><span class="line"><span class="cl"><span class="na">$&gt; sudo systemctl restart postgresql@16-main</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 class="heading-element" id="创建复制与管理用户"><span>创建复制与管理用户</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e5%a4%8d%e5%88%b6%e4%b8%8e%e7%ae%a1%e7%90%86%e7%94%a8%e6%88%b7" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 主节点-pgsql_node_01(10.0.2.113)执行</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql  
+</span></span><span class="line"><span class="cl"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE USER repl WITH REPLICATION LOGIN PASSWORD &#39;{{ REPL_PASSWORD }}&#39;;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="配置文件-pg_hbaconf"><span>配置文件 pg_hba.conf</span>
+  <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6-pg_hbaconf" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 主、从环境同时执行</span>
+</span></span><span class="line"><span class="cl"><span class="na">$&gt; vim /etc/postgresql/16/main/pg_hba.conf</span>
+</span></span><span class="line"><span class="cl"><span class="na">host    all             all             10.0.0.0/16             scram-sha-256</span>
+</span></span><span class="line"><span class="cl"><span class="na">host    replication     repl            10.0.0.0/16             scram-sha-256</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="从库基准拷贝"><span>从库基准拷贝</span>
+  <a href="#%e4%bb%8e%e5%ba%93%e5%9f%ba%e5%87%86%e6%8b%b7%e8%b4%9d" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 从节点 pgsql_node_02(10.0.3.114) 执行</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo systemctl stop postgresql@16-main
+</span></span><span class="line"><span class="cl">$&gt; sudo rm -rf /data/_pgsql_data/16/main
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行 basebackup：</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres pg_basebackup -h 10.0.2.113 -U repl -D /data/_pgsql_data/16/main -Fp -Xs -P -R
+</span></span><span class="line"><span class="cl"><span class="c1"># -R 会自动写入 standby.signal 与 primary_conninfo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动从库</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo systemctl start postgresql@16-main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证复制：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 10.0.2.113/20 查看 state 应为 streaming， sync_state 应为 async, 若开启强一致性 sync_state 应为 sync</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># synchronous_commit: </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## on：事务提交时等待 WAL 日志传输并确认写入到同步 standby。 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## remote_write：只等待从库确认写入 WAL，但不等待 fsync（性能稍好，但仍有丢数据风险）。</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## remote_apply：等到 standby 真正应用了事务才返回（最强一致性，但延迟最大）。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># synchronous_commit = on</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># synchronous_standby_names</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定哪些从库是同步复制候选者。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># FIRST 1 (...) 表示主库只需要 任意 1 个 standby 确认就算成功。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以列出多个，从库名需要和从库的 primary_conninfo 里的 application_name 匹配。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># synchronous_standby_names = &#39;FIRST 1 (standby1, standby2)&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 关于强一致性是否开启, 主库事务提交前必须等待至少一个同步备库确认写入 WAL，确保即使主库崩溃，数据也已经持久化到备库。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 因此单主单从节点是不建议开启的， 否则从库离线，主库可能将一直处于等待状态。</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql -c <span class="s2">&#34;select client_addr, state, sync_state from pg_stat_replication;&#34;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 10.0.3.114/20 查看，应为 t</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql -c <span class="s2">&#34;select pg_is_in_recovery();&#34;</span>                                      </span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>主从复制完成</em></p>
+<h2 class="heading-element" id="repmgr-服务配置"><span>repmgr 服务配置</span>
+  <a href="#repmgr-%e6%9c%8d%e5%8a%a1%e9%85%8d%e7%bd%ae" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 class="heading-element" id="repmgr-数据库用户授权扩展"><span>repmgr 数据库、用户、授权、扩展</span>
+  <a href="#repmgr-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%94%a8%e6%88%b7%e6%8e%88%e6%9d%83%e6%89%a9%e5%b1%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">-- <span class="c1"># 主节点-pgsql_node_01(10.0.2.113)执行，创建相关用户(由于主从复制完成，从库会自动同步这些信息)</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql 
+</span></span><span class="line"><span class="cl"><span class="c1"># -- 确保在干净的环境中开始，如果 repmgr 数据库和用户已存在，则删除它们。</span>
+</span></span><span class="line"><span class="cl"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># DROP DATABASE IF EXISTS repmgr;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># DROP ROLE IF EXISTS repmgr;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -- 3. 授予 repmgr 用户对 repmgr 数据库的所有权限。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -- 正常来说，此处使用的授权应该是具体的权限，而不是 SUPERUSER, 但为了方便，此处使用 SUPERUSER， 官方也建议用 SUPERUSER。</span>
+</span></span><span class="line"><span class="cl"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE ROLE repmgr WITH SUPERUSER LOGIN PASSWORD &#39;{{ REPMGR_PASSWORD }}&#39;;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE DATABASE repmgr OWNER repmgr;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -- 切换到新创建的 repmgr 数据库</span>
+</span></span><span class="line"><span class="cl"><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \c repmgr</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -- 1. 创建 repmgr 扩展。这会自动创建 &#39;repmgr&#39; 模式和所有所需的表。</span>
+</span></span><span class="line"><span class="cl"><span class="nv">repmgr</span><span class="o">=</span><span class="c1"># CREATE EXTENSION repmgr;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># -- 退出 psql</span>
+</span></span><span class="line"><span class="cl"><span class="nv">repmgr</span><span class="o">=</span><span class="c1"># \q </span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="repmgr-配置文件"><span>repmgr 配置文件</span>
+  <a href="#repmgr-%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><blockquote>
+<p><a href="https://github.com/EnterpriseDB/repmgr/blob/master/repmgr.conf.sample"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/EnterpriseDB/repmgr/blob/master/repmgr.conf.sample<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p></blockquote>
+<ul>
+<li>
+<p>主节点-pgsql_node_01(10.0.2.113)配置: <code>/etc/sudoer.d/postgres</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加 repmgr 操作时需要的一些权限</span>
+</span></span><span class="line"><span class="cl">$&gt; vim /etc/sudoer.d/postgres
+</span></span><span class="line"><span class="cl">Defaults:postgres !requiretty
+</span></span><span class="line"><span class="cl">postgres <span class="nv">ALL</span> <span class="o">=</span> NOPASSWD: /usr/bin/systemctl stop postgresql@16-main.service, /usr/bin/systemctl start postgresql@16-main.service, /usr/bin/systemctl restart postgresql@16-main.service, /usr/bin/systemctl start repmgrd.service, /usr/bin/systemctl stop repmgrd.service, /usr/sbin/ip</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>主节点-pgsql_node_01(10.0.2.113)配置: <code>/etc/repmgr.conf</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1"># 主节点配置</span>
+</span></span><span class="line"><span class="cl"><span class="na">$&gt; vim /etc/repmgr.conf</span>
+</span></span><span class="line"><span class="cl"><span class="na">node_id</span><span class="o">=</span><span class="s">1</span>
+</span></span><span class="line"><span class="cl"><span class="na">node_name</span><span class="o">=</span><span class="s">&#39;pgsql_node_01&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意 host 无论什么情况下，一定是本机节点</span>
+</span></span><span class="line"><span class="cl"><span class="na">conninfo</span><span class="o">=</span><span class="s">&#39;host=10.0.2.113 user=repmgr dbname=repmgr connect_timeout=2 password={{ REPMGR_PASSWORD }}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">data_directory</span><span class="o">=</span><span class="s">&#39;/data/_pgsql_data/16/main&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">replication_user</span><span class="o">=</span><span class="s">&#39;repmgr&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">replication_type</span><span class="o">=</span><span class="s">&#39;physical&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_level</span><span class="o">=</span><span class="s">&#39;INFO&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">log_file</span><span class="o">=</span><span class="s">&#39;/var/log/repmgr/repmgrd.log&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_status_interval</span><span class="o">=</span><span class="s">300</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">pg_bindir</span><span class="o">=</span><span class="s">&#39;/usr/lib/postgresql/16/bin&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">failover</span><span class="o">=</span><span class="s">&#39;automatic&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">connection_check_type</span><span class="o">=</span><span class="s">&#39;ping&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">reconnect_attempts</span><span class="o">=</span><span class="s">6</span>
+</span></span><span class="line"><span class="cl"><span class="na">reconnect_interval</span><span class="o">=</span><span class="s">5</span>
+</span></span><span class="line"><span class="cl"><span class="na">promote_command</span><span class="o">=</span><span class="s">&#39;repmgr standby promote -f /etc/repmgr.conf --log-to-file&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">follow_command</span><span class="o">=</span><span class="s">&#39;repmgr standby follow -f /etc/repmgr.conf --upstream-node-id=%n --log-to-file&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">event_notification_command</span><span class="o">=</span><span class="s">&#39;/usr/local/bin/vip_failover_switch.sh %n %e %s %t &#34;%d&#34;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># child_nodes_disconnect_command=&#39;/usr/local/bin/vip_failover_switch.sh %n child_nodes_disconnect_command 1 %t &#34;%d&#34;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">repmgrd_pid_file</span><span class="o">=</span><span class="s">&#39;/var/run/postgresql/repmgrd.pid&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#    # this is required when running sudo over ssh without -t:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    Defaults:postgres !requiretty</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    postgres ALL = NOPASSWD: /usr/bin/systemctl stop postgresql@16-main.service, /usr/bin/systemctl start postgresql@16-main.service, /usr/bin/systemctl restart postgresql@16-main.service, /usr/bin/systemctl start repmgrd.service, /usr/bin/systemctl stop repmgrd.service</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">service_start_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl start postgresql@16-main.service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">service_stop_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl stop postgresql@16-main.service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">service_restart_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl restart postgresql@16-main.service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">service_reload_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl reload postgresql@16-main.service&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">repmgrd_service_start_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl start repmgrd.service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">repmgrd_service_stop_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl stop repmgrd.service&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>从节点-pgsql_node_02(10.0.3.114)执行配置: <code>/etc/repmgr.conf</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">; 从节点配置</span>
+</span></span><span class="line"><span class="cl"><span class="na">node_id</span><span class="o">=</span><span class="s">2</span>
+</span></span><span class="line"><span class="cl"><span class="na">node_name</span><span class="o">=</span><span class="s">&#39;pgsql_node_02&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意 host 无论什么情况下，一定是本机节点</span>
+</span></span><span class="line"><span class="cl"><span class="na">conninfo</span><span class="o">=</span><span class="s">&#39;host=10.0.3.114 user=repmgr dbname=repmgr connect_timeout=2 password={{ REPMGR_PASSWORD }}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">data_directory</span><span class="o">=</span><span class="s">&#39;/data/_pgsql_data/16/main&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">replication_user</span><span class="o">=</span><span class="s">&#39;repmgr&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">replication_type</span><span class="o">=</span><span class="s">&#39;physical&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_level</span><span class="o">=</span><span class="s">&#39;INFO&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">log_file</span><span class="o">=</span><span class="s">&#39;/var/log/repmgr/repmgrd.log&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">pg_bindir</span><span class="o">=</span><span class="s">&#39;/usr/lib/postgresql/16/bin&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">failover</span><span class="o">=</span><span class="s">&#39;automatic&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">connection_check_type</span><span class="o">=</span><span class="s">&#39;ping&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">reconnect_attempts</span><span class="o">=</span><span class="s">6</span>
+</span></span><span class="line"><span class="cl"><span class="na">reconnect_interval</span><span class="o">=</span><span class="s">10</span>
+</span></span><span class="line"><span class="cl"><span class="na">promote_command</span><span class="o">=</span><span class="s">&#39;repmgr standby promote -f /etc/repmgr.conf --log-to-file&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">follow_command</span><span class="o">=</span><span class="s">&#39;repmgr standby follow -f /etc/repmgr.conf --upstream-node-id=%n --log-to-file&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># vip 切换核心，监听特殊事件并通知</span>
+</span></span><span class="line"><span class="cl"><span class="na">event_notification_command</span> <span class="o">=</span> <span class="s">&#39;/usr/local/bin/vip_failover_switch.sh %n %e %s %t &#34;%d&#34;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># child_nodes_disconnect_command=&#39;/usr/local/bin/vip_failover_switch.sh %n child_nodes_disconnect_command 1 %t &#34;%d&#34;&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">repmgrd_pid_file</span><span class="o">=</span><span class="s">&#39;/var/run/postgresql/repmgrd.pid&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#    # this is required when running sudo over ssh without -t:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    Defaults:postgres !requiretty</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    postgres ALL = NOPASSWD: /usr/bin/systemctl stop postgresql@16-main.service, /usr/bin/systemctl start postgresql@16-main.service, /usr/bin/systemctl restart postgresql@16-main.service, /usr/bin/systemctl start repmgrd.service, /usr/bin/systemctl stop repmgrd.service</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">service_start_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl start postgresql@16-main.service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">service_stop_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl stop postgresql@16-main.service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">service_restart_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl restart postgresql@16-main.service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">service_reload_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl reload postgresql@16-main.service&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="na">repmgrd_service_start_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl start repmgrd.service&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="na">repmgrd_service_stop_command</span> <span class="o">=</span> <span class="s">&#39;sudo systemctl stop repmgrd.service&#39;</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 class="heading-element" id="创建默认的-pid-文件并更新权限"><span>创建默认的 pid 文件，并更新权限</span>
+  <a href="#%e5%88%9b%e5%bb%ba%e9%bb%98%e8%ae%a4%e7%9a%84-pid-%e6%96%87%e4%bb%b6%e5%b9%b6%e6%9b%b4%e6%96%b0%e6%9d%83%e9%99%90" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><strong>这个步骤理论上是不需要做的，但是有时候有问题，建议执行</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; touch /var/run/postgresql/repmgrd.pid <span class="o">&amp;&amp;</span> chown postgres:postgres /var/run/postgresql/repmgrd.pid
+</span></span><span class="line"><span class="cl">$&gt; mkdir /var/log/repmgr <span class="o">&amp;&amp;</span> chown postgres:postgres /var/log/repmgr</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="创建-vip-漂移管理脚本及亚马逊权限管理"><span>创建 VIP 漂移管理脚本及亚马逊权限管理</span>
+  <a href="#%e5%88%9b%e5%bb%ba-vip-%e6%bc%82%e7%a7%bb%e7%ae%a1%e7%90%86%e8%84%9a%e6%9c%ac%e5%8f%8a%e4%ba%9a%e9%a9%ac%e9%80%8a%e6%9d%83%e9%99%90%e7%ae%a1%e7%90%86" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>
+<p>亚马逊 创建 <code>IAM Policy</code> 并附加到两台 <code>EC2</code> 的实例角色</p>
+<ol>
+<li>创建权限策略 <code>PostgresVipFailoverPolicy</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Version&#34;</span><span class="p">:</span> <span class="s2">&#34;2012-10-17&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;Statement&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Effect&#34;</span><span class="p">:</span> <span class="s2">&#34;Allow&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Action&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;ec2:DescribeInstances&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;ec2:DescribeNetworkInterfaces&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;ec2:AssignPrivateIpAddresses&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="s2">&#34;ec2:UnassignPrivateIpAddresses&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="nt">&#34;Resource&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>创建一个<code>IMA角色</code>， 点击 <code>角色</code>-<code>创建角色</code>-<code>可信实体(AWS服务)</code>-<code>使用案例(EC2)</code>， 下一步， 权限策略选择 <code>PostgresVipFailoverPolicy</code>， 下一步，输入角色名称 <code>PostgresVipFailoverPolicy</code>， 下一步，完成创建, 创建完成后，在<code>EC2</code>找到对应的机器，将<code>IMA角色</code>附加上去即可。(<em><strong>IMA角色的附加可以防止在服务器上面配置ak/sk，也可以使用aws cli的调用，大大降低ak/sk泄露风险</strong></em>)</li>
+</ol>
+</li>
+<li>
+<p><code>/usr/local/bin/vip_failover_switch.sh</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; touch /usr/local/bin/vip_failover_switch.sh <span class="o">&amp;&amp;</span> chmod +x /usr/local/bin/vip_failover_switch.sh
+</span></span><span class="line"><span class="cl"><span class="c1"># 脚本目前处于试运行阶段，事件处理可能还不太完善，后续遇到问题在修改</span>
+</span></span><span class="line"><span class="cl">$&gt; vim /usr/local/bin/vip_failover_switch.sh
+</span></span><span class="line"><span class="cl"><span class="c1">#!/usr/bin/env bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1">################################################# </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   author      0x5c0f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   date        2025-08-28 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   email       mail@0x5c0f.cc </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   web         tools.0x5c0f.cc </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   version     1.2.5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   last update 2025-08-28</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   descript    Use : ./vip_failover_switch.sh -h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">################################################# </span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> -euo pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">PATH</span><span class="o">=</span>/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> PATH
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sudoer 授权</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># postgres ALL = NOPASSWD: /usr/sbin/ip addr add * dev *, /usr/sbin/ip addr del * dev *</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">########################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置区（按需修改）</span>
+</span></span><span class="line"><span class="cl"><span class="c1">########################################</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -r <span class="nv">PG_VIP</span><span class="o">=</span><span class="s2">&#34;10.0.1.100&#34;</span>                       <span class="c1"># VIP 地址（不带掩码）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -Ar <span class="nv">AWS_CLI_PROFILE_MAP_INSTANCE</span><span class="o">=(</span>              <span class="c1"># 本机私有IP -&gt; 该节点对应的 instance-id</span>
+</span></span><span class="line"><span class="cl">    <span class="o">[</span><span class="s2">&#34;10.0.3.114&#34;</span><span class="o">]=</span><span class="s2">&#34;{{  EC2_INSTANCE_ID }}&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">[</span><span class="s2">&#34;10.0.2.113&#34;</span><span class="o">]=</span><span class="s2">&#34;{{  EC2_INSTANCE_ID }}&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -r <span class="nv">NICNAME</span><span class="o">=</span><span class="s2">&#34;ens5&#34;</span>                               <span class="c1"># 本地网卡名</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -r <span class="nv">DEVICE_INDEX</span><span class="o">=</span><span class="s2">&#34;0&#34;</span>                             <span class="c1"># ENI 上的 device-index（通常0）</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -r <span class="nv">LOG_FILE</span><span class="o">=</span><span class="s2">&#34;/var/log/repmgr/vip_failover_switch.log&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -r <span class="nv">AWS_RETRY</span><span class="o">=</span><span class="m">3</span>                                  <span class="c1"># AWS API 重试次数</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -r <span class="nv">AWS_RETRY_SLEEP</span><span class="o">=</span><span class="m">2</span>                            <span class="c1"># 重试间隔(s)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">########################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 日志函数</span>
+</span></span><span class="line"><span class="cl"><span class="c1">########################################</span>
+</span></span><span class="line"><span class="cl">__SAY__<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> -- <span class="nv">LOG_LEVEL</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">LOG_LEVEL</span><span class="k">:-</span><span class="nv">DEBUG</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> -r <span class="nv">ENDCOLOR</span><span class="o">=</span><span class="s2">&#34;\033[0m&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> -r <span class="nv">INFOCOLOR</span><span class="o">=</span><span class="s2">&#34;\033[1;34m&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> -r <span class="nv">SUCCESSCOLOR</span><span class="o">=</span><span class="s2">&#34;\033[0;32m&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> -r <span class="nv">ERRORCOLOR</span><span class="o">=</span><span class="s2">&#34;\033[0;31m&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> -r <span class="nv">WARNCOLOR</span><span class="o">=</span><span class="s2">&#34;\033[0;33m&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> -r <span class="nv">DEBUGCOLOR</span><span class="o">=</span><span class="s2">&#34;\033[0;35m&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> LOGTYPE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 是否传入等级标记</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">=</span>~ ^<span class="o">[</span>A-Za-z<span class="o">]</span>+$ <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LOG_LEVEL</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;INFO&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;DEBUG&#34;</span> -o <span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;ERROR&#34;</span> -o <span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;WARN&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LOG_LEVEL</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;WARN&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;DEBUG&#34;</span> -o <span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;ERROR&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">elif</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LOG_LEVEL</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;ERROR&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="p">^^</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;DEBUG&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nv">LOGTYPE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="p">^^</span><span class="si">}</span><span class="s2">COLOR&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="si">${</span><span class="p">!LOGTYPE</span><span class="k">:-</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">LOGTYPE</span><span class="o">=</span><span class="s2">&#34;INFOCOLOR&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">shift</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">LOGTYPE</span><span class="o">=</span><span class="s2">&#34;INFOCOLOR&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">MESSAGE</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$*</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> -e <span class="s2">&#34;[</span><span class="k">$(</span>date <span class="s1">&#39;+%Y-%m-%d_%H:%M:%S&#39;</span><span class="k">)</span><span class="s2">] [</span><span class="si">${</span><span class="p">!LOGTYPE</span><span class="si">}${</span><span class="nv">LOGTYPE</span><span class="p">%%COLOR</span><span class="si">}${</span><span class="nv">ENDCOLOR</span><span class="si">}</span><span class="s2">] </span><span class="si">${</span><span class="nv">MESSAGE</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> tee -a <span class="s2">&#34;</span><span class="si">${</span><span class="nv">LOG_FILE</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取网卡上的私有IP（不带掩码）</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> _GET_PRIVATE_IP<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    sudo /usr/sbin/ip -4 addr show <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span> 2&gt;/dev/null <span class="p">|</span> grep -oP <span class="s1">&#39;inet \K[\d.]+&#39;</span> <span class="p">|</span> head -1 <span class="o">||</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取本实例ID（通过私有 IP 映射）</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> _GET_INSTANCE_ID<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> <span class="nv">_PRIVATE_IP_</span><span class="o">=</span><span class="k">$(</span>_GET_PRIVATE_IP<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="si">${</span><span class="nv">_PRIVATE_IP_</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        __SAY__ error <span class="s2">&#34;无法从本机获取私有IP（NIC=</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">），请检查网卡名&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">AWS_CLI_PROFILE_MAP_INSTANCE</span><span class="p">[</span><span class="si">${</span><span class="nv">_PRIVATE_IP_</span><span class="si">}</span><span class="p">]</span><span class="k">:-</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取当前实例所用 ENI ID</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> _GET_ENI_ID<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> inst
+</span></span><span class="line"><span class="cl">    <span class="nv">inst</span><span class="o">=</span><span class="k">$(</span>_GET_INSTANCE_ID<span class="k">)</span> <span class="o">||</span> <span class="k">return</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="si">${</span><span class="nv">inst</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        __SAY__ error <span class="s2">&#34;未为本机私有IP配置 InstanceID 映射&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    aws ec2 describe-network-interfaces <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        --filters <span class="s2">&#34;Name=attachment.instance-id,Values=</span><span class="si">${</span><span class="nv">inst</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s2">&#34;Name=attachment.device-index,Values=</span><span class="si">${</span><span class="nv">DEVICE_INDEX</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        --query <span class="s1">&#39;NetworkInterfaces[].NetworkInterfaceId&#39;</span> --output text
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从本地网卡获取掩码位长度（例如 20）</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> _GET_LOCAL_MASK<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    sudo /usr/sbin/ip -o -f inet addr show <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span> 2&gt;/dev/null <span class="p">|</span> awk <span class="s1">&#39;{print $4}&#39;</span> <span class="p">|</span> head -1 <span class="p">|</span> cut -d/ -f2 <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&#34;20&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 判断本机系统层是否已经存在该 VIP（返回 0 表示存在）</span>
+</span></span><span class="line"><span class="cl"><span class="k">function</span> _SYSTEM_HAS_VIP<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> mask
+</span></span><span class="line"><span class="cl">    <span class="nv">mask</span><span class="o">=</span><span class="k">$(</span>_GET_LOCAL_MASK<span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> sudo /usr/sbin/ip addr show dev <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span> 2&gt;/dev/null <span class="p">|</span> grep -q <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">mask</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 兼容没有掩码直接匹配</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> sudo /usr/sbin/ip addr show dev <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span> 2&gt;/dev/null <span class="p">|</span> grep -q <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span> ADD_VIP<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> _ENI_ID_ _mask _i _found _aws_output
+</span></span><span class="line"><span class="cl">    <span class="nv">_ENI_ID_</span><span class="o">=</span><span class="k">$(</span>_GET_ENI_ID<span class="k">)</span> <span class="o">||</span> <span class="o">{</span> __SAY__ error <span class="s2">&#34;无法获取 ENI ID&#34;</span><span class="p">;</span> <span class="k">return</span> 1<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 检查特定的 ENI 上是否绑定了特定的 VIP</span>
+</span></span><span class="line"><span class="cl">    __SAY__ debug <span class="s2">&#34;检查特定ENI上是否已经绑定了VIP: aws ec2 describe-network-interfaces --network-interface-ids </span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2"> --query \&#34;NetworkInterfaces[].PrivateIpAddresses[?PrivateIpAddress==&#39;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#39;].PrivateIpAddress\&#34; --output text&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">_found</span><span class="o">=</span><span class="k">$(</span>aws ec2 describe-network-interfaces --network-interface-ids <span class="s2">&#34;</span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2">&#34;</span> --query <span class="s2">&#34;NetworkInterfaces[].PrivateIpAddresses[?PrivateIpAddress==&#39;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#39;].PrivateIpAddress&#34;</span>  --output text 2&gt;/dev/null <span class="o">||</span> <span class="nb">true</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">_found</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        __SAY__ warn <span class="s2">&#34;AWS: ENI </span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2"> 已存在 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">，跳过分配&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        __SAY__ info <span class="s2">&#34;开始添加 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2"> 到 ENI </span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        __SAY__ debug <span class="s2">&#34;aws ec2 assign-private-ip-addresses --network-interface-id </span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2"> --private-ip-addresses </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2"> --allow-reassignment&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> _i in <span class="k">$(</span>seq <span class="m">1</span> <span class="si">${</span><span class="nv">AWS_RETRY</span><span class="si">}</span><span class="k">)</span><span class="p">;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">_aws_output</span><span class="o">=</span><span class="k">$(</span>aws ec2 assign-private-ip-addresses --network-interface-id <span class="s2">&#34;</span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2">&#34;</span> --private-ip-addresses <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#34;</span> --allow-reassignment<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">_aws_output</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> jq -e <span class="s2">&#34;.AssignedPrivateIpAddresses[] | select(.PrivateIpAddress==\&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">\&#34;)&#34;</span> &gt; /dev/null<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                __SAY__ success <span class="s2">&#34;AWS: 成功为 ENI </span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2"> 分配 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                __SAY__ debug <span class="s2">&#34;AWS Rsp: </span><span class="si">${</span><span class="nv">_aws_output</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">break</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span>
+</span></span><span class="line"><span class="cl">                __SAY__ warn <span class="s2">&#34;AWS: 为 ENI </span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2"> 分配 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2"> 第 </span><span class="si">${</span><span class="nv">_i</span><span class="si">}</span><span class="s2"> 次失败，重试...&#34;</span>
+</span></span><span class="line"><span class="cl">                __SAY__ debug <span class="s2">&#34;AWS Rsp: </span><span class="si">${</span><span class="nv">_aws_output</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                sleep <span class="si">${</span><span class="nv">AWS_RETRY_SLEEP</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">_i</span><span class="si">}</span><span class="s2">&#34;</span> -eq <span class="s2">&#34;</span><span class="si">${</span><span class="nv">AWS_RETRY</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                __SAY__ error <span class="s2">&#34;AWS: 多次尝试分配 VIP 失败，放弃操作&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">done</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 等待几秒让 AWS 侧生效</span>
+</span></span><span class="line"><span class="cl">    sleep <span class="m">2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> _SYSTEM_HAS_VIP<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        __SAY__ warn <span class="s2">&#34;系统网卡 </span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2"> 已存在 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">，跳过本地添加&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">_mask</span><span class="o">=</span><span class="k">$(</span>_GET_LOCAL_MASK<span class="k">)</span>
+</span></span><span class="line"><span class="cl">        __SAY__ debug <span class="s2">&#34;sudo /usr/sbin/ip addr add </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">_mask</span><span class="si">}</span><span class="s2"> dev </span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> sudo /usr/sbin/ip addr add <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">_mask</span><span class="si">}</span><span class="s2">&#34;</span> dev <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            __SAY__ success <span class="s2">&#34;系统: VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">_mask</span><span class="si">}</span><span class="s2"> 已添加到 </span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            __SAY__ error <span class="s2">&#34;系统: 添加 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">_mask</span><span class="si">}</span><span class="s2"> 到 </span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2"> 失败&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">function</span> DEL_VIP<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">local</span> _ENI_ID_ _mask _found
+</span></span><span class="line"><span class="cl">    <span class="nv">_ENI_ID_</span><span class="o">=</span><span class="k">$(</span>_GET_ENI_ID<span class="k">)</span> <span class="o">||</span> <span class="o">{</span> __SAY__ error <span class="s2">&#34;无法获取 ENI ID&#34;</span><span class="p">;</span> <span class="k">return</span> 1<span class="p">;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    __SAY__ info <span class="s2">&#34;开始从 ENI </span><span class="si">${</span><span class="nv">_ENI_ID_</span><span class="si">}</span><span class="s2"> / 本地网卡 </span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2"> 删除 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># _found=$(aws ec2 describe-network-interfaces --network-interface-ids &#34;${_ENI_ID_}&#34; \</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#     --query &#34;NetworkInterfaces[].PrivateIpAddresses[?PrivateIpAddress==&#39;${PG_VIP}&#39;] | [0].PrivateIpAddress&#34; --output text 2&gt;/dev/null || true)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># if [ &#34;${_found}&#34; == &#34;${PG_VIP}&#34; ]; then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#     if aws ec2 unassign-private-ip-addresses --network-interface-id &#34;${_ENI_ID_}&#34; --private-ip-addresses &#34;${PG_VIP}&#34;; then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#         __SAY__ success &#34;AWS: 成功从 ENI ${_ENI_ID_} 解绑 VIP ${PG_VIP}&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#     else</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#         __SAY__ warn &#34;AWS: 解绑 VIP ${PG_VIP} 失败或已被 reassigned，继续进行本地清理&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#     fi</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># else</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#     __SAY__ debug &#34;AWS: ENI ${_ENI_ID_} 未绑定 VIP ${PG_VIP}，跳过 unassign&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 系统层：删除本地 IP</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> _SYSTEM_HAS_VIP<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">_mask</span><span class="o">=</span><span class="k">$(</span>_GET_LOCAL_MASK<span class="k">)</span>
+</span></span><span class="line"><span class="cl">        __SAY__ debug <span class="s2">&#34;sudo /usr/sbin/ip addr del </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">_mask</span><span class="si">}</span><span class="s2"> dev </span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> sudo /usr/sbin/ip addr del <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">_mask</span><span class="si">}</span><span class="s2">&#34;</span> dev <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            __SAY__ success <span class="s2">&#34;系统: VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">_mask</span><span class="si">}</span><span class="s2"> 已从 </span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2"> 删除&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            __SAY__ warn <span class="s2">&#34;系统: 删除 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">_mask</span><span class="si">}</span><span class="s2"> 失败（可能掩码不同），尝试模糊删除&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 最后尝试强匹配删除（不推荐，但兜底）</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> sudo /usr/sbin/ip addr show dev <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> grep -q <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 查找确切 cidr 并删除</span>
+</span></span><span class="line"><span class="cl">                <span class="nb">local</span> found_cidr
+</span></span><span class="line"><span class="cl">                <span class="nv">found_cidr</span><span class="o">=</span><span class="k">$(</span>sudo /usr/sbin/ip -o -f inet addr show <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> awk -v <span class="nv">vip</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s1">&#39;$0~vip {print $4; exit}&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="si">${</span><span class="nv">found_cidr</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">                    sudo /usr/sbin/ip addr del <span class="s2">&#34;</span><span class="si">${</span><span class="nv">found_cidr</span><span class="si">}</span><span class="s2">&#34;</span> dev <span class="s2">&#34;</span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2">&#34;</span> <span class="o">||</span> __SAY__ error <span class="s2">&#34;系统: 最后兜底删除失败&#34;</span>
+</span></span><span class="line"><span class="cl">                    __SAY__ success <span class="s2">&#34;系统: 使用 </span><span class="si">${</span><span class="nv">found_cidr</span><span class="si">}</span><span class="s2"> 删除 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">            <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        __SAY__ warn <span class="s2">&#34;系统网卡 </span><span class="si">${</span><span class="nv">NICNAME</span><span class="si">}</span><span class="s2"> 不存在 VIP </span><span class="si">${</span><span class="nv">PG_VIP</span><span class="si">}</span><span class="s2">，跳过本地删除&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">########################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># main: 参数解析（来自 repmgr event_notification_command）</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># usage: script NODE_ID EVENT_TYPE SUCCESS [TIMESTAMP] [DETAILS]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">########################################</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$#</span><span class="s2">&#34;</span> -lt <span class="m">3</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    __SAY__ warn <span class="s2">&#34;用法: </span><span class="nv">$0</span><span class="s2"> &lt;NODE_ID&gt; &lt;EVENT_TYPE&gt; &lt;SUCCESS&gt; [TIMESTAMP] [DETAILS]&#34;</span>
+</span></span><span class="line"><span class="cl">    __SAY__ warn <span class="s2">&#34;应当在 repmgr.conf 中配置: &#34;</span>
+</span></span><span class="line"><span class="cl">    __SAY__ warn <span class="s2">&#34;\tevent_notification_command = &#39;sudo </span><span class="nv">$0</span><span class="s2"> %n %e %s %t \&#34;%d\&#34;&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">    __SAY__ warn <span class="s2">&#34;\tchild_nodes_disconnect_command=&#39;sudo </span><span class="nv">$0</span><span class="s2"> %n child_nodes_disconnect_command 1 %t \&#34;%d\&#34;&#39;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -- <span class="nv">NODE_ID</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">1</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -- <span class="nv">EVENT_TYPE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">2</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -- <span class="nv">SUCCESS</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">3</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -- <span class="nv">TIMESTAMP</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">4</span><span class="k">:-$(</span>date <span class="s1">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class="k">)</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">declare</span> -- <span class="nv">DETAILS</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">5</span><span class="k">:-</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">__SAY__ debug <span class="s2">&#34;触发 repmgr 事件: NODE_ID=</span><span class="si">${</span><span class="nv">NODE_ID</span><span class="si">}</span><span class="s2"> EVENT_TYPE=</span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2"> SUCCESS=</span><span class="si">${</span><span class="nv">SUCCESS</span><span class="si">}</span><span class="s2"> TIMESTAMP=</span><span class="si">${</span><span class="nv">TIMESTAMP</span><span class="si">}</span><span class="s2"> DETAILS=</span><span class="si">${</span><span class="nv">DETAILS</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 仅对成功事件执行操作（SUCCESS=1）</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">SUCCESS</span><span class="si">}</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;1&#34;</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    __SAY__ warn <span class="s2">&#34;事件未成功（SUCCESS=</span><span class="si">${</span><span class="nv">SUCCESS</span><span class="si">}</span><span class="s2">），仅记录日志，跳过 VIP 操作&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 事件 -&gt; 行为映射</span>
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2">&#34;</span> in
+</span></span><span class="line"><span class="cl">    <span class="c1"># 新主就位（挂 VIP）</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;standby_promote&#34;</span><span class="p">|</span><span class="s2">&#34;repmgrd_failover_promote&#34;</span><span class="p">|</span><span class="s2">&#34;standby_switchover&#34;</span><span class="p">|</span><span class="s2">&#34;primary_register&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        __SAY__ info <span class="s2">&#34;事件 </span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2"> 表示本节点为主，尝试挂载 VIP（DETAILS=</span><span class="si">${</span><span class="nv">DETAILS</span><span class="si">}</span><span class="s2">)&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> ADD_VIP<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            __SAY__ success <span class="s2">&#34;ADD_VIP 操作完成（事件=</span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2">）&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            __SAY__ error <span class="s2">&#34;ADD_VIP 操作失败（事件=</span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2">），请手动检查&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 节点不再为主或需要自我隔离（摘 VIP）</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;standby_follow&#34;</span><span class="p">|</span><span class="s2">&#34;primary_unregister&#34;</span><span class="p">|</span><span class="s2">&#34;standby_register&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># &#34;repmgrd_local_disconnect&#34; 事件在主节点临时关闭时也会触发，这个时候不应删除 VIP</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># &#34;child_nodes_disconnect_command&#34; 事件在单主单备情况下也不应删除 VIP</span>
+</span></span><span class="line"><span class="cl">        __SAY__ warn <span class="s2">&#34;事件 </span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2"> 表示本节点不应持有 VIP，尝试删除 VIP（DETAILS=</span><span class="si">${</span><span class="nv">DETAILS</span><span class="si">}</span><span class="s2">)&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> DEL_VIP<span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">            __SAY__ success <span class="s2">&#34;DEL_VIP 操作完成（事件=</span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2">）&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">            __SAY__ error <span class="s2">&#34;DEL_VIP 操作失败（事件=</span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2">），请手动检查&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 这些事件只记录告警/信息，不做 VIP 操作（防止脑裂）</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;repmgrd_upstream_disconnect&#34;</span><span class="p">|</span><span class="s2">&#34;standby_disconnect_manual&#34;</span><span class="p">|</span><span class="s2">&#34;standby_failure&#34;</span><span class="p">|</span><span class="s2">&#34;standby_recovery&#34;</span><span class="p">|</span><span class="s2">&#34;repmgrd_promote_error&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        __SAY__ warn <span class="s2">&#34;事件 </span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2"> 仅为连接/错误类通知，记录日志并跳过 VIP 操作（DETAILS=</span><span class="si">${</span><span class="nv">DETAILS</span><span class="si">}</span><span class="s2">)&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    *<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        __SAY__ debug <span class="s2">&#34;未被脚本处理的事件: </span><span class="si">${</span><span class="nv">EVENT_TYPE</span><span class="si">}</span><span class="s2">（DETAILS=</span><span class="si">${</span><span class="nv">DETAILS</span><span class="si">}</span><span class="s2">），仅记录&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl"><span class="k">esac</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">0</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 class="heading-element" id="配置repmgrd服务"><span>配置repmgrd服务</span>
+  <a href="#%e9%85%8d%e7%bd%aerepmgrd%e6%9c%8d%e5%8a%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ul>
+<li>默认安装 <code>postgresql-16-repmgr</code> 后会创建一个 <code>/etc/init.d/repmgrd</code> 用于管理 <code>repmgrd</code>服务, 但这个脚本似乎有很严重的兼容问题，这里直接删除后重建服务
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在主从节点均执行</span>
+</span></span><span class="line"><span class="cl">$&gt; rm -rf /etc/init.d/repmgrd
+</span></span><span class="line"><span class="cl">$&gt; systemctl daemon-reload
+</span></span><span class="line"><span class="cl">$&gt; vim /etc/systemd/system/repmgrd.service
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span><span class="o">=</span>PostgreSQL Replication Manager Daemon
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>postgresql@16-main.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>simple
+</span></span><span class="line"><span class="cl"><span class="nv">User</span><span class="o">=</span>postgres
+</span></span><span class="line"><span class="cl"><span class="nv">Group</span><span class="o">=</span>postgres
+</span></span><span class="line"><span class="cl"><span class="nv">PIDFile</span><span class="o">=</span>/var/run/postgresql/repmgrd.pid
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/repmgrd -f /etc/repmgr.conf -d
+</span></span><span class="line"><span class="cl"><span class="nv">ExecReload</span><span class="o">=</span>/bin/kill -HUP <span class="nv">$MAINPID</span>
+</span></span><span class="line"><span class="cl"><span class="nv">KillMode</span><span class="o">=</span>process
+</span></span><span class="line"><span class="cl"><span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$&gt; systemctl daemon-reload
+</span></span><span class="line"><span class="cl"><span class="c1">## 配置完成后，先不要启动该服务 </span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>配置 <code>/etc/postgresql/16/main/pg_hba.conf</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo vim /etc/postgresql/16/main/pg_hba.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># repmgr 连接权限</span>
+</span></span><span class="line"><span class="cl">host    repmgr         repmgr         10.0.0.0/16            scram-sha-256
+</span></span><span class="line"><span class="cl">host    replication    repmgr         10.0.0.0/16            scram-sha-256</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 class="heading-element" id="注册及校验"><span>注册及校验</span>
+  <a href="#%e6%b3%a8%e5%86%8c%e5%8f%8a%e6%a0%a1%e9%aa%8c" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 主节点-pgsql_node_01(10.0.2.113)执行注册</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr primary register -f /etc/repmgr.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查注册是否成功</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr cluster show -f /etc/repmgr.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从库注册前需要先配置application_name , 该值和当前节点 /etc/repmgrd.conf 中的 node_name 保持一致</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从库执行修改</span>
+</span></span><span class="line"><span class="cl">$&gt; vim /data/_pgsql_data/16/main/postgresql.auto.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 由于初次配置是通过 sudo -u postgres pg_basebackup -h 10.0.2.113 -U repl -D /data/_pgsql_data/16/main -Fp -Xs -P -R 基准复制拷贝的</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 所以直接在primary_conninfo 配置末尾添加 applicatoin_name=pgsql_node_02 即可</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 应该也可以直接删除原有的，直接配置 primary_conninfo = &#39;host=10.0.2.113 port=5432 user=repmgr application_name=pgsql_node_02 password={{ REPMGR_PASSWORD }} connect_timeout=2&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 调整完成后, 重载配置</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo systemctl reload postgresql@16-main.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看配置是否成功</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql -c <span class="s2">&#34;SHOW primary_conninfo;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在从节点上执行注册--upstream-node-id 指定的是上游节点，也就是主节点配置的node_id</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr standby register -f /etc/repmgr.conf --upstream-node-id<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#########</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 主从节点启动 repmgrd 服务</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo systemctl start repmgrd
+</span></span><span class="line"><span class="cl"><span class="c1">#########</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看集群状态</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看完整的集群状态</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr cluster show -f /etc/repmgr.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看所有节点的详细信息</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr cluster event --event<span class="o">=</span>register -f /etc/repmgr.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># 在主节点上检查复制状态</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql -c <span class="s2">&#34;SELECT * FROM pg_stat_replication;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在从节点上检查复制状态</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql -c <span class="s2">&#34;SELECT * FROM pg_stat_wal_receiver;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查repmgr.nodes表</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql -d repmgr -c <span class="s2">&#34;SELECT * FROM repmgr.nodes;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看节点状态</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr node status
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询当前备库从主库接收WAL日志流的状态</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres psql -c <span class="s2">&#34;SELECT * FROM pg_stat_wal_receiver;&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="主从切换测试"><span>主从切换测试</span>
+  <a href="#%e4%b8%bb%e4%bb%8e%e5%88%87%e6%8d%a2%e6%b5%8b%e8%af%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>
+<p>非重建模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 主节点-pgsql_node_01(10.0.2.113)执行</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo systemctl stop postgresql@16-main.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 等待 1-2 分钟</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证集群状态，只有在 Status 为 - failed 时候， 从节点才会触发晋升从而变为主节点</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 等待阶段 Status 为 ? unreachable， 此时主库正在执行健康检查， 等待主库恢复中</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr cluster show
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">### 集群状态恢复后，可以观察VIP是否已经漂移到新主节点了，如果没有，需要观察日志 /var/log/repmgr/vip_failover_switch.log, 其中记录了VIP的漂移过程，不过此时原主库上仍然绑定着VIP，可以手动删除，或者直接忽略，VIP的实现是靠的亚马逊私有辅助IP实现的，服务器上直接绑定无效，需要AWS绑定了，服务器上才能实际添加，该VIP会在注册从节点时自动删除， 手动删除key使用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># $&gt; ip addr del 10.0.1.100/20 dev ens5 # systemctl restart systemd-networkd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从库晋升主库后的恢复</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动原主库</span>
+</span></span><span class="line"><span class="cl">$&gt; systemctl start postgresql@16-main.service
+</span></span><span class="line"><span class="cl"><span class="c1"># 将原主库置为从库 </span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres touch /data/_pgsql_data/16/main/standby.signal <span class="o">&amp;&amp;</span> sudo chmod <span class="m">600</span> /data/_pgsql_data/16/main/standby.signal
+</span></span><span class="line"><span class="cl"><span class="c1"># 修正 原主库的 primary_conninfo 连接信息 </span>
+</span></span><span class="line"><span class="cl">$&gt; vim /data/_pgsql_data/16/main/postgresql.auto.conf
+</span></span><span class="line"><span class="cl"><span class="c1">## 如果配置文件中不存在，则直接添加， 注意 host 是主节点信息， application_name 是当前节点 /etc/repmgr.conf 中的 node_name</span>
+</span></span><span class="line"><span class="cl"><span class="nv">primary_conninfo</span> <span class="o">=</span> <span class="s1">&#39;host=10.0.3.114 port=5432 user=repmgr password={{ REPMGR_PASSWORD }} application_name=pgsql_node_01&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重载配置</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo systemctl reload postgresql@16-main.service   <span class="c1"># sudo systemctl restart postgresql@16-main.service</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启 repmgrd 服务</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo systemctl restart repmgrd
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看集群状态</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr cluster show
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意此时集群状态可能有两种情况，一种是 Status 没有任何标识， Upstream 也没有任何标识， 这种情况代表同步恢复完成，但是注册信息更新失败，可以等待一段时间后在观察，若仍然没有恢复，则重新注册一下，此时一般需要强制注册, --upstream-node-id 是主节点的node_id , 还有一种带有！号的， 代表同步重建完全失败， 这个可能是两者数据流差异过大引起，此时重建同步 </span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr standby register -f /etc/repmgr.conf --upstream-node-id<span class="o">=</span><span class="m">1</span> --force</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>重建模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 创建 /var/lib/postgresql/.pgpass 文件，用于重新克隆服务基准数据时使用</span>
+</span></span><span class="line"><span class="cl">$&gt; touch /var/lib/postgresql/.pgpass <span class="o">&amp;&amp;</span> chown postgres:postgres /var/lib/postgresql/.pgpass <span class="o">&amp;&amp;</span> chmod <span class="m">600</span> /var/lib/postgresql/.pgpass
+</span></span><span class="line"><span class="cl">$&gt; /var/lib/postgresql/.pgpass 
+</span></span><span class="line"><span class="cl">10.0.3.114:5432:repmgr:repmgr:<span class="o">{{</span> REPMGR_PASSWORD <span class="o">}}</span>
+</span></span><span class="line"><span class="cl">10.0.2.113:5432:repmgr:repmgr:<span class="o">{{</span> REPMGR_PASSWORD <span class="o">}}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 停止新从节点</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo systemctl stop postgresql@16-main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份数据目录</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo mv /data/_pgsql_data/16/main /data/_pgsql_data/16/main.backup.<span class="k">$(</span>date +%Y%m%d_%H%M%S<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用正确的配置重新克隆</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># host 为新主节点IP</span>
+</span></span><span class="line"><span class="cl">$&gt; sudo -u postgres repmgr standby clone --force --verbose --host<span class="o">=</span>10.0.3.114 --port<span class="o">=</span><span class="m">5432</span> --user<span class="o">=</span>repmgr --dbname<span class="o">=</span>repmgr
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动从节点</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start postgresql@16-main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重新注册</span>
+</span></span><span class="line"><span class="cl">sudo -u postgres repmgr standby register --force
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证</span>
+</span></span><span class="line"><span class="cl">sudo -u postgres repmgr node status
+</span></span><span class="line"><span class="cl">sudo -u postgres psql -c <span class="s2">&#34;SELECT * FROM pg_stat_wal_receiver;&#34;</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 class="heading-element" id="其他"><span>其他</span>
+  <a href="#%e5%85%b6%e4%bb%96" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ul>
+<li>本文记录是根据实际搭建和测试完成后的草稿重新编写，实操时可能会有些新问题产生，有问题自行解决</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod">
+        <span title="更新于 2025-08-29 00:00:00">更新于 2025-08-29&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-tag" title="标签 - 解决方案">解决方案</a><a href="/tags/%E5%90%8C%E6%AD%A5/" class="post-tag" title="标签 - 同步">同步</a></section>
+    <section>
+      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/linux/redis%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B8%B8%E8%A7%813%E5%A4%A7%E9%97%AE%E9%A2%98/" class="post-nav-item" rel="prev" title="Redis高并发常见3大问题"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Redis高并发常见3大问题</a><a href="/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/" class="post-nav-item" rel="next" title="那些杂七杂八的记录(三)">那些杂七杂八的记录(三)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
+      </noscript></div></article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.147.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.20"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.6955c00f427f31a16d1d426b9b0c310e3d610bdb3c7ff21dd63e2c8486e90b8aa706b076bb1d0c8819e944e92a38db3f347f987097325f72bdde194122568d82.css" integrity="sha512-aVXAD0J/MaFtHUJrmwwxDj1hC9s8f/Id1j4shIbpC4qnBrB2ux0MiBnpROkqONs/NH+YcJcyX3K93hlBIlaNgg=="><link rel="preload" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.0adcb94758b6716c196def2769c69dd420b8ca647af4767565b9d6709054600d9e9dfe4cd9a4227c994b537642c5538da08c986db1b956bee270c03f6ce9ba6d.js" integrity="sha512-Cty5R1i2cWwZbe8nacad1CC4ymR69HZ1ZbnWcJBUYA2enf5M2aQifJlLU3ZCxVONoIyYbbG5Vr7icMA/bOm6bQ==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":30},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2025-08-29T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"PostgreSQL主从复制及repmgr高可用"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.20"};</script><script src="/js/theme.min.4807c10b31d5f64caef015e07216aaf921774d77ab46d3c725db004dd9ba0b6e4574219fd6c188ce6ec3bd906b255f2dfbe6b7ad2a20c676e5e9e02989fe133f.js" integrity="sha512-SAfBCzHV9kyu8BXgchaq+SF3TXerRtPHJdsATdm6C25FdCGf1sGIzm7DvZBrJV8t++a3rSogxnbl6eApif4TPw==" defer></script><script src="/lib/translate.min.1a38caaeafd7176713f44400741e50378c3f69739ab4e3c51224892099aeb57aa71f9e9b53195a17cb03a7ef6810b76be44c0937b4b4dd9f5db982ae0fa6c794.js" integrity="sha512-GjjKrq/XF2cT9EQAdB5QN4w/aXOatOPFEiSJIJmutXqnH56bUxlaF8sDp+9oELdr5EwJN7S03Z9duYKuD6bHlA==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/"}};</script><script src="/js/translate.fixit.min.ab03e2ee13c4858806ccf9eb99fb353eac77a752b8d7467a0350c40fcb567ec979e41d8884da52e90309d248d602707ebc70c12fbce1902311aff3f00ae5ca80.js" integrity="sha512-qwPi7hPEhYgGzPnrmfs1Pqx3p1K410Z6A1DED8tWfsl55B2IhNpS6QMJ0kjWAnB+vHDBL7zhkCMRr/PwCuXKgA==" defer></script></body>
+</html>
