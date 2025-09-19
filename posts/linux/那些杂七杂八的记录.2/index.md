@@ -300,54 +300,61 @@ $> ufw allow samba # ufw allow from <网段>/<子网掩码> to any port samba
 ## 利用 AWS CloudFront 的 CloudFront 函数 实现域名非www跳转www域名
 1. 编写 `CloudFront Function`
 - 创建一个 `CloudFront Function`，代码如下（直接处理请求并返回重定向）：
-    ```js
-    // version 1.0
-    function handler(event) {
-        var request = event.request;
-        var host = request.headers.host.value;
+{{< tabs defaultTab=1 type="underline" >}}
+{{% tab title="version 1.0" %}}
+```js
+function handler(event) {
+    var request = event.request;
+    var host = request.headers.host.value;
 
-        // 判断是否是非 www 请求（例如 example.com）
-        if (host === 'example.com') {
-            return {
-                statusCode: 301,
-                statusDescription: 'Moved Permanently',
-                headers: {
-                    'location': { value: `https://www.${host}${request.uri}` },
-                    'cache-control': { value: 'max-age=3600' }
-                }
-            };
-        }
-
-        // 其他情况直接放行
-        return request;
-    }
-
-    // version 2.0 - 未测试
-    function handler(event) {
-        var request = event.request;
-        var host = request.headers.host.value;
-
-        // 跳转规则列表
-        var redirectRules = {
-            'example.com': 'www.example.com'
+    // 判断是否是非 www 请求（例如 example.com）
+    if (host === 'example.com') {
+        return {
+            statusCode: 301,
+            statusDescription: 'Moved Permanently',
+            headers: {
+                'location': { value: `https://www.${host}${request.uri}` },
+                'cache-control': { value: 'max-age=3600' }
+            }
         };
-
-        // 检查当前host是否需要跳转
-        if (redirectRules.hasOwnProperty(host)) {
-            return {
-                statusCode: 301,
-                statusDescription: 'Moved Permanently',
-                headers: {
-                    'location': { value: `https://${redirectRules[host]}${request.uri}` },
-                    'cache-control': { value: 'max-age=3600' }
-                }
-            };
-        }
-
-        // 其他情况直接放行
-        return request;
     }
-    ```
+
+    // 其他情况直接放行
+    return request;
+}
+```
+{{% /tab %}}
+{{% tab title="version 2.0" %}}
+```js
+// 该版本未进行实际测试，通过 gpt 编写
+function handler(event) {
+    var request = event.request;
+    var host = request.headers.host.value;
+
+    // 跳转规则列表
+    var redirectRules = {
+        'example.com': 'www.example.com'
+    };
+
+    // 检查当前host是否需要跳转
+    if (redirectRules.hasOwnProperty(host)) {
+        return {
+            statusCode: 301,
+            statusDescription: 'Moved Permanently',
+            headers: {
+                'location': { value: `https://${redirectRules[host]}${request.uri}` },
+                'cache-control': { value: 'max-age=3600' }
+            }
+        };
+    }
+
+    // 其他情况直接放行
+    return request;
+}
+```
+{{% /tab %}}
+{{< /tabs >}}
+    
 2. 配置函数参数
 运行时版本：选择 `cloudfront-js-2.0`（最新 `JavaScript` 运行时）。   
 - 函数名称：例如 `redirect-non-www-to-www`。

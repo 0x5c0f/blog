@@ -178,8 +178,8 @@ location ~* \.(gif|jpg|jpeg)$ {
 | `$content_type`       | 等于请求行的“Content_Type”的值                                                                                            |
 | `$http_referer`       | 引用地址                                                                                                                  |
 | `$http_user_agent`    | 客户端agent信息,如：Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36 |
-| `$args`               | 与$query_string相同 等于当中URL的参数(GET)，如a=1&b=2                                                                     |
-| `$document_uri`       | 与$uri相同 这个变量指当前的请求URI，不包括任何参数(见$args) 如:/2013/81.html                                              |
+| `$args`               | 与`$query_string`相同 等于当中URL的参数(GET)，如a=1&b=2                                                                     |
+| `$document_uri`       | 与`$uri`相同 这个变量指当前的请求URI，不包括任何参数(见`$args`) 如:/2013/81.html                                              |
 | `$document_root`      | 针对当前请求的根路径设置值                                                                                                |
 | `$hostname`           | 如：centos53.localdomain                                                                                                  |
 | `$http_cookie`        | 客户端cookie信息                                                                                                          |

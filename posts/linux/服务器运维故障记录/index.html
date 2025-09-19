@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <head>
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
     <meta name="robots" content="noodp" />
@@ -33,7 +32,7 @@
 <meta name="application-name" content="FixIt">
 <meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" title="服务器运维故障记录 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/http%E5%93%8D%E5%BA%94%E7%A0%81/" title="HTTP响应码" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" title="Linux性能测试之性能测试指标(转载)" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/index.md" title="服务器运维故障记录 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/style.min.3dfa226de8a8bb4d325c0d271e3bba9d2cf3997b5786e7ab0b39ed100be2ff8b76f677423a90331e65cecf30e70590f7b21224a9284966e820a802c41aa2e673.css" integrity="sha512-Pfoibeiou00yXA0nHju6nSzzmXtXhuerCzntEAvi/4t29ndCOpAzHmXOzzDnBZD3shIkqShJZuggqALEGqLmcw=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" title="服务器运维故障记录 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/http%E5%93%8D%E5%BA%94%E7%A0%81/" title="HTTP响应码" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" title="Linux性能测试之性能测试指标(转载)" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/index.md" title="服务器运维故障记录 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css" integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel="stylesheet" href="/css/style.min.e0b17f5cf9a9c87f737591b5c829fed246605ac85520a2122eec6fdeabdb99a3ad1749f3d6e8b961021c06592cd01d91903142117456703d6672f0be5ba48793.css" integrity="sha512-4LF/XPmpyH9zdZG1yCn+0kZgWshVIKISLuxv3qvbmaOtF0nz1ui5YQIcBlks0B2RkDFCEXRWcD1mcvC+W6SHkw=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
   {
@@ -52,7 +51,7 @@
         "name": "0x5c0f"
       },"description": "服务器运维故障记录"
   }
-  </script><script src="/js/head/color-scheme.min.e4582484625e45df8e4adbb4cc376382a2cba293ce791cf7e64b7d91903cb3c5ca0e91d3f65981dd654cffb16766c9ba00adc5f156d21c61355858e9efc36d60.js" integrity="sha512-5FgkhGJeRd+OStu0zDdjgqLLopPOeRz35kt9kZA8s8XKDpHT9lmB3WVM/7FnZsm6AK3F8VbSHGE1WFjp78NtYA=="></script></head>
+  </script><script src="/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js" integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head>
   <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
   <div class="header-wrapper">
     <div class="header-title">
@@ -135,7 +134,7 @@
   </div>
   <div class="search-dropdown mobile">
     <div id="search-dropdown-mobile"></div>
-  </div><main class="container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+  </div><main class="fi-container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
 
   <article class="page single">
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>服务器运维故障记录</span>
@@ -156,7 +155,7 @@
     <li><a href="#nginx-伪静态无效问题">nginx 伪静态无效问题</a></li>
     <li><a href="#nginx-反向代理后端服务器部分资源出现502错误">nginx 反向代理后端服务器，部分资源出现502错误</a></li>
     <li><a href="#nginx-反向代理-cdn回源多层nginx出现-502503504-等异常">nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</a></li>
-    <li><a href="#nginx-emerg-location--cannot-be-inside-the-exact-location-faviconico-in-xxxxxx">nginx: [emerg] location &ldquo;<xxxxxxxx>&rdquo; cannot be inside the exact location &ldquo;/favicon.ico&rdquo; in xxxxxx</a></li>
+    <li><a href="#nginx-emerg-location--cannot-be-inside-the-exact-location-faviconico-in-xxxxxx">nginx: [emerg] location “” cannot be inside the exact location “/favicon.ico” in xxxxxx</a></li>
     <li><a href="#iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2">IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</a></li>
     <li><a href="#iis-如何修改文件上传限制">IIS 如何修改文件上传限制</a></li>
     <li><a href="#iis-net-项目-post-无法提交数据">IIS .net 项目 post 无法提交数据</a></li>
@@ -165,18 +164,18 @@
     <li><a href="#iis-站点访问报错-编译器错误消息-cs0016">IIS 站点访问报错, 编译器错误消息: CS0016</a></li>
   </ul>
 </nav></div>
-      </div><div class="content" id="content"><div class="expiration-reminder details admonition note open">
+      </div><div class="content" id="content"><div class="expiration-reminder details admonition warning open">
       <div class="details-summary admonition-title">
-        <i class="icon fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i>注意<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
+        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
       </div>
       <div class="details-content">
         <div class="admonition-content">本文最后更新于 2025-03-14，文中内容可能已过时。</div>
       </div>
-    </div><h2 class="heading-element" id="mysql--errcode-24---too-many-open-files"><span>Mysql  Errcode: 24 - Too many open files</span>
+    </div><h1 class="heading-element" id="mysql--errcode-24---too-many-open-files"><span>Mysql  Errcode: 24 - Too many open files</span>
   <a href="#mysql--errcode-24---too-many-open-files" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><blockquote>
+</h1><blockquote>
 <p><a href="https://blog.csdn.net/weixin_36343850/article/details/86293700"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/weixin_36343850/article/details/86293700<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p></blockquote>
 <p>原因：打开文件数量太多，超出了<code>open_files_limit</code>这个参数的限制，在一个表中有多个分区的时候，这种情况更容易发生。<br>
 解决方法：</p>
@@ -191,22 +190,22 @@
 </li>
 <li>然后执行<code>systemctl daemon-reload</code>，接着再重启<code>mysql</code>服务<code>sudo service mysql restart</code>,可以看到已经修改成功了</li>
 </ul>
-<h2 class="heading-element" id="禅道bug管理系统"><span>禅道bug管理系统</span>
+<h1 class="heading-element" id="禅道bug管理系统"><span>禅道bug管理系统</span>
   <a href="#%e7%a6%85%e9%81%93bug%e7%ae%a1%e7%90%86%e7%b3%bb%e7%bb%9f" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><ol>
+</h1><ol>
 <li>这个部署遇到的一个坑就是<code>php</code>打死获取不到<code>session</code>的位置<br>
 打开调试日志方式是将<code>my.cnf</code> 中<code>debug</code>设置为<code>true</code><br>
 实际错误体现是 <code>ERROR: 您访问的域名 xxx.xxx.xxx 没有对应的公司。</code><br>
 我的解决方案是 代码目录整体权限设置为<code>777</code>,然后删除掉<code>my.cnf</code>进行重装,重装后在目录权限调整为正常权限即可.</li>
 <li>安装完成后，首页出现无限循环重定向，手动将<code>my.php</code>中<code>PATH_INFO</code>修改为<code>GET</code>，或在<code>nginx</code>传入变量<code>PATH_INFO</code>值<code>$request_uri;</code></li>
 </ol>
-<h2 class="heading-element" id="nginx-代理php产生的一些故障"><span>nginx 代理php产生的一些故障</span>
+<h1 class="heading-element" id="nginx-代理php产生的一些故障"><span>nginx 代理php产生的一些故障</span>
   <a href="#nginx-%e4%bb%a3%e7%90%86php%e4%ba%a7%e7%94%9f%e7%9a%84%e4%b8%80%e4%ba%9b%e6%95%85%e9%9a%9c" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><p>记录一个<code>nginx</code> 代理 <code>php</code> 产生的问题,问题已经解决了,但是似乎还是没有找到根本原因,<strong>若有了解的,请一定解惑一二</strong>, 以下记录下处理过程 .</p>
+</h1><p>记录一个<code>nginx</code> 代理 <code>php</code> 产生的问题,问题已经解决了,但是似乎还是没有找到根本原因,<strong>若有了解的,请一定解惑一二</strong>, 以下记录下处理过程 .</p>
 <ul>
 <li>
 <p>问题产生过程:</p>
@@ -236,11 +235,11 @@
 </ul>
 </li>
 </ul>
-<h2 class="heading-element" id="zabbix-自动发现异常错误"><span>zabbix 自动发现异常错误</span>
+<h1 class="heading-element" id="zabbix-自动发现异常错误"><span>zabbix 自动发现异常错误</span>
   <a href="#zabbix-%e8%87%aa%e5%8a%a8%e5%8f%91%e7%8e%b0%e5%bc%82%e5%b8%b8%e9%94%99%e8%af%af" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><ul>
+</h1><ul>
 <li>具体错误表现</li>
 </ul>
 <ol>
@@ -254,11 +253,11 @@
 </ul>
 </li>
 </ul>
-<h2 class="heading-element" id="nginx-伪静态无效问题"><span>nginx 伪静态无效问题</span>
+<h1 class="heading-element" id="nginx-伪静态无效问题"><span>nginx 伪静态无效问题</span>
   <a href="#nginx-%e4%bc%aa%e9%9d%99%e6%80%81%e6%97%a0%e6%95%88%e9%97%ae%e9%a2%98" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><ul>
+</h1><ul>
 <li>具体错误体现
 拿到<code>apache</code>的<code>.htaccess</code>文件后，通过<a href="https://www.winginx.com/en/htaccess"target="_blank" rel="external nofollow noopener noreferrer"><code>https://www.winginx.com/en/htaccess</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>转换为了<code>nginx</code>可用的规则，但加入后访问跳转一直是<code>404</code>,经检查<code>location</code>是定位成功了的，但就是访问不了</li>
 <li>解决方案:</li>
@@ -266,11 +265,11 @@
 <ol>
 <li>后续开发提供了另一个伪静态配置,所有<code>rewrite</code>是放在<code>if</code>指令中(<code>!-e $request_filename</code>)，然后就可以了。我对比了下，两者的差异就是，一个是放在了<code>location</code>中，定位了每一个<code>rewrite</code>所在的位置。还有就是放在<code>if</code>中的<code>rewrite</code>的匹配规则是用引号括起来了的。具体原因暂时还是每搞清楚。后续出现需测试下引号是否有影响.</li>
 </ol>
-<h2 class="heading-element" id="nginx-反向代理后端服务器部分资源出现502错误"><span>nginx 反向代理后端服务器，部分资源出现502错误</span>
+<h1 class="heading-element" id="nginx-反向代理后端服务器部分资源出现502错误"><span>nginx 反向代理后端服务器，部分资源出现502错误</span>
   <a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e5%90%8e%e7%ab%af%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%83%a8%e5%88%86%e8%b5%84%e6%ba%90%e5%87%ba%e7%8e%b0502%e9%94%99%e8%af%af" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><p>问题描述: 后端是<code>dotnet</code>应用，反向代理时候域名请求页面部分<code>css</code>/<code>js</code>资源返回<code>502</code>错误。直接请求报错的<code>css</code>/<code>js</code>又是正常的，前端绕过<code>nginx</code>直接访问<code>dotnet</code>所有返回又是正常的。只有经过<code>nginx</code>会出现该问题。
+</h1><p>问题描述: 后端是<code>dotnet</code>应用，反向代理时候域名请求页面部分<code>css</code>/<code>js</code>资源返回<code>502</code>错误。直接请求报错的<code>css</code>/<code>js</code>又是正常的，前端绕过<code>nginx</code>直接访问<code>dotnet</code>所有返回又是正常的。只有经过<code>nginx</code>会出现该问题。
 解决过程：</p>
 <ul>
 <li>网上搜索到很多的解决方案，这一个感觉有点用，但<em><strong>并没有解决我的问题</strong></em>,说的是<code>header过大，超出了默认的1k，就会引发上述的upstream sent too big header，nginx把外部请求给后端处理，后端返回的header太大，nginx处理不过来就会导致502</code>，这个问题提出的解决是，增大<code>proxy_buffer_size</code>/<code>proxy_buffers</code>/<code>proxy_busy_buffers_size</code>,不过还是记录下，毕竟不是每个问题原因都一样。</li>
@@ -278,21 +277,21 @@
 <li>然后最终的方案，重启应用服务器，问题完全解决！！！</li>
 </ul>
 <p>原因分析：突然不知道怎么下笔了，反正就是系统tcp连接过多，最开始体现就是出现大量的<code>CLOSE_WAIT</code>,当时重启了对应占用的程序，清理一些连接，出现一定的好转，但也仅仅出现了好转，后面可能由于某些原因，导致重启应用也无法解决了，最后重启服务器，问题完全解决。 应该不是每个人都是这个原因，不过可以参考下。</p>
-<h2 class="heading-element" id="nginx-反向代理-cdn回源多层nginx出现-502503504-等异常"><span>nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</span>
+<h1 class="heading-element" id="nginx-反向代理-cdn回源多层nginx出现-502503504-等异常"><span>nginx 反向代理 cdn回源(多层nginx)出现 502、503、504 等异常</span>
   <a href="#nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86-cdn%e5%9b%9e%e6%ba%90%e5%a4%9a%e5%b1%82nginx%e5%87%ba%e7%8e%b0-502503504-%e7%ad%89%e5%bc%82%e5%b8%b8" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><p>在我的部署模式中，很多时候都是<code>docker</code>与实际应用环境混合部署(多环境，单节点)，大多的结构是 <code>docker</code>运行程序环境，<code>nginx</code>反向代理到<code>docker</code>暴露的端口，从而实现应用的正常访问。我这次遇到的这个问题，最开始的时候我以为是<code>cdn</code>的问题，因为当时我没有通过<code>cdn</code>直达服务器的时候访问都是正常的，然后通过<code>cdn</code>后，页面大多数请求就都出现了<code>502</code>等状态，这个时候我联系了运营商，他们说回源链接被断开了，是不是服务器上有相关安全策略，仔细的想了下，服务器上除了开启了<code>iptables</code>外，并没有其他的安全设置，正没有头绪的时候，突然想到<code>docker</code>需要依赖<code>iptables</code>转发，是不是这个原因导致防火墙又有问题了(因为之前我调整iptables的时候，导致过docker容器无法连接网络😥)，于是我把防火墙一关，然后<code>cdn</code>回源就正常了。 后续的处理，我关闭了服务器防火墙设置，重启了<code>docker</code>，重建了容器(防止容器网络出现问题，同时让<code>docker</code>重新创建自己的规则链)。对外的防火墙采用云防火墙现在公网流入流量。上面其他记录的故障中，估计也有这个原因导致的，但是不知道怎么调好了。(TODO:// 一个人运维好难，有点啥问题都不知道该找谁讨论下，全靠自己摸索)</p>
-<h2 class="heading-element" id="nginx-emerg-location--cannot-be-inside-the-exact-location-faviconico-in-xxxxxx"><span>nginx: [emerg] location &ldquo;<xxxxxxxx>&rdquo; cannot be inside the exact location &ldquo;/favicon.ico&rdquo; in xxxxxx</span>
+</h1><p>在我的部署模式中，很多时候都是<code>docker</code>与实际应用环境混合部署(多环境，单节点)，大多的结构是 <code>docker</code>运行程序环境，<code>nginx</code>反向代理到<code>docker</code>暴露的端口，从而实现应用的正常访问。我这次遇到的这个问题，最开始的时候我以为是<code>cdn</code>的问题，因为当时我没有通过<code>cdn</code>直达服务器的时候访问都是正常的，然后通过<code>cdn</code>后，页面大多数请求就都出现了<code>502</code>等状态，这个时候我联系了运营商，他们说回源链接被断开了，是不是服务器上有相关安全策略，仔细的想了下，服务器上除了开启了<code>iptables</code>外，并没有其他的安全设置，正没有头绪的时候，突然想到<code>docker</code>需要依赖<code>iptables</code>转发，是不是这个原因导致防火墙又有问题了(因为之前我调整iptables的时候，导致过docker容器无法连接网络😥)，于是我把防火墙一关，然后<code>cdn</code>回源就正常了。 后续的处理，我关闭了服务器防火墙设置，重启了<code>docker</code>，重建了容器(防止容器网络出现问题，同时让<code>docker</code>重新创建自己的规则链)。对外的防火墙采用云防火墙现在公网流入流量。上面其他记录的故障中，估计也有这个原因导致的，但是不知道怎么调好了。(TODO:// 一个人运维好难，有点啥问题都不知道该找谁讨论下，全靠自己摸索)</p>
+<h1 class="heading-element" id="nginx-emerg-location--cannot-be-inside-the-exact-location-faviconico-in-xxxxxx"><span>nginx: [emerg] location &ldquo;<xxxxxxxx>&rdquo; cannot be inside the exact location &ldquo;/favicon.ico&rdquo; in xxxxxx</span>
   <a href="#nginx-emerg-location--cannot-be-inside-the-exact-location-faviconico-in-xxxxxx" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><p>我这边遇到的此类问题多数为在<code>location =/xxx {</code>下继续<code>include</code>了<code>location</code> ,清除后解决</p>
-<h2 class="heading-element" id="iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2"><span>IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</span>
+</h1><p>我这边遇到的此类问题多数为在<code>location =/xxx {</code>下继续<code>include</code>了<code>location</code> ,清除后解决</p>
+<h1 class="heading-element" id="iis低版本未映射-webresourceaxd-文件导致相关图片或js等无法正常加载-多出现地版本服务器上当前记录server-2008-r2"><span>IIS低版本未映射 WebResource.axd 文件，导致相关图片或js等无法正常加载 (多出现地版本服务器上,当前记录server 2008 r2)</span>
   <a href="#iis%e4%bd%8e%e7%89%88%e6%9c%ac%e6%9c%aa%e6%98%a0%e5%b0%84-webresourceaxd-%e6%96%87%e4%bb%b6%e5%af%bc%e8%87%b4%e7%9b%b8%e5%85%b3%e5%9b%be%e7%89%87%e6%88%96js%e7%ad%89%e6%97%a0%e6%b3%95%e6%ad%a3%e5%b8%b8%e5%8a%a0%e8%bd%bd-%e5%a4%9a%e5%87%ba%e7%8e%b0%e5%9c%b0%e7%89%88%e6%9c%ac%e6%9c%8d%e5%8a%a1%e5%99%a8%e4%b8%8a%e5%bd%93%e5%89%8d%e8%ae%b0%e5%bd%95server-2008-r2" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><ul>
+</h1><ul>
 <li>处理:
 配置编辑器 &ndash;&gt; <code>system.web/httpHandlers/</code> &ndash;&gt; 点击 <code>Count</code> 右侧的小点展开, 然后添加<code>Path:WebResource.axd</code>、<code>type: System.Web.Handlers.AssemblyResourceLoader</code>,  <code>validate: True</code> , <code>verb: GET</code> ，完成后关闭</li>
 </ul>
@@ -315,11 +314,11 @@
 </span></span><span class="line"><span class="cl">   <span class="nt">&lt;/system.web&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 class="heading-element" id="iis-如何修改文件上传限制"><span>IIS 如何修改文件上传限制</span>
+</div><h1 class="heading-element" id="iis-如何修改文件上传限制"><span>IIS 如何修改文件上传限制</span>
   <a href="#iis-%e5%a6%82%e4%bd%95%e4%bf%ae%e6%94%b9%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e9%99%90%e5%88%b6" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><p>要修改IIS中的文件上传限制，可以按照以下步骤操作：</p>
+</h1><p>要修改IIS中的文件上传限制，可以按照以下步骤操作：</p>
 <ol>
 <li>
 <p>打开IIS管理器（<code>Internet Information Services Manager</code>）。</p>
@@ -374,26 +373,26 @@
 </span></span><span class="line"><span class="cl">    <span class="nt">&lt;/system.webServer&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 class="heading-element" id="iis-net-项目-post-无法提交数据"><span>IIS .net 项目 post 无法提交数据</span>
+</div><h1 class="heading-element" id="iis-net-项目-post-无法提交数据"><span>IIS .net 项目 post 无法提交数据</span>
   <a href="#iis-net-%e9%a1%b9%e7%9b%ae-post-%e6%97%a0%e6%b3%95%e6%8f%90%e4%ba%a4%e6%95%b0%e6%8d%ae" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><ul>
+</h1><ul>
 <li>.net 站点 curl post请求，模拟表单提交，后端收不到数据，解决方案是把程序池的集成模式改为经典模式</li>
 </ul>
-<h2 class="heading-element" id="iis-net-项目-同项目复制一份出来重新部署就无法正常使用了"><span>IIS .net 项目 ，同项目复制一份出来重新部署就无法正常使用了</span>
+<h1 class="heading-element" id="iis-net-项目-同项目复制一份出来重新部署就无法正常使用了"><span>IIS .net 项目 ，同项目复制一份出来重新部署就无法正常使用了</span>
   <a href="#iis-net-%e9%a1%b9%e7%9b%ae-%e5%90%8c%e9%a1%b9%e7%9b%ae%e5%a4%8d%e5%88%b6%e4%b8%80%e4%bb%bd%e5%87%ba%e6%9d%a5%e9%87%8d%e6%96%b0%e9%83%a8%e7%bd%b2%e5%b0%b1%e6%97%a0%e6%b3%95%e6%ad%a3%e5%b8%b8%e4%bd%bf%e7%94%a8%e4%ba%86" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><p>大致问题体现是 <code>[Exception: 未将对象引用设置到对象的实例。] FrontEndProcessor.VoiceUtils.TextToSpeech xxxx</code><br>
+</h1><p>大致问题体现是 <code>[Exception: 未将对象引用设置到对象的实例。] FrontEndProcessor.VoiceUtils.TextToSpeech xxxx</code><br>
 产生原因: 同一服务器上面，直接复制了一份出来，被复制的站点是可以正常使用的，复制出来后的站点，相对于复制前的站点同一功能就无法正常使用了。
 解决： 经多方对比，发现问题是由于程序池设置导致，复制后的站点，程序池未开启 <code>加载用户配置文件</code>。
 总结： <code>windows</code>上应不会存在权限相关问题，因此此类问题应该优先考虑程序池</p>
-<h2 class="heading-element" id="iis-net项目下载文件出现访问被拒绝"><span>IIS .net项目下载文件出现访问被拒绝</span>
+<h1 class="heading-element" id="iis-net项目下载文件出现访问被拒绝"><span>IIS .net项目下载文件出现访问被拒绝</span>
   <a href="#iis-net%e9%a1%b9%e7%9b%ae%e4%b8%8b%e8%bd%bd%e6%96%87%e4%bb%b6%e5%87%ba%e7%8e%b0%e8%ae%bf%e9%97%ae%e8%a2%ab%e6%8b%92%e7%bb%9d" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><ul>
+</h1><ul>
 <li>异常体现</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -450,11 +449,11 @@
 </div><ul>
 <li>解决方案:  此项问题产生原因不知道，但解决方案是，为该目录添加 <code>IIS_USER</code> 用户权限，注意需要附加 <code>修改</code> 权限</li>
 </ul>
-<h2 class="heading-element" id="iis-站点访问报错-编译器错误消息-cs0016"><span>IIS 站点访问报错, 编译器错误消息: CS0016</span>
+<h1 class="heading-element" id="iis-站点访问报错-编译器错误消息-cs0016"><span>IIS 站点访问报错, 编译器错误消息: CS0016</span>
   <a href="#iis-%e7%ab%99%e7%82%b9%e8%ae%bf%e9%97%ae%e6%8a%a5%e9%94%99-%e7%bc%96%e8%af%91%e5%99%a8%e9%94%99%e8%af%af%e6%b6%88%e6%81%af-cs0016" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><ul>
+</h1><ul>
 <li>
 <p>异常体现: 编译器错误消息: CS0016: 未能写入输出文件“c:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\3469ad80\70ace2d2\App_global.asax.adikutzi.dll”&ndash;“拒绝访问。 ”</p>
 </li>
@@ -465,8 +464,7 @@
 </div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
-      <div class="post-info-mod">
-        <span title="更新于 2025-03-14 00:00:00">更新于 2025-03-14&nbsp;</span>
+      <div class="post-info-mod"><span title="更新于 2025-03-14 00:00:00">更新于 2025-03-14&nbsp;</span>
       </div><div class="post-info-license">
             <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
           </div></div><div class="post-info-line">
@@ -478,8 +476,7 @@
 
   <div class="post-info-more">
     <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-tag" title="标签 - 解决方案">解决方案</a></section>
-    <section>
-      <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    <section><span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
     </section>
   </div><div class="post-nav"><a href="/posts/linux/http%E5%93%8D%E5%BA%94%E7%A0%81/" class="post-nav-item" rel="prev" title="HTTP响应码"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>HTTP响应码</a><a href="/posts/linux/linux%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B9%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E6%8C%87%E6%A0%87/" class="post-nav-item" rel="next" title="Linux性能测试之性能测试指标(转载)">Linux性能测试之性能测试指标(转载)<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
@@ -490,7 +487,7 @@
   <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
       <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
     <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.147.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.3.20"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.150.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.4.0-alpha.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
         </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
             <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
               <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
@@ -498,6 +495,5 @@
         </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
     <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
   </noscript>
-</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.6955c00f427f31a16d1d426b9b0c310e3d610bdb3c7ff21dd63e2c8486e90b8aa706b076bb1d0c8819e944e92a38db3f347f987097325f72bdde194122568d82.css" integrity="sha512-aVXAD0J/MaFtHUJrmwwxDj1hC9s8f/Id1j4shIbpC4qnBrB2ux0MiBnpROkqONs/NH+YcJcyX3K93hlBIlaNgg=="><link rel="preload" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/katex/katex.min.af6f85907cdfd6ed3e4906d93a8233d91c5638859f744cd1b98c9b1a3ccaab5f231bdcda49f132f6cdfe8cca86ff33ed468affab8a9a502610a664a34f0f0cfa.css" integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g=="></noscript><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/katex/katex.min.20da6cf7343619410c0900fbc626506c65159ea9f312f9729d5cba7aa713707378f9a4222e8f7fb9a42a7240e9749f199b7334401b3e3e4b60e29cf490492552.js" integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg==" defer></script><script src="/lib/katex/auto-render.min.6095714e3aadb63b14ddc4af69346ab12974c1b460654345f8d1860a0b68fcc51b22f68b757433193090bb80afc8965b65cb607e5541d0f5f0f4b2e64d69b9ff.js" integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" defer></script><script src="/lib/katex/copy-tex.min.895ad99f7d8fdb0683cd271c02584953bd0542c6d4956c9feebaa16673683a45d5884f5253e3db33f8f74a86cc464477497656fb36e96a558137311bdb7f32d6.js" integrity="sha512-iVrZn32P2waDzSccAlhJU70FQsbUlWyf7rqhZnNoOkXViE9SU+PbM/j3SobMRkR3SXZW+zbpalWBNzEb238y1g==" defer></script><script src="/lib/katex/mhchem.min.9b18cdc3fbb5948b050b4f64fee9ec703458de87c860f5456d690ff2c96b78f712dfa86de1dfce67cad1bb9c9d741dae8aa6a385370b0fcfa3ba9396b983de6e.js" integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.0adcb94758b6716c196def2769c69dd420b8ca647af4767565b9d6709054600d9e9dfe4cd9a4227c994b537642c5538da08c986db1b956bee270c03f6ce9ba6d.js" integrity="sha512-Cty5R1i2cWwZbe8nacad1CC4ymR69HZ1ZbnWcJBUYA2enf5M2aQifJlLU3ZCxVONoIyYbbG5Vr7icMA/bOm6bQ==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2022-08-01T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"服务器运维故障记录"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.3.20"};</script><script src="/js/theme.min.4807c10b31d5f64caef015e07216aaf921774d77ab46d3c725db004dd9ba0b6e4574219fd6c188ce6ec3bd906b255f2dfbe6b7ad2a20c676e5e9e02989fe133f.js" integrity="sha512-SAfBCzHV9kyu8BXgchaq+SF3TXerRtPHJdsATdm6C25FdCGf1sGIzm7DvZBrJV8t++a3rSogxnbl6eApif4TPw==" defer></script><script src="/lib/translate.min.1a38caaeafd7176713f44400741e50378c3f69739ab4e3c51224892099aeb57aa71f9e9b53195a17cb03a7ef6810b76be44c0937b4b4dd9f5db982ae0fa6c794.js" integrity="sha512-GjjKrq/XF2cT9EQAdB5QN4w/aXOatOPFEiSJIJmutXqnH56bUxlaF8sDp+9oELdr5EwJN7S03Z9duYKuD6bHlA==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"}};</script><script src="/js/translate.fixit.min.ab03e2ee13c4858806ccf9eb99fb353eac77a752b8d7467a0350c40fcb567ec979e41d8884da52e90309d248d602707ebc70c12fbce1902311aff3f00ae5ca80.js" integrity="sha512-qwPi7hPEhYgGzPnrmfs1Pqx3p1K410Z6A1DED8tWfsl55B2IhNpS6QMJ0kjWAnB+vHDBL7zhkCMRr/PwCuXKgA==" defer></script></body>
+</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.6955c00f427f31a16d1d426b9b0c310e3d610bdb3c7ff21dd63e2c8486e90b8aa706b076bb1d0c8819e944e92a38db3f347f987097325f72bdde194122568d82.css" integrity="sha512-aVXAD0J/MaFtHUJrmwwxDj1hC9s8f/Id1j4shIbpC4qnBrB2ux0MiBnpROkqONs/NH+YcJcyX3K93hlBIlaNgg=="><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.0adcb94758b6716c196def2769c69dd420b8ca647af4767565b9d6709054600d9e9dfe4cd9a4227c994b537642c5538da08c986db1b956bee270c03f6ce9ba6d.js" integrity="sha512-Cty5R1i2cWwZbe8nacad1CC4ymR69HZ1ZbnWcJBUYA2enf5M2aQifJlLU3ZCxVONoIyYbbG5Vr7icMA/bOm6bQ==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2022-08-01T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"服务器运维故障记录"}},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/search.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.4.0-alpha.1"};</script><script src="/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js" integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src="/lib/translate.min.1a38caaeafd7176713f44400741e50378c3f69739ab4e3c51224892099aeb57aa71f9e9b53195a17cb03a7ef6810b76be44c0937b4b4dd9f5db982ae0fa6c794.js" integrity="sha512-GjjKrq/XF2cT9EQAdB5QN4w/aXOatOPFEiSJIJmutXqnH56bUxlaF8sDp+9oELdr5EwJN7S03Z9duYKuD6bHlA==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/"}};</script><script src="/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js" integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body>
 </html>

@@ -535,14 +535,19 @@ $> ffmpeg -i input.(png|svg|..) -vf "scale=944:944:force_original_aspect_ratio=d
 $> alias pwgen="pwgen -s -r \\\`\\~\\!\\#\\$\\&\\(\\)\\_\\-\\+\\=\\{\\}\\[\\]\\\\\\|\\;\\:\\'\\\"\\,\\<\\>\\?\\/"
 ```
 
-## tee 为每一条日志记录插入时间戳
+# tee 为每一条日志记录插入时间戳
 ```bash
 $> command 2>&1 | tee >(awk '{ print strftime("[%Y-%m-%d %H:%M:%S]"), $0 }' >> user/stdout_output.log)
 ```
 
-## 在未安装 ss、netstat等工具的机器上查询端口占用情况
+# 在未安装 ss、netstat等工具的机器上查询端口占用情况
 ```bash
 $> cat /proc/net/tcp | awk 'NR>1 {print $2}' | cut -d: -f2 | xargs -I{} printf "%d\n" 0x{} | sort -n | uniq
+```
+
+# 查看MySQL现有连接数
+```bash
+mysql> SHOW STATUS LIKE 'Threads_connected';
 ```
 
 ---
