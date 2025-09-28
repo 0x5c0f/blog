@@ -131,13 +131,15 @@ $> mkdir -p data/{etc,data,log}
 # 调整权限
 $> chown -R 1000:1000  data
 
-# 容器方式运行， 创建compose文件 
+# 容器方式运行， 创建compose文件 (注意: 物理环境部署迁移到容器环境，可能导致 node 信息不一致，导致迁移失败，如果是此情况，建议重新部署)
 $> vim docker-compose.yml
 services:
   emqx:
-    image: emqx/emqx:5.3.2      # 注意，新节点版本必须和原版本一致
+    image: emqx/emqx:5.3.2
     container_name: emqx
     restart: always
+    environment:
+      - EMQX_NODE_NAME=emqx@localhost
     ports:
       - "1883:1883"     # MQTT
       - "8883:8883"     # MQTT over TLS
