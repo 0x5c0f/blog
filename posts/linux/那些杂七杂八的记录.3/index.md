@@ -106,6 +106,55 @@ SecRule REQUEST_URI "^/api/private" "phase:1,deny,id:20003,msg:'Blocked non-auth
 ```
 </details>
 
+## Rsync 同步的软链接出现，同步结果指向目标会多一个 /rsyncd-munged/ 
+```ini
+# /rsyncd-munged/ 是为了防止客户端通过上传的链接跳出模块目录（安全保护）
+# rsyncd.conf 添加配置，重启服务
+use chroot = yes        # 建议开启此项，如果同时关闭 munge ，可能造成额外的安全隐患 
+munge symlinks = no
+```
+
+### emqx 迁移 
+`emqx`迁移只需要备份 `etc` 和 `data` 目录，保持迁移前后版本一致, 然后在新节点加载这两个目录即可。
+```ini
+# 当前迁移示例为win到linux
+# windows 备份
+# 先停掉服务 ， 然后直接打包 etc 和 data 目录 
+$> emqx stop
+
+# linux 恢复
+## 创建目录 
+$> mkdir -p data/{etc,data,log}
+
+# 解压备份文件  data 到 data ， etc 到 etc
+
+# 调整权限
+$> chown -R 1000:1000  data
+
+# 容器方式运行， 创建compose文件 
+$> vim docker-compose.yml
+services:
+  emqx:
+    image: emqx/emqx:5.3.2      # 注意，新节点版本必须和原版本一致
+    container_name: emqx
+    restart: always
+    ports:
+      - "1883:1883"     # MQTT
+      - "8883:8883"     # MQTT over TLS
+      - "8083:8083"     # MQTT over WebSocket
+      - "8084:8084"     # MQTT over WSS
+      - "18083:18083"   # Dashboard
+    volumes:
+      - ./data/etc:/opt/emqx/etc
+      - ./data/data:/opt/emqx/data
+      - ./data/log:/opt/emqx/log
+
+# 启动服务
+$> docker-compose up -d
+```
+
+
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
