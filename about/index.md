@@ -73,6 +73,11 @@ events:
     content: 把评论系统从[~~**`Waline`**~~](https://talk.51ac.cc)切换到 [`Gitalk`](https://github.com/gitalk/gitalk) 了，不过之前的评论并没有跟着迁移。
     type: primary
 
+  - timestamp: 2025-10-23
+    content: 终于还是把本地环境从 `Fedora` 切换到了 `Ubuntu`, 本来是想切换到 `Debian` 的，不知道是不是硬件兼容性的问题，`Debian` 的 `Gnome` 桌面环境无法切换到 `X11`, 最终还是选择了 `Ubuntu`, 我其实是不太喜欢 `Ubuntu` 的，但没想到用起来还是挺舒服的。
+    type: primary
+    node: dot
+
 ```
 
 ---

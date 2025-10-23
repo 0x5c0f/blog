@@ -16,6 +16,9 @@ cat xxx |awk '{a[$1]+=$2;c[$1]++}END{l=asorti(a,b);for(i=1;i<=l;i++)print b[i],a
 ```bash
 sed -n '/2018:02:30/,/2018:03:00/p' www.log |awk '{a[$1]+=1;} END {for(i in a){print a[i]" "i;}}' |sort -t " " -k 1 -n
 sed -n '/2018:01:50/,/2018:02:00/p' www.log |grep "list?" |awk '{a[$1]+=1;} END {for(i in a){print a[i]" "i;}}' |sort -t " " -k 1 -n
+# 更加精准的统计
+grep -E '22/Oct/2025:(19|20|21|22|23):|23/Oct/2025:0[0-3]:' www.log | awk '{a[$1]+=1;} END {for(i in a){print a[i]" "i;}}' |sort -t " " -k 1 -n
+
 ```
 
 # 按照 ip 排序

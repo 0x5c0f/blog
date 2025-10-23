@@ -4,7 +4,7 @@
     <title>Other - 标签 - 一个曾经的小码农...</title>
     <link>https://blog.0x5c0f.cc/tags/other/</link>
     <description>一个曾经的小码农...</description>
-    <generator>Hugo 0.150.0 &amp; FixIt v0.4.0-alpha.1</generator>
+    <generator>Hugo 0.152.1 &amp; FixIt v0.4.0-alpha.1</generator>
     <language>zh-CN</language>
     <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
     <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
@@ -16,7 +16,7 @@
       <pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
       <guid>https://blog.0x5c0f.cc/posts/starting/</guid>
       <category domain="https://blog.0x5c0f.cc/categories/other/">Other</category>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;第一篇文章当然是&lt;code&gt;hello world&lt;/code&gt;了&lt;/p&gt;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;第一篇文章当然是&lt;code&gt;hello world&lt;/code&gt;了&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
   </channel>
 </rss>
