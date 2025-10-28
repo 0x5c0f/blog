@@ -155,7 +155,36 @@ services:
 $> docker-compose up -d
 ```
 
+### Fedora 系统界面默认字体是 Adwaita sans，Ubuntu 默认是 Ubuntu sans， 看起来还是有些差异的， 感觉还是 Adwaita sans 好看一些 
 
+### logrotate 日志轮转示例
+```bash
+$> vim /etc/logrotate.d/app-logs 
+/var/log/myapp/*.log {
+    daily                   # 每天轮转
+    rotate 30               # 保留 30 个归档
+    missingok               # 文件不存在不报错
+    notifempty              # 空文件不轮转
+    compress                # 压缩归档（gzip）
+    delaycompress           # 延迟压缩（下次轮转时压缩）
+    dateext                 # 使用日期后缀（如 .20251024）
+    dateformat -%Y%m%d      # 日期格式
+    create 0640 appuser appgroup  # 创建新文件权限
+    sharedscripts           # 所有日志轮转完后只执行一次脚本
+    postrotate              # 轮转后执行
+        systemctl reload nginx > /dev/null 2>&1 || true
+    endscript
+}
+
+# 测试配置（不实际执行）
+$> logrotate -d /etc/logrotate.d/app-logs
+
+# 强制轮转（调试用）
+$> logrotate -f /etc/logrotate.d/app-logs
+
+# 查看 logrotate 状态
+$> cat /var/lib/logrotate/status
+```
 
 ---
 

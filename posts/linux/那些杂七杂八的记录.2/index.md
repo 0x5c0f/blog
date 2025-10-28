@@ -389,6 +389,12 @@ $> chronyc sources -v
 
 # 强制重新同步
 $> chronyc makestep
+
+# 查看客户端连接
+$> chronyc clients
+
+# 查看活动连接
+chronyc activity
 ```
 
 
