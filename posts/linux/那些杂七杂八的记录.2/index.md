@@ -353,6 +353,68 @@ function handler(event) {
 }
 ```
 {{% /tab %}}
+{{% tab title="version 3.0" %}}
+```js
+function handler(event) {
+    var request = event.request;
+    var host = request.headers.host.value.toLowerCase();
+    var uri = request.uri;
+
+    // -----------------------------------------
+    // 1. Host 跳转规则
+    // -----------------------------------------
+    var redirectRules = {
+        'example.com': 'www.example.com'
+    };
+
+    if (redirectRules[host]) {
+        return {
+            statusCode: 301,
+            statusDescription: 'Moved Permanently',
+            headers: {
+                location: { value: `https://${redirectRules[host]}${uri}` }
+            }
+        };
+    }
+
+    // -----------------------------------------
+    // 2. Trailing Slash SEO 优化
+    // -----------------------------------------
+
+    // // 需要排除不加 / 的路径（灵活配置）
+    // var noSlashWhitelist = [
+    //     '/api',
+    //     '/health',
+    //     '/login',
+    //     '/sso'
+    // ];
+
+    // // 如果在白名单中 → 不添加 /
+    // if (noSlashWhitelist.includes(uri)) {
+    //     return request;
+    // }
+
+    // 如果已有 `/` 结尾，不处理
+    if (uri.endsWith('/')) {
+        return request;
+    }
+
+    // 如果路径包含扩展名，例如 .css, .png, .html 不处理
+    if (/\.[a-zA-Z0-9]+$/.test(uri)) {
+        return request;
+    }
+
+    // 执行 301 永久重定向到带 `/` 的版本
+    return {
+        statusCode: 301,
+        statusDescription: 'Moved Permanently',
+        headers: {
+            location: { value: `https://${host}${uri}/` }
+        }
+    };
+}
+```
+{{% /tab %}}
 {{< /tabs >}}
     
 2. 配置函数参数
