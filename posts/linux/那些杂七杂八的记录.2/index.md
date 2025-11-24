@@ -16,10 +16,9 @@
 
 ```bash
 # ~/.bashrc 
-# need expand scripts: add https://github.com/git/git/blob/master/contrib/completion/git-prompt.sh to profile.d
-_PS1_CMD_="\${VIRTUAL_ENV_PROMPT}\\\\[\\\\][\\[\$(tput sgr0)\\]\\[\\033[38;5;5m\\]\\u\\[\$(tput sgr0)\\]@\\[\$(tput sgr0)\\]\\[\\033[38;5;70m\\]\\h\\[\$(tput sgr0)\\] \\W]\\[\$(tput sgr0)\\]\\[\\033[38;5;77m\\]\${__GIT_BRANCH__}\\[\\033[38;5;9m\\][\\\$?]\\[\$(tput sgr0)\\]\\\\\$ \\[\$(tput sgr0)\\]"
+_PS1_CMD_="\${CONDA_PROMPT_MODIFIER% }\${VIRTUAL_ENV_PROMPT% }\\\\[\\\\][\\[\$(tput sgr0)\\]\\[\\033[38;5;5m\\]\\u\\[\$(tput sgr0)\\]@\\[\$(tput sgr0)\\]\\[\\033[38;5;70m\\]\\h\\[\$(tput sgr0)\\] \\W]\\[\$(tput sgr0)\\]\\[\\033[38;5;77m\\]\${__GIT_BRANCH__}\\[\\033[38;5;9m\\][\\\$?]\\[\$(tput sgr0)\\]\\\\\$ \\[\$(tput sgr0)\\]"
 
-export PROMPT_COMMAND="${PROMPT_COMMAND}; __GIT_BRANCH__=\"\$(__git_ps1 '(%s)')\"; PS1=\"${_PS1_CMD_}\""
+export PROMPT_COMMAND="${PROMPT_COMMAND:+${PROMPT_COMMAND};} BRANCH=\"\$(git rev-parse --abbrev-ref HEAD 2>/dev/null)\"; __GIT_BRANCH__=\"\${BRANCH:+(\$BRANCH)}\"; PS1=\"${_PS1_CMD_}\n$> \""
 
 # export PS1="[\[$(tput sgr0)\]\[\033[38;5;5m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;70m\]\h\[$(tput sgr0)\] \W]\[$(tput sgr0)\]\[\033[38;5;9m\][\$?]\[$(tput sgr0)\]\\$ \[$(tput sgr0)\]"
 ```
