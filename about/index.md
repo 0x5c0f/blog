@@ -57,8 +57,8 @@ events:
     type: info
 
   - timestamp: 2024-05-20
-    content: 为网站添加一个监控状态页面 [**`[status]`**](/pagestatus) 。
-    type: info
+    content: "<span class=\"text-secondary\"><del>为网站添加一个监控状态页面 [**`[status]`**](/pagestatus) </del>。</span>"
+    type: secondary
 
   - timestamp: 2024-09-09
     content: 主题更新，每个页面都得强制加一个摘要了，好烦，又还原不会去了。

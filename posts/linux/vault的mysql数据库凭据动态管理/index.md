@@ -1,12 +1,6 @@
 # HashiCorp Vault的MySQL数据库凭据动态管理
 
 
-{{< admonition type=warning title="注意" open=true >}}
-
-**本章内容为 `DeepSeek` 对话总结归档而来，文章内容由博主全程测试，此文档原目的是为了记录 `HashiCort Vault` 可以实现 `Mysql` 数据库动态凭据管理(`PCI`规范要求数据库密钥需要动态轮换)，仅限参考**
-
-{{< /admonition >}}
-
 ## 📋 项目概述
 
 ### 目标
