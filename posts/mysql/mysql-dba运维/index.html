@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>Mysql DBA运维(草稿) - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
+<meta name="description" content="Mysql DBA运维"><meta name="keywords" content='linux, mysql'>
+  <meta itemprop="name" content="Mysql DBA运维(草稿)">
+  <meta itemprop="description" content="Mysql DBA运维">
+  <meta itemprop="datePublished" content="2022-06-24T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-06-24T00:00:00+00:00">
+  <meta itemprop="wordCount" content="291">
+  <meta itemprop="image" content="http://localhost:1313/icons/logo_transparent.webp">
+  <meta itemprop="keywords" content="Linux,Mysql"><meta property="og:url" content="http://localhost:1313/posts/mysql/mysql-dba%E8%BF%90%E7%BB%B4/">
+  <meta property="og:site_name" content="一个曾经的小码农...">
+  <meta property="og:title" content="Mysql DBA运维(草稿)">
+  <meta property="og:description" content="Mysql DBA运维">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-06-24T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-06-24T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="Mysql">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_transparent.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_transparent.webp">
+  <meta name="twitter:title" content="Mysql DBA运维(草稿)">
+  <meta name="twitter:description" content="Mysql DBA运维">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/posts/mysql/mysql-dba%E8%BF%90%E7%BB%B4/" title="Mysql DBA运维(草稿) - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="http://localhost:1313/posts/mysql/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/" title="Mysql MHA高可用软件" /><link rel="next" type="text/html" href="http://localhost:1313/posts/mysql/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/" title="Mysql Atlas高可用软件" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/posts/mysql/mysql-dba%E8%BF%90%E7%BB%B4/index.md" title="Mysql DBA运维(草稿) - 一个曾经的小码农..."><link rel="stylesheet" href="/css/config.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Mysql DBA运维(草稿)",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/mysql\/mysql-dba%E8%BF%90%E7%BB%B4\/"
+    },"genre": "posts","keywords": "linux, mysql","wordcount":  291 ,
+    "url": "http:\/\/localhost:1313\/posts\/mysql\/mysql-dba%E8%BF%90%E7%BB%B4\/","datePublished": "2022-06-24T00:00:00+00:00","dateModified": "2022-06-24T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "0x5c0f"
+      },"description": "Mysql DBA运维"
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script></head>
+  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item">
+              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
+              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" title="切换主题">
+          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+        </li><li class="menu-item language-switch auto d-none" aria-hidden="true">
+    <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
+          <a href="/posts/mysql/mysql-dba%E8%BF%90%E7%BB%B4/" data-lang="zh-CN" class="menu-link text-secondary" title="简体中文">
+            <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
+          <a data-lang="english" class="menu-link" title="English">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> English</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="japanese" class="menu-link" title="日本語">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
+        </li></ul>
+  </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+      <div class="menu-toggle" id="menu-toggle-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
+          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span id="translate" class="menu-system-item language-switch auto d-none" aria-hidden="true">
+    <span role="button" aria-label="选择语言" title="选择语言" data-current="简体中文">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+  </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="fi-container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Mysql DBA运维(草稿)</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a>&ensp;<a href="/collections/mysql/" class="post-collection" title="合集 - Mysql"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> Mysql</a></span></div><div class="post-meta-line"><span title="发布于 2022-06-24 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2022-06-24">2022-06-24</time></span>&nbsp;<span title="291 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 300 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 2 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-数据库">1. 数据库</a>
+      <ul>
+        <li><a href="#11-什么是数据库-">1.1. 什么是数据库 ？</a></li>
+        <li><a href="#12-数据库种类">1.2. 数据库种类</a>
+          <ul>
+            <li><a href="#121-关系型数据库">1.2.1. 关系型数据库</a></li>
+            <li><a href="#122-非关系型数据库">1.2.2. 非关系型数据库</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#2-mysql">2. mysql</a>
+      <ul>
+        <li><a href="#21-优点">2.1. 优点</a></li>
+        <li><a href="#22-mysql-分支线">2.2. mysql 分支线</a></li>
+        <li><a href="#23-安装">2.3. 安装</a>
+          <ul>
+            <li><a href="#231-mysql-多实例">2.3.1. mysql 多实例</a></li>
+            <li><a href="#232-多实例配置方案">2.3.2. 多实例配置方案</a></li>
+            <li><a href="#233-多实例安装编译">2.3.3. 多实例安装(编译)</a>
+              <ul>
+                <li><a href="#2331-安装-mysql-需要的依赖包">2.3.3.1. 安装 mysql 需要的依赖包</a></li>
+                <li><a href="#2332-编译-mysql">2.3.3.2. 编译 mysql</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+      </div><div class="content" id="content"><div class="expiration-reminder details admonition warning open">
+      <div class="details-summary admonition-title">
+        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
+      </div>
+      <div class="details-content">
+        <div class="admonition-content">本文最后更新于 2022-06-24，文中内容可能已过时。</div>
+      </div>
+    </div><h1 class="heading-element" id="1-数据库"><span>1. 数据库</span>
+  <a href="#1-%e6%95%b0%e6%8d%ae%e5%ba%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><h2 class="heading-element" id="11-什么是数据库-"><span>1.1. 什么是数据库 ？</span>
+  <a href="#11-%e4%bb%80%e4%b9%88%e6%98%af%e6%95%b0%e6%8d%ae%e5%ba%93-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>一个存储数据的仓库</p>
+<h2 class="heading-element" id="12-数据库种类"><span>1.2. 数据库种类</span>
+  <a href="#12-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%a7%8d%e7%b1%bb" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 class="heading-element" id="121-关系型数据库"><span>1.2.1. 关系型数据库</span>
+  <a href="#121-%e5%85%b3%e7%b3%bb%e5%9e%8b%e6%95%b0%e6%8d%ae%e5%ba%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>关系型数据库是把复杂的数据结构归结为简单的二元关系(即二维表格形式)，在关系型数据中，对数据的操作几乎全部建立在一个或多个关系表格上，通过对这些关联的表格分类、合并、连接或选取等运算来实现数据的管理。常见的如MySql、Oracle</li>
+<li>种类
+<ul>
+<li>Oracle</li>
+<li>Mysql</li>
+<li>Mariadb</li>
+<li>Sql Server</li>
+<li>Access</li>
+</ul>
+</li>
+</ul>
+<h3 class="heading-element" id="122-非关系型数据库"><span>1.2.2. 非关系型数据库</span>
+  <a href="#122-%e9%9d%9e%e5%85%b3%e7%b3%bb%e5%9e%8b%e6%95%b0%e6%8d%ae%e5%ba%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li><strong>非关系型数据库也被成为NoSQL(not only sql)数据库</strong>，是针对特定场景，以高性能和使用便利为目的功能特异化的数据库产品，为了高性能、高并发而生。常见的 Amazon的Dynamo、Apache的HBase、memcache、redis、mongodb</li>
+<li>种类
+<ul>
+<li>键值(key-value)存储数据库: 类似java中的map，典型产品memcache、redis</li>
+<li>面向文档的数据库: 典型产品 mongodb</li>
+<li>面向图形数据库</li>
+</ul>
+</li>
+</ul>
+<h1 class="heading-element" id="2-mysql"><span>2. mysql</span>
+  <a href="#2-mysql" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h1><h2 class="heading-element" id="21-优点"><span>2.1. 优点</span>
+  <a href="#21-%e4%bc%98%e7%82%b9" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ul>
+<li>性能优越，服务稳定，很少出现异常宕机.</li>
+<li>开放源码且无版权制约，自主性及使用成本低。</li>
+<li>历史悠久，社区及用户非常活跃，遇到问题，可以寻求帮助。</li>
+<li>软件体积小，安装使用简单，且易于维护，安装及维护成本低。</li>
+<li>品牌口碑效应，使得企业无需考虑直接用，LAMP、LEMP流行架构。</li>
+<li>支持多种操作系统，提供多种api接口，支持多种开发语言</li>
+</ul>
+<h2 class="heading-element" id="22-mysql-分支线"><span>2.2. mysql 分支线</span>
+  <a href="#22-mysql-%e5%88%86%e6%94%af%e7%ba%bf" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ul>
+<li>5.0.xx 到 5.1.xx : mysql 最正宗的后代</li>
+<li>5.4.xx 到 5.7.xx : 为了整合第三方公司开发的新的存储引擎，以及吸收新的实现算法等重构版本</li>
+<li>6.0.xx 到 7.1.xx : 为了集群推广的版本</li>
+</ul>
+<h2 class="heading-element" id="23-安装"><span>2.3. 安装</span>
+  <a href="#23-%e5%ae%89%e8%a3%85" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ol>
+<li>二进制</li>
+<li>编译安装</li>
+</ol>
+<h3 class="heading-element" id="231-mysql-多实例"><span>2.3.1. mysql 多实例</span>
+  <a href="#231-mysql-%e5%a4%9a%e5%ae%9e%e4%be%8b" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>就是在一台机器上同时开多个不同端口，同时运行多个mysql服务进程，mysql多实例共享一套安装程序，使用不同的my.cnf，启动程序不同，数据目录不同。从逻辑上来看是各自独立的，他根据配置文i就按的对应设定值，获取服务器相应书灵的硬件资源。</p>
+<h3 class="heading-element" id="232-多实例配置方案"><span>2.3.2. 多实例配置方案</span>
+  <a href="#232-%e5%a4%9a%e5%ae%9e%e4%be%8b%e9%85%8d%e7%bd%ae%e6%96%b9%e6%a1%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ol>
+<li>官网解决方案: 单一配置文件、单一启动程序。 缺点:耦合度太高，一个配置文件不好管理<br>
+示例:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[mysqld_multi]</span>
+</span></span><span class="line"><span class="cl"><span class="na">....</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[mysqld1]</span>
+</span></span><span class="line"><span class="cl"><span class="na">....</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">[mysqld2]</span>
+</span></span><span class="line"><span class="cl"><span class="na">....</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">; 启动执行</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; mysqld_multi --config-file=/data/mysql/my_multi.cnf start 1 2 </span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>多配置文件，多启动程序部署方案<br>
+示例:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/data 
+</span></span><span class="line"><span class="cl"><span class="p">|</span> -- <span class="m">3306</span>   
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="p">|</span> -- data   &lt;- <span class="m">3306</span> 实例的数据文件
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="p">|</span> -- my.cnf &lt;- <span class="m">3306</span> 实例的配置文件 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="p">|</span> -- mysql  &lt;- <span class="m">3306</span> 示例的启动文件 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">|</span> -- <span class="m">3307</span>   
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="p">|</span> -- data   &lt;- <span class="m">3307</span> 实例的数据文件
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="p">|</span> -- my.cnf &lt;- <span class="m">3307</span> 实例的配置文件 
+</span></span><span class="line"><span class="cl"><span class="p">|</span>   <span class="p">|</span> -- mysql  &lt;- <span class="m">3307</span> 示例的启动文件 </span></span></code></pre></td></tr></table>
+</div>
+</div><h3 class="heading-element" id="233-多实例安装编译"><span>2.3.3. 多实例安装(编译)</span>
+  <a href="#233-%e5%a4%9a%e5%ae%9e%e4%be%8b%e5%ae%89%e8%a3%85%e7%bc%96%e8%af%91" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h4 class="heading-element" id="2331-安装-mysql-需要的依赖包"><span>2.3.3.1. 安装 mysql 需要的依赖包</span>
+  <a href="#2331-%e5%ae%89%e8%a3%85-mysql-%e9%9c%80%e8%a6%81%e7%9a%84%e4%be%9d%e8%b5%96%e5%8c%85" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># yum install ncurses-devel libaio-devel cmake -y </span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 class="heading-element" id="2332-编译-mysql"><span>2.3.3.2. 编译 mysql</span>
+  <a href="#2332-%e7%bc%96%e8%af%91-mysql" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>官方参数释义:</p>
+<blockquote>
+<p><a href="https://dev.mysql.com/doc/refman/5.6/en/source-configuration-options.html"target="_blank" rel="external nofollow noopener noreferrer">https://dev.mysql.com/doc/refman/5.6/en/source-configuration-options.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># useradd -s /sbin/nologin -M mysql</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># wget https://cdn.mysql.com//Downloads/MySQL-5.6/MySQL-5.6.43-1.el7.src.rpm</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># rpm -ivh MySQL-5.6.43-1.el7.src.rpm </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># mv ~/rpmbuild/SOURCES/mysql-5.6.43.tar.gz . </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># tar -xzf mysql-5.6.43.tar.gz </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># cd mysql-5.6.43 </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 mysql-5.6.43<span class="o">]</span><span class="c1"># cmake . -DCMAKE_INSTALL_PREFIX=/opt/mysql-5.6.43 \</span>
+</span></span><span class="line"><span class="cl">-DMYSQL_DATADIR<span class="o">=</span>/opt/mysql-5.6.43/data <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DMYSQL_UNIX_ADDR<span class="o">=</span>/opt/mysql-5.6.43/tmp/mysql.sock <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DDEFAULT_CHARSET<span class="o">=</span>utf8 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DDEFAULT_COLLATION<span class="o">=</span>utf8_general_ci <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DEXTRA_CHARSETS<span class="o">=</span>gbk,gb2312,utf8,ascii <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DENABLED_LOCAL_INFILE<span class="o">=</span>ON <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITH_INNOBASE_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITH_FEDERATED_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITH_BLACKHOLE_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITHOUT_EXAMPLE_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITHOUT_PARTITION_STORAGE_ENGINE<span class="o">=</span><span class="m">0</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITH_FAST_MUTEXES<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITH_ZLIB<span class="o">=</span>bundled <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DENABLED_LOCAL_INFILE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITH_READLINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITH_EMBEDDED_SERVER<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-DWITH_DEBUG<span class="o">=</span><span class="m">0</span> 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 mysql-5.6.43<span class="o">]</span><span class="c1"># ln -s /opt/mysql-5.6.43/ /opt/mysql-server</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 mysql-5.6.43<span class="o">]</span><span class="c1"># cd /opt/mysql-server </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 mysql-5.6.43<span class="o">]</span><span class="c1"># mkdir /data/mysql/{3306,3307}/data -p </span></span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod"><span title="更新于 2022-06-24 00:00:00">更新于 2022-06-24&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/mysql/mysql-dba%E8%BF%90%E7%BB%B4/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="vscode://file//home/cxd/Projects/notes/content/posts/mysql/mysql-DBA%e8%bf%90%e7%bb%b4.md" title="在编辑器中打开"target="_blank" rel="external nofollow noopener noreferrer" class="link-to-vscode">在编辑器中打开</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/mysql/" class="post-tag" title="标签 - Mysql">Mysql</a></section>
+    <section><span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/mysql/mha%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/" class="post-nav-item" rel="prev" title="Mysql MHA高可用软件"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Mysql MHA高可用软件</a><a href="/posts/mysql/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/" class="post-nav-item" rel="next" title="Mysql Atlas高可用软件">Mysql Atlas高可用软件<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.4.0-alpha.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
+        </div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/fuse/fuse.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script src="/js/particle.min.js" defer></script><script src="/js/watermark.seal.min.js" defer></script><script src="/js/ext-utils.js" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":false},"search":{"distance":100,"findAllMatches":true,"fuseIndexURL":"/search.json","highlightTag":"mark","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.2,"type":"fuse","useExtendedSearch":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.4.0-alpha.1"};console.log('Page config:', window.config);</script><script src="/js/theme.min.js" defer></script><script src="/lib/translate.js" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/mysql/mysql-dba%E8%BF%90%E7%BB%B4/"}};console.log('Auto Translate config:', window.ATConfig);</script><script src="/js/translate.fixit.min.js" defer></script></body>
+</html>

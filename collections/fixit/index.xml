@@ -19,5 +19,14 @@
       <category domain="https://blog.0x5c0f.cc/categories/hugo/">Hugo</category>
       <description>AI创作内容声明组件</description>
     </item>
+    <item>
+      <title>关于博客的一些自定义的扩展</title>
+      <link>https://blog.0x5c0f.cc/posts/hugo/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
+      <guid>https://blog.0x5c0f.cc/posts/hugo/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E6%89%A9%E5%B1%95/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category>
+      <category domain="https://blog.0x5c0f.cc/categories/hugo/">Hugo</category>
+      <description>关于博客的一些自定义的扩展</description>
+    </item>
   </channel>
 </rss>

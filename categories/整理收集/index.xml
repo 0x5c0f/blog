@@ -31,6 +31,15 @@
       <description>HashiCorp Vault的MySQL数据库凭据动态管理</description>
     </item>
     <item>
+      <title>关于博客的一些自定义的扩展</title>
+      <link>https://blog.0x5c0f.cc/posts/hugo/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E6%89%A9%E5%B1%95/</link>
+      <pubDate>Fri, 29 Nov 2024 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
+      <guid>https://blog.0x5c0f.cc/posts/hugo/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E6%89%A9%E5%B1%95/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category>
+      <category domain="https://blog.0x5c0f.cc/categories/hugo/">Hugo</category>
+      <description>关于博客的一些自定义的扩展</description>
+    </item>
+    <item>
       <title>Linux 性能基准测试工具及测试方法</title>
       <link>https://blog.0x5c0f.cc/posts/linux/linux%E6%80%A7%E8%83%BD%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95/</link>
       <pubDate>Wed, 08 May 2024 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
