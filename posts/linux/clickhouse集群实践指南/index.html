@@ -10,7 +10,7 @@
   <meta itemprop="description" content="ClickHouse 集群实践指南，从第一次初始化，到可扩展、高可用、可运维">
   <meta itemprop="datePublished" content="2025-12-17T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-12-26T00:00:00+00:00">
-  <meta itemprop="wordCount" content="3139">
+  <meta itemprop="wordCount" content="3413">
   <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
   <meta itemprop="keywords" content="Linux,解决方案,Clickhouse"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/">
   <meta property="og:site_name" content="一个曾经的小码农...">
@@ -44,7 +44,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97\/"
-    },"genre": "posts","keywords": "linux, 解决方案, clickhouse","wordcount":  3139 ,
+    },"genre": "posts","keywords": "linux, 解决方案, clickhouse","wordcount":  3413 ,
     "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97\/","datePublished": "2025-12-17T00:00:00+00:00","dateModified": "2025-12-26T00:00:00+00:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -141,7 +141,7 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Clickhouse集群实践指南</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2025-12-17 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-12-17">2025-12-17</time></span>&nbsp;<span title="更新于 2025-12-26 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-12-26">2025-12-26</time></span>&nbsp;<span title="3139 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3200 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 15 分钟</span>&nbsp;</div>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2025-12-17 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-12-17">2025-12-17</time></span>&nbsp;<span title="更新于 2025-12-26 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-12-26">2025-12-26</time></span>&nbsp;<span title="3413 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3500 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 17 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -221,24 +221,31 @@
         <li><a href="#133-不推荐-nginx除非-http">13.3. 不推荐 Nginx（除非 HTTP）</a></li>
       </ul>
     </li>
-    <li><a href="#14-扩容与自动复制是如何发生的">14. 扩容与自动复制是如何发生的？</a></li>
-    <li><a href="#14-扩容节点时候如何选择是分片还是副本">14. 扩容节点时候如何选择是分片还是副本?</a>
+    <li><a href="#14-扩容与自动复制是如何发生的">14. 扩容与自动复制是如何发生的？</a>
       <ul>
-        <li><a href="#141--场景-1读压力过大查询多查询慢">14.1.  场景 1：读压力过大（查询多、查询慢）</a></li>
-        <li><a href="#142-场景-2存储容量不足数据量太大">14.2. 场景 2：存储容量不足（数据量太大）</a></li>
-        <li><a href="#143-场景-3写入压力过大插入速度慢">14.3. 场景 3：写入压力过大（插入速度慢）</a></li>
-        <li><a href="#144-场景-4既有读压力又有存储压力">14.4. 场景 4：既有读压力又有存储压力</a></li>
-        <li><a href="#145-决策流程图">14.5. 决策流程图</a></li>
-        <li><a href="#146-实际扩展示例">14.6. 实际扩展示例</a>
+        <li><a href="#141-如何新增节点">14.1. 如何新增节点？</a></li>
+        <li><a href="#142-如何自动复制">14.2. 如何自动复制？</a></li>
+        <li><a href="#143-节点扩容时发生什么">14.3. 节点扩容时发生什么？</a></li>
+        <li><a href="#144-新-shard-加入分片扩容">14.4. 新 shard 加入（分片扩容）</a></li>
+      </ul>
+    </li>
+    <li><a href="#15-扩容节点时候如何选择是分片还是副本">15. 扩容节点时候如何选择是分片还是副本?</a>
+      <ul>
+        <li><a href="#151--场景-1读压力过大查询多查询慢">15.1.  场景 1：读压力过大（查询多、查询慢）</a></li>
+        <li><a href="#152-场景-2存储容量不足数据量太大">15.2. 场景 2：存储容量不足（数据量太大）</a></li>
+        <li><a href="#153-场景-3写入压力过大插入速度慢">15.3. 场景 3：写入压力过大（插入速度慢）</a></li>
+        <li><a href="#154-场景-4既有读压力又有存储压力">15.4. 场景 4：既有读压力又有存储压力</a></li>
+        <li><a href="#155-决策流程图">15.5. 决策流程图</a></li>
+        <li><a href="#156-实际扩展示例">15.6. 实际扩展示例</a>
           <ul>
-            <li><a href="#1461-当前状态1节点">14.6.1. 当前状态：1节点</a></li>
-            <li><a href="#1462-扩展方案-a增加副本应对读压力">14.6.2. 扩展方案 A：增加副本（应对读压力）</a></li>
-            <li><a href="#1463-扩展方案-b增加分片应对存储写入压力">14.6.3. 扩展方案 B：增加分片（应对存储/写入压力）</a></li>
+            <li><a href="#1561-当前状态1节点">15.6.1. 当前状态：1节点</a></li>
+            <li><a href="#1562-扩展方案-a增加副本应对读压力">15.6.2. 扩展方案 A：增加副本（应对读压力）</a></li>
+            <li><a href="#1563-扩展方案-b增加分片应对存储写入压力">15.6.3. 扩展方案 B：增加分片（应对存储/写入压力）</a></li>
           </ul>
         </li>
       </ul>
     </li>
-    <li><a href="#15-一些常用的sql">15. 一些常用的sql</a></li>
+    <li><a href="#16-一些常用的sql">16. 一些常用的sql</a></li>
   </ul>
 </nav></div>
       </div><div class="ai-declaration" data-expanded="false">
@@ -348,9 +355,9 @@
     DT -->|按分片键路由写入数据| R31
 
     %% 副本复制
-    R11 -->|数据复制（异步）| R12
-    R21 -->|数据复制（异步）| R22
-    R31 -->|数据复制（异步）| R32
+    R11 -->|异步复制（通过 Keeper 拉取增量 parts）| R12
+    R21 -->|异步复制（通过 Keeper 拉取增量 parts）| R22
+    R31 -->|异步复制（通过 Keeper 拉取增量 parts）| R32
 
     %% ================= Keeper =================
     subgraph KEEPERS["ClickHouse Keeper 集群"]
@@ -452,9 +459,9 @@
     DT -->|按分片键路由写入数据| R31
 
     %% 副本复制
-    R11 -->|数据复制（异步）| R12
-    R21 -->|数据复制（异步）| R22
-    R31 -->|数据复制（异步）| R32
+    R11 -->|异步复制（通过 Keeper 拉取增量 parts）| R12
+    R21 -->|异步复制（通过 Keeper 拉取增量 parts）| R22
+    R31 -->|异步复制（通过 Keeper 拉取增量 parts）| R32
 
     %% ================= Keeper =================
     subgraph KEEPERS["ClickHouse Keeper 集群"]
@@ -556,9 +563,9 @@
     DT -->|按分片键路由写入数据| R31
 
     %% 副本复制
-    R11 -->|数据复制（异步）| R12
-    R21 -->|数据复制（异步）| R22
-    R31 -->|数据复制（异步）| R32
+    R11 -->|异步复制（通过 Keeper 拉取增量 parts）| R12
+    R21 -->|异步复制（通过 Keeper 拉取增量 parts）| R22
+    R31 -->|异步复制（通过 Keeper 拉取增量 parts）| R32
 
     %% ================= Keeper =================
     subgraph KEEPERS["ClickHouse Keeper 集群"]
@@ -660,9 +667,9 @@
     DT -->|按分片键路由写入数据| R31
 
     %% 副本复制
-    R11 -->|数据复制（异步）| R12
-    R21 -->|数据复制（异步）| R22
-    R31 -->|数据复制（异步）| R32
+    R11 -->|异步复制（通过 Keeper 拉取增量 parts）| R12
+    R21 -->|异步复制（通过 Keeper 拉取增量 parts）| R22
+    R31 -->|异步复制（通过 Keeper 拉取增量 parts）| R32
 
     %% ================= Keeper =================
     subgraph KEEPERS["ClickHouse Keeper 集群"]
@@ -1960,18 +1967,55 @@
   <a href="#14-%e6%89%a9%e5%ae%b9%e4%b8%8e%e8%87%aa%e5%8a%a8%e5%a4%8d%e5%88%b6%e6%98%af%e5%a6%82%e4%bd%95%e5%8f%91%e7%94%9f%e7%9a%84" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><ol>
-<li>新节点上线</li>
-<li>加入 <code>cluster.xml</code></li>
-<li>新节点配置 Keeper</li>
-<li>Replicated 表自动：
+</h2><h3 class="heading-element" id="141-如何新增节点"><span>14.1. 如何新增节点？</span>
+  <a href="#141-%e5%a6%82%e4%bd%95%e6%96%b0%e5%a2%9e%e8%8a%82%e7%82%b9" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><em><strong>所有需要调整的配置项，在配置文件模板中均有定义，可以自行参考阅读</strong></em></p>
+<ol>
+<li>
+<p>主节点和新增节点的 <a href="#5-%e9%9b%86%e7%be%a4%e9%85%8d%e7%bd%aeclusterxml"><code>cluster.xml</code></a>、<a href="#62-keeperxml%e6%9c%80%e5%b0%8f%e5%8f%af%e7%94%a8%e5%8d%95%e8%8a%82%e7%82%b9"><code>keeper.xml</code></a> 、<a href="#82-%e9%ab%98%e5%8f%af%e7%94%a8%e7%89%88%e6%9c%ac%e6%8e%a8%e8%8d%90%e7%94%9f%e4%ba%a7"><code>macros.xml</code></a>、<a href="#72-storagexml"><code>storage.xml</code></a> 配置文件需要保持高度一致，以下是需要修改的地方</p>
 <ul>
-<li>注册副本</li>
-<li>拉取历史数据</li>
+<li>
+<p><code>cluster.xml</code></p>
+<ul>
+<li><code>interserver_http_host</code> 项, 值对应当前节点的 <code>IP</code></li>
+<li><code>shard</code> 项, 在下面添加一个 <code>replica</code> 副本节点(<em>注: 若是分片就添加一个<code>shard</code></em>)</li>
 </ul>
 </li>
+<li>
+<p><code>keeper.xml</code>, <code>keeper.xml</code> 配置文件对于无论对于哪一个节点来说，除了 <code>server_id</code> 不一样外，其他应完全一样</p>
+<ul>
+<li><code>server_id</code> 项, 各个节点保持唯一</li>
+<li><code>raft_configuration</code> 项, 在下面添加一个<code>server</code>节点, 值为对应节点的 <code>IP</code> 和 <code>server_id</code></li>
+<li><code>zookeeper</code> 项, 在下面添加一个 <code>node</code> 节点</li>
+</ul>
+</li>
+<li>
+<p><code>macros.xml</code></p>
+<ul>
+<li><code>replica</code> 项，保持设置节点的唯一性</li>
+</ul>
+</li>
+<li>
+<p><code>storage.xml</code></p>
+<ul>
+<li>此配置每个节点完全一致(<em>仅测试时候，实际应用中可能由于服务器环境不同，需要根据实际情况修改</em>)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>复制主节点自定义配置文件到新节点的 <code>/etc/clickhouse-server/config.d</code>, 修改上述内容</p>
+</li>
+<li>
+<p>配置同步后，重启主节点， 然后重启新节点(<em>这个重启顺序应该没什么关系，实际测试时候是先重启主节点、在重新的新节点</em>)</p>
+</li>
+<li>
+<p>登陆到新节点，手动创建与主节点相同的数据库、相同的表结构(<strong>注: 建表和建库的时候，需要保持与主节点的<code>ZK</code>路径完全一致，否则难以自动同步数据,这也是为什么在见表的时候要求手动指定<code>ZK</code>路径的原因</strong>)</p>
+</li>
 </ol>
-<p>可手动触发：</p>
+<p>可手动触发(未测试)：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1979,13 +2023,86 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SYSTEM</span><span class="w"> </span><span class="n">SYNC</span><span class="w"> </span><span class="n">REPLICA</span><span class="w"> </span><span class="n">analytics</span><span class="p">.</span><span class="n">events</span><span class="p">;</span></span></span></code></pre></td></tr></table>
 </div>
-</div><hr>
-<h2 class="heading-element" id="14-扩容节点时候如何选择是分片还是副本"><span>14. 扩容节点时候如何选择是分片还是副本?</span>
-  <a href="#14-%e6%89%a9%e5%ae%b9%e8%8a%82%e7%82%b9%e6%97%b6%e5%80%99%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9%e6%98%af%e5%88%86%e7%89%87%e8%bf%98%e6%98%af%e5%89%af%e6%9c%ac" class="heading-mark">
+</div><h3 class="heading-element" id="142-如何自动复制"><span>14.2. 如何自动复制？</span>
+  <a href="#142-%e5%a6%82%e4%bd%95%e8%87%aa%e5%8a%a8%e5%a4%8d%e5%88%b6" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h2><h3 class="heading-element" id="141--场景-1读压力过大查询多查询慢"><span>14.1.  场景 1：读压力过大（查询多、查询慢）</span>
-  <a href="#141--%e5%9c%ba%e6%99%af-1%e8%af%bb%e5%8e%8b%e5%8a%9b%e8%bf%87%e5%a4%a7%e6%9f%a5%e8%af%a2%e5%a4%9a%e6%9f%a5%e8%af%a2%e6%85%a2" class="heading-mark">
+</h3><ul>
+<li>当你有一个 <code>ReplicatedMergeTree</code> 表时：
+<ol>
+<li>每个副本在 <code>ZooKeeper</code> 注册自己
+<ul>
+<li><code>/clickhouse/tables/{shard}/dbtest/test_table</code></li>
+</ul>
+</li>
+<li>写入数据
+<ul>
+<li>客户端写到任意副本</li>
+<li>副本会生成 <code>mutation</code> / <code>insert log</code> 放入 <code>ZooKeeper</code> 队列</li>
+</ul>
+</li>
+<li>其他副本监听 <code>ZooKeeper</code>
+<ul>
+<li>自动检测到新的 insert</li>
+<li>拉取对应数据块（parts）并写入本地存储</li>
+</ul>
+</li>
+<li>Merge 操作
+<ul>
+<li>每个副本独立进行 Merge</li>
+<li>保持本地数据块高效存储</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>核心点：所有副本最终一致，但可以临时存在延迟（异步复制）</p>
+</blockquote>
+<h3 class="heading-element" id="143-节点扩容时发生什么"><span>14.3. 节点扩容时发生什么？</span>
+  <a href="#143-%e8%8a%82%e7%82%b9%e6%89%a9%e5%ae%b9%e6%97%b6%e5%8f%91%e7%94%9f%e4%bb%80%e4%b9%88" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>新 shard / 新副本加入
+<ol>
+<li>新副本在 ZooKeeper 注册</li>
+<li>系统会识别<strong>它缺少哪些数据块（parts）</strong></li>
+<li>旧副本会将已有数据块复制到新副本</li>
+<li>新副本完成数据同步后，自动参与 Merge 和查询</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：这个过程是<strong>增量拉取</strong>，不会重复写入全量数据。</p>
+</blockquote>
+<h3 class="heading-element" id="144-新-shard-加入分片扩容"><span>14.4. 新 shard 加入（分片扩容）</span>
+  <a href="#144-%e6%96%b0-shard-%e5%8a%a0%e5%85%a5%e5%88%86%e7%89%87%e6%89%a9%e5%ae%b9" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>分片扩容相对复杂</li>
+<li><code>ClickHouse</code> 原生不支持自动重分片</li>
+<li>操作步骤：
+<ul>
+<li>创建新 <code>shard</code> 的 <code>local</code> 表</li>
+<li>根据分片 <code>key</code> 手动迁移部分数据（或者使用 <code>INSERT SELECT</code>）</li>
+<li>更新 <code>Distributed</code> 表的 <code>shard</code> 配置</li>
+</ul>
+</li>
+<li>所以 shard 扩容通常是 人工触发的迁移 + 配置更新</li>
+<li>副本扩容则是 自动的</li>
+</ul>
+<blockquote>
+<p>总结：副本复制自动，分片迁移手动</p>
+</blockquote>
+<hr>
+<h2 class="heading-element" id="15-扩容节点时候如何选择是分片还是副本"><span>15. 扩容节点时候如何选择是分片还是副本?</span>
+  <a href="#15-%e6%89%a9%e5%ae%b9%e8%8a%82%e7%82%b9%e6%97%b6%e5%80%99%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9%e6%98%af%e5%88%86%e7%89%87%e8%bf%98%e6%98%af%e5%89%af%e6%9c%ac" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 class="heading-element" id="151--场景-1读压力过大查询多查询慢"><span>15.1.  场景 1：读压力过大（查询多、查询慢）</span>
+  <a href="#151--%e5%9c%ba%e6%99%af-1%e8%af%bb%e5%8e%8b%e5%8a%9b%e8%bf%87%e5%a4%a7%e6%9f%a5%e8%af%a2%e5%a4%9a%e6%9f%a5%e8%af%a2%e6%85%a2" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h3><ul>
@@ -2029,8 +2146,8 @@
 </ul>
 </li>
 </ul>
-<h3 class="heading-element" id="142-场景-2存储容量不足数据量太大"><span>14.2. 场景 2：存储容量不足（数据量太大）</span>
-  <a href="#142-%e5%9c%ba%e6%99%af-2%e5%ad%98%e5%82%a8%e5%ae%b9%e9%87%8f%e4%b8%8d%e8%b6%b3%e6%95%b0%e6%8d%ae%e9%87%8f%e5%a4%aa%e5%a4%a7" class="heading-mark">
+<h3 class="heading-element" id="152-场景-2存储容量不足数据量太大"><span>15.2. 场景 2：存储容量不足（数据量太大）</span>
+  <a href="#152-%e5%9c%ba%e6%99%af-2%e5%ad%98%e5%82%a8%e5%ae%b9%e9%87%8f%e4%b8%8d%e8%b6%b3%e6%95%b0%e6%8d%ae%e9%87%8f%e5%a4%aa%e5%a4%a7" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h3><ul>
@@ -2082,8 +2199,8 @@
 </ul>
 </li>
 </ul>
-<h3 class="heading-element" id="143-场景-3写入压力过大插入速度慢"><span>14.3. 场景 3：写入压力过大（插入速度慢）</span>
-  <a href="#143-%e5%9c%ba%e6%99%af-3%e5%86%99%e5%85%a5%e5%8e%8b%e5%8a%9b%e8%bf%87%e5%a4%a7%e6%8f%92%e5%85%a5%e9%80%9f%e5%ba%a6%e6%85%a2" class="heading-mark">
+<h3 class="heading-element" id="153-场景-3写入压力过大插入速度慢"><span>15.3. 场景 3：写入压力过大（插入速度慢）</span>
+  <a href="#153-%e5%9c%ba%e6%99%af-3%e5%86%99%e5%85%a5%e5%8e%8b%e5%8a%9b%e8%bf%87%e5%a4%a7%e6%8f%92%e5%85%a5%e9%80%9f%e5%ba%a6%e6%85%a2" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h3><ul>
@@ -2107,8 +2224,8 @@
 </ul>
 </li>
 </ul>
-<h3 class="heading-element" id="144-场景-4既有读压力又有存储压力"><span>14.4. 场景 4：既有读压力又有存储压力</span>
-  <a href="#144-%e5%9c%ba%e6%99%af-4%e6%97%a2%e6%9c%89%e8%af%bb%e5%8e%8b%e5%8a%9b%e5%8f%88%e6%9c%89%e5%ad%98%e5%82%a8%e5%8e%8b%e5%8a%9b" class="heading-mark">
+<h3 class="heading-element" id="154-场景-4既有读压力又有存储压力"><span>15.4. 场景 4：既有读压力又有存储压力</span>
+  <a href="#154-%e5%9c%ba%e6%99%af-4%e6%97%a2%e6%9c%89%e8%af%bb%e5%8e%8b%e5%8a%9b%e5%8f%88%e6%9c%89%e5%ad%98%e5%82%a8%e5%8e%8b%e5%8a%9b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h3><ul>
@@ -2142,8 +2259,8 @@
 </div>
 </div></li>
 </ul>
-<h3 class="heading-element" id="145-决策流程图"><span>14.5. 决策流程图</span>
-  <a href="#145-%e5%86%b3%e7%ad%96%e6%b5%81%e7%a8%8b%e5%9b%be" class="heading-mark">
+<h3 class="heading-element" id="155-决策流程图"><span>15.5. 决策流程图</span>
+  <a href="#155-%e5%86%b3%e7%ad%96%e6%b5%81%e7%a8%8b%e5%9b%be" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h3><div class="diagram-container">
@@ -2247,12 +2364,12 @@
     style G2 fill:#d0ebff,stroke:#1971c2,stroke-width:2px,color:#000
     style H1 fill:#ffe8cc,stroke:#d9480f,stroke-width:2px,color:#000
     style H2 fill:#ffe8cc,stroke:#d9480f,stroke-width:2px,color:#000</pre></template>
-</div><h3 class="heading-element" id="146-实际扩展示例"><span>14.6. 实际扩展示例</span>
-  <a href="#146-%e5%ae%9e%e9%99%85%e6%89%a9%e5%b1%95%e7%a4%ba%e4%be%8b" class="heading-mark">
+</div><h3 class="heading-element" id="156-实际扩展示例"><span>15.6. 实际扩展示例</span>
+  <a href="#156-%e5%ae%9e%e9%99%85%e6%89%a9%e5%b1%95%e7%a4%ba%e4%be%8b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
-</h3><h4 class="heading-element" id="1461-当前状态1节点"><span>14.6.1. 当前状态：1节点</span>
-  <a href="#1461-%e5%bd%93%e5%89%8d%e7%8a%b6%e6%80%811%e8%8a%82%e7%82%b9" class="heading-mark">
+</h3><h4 class="heading-element" id="1561-当前状态1节点"><span>15.6.1. 当前状态：1节点</span>
+  <a href="#1561-%e5%bd%93%e5%89%8d%e7%8a%b6%e6%80%811%e8%8a%82%e7%82%b9" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h4><div class="highlight"><div class="chroma">
@@ -2264,8 +2381,8 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">分片1
 </span></span><span class="line"><span class="cl">└─ 副本1 (node1) - 100% 数据，100% 压力</span></span></code></pre></td></tr></table>
 </div>
-</div><h4 class="heading-element" id="1462-扩展方案-a增加副本应对读压力"><span>14.6.2. 扩展方案 A：增加副本（应对读压力）</span>
-  <a href="#1462-%e6%89%a9%e5%b1%95%e6%96%b9%e6%a1%88-a%e5%a2%9e%e5%8a%a0%e5%89%af%e6%9c%ac%e5%ba%94%e5%af%b9%e8%af%bb%e5%8e%8b%e5%8a%9b" class="heading-mark">
+</div><h4 class="heading-element" id="1562-扩展方案-a增加副本应对读压力"><span>15.6.2. 扩展方案 A：增加副本（应对读压力）</span>
+  <a href="#1562-%e6%89%a9%e5%b1%95%e6%96%b9%e6%a1%88-a%e5%a2%9e%e5%8a%a0%e5%89%af%e6%9c%ac%e5%ba%94%e5%af%b9%e8%af%bb%e5%8e%8b%e5%8a%9b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h4><div class="highlight"><div class="chroma">
@@ -2287,8 +2404,8 @@
 </span></span><span class="line"><span class="cl">读能力: 翻倍
 </span></span><span class="line"><span class="cl">写能力: 不变（需同步到所有副本）</span></span></code></pre></td></tr></table>
 </div>
-</div><h4 class="heading-element" id="1463-扩展方案-b增加分片应对存储写入压力"><span>14.6.3. 扩展方案 B：增加分片（应对存储/写入压力）</span>
-  <a href="#1463-%e6%89%a9%e5%b1%95%e6%96%b9%e6%a1%88-b%e5%a2%9e%e5%8a%a0%e5%88%86%e7%89%87%e5%ba%94%e5%af%b9%e5%ad%98%e5%82%a8%e5%86%99%e5%85%a5%e5%8e%8b%e5%8a%9b" class="heading-mark">
+</div><h4 class="heading-element" id="1563-扩展方案-b增加分片应对存储写入压力"><span>15.6.3. 扩展方案 B：增加分片（应对存储/写入压力）</span>
+  <a href="#1563-%e6%89%a9%e5%b1%95%e6%96%b9%e6%a1%88-b%e5%a2%9e%e5%8a%a0%e5%88%86%e7%89%87%e5%ba%94%e5%af%b9%e5%ad%98%e5%82%a8%e5%86%99%e5%85%a5%e5%8e%8b%e5%8a%9b" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h4><div class="highlight"><div class="chroma">
@@ -2310,8 +2427,8 @@
 </span></span><span class="line"><span class="cl">读能力: 大幅提升（并行查询）
 </span></span><span class="line"><span class="cl">写能力: 翻倍（并行写入）</span></span></code></pre></td></tr></table>
 </div>
-</div><h2 class="heading-element" id="15-一些常用的sql"><span>15. 一些常用的sql</span>
-  <a href="#15-%e4%b8%80%e4%ba%9b%e5%b8%b8%e7%94%a8%e7%9a%84sql" class="heading-mark">
+</div><h2 class="heading-element" id="16-一些常用的sql"><span>16. 一些常用的sql</span>
+  <a href="#16-%e4%b8%80%e4%ba%9b%e5%b8%b8%e7%94%a8%e7%9a%84sql" class="heading-mark">
     <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
   </a>
 </h2><div class="highlight"><div class="chroma">
@@ -2423,6 +2540,38 @@
 </span><span class="lnt">105
 </span><span class="lnt">106
 </span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="c1">-- 查看集群状态
@@ -2531,7 +2680,39 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="k">system</span><span class="p">.</span><span class="n">parts</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="n">active</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">database</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span></span></span></code></pre></td></tr></table>
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">size</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 1. 检查集群配置是否正确(新节点)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="k">cluster</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="n">shard_num</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="n">replica_num</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="n">host_name</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="n">host_address</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="n">port</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="k">system</span><span class="p">.</span><span class="n">clusters</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">cluster</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;default_cluster&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">shard_num</span><span class="p">,</span><span class="w"> </span><span class="n">replica_num</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 期望结果：
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- default_cluster | 1 | 1 | 172.16.80.31 | ...
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- default_cluster | 1 | 2 | 172.31.10.12 | ...
+</span></span></span><span class="line"><span class="cl"><span class="c1">-- 注意：shard_num 必须都是 1（同一个分片） 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c1">-- 查看 SQL 执行错误时候的具体报错
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">SELECT</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">event_time</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">query</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">exception_code</span><span class="p">,</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">exception</span><span class="p">,</span><span class="w">  </span><span class="c1">-- 具体的错误简述
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="w">    </span><span class="n">stack_trace</span><span class="w"> </span><span class="c1">-- 详细的错误堆栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">FROM</span><span class="w"> </span><span class="k">system</span><span class="p">.</span><span class="n">query_log</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;QueryFinish&#39;</span><span class="w"> </span><span class="c1">-- 过滤掉成功的查询
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">AND</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;QueryStart&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">AND</span><span class="w"> </span><span class="n">event_time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="n">HOUR</span><span class="w"> </span><span class="c1">-- 查看最近一小时
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">event_time</span><span class="w"> </span><span class="k">DESC</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span></span></span></code></pre></td></tr></table>
 </div>
 </div></div><div class="post-footer" id="post-footer">
   <div class="post-info">

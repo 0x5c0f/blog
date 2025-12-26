@@ -77,9 +77,9 @@ flowchart TB
     DT -->|按分片键路由写入数据| R31
 
     %% 副本复制
-    R11 -->|数据复制（异步）| R12
-    R21 -->|数据复制（异步）| R22
-    R31 -->|数据复制（异步）| R32
+    R11 -->|异步复制（通过 Keeper 拉取增量 parts）| R12
+    R21 -->|异步复制（通过 Keeper 拉取增量 parts）| R22
+    R31 -->|异步复制（通过 Keeper 拉取增量 parts）| R32
 
     %% ================= Keeper =================
     subgraph KEEPERS["ClickHouse Keeper 集群"]
@@ -731,22 +731,72 @@ backend ch_nodes
 
 ## 14. 扩容与自动复制是如何发生的？
 
-1. 新节点上线
-2. 加入 `cluster.xml`
-3. 新节点配置 Keeper
-4. Replicated 表自动：
-   * 注册副本
-   * 拉取历史数据
+### 14.1. 如何新增节点？
+***所有需要调整的配置项，在配置文件模板中均有定义，可以自行参考阅读***  
+1. 主节点和新增节点的 [`cluster.xml`](#5-集群配置clusterxml)、[`keeper.xml`](#62-keeperxml最小可用单节点) 、[`macros.xml`](#82-高可用版本推荐生产)、[`storage.xml`](#72-storagexml) 配置文件需要保持高度一致，以下是需要修改的地方
+    - `cluster.xml`
+        - `interserver_http_host` 项, 值对应当前节点的 `IP`
+        - `shard` 项, 在下面添加一个 `replica` 副本节点(*注: 若是分片就添加一个`shard`*)
 
-可手动触发：
+    - `keeper.xml`, `keeper.xml` 配置文件对于无论对于哪一个节点来说，除了 `server_id` 不一样外，其他应完全一样
+        - `server_id` 项, 各个节点保持唯一
+        - `raft_configuration` 项, 在下面添加一个`server`节点, 值为对应节点的 `IP` 和 `server_id`
+        - `zookeeper` 项, 在下面添加一个 `node` 节点
+    - `macros.xml`
+        - `replica` 项，保持设置节点的唯一性
+    - `storage.xml`
+        - 此配置每个节点完全一致(*仅测试时候，实际应用中可能由于服务器环境不同，需要根据实际情况修改*)
+        
+2. 复制主节点自定义配置文件到新节点的 `/etc/clickhouse-server/config.d`, 修改上述内容
+3. 配置同步后，重启主节点， 然后重启新节点(*这个重启顺序应该没什么关系，实际测试时候是先重启主节点、在重新的新节点*)
+4. 登陆到新节点，手动创建与主节点相同的数据库、相同的表结构(**注: 建表和建库的时候，需要保持与主节点的`ZK`路径完全一致，否则难以自动同步数据,这也是为什么在见表的时候要求手动指定`ZK`路径的原因**)
+
+可手动触发(未测试)：
 ```sql
 SYSTEM SYNC REPLICA analytics.events;
 ```
 
+### 14.2. 如何自动复制？
+- 当你有一个 `ReplicatedMergeTree` 表时：
+    1. 每个副本在 `ZooKeeper` 注册自己
+        - `/clickhouse/tables/{shard}/dbtest/test_table`
+    2. 写入数据
+        - 客户端写到任意副本
+        - 副本会生成 `mutation` / `insert log` 放入 `ZooKeeper` 队列
+    3. 其他副本监听 `ZooKeeper`
+        - 自动检测到新的 insert
+        - 拉取对应数据块（parts）并写入本地存储
+    4. Merge 操作
+        - 每个副本独立进行 Merge
+        - 保持本地数据块高效存储
+        
+> 核心点：所有副本最终一致，但可以临时存在延迟（异步复制）
+
+### 14.3. 节点扩容时发生什么？
+- 新 shard / 新副本加入
+    1. 新副本在 ZooKeeper 注册
+    2. 系统会识别**它缺少哪些数据块（parts）**
+    3. 旧副本会将已有数据块复制到新副本
+    4. 新副本完成数据同步后，自动参与 Merge 和查询
+
+> **注意**：这个过程是**增量拉取**，不会重复写入全量数据。
+
+### 14.4. 新 shard 加入（分片扩容）
+- 分片扩容相对复杂
+- `ClickHouse` 原生不支持自动重分片
+- 操作步骤：
+    - 创建新 `shard` 的 `local` 表
+    - 根据分片 `key` 手动迁移部分数据（或者使用 `INSERT SELECT`）
+    - 更新 `Distributed` 表的 `shard` 配置
+- 所以 shard 扩容通常是 人工触发的迁移 + 配置更新
+- 副本扩容则是 自动的
+
+> 总结：副本复制自动，分片迁移手动
+
 ---
 
-## 14. 扩容节点时候如何选择是分片还是副本?
-### 14.1.  场景 1：读压力过大（查询多、查询慢）
+## 15. 扩容节点时候如何选择是分片还是副本?
+### 15.1.  场景 1：读压力过大（查询多、查询慢）
 - 症状：
     - 大量并发查询请求
     - CPU 使用率高
@@ -769,7 +819,7 @@ SYSTEM SYNC REPLICA analytics.events;
     - [x] 提高查询吞吐量
     - [ ] 不增加存储容量（每个副本存相同数据）
 
-### 14.2. 场景 2：存储容量不足（数据量太大）
+### 15.2. 场景 2：存储容量不足（数据量太大）
 - 症状：
     - 磁盘空间不足
     - 单表数据量达到 TB 级
@@ -795,7 +845,7 @@ SYSTEM SYNC REPLICA analytics.events;
     - [x] 写入压力分散
     - [x] 并行查询性能提升（多分片并行处理）
 
-### 14.3. 场景 3：写入压力过大（插入速度慢）
+### 15.3. 场景 3：写入压力过大（插入速度慢）
 - 症状：
     - 大量数据写入
     - 写入队列积压
@@ -806,7 +856,7 @@ SYSTEM SYNC REPLICA analytics.events;
         - 副本之间需要数据同步，写入不会更快
         - 分片可以并行写入，每个分片独立处理
 
-### 14.4. 场景 4：既有读压力又有存储压力
+### 15.4. 场景 4：既有读压力又有存储压力
 - 解决方案：增加分片 + 每个分片有多个副本
     ```xml
     <!-- 2分片，每分片3副本 = 6节点 -->
@@ -822,7 +872,7 @@ SYSTEM SYNC REPLICA analytics.events;
     </shard>
     ```
 
-### 14.5. 决策流程图
+### 15.5. 决策流程图
 ```mermaid
 graph TD
     A[单节点压力过大] --> B[判断压力类型]
@@ -850,15 +900,15 @@ graph TD
     style H1 fill:#ffe8cc,stroke:#d9480f,stroke-width:2px,color:#000
     style H2 fill:#ffe8cc,stroke:#d9480f,stroke-width:2px,color:#000
 ```
-### 14.6. 实际扩展示例
+### 15.6. 实际扩展示例
 
-#### 14.6.1. 当前状态：1节点
+#### 15.6.1. 当前状态：1节点
 ```
 分片1
 └─ 副本1 (node1) - 100% 数据，100% 压力
 ```
 
-#### 14.6.2. 扩展方案 A：增加副本（应对读压力）
+#### 15.6.2. 扩展方案 A：增加副本（应对读压力）
 ```
 分片1
 ├─ 副本1 (node1) - 100% 数据，50% 读压力
@@ -869,7 +919,7 @@ graph TD
 写能力: 不变（需同步到所有副本）
 ```
 
-#### 14.6.3. 扩展方案 B：增加分片（应对存储/写入压力）
+#### 15.6.3. 扩展方案 B：增加分片（应对存储/写入压力）
 ```
 分片1                    分片2
 ├─ 副本1 (node1) - 50%   ├─ 副本1 (node3) - 50%
@@ -880,7 +930,7 @@ graph TD
 写能力: 翻倍（并行写入）
 ```
 
-## 15. 一些常用的sql
+## 16. 一些常用的sql
 ```sql
 -- 查看集群状态
 SELECT * FROM system.clusters;
@@ -991,6 +1041,36 @@ GROUP BY database
 ORDER BY size DESC;
 
 
+-- 1. 检查集群配置是否正确(新节点)
+SELECT 
+   cluster,
+   shard_num,
+   replica_num,
+   host_name,
+   host_address,
+   port
+FROM system.clusters 
+WHERE cluster = 'default_cluster'
+ORDER BY shard_num, replica_num;
+-- 期望结果：
+-- default_cluster | 1 | 1 | 172.16.80.31 | ...
+-- default_cluster | 1 | 2 | 172.31.10.12 | ...
+-- 注意：shard_num 必须都是 1（同一个分片） 
+
+
+-- 查看 SQL 执行错误时候的具体报错
+SELECT 
+    event_time, 
+    query, 
+    exception_code, 
+    exception,  -- 具体的错误简述
+    stack_trace -- 详细的错误堆栈
+FROM system.query_log 
+WHERE type != 'QueryFinish' -- 过滤掉成功的查询
+AND type != 'QueryStart'
+AND event_time > now() - INTERVAL 1 HOUR -- 查看最近一小时
+ORDER BY event_time DESC 
+LIMIT 10;
 
 ```
 
