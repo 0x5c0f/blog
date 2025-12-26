@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clickhouse - 标签 - 一个曾经的小码农...</title>
+    <link>https://blog.0x5c0f.cc/tags/clickhouse/</link>
+    <description>一个曾经的小码农...</description>
+    <generator>Hugo 0.152.1 &amp; FixIt v0.4.0-alpha.1</generator>
+    <language>zh-CN</language>
+    <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
+    <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
+    <lastBuildDate>Fri, 26 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://blog.0x5c0f.cc/tags/clickhouse/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>clickhouse集群实践指南</title>
+      <link>https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author>
+      <guid>https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</guid>
+      <category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category>
+      <category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category>
+      <description>ClickHouse 集群实践指南</description>
+    </item>
+  </channel>
+</rss>
