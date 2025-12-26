@@ -248,6 +248,30 @@ net.ipv4.ip_unprivileged_port_start = 0
 # 内存使用率(100-vm.swappiness)时,开始使用交换分区 
 vm.swappiness = 0
 ```
+## 容器间通信的几种方法
+1. 外部网络
+  - 宿主机创建公共网桥 `docker network create public_internal_network`
+  - 每个`compose`中都使用`networks`配置连接到`public_internal_network`网络即可通过`服务名:端口`访问对方服务
+      ```yaml
+      # ...
+
+      networks:
+        common-network:
+          external: true
+          name: public_internal_network
+      ```
+
+2. `Host Gateway` —— `访问宿主机服务`/`临时跨项目`
+    ```yaml
+    services:
+      app:
+        image: app
+        extra_hosts:
+          - "host.docker.internal:host-gateway"
+
+    # 访问宿主机应用  http://host.docker.internal:8080
+    # 访问其他容器应用: http://host.docker.internal:8010
+    ```
 
 ---
 

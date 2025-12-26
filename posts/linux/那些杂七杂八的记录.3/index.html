@@ -10,7 +10,7 @@
   <meta itemprop="description" content="那些杂七杂八的记录(三)">
   <meta itemprop="datePublished" content="2025-06-17T00:00:00+00:00">
   <meta itemprop="dateModified" content="2025-10-28T00:00:00+00:00">
-  <meta itemprop="wordCount" content="806">
+  <meta itemprop="wordCount" content="853">
   <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
   <meta itemprop="keywords" content="Linux,解决方案"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/">
   <meta property="og:site_name" content="一个曾经的小码农...">
@@ -43,7 +43,7 @@
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3\/"
-    },"genre": "posts","keywords": "linux, 解决方案","wordcount":  806 ,
+    },"genre": "posts","keywords": "linux, 解决方案","wordcount":  853 ,
     "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3\/","datePublished": "2025-06-17T00:00:00+00:00","dateModified": "2025-10-28T00:00:00+00:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
@@ -140,7 +140,7 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>那些杂七杂八的记录(三)</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2025-06-17 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-06-17">2025-06-17</time></span>&nbsp;<span title="更新于 2025-10-28 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-10-28">2025-10-28</time></span>&nbsp;<span title="806 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 900 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 4 分钟</span>&nbsp;</div>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2025-06-17 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-06-17">2025-06-17</time></span>&nbsp;<span title="更新于 2025-10-28 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-10-28">2025-10-28</time></span>&nbsp;<span title="853 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 900 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 5 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -173,6 +173,7 @@
         <li><a href="#jumpserver-常用配置参数记录">jumpserver 常用配置参数记录</a></li>
         <li><a href="#jumpserver-文件管理设计">jumpserver 文件管理设计</a></li>
         <li><a href="#一些可能会用到的内核参数">一些可能会用到的内核参数</a></li>
+        <li><a href="#容器间通信的几种方法">容器间通信的几种方法</a></li>
       </ul>
     </li>
   </ul>
@@ -684,7 +685,60 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 内存使用率(100-vm.swappiness)时,开始使用交换分区 </span>
 </span></span><span class="line"><span class="cl"><span class="na">vm.swappiness</span> <span class="o">=</span> <span class="s">0</span></span></span></code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div><h2 class="heading-element" id="容器间通信的几种方法"><span>容器间通信的几种方法</span>
+  <a href="#%e5%ae%b9%e5%99%a8%e9%97%b4%e9%80%9a%e4%bf%a1%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e6%b3%95" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><ol>
+<li>外部网络</li>
+</ol>
+<ul>
+<li>宿主机创建公共网桥 <code>docker network create public_internal_network</code></li>
+<li>每个<code>compose</code>中都使用<code>networks</code>配置连接到<code>public_internal_network</code>网络即可通过<code>服务名:端口</code>访问对方服务
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">common-network</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">public_internal_network</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<ol start="2">
+<li><code>Host Gateway</code> —— <code>访问宿主机服务</code>/<code>临时跨项目</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">app</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">app</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">extra_hosts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;host.docker.internal:host-gateway&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 访问宿主机应用  http://host.docker.internal:8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 访问其他容器应用: http://host.docker.internal:8010</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
       <div class="post-info-mod"><span title="更新于 2025-10-28 00:00:00">更新于 2025-10-28&nbsp;</span>
