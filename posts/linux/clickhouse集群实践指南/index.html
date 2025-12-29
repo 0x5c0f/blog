@@ -460,7 +460,7 @@
 </span><span class=lnt>25
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-xml data-lang=xml><span class=line><span class=cl><span class=nt>&lt;clickhouse&gt;</span>
 </span></span><span class=line><span class=cl>    <span class=c>&lt;!-- 强制指定 ClickHouse 使用IP进行注册 --&gt;</span>
-</span></span><span class=line><span class=cl>    <span class=nt>&lt;interserver_http_host&gt;</span>172.16.80.31<span class=nt>&lt;/interserver_http_host&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&lt;interserver_http_host&gt;</span>172.31.10.12<span class=nt>&lt;/interserver_http_host&gt;</span>
 </span></span><span class=line><span class=cl>    <span class=nt>&lt;remote_servers&gt;</span>
 </span></span><span class=line><span class=cl>        <span class=c>&lt;!-- 集群名称，后续 SQL 会用到 --&gt;</span>
 </span></span><span class=line><span class=cl>        <span class=nt>&lt;default_cluster&gt;</span>
@@ -472,7 +472,7 @@
 </span></span><span class=line><span class=cl>                <span class=nt>&lt;internal_replication&gt;</span>true<span class=nt>&lt;/internal_replication&gt;</span>
 </span></span><span class=line><span class=cl>                <span class=c>&lt;!-- replica：副本 --&gt;</span>
 </span></span><span class=line><span class=cl>                <span class=nt>&lt;replica&gt;</span>
-</span></span><span class=line><span class=cl>                    <span class=nt>&lt;host&gt;</span>172.16.80.31<span class=nt>&lt;/host&gt;</span>
+</span></span><span class=line><span class=cl>                    <span class=nt>&lt;host&gt;</span>172.31.10.12<span class=nt>&lt;/host&gt;</span>
 </span></span><span class=line><span class=cl>                    <span class=nt>&lt;port&gt;</span>9000<span class=nt>&lt;/port&gt;</span>
 </span></span><span class=line><span class=cl>                <span class=nt>&lt;/replica&gt;</span>
 </span></span><span class=line><span class=cl>                <span class=c>&lt;!-- &lt;replica&gt;
@@ -546,7 +546,7 @@
 </span></span><span class=line><span class=cl>            <span class=c>&lt;!-- 多少个节点(成员), 多少个 server , 其中id与对应的 server_id 保持一致 --&gt;</span>
 </span></span><span class=line><span class=cl>            <span class=nt>&lt;server&gt;</span>
 </span></span><span class=line><span class=cl>                <span class=nt>&lt;id&gt;</span>1<span class=nt>&lt;/id&gt;</span>
-</span></span><span class=line><span class=cl>                <span class=nt>&lt;hostname&gt;</span>172.16.80.31<span class=nt>&lt;/hostname&gt;</span>
+</span></span><span class=line><span class=cl>                <span class=nt>&lt;hostname&gt;</span>172.31.10.12<span class=nt>&lt;/hostname&gt;</span>
 </span></span><span class=line><span class=cl>                <span class=c>&lt;!-- 9234 是 Keeper 节点之间 Raft 通信端口 --&gt;</span>
 </span></span><span class=line><span class=cl>                <span class=nt>&lt;port&gt;</span>9234<span class=nt>&lt;/port&gt;</span>
 </span></span><span class=line><span class=cl>            <span class=nt>&lt;/server&gt;</span>
@@ -561,7 +561,7 @@
 </span></span><span class=line><span class=cl>    <span class=nt>&lt;zookeeper&gt;</span>
 </span></span><span class=line><span class=cl>        <span class=c>&lt;!-- 同样多少个节点,多少个node --&gt;</span>
 </span></span><span class=line><span class=cl>        <span class=nt>&lt;node&gt;</span>
-</span></span><span class=line><span class=cl>            <span class=nt>&lt;host&gt;</span>172.16.80.31<span class=nt>&lt;/host&gt;</span>
+</span></span><span class=line><span class=cl>            <span class=nt>&lt;host&gt;</span>172.31.10.12<span class=nt>&lt;/host&gt;</span>
 </span></span><span class=line><span class=cl>            <span class=c>&lt;!-- 9181 是 ClickHouse Server 连接 Keeper 的端口 --&gt;</span>
 </span></span><span class=line><span class=cl>            <span class=nt>&lt;port&gt;</span>9181<span class=nt>&lt;/port&gt;</span>
 </span></span><span class=line><span class=cl>        <span class=nt>&lt;/node&gt;</span>
@@ -1387,7 +1387,7 @@
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=k>WHERE</span><span class=w> </span><span class=k>cluster</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=s1>&#39;default_cluster&#39;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=k>ORDER</span><span class=w> </span><span class=k>BY</span><span class=w> </span><span class=n>shard_num</span><span class=p>,</span><span class=w> </span><span class=n>replica_num</span><span class=p>;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w></span><span class=c1>-- 期望结果：
-</span></span></span><span class=line><span class=cl><span class=c1>-- default_cluster | 1 | 1 | 172.16.80.31 | ...
+</span></span></span><span class=line><span class=cl><span class=c1>-- default_cluster | 1 | 1 | 172.31.10.12 | ...
 </span></span></span><span class=line><span class=cl><span class=c1>-- default_cluster | 1 | 2 | 172.31.10.12 | ...
 </span></span></span><span class=line><span class=cl><span class=c1>-- 注意：shard_num 必须都是 1（同一个分片） 
 </span></span></span><span class=line><span class=cl><span class=c1></span><span class=w>

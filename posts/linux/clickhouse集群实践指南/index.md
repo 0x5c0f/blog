@@ -189,7 +189,7 @@ flowchart TB
     ```xml
     <clickhouse>
         <!-- 强制指定 ClickHouse 使用IP进行注册 -->
-        <interserver_http_host>172.16.80.31</interserver_http_host>
+        <interserver_http_host>172.31.10.12</interserver_http_host>
         <remote_servers>
             <!-- 集群名称，后续 SQL 会用到 -->
             <default_cluster>
@@ -201,7 +201,7 @@ flowchart TB
                     <internal_replication>true</internal_replication>
                     <!-- replica：副本 -->
                     <replica>
-                        <host>172.16.80.31</host>
+                        <host>172.31.10.12</host>
                         <port>9000</port>
                     </replica>
                     <!-- <replica>
@@ -253,7 +253,7 @@ flowchart TB
                 <!-- 多少个节点(成员), 多少个 server , 其中id与对应的 server_id 保持一致 -->
                 <server>
                     <id>1</id>
-                    <hostname>172.16.80.31</hostname>
+                    <hostname>172.31.10.12</hostname>
                     <!-- 9234 是 Keeper 节点之间 Raft 通信端口 -->
                     <port>9234</port>
                 </server>
@@ -268,7 +268,7 @@ flowchart TB
         <zookeeper>
             <!-- 同样多少个节点,多少个node -->
             <node>
-                <host>172.16.80.31</host>
+                <host>172.31.10.12</host>
                 <!-- 9181 是 ClickHouse Server 连接 Keeper 的端口 -->
                 <port>9181</port>
             </node>
@@ -1054,7 +1054,7 @@ FROM system.clusters
 WHERE cluster = 'default_cluster'
 ORDER BY shard_num, replica_num;
 -- 期望结果：
--- default_cluster | 1 | 1 | 172.16.80.31 | ...
+-- default_cluster | 1 | 1 | 172.31.10.12 | ...
 -- default_cluster | 1 | 2 | 172.31.10.12 | ...
 -- 注意：shard_num 必须都是 1（同一个分片） 
 
