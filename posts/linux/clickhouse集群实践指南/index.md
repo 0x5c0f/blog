@@ -157,7 +157,7 @@ flowchart TB
 * 配置 [`cluster.xml`](#5-集群配置clusterxml)
 * 配置 [`keeper.xml`](#62-keeperxml最小可用单节点)
 * 配置 [`macros.xml`](#82-高可用版本推荐生产)
-* 配置 [`access_control.xml`](./clickhouse权限与访问控制设计.md#12-用户权限同步)
+* 配置 [`replicated_access.xml`](/posts/linux/clickhouse权限与访问控制设计#12-用户权限同步)
 * 所有 DDL 使用 `ON CLUSTER`
 * 所有的表都使用 `ReplicatedMergeTree`
 
@@ -400,7 +400,7 @@ SETTINGS
 ---
 
 ### 8.2. 高可用版本（推荐，生产）
-<!-- TODO： 更详细的内容查看[](./clickhouse权限与访问控制设计规范.md#1-clickhouse-权限设计的工程背景) -->
+更多内容查看[**<<集群架构设计与元数据管理>>**](/posts/linux/clickhouse权限与访问控制设计/#6-clickhouse-集群架构设计与元数据管理)
 <!-- 元数据托管模式; 传统手动模式 -->
 
 ```xml

@@ -360,20 +360,6 @@ GRANT dbtest_write TO app_user;
 
 -- 角色授权还有一种为角色继承机制,比如下面的是 ops_role 继承 admin_role 的权限，继承的机制是合并(TODO: 未测试此项)
 -- GRANT admin_role TO ops_role ON CLUSTER default_cluster;
-
--- -- TODO: 此项未测试
--- replicated_access.xml
--- <clickhouse>
---     <user_directories>
---         <users_xml>
---             <path>users.xml</path>
---         </users_xml>
---         <replicated>
---             <zookeeper_path>/clickhouse/access/</zookeeper_path>
---         </replicated>
---     </user_directories>
--- </clickhouse>
-
 ```
 
 ## 11.1 禁止使用 default 用户
@@ -396,7 +382,7 @@ ALTER USER default SETTINGS readonly = 1;
 1. 权限信息以**元数据形式**存放在 `Keeper/ZooKeeper` 的指定路径下。  
 2. 核心配置 
     ```xml
-    <!-- /etc/clickhouse-server/config.d/access_control.xml -->
+    <!-- /etc/clickhouse-server/config.d/replicated_access.xml -->
     <clickhouse>
         <user_directories replace="replace">
             <!-- 主存储：ZooKeeper -->
