@@ -9,7 +9,7 @@
   <meta itemprop="name" content="clickhouse集群实践指南">
   <meta itemprop="description" content="ClickHouse 集群实践指南，从第一次初始化，到可扩展、高可用、可运维">
   <meta itemprop="datePublished" content="2025-12-17T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-12-26T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2025-12-29T00:00:00+00:00">
   <meta itemprop="wordCount" content="3422">
   <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
   <meta itemprop="keywords" content="Linux,解决方案,Clickhouse"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/">
@@ -20,7 +20,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2025-12-17T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-12-26T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-12-29T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="解决方案">
     <meta property="article:tag" content="Clickhouse">
@@ -45,7 +45,7 @@
       "@type": "WebPage",
       "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97\/"
     },"genre": "posts","keywords": "linux, 解决方案, clickhouse","wordcount":  3422 ,
-    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97\/","datePublished": "2025-12-17T00:00:00+00:00","dateModified": "2025-12-26T00:00:00+00:00","publisher": {
+    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97\/","datePublished": "2025-12-17T00:00:00+00:00","dateModified": "2025-12-29T00:00:00+00:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -141,7 +141,7 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Clickhouse集群实践指南</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2025-12-17 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-12-17">2025-12-17</time></span>&nbsp;<span title="更新于 2025-12-26 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-12-26">2025-12-26</time></span>&nbsp;<span title="3422 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3500 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 17 分钟</span>&nbsp;</div>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2025-12-17 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2025-12-17">2025-12-17</time></span>&nbsp;<span title="更新于 2025-12-29 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-12-29">2025-12-29</time></span>&nbsp;<span title="3422 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 3500 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 17 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -2716,7 +2716,7 @@
 </div></div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
-      <div class="post-info-mod"><span title="更新于 2025-12-26 00:00:00">更新于 2025-12-26&nbsp;</span>
+      <div class="post-info-mod"><span title="更新于 2025-12-29 00:00:00">更新于 2025-12-29&nbsp;</span>
       </div><div class="post-info-license">
             <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
           </div></div><div class="post-info-line">
