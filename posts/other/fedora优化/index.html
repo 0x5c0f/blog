@@ -1,562 +1,204 @@
-<!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-    <meta name="robots" content="noodp" />
-    <title>Fedora优化 - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
-<meta name="description" content="Fedora优化"><meta name="keywords" content='linux, fedora'>
-  <meta itemprop="name" content="Fedora优化">
-  <meta itemprop="description" content="Fedora优化">
-  <meta itemprop="datePublished" content="2022-02-28T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2025-07-04T00:00:00+00:00">
-  <meta itemprop="wordCount" content="602">
-  <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-  <meta itemprop="keywords" content="Linux,Fedora"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/">
-  <meta property="og:site_name" content="一个曾经的小码农...">
-  <meta property="og:title" content="Fedora优化">
-  <meta property="og:description" content="Fedora优化">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2022-02-28T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-07-04T00:00:00+00:00">
-    <meta property="article:tag" content="Linux">
-    <meta property="article:tag" content="Fedora">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-  <meta name="twitter:title" content="Fedora优化">
-  <meta name="twitter:description" content="Fedora优化">
-<meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/" title="Fedora优化 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/other/%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90%E5%8F%8A%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0/" title="自签证书的生成及可信列表的添加" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/about/" title="About" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/index.md" title="Fedora优化 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css" integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel="stylesheet" href="/css/style.min.5516b21935ab930257ccd9906a509eece4fa3eae45fa80681bce0a64aa038d939c84f607bcd216b86fa9f9bd881abb2931053d975b038cbd1a813ed1d842df29.css" integrity="sha512-VRayGTWrkwJXzNmQalCe7OT6Pq5F+oBoG84KZKoDjZOchPYHvNIWuG+p+b2IGrspMQU9l1sDjL0agT7R2ELfKQ=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Fedora优化",
-    "inLanguage": "zh-CN",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https:\/\/blog.0x5c0f.cc\/posts\/other\/fedora%E4%BC%98%E5%8C%96\/"
-    },"genre": "posts","keywords": "linux, fedora","wordcount":  602 ,
-    "url": "https:\/\/blog.0x5c0f.cc\/posts\/other\/fedora%E4%BC%98%E5%8C%96\/","datePublished": "2022-02-28T00:00:00+00:00","dateModified": "2025-07-04T00:00:00+00:00","publisher": {
-      "@type": "Organization",
-      "name": ""},"author": {
-        "@type": "Person",
-        "name": "0x5c0f"
-      },"description": "Fedora优化"
-  }
-  </script><script src="/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js" integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head>
-  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
-  <div class="header-wrapper">
-    <div class="header-title">
-      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
-    <nav>
-      <ul class="menu"><li class="menu-item">
-              <a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item">
-              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
-              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
-              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
-              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
-            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
-            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
-            </a>
-            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
-            </a>
-            <span class="search-button search-loading" id="search-loading-desktop">
-              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-            </span>
-          </li><li class="menu-item theme-switch" title="切换主题">
-          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-        </li><li class="menu-item language-switch auto d-none" aria-hidden="true">
-    <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
-    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
-          <a href="/posts/other/fedora%E4%BC%98%E5%8C%96/" data-lang="zh-CN" class="menu-link text-secondary" title="简体中文">
-            <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
-        </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
-          <a data-lang="english" class="menu-link" title="English">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> English</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="japanese" class="menu-link" title="日本語">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
-        </li></ul>
-  </li></ul>
-    </nav>
-  </div>
-</header><header class="mobile animate__faster" id="header-mobile">
-  <div class="header-container">
-    <div class="header-wrapper">
-      <div class="header-title">
-        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
-      <div class="menu-toggle" id="menu-toggle-mobile">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <nav>
-      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
-            <div class="search mobile" id="search-mobile">
-              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
-              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
-              </a>
-              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
-              </a>
-              <span class="search-button search-loading" id="search-loading-mobile">
-                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-              </span>
-            </div>
-            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-              取消
-            </a>
-          </li><li class="menu-item"><a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
-          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span id="translate" class="menu-system-item language-switch auto d-none" aria-hidden="true">
-    <span role="button" aria-label="选择语言" title="选择语言" data-current="简体中文">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-  </span></li>
-      </ul>
-    </nav>
-  </div>
-</header><div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-  </div>
-  <div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-  </div><main class="fi-container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
-
-  <article class="page single">
-    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Fedora优化</span>
-      </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/" class="post-category" title="分类 - 那些有用没用的"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 那些有用没用的</a> 和 <a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2022-02-28 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2022-02-28">2022-02-28</time></span>&nbsp;<span title="更新于 2025-07-04 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2025-07-04">2025-07-04</time></span>&nbsp;<span title="602 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 700 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 3 分钟</span>&nbsp;</div>
-    </div><div class="details toc" id="toc-static" data-kept="false">
-        <div class="details-summary toc-title">
-          <span>目录</span>
-          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
-        </div>
-        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#2-安装鼠标右键在终端中打开33中默认好像已经有了">2. 安装鼠标右键“在终端中打开”，33中默认好像已经有了</a></li>
-    <li><a href="#3-安装-gnome-tweak-tool">3. 安装 <code>GNOME-tweak-tool</code></a></li>
-    <li><a href="#4-安装一些好用的额外工具和包">4. 安装一些好用的额外工具和包</a></li>
-    <li><a href="#5-安装ficx输入法">5. 安装<code>ficx</code>输入法</a></li>
-    <li><a href="#6-fedroa下多jdk切换方案">6. <code>fedroa</code>下多<code>jdk</code>切换方案</a></li>
-    <li><a href="#7-系统bug优化-显卡">7. 系统bug优化-显卡</a></li>
-    <li><a href="#8-系统bug优化-蓝牙">8. 系统bug优化-蓝牙</a></li>
-    <li><a href="#9-systemd-添加后无权限启动问题-service-failed-to-execute-command-permission-denied">9. systemd 添加后无权限启动问题 .service: Failed to execute command: Permission denied</a></li>
-    <li><a href="#10-fedora-32-启用-docker">10. fedora 32 启用 docker</a></li>
-    <li><a href="#11-fedora-33-下修改wayland桌面为x11">11. fedora 33 下修改Wayland桌面为x11</a></li>
-    <li><a href="#12-fedora-无法连接pptp已解决">12. fedora 无法连接pptp(已解决)</a></li>
-    <li><a href="#13-fedora-升级到指定版本">13. fedora 升级到指定版本</a></li>
-    <li><a href="#14-fedora下登陆密钥环未被解锁问题">14. fedora下登陆密钥环未被解锁问题</a></li>
-    <li><a href="#15-flatpak-应用如何挂载指定目录到应用环境中">15. <code>flatpak</code> 应用如何挂载指定目录到应用环境中</a></li>
-    <li><a href="#16-fedroa-取消关机时候提示安装挂起的软件更新的默认勾选">16. fedroa 取消关机时候提示<code>安装挂起的软件更新</code>的默认勾选</a></li>
-    <li><a href="#17-gnome-桌面-alttab-切换窗口浏览器多窗口被视为同一组的问题">17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题</a></li>
-    <li><a href="#18-fedora-38-没有声音音频设置">18. fedora 38 没有声音/音频设置</a></li>
-  </ul>
-</nav></div>
-      </div><div class="content" id="content"><div class="expiration-reminder details admonition note open">
-      <div class="details-summary admonition-title">
-        <i class="icon fa-solid fa-pencil-alt fa-fw" aria-hidden="true"></i>注意<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
-      </div>
-      <div class="details-content">
-        <div class="admonition-content">本文最后更新于 2025-07-04，文中内容可能已过时。</div>
-      </div>
-    </div><div class="details admonition info open">
-  <div class="details-summary admonition-title"><i class="icon fa-fw fa-solid fa-circle-info" aria-hidden="true"></i>前言<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></div>
-  <div class="details-content">
-    <div class="admonition-content"><em>以下的一些优化应该是我还在用<code>fedora26</code>的时候记录的，虽然现在我已经都更新到<code>33</code>了，不过这些优化还是有点用的，可以参考着改, 后续遇到的问题我也在慢慢更新上来。</em> <strong>目前已更新到fedora 38</strong></div>
-  </div>
-</div>
-<h1 class="heading-element" id="2-安装鼠标右键在终端中打开33中默认好像已经有了"><span>2. 安装鼠标右键“在终端中打开”，33中默认好像已经有了</span>
-  <a href="#2-%e5%ae%89%e8%a3%85%e9%bc%a0%e6%a0%87%e5%8f%b3%e9%94%ae%e5%9c%a8%e7%bb%88%e7%ab%af%e4%b8%ad%e6%89%93%e5%bc%8033%e4%b8%ad%e9%bb%98%e8%ae%a4%e5%a5%bd%e5%83%8f%e5%b7%b2%e7%bb%8f%e6%9c%89%e4%ba%86" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@cxd ~<span class="o">]</span>$ sudo dnf install nautilus-open-terminal</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="3-安装-gnome-tweak-tool"><span>3. 安装 <code>GNOME-tweak-tool</code></span>
-  <a href="#3-%e5%ae%89%e8%a3%85-gnome-tweak-tool" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; sudo dnf install gnome-tweak-tool 
-</span></span><span class="line"><span class="cl"><span class="c1">## 扩展库安装</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### Dash to dock (可选:Dash to panel)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### system-monitor </span>
-</span></span><span class="line"><span class="cl"><span class="c1">### Recent(Item)s (fedora 38 已无，暂为找到替代方案)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### Topicons plus git(fedora 38 已无,切换为 AppIndicator and KStatusNotifierItem Support)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### Drop down terminal(fedora 38 已无)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">### Clipboard indicator(可以切换为 Clipboard History 或者 Pano 、 或者使用 copyq (推荐) ) </span>
-</span></span><span class="line"><span class="cl"><span class="c1">### Todo.txt </span>
-</span></span><span class="line"><span class="cl"><span class="c1">### Bottompanel(将任务栏放到下面,与windows list 和 Dash to panel 扩展冲突)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">## 扩展字体修正</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Drop down terminal: FONT_NAME_SETTING_KEY == monospace-font-name</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># org.gnome.desktop.interface</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># gsettings set org.gnome.desktop.interface monospace-font-name &#39;Source Code Pro 15&#39;</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="4-安装一些好用的额外工具和包"><span>4. 安装一些好用的额外工具和包</span>
-  <a href="#4-%e5%ae%89%e8%a3%85%e4%b8%80%e4%ba%9b%e5%a5%bd%e7%94%a8%e7%9a%84%e9%a2%9d%e5%a4%96%e5%b7%a5%e5%85%b7%e5%92%8c%e5%8c%85" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; sudo dnf install flameshot  <span class="c1"># 火焰截图,很好用,拥有win下面截图软件的一些功能 </span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install audacity   <span class="c1"># 声音处理工具,实际好像没啥用   </span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install peek       <span class="c1"># gif 图像录制工具 </span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install inkscape       <span class="c1"># 矢量图画画工具 </span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install sleek      <span class="c1"># todo 任务(https://github.com/ransome1/sleek)</span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install libreoffice-langpack-zh-Hans.x86_64   <span class="c1"># libreoffice的中文语言包 </span>
-</span></span><span class="line"><span class="cl">$&gt; sudo pip3 install bpython
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># https://flathub.org/zh-Hans/apps/io.github.flattool.Warehouse             # flatpak 管理工具</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># https://flathub.org/zh-Hans/apps/com.github.tchx84.Flatseal               # flatpak 权限管理工具</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># https://flathub.org/zh-Hans/apps/io.github.giantpinkrobots.flatsweep      # flatpak 卸载残留清理工具(fedora38下运行不稳定)</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="5-安装ficx输入法"><span>5. 安装<code>ficx</code>输入法</span>
-  <a href="#5-%e5%ae%89%e8%a3%85ficx%e8%be%93%e5%85%a5%e6%b3%95" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><blockquote>
-<p><a href="https://blog.csdn.net/qq23425352/article/details/107379335"target="_blank" rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq23425352/article/details/107379335<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; 
-</span></span><span class="line"><span class="cl"><span class="c1"># fcitx </span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install fcitx fcitx-<span class="o">{</span>ui-light,qt<span class="o">{</span>4,5<span class="o">}</span>,table,gtk<span class="o">{</span>2,3<span class="o">}</span>,table-chinese,configtool,sunpinyin<span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># fcitx5 </span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install fcitx5 fcitx5-<span class="o">{</span>qt<span class="o">{</span>5,6<span class="o">}</span>,configtool,gtk<span class="o">{</span>2,3,4<span class="o">}</span>,lua,rime,table-extra,table-other,chinese-addons<span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">$&gt; sudo vim /etc/profile.d/fcitx.sh
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">GTK_IM_MODULE</span><span class="o">=</span>fcitx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">QT_IM_MODULE</span><span class="o">=</span>fcitx
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">XMODIFIERS</span><span class="o">=</span><span class="s2">&#34;@im=fcitx&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 开机启动项 添加fcitx ，然后重启</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="6-fedroa下多jdk切换方案"><span>6. <code>fedroa</code>下多<code>jdk</code>切换方案</span>
-  <a href="#6-fedroa%e4%b8%8b%e5%a4%9ajdk%e5%88%87%e6%8d%a2%e6%96%b9%e6%a1%88" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>cxd@0x5c0f opt<span class="o">]</span>$ sudo update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_121/bin/java <span class="m">1070</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>cxd@0x5c0f opt<span class="o">]</span>$ sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_121/bin/javac <span class="m">1070</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>cxd@0x5c0f opt<span class="o">]</span>$ sudo update-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_121/bin/jar <span class="m">1070</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>cxd@0x5c0f opt<span class="o">]</span>$ sudo update-alternatives --install /usr/bin/javah javah /opt/jdk1.8.0_121/bin/javah <span class="m">1070</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>cxd@0x5c0f opt<span class="o">]</span>$ sudo update-alternatives --install /usr/bin/javap javap /opt/jdk1.8.0_121/bin/javap <span class="m">1070</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>cxd@0x5c0f opt<span class="o">]</span>$ sudo update-alternatives --config java
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">共有 <span class="m">3</span> 个提供“java”的程序。
-</span></span><span class="line"><span class="cl">  选项 命令
-</span></span><span class="line"><span class="cl">-----------------------------------------------
-</span></span><span class="line"><span class="cl">* <span class="m">1</span> java-1.8.0-openjdk.x86_64 <span class="o">(</span>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.121-10.b14.fc25.x86_64/jre/bin/java<span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="m">2</span> /opt/jdk1.8.0_121/bin/java
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">按 Enter 保留当前选项<span class="o">[</span>+<span class="o">]</span>，或者键入选项编号：2</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="7-系统bug优化-显卡"><span>7. 系统bug优化-显卡</span>
-  <a href="#7-%e7%b3%bb%e7%bb%9fbug%e4%bc%98%e5%8c%96-%e6%98%be%e5%8d%a1" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><p>此方法解决了nouveau 对于nvidia显卡支持不好从而导致了gnome在锁屏状态卡死,从而无法登陆桌面,只能重启操作系统 (双显卡电脑).</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 修改文件 /etc/default/grub</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 2. 修改行 GRUB_CMDLINE_LINUX 在末尾添加 nouveau.modeset=0 </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 3. 更新gurb:  grub2-mkconfig -o /boot/grub2/grub.cfg</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. 重启 </span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="8-系统bug优化-蓝牙"><span>8. 系统bug优化-蓝牙</span>
-  <a href="#8-%e7%b3%bb%e7%bb%9fbug%e4%bc%98%e5%8c%96-%e8%93%9d%e7%89%99" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><p>这也可能不是一个bug,具体问题是蓝牙鼠标连接后一段时间未使用电脑和鼠标,蓝牙将会自动被断开,但系统仍然显示连接中,手动断开后也无法在进行连接,只能删除原有连接然后重新配对, 多次查询相关无果后对蓝牙的相关配置文件进行检查,发现系统设置里面对于蓝牙有<code>DiscoverableTimeout</code>这么一个参数,此参数作用是设置蓝牙保持发现的最长时间,默认180秒. 修改此参数后问题解决.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 解决方案 </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 1. 修改配置文件 /etc/bluetooth/main.conf</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 2. 修改 DiscoverableTimeout=0 </span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 另: fedora官网wiki提供了另一种解决方案,说的大概是大部分的自动断开都是因为蓝牙服务未以守护进程方式运行,解决方案是 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">## https://fedoraproject.org/wiki/How_to_debug_Bluetooth_problems#Simple_debugging </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 1. 修改配置文件 /usr/lib/systemd/system/bluetooth.service</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 2. 修改参数  ExecStart 在末尾添加 -d </span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 重启 systemctl restart bluetooth.service </span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="9-systemd-添加后无权限启动问题-service-failed-to-execute-command-permission-denied"><span>9. systemd 添加后无权限启动问题 .service: Failed to execute command: Permission denied</span>
-  <a href="#9-systemd-%e6%b7%bb%e5%8a%a0%e5%90%8e%e6%97%a0%e6%9d%83%e9%99%90%e5%90%af%e5%8a%a8%e9%97%ae%e9%a2%98-service-failed-to-execute-command-permission-denied" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><p>此问题实际上是由于<code>selinux</code>开启<code>enforcing</code>(强制模式)导致的,一般的<code>fedora</code>用户应该都不会去关闭<code>selinux</code>吧，只有在服务器上为了方便才会去关闭,解决这个问题的方法有两种，一种是关闭<code>selinux</code>,或者将<code>selinux</code>设置为<code>permissive</code>(宽容模式),第二种就是直接修正上下文权限为<code>bin_t</code>,这个具体可以看下系统中其他可执行文件的上下文权限是什么(<code>ls -Z</code>),修改命令是<code>chcon -t bin_t &lt;binaryfile&gt;</code>,另外<code>.service</code>命名在<code>systemd</code>配置目录中了，<code>systemctl status</code>时却看不到,也是这个问题，这个问题也是我直接复制<code>v2ray</code>的时候发现的，这儿记录下.</p>
-<h1 class="heading-element" id="10-fedora-32-启用-docker"><span>10. fedora 32 启用 docker</span>
-  <a href="#10-fedora-32-%e5%90%af%e7%94%a8-docker" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><blockquote>
-<p><a href="https://linux.cn/article-12433-1.html"target="_blank" rel="external nofollow noopener noreferrer">https://linux.cn/article-12433-1.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-<h1 class="heading-element" id="11-fedora-33-下修改wayland桌面为x11"><span>11. fedora 33 下修改Wayland桌面为x11</span>
-  <a href="#11-fedora-33-%e4%b8%8b%e4%bf%ae%e6%94%b9wayland%e6%a1%8c%e9%9d%a2%e4%b8%bax11" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /etc/gdm/custom.conf
-</span></span><span class="line"><span class="cl"><span class="o">[</span>daemon<span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Uncomment the line below to force the login screen to use Xorg</span>
-</span></span><span class="line"><span class="cl"><span class="nv">WaylandEnable</span><span class="o">=</span><span class="nb">false</span>
-</span></span><span class="line"><span class="cl"><span class="nv">DefaultSession</span><span class="o">=</span>gnome-xorg.desktop
-</span></span><span class="line"><span class="cl"><span class="c1">#AutomaticLoginEnable=true</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#AutomaticLogin=cxd</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="12-fedora-无法连接pptp已解决"><span>12. fedora 无法连接pptp(已解决)</span>
-  <a href="#12-fedora-%e6%97%a0%e6%b3%95%e8%bf%9e%e6%8e%a5pptp%e5%b7%b2%e8%a7%a3%e5%86%b3" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><p>原因是防火墙需要开启gre协议放行,以下是firewalld配置，可能linux用户都有这种情况,若其他类型vpn也出现无法连接情况，可能也是这个原因</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT <span class="m">0</span> -p gre -j ACCEPT 
-</span></span><span class="line"><span class="cl">$&gt; firewall-cmd --permanent --direct --add-rule ipv6 filter INPUT <span class="m">0</span> -p gre -j ACCEPT 
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 如果上述配置仍然无效,那么你可能需要在连接高级中勾选&#34;使用点到点加密(MPPE)(P)&#34;选项</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="13-fedora-升级到指定版本"><span>13. fedora 升级到指定版本</span>
-  <a href="#13-fedora-%e5%8d%87%e7%ba%a7%e5%88%b0%e6%8c%87%e5%ae%9a%e7%89%88%e6%9c%ac" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">## 更新系统</span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf upgrade --refresh
-</span></span><span class="line"><span class="cl"><span class="c1">## 安装dnf-plugin-system-upgrade包</span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install dnf-plugin-system-upgrade
-</span></span><span class="line"><span class="cl"><span class="c1">## 下载最新的 Fedora 更新包</span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf system-upgrade download --releasever<span class="o">=</span><span class="m">35</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 重启升级</span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf system-upgrade reboot</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="14-fedora下登陆密钥环未被解锁问题"><span>14. fedora下登陆密钥环未被解锁问题</span>
-  <a href="#14-fedora%e4%b8%8b%e7%99%bb%e9%99%86%e5%af%86%e9%92%a5%e7%8e%af%e6%9c%aa%e8%a2%ab%e8%a7%a3%e9%94%81%e9%97%ae%e9%a2%98" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><ul>
-<li>默认情况下，系统安装后，密钥环密码和基础帐号安装时候的密码一致，这个东西个人电脑感觉没什么用，可以通过以下方式进行取消</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># fedora 下默认是没有安装seahorse的(本来我原来也没有找到解决方案，无意间测试ubuntu才发现这个)</span>
-</span></span><span class="line"><span class="cl">$&gt; sudo dnf install seahorse
-</span></span><span class="line"><span class="cl"><span class="c1"># 活动栏中找到&#34;密码和密钥&#34;(及&#34;seahorse&#34;), 打开后找到登陆, 右键登陆，设置为空密码即可。</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="15-flatpak-应用如何挂载指定目录到应用环境中"><span>15. <code>flatpak</code> 应用如何挂载指定目录到应用环境中</span>
-  <a href="#15-flatpak-%e5%ba%94%e7%94%a8%e5%a6%82%e4%bd%95%e6%8c%82%e8%bd%bd%e6%8c%87%e5%ae%9a%e7%9b%ae%e5%bd%95%e5%88%b0%e5%ba%94%e7%94%a8%e7%8e%af%e5%a2%83%e4%b8%ad" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><ul>
-<li>以 <a href="https://flathub.org/zh-Hans/apps/com.tencent.WeChat"target="_blank" rel="external nofollow noopener noreferrer"><code>微信(Universal)</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 为例, 由于<code>flatpak</code>默认的沙盒保护机制，只有部分目录映射到了沙盒中。根据作者<a href="https://github.com/web1n"target="_blank" rel="external nofollow noopener noreferrer"><code>(web1n)</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>打包的仓库<a href="https://github.com/web1n/wechat-universal-flatpak/issues/14"target="_blank" rel="external nofollow noopener noreferrer"><code>issue #14</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>可有多种解决方案，本站仅记录一种，其他请直接查看<a href="https://github.com/web1n/wechat-universal-flatpak/issues/14"target="_blank" rel="external nofollow noopener noreferrer"><code>issue #14</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>。</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 Flatseal </span>
-</span></span><span class="line"><span class="cl"><span class="c1">## https://flathub.org/apps/com.github.tchx84.Flatseal </span>
-</span></span><span class="line"><span class="cl">$&gt; flatpak install flathub com.github.tchx84.Flatseal</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="16-fedroa-取消关机时候提示安装挂起的软件更新的默认勾选"><span>16. fedroa 取消关机时候提示<code>安装挂起的软件更新</code>的默认勾选</span>
-  <a href="#16-fedroa-%e5%8f%96%e6%b6%88%e5%85%b3%e6%9c%ba%e6%97%b6%e5%80%99%e6%8f%90%e7%a4%ba%e5%ae%89%e8%a3%85%e6%8c%82%e8%b5%b7%e7%9a%84%e8%bd%af%e4%bb%b6%e6%9b%b4%e6%96%b0%e7%9a%84%e9%bb%98%e8%ae%a4%e5%8b%be%e9%80%89" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># https://discussion.fedoraproject.org/t/disable-gnome-software-update-notifications/78209/2 </span>
-</span></span><span class="line"><span class="cl">$&gt; gsettings <span class="nb">set</span> org.gnome.software allow-updates false</span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="17-gnome-桌面-alttab-切换窗口浏览器多窗口被视为同一组的问题"><span>17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题</span>
-  <a href="#17-gnome-%e6%a1%8c%e9%9d%a2-alttab-%e5%88%87%e6%8d%a2%e7%aa%97%e5%8f%a3%e6%b5%8f%e8%a7%88%e5%99%a8%e5%a4%9a%e7%aa%97%e5%8f%a3%e8%a2%ab%e8%a7%86%e4%b8%ba%e5%90%8c%e4%b8%80%e7%bb%84%e7%9a%84%e9%97%ae%e9%a2%98" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><ul>
-<li>在系统中的<code>键盘</code>-<code>键盘快捷键</code>-<code>导航</code> 中，将<code>切换应用程序</code>的快捷键删了，将<code>切换窗口</code>快捷键改为<code>alt+tab</code>即可解决</li>
-</ul>
-<h1 class="heading-element" id="18-fedora-38-没有声音音频设置"><span>18. fedora 38 没有声音/音频设置</span>
-  <a href="#18-fedora-38-%e6%b2%a1%e6%9c%89%e5%a3%b0%e9%9f%b3%e9%9f%b3%e9%a2%91%e8%ae%be%e7%bd%ae" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><ul>
-<li><code>OP</code>电脑体现是, 系统设置里面没有声音设置(应该是看不到输入和输出的设备管理)，蓝牙连接声音传递正常，但无法加减音量, 耳机线连接异常</li>
-<li>解决方案: 注释掉 <code>/etc/pulse/default.pa: 110</code> 中 <code>load-module module-suspend-on-idle</code> , 然后<code>pulseaudio -k</code>、<code>pulseaudio --start</code> 一下(重启应该也可以), 具体可以看一下 <a href="https://discussion.fedoraproject.org/t/no-sound-audio-in-fedora-38/81903"target="_blank" rel="external nofollow noopener noreferrer"><code>https://discussion.fedoraproject.org/t/no-sound-audio-in-fedora-38/81903</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></li>
-</ul>
-</div><div class="post-footer" id="post-footer">
-  <div class="post-info">
-    <div class="post-info-line">
-      <div class="post-info-mod"><span title="更新于 2025-07-04 00:00:00">更新于 2025-07-04&nbsp;</span>
-      </div><div class="post-info-license">
-            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
-          </div></div><div class="post-info-line">
-        <div class="post-info-md"><span><a href="/posts/other/fedora%E4%BC%98%E5%8C%96/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
-        <div class="post-info-share">
-          <span></span>
-        </div>
-      </div></div>
-
-  <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/fedora/" class="post-tag" title="标签 - Fedora">Fedora</a></section>
-    <section><span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-    </section>
-  </div><div class="post-nav"><a href="/posts/other/%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90%E5%8F%8A%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0/" class="post-nav-item" rel="prev" title="自签证书的生成及可信列表的添加"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>自签证书的生成及可信列表的添加</a><a href="/posts/linux/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7logrotate%E8%AF%A6%E8%A7%A3/" class="post-nav-item" rel="next" title="日志切割工具Logrotate详解">日志切割工具Logrotate详解<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
-</div>
-<div id="comments"><div id="gitalk" class="comment"></div><noscript>
-        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
-      </noscript></div></article>
-
-  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
-      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.4.0-alpha.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
-        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
-              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
-  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
-        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
-    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
-  </noscript>
-</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.e525ab86258d1091611cdf6bbc548866f3bf97020fe6aadf3ce8e0ccd9aaec45f31b1cd3dd48d61e1eaf504f02e5666c4d41bd9e580964607a208acefd9cea54.css" integrity="sha512-5SWrhiWNEJFhHN9rvFSIZvO/lwIP5qrfPOjgzNmq7EXzGxzT3UjWHh6vUE8C5WZsTUG9nlgJZGB6IIrO/ZzqVA=="><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.00b3ce7d82b0ec4b5808452e6fdc89937cea0772879e35da39ac4aab50bfdafddf3f2863e7677be1732d17ac21d3563a43c2a0ae96491a02ba776df4f74a9ce1.js" integrity="sha512-ALPOfYKw7EtYCEUub9yJk3zqB3KHnjXaOaxKq1C/2v3fPyhj52d74XMtF6wh01Y6Q8KgrpZJGgK6d23090qc4Q==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2022-02-28T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"Fedora优化"}},"search":{"distance":100,"findAllMatches":true,"fuseIndexURL":"/search.json","highlightTag":"mark","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.2,"type":"fuse","useExtendedSearch":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.4.0-alpha.1"};</script><script src="/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js" integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src="/lib/translate.min.88eab6458572fed1ef29f13c8cad30a51e0b1b403bcd162eb1a9e2fea0c98c59618a90b1871487d72d34f03fc152edcfc781651a2632ed5dfe68a3291ea11d65.js" integrity="sha512-iOq2RYVy/tHvKfE8jK0wpR4LG0A7zRYusani/qDJjFlhipCxhxSH1y008D/BUu3Px4FlGiYy7V3+aKMpHqEdZQ==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/other/fedora%E4%BC%98%E5%8C%96/"}};</script><script src="/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js" integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body>
-</html>
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>Fedora优化 - 一个曾经的小码农...</title><meta name=author content="0x5c0f"><meta name=description content="Fedora优化"><meta name=keywords content='linux,fedora'><meta itemprop=name content="Fedora优化"><meta itemprop=description content="Fedora优化"><meta itemprop=datePublished content="2022-02-28T00:00:00+00:00"><meta itemprop=dateModified content="2025-07-04T00:00:00+00:00"><meta itemprop=wordCount content="602"><meta itemprop=image content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta itemprop=keywords content="Linux,Fedora"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/"><meta property="og:site_name" content="一个曾经的小码农..."><meta property="og:title" content="Fedora优化"><meta property="og:description" content="Fedora优化"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-02-28T00:00:00+00:00"><meta property="article:modified_time" content="2025-07-04T00:00:00+00:00"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Fedora"><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta name=twitter:title content="Fedora优化"><meta name=twitter:description content="Fedora优化"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/ title="Fedora优化 - 一个曾经的小码农..."><link rel=prev type=text/html href=https://blog.0x5c0f.cc/posts/other/%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90%E5%8F%8A%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0/ title=自签证书的生成及可信列表的添加><link rel=next type=text/html href=https://blog.0x5c0f.cc/about/ title=About><link rel=alternate type=text/markdown href=https://blog.0x5c0f.cc/posts/other/fedora%E4%BC%98%E5%8C%96/index.md title="Fedora优化 - 一个曾经的小码农..."><link rel=stylesheet href=/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel=stylesheet href=/css/style.min.5516b21935ab930257ccd9906a509eece4fa3eae45fa80681bce0a64aa038d939c84f607bcd216b86fa9f9bd881abb2931053d975b038cbd1a813ed1d842df29.css integrity="sha512-VRayGTWrkwJXzNmQalCe7OT6Pq5F+oBoG84KZKoDjZOchPYHvNIWuG+p+b2IGrspMQU9l1sDjL0agT7R2ELfKQ=="><link rel=preload href=/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel=preload href=/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Fedora优化","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.0x5c0f.cc\/posts\/other\/fedora%E4%BC%98%E5%8C%96\/"},"genre":"posts","keywords":"linux, fedora","wordcount":602,"url":"https:\/\/blog.0x5c0f.cc\/posts\/other\/fedora%E4%BC%98%E5%8C%96\/","datePublished":"2022-02-28T00:00:00+00:00","dateModified":"2025-07-04T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"0x5c0f"},"description":"Fedora优化"}</script><script src=/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=一个曾经的小码农...><span class=typeit><template>0x5c0f.cc</template></span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/posts/>所有文章</a></li><li class=menu-item><a class=menu-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-link href=/archives/>归档</a></li><li class=menu-item><a class=menu-link href=/about/>About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li><li class="menu-item language-switch auto d-none" aria-hidden=true><span role=button aria-label=选择语言 title=选择语言><i class="fa-solid fa-language fa-fw" aria-hidden=true></i></span><ul class=sub-menu><li class="menu-item active" data-type=artificial><a href=/posts/other/fedora%E4%BC%98%E5%8C%96/ data-lang=zh-CN class="menu-link text-secondary" title=简体中文><i class="fa-solid fa-person fa-fw fa-sm" aria-hidden=true></i> 简体中文</a></li><li class=menu-item-divider aria-hidden=true></li><li class=menu-item data-type=machine><a data-lang=english class=menu-link title=English><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> English</a></li><li class=menu-item data-type=machine><a data-lang=chinese_simplified class=menu-link title=简体中文><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 简体中文</a></li><li class=menu-item data-type=machine><a data-lang=japanese class=menu-link title=日本語><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 日本語</a></li><li class=menu-item data-type=machine><a data-lang=chinese_traditional class=menu-link title=繁體中文><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 繁體中文</a></li></ul></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=一个曾经的小码农...><span class=typeit><template>0x5c0f.cc</template></span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/posts/>所有文章</a></li><li class=menu-item><a class=menu-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-link href=/archives/>归档</a></li><li class=menu-item><a class=menu-link href=/about/>About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span><span id=translate class="menu-system-item language-switch auto d-none" aria-hidden=true>
+<span role=button aria-label=选择语言 title=选择语言 data-current=简体中文>简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden=true></i></span></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>Fedora优化</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://blog.0x5c0f.cc title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><i class="fa-solid fa-user-circle" aria-hidden=true></i>
+0x5c0f</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/linux/ class=post-category title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Linux</a>&ensp;<a href=/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/ class=post-category title="分类 - 那些有用没用的"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> 那些有用没用的</a> 和 <a href=/collections/%E6%9D%82%E8%AE%B0/ class=post-collection title="合集 - 杂记"><i class="fa-solid fa-layer-group fa-fw" aria-hidden=true></i> 杂记</a></span></div><div class=post-meta-line><span title="发布于 2022-02-28 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2022-02-28>2022-02-28</time></span>&nbsp;<span title="更新于 2025-07-04 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden=true></i><time datetime=2025-07-04>2025-07-04</time></span>&nbsp;<span title="602 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 700 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 3 分钟</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#2-安装鼠标右键在终端中打开33中默认好像已经有了>2. 安装鼠标右键“在终端中打开”，33中默认好像已经有了</a></li><li><a href=#3-安装-gnome-tweak-tool>3. 安装 <code>GNOME-tweak-tool</code></a></li><li><a href=#4-安装一些好用的额外工具和包>4. 安装一些好用的额外工具和包</a></li><li><a href=#5-安装ficx输入法>5. 安装<code>ficx</code>输入法</a></li><li><a href=#6-fedroa下多jdk切换方案>6. <code>fedroa</code>下多<code>jdk</code>切换方案</a></li><li><a href=#7-系统bug优化-显卡>7. 系统bug优化-显卡</a></li><li><a href=#8-系统bug优化-蓝牙>8. 系统bug优化-蓝牙</a></li><li><a href=#9-systemd-添加后无权限启动问题-service-failed-to-execute-command-permission-denied>9. systemd 添加后无权限启动问题 .service: Failed to execute command: Permission denied</a></li><li><a href=#10-fedora-32-启用-docker>10. fedora 32 启用 docker</a></li><li><a href=#11-fedora-33-下修改wayland桌面为x11>11. fedora 33 下修改Wayland桌面为x11</a></li><li><a href=#12-fedora-无法连接pptp已解决>12. fedora 无法连接pptp(已解决)</a></li><li><a href=#13-fedora-升级到指定版本>13. fedora 升级到指定版本</a></li><li><a href=#14-fedora下登陆密钥环未被解锁问题>14. fedora下登陆密钥环未被解锁问题</a></li><li><a href=#15-flatpak-应用如何挂载指定目录到应用环境中>15. <code>flatpak</code> 应用如何挂载指定目录到应用环境中</a></li><li><a href=#16-fedroa-取消关机时候提示安装挂起的软件更新的默认勾选>16. fedroa 取消关机时候提示<code>安装挂起的软件更新</code>的默认勾选</a></li><li><a href=#17-gnome-桌面-alttab-切换窗口浏览器多窗口被视为同一组的问题>17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题</a></li><li><a href=#18-fedora-38-没有声音音频设置>18. fedora 38 没有声音/音频设置</a></li></ul></nav></div></div><div class=content id=content><div class="expiration-reminder details admonition note open"><div class="details-summary admonition-title"><i class="icon fa-solid fa-pencil-alt fa-fw" aria-hidden=true></i>注意<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class=details-content><div class=admonition-content>本文最后更新于 2025-07-04，文中内容可能已过时。</div></div></div><div class="details admonition info open"><div class="details-summary admonition-title"><i class="icon fa-fw fa-solid fa-circle-info" aria-hidden=true></i>前言<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class=details-content><div class=admonition-content><em>以下的一些优化应该是我还在用<code>fedora26</code>的时候记录的，虽然现在我已经都更新到<code>33</code>了，不过这些优化还是有点用的，可以参考着改, 后续遇到的问题我也在慢慢更新上来。</em> <strong>目前已更新到fedora 38</strong></div></div></div><h1 class=heading-element id=2-安装鼠标右键在终端中打开33中默认好像已经有了><span>2. 安装鼠标右键“在终端中打开”，33中默认好像已经有了</span>
+<a href=#2-%e5%ae%89%e8%a3%85%e9%bc%a0%e6%a0%87%e5%8f%b3%e9%94%ae%e5%9c%a8%e7%bb%88%e7%ab%af%e4%b8%ad%e6%89%93%e5%bc%8033%e4%b8%ad%e9%bb%98%e8%ae%a4%e5%a5%bd%e5%83%8f%e5%b7%b2%e7%bb%8f%e6%9c%89%e4%ba%86 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>root@cxd ~<span class=o>]</span>$ sudo dnf install nautilus-open-terminal</span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=3-安装-gnome-tweak-tool><span>3. 安装 <code>GNOME-tweak-tool</code></span>
+<a href=#3-%e5%ae%89%e8%a3%85-gnome-tweak-tool class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; sudo dnf install gnome-tweak-tool 
+</span></span><span class=line><span class=cl><span class=c1>## 扩展库安装</span>
+</span></span><span class=line><span class=cl><span class=c1>### Dash to dock (可选:Dash to panel)</span>
+</span></span><span class=line><span class=cl><span class=c1>### system-monitor </span>
+</span></span><span class=line><span class=cl><span class=c1>### Recent(Item)s (fedora 38 已无，暂为找到替代方案)</span>
+</span></span><span class=line><span class=cl><span class=c1>### Topicons plus git(fedora 38 已无,切换为 AppIndicator and KStatusNotifierItem Support)</span>
+</span></span><span class=line><span class=cl><span class=c1>### Drop down terminal(fedora 38 已无)</span>
+</span></span><span class=line><span class=cl><span class=c1>### Clipboard indicator(可以切换为 Clipboard History 或者 Pano 、 或者使用 copyq (推荐) ) </span>
+</span></span><span class=line><span class=cl><span class=c1>### Todo.txt </span>
+</span></span><span class=line><span class=cl><span class=c1>### Bottompanel(将任务栏放到下面,与windows list 和 Dash to panel 扩展冲突)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>## 扩展字体修正</span>
+</span></span><span class=line><span class=cl><span class=c1># Drop down terminal: FONT_NAME_SETTING_KEY == monospace-font-name</span>
+</span></span><span class=line><span class=cl><span class=c1># org.gnome.desktop.interface</span>
+</span></span><span class=line><span class=cl><span class=c1># gsettings set org.gnome.desktop.interface monospace-font-name &#39;Source Code Pro 15&#39;</span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=4-安装一些好用的额外工具和包><span>4. 安装一些好用的额外工具和包</span>
+<a href=#4-%e5%ae%89%e8%a3%85%e4%b8%80%e4%ba%9b%e5%a5%bd%e7%94%a8%e7%9a%84%e9%a2%9d%e5%a4%96%e5%b7%a5%e5%85%b7%e5%92%8c%e5%8c%85 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; sudo dnf install flameshot  <span class=c1># 火焰截图,很好用,拥有win下面截图软件的一些功能 </span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install audacity   <span class=c1># 声音处理工具,实际好像没啥用   </span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install peek       <span class=c1># gif 图像录制工具 </span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install inkscape       <span class=c1># 矢量图画画工具 </span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install sleek      <span class=c1># todo 任务(https://github.com/ransome1/sleek)</span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install libreoffice-langpack-zh-Hans.x86_64   <span class=c1># libreoffice的中文语言包 </span>
+</span></span><span class=line><span class=cl>$&gt; sudo pip3 install bpython
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># https://flathub.org/zh-Hans/apps/io.github.flattool.Warehouse             # flatpak 管理工具</span>
+</span></span><span class=line><span class=cl><span class=c1># https://flathub.org/zh-Hans/apps/com.github.tchx84.Flatseal               # flatpak 权限管理工具</span>
+</span></span><span class=line><span class=cl><span class=c1># https://flathub.org/zh-Hans/apps/io.github.giantpinkrobots.flatsweep      # flatpak 卸载残留清理工具(fedora38下运行不稳定)</span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=5-安装ficx输入法><span>5. 安装<code>ficx</code>输入法</span>
+<a href=#5-%e5%ae%89%e8%a3%85ficx%e8%be%93%e5%85%a5%e6%b3%95 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><blockquote><p><a href=https://blog.csdn.net/qq23425352/article/details/107379335 target=_blank rel="external nofollow noopener noreferrer">https://blog.csdn.net/qq23425352/article/details/107379335<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; 
+</span></span><span class=line><span class=cl><span class=c1># fcitx </span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install fcitx fcitx-<span class=o>{</span>ui-light,qt<span class=o>{</span>4,5<span class=o>}</span>,table,gtk<span class=o>{</span>2,3<span class=o>}</span>,table-chinese,configtool,sunpinyin<span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=c1># fcitx5 </span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install fcitx5 fcitx5-<span class=o>{</span>qt<span class=o>{</span>5,6<span class=o>}</span>,configtool,gtk<span class=o>{</span>2,3,4<span class=o>}</span>,lua,rime,table-extra,table-other,chinese-addons<span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$&gt; sudo vim /etc/profile.d/fcitx.sh
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>GTK_IM_MODULE</span><span class=o>=</span>fcitx
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>QT_IM_MODULE</span><span class=o>=</span>fcitx
+</span></span><span class=line><span class=cl><span class=nb>export</span> <span class=nv>XMODIFIERS</span><span class=o>=</span><span class=s2>&#34;@im=fcitx&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># 开机启动项 添加fcitx ，然后重启</span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=6-fedroa下多jdk切换方案><span>6. <code>fedroa</code>下多<code>jdk</code>切换方案</span>
+<a href=#6-fedroa%e4%b8%8b%e5%a4%9ajdk%e5%88%87%e6%8d%a2%e6%96%b9%e6%a1%88 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>cxd@0x5c0f opt<span class=o>]</span>$ sudo update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_121/bin/java <span class=m>1070</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>cxd@0x5c0f opt<span class=o>]</span>$ sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_121/bin/javac <span class=m>1070</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>cxd@0x5c0f opt<span class=o>]</span>$ sudo update-alternatives --install /usr/bin/jar jar /opt/jdk1.8.0_121/bin/jar <span class=m>1070</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>cxd@0x5c0f opt<span class=o>]</span>$ sudo update-alternatives --install /usr/bin/javah javah /opt/jdk1.8.0_121/bin/javah <span class=m>1070</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>cxd@0x5c0f opt<span class=o>]</span>$ sudo update-alternatives --install /usr/bin/javap javap /opt/jdk1.8.0_121/bin/javap <span class=m>1070</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>cxd@0x5c0f opt<span class=o>]</span>$ sudo update-alternatives --config java
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>共有 <span class=m>3</span> 个提供“java”的程序。
+</span></span><span class=line><span class=cl>  选项 命令
+</span></span><span class=line><span class=cl>-----------------------------------------------
+</span></span><span class=line><span class=cl>* <span class=m>1</span> java-1.8.0-openjdk.x86_64 <span class=o>(</span>/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.121-10.b14.fc25.x86_64/jre/bin/java<span class=o>)</span>
+</span></span><span class=line><span class=cl>  <span class=m>2</span> /opt/jdk1.8.0_121/bin/java
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>按 Enter 保留当前选项<span class=o>[</span>+<span class=o>]</span>，或者键入选项编号：2</span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=7-系统bug优化-显卡><span>7. 系统bug优化-显卡</span>
+<a href=#7-%e7%b3%bb%e7%bb%9fbug%e4%bc%98%e5%8c%96-%e6%98%be%e5%8d%a1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><p>此方法解决了nouveau 对于nvidia显卡支持不好从而导致了gnome在锁屏状态卡死,从而无法登陆桌面,只能重启操作系统 (双显卡电脑).</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 1. 修改文件 /etc/default/grub</span>
+</span></span><span class=line><span class=cl><span class=c1># 2. 修改行 GRUB_CMDLINE_LINUX 在末尾添加 nouveau.modeset=0 </span>
+</span></span><span class=line><span class=cl><span class=c1># 3. 更新gurb:  grub2-mkconfig -o /boot/grub2/grub.cfg</span>
+</span></span><span class=line><span class=cl><span class=c1># 4. 重启 </span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=8-系统bug优化-蓝牙><span>8. 系统bug优化-蓝牙</span>
+<a href=#8-%e7%b3%bb%e7%bb%9fbug%e4%bc%98%e5%8c%96-%e8%93%9d%e7%89%99 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><p>这也可能不是一个bug,具体问题是蓝牙鼠标连接后一段时间未使用电脑和鼠标,蓝牙将会自动被断开,但系统仍然显示连接中,手动断开后也无法在进行连接,只能删除原有连接然后重新配对, 多次查询相关无果后对蓝牙的相关配置文件进行检查,发现系统设置里面对于蓝牙有<code>DiscoverableTimeout</code>这么一个参数,此参数作用是设置蓝牙保持发现的最长时间,默认180秒. 修改此参数后问题解决.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># 解决方案 </span>
+</span></span><span class=line><span class=cl><span class=c1># 1. 修改配置文件 /etc/bluetooth/main.conf</span>
+</span></span><span class=line><span class=cl><span class=c1># 2. 修改 DiscoverableTimeout=0 </span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 另: fedora官网wiki提供了另一种解决方案,说的大概是大部分的自动断开都是因为蓝牙服务未以守护进程方式运行,解决方案是 </span>
+</span></span><span class=line><span class=cl><span class=c1>## https://fedoraproject.org/wiki/How_to_debug_Bluetooth_problems#Simple_debugging </span>
+</span></span><span class=line><span class=cl><span class=c1># 1. 修改配置文件 /usr/lib/systemd/system/bluetooth.service</span>
+</span></span><span class=line><span class=cl><span class=c1># 2. 修改参数  ExecStart 在末尾添加 -d </span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 重启 systemctl restart bluetooth.service </span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=9-systemd-添加后无权限启动问题-service-failed-to-execute-command-permission-denied><span>9. systemd 添加后无权限启动问题 .service: Failed to execute command: Permission denied</span>
+<a href=#9-systemd-%e6%b7%bb%e5%8a%a0%e5%90%8e%e6%97%a0%e6%9d%83%e9%99%90%e5%90%af%e5%8a%a8%e9%97%ae%e9%a2%98-service-failed-to-execute-command-permission-denied class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><p>此问题实际上是由于<code>selinux</code>开启<code>enforcing</code>(强制模式)导致的,一般的<code>fedora</code>用户应该都不会去关闭<code>selinux</code>吧，只有在服务器上为了方便才会去关闭,解决这个问题的方法有两种，一种是关闭<code>selinux</code>,或者将<code>selinux</code>设置为<code>permissive</code>(宽容模式),第二种就是直接修正上下文权限为<code>bin_t</code>,这个具体可以看下系统中其他可执行文件的上下文权限是什么(<code>ls -Z</code>),修改命令是<code>chcon -t bin_t &lt;binaryfile></code>,另外<code>.service</code>命名在<code>systemd</code>配置目录中了，<code>systemctl status</code>时却看不到,也是这个问题，这个问题也是我直接复制<code>v2ray</code>的时候发现的，这儿记录下.</p><h1 class=heading-element id=10-fedora-32-启用-docker><span>10. fedora 32 启用 docker</span>
+<a href=#10-fedora-32-%e5%90%af%e7%94%a8-docker class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><blockquote><p><a href=https://linux.cn/article-12433-1.html target=_blank rel="external nofollow noopener noreferrer">https://linux.cn/article-12433-1.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote><h1 class=heading-element id=11-fedora-33-下修改wayland桌面为x11><span>11. fedora 33 下修改Wayland桌面为x11</span>
+<a href=#11-fedora-33-%e4%b8%8b%e4%bf%ae%e6%94%b9wayland%e6%a1%8c%e9%9d%a2%e4%b8%bax11 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; vim /etc/gdm/custom.conf
+</span></span><span class=line><span class=cl><span class=o>[</span>daemon<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=c1># Uncomment the line below to force the login screen to use Xorg</span>
+</span></span><span class=line><span class=cl><span class=nv>WaylandEnable</span><span class=o>=</span><span class=nb>false</span>
+</span></span><span class=line><span class=cl><span class=nv>DefaultSession</span><span class=o>=</span>gnome-xorg.desktop
+</span></span><span class=line><span class=cl><span class=c1>#AutomaticLoginEnable=true</span>
+</span></span><span class=line><span class=cl><span class=c1>#AutomaticLogin=cxd</span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=12-fedora-无法连接pptp已解决><span>12. fedora 无法连接pptp(已解决)</span>
+<a href=#12-fedora-%e6%97%a0%e6%b3%95%e8%bf%9e%e6%8e%a5pptp%e5%b7%b2%e8%a7%a3%e5%86%b3 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><p>原因是防火墙需要开启gre协议放行,以下是firewalld配置，可能linux用户都有这种情况,若其他类型vpn也出现无法连接情况，可能也是这个原因</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT <span class=m>0</span> -p gre -j ACCEPT 
+</span></span><span class=line><span class=cl>$&gt; firewall-cmd --permanent --direct --add-rule ipv6 filter INPUT <span class=m>0</span> -p gre -j ACCEPT 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 如果上述配置仍然无效,那么你可能需要在连接高级中勾选&#34;使用点到点加密(MPPE)(P)&#34;选项</span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=13-fedora-升级到指定版本><span>13. fedora 升级到指定版本</span>
+<a href=#13-fedora-%e5%8d%87%e7%ba%a7%e5%88%b0%e6%8c%87%e5%ae%9a%e7%89%88%e6%9c%ac class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>## 更新系统</span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf upgrade --refresh
+</span></span><span class=line><span class=cl><span class=c1>## 安装dnf-plugin-system-upgrade包</span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install dnf-plugin-system-upgrade
+</span></span><span class=line><span class=cl><span class=c1>## 下载最新的 Fedora 更新包</span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf system-upgrade download --releasever<span class=o>=</span><span class=m>35</span>
+</span></span><span class=line><span class=cl><span class=c1>## 重启升级</span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf system-upgrade reboot</span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=14-fedora下登陆密钥环未被解锁问题><span>14. fedora下登陆密钥环未被解锁问题</span>
+<a href=#14-fedora%e4%b8%8b%e7%99%bb%e9%99%86%e5%af%86%e9%92%a5%e7%8e%af%e6%9c%aa%e8%a2%ab%e8%a7%a3%e9%94%81%e9%97%ae%e9%a2%98 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><ul><li>默认情况下，系统安装后，密钥环密码和基础帐号安装时候的密码一致，这个东西个人电脑感觉没什么用，可以通过以下方式进行取消</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># fedora 下默认是没有安装seahorse的(本来我原来也没有找到解决方案，无意间测试ubuntu才发现这个)</span>
+</span></span><span class=line><span class=cl>$&gt; sudo dnf install seahorse
+</span></span><span class=line><span class=cl><span class=c1># 活动栏中找到&#34;密码和密钥&#34;(及&#34;seahorse&#34;), 打开后找到登陆, 右键登陆，设置为空密码即可。</span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=15-flatpak-应用如何挂载指定目录到应用环境中><span>15. <code>flatpak</code> 应用如何挂载指定目录到应用环境中</span>
+<a href=#15-flatpak-%e5%ba%94%e7%94%a8%e5%a6%82%e4%bd%95%e6%8c%82%e8%bd%bd%e6%8c%87%e5%ae%9a%e7%9b%ae%e5%bd%95%e5%88%b0%e5%ba%94%e7%94%a8%e7%8e%af%e5%a2%83%e4%b8%ad class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><ul><li>以 <a href=https://flathub.org/zh-Hans/apps/com.tencent.WeChat target=_blank rel="external nofollow noopener noreferrer"><code>微信(Universal)</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a> 为例, 由于<code>flatpak</code>默认的沙盒保护机制，只有部分目录映射到了沙盒中。根据作者<a href=https://github.com/web1n target=_blank rel="external nofollow noopener noreferrer"><code>(web1n)</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a>打包的仓库<a href=https://github.com/web1n/wechat-universal-flatpak/issues/14 target=_blank rel="external nofollow noopener noreferrer"><code>issue #14</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a>可有多种解决方案，本站仅记录一种，其他请直接查看<a href=https://github.com/web1n/wechat-universal-flatpak/issues/14 target=_blank rel="external nofollow noopener noreferrer"><code>issue #14</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a>。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 安装 Flatseal </span>
+</span></span><span class=line><span class=cl><span class=c1>## https://flathub.org/apps/com.github.tchx84.Flatseal </span>
+</span></span><span class=line><span class=cl>$&gt; flatpak install flathub com.github.tchx84.Flatseal</span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=16-fedroa-取消关机时候提示安装挂起的软件更新的默认勾选><span>16. fedroa 取消关机时候提示<code>安装挂起的软件更新</code>的默认勾选</span>
+<a href=#16-fedroa-%e5%8f%96%e6%b6%88%e5%85%b3%e6%9c%ba%e6%97%b6%e5%80%99%e6%8f%90%e7%a4%ba%e5%ae%89%e8%a3%85%e6%8c%82%e8%b5%b7%e7%9a%84%e8%bd%af%e4%bb%b6%e6%9b%b4%e6%96%b0%e7%9a%84%e9%bb%98%e8%ae%a4%e5%8b%be%e9%80%89 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># https://discussion.fedoraproject.org/t/disable-gnome-software-update-notifications/78209/2 </span>
+</span></span><span class=line><span class=cl>$&gt; gsettings <span class=nb>set</span> org.gnome.software allow-updates false</span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=17-gnome-桌面-alttab-切换窗口浏览器多窗口被视为同一组的问题><span>17. gnome 桌面 alt+tab 切换窗口，浏览器多窗口被视为同一组的问题</span>
+<a href=#17-gnome-%e6%a1%8c%e9%9d%a2-alttab-%e5%88%87%e6%8d%a2%e7%aa%97%e5%8f%a3%e6%b5%8f%e8%a7%88%e5%99%a8%e5%a4%9a%e7%aa%97%e5%8f%a3%e8%a2%ab%e8%a7%86%e4%b8%ba%e5%90%8c%e4%b8%80%e7%bb%84%e7%9a%84%e9%97%ae%e9%a2%98 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><ul><li>在系统中的<code>键盘</code>-<code>键盘快捷键</code>-<code>导航</code> 中，将<code>切换应用程序</code>的快捷键删了，将<code>切换窗口</code>快捷键改为<code>alt+tab</code>即可解决</li></ul><h1 class=heading-element id=18-fedora-38-没有声音音频设置><span>18. fedora 38 没有声音/音频设置</span>
+<a href=#18-fedora-38-%e6%b2%a1%e6%9c%89%e5%a3%b0%e9%9f%b3%e9%9f%b3%e9%a2%91%e8%ae%be%e7%bd%ae class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><ul><li><code>OP</code>电脑体现是, 系统设置里面没有声音设置(应该是看不到输入和输出的设备管理)，蓝牙连接声音传递正常，但无法加减音量, 耳机线连接异常</li><li>解决方案: 注释掉 <code>/etc/pulse/default.pa: 110</code> 中 <code>load-module module-suspend-on-idle</code> , 然后<code>pulseaudio -k</code>、<code>pulseaudio --start</code> 一下(重启应该也可以), 具体可以看一下 <a href=https://discussion.fedoraproject.org/t/no-sound-audio-in-fedora-38/81903 target=_blank rel="external nofollow noopener noreferrer"><code>https://discussion.fedoraproject.org/t/no-sound-audio-in-fedora-38/81903</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></li></ul></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2025-07-04 00:00:00">更新于 2025-07-04&nbsp;</span></div><div class=post-info-license><span><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>CC BY-NC-SA 4.0</a></span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/other/fedora%E4%BC%98%E5%8C%96/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/linux/ class=post-tag title="标签 - Linux">Linux</a><a href=/tags/fedora/ class=post-tag title="标签 - Fedora">Fedora</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/other/%E8%87%AA%E7%AD%BE%E8%AF%81%E4%B9%A6%E7%9A%84%E7%94%9F%E6%88%90%E5%8F%8A%E5%8F%AF%E4%BF%A1%E5%88%97%E8%A1%A8%E7%9A%84%E6%B7%BB%E5%8A%A0/ class=post-nav-item rel=prev title=自签证书的生成及可信列表的添加><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>自签证书的生成及可信列表的添加</a><a href=/posts/linux/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7logrotate%E8%AF%A6%E8%A7%A3/ class=post-nav-item rel=next title=日志切割工具Logrotate详解>日志切割工具Logrotate详解<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=gitalk class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://github.com/gitalk/gitalk rel="external nofollow noopener noreferrer">Gitalk</a>.</noscript></div></article><aside class=toc id=toc-auto aria-label=目录><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jtpwi0tdz1")</script></div><div class=footer-line>托管在&nbsp;<a title=Vercel href=https://vercel.com target=_blank rel="noopener noreffer">Vercel</a> & <a title=Aliyun href=https://www.aliyun.com target=_blank rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class=hugo-icon src=/images/hugo.min.svg alt="Hugo logo"> Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.1"><img class=fixit-icon src=/images/fixit.min.svg alt="FixIt logo"> FixIt</a></div><div class="footer-line copyright" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://blog.0x5c0f.cc target=_blank rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class=gov><img src=/images/gov.png style=height:16px;width:16px;display:inline-block;vertical-align:middle;margin-right:3px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel=noreferrer target=_blank>渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href=https://beian.miit.gov.cn target=_blank>渝ICP备2020011834号-2</a></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div><div class="fixed-button view-comments d-none" role=button aria-label=查看评论><i class="fa-solid fa-comment fa-fw" aria-hidden=true></i></div></div><div id=mask></div><div class=reading-progress-bar style=left:0;top:0></div><noscript><div class=noscript-warning>该网站在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/gitalk/gitalk.min.e525ab86258d1091611cdf6bbc548866f3bf97020fe6aadf3ce8e0ccd9aaec45f31b1cd3dd48d61e1eaf504f02e5666c4d41bd9e580964607a208acefd9cea54.css integrity="sha512-5SWrhiWNEJFhHN9rvFSIZvO/lwIP5qrfPOjgzNmq7EXzGxzT3UjWHh6vUE8C5WZsTUG9nlgJZGB6IIrO/ZzqVA=="><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src=/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src=/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src=/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src=/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type=module></script><script src=/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src=/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src=/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src=/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src=/js/ext-utils.00b3ce7d82b0ec4b5808452e6fdc89937cea0772879e35da39ac4aab50bfdafddf3f2863e7677be1732d17ac21d3563a43c2a0ae96491a02ba776df4f74a9ce1.js integrity="sha512-ALPOfYKw7EtYCEUub9yJk3zqB3KHnjXaOaxKq1C/2v3fPyhj52d74XMtF6wh01Y6Q8KgrpZJGgK6d23090qc4Q==" defer></script><script>window.config={code:{copyTitle:"复制到剪贴板",editLockTitle:"锁定可编辑代码块",editUnLockTitle:"解锁可编辑代码块",editable:!0,maxShownLines:10},comment:{enable:!0,expired:!1,gitalk:{admin:["0x5c0f"],clientID:"3248954ea2af12f77f46",clientSecret:"a463972c37d7b438e2635d4fc0a8f06174565c67",id:"2022-02-28T00:00:00Z",owner:"0x5c0f",repo:"blog",title:"Fedora优化"}},search:{distance:100,findAllMatches:!0,fuseIndexURL:"/search.json",highlightTag:"mark",ignoreFieldNorm:!0,ignoreLocation:!0,isCaseSensitive:!1,location:0,maxResultLength:10,minMatchCharLength:2,noResultsFound:"没有找到结果",snippetLength:30,threshold:.2,type:"fuse",useExtendedSearch:!0},typeit:{cursorChar:"_",cursorSpeed:1e3,duration:9e3,loop:!1,speed:100},version:"v0.4.0-alpha.1"}</script><script src=/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src=/lib/translate.min.88eab6458572fed1ef29f13c8cad30a51e0b1b403bcd162eb1a9e2fea0c98c59618a90b1871487d72d34f03fc152edcfc781651a2632ed5dfe68a3291ea11d65.js integrity="sha512-iOq2RYVy/tHvKfE8jK0wpR4LG0A7zRYusani/qDJjFlhipCxhxSH1y008D/BUu3Px4FlGiYy7V3+aKMpHqEdZQ==" defer></script><script>window.ATConfig={hugoLangCodes:["zh-CN"],hugoLangMap:{"zh-CN":"/posts/other/fedora%E4%BC%98%E5%8C%96/"}}</script><script src=/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body></html>

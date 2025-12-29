@@ -1,593 +1,272 @@
-<!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-    <meta name="robots" content="noodp" />
-    <title>Php安装维护 - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
-<meta name="description" content="Php安装维护"><meta name="keywords" content='linux, php'>
-  <meta itemprop="name" content="Php安装维护">
-  <meta itemprop="description" content="Php安装维护">
-  <meta itemprop="datePublished" content="2019-03-04T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2019-03-04T00:00:00+00:00">
-  <meta itemprop="wordCount" content="569">
-  <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-  <meta itemprop="keywords" content="Linux,Php"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/">
-  <meta property="og:site_name" content="一个曾经的小码农...">
-  <meta property="og:title" content="Php安装维护">
-  <meta property="og:description" content="Php安装维护">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2019-03-04T00:00:00+00:00">
-    <meta property="article:modified_time" content="2019-03-04T00:00:00+00:00">
-    <meta property="article:tag" content="Linux">
-    <meta property="article:tag" content="Php">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-  <meta name="twitter:title" content="Php安装维护">
-  <meta name="twitter:description" content="Php安装维护">
-<meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/" title="Php安装维护 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/docker%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" title="Docker 部署与常用操作" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" title="Vsftpd安装配置" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/index.md" title="Php安装维护 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css" integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel="stylesheet" href="/css/style.min.5516b21935ab930257ccd9906a509eece4fa3eae45fa80681bce0a64aa038d939c84f607bcd216b86fa9f9bd881abb2931053d975b038cbd1a813ed1d842df29.css" integrity="sha512-VRayGTWrkwJXzNmQalCe7OT6Pq5F+oBoG84KZKoDjZOchPYHvNIWuG+p+b2IGrspMQU9l1sDjL0agT7R2ELfKQ=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Php安装维护",
-    "inLanguage": "zh-CN",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4\/"
-    },"genre": "posts","keywords": "linux, php","wordcount":  569 ,
-    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4\/","datePublished": "2019-03-04T00:00:00+00:00","dateModified": "2019-03-04T00:00:00+00:00","publisher": {
-      "@type": "Organization",
-      "name": ""},"author": {
-        "@type": "Person",
-        "name": "0x5c0f"
-      },"description": "Php安装维护"
-  }
-  </script><script src="/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js" integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head>
-  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
-  <div class="header-wrapper">
-    <div class="header-title">
-      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
-    <nav>
-      <ul class="menu"><li class="menu-item">
-              <a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item">
-              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
-              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
-              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
-              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
-            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
-            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
-            </a>
-            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
-            </a>
-            <span class="search-button search-loading" id="search-loading-desktop">
-              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-            </span>
-          </li><li class="menu-item theme-switch" title="切换主题">
-          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-        </li><li class="menu-item language-switch auto d-none" aria-hidden="true">
-    <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
-    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
-          <a href="/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/" data-lang="zh-CN" class="menu-link text-secondary" title="简体中文">
-            <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
-        </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
-          <a data-lang="english" class="menu-link" title="English">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> English</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="japanese" class="menu-link" title="日本語">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
-        </li></ul>
-  </li></ul>
-    </nav>
-  </div>
-</header><header class="mobile animate__faster" id="header-mobile">
-  <div class="header-container">
-    <div class="header-wrapper">
-      <div class="header-title">
-        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
-      <div class="menu-toggle" id="menu-toggle-mobile">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <nav>
-      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
-            <div class="search mobile" id="search-mobile">
-              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
-              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
-              </a>
-              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
-              </a>
-              <span class="search-button search-loading" id="search-loading-mobile">
-                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-              </span>
-            </div>
-            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-              取消
-            </a>
-          </li><li class="menu-item"><a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
-          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span id="translate" class="menu-system-item language-switch auto d-none" aria-hidden="true">
-    <span role="button" aria-label="选择语言" title="选择语言" data-current="简体中文">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-  </span></li>
-      </ul>
-    </nav>
-  </div>
-</header><div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-  </div>
-  <div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-  </div><main class="fi-container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
-
-  <article class="page single">
-    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Php安装维护</span>
-      </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2019-03-04 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-03-04">2019-03-04</time></span>&nbsp;<span title="569 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 600 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 3 分钟</span>&nbsp;</div>
-    </div><div class="details toc" id="toc-static" data-kept="false">
-        <div class="details-summary toc-title">
-          <span>目录</span>
-          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
-        </div>
-        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#2-安装">2. 安装</a>
-      <ul>
-        <li><a href="#21-php-扩展编译">2.1 php 扩展编译</a></li>
-      </ul>
-    </li>
-    <li><a href="#3-相关参数说明">3. 相关参数说明</a>
-      <ul>
-        <li><a href="#31-php-fpmconf">3.1. php-fpm.conf</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-windows_php">4. windows_php</a></li>
-    <li><a href="#5-额外扩展">5. 额外扩展</a></li>
-    <li><a href="#6-php版本选择">6. php版本选择</a></li>
-  </ul>
-</nav></div>
-      </div><div class="content" id="content"><div class="expiration-reminder details admonition warning open">
-      <div class="details-summary admonition-title">
-        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
-      </div>
-      <div class="details-content">
-        <div class="admonition-content">本文最后更新于 2019-03-04，文中内容可能已过时。</div>
-      </div>
-    </div><div class="details admonition note open">
-  <div class="details-summary admonition-title"><i class="icon fa-fw fa-solid fa-pencil-alt" aria-hidden="true"></i>前言<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></div>
-  <div class="details-content">
-    <div class="admonition-content"><p>记录一个php的安装过程，仅作为个人使用记录，可参考<br>
-基础环境:</p>
-<ol>
-<li>CentOS 7.6</li>
-<li>php 5.6.38</li>
-</ol></div>
-  </div>
-</div>
-<h1 class="heading-element" id="2-安装"><span>2. 安装</span>
-  <a href="#2-%e5%ae%89%e8%a3%85" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span><span class="lnt">59
-</span><span class="lnt">60
-</span><span class="lnt">61
-</span><span class="lnt">62
-</span><span class="lnt">63
-</span><span class="lnt">64
-</span><span class="lnt">65
-</span><span class="lnt">66
-</span><span class="lnt">67
-</span><span class="lnt">68
-</span><span class="lnt">69
-</span><span class="lnt">70
-</span><span class="lnt">71
-</span><span class="lnt">72
-</span><span class="lnt">73
-</span><span class="lnt">74
-</span><span class="lnt">75
-</span><span class="lnt">76
-</span><span class="lnt">77
-</span><span class="lnt">78
-</span><span class="lnt">79
-</span><span class="lnt">80
-</span><span class="lnt">81
-</span><span class="lnt">82
-</span><span class="lnt">83
-</span><span class="lnt">84
-</span><span class="lnt">85
-</span><span class="lnt">86
-</span><span class="lnt">87
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># mkdir /opt/software</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 ~<span class="o">]</span><span class="c1"># cd /opt/software</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># useradd -d /var/ftproot -s /sbin/nologin www </span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># yum install -y zlib-devel libxml2-devel libjpeg-devel libjpeg-turbo-devel freetype-devel libpng-devel gd-devel libcurl-devel libxslt-devel openssl openssl-devel mhash libmcrypt-devel mcrypt gcc glibc gcc-c++</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.15.tar.gz --no-check-certificate</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># tar xzf libiconv-1.15.tar.gz</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># cd libiconv-1.15</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 libiconv-1.15<span class="o">]</span><span class="c1"># ./configure --prefix=/usr/local/libiconv  </span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 libiconv-1.15<span class="o">]</span><span class="c1"># make &amp;&amp; make install </span>
-</span></span><span class="line"><span class="cl"><span class="c1">## ----  过程省略  ---- ##</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## ----  过程错误自行排查  ---- ##</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 libiconv-1.15<span class="o">]</span><span class="c1"># cd /opt/software</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># wget http://mirrors.sohu.com/php/php-5.6.38.tar.gz</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># tar -xzf php-5.6.38.tar.gz</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 php-5.6.38<span class="o">]</span><span class="c1"># cd php-5.6.38</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 标准的生产环境编译参数(nginx)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## ------------------------ ##</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## apache取消以下参数(apache+php时是不需要将php启动的，php是将模块直接编译进入apache的)  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">## --enable-opcache=no</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## --enable-fpm</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## --with-fpm-user=www </span>
-</span></span><span class="line"><span class="cl"><span class="c1">## --with-fpm-group=www </span>
-</span></span><span class="line"><span class="cl"><span class="c1">## 添加以下参数，指向apache的apxs</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## --with-apxs2=/opt/apache/bin/apxs</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## ------------------------ ##</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 php-5.6.38<span class="o">]</span><span class="c1"># ./configure \</span>
-</span></span><span class="line"><span class="cl">--prefix<span class="o">=</span>/opt/php5.6.38 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-config-file-path<span class="o">=</span>/opt/php5.6.38/etc <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-mysql<span class="o">=</span>mysqlnd <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-mysqli<span class="o">=</span>mysqlnd <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-pdo-mysql<span class="o">=</span>mysqlnd <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-iconv-dir<span class="o">=</span>/usr/local/libiconv <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-freetype-dir <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-jpeg-dir <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-png-dir <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-zlib <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-libxml-dir <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-xml <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--disable-rpath <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--disable-debug <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-bcmath <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-shmop <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-sysvsem <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-inline-optimization <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-curl <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-mbregex <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-fpm <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-mbstring <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-mcrypt <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-gd <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-gd-native-ttf <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-openssl <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-mhash <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-pcntl <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-sockets <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-xmlrpc <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-zip <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-soap <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-short-tags <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-static <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-xsl <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-fpm-user<span class="o">=</span>www <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--with-fpm-group<span class="o">=</span>www <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-ftp <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>--enable-opcache<span class="o">=</span>no  
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># --enable-opcache 此扩展可能不稳定，因此关闭，</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 也可以使用--disable-opcache 进行关闭，默认是启用的 </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># (现当前版本不知道是否稳定些了)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 5.3 添加的额外参数  </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># --with-curlwrappers  </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># --enable-safe-mode  </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># --enable-zend-multibyte  </span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 php-5.6.38<span class="o">]</span><span class="c1"># make &amp;&amp; make install</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## ----  过程省略  ---- ##</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## ----  过程错误自行排查  ---- ##</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 php-5.6.38<span class="o">]</span><span class="c1"># cp -v ./php.ini-production /opt/php5.6.38/etc/php.ini</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 php-5.6.38<span class="o">]</span><span class="c1"># cp -v /opt/php5.6.38/etc/php-fpm.conf.default /opt/php5.6.38/etc/php-fpm.conf</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 php-5.6.38<span class="o">]</span><span class="c1"># ln -s /opt/php5.6.38/ /opt/php    # 优化路径，用于后续可能的升级</span>
-</span></span><span class="line"><span class="cl"><span class="c1">## --- 安装完成 --- ##</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>若需要将php-fpm 加入到系统服务当中，
-在<code>/opt/software/php-5.6.38/sapi/fpm</code>目录下,将<code>php-fpm.service</code>文件中对应的<code>${prefix}</code>和<code>${exec_prefix}</code>改为程序编译后的对应目录，让后将文件<code>cp</code>到<code>/usr/lib/systemd/system/</code>下, 然后执行<code>systemctl daemon-reload</code>重加载即可，然后就可以使用<code>systemctl {start|stop|restart} php-fpm.services</code> 对<code>php-fpm</code>进行管理了(CentOS 6.x 的不知道)</p>
-<h2 class="heading-element" id="21-php-扩展编译"><span>2.1 php 扩展编译</span>
-  <a href="#21-php-%e6%89%a9%e5%b1%95%e7%bc%96%e8%af%91" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><p>扩展安装的操作步骤(以xcache为例):</p>
-<ol>
-<li>下载需要安装的扩展源码，解压进去后，先执行 <code>/opt/php5.6.38/bin/phpize</code> 生成<code>configure</code>配置文件</li>
-<li>配置当前扩展编译<code>./configure --enable-xcache --with-php-config=/opt/php5.6.38/bin/php-config </code></li>
-<li>编译并安装 <code>make &amp;&amp; make install</code>,编译并安装成功后会在<code>/opt/php5.6.38/lib/php/extensions</code>目录下生成对应目录，里面包含一个<code>xcache.so</code>的文件.</li>
-</ol>
-<h1 class="heading-element" id="3-相关参数说明"><span>3. 相关参数说明</span>
-  <a href="#3-%e7%9b%b8%e5%85%b3%e5%8f%82%e6%95%b0%e8%af%b4%e6%98%8e" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><h2 class="heading-element" id="31-php-fpmconf"><span>3.1. php-fpm.conf</span>
-  <a href="#31-php-fpmconf" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="na">pid</span> <span class="o">=</span> <span class="s">run/php-fpm.pid</span>
-</span></span><span class="line"><span class="cl"><span class="na">error_log</span> <span class="o">=</span> <span class="s">log/php-fpm.log</span>
-</span></span><span class="line"><span class="cl"><span class="na">user</span> <span class="o">=</span> <span class="s">www</span>
-</span></span><span class="line"><span class="cl"><span class="na">group</span> <span class="o">=</span> <span class="s">www</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 设置接受 FastCGI 请求的地址 可为socket路径,(socket默认位置php根目录)</span>
-</span></span><span class="line"><span class="cl"><span class="na">listen</span> <span class="o">=</span> <span class="s">127.0.0.1:9000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#允许连接到 FastCGI 的服务器 IPV4 地址</span>
-</span></span><span class="line"><span class="cl"><span class="na">listen.allowed_clients</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 设置进程管理器如何管理子进程，dynamic动态设置,必须配合</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># pm.max_children，pm.start_servers，pm.min_spare_servers，pm.max_spare_servers参数进行设置</span>
-</span></span><span class="line"><span class="cl"><span class="na">pm</span> <span class="o">=</span> <span class="s">dynamic</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 设置最大可创建的子进程的数量(仅代表动态设置)</span>
-</span></span><span class="line"><span class="cl"><span class="na">pm.max_children</span> <span class="o">=</span> <span class="s">300</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 设置启动时创建的子进程数目</span>
-</span></span><span class="line"><span class="cl"><span class="na">pm.start_servers</span> <span class="o">=</span> <span class="s">30</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># pm.*_spare_servers 设置空闲服务进程的最低/最大数目</span>
-</span></span><span class="line"><span class="cl"><span class="na">pm.min_spare_servers</span> <span class="o">=</span> <span class="s">30</span>
-</span></span><span class="line"><span class="cl"><span class="na">pm.max_spare_servers</span> <span class="o">=</span> <span class="s">300</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 设置每个子进程重生之前服务的请求数</span>
-</span></span><span class="line"><span class="cl"><span class="na">pm.max_requests</span> <span class="o">=</span> <span class="s">65535</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 设置文件打开描述符的 rlimit 限制，默认系统定义值</span>
-</span></span><span class="line"><span class="cl"><span class="na">rlimit_files</span> <span class="o">=</span> <span class="s">65535</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p>详细参数说明:</p>
-<blockquote>
-<p><a href="https://secure.php.net/manual/zh/install.fpm.configuration.php"target="_blank" rel="external nofollow noopener noreferrer">https://secure.php.net/manual/zh/install.fpm.configuration.php<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-<h1 class="heading-element" id="4-windows_php"><span>4. windows_php</span>
-  <a href="#4-windows_php" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><ol>
-<li>
-<p><code>iis</code> 可直接安装为<code>web-platfrom</code>，然后搜索<code>php manager</code></p>
-<blockquote>
-<p><a href="https://www.iis.net/downloads/microsoft/web-platform-installer"target="_blank" rel="external nofollow noopener noreferrer">https://www.iis.net/downloads/microsoft/web-platform-installer<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-</li>
-<li>
-<p>若无法正常使用，需要先安装<code>vc2012</code></p>
-</li>
-</ol>
-<ul>
-<li>故障: <code>php7.x vc15</code>安装时候只安装<code>vc++ 2015</code>不行(这个对应关系不是很清楚),此处安装<a href="https://docs.microsoft.com/zh-CN/cpp/windows/latest-supported-vc-redist?view=msvc-170"target="_blank" rel="external nofollow noopener noreferrer"><code>2015、2017、2019、2022合并包</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a>后成功运行</li>
-</ul>
-<ol start="3">
-<li>
-<p>若<code>1</code>无法安装，一般只是<code>php manager</code>无法安装，而<code>url</code>重写模块是安装好了的，这个时候直接去<code>github</code>上去下载一个整合的phpmanager，安装即可。</p>
-<blockquote>
-<p><a href="https://github.com/phpmanager/phpmanager/releases/tag/v2.0"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/phpmanager/phpmanager/releases/tag/v2.0<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-</li>
-<li>
-<p>上述第三步，也有可能<code>url</code>重写模块也未安装成功，这个时候需要去<code>microsoft</code>官网下载一个重写模块即可。另如果通过为<code>web-platfrom</code>安装<code>phpmanager</code>失败后安装的<code>url</code>重写模块，可能会导致<code>iis</code>中的<code>.net</code>程序异常，这个时候也需要手动卸载通过<code>web-platfrom</code>安装的<code>url</code>重写模块，然后安装<code>microsoft</code>下载的对应重写模块，理论上来说<code>iis</code>中安装的这个应该就是官网提供的，但是我遇到过的一次就是不行，卸载后重新安装官网的后,<code>.net</code>就正常了。</p>
-<ul>
-<li>
-<p><a href="http://download.microsoft.com/download/4/E/7/4E7ECE9A-DF55-4F90-A354-B497072BDE0A/rewrite_x64_zh-CN.msi"target="_blank" rel="external nofollow noopener noreferrer">rewrite_x64_zh-CN.msi for microsoft<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</li>
-<li>
-<p><a href="http://download.microsoft.com/download/4/9/C/49CD28DB-4AA6-4A51-9437-AA001221F606/rewrite_x86_zh-CN.msi"target="_blank" rel="external nofollow noopener noreferrer">rewrite_x86_zh-CN.msi for microsoft<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>扩展 <code>pdo_sqlsrv</code> (<code>windows</code> + <code>drivers_3.2</code>)</p>
-<ul>
-<li>遇到了一个坑，<code>php5.6</code>添加<code>pdo_sqlsrv</code>模块无论是 <code>nts</code> 还是 <code>ts</code>的 ，从官方直接下载下来的 <code>dll</code> 打死进加载不了，后来找到了一个非官方的，导入进去，然后就可以了，我也是哔了狗了(这些模块的dll可以去<code>phpstudy</code>中<code>copy</code>，他们是集成好了的)。</li>
-</ul>
-</li>
-</ol>
-<h1 class="heading-element" id="5-额外扩展"><span>5. 额外扩展</span>
-  <a href="#5-%e9%a2%9d%e5%a4%96%e6%89%a9%e5%b1%95" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><ul>
-<li><code>php memcache</code> 扩展</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget http://pecl.php.net/get/memcache-2.2.7.tgz
-</span></span><span class="line"><span class="cl">/opt/php-server/bin/phpize
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">yum install re2c
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">./configure --enable-memcache --with-php-config<span class="o">=</span>/opt/php-server/bin/php-config --with-zlib-dir
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">extension</span><span class="o">=</span>memcache.so</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li><code>php redis</code> 扩展</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># php redis 扩展, php 5.6 对应phpredis 5.0以下测试正常编译 </span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">wget https://github.com/phpredis/phpredis/archive/4.3.0.tar.gz
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">/opt/php-server/bin/phpize
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">./configure --with-php-config<span class="o">=</span>/opt/php-server/bin/php-config
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">extension</span><span class="o">=</span>redis.so </span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li><code>memcache</code> 管理工具</li>
-</ul>
-<blockquote>
-<p><a href="http://www.junopen.com/memadmin/"target="_blank" rel="external nofollow noopener noreferrer">http://www.junopen.com/memadmin/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-<h1 class="heading-element" id="6-php版本选择"><span>6. php版本选择</span>
-  <a href="#6-php%e7%89%88%e6%9c%ac%e9%80%89%e6%8b%a9" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><p>windos服务器：</p>
-<ol>
-<li>如果你是PHP+IIS；请选择：PHP非线程安全（None Thread Safe(NTS)）；</li>
-<li>如果你是PHP+apache；请选择：PHP线程安全（Thread Safe（TS））<br>
-linux服务器：<br>
-linux服务器下的PHP，没有PHP线程安全和非线程安全版的区分</li>
-</ol>
-</div><div class="post-footer" id="post-footer">
-  <div class="post-info">
-    <div class="post-info-line">
-      <div class="post-info-mod"><span title="更新于 2019-03-04 00:00:00">更新于 2019-03-04&nbsp;</span>
-      </div><div class="post-info-license">
-            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
-          </div></div><div class="post-info-line">
-        <div class="post-info-md"><span><a href="/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
-        <div class="post-info-share">
-          <span></span>
-        </div>
-      </div></div>
-
-  <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/php/" class="post-tag" title="标签 - Php">Php</a></section>
-    <section><span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-    </section>
-  </div><div class="post-nav"><a href="/posts/linux/docker%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" class="post-nav-item" rel="prev" title="Docker 部署与常用操作"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Docker 部署与常用操作</a><a href="/posts/linux/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="post-nav-item" rel="next" title="Vsftpd安装配置">Vsftpd安装配置<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
-</div>
-<div id="comments"><div id="gitalk" class="comment"></div><noscript>
-        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
-      </noscript></div></article>
-
-  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
-      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.4.0-alpha.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
-        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
-              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
-  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
-        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
-    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
-  </noscript>
-</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.e525ab86258d1091611cdf6bbc548866f3bf97020fe6aadf3ce8e0ccd9aaec45f31b1cd3dd48d61e1eaf504f02e5666c4d41bd9e580964607a208acefd9cea54.css" integrity="sha512-5SWrhiWNEJFhHN9rvFSIZvO/lwIP5qrfPOjgzNmq7EXzGxzT3UjWHh6vUE8C5WZsTUG9nlgJZGB6IIrO/ZzqVA=="><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.00b3ce7d82b0ec4b5808452e6fdc89937cea0772879e35da39ac4aab50bfdafddf3f2863e7677be1732d17ac21d3563a43c2a0ae96491a02ba776df4f74a9ce1.js" integrity="sha512-ALPOfYKw7EtYCEUub9yJk3zqB3KHnjXaOaxKq1C/2v3fPyhj52d74XMtF6wh01Y6Q8KgrpZJGgK6d23090qc4Q==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2019-03-04T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"Php安装维护"}},"search":{"distance":100,"findAllMatches":true,"fuseIndexURL":"/search.json","highlightTag":"mark","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.2,"type":"fuse","useExtendedSearch":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.4.0-alpha.1"};</script><script src="/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js" integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src="/lib/translate.min.88eab6458572fed1ef29f13c8cad30a51e0b1b403bcd162eb1a9e2fea0c98c59618a90b1871487d72d34f03fc152edcfc781651a2632ed5dfe68a3291ea11d65.js" integrity="sha512-iOq2RYVy/tHvKfE8jK0wpR4LG0A7zRYusani/qDJjFlhipCxhxSH1y008D/BUu3Px4FlGiYy7V3+aKMpHqEdZQ==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/"}};</script><script src="/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js" integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body>
-</html>
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>Php安装维护 - 一个曾经的小码农...</title><meta name=author content="0x5c0f"><meta name=description content="Php安装维护"><meta name=keywords content='linux,php'><meta itemprop=name content="Php安装维护"><meta itemprop=description content="Php安装维护"><meta itemprop=datePublished content="2019-03-04T00:00:00+00:00"><meta itemprop=dateModified content="2019-03-04T00:00:00+00:00"><meta itemprop=wordCount content="569"><meta itemprop=image content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta itemprop=keywords content="Linux,Php"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/"><meta property="og:site_name" content="一个曾经的小码农..."><meta property="og:title" content="Php安装维护"><meta property="og:description" content="Php安装维护"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-03-04T00:00:00+00:00"><meta property="article:modified_time" content="2019-03-04T00:00:00+00:00"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Php"><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta name=twitter:title content="Php安装维护"><meta name=twitter:description content="Php安装维护"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://blog.0x5c0f.cc/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/ title="Php安装维护 - 一个曾经的小码农..."><link rel=prev type=text/html href=https://blog.0x5c0f.cc/posts/linux/docker%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ title="Docker 部署与常用操作"><link rel=next type=text/html href=https://blog.0x5c0f.cc/posts/linux/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/ title=Vsftpd安装配置><link rel=alternate type=text/markdown href=https://blog.0x5c0f.cc/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/index.md title="Php安装维护 - 一个曾经的小码农..."><link rel=stylesheet href=/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel=stylesheet href=/css/style.min.5516b21935ab930257ccd9906a509eece4fa3eae45fa80681bce0a64aa038d939c84f607bcd216b86fa9f9bd881abb2931053d975b038cbd1a813ed1d842df29.css integrity="sha512-VRayGTWrkwJXzNmQalCe7OT6Pq5F+oBoG84KZKoDjZOchPYHvNIWuG+p+b2IGrspMQU9l1sDjL0agT7R2ELfKQ=="><link rel=preload href=/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel=preload href=/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Php安装维护","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.0x5c0f.cc\/posts\/linux\/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4\/"},"genre":"posts","keywords":"linux, php","wordcount":569,"url":"https:\/\/blog.0x5c0f.cc\/posts\/linux\/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4\/","datePublished":"2019-03-04T00:00:00+00:00","dateModified":"2019-03-04T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"0x5c0f"},"description":"Php安装维护"}</script><script src=/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=一个曾经的小码农...><span class=typeit><template>0x5c0f.cc</template></span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/posts/>所有文章</a></li><li class=menu-item><a class=menu-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-link href=/archives/>归档</a></li><li class=menu-item><a class=menu-link href=/about/>About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li><li class="menu-item language-switch auto d-none" aria-hidden=true><span role=button aria-label=选择语言 title=选择语言><i class="fa-solid fa-language fa-fw" aria-hidden=true></i></span><ul class=sub-menu><li class="menu-item active" data-type=artificial><a href=/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/ data-lang=zh-CN class="menu-link text-secondary" title=简体中文><i class="fa-solid fa-person fa-fw fa-sm" aria-hidden=true></i> 简体中文</a></li><li class=menu-item-divider aria-hidden=true></li><li class=menu-item data-type=machine><a data-lang=english class=menu-link title=English><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> English</a></li><li class=menu-item data-type=machine><a data-lang=chinese_simplified class=menu-link title=简体中文><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 简体中文</a></li><li class=menu-item data-type=machine><a data-lang=japanese class=menu-link title=日本語><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 日本語</a></li><li class=menu-item data-type=machine><a data-lang=chinese_traditional class=menu-link title=繁體中文><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 繁體中文</a></li></ul></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=一个曾经的小码农...><span class=typeit><template>0x5c0f.cc</template></span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/posts/>所有文章</a></li><li class=menu-item><a class=menu-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-link href=/archives/>归档</a></li><li class=menu-item><a class=menu-link href=/about/>About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span><span id=translate class="menu-system-item language-switch auto d-none" aria-hidden=true>
+<span role=button aria-label=选择语言 title=选择语言 data-current=简体中文>简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden=true></i></span></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>Php安装维护</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://blog.0x5c0f.cc title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><i class="fa-solid fa-user-circle" aria-hidden=true></i>
+0x5c0f</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/linux/ class=post-category title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Linux</a>&ensp;<a href=/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/ class=post-category title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> 运维记事</a> 和 <a href=/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/ class=post-collection title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden=true></i> 运维记事</a></span></div><div class=post-meta-line><span title="发布于 2019-03-04 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2019-03-04>2019-03-04</time></span>&nbsp;<span title="569 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 600 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 3 分钟</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#2-安装>2. 安装</a><ul><li><a href=#21-php-扩展编译>2.1 php 扩展编译</a></li></ul></li><li><a href=#3-相关参数说明>3. 相关参数说明</a><ul><li><a href=#31-php-fpmconf>3.1. php-fpm.conf</a></li></ul></li><li><a href=#4-windows_php>4. windows_php</a></li><li><a href=#5-额外扩展>5. 额外扩展</a></li><li><a href=#6-php版本选择>6. php版本选择</a></li></ul></nav></div></div><div class=content id=content><div class="expiration-reminder details admonition warning open"><div class="details-summary admonition-title"><i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden=true></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class=details-content><div class=admonition-content>本文最后更新于 2019-03-04，文中内容可能已过时。</div></div></div><div class="details admonition note open"><div class="details-summary admonition-title"><i class="icon fa-fw fa-solid fa-pencil-alt" aria-hidden=true></i>前言<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class=details-content><div class=admonition-content><p>记录一个php的安装过程，仅作为个人使用记录，可参考<br>基础环境:</p><ol><li>CentOS 7.6</li><li>php 5.6.38</li></ol></div></div></div><h1 class=heading-element id=2-安装><span>2. 安装</span>
+<a href=#2-%e5%ae%89%e8%a3%85 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>root@00 ~<span class=o>]</span><span class=c1># mkdir /opt/software</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 ~<span class=o>]</span><span class=c1># cd /opt/software</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># useradd -d /var/ftproot -s /sbin/nologin www </span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># yum install -y zlib-devel libxml2-devel libjpeg-devel libjpeg-turbo-devel freetype-devel libpng-devel gd-devel libcurl-devel libxslt-devel openssl openssl-devel mhash libmcrypt-devel mcrypt gcc glibc gcc-c++</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># wget https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.15.tar.gz --no-check-certificate</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># tar xzf libiconv-1.15.tar.gz</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># cd libiconv-1.15</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 libiconv-1.15<span class=o>]</span><span class=c1># ./configure --prefix=/usr/local/libiconv  </span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 libiconv-1.15<span class=o>]</span><span class=c1># make &amp;&amp; make install </span>
+</span></span><span class=line><span class=cl><span class=c1>## ----  过程省略  ---- ##</span>
+</span></span><span class=line><span class=cl><span class=c1>## ----  过程错误自行排查  ---- ##</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 libiconv-1.15<span class=o>]</span><span class=c1># cd /opt/software</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># wget http://mirrors.sohu.com/php/php-5.6.38.tar.gz</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># tar -xzf php-5.6.38.tar.gz</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 php-5.6.38<span class=o>]</span><span class=c1># cd php-5.6.38</span>
+</span></span><span class=line><span class=cl><span class=c1>## 标准的生产环境编译参数(nginx)</span>
+</span></span><span class=line><span class=cl><span class=c1>## ------------------------ ##</span>
+</span></span><span class=line><span class=cl><span class=c1>## apache取消以下参数(apache+php时是不需要将php启动的，php是将模块直接编译进入apache的)  </span>
+</span></span><span class=line><span class=cl><span class=c1>## --enable-opcache=no</span>
+</span></span><span class=line><span class=cl><span class=c1>## --enable-fpm</span>
+</span></span><span class=line><span class=cl><span class=c1>## --with-fpm-user=www </span>
+</span></span><span class=line><span class=cl><span class=c1>## --with-fpm-group=www </span>
+</span></span><span class=line><span class=cl><span class=c1>## 添加以下参数，指向apache的apxs</span>
+</span></span><span class=line><span class=cl><span class=c1>## --with-apxs2=/opt/apache/bin/apxs</span>
+</span></span><span class=line><span class=cl><span class=c1>## ------------------------ ##</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 php-5.6.38<span class=o>]</span><span class=c1># ./configure \</span>
+</span></span><span class=line><span class=cl>--prefix<span class=o>=</span>/opt/php5.6.38 <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-config-file-path<span class=o>=</span>/opt/php5.6.38/etc <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-mysql<span class=o>=</span>mysqlnd <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-mysqli<span class=o>=</span>mysqlnd <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-pdo-mysql<span class=o>=</span>mysqlnd <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-iconv-dir<span class=o>=</span>/usr/local/libiconv <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-freetype-dir <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-jpeg-dir <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-png-dir <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-zlib <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-libxml-dir <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-xml <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--disable-rpath <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--disable-debug <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-bcmath <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-shmop <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-sysvsem <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-inline-optimization <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-curl <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-mbregex <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-fpm <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-mbstring <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-mcrypt <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-gd <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-gd-native-ttf <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-openssl <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-mhash <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-pcntl <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-sockets <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-xmlrpc <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-zip <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-soap <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-short-tags <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-static <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-xsl <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-fpm-user<span class=o>=</span>www <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--with-fpm-group<span class=o>=</span>www <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-ftp <span class=se>\
+</span></span></span><span class=line><span class=cl><span class=se></span>--enable-opcache<span class=o>=</span>no  
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#</span>
+</span></span><span class=line><span class=cl><span class=c1># --enable-opcache 此扩展可能不稳定，因此关闭，</span>
+</span></span><span class=line><span class=cl><span class=c1># 也可以使用--disable-opcache 进行关闭，默认是启用的 </span>
+</span></span><span class=line><span class=cl><span class=c1># (现当前版本不知道是否稳定些了)</span>
+</span></span><span class=line><span class=cl><span class=c1>#</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 5.3 添加的额外参数  </span>
+</span></span><span class=line><span class=cl><span class=c1># --with-curlwrappers  </span>
+</span></span><span class=line><span class=cl><span class=c1># --enable-safe-mode  </span>
+</span></span><span class=line><span class=cl><span class=c1># --enable-zend-multibyte  </span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 php-5.6.38<span class=o>]</span><span class=c1># make &amp;&amp; make install</span>
+</span></span><span class=line><span class=cl><span class=c1>## ----  过程省略  ---- ##</span>
+</span></span><span class=line><span class=cl><span class=c1>## ----  过程错误自行排查  ---- ##</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 php-5.6.38<span class=o>]</span><span class=c1># cp -v ./php.ini-production /opt/php5.6.38/etc/php.ini</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 php-5.6.38<span class=o>]</span><span class=c1># cp -v /opt/php5.6.38/etc/php-fpm.conf.default /opt/php5.6.38/etc/php-fpm.conf</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 php-5.6.38<span class=o>]</span><span class=c1># ln -s /opt/php5.6.38/ /opt/php    # 优化路径，用于后续可能的升级</span>
+</span></span><span class=line><span class=cl><span class=c1>## --- 安装完成 --- ##</span></span></span></code></pre></td></tr></table></div></div><p>若需要将php-fpm 加入到系统服务当中，
+在<code>/opt/software/php-5.6.38/sapi/fpm</code>目录下,将<code>php-fpm.service</code>文件中对应的<code>${prefix}</code>和<code>${exec_prefix}</code>改为程序编译后的对应目录，让后将文件<code>cp</code>到<code>/usr/lib/systemd/system/</code>下, 然后执行<code>systemctl daemon-reload</code>重加载即可，然后就可以使用<code>systemctl {start|stop|restart} php-fpm.services</code> 对<code>php-fpm</code>进行管理了(CentOS 6.x 的不知道)</p><h2 class=heading-element id=21-php-扩展编译><span>2.1 php 扩展编译</span>
+<a href=#21-php-%e6%89%a9%e5%b1%95%e7%bc%96%e8%af%91 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><p>扩展安装的操作步骤(以xcache为例):</p><ol><li>下载需要安装的扩展源码，解压进去后，先执行 <code>/opt/php5.6.38/bin/phpize</code> 生成<code>configure</code>配置文件</li><li>配置当前扩展编译<code>./configure --enable-xcache --with-php-config=/opt/php5.6.38/bin/php-config</code></li><li>编译并安装 <code>make && make install</code>,编译并安装成功后会在<code>/opt/php5.6.38/lib/php/extensions</code>目录下生成对应目录，里面包含一个<code>xcache.so</code>的文件.</li></ol><h1 class=heading-element id=3-相关参数说明><span>3. 相关参数说明</span>
+<a href=#3-%e7%9b%b8%e5%85%b3%e5%8f%82%e6%95%b0%e8%af%b4%e6%98%8e class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><h2 class=heading-element id=31-php-fpmconf><span>3.1. php-fpm.conf</span>
+<a href=#31-php-fpmconf class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-ini data-lang=ini><span class=line><span class=cl><span class=na>pid</span> <span class=o>=</span> <span class=s>run/php-fpm.pid</span>
+</span></span><span class=line><span class=cl><span class=na>error_log</span> <span class=o>=</span> <span class=s>log/php-fpm.log</span>
+</span></span><span class=line><span class=cl><span class=na>user</span> <span class=o>=</span> <span class=s>www</span>
+</span></span><span class=line><span class=cl><span class=na>group</span> <span class=o>=</span> <span class=s>www</span>
+</span></span><span class=line><span class=cl><span class=c1># 设置接受 FastCGI 请求的地址 可为socket路径,(socket默认位置php根目录)</span>
+</span></span><span class=line><span class=cl><span class=na>listen</span> <span class=o>=</span> <span class=s>127.0.0.1:9000</span>
+</span></span><span class=line><span class=cl><span class=c1>#允许连接到 FastCGI 的服务器 IPV4 地址</span>
+</span></span><span class=line><span class=cl><span class=na>listen.allowed_clients</span> <span class=o>=</span> <span class=s>127.0.0.1</span>
+</span></span><span class=line><span class=cl><span class=c1># 设置进程管理器如何管理子进程，dynamic动态设置,必须配合</span>
+</span></span><span class=line><span class=cl><span class=c1># pm.max_children，pm.start_servers，pm.min_spare_servers，pm.max_spare_servers参数进行设置</span>
+</span></span><span class=line><span class=cl><span class=na>pm</span> <span class=o>=</span> <span class=s>dynamic</span>
+</span></span><span class=line><span class=cl><span class=c1># 设置最大可创建的子进程的数量(仅代表动态设置)</span>
+</span></span><span class=line><span class=cl><span class=na>pm.max_children</span> <span class=o>=</span> <span class=s>300</span>
+</span></span><span class=line><span class=cl><span class=c1># 设置启动时创建的子进程数目</span>
+</span></span><span class=line><span class=cl><span class=na>pm.start_servers</span> <span class=o>=</span> <span class=s>30</span>
+</span></span><span class=line><span class=cl><span class=c1># pm.*_spare_servers 设置空闲服务进程的最低/最大数目</span>
+</span></span><span class=line><span class=cl><span class=na>pm.min_spare_servers</span> <span class=o>=</span> <span class=s>30</span>
+</span></span><span class=line><span class=cl><span class=na>pm.max_spare_servers</span> <span class=o>=</span> <span class=s>300</span>
+</span></span><span class=line><span class=cl><span class=c1># 设置每个子进程重生之前服务的请求数</span>
+</span></span><span class=line><span class=cl><span class=na>pm.max_requests</span> <span class=o>=</span> <span class=s>65535</span>
+</span></span><span class=line><span class=cl><span class=c1># 设置文件打开描述符的 rlimit 限制，默认系统定义值</span>
+</span></span><span class=line><span class=cl><span class=na>rlimit_files</span> <span class=o>=</span> <span class=s>65535</span></span></span></code></pre></td></tr></table></div></div><p>详细参数说明:</p><blockquote><p><a href=https://secure.php.net/manual/zh/install.fpm.configuration.php target=_blank rel="external nofollow noopener noreferrer">https://secure.php.net/manual/zh/install.fpm.configuration.php<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote><h1 class=heading-element id=4-windows_php><span>4. windows_php</span>
+<a href=#4-windows_php class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><ol><li><p><code>iis</code> 可直接安装为<code>web-platfrom</code>，然后搜索<code>php manager</code></p><blockquote><p><a href=https://www.iis.net/downloads/microsoft/web-platform-installer target=_blank rel="external nofollow noopener noreferrer">https://www.iis.net/downloads/microsoft/web-platform-installer<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote></li><li><p>若无法正常使用，需要先安装<code>vc2012</code></p></li></ol><ul><li>故障: <code>php7.x vc15</code>安装时候只安装<code>vc++ 2015</code>不行(这个对应关系不是很清楚),此处安装<a href="https://docs.microsoft.com/zh-CN/cpp/windows/latest-supported-vc-redist?view=msvc-170" target=_blank rel="external nofollow noopener noreferrer"><code>2015、2017、2019、2022合并包</code><i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a>后成功运行</li></ul><ol start=3><li><p>若<code>1</code>无法安装，一般只是<code>php manager</code>无法安装，而<code>url</code>重写模块是安装好了的，这个时候直接去<code>github</code>上去下载一个整合的phpmanager，安装即可。</p><blockquote><p><a href=https://github.com/phpmanager/phpmanager/releases/tag/v2.0 target=_blank rel="external nofollow noopener noreferrer">https://github.com/phpmanager/phpmanager/releases/tag/v2.0<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote></li><li><p>上述第三步，也有可能<code>url</code>重写模块也未安装成功，这个时候需要去<code>microsoft</code>官网下载一个重写模块即可。另如果通过为<code>web-platfrom</code>安装<code>phpmanager</code>失败后安装的<code>url</code>重写模块，可能会导致<code>iis</code>中的<code>.net</code>程序异常，这个时候也需要手动卸载通过<code>web-platfrom</code>安装的<code>url</code>重写模块，然后安装<code>microsoft</code>下载的对应重写模块，理论上来说<code>iis</code>中安装的这个应该就是官网提供的，但是我遇到过的一次就是不行，卸载后重新安装官网的后,<code>.net</code>就正常了。</p><ul><li><p><a href=http://download.microsoft.com/download/4/E/7/4E7ECE9A-DF55-4F90-A354-B497072BDE0A/rewrite_x64_zh-CN.msi target=_blank rel="external nofollow noopener noreferrer">rewrite_x64_zh-CN.msi for microsoft<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></li><li><p><a href=http://download.microsoft.com/download/4/9/C/49CD28DB-4AA6-4A51-9437-AA001221F606/rewrite_x86_zh-CN.msi target=_blank rel="external nofollow noopener noreferrer">rewrite_x86_zh-CN.msi for microsoft<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></li></ul></li><li><p>扩展 <code>pdo_sqlsrv</code> (<code>windows</code> + <code>drivers_3.2</code>)</p><ul><li>遇到了一个坑，<code>php5.6</code>添加<code>pdo_sqlsrv</code>模块无论是 <code>nts</code> 还是 <code>ts</code>的 ，从官方直接下载下来的 <code>dll</code> 打死进加载不了，后来找到了一个非官方的，导入进去，然后就可以了，我也是哔了狗了(这些模块的dll可以去<code>phpstudy</code>中<code>copy</code>，他们是集成好了的)。</li></ul></li></ol><h1 class=heading-element id=5-额外扩展><span>5. 额外扩展</span>
+<a href=#5-%e9%a2%9d%e5%a4%96%e6%89%a9%e5%b1%95 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><ul><li><code>php memcache</code> 扩展</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wget http://pecl.php.net/get/memcache-2.2.7.tgz
+</span></span><span class=line><span class=cl>/opt/php-server/bin/phpize
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>yum install re2c
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>./configure --enable-memcache --with-php-config<span class=o>=</span>/opt/php-server/bin/php-config --with-zlib-dir
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>make <span class=o>&amp;&amp;</span> make install
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>extension</span><span class=o>=</span>memcache.so</span></span></code></pre></td></tr></table></div></div><ul><li><code>php redis</code> 扩展</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># php redis 扩展, php 5.6 对应phpredis 5.0以下测试正常编译 </span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>wget https://github.com/phpredis/phpredis/archive/4.3.0.tar.gz
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/opt/php-server/bin/phpize
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>./configure --with-php-config<span class=o>=</span>/opt/php-server/bin/php-config
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>extension</span><span class=o>=</span>redis.so </span></span></code></pre></td></tr></table></div></div><ul><li><code>memcache</code> 管理工具</li></ul><blockquote><p><a href=http://www.junopen.com/memadmin/ target=_blank rel="external nofollow noopener noreferrer">http://www.junopen.com/memadmin/<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote><h1 class=heading-element id=6-php版本选择><span>6. php版本选择</span>
+<a href=#6-php%e7%89%88%e6%9c%ac%e9%80%89%e6%8b%a9 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><p>windos服务器：</p><ol><li>如果你是PHP+IIS；请选择：PHP非线程安全（None Thread Safe(NTS)）；</li><li>如果你是PHP+apache；请选择：PHP线程安全（Thread Safe（TS））<br>linux服务器：<br>linux服务器下的PHP，没有PHP线程安全和非线程安全版的区分</li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2019-03-04 00:00:00">更新于 2019-03-04&nbsp;</span></div><div class=post-info-license><span><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>CC BY-NC-SA 4.0</a></span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/linux/ class=post-tag title="标签 - Linux">Linux</a><a href=/tags/php/ class=post-tag title="标签 - Php">Php</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/linux/docker%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ class=post-nav-item rel=prev title="Docker 部署与常用操作"><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>Docker 部署与常用操作</a><a href=/posts/linux/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/ class=post-nav-item rel=next title=Vsftpd安装配置>Vsftpd安装配置<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=gitalk class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://github.com/gitalk/gitalk rel="external nofollow noopener noreferrer">Gitalk</a>.</noscript></div></article><aside class=toc id=toc-auto aria-label=目录><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jtpwi0tdz1")</script></div><div class=footer-line>托管在&nbsp;<a title=Vercel href=https://vercel.com target=_blank rel="noopener noreffer">Vercel</a> & <a title=Aliyun href=https://www.aliyun.com target=_blank rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class=hugo-icon src=/images/hugo.min.svg alt="Hugo logo"> Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.1"><img class=fixit-icon src=/images/fixit.min.svg alt="FixIt logo"> FixIt</a></div><div class="footer-line copyright" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://blog.0x5c0f.cc target=_blank rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class=gov><img src=/images/gov.png style=height:16px;width:16px;display:inline-block;vertical-align:middle;margin-right:3px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel=noreferrer target=_blank>渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href=https://beian.miit.gov.cn target=_blank>渝ICP备2020011834号-2</a></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div><div class="fixed-button view-comments d-none" role=button aria-label=查看评论><i class="fa-solid fa-comment fa-fw" aria-hidden=true></i></div></div><div id=mask></div><div class=reading-progress-bar style=left:0;top:0></div><noscript><div class=noscript-warning>该网站在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/gitalk/gitalk.min.e525ab86258d1091611cdf6bbc548866f3bf97020fe6aadf3ce8e0ccd9aaec45f31b1cd3dd48d61e1eaf504f02e5666c4d41bd9e580964607a208acefd9cea54.css integrity="sha512-5SWrhiWNEJFhHN9rvFSIZvO/lwIP5qrfPOjgzNmq7EXzGxzT3UjWHh6vUE8C5WZsTUG9nlgJZGB6IIrO/ZzqVA=="><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src=/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src=/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src=/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src=/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type=module></script><script src=/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src=/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src=/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src=/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src=/js/ext-utils.00b3ce7d82b0ec4b5808452e6fdc89937cea0772879e35da39ac4aab50bfdafddf3f2863e7677be1732d17ac21d3563a43c2a0ae96491a02ba776df4f74a9ce1.js integrity="sha512-ALPOfYKw7EtYCEUub9yJk3zqB3KHnjXaOaxKq1C/2v3fPyhj52d74XMtF6wh01Y6Q8KgrpZJGgK6d23090qc4Q==" defer></script><script>window.config={code:{copyTitle:"复制到剪贴板",editLockTitle:"锁定可编辑代码块",editUnLockTitle:"解锁可编辑代码块",editable:!0,maxShownLines:10},comment:{enable:!0,expired:!1,gitalk:{admin:["0x5c0f"],clientID:"3248954ea2af12f77f46",clientSecret:"a463972c37d7b438e2635d4fc0a8f06174565c67",id:"2019-03-04T00:00:00Z",owner:"0x5c0f",repo:"blog",title:"Php安装维护"}},search:{distance:100,findAllMatches:!0,fuseIndexURL:"/search.json",highlightTag:"mark",ignoreFieldNorm:!0,ignoreLocation:!0,isCaseSensitive:!1,location:0,maxResultLength:10,minMatchCharLength:2,noResultsFound:"没有找到结果",snippetLength:30,threshold:.2,type:"fuse",useExtendedSearch:!0},typeit:{cursorChar:"_",cursorSpeed:1e3,duration:9e3,loop:!1,speed:100},version:"v0.4.0-alpha.1"}</script><script src=/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src=/lib/translate.min.88eab6458572fed1ef29f13c8cad30a51e0b1b403bcd162eb1a9e2fea0c98c59618a90b1871487d72d34f03fc152edcfc781651a2632ed5dfe68a3291ea11d65.js integrity="sha512-iOq2RYVy/tHvKfE8jK0wpR4LG0A7zRYusani/qDJjFlhipCxhxSH1y008D/BUu3Px4FlGiYy7V3+aKMpHqEdZQ==" defer></script><script>window.ATConfig={hugoLangCodes:["zh-CN"],hugoLangMap:{"zh-CN":"/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/"}}</script><script src=/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body></html>

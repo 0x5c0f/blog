@@ -1,1057 +1,748 @@
-<!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-    <meta name="robots" content="noodp" />
-    <title>Haproxy部署与常用操作 - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
-<meta name="description" content="Haproxy部署与常用操作"><meta name="keywords" content='linux, haproxy, 反向代理'>
-  <meta itemprop="name" content="Haproxy部署与常用操作">
-  <meta itemprop="description" content="Haproxy部署与常用操作">
-  <meta itemprop="datePublished" content="2019-04-12T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2023-08-02T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1604">
-  <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-  <meta itemprop="keywords" content="Linux,Haproxy,反向代理"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/">
-  <meta property="og:site_name" content="一个曾经的小码农...">
-  <meta property="og:title" content="Haproxy部署与常用操作">
-  <meta property="og:description" content="Haproxy部署与常用操作">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2019-04-12T00:00:00+00:00">
-    <meta property="article:modified_time" content="2023-08-02T00:00:00+00:00">
-    <meta property="article:tag" content="Linux">
-    <meta property="article:tag" content="Haproxy">
-    <meta property="article:tag" content="反向代理">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-  <meta name="twitter:title" content="Haproxy部署与常用操作">
-  <meta name="twitter:description" content="Haproxy部署与常用操作">
-<meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" title="Haproxy部署与常用操作 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/nginx%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/" title="Nginx安装维护" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="正则表达式介绍" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/index.md" title="Haproxy部署与常用操作 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css" integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel="stylesheet" href="/css/style.min.5516b21935ab930257ccd9906a509eece4fa3eae45fa80681bce0a64aa038d939c84f607bcd216b86fa9f9bd881abb2931053d975b038cbd1a813ed1d842df29.css" integrity="sha512-VRayGTWrkwJXzNmQalCe7OT6Pq5F+oBoG84KZKoDjZOchPYHvNIWuG+p+b2IGrspMQU9l1sDjL0agT7R2ELfKQ=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Haproxy部署与常用操作",
-    "inLanguage": "zh-CN",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C\/"
-    },"genre": "posts","keywords": "linux, haproxy, 反向代理","wordcount":  1604 ,
-    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C\/","datePublished": "2019-04-12T00:00:00+00:00","dateModified": "2023-08-02T00:00:00+00:00","publisher": {
-      "@type": "Organization",
-      "name": ""},"author": {
-        "@type": "Person",
-        "name": "0x5c0f"
-      },"description": "Haproxy部署与常用操作"
-  }
-  </script><script src="/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js" integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head>
-  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
-  <div class="header-wrapper">
-    <div class="header-title">
-      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
-    <nav>
-      <ul class="menu"><li class="menu-item">
-              <a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item">
-              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
-              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
-              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
-              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
-            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
-            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
-            </a>
-            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
-            </a>
-            <span class="search-button search-loading" id="search-loading-desktop">
-              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-            </span>
-          </li><li class="menu-item theme-switch" title="切换主题">
-          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-        </li><li class="menu-item language-switch auto d-none" aria-hidden="true">
-    <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
-    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
-          <a href="/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/" data-lang="zh-CN" class="menu-link text-secondary" title="简体中文">
-            <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
-        </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
-          <a data-lang="english" class="menu-link" title="English">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> English</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="japanese" class="menu-link" title="日本語">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
-        </li></ul>
-  </li></ul>
-    </nav>
-  </div>
-</header><header class="mobile animate__faster" id="header-mobile">
-  <div class="header-container">
-    <div class="header-wrapper">
-      <div class="header-title">
-        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
-      <div class="menu-toggle" id="menu-toggle-mobile">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <nav>
-      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
-            <div class="search mobile" id="search-mobile">
-              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
-              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
-              </a>
-              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
-              </a>
-              <span class="search-button search-loading" id="search-loading-mobile">
-                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-              </span>
-            </div>
-            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-              取消
-            </a>
-          </li><li class="menu-item"><a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
-          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span id="translate" class="menu-system-item language-switch auto d-none" aria-hidden="true">
-    <span role="button" aria-label="选择语言" title="选择语言" data-current="简体中文">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-  </span></li>
-      </ul>
-    </nav>
-  </div>
-</header><div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-  </div>
-  <div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-  </div><main class="fi-container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
-
-  <article class="page single">
-    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>Haproxy部署与常用操作</span>
-      </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-category" title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 运维记事</a>&ensp;<a href="/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/" class="post-category" title="分类 - 整理收集"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 整理收集</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2019-04-12 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2019-04-12">2019-04-12</time></span>&nbsp;<span title="更新于 2023-08-02 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden="true"></i><time datetime="2023-08-02">2023-08-02</time></span>&nbsp;<span title="1604 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1700 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 8 分钟</span>&nbsp;</div>
-    </div><div class="details toc" id="toc-static" data-kept="false">
-        <div class="details-summary toc-title">
-          <span>目录</span>
-          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
-        </div>
-        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-简介">1. 简介</a></li>
-    <li><a href="#2-安装">2. 安装</a></li>
-    <li><a href="#3-配置">3. 配置</a>
-      <ul>
-        <li><a href="#31-规划目录">3.1. 规划目录</a></li>
-        <li><a href="#32-主配置文件">3.2. 主配置文件</a></li>
-        <li><a href="#33-子配置">3.3. 子配置</a></li>
-        <li><a href="#34-详细配置说明">3.4. 详细配置说明</a></li>
-        <li><a href="#35-启动管理">3.5. 启动管理</a></li>
-      </ul>
-    </li>
-    <li><a href="#4-访问管理">4. 访问管理</a>
-      <ul>
-        <li><a href="#41-前端">4.1. 前端</a></li>
-        <li><a href="#42-后端">4.2. 后端</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-      </div><div class="content" id="content"><div class="expiration-reminder details admonition warning open">
-      <div class="details-summary admonition-title">
-        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
-      </div>
-      <div class="details-content">
-        <div class="admonition-content">本文最后更新于 2023-08-02，文中内容可能已过时。</div>
-      </div>
-    </div><div class="details admonition quote open">
-  <div class="details-summary admonition-title"><i class="icon fa-fw fa-solid fa-quote-right" aria-hidden="true"></i>本文参考以下内容, 由本站重新整理验证发布<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></div>
-  <div class="details-content">
-    <div class="admonition-content"><blockquote>
-<p><a href="https://zhang.ge/5125.html"target="_blank" rel="external nofollow noopener noreferrer">https://zhang.ge/5125.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-<blockquote>
-<p><a href="https://www.kancloud.cn/tuna_dai_/day01/369367"target="_blank" rel="external nofollow noopener noreferrer">https://www.kancloud.cn/tuna_dai_/day01/369367<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote>
-</div>
-  </div>
-</div>
-<h1 class="heading-element" id="1-简介"><span>1. 简介</span>
-  <a href="#1-%e7%ae%80%e4%bb%8b" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><ul>
-<li>HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。</li>
-<li>HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。</li>
-<li>HAProxy运行在当前的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上。</li>
-<li>HAProxy实现了一种事件驱动, 单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户空间(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。</li>
-</ul>
-<h1 class="heading-element" id="2-安装"><span>2. 安装</span>
-  <a href="#2-%e5%ae%89%e8%a3%85" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># wget https://www.haproxy.org/download/1.8/src/haproxy-1.8.19.tar.gz</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># tar -xzvf haproxy-1.8.19.tar.gz</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 software<span class="o">]</span><span class="c1"># cd haproxy-1.8.19/</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 安装 </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 内核版本，使用uname -r查看内核，如：2.6.18-371.el5，此时该参数就为linux26；kernel 大于2.6.28的用：TARGET=linux2628 </span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 haproxy-1.8.19<span class="o">]</span><span class="c1"># make TARGET=linux2628 ARCH=x86_64 PREFIX=/opt/haproxy  # PREFIX=/opt/haproxy-1.8.19</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 haproxy-1.8.19<span class="o">]</span><span class="c1"># make install PREFIX=/opt/haproxy  # PREFIX=/opt/haproxy-1.8.19</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 haproxy-1.8.19<span class="o">]</span><span class="c1"># useradd -u 1012 -M -s /sbin/nologin -d /opt/haproxy haproxy</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 haproxy-1.8.19<span class="o">]</span><span class="c1"># chown -R haproxy.haproxy /opt/haproxy-1.8.19</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># [root@00 haproxy-1.8.19]# ln -s /opt/haproxy-1.8.19 /opt/haproxy</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="3-配置"><span>3. 配置</span>
-  <a href="#3-%e9%85%8d%e7%bd%ae" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><h2 class="heading-element" id="31-规划目录"><span>3.1. 规划目录</span>
-  <a href="#31-%e8%a7%84%e5%88%92%e7%9b%ae%e5%bd%95" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># haproxy chroot,需要设置所有用户均不具有写权限</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 haproxy-1.8.19<span class="o">]</span><span class="c1"># mkdir /opt/haproxy/chroot &amp;&amp; chmod 440 /opt/haproxy/chroot </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 主配置文件目录</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 haproxy-1.8.19<span class="o">]</span><span class="c1"># mkdir /opt/haproxy/etc</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 子配置文件目录，规划enabled 目录为 ready目录内正式启用的软连接文件</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 haproxy-1.8.19<span class="o">]</span><span class="c1"># mkdir /opt/haproxy/etc/{enabled,ready}/{tcp,http} -p </span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 完整目录结构 </span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>root@00 haproxy-1.8.19<span class="o">]</span><span class="c1">#  tree /opt/haproxy/etc/</span>
-</span></span><span class="line"><span class="cl">/opt/haproxy/etc/
-</span></span><span class="line"><span class="cl">├── enabled
-</span></span><span class="line"><span class="cl">│   ├── http
-</span></span><span class="line"><span class="cl">│   │   └── example.cfg -&gt; ../../ready/http/example.cfg
-</span></span><span class="line"><span class="cl">│   └── tcp
-</span></span><span class="line"><span class="cl">├── haproxy.cfg
-</span></span><span class="line"><span class="cl">└── ready
-</span></span><span class="line"><span class="cl">    ├── http
-</span></span><span class="line"><span class="cl">    │   └── example.cfg
-</span></span><span class="line"><span class="cl">    └── tcp
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="m">6</span> directories, <span class="m">3</span> files</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 class="heading-element" id="32-主配置文件"><span>3.2. 主配置文件</span>
-  <a href="#32-%e4%b8%bb%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># current config: /opt/haproxy/etc/haproxy.cfg </span>
-</span></span><span class="line"><span class="cl"><span class="c1">###### haproxy 进程信息设置 ######</span>
-</span></span><span class="line"><span class="cl">global
-</span></span><span class="line"><span class="cl">    log 172.10.10.   local0
-</span></span><span class="line"><span class="cl">    maxconn <span class="m">4096</span>              <span class="c1">#最大连接数</span>
-</span></span><span class="line"><span class="cl">    chroot /opt/haproxy/chroot <span class="c1">#chroot装录</span>
-</span></span><span class="line"><span class="cl">    pidfile /opt/haproxy/haproxy.pid <span class="c1">#haproxy pid</span>
-</span></span><span class="line"><span class="cl">    stats socket /opt/haproxy/haproxy.sock mode <span class="m">660</span> level admin <span class="c1">#定义统计信息保存的位置,设置权限660，等级设置为管理,防止使用socat与sock通信是权限不够</span>
-</span></span><span class="line"><span class="cl">    user    haproxy           <span class="c1">#用户nobody</span>
-</span></span><span class="line"><span class="cl">    group   haproxy           <span class="c1">#组nobody</span>
-</span></span><span class="line"><span class="cl">    daemon                    <span class="c1">#守护进程运行</span>
-</span></span><span class="line"><span class="cl">    nbproc <span class="m">1</span>                  <span class="c1">#进程数量</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl"><span class="c1">##### 默认配置，均可通过后续设置覆盖当前设置 ######</span>
-</span></span><span class="line"><span class="cl">defaults
-</span></span><span class="line"><span class="cl">   log     global
-</span></span><span class="line"><span class="cl">   mode    http               <span class="c1">#7层 http;4层tcp,如果要让haproxy支持虚拟主机，mode 必须设为http </span>
-</span></span><span class="line"><span class="cl">   option  httplog            <span class="c1">#记录haproxy 访问日志, http 日志格式</span>
-</span></span><span class="line"><span class="cl">   option  httpclose          <span class="c1">#每次请求完毕后主动关闭http通道,haproxy不支持keep-alive,只能模拟这种模式的实现</span>
-</span></span><span class="line"><span class="cl">   option  redispatch         <span class="c1">#serverId对应的服务器挂掉后,强制定向到其他健康的服务器</span>
-</span></span><span class="line"><span class="cl">   retries <span class="m">3</span>                  <span class="c1">#3次连接失败就认为是服务器不可用</span>
-</span></span><span class="line"><span class="cl">   option  dontlognull        <span class="c1">#日志中不记录空连接,比如健康检查日志信息</span>
-</span></span><span class="line"><span class="cl">   option forwardfor header X-REAL-IP   <span class="c1"># 转发用户真实ip</span>
-</span></span><span class="line"><span class="cl">   maxconn <span class="m">2000</span>                     <span class="c1">#最大连接数，受系统ulimit 设置影响</span>
-</span></span><span class="line"><span class="cl">   timeout connect      <span class="m">3600000</span>     <span class="c1">#连接超时(毫秒)</span>
-</span></span><span class="line"><span class="cl">   timeout client      <span class="m">3600000</span>      <span class="c1">#客户端超时(毫秒)</span>
-</span></span><span class="line"><span class="cl">   timeout server      <span class="m">3600000</span>      <span class="c1">#服务器超时(毫秒)</span>
-</span></span><span class="line"><span class="cl"> 
-</span></span><span class="line"><span class="cl">listen stats
-</span></span><span class="line"><span class="cl">    <span class="nb">bind</span> 0.0.0.0:8888
-</span></span><span class="line"><span class="cl">    stats <span class="nb">enable</span>                <span class="c1"># 显示状态页面</span>
-</span></span><span class="line"><span class="cl">    stats hide-version          <span class="c1"># 隐藏 haproxy 版本号</span>
-</span></span><span class="line"><span class="cl">    stats refresh       30s     <span class="c1"># 页面自动刷新时间</span>
-</span></span><span class="line"><span class="cl">    stats uri   /haproxy-status <span class="c1"># 统计页面url</span>
-</span></span><span class="line"><span class="cl">    stats realm hello<span class="se">\ </span>haproxy  <span class="c1">#统计页面密码框上提示文本</span>
-</span></span><span class="line"><span class="cl">    stats auth  haproxy:haproxy <span class="c1"># 设置监控页面的用户和密码，可以设置多个</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">#stats auth  haproxy:haproxy</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 class="heading-element" id="33-子配置"><span>3.3. 子配置</span>
-  <a href="#33-%e5%ad%90%e9%85%8d%e7%bd%ae" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># current config: /opt/haproxy/etc/ready/http/example.cfg </span>
-</span></span><span class="line"><span class="cl"><span class="c1">###### 前端配置 ###### </span>
-</span></span><span class="line"><span class="cl">frontend frontend_www.example.com_1 
-</span></span><span class="line"><span class="cl">    <span class="c1"># </span>
-</span></span><span class="line"><span class="cl">    <span class="nb">bind</span> 0.0.0.0:5000
-</span></span><span class="line"><span class="cl">    mode http
-</span></span><span class="line"><span class="cl"><span class="c1">#    acl url_static       path_beg       -i /static /images /javascript /stylesheets</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#    acl url_static       path_end       -i .jpg .gif .png .css .js</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#    use_backend static          if url_static</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># 请求转发到那个后端</span>
-</span></span><span class="line"><span class="cl">    default_backend             backend_www.example.com_1
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#---------------------------------------------------------------------</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># static backend for serving up images, stylesheets and such</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#---------------------------------------------------------------------</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">###### 后端配置 ###### </span>
-</span></span><span class="line"><span class="cl">backend backend_www.example.com_1
-</span></span><span class="line"><span class="cl">    option forwardfor header X-REAL-IP
-</span></span><span class="line"><span class="cl">    <span class="c1"># 健康检查，发送一个HEAD请求，验证节点是否存活</span>
-</span></span><span class="line"><span class="cl">    option httpchk HEAD / HTTP/1.0
-</span></span><span class="line"><span class="cl">    <span class="c1"># 负载均衡模式roundrobin(轮询);source(ip hash);static-rr(权重轮询);leastconn(以服务器连接数轮询，连接数最低的优先连接)</span>
-</span></span><span class="line"><span class="cl">    balance     roundrobin
-</span></span><span class="line"><span class="cl">    <span class="c1"># check: 启用健康检查 </span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># inter 默认2秒检查 </span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># rise 检查连续可以的次数，当超过该次数,加入该节点，可用次数一般设置稍大</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># 1fall 检查连续不可用的次数，当超过该次数,剔除该节点 </span>
-</span></span><span class="line"><span class="cl">    server      node1 172.10.10.11:8081 check inter <span class="m">2000</span> rise <span class="m">30</span> fall <span class="m">15</span>
-</span></span><span class="line"><span class="cl">    server      node2 172.10.10.12:8081 check inter <span class="m">2000</span> rise <span class="m">30</span> fall <span class="m">15</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 class="heading-element" id="34-详细配置说明"><span>3.4. 详细配置说明</span>
-  <a href="#34-%e8%af%a6%e7%bb%86%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span><span class="lnt">121
-</span><span class="lnt">122
-</span><span class="lnt">123
-</span><span class="lnt">124
-</span><span class="lnt">125
-</span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
-</span><span class="lnt">130
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">###########全局配置#########</span>
-</span></span><span class="line"><span class="cl"><span class="na">global</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">log 127.0.0.1 local0 #[日志输出配置，所有日志都记录在本机，通过local0输出]</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">log 127.0.0.1 local1 notice #定义haproxy 日志级别[error warringinfo debug]</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">daemon #以后台形式运行harpoxy</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">nbproc 1 #设置进程数量</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">maxconn 4096 #默认最大连接数,需考虑ulimit-n限制</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#user haproxy #运行haproxy的用户</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#group haproxy #运行haproxy的用户所在的组</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#pidfile /var/run/haproxy.pid #haproxy 进程PID文件</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#ulimit-n 819200 #ulimit 的数量限制</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#chroot /usr/share/haproxy #chroot运行路径</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#debug #haproxy 调试级别，建议只在开启单进程的时候调试</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#quiet</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">########默认配置############</span>
-</span></span><span class="line"><span class="cl"><span class="na">defaults</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">log global</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">mode http #默认的模式mode { tcp|http|health }，tcp是4层，http是7层，health只会返回OK</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">option httplog #日志类别,采用httplog</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">option dontlognull #不记录健康检查日志信息</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">retries 2 #两次连接失败就认为是服务器不可用，也可以通过后面设置</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#option forwardfor #如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">option httpclose #每次请求完毕后主动关闭http通道,haproxy不支持keep-alive,只能模拟这种模式的实现</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#option redispatch #当serverId对应的服务器挂掉后，强制定向到其他健康的服务器，以后将不支持</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">option abortonclose #当服务器负载很高的时候，自动结束掉当前队列处理比较久的链接</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">maxconn 4096 #默认的最大连接数</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">timeout connect 5000ms #连接超时</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">timeout client 30000ms #客户端超时</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">timeout server 30000ms #服务器超时</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#timeout check 2000 #心跳检测超时</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#timeout http-keep-alive10s #默认持久连接超时时间</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#timeout http-request 10s #默认http请求超时时间</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#timeout queue 1m #默认队列超时时间</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">balance roundrobin #设置默认负载均衡方式，轮询方式</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#balance source #设置默认负载均衡方式，类似于nginx的ip_hash</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#balnace leastconn #设置默认负载均衡方式，最小连接数</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">########统计页面配置########</span>
-</span></span><span class="line"><span class="cl"><span class="na">listen stats</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">bind 0.0.0.0:1080 #设置Frontend和Backend的组合体，监控组的名称，按需要自定义名称</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">mode http #http的7层模式</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">option httplog #采用http日志格式</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#log 127.0.0.1 local0 err #错误日志记录</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">maxconn 10 #默认的最大连接数</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">stats refresh 30s #统计页面自动刷新时间</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">stats uri /stats #统计页面url</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">stats realm XingCloud\ Haproxy #统计页面密码框上提示文本</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">stats auth admin:admin #设置监控页面的用户和密码:admin,可以设置多个用户名</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">stats auth Frank:Frank #设置监控页面的用户和密码：Frank</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">stats hide-version #隐藏统计页面上HAProxy的版本信息</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">stats admin if TRUE #设置手工启动/禁用，后端服务器(haproxy-1.4.9以后版本)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">########设置haproxy 错误页面#####</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#errorfile 403 /home/haproxy/haproxy/errorfiles/403.http</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#errorfile 500 /home/haproxy/haproxy/errorfiles/500.http</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#errorfile 502 /home/haproxy/haproxy/errorfiles/502.http</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#errorfile 503 /home/haproxy/haproxy/errorfiles/503.http</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#errorfile 504 /home/haproxy/haproxy/errorfiles/504.http</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">########frontend前端配置##############</span>
-</span></span><span class="line"><span class="cl"><span class="na">frontend main</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">bind *:80 #这里建议使用bind *:80的方式，要不然做集群高可用的时候有问题，vip切换到其他机器就不能访问了。</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">acl web hdr(host) -i www.abc.com  #acl后面是规则名称，-i为忽略大小写，后面跟的是要访问的域名，如果访问www.abc.com这个域名，就触发web规则，。</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">acl img hdr(host) -i img.abc.com  #如果访问img.abc.com这个域名，就触发img规则。</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">use_backend webserver if web   #如果上面定义的web规则被触发，即访问www.abc.com，就将请求分发到webserver这个作用域。</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">use_backend imgserver if img   #如果上面定义的img规则被触发，即访问img.abc.com，就将请求分发到imgserver这个作用域。</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">default_backend dynamic #不满足则响应backend的默认页面</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">###### &gt;&gt; ################################# ACL ################################# &lt;&lt; ######</span>
-</span></span><span class="line"><span class="cl"><span class="c1">########ACL策略定义#########################</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#如果请求的域名满足正则表达式返回true -i是忽略大小写</span>
-</span></span><span class="line"><span class="cl"><span class="na">acl denali_policy hdr_reg(host) -i ^(www.inbank.com|image.inbank.com)$</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#如果请求域名满足www.inbank.com 返回 true -i是忽略大小写</span>
-</span></span><span class="line"><span class="cl"><span class="na">acl tm_policy hdr_dom(host) -i www.inbank.com</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#在请求url中包含sip_apiname=，则此控制策略返回true,否则为false</span>
-</span></span><span class="line"><span class="cl"><span class="na">acl invalid_req url_sub -i sip_apiname</span><span class="o">=</span><span class="s">#定义一个名为invalid_req的策略</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#在请求url中存在timetask作为部分地址路径，则此控制策略返回true,否则返回false</span>
-</span></span><span class="line"><span class="cl"><span class="na">acl timetask_req url_dir -i timetask</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#当请求的header中Content-length等于0时返回 true</span>
-</span></span><span class="line"><span class="cl"><span class="na">acl missing_cl hdr_cnt(Content-length) eq 0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#########acl策略匹配相应###################</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#当请求中header中Content-length等于0 阻止请求返回403</span>
-</span></span><span class="line"><span class="cl"><span class="na">block if missing_cl</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#block表示阻止请求，返回403错误，当前表示如果不满足策略invalid_req，或者满足策略timetask_req，则阻止请求。</span>
-</span></span><span class="line"><span class="cl"><span class="na">block if !invalid_req || timetask_req</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#当满足denali_policy的策略时使用denali_server的backend</span>
-</span></span><span class="line"><span class="cl"><span class="na">use_backend denali_server if denali_policy</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#当满足tm_policy的策略时使用tm_server的backend</span>
-</span></span><span class="line"><span class="cl"><span class="na">use_backend tm_server if tm_policy</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#reqisetbe关键字定义，根据定义的关键字选择backend</span>
-</span></span><span class="line"><span class="cl"><span class="na">reqisetbe ^Host:\ img dynamic</span>
-</span></span><span class="line"><span class="cl"><span class="na">reqisetbe ^[^\ ]*\ /(img|css)/ dynamic</span>
-</span></span><span class="line"><span class="cl"><span class="na">reqisetbe ^[^\ ]*\ /admin/stats stats</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#以上都不满足的时候使用默认mms_server的backend</span>
-</span></span><span class="line"><span class="cl"><span class="na">default_backend mms</span>
-</span></span><span class="line"><span class="cl"><span class="c1">###### &gt;&gt; ################################# ACL ################################# &lt;&lt; ######</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">########backend后端配置##############</span>
-</span></span><span class="line"><span class="cl"><span class="na">backend webserver #webserver作用域</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">mode http</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">balance roundrobin #balance roundrobin 负载轮询，balance source 保存session值，支持static-rr，leastconn，first，uri等参数</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">option httpchk /index.html HTTP/1.0 #健康检查, 检测文件，如果分发到后台index.html访问不到就不再分发给它</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">server web1 10.16.0.9:8085 cookie 1 weight 5 check inter 2000 rise 2 fall 3</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">server web2 10.16.0.10:8085 cookie 2 weight 3 check inter 2000 rise 2 fall 3</span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#cookie 1表示serverid为1，check inter 1500 是检测心跳频率 </span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#rise 2是2次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="na">backend imgserver</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">mode http</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">option httpchk /index.php</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">balance roundrobin </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">server img01 192.168.137.101:80 check inter 2000 fall 3</span>
-</span></span><span class="line"><span class="cl">　　<span class="na">server img02 192.168.137.102:80 check inter 2000 fall 3</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="na">backend dynamic </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">balance roundrobin </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">server test1 192.168.1.23:80 check maxconn 2000 </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">server test2 192.168.1.24:80 check maxconn 2000</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="na">listen tcptest </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">bind 0.0.0.0:5222 </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">mode tcp </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">option tcplog #采用tcp日志格式 </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">balance source </span>
-</span></span><span class="line"><span class="cl">　　<span class="c1">#log 127.0.0.1 local0 debug </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">server s1 192.168.100.204:7222 weight 1 </span>
-</span></span><span class="line"><span class="cl">　　<span class="na">server s2 192.168.100.208:7222 weight 1</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h2 class="heading-element" id="35-启动管理"><span>3.5. 启动管理</span>
-  <a href="#35-%e5%90%af%e5%8a%a8%e7%ae%a1%e7%90%86" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><ul>
-<li>
-<p>参考 <a href="https://zhang.ge/5125.html"target="_blank" rel="external nofollow noopener noreferrer">https://zhang.ge/5125.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a> 中脚本微调适应个人需求</p>
-</li>
-<li>
-<p><strong>haproxy.init.sh</strong></p>
-</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">  1
-</span><span class="lnt">  2
-</span><span class="lnt">  3
-</span><span class="lnt">  4
-</span><span class="lnt">  5
-</span><span class="lnt">  6
-</span><span class="lnt">  7
-</span><span class="lnt">  8
-</span><span class="lnt">  9
-</span><span class="lnt"> 10
-</span><span class="lnt"> 11
-</span><span class="lnt"> 12
-</span><span class="lnt"> 13
-</span><span class="lnt"> 14
-</span><span class="lnt"> 15
-</span><span class="lnt"> 16
-</span><span class="lnt"> 17
-</span><span class="lnt"> 18
-</span><span class="lnt"> 19
-</span><span class="lnt"> 20
-</span><span class="lnt"> 21
-</span><span class="lnt"> 22
-</span><span class="lnt"> 23
-</span><span class="lnt"> 24
-</span><span class="lnt"> 25
-</span><span class="lnt"> 26
-</span><span class="lnt"> 27
-</span><span class="lnt"> 28
-</span><span class="lnt"> 29
-</span><span class="lnt"> 30
-</span><span class="lnt"> 31
-</span><span class="lnt"> 32
-</span><span class="lnt"> 33
-</span><span class="lnt"> 34
-</span><span class="lnt"> 35
-</span><span class="lnt"> 36
-</span><span class="lnt"> 37
-</span><span class="lnt"> 38
-</span><span class="lnt"> 39
-</span><span class="lnt"> 40
-</span><span class="lnt"> 41
-</span><span class="lnt"> 42
-</span><span class="lnt"> 43
-</span><span class="lnt"> 44
-</span><span class="lnt"> 45
-</span><span class="lnt"> 46
-</span><span class="lnt"> 47
-</span><span class="lnt"> 48
-</span><span class="lnt"> 49
-</span><span class="lnt"> 50
-</span><span class="lnt"> 51
-</span><span class="lnt"> 52
-</span><span class="lnt"> 53
-</span><span class="lnt"> 54
-</span><span class="lnt"> 55
-</span><span class="lnt"> 56
-</span><span class="lnt"> 57
-</span><span class="lnt"> 58
-</span><span class="lnt"> 59
-</span><span class="lnt"> 60
-</span><span class="lnt"> 61
-</span><span class="lnt"> 62
-</span><span class="lnt"> 63
-</span><span class="lnt"> 64
-</span><span class="lnt"> 65
-</span><span class="lnt"> 66
-</span><span class="lnt"> 67
-</span><span class="lnt"> 68
-</span><span class="lnt"> 69
-</span><span class="lnt"> 70
-</span><span class="lnt"> 71
-</span><span class="lnt"> 72
-</span><span class="lnt"> 73
-</span><span class="lnt"> 74
-</span><span class="lnt"> 75
-</span><span class="lnt"> 76
-</span><span class="lnt"> 77
-</span><span class="lnt"> 78
-</span><span class="lnt"> 79
-</span><span class="lnt"> 80
-</span><span class="lnt"> 81
-</span><span class="lnt"> 82
-</span><span class="lnt"> 83
-</span><span class="lnt"> 84
-</span><span class="lnt"> 85
-</span><span class="lnt"> 86
-</span><span class="lnt"> 87
-</span><span class="lnt"> 88
-</span><span class="lnt"> 89
-</span><span class="lnt"> 90
-</span><span class="lnt"> 91
-</span><span class="lnt"> 92
-</span><span class="lnt"> 93
-</span><span class="lnt"> 94
-</span><span class="lnt"> 95
-</span><span class="lnt"> 96
-</span><span class="lnt"> 97
-</span><span class="lnt"> 98
-</span><span class="lnt"> 99
-</span><span class="lnt">100
-</span><span class="lnt">101
-</span><span class="lnt">102
-</span><span class="lnt">103
-</span><span class="lnt">104
-</span><span class="lnt">105
-</span><span class="lnt">106
-</span><span class="lnt">107
-</span><span class="lnt">108
-</span><span class="lnt">109
-</span><span class="lnt">110
-</span><span class="lnt">111
-</span><span class="lnt">112
-</span><span class="lnt">113
-</span><span class="lnt">114
-</span><span class="lnt">115
-</span><span class="lnt">116
-</span><span class="lnt">117
-</span><span class="lnt">118
-</span><span class="lnt">119
-</span><span class="lnt">120
-</span><span class="lnt">121
-</span><span class="lnt">122
-</span><span class="lnt">123
-</span><span class="lnt">124
-</span><span class="lnt">125
-</span><span class="lnt">126
-</span><span class="lnt">127
-</span><span class="lnt">128
-</span><span class="lnt">129
-</span><span class="lnt">130
-</span><span class="lnt">131
-</span><span class="lnt">132
-</span><span class="lnt">133
-</span><span class="lnt">134
-</span><span class="lnt">135
-</span><span class="lnt">136
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">#</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># chkconfig: - 85 15</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># description: HAProxy is a TCP/HTTP reverse proxy which is particularly suited \</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#              for high availability environments.</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># processname: haproxy</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># config: /opt/haproxy/etc/haproxy.cfg</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># pidfile: /opt/haproxy/haproxy.pid</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Script Author: 0x5c0f(初版作者https://zhang.ge/5125.html)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Version: 2004060600</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">PATH</span><span class="o">=</span>/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> PATH
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">PROCESS_NAME</span><span class="o">=</span>haproxy
-</span></span><span class="line"><span class="cl"><span class="nv">BASE_DIR</span><span class="o">=</span>/opt/haproxy
-</span></span><span class="line"><span class="cl"><span class="nv">EXEC</span><span class="o">=</span><span class="nv">$BASE_DIR</span>/sbin/haproxy
-</span></span><span class="line"><span class="cl"><span class="nv">PID_FILE</span><span class="o">=</span><span class="nv">$BASE_DIR</span>/haproxy.pid
-</span></span><span class="line"><span class="cl"><span class="nv">DEFAULT_CONF</span><span class="o">=</span><span class="nv">$BASE_DIR</span>/etc/haproxy.cfg
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># COLOR print</span>
-</span></span><span class="line"><span class="cl"><span class="nv">COLOR_RED</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[31;49m&#34;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">COLOR_GREEN</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[32;49m&#34;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">COLOR_RESET</span><span class="o">=</span><span class="k">$(</span><span class="nb">echo</span> -e <span class="s2">&#34;\e[0m&#34;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">info<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">COLOR_GREEN</span><span class="si">}</span><span class="nv">$*</span><span class="si">${</span><span class="nv">COLOR_RESET</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="o">}</span>
-</span></span><span class="line"><span class="cl">warn<span class="o">()</span> <span class="o">{</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">COLOR_RED</span><span class="si">}</span><span class="nv">$*</span><span class="si">${</span><span class="nv">COLOR_RESET</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">;</span> <span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">print_usage<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    info <span class="s2">&#34; Usage: </span><span class="k">$(</span>basename <span class="nv">$0</span><span class="k">)</span><span class="s2"> [start|stop|restart|status|test]&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">#get Expanding configuration</span>
-</span></span><span class="line"><span class="cl">ext_configs<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">CONFIGS</span><span class="o">=</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -d <span class="nv">$BASE_DIR</span>/etc/enabled <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> FILE in <span class="k">$(</span>find <span class="nv">$BASE_DIR</span>/etc/enabled -type l <span class="p">|</span> sort -n<span class="k">)</span><span class="p">;</span> <span class="k">do</span>
-</span></span><span class="line"><span class="cl">            <span class="nv">CONFIGS</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$CONFIGS</span><span class="s2"> -f </span><span class="nv">$FILE</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">done</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="nv">$CONFIGS</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">echo</span>
-</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># check process status</span>
-</span></span><span class="line"><span class="cl">check_process<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">PID</span><span class="o">=</span><span class="k">$(</span>get_pid<span class="k">)</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> ps aux <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span> <span class="p">|</span> grep -qw <span class="nv">$PID</span> 2&gt;/dev/null<span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">true</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">false</span>
-</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># check Configuration file</span>
-</span></span><span class="line"><span class="cl">check_conf<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">$EXEC</span> -c -f <span class="nv">$DEFAULT_CONF</span> <span class="k">$(</span>ext_configs<span class="k">)</span> &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nv">$?</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">get_pid<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[[</span> -f <span class="nv">$PID_FILE</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        cat <span class="nv">$PID_FILE</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span>
-</span></span><span class="line"><span class="cl">        warn <span class="s2">&#34; </span><span class="nv">$PID_FILE</span><span class="s2"> not found!&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
-</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">start<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> check_process<span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        warn <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> is already running!&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">$EXEC</span> -f <span class="nv">$DEFAULT_CONF</span> <span class="k">$(</span>ext_configs<span class="k">)</span> <span class="o">&amp;&amp;</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> -e <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> start                        [ </span><span class="k">$(</span>info OK<span class="k">)</span><span class="s2"> ]&#34;</span> <span class="o">||</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> -e <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> start                        [ </span><span class="k">$(</span>warn Failed<span class="k">)</span><span class="s2"> ]&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">stop<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> check_process<span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">PID</span><span class="o">=</span><span class="k">$(</span>get_pid<span class="k">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">kill</span> -9 <span class="nv">$PID</span> &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> -e <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> stop                         [ </span><span class="k">$(</span>info OK<span class="k">)</span><span class="s2"> ]&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span>
-</span></span><span class="line"><span class="cl">        warn <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> is not running!&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">restart<span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> ! check_process <span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        warn <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> is not running! Starting Now...&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="k">$(</span>check_conf<span class="k">)</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">PID</span><span class="o">=</span><span class="k">$(</span>get_pid<span class="k">)</span>
-</span></span><span class="line"><span class="cl">        <span class="nv">$EXEC</span> -f <span class="nv">$DEFAULT_CONF</span> <span class="k">$(</span>ext_configs<span class="k">)</span> -st <span class="nv">$PID</span> <span class="o">&amp;&amp;</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> -e <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> restart                      [ </span><span class="k">$(</span>info OK<span class="k">)</span><span class="s2"> ]&#34;</span> <span class="o">||</span>
-</span></span><span class="line"><span class="cl">            <span class="nb">echo</span> -e <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> restart                      [ </span><span class="k">$(</span>warn Failed<span class="k">)</span><span class="s2"> ]&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">else</span>
-</span></span><span class="line"><span class="cl">        warn <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> Configuration file is not valid, plz check!&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> -e <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> restart                      [ </span><span class="k">$(</span>warn Failed<span class="k">)</span><span class="s2"> ]&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$#</span> !<span class="o">=</span> <span class="m">1</span> <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">    print_usage
-</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="k">else</span>
-</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nv">$1</span> in
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;start&#34;</span> <span class="p">|</span> <span class="s2">&#34;START&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        start
-</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;stop&#34;</span> <span class="p">|</span> <span class="s2">&#34;STOP&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        stop
-</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;restart&#34;</span> <span class="p">|</span> <span class="s2">&#34;RESTART&#34;</span> <span class="p">|</span> <span class="s2">&#34;-r&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        restart
-</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;status&#34;</span> <span class="p">|</span> <span class="s2">&#34;STATUS&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> check_process<span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">            info <span class="s2">&#34;</span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> is running OK!&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span>
-</span></span><span class="line"><span class="cl">            warn <span class="s2">&#34; </span><span class="si">${</span><span class="nv">PROCESS_NAME</span><span class="si">}</span><span class="s2"> not running, plz check&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
-</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
-</span></span><span class="line"><span class="cl">    <span class="s2">&#34;test&#34;</span> <span class="p">|</span> <span class="s2">&#34;TEST&#34;</span> <span class="p">|</span> <span class="s2">&#34;-t&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> check_conf<span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">            info <span class="s2">&#34; Configuration file test Successfully.&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">else</span>
-</span></span><span class="line"><span class="cl">            warn <span class="s2">&#34; Configuration file test failed.&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
-</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
-</span></span><span class="line"><span class="cl">    *<span class="o">)</span>
-</span></span><span class="line"><span class="cl">        print_usage
-</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
-</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">esac</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h1 class="heading-element" id="4-访问管理"><span>4. 访问管理</span>
-  <a href="#4-%e8%ae%bf%e9%97%ae%e7%ae%a1%e7%90%86" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><h2 class="heading-element" id="41-前端"><span>4.1. 前端</span>
-  <a href="#41-%e5%89%8d%e7%ab%af" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><ul>
-<li>负载均衡vip 访问地址: http://0.0.0.0:5000</li>
-<li>haproxy 管理访问地址: http://0.0.0.0:8888/haproxy-status</li>
-</ul>
-<h2 class="heading-element" id="42-后端"><span>4.2. 后端</span>
-  <a href="#42-%e5%90%8e%e7%ab%af" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><ol>
-<li>后端与haproxy socket 通信操作(需要socat支持)</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#  节点启用维护模式</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#  echo &#34;disable server backend_www.example.com_1/node1&#34; |socat stdio /opt/haproxy/haproxy.sock</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#  节点关闭维护模式</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#  echo &#34;enable server backend_www.example.com_1/node1&#34; |socat stdio /opt/haproxy/haproxy.sock</span></span></span></code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer" id="post-footer">
-  <div class="post-info">
-    <div class="post-info-line">
-      <div class="post-info-mod"><span title="更新于 2023-08-02 00:00:00">更新于 2023-08-02&nbsp;</span>
-      </div><div class="post-info-license">
-            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
-          </div></div><div class="post-info-line">
-        <div class="post-info-md"><span><a href="/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
-        <div class="post-info-share">
-          <span></span>
-        </div>
-      </div></div>
-
-  <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/haproxy/" class="post-tag" title="标签 - Haproxy">Haproxy</a><a href="/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/" class="post-tag" title="标签 - 反向代理">反向代理</a></section>
-    <section><span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-    </section>
-  </div><div class="post-nav"><a href="/posts/linux/nginx%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/" class="post-nav-item" rel="prev" title="Nginx安装维护"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>Nginx安装维护</a><a href="/posts/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-nav-item" rel="next" title="正则表达式介绍">正则表达式介绍<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
-</div>
-<div id="comments"><div id="gitalk" class="comment"></div><noscript>
-        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
-      </noscript></div></article>
-
-  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
-      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.4.0-alpha.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
-        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
-              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
-  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
-        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
-    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
-  </noscript>
-</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.e525ab86258d1091611cdf6bbc548866f3bf97020fe6aadf3ce8e0ccd9aaec45f31b1cd3dd48d61e1eaf504f02e5666c4d41bd9e580964607a208acefd9cea54.css" integrity="sha512-5SWrhiWNEJFhHN9rvFSIZvO/lwIP5qrfPOjgzNmq7EXzGxzT3UjWHh6vUE8C5WZsTUG9nlgJZGB6IIrO/ZzqVA=="><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.00b3ce7d82b0ec4b5808452e6fdc89937cea0772879e35da39ac4aab50bfdafddf3f2863e7677be1732d17ac21d3563a43c2a0ae96491a02ba776df4f74a9ce1.js" integrity="sha512-ALPOfYKw7EtYCEUub9yJk3zqB3KHnjXaOaxKq1C/2v3fPyhj52d74XMtF6wh01Y6Q8KgrpZJGgK6d23090qc4Q==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2019-04-12T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"Haproxy部署与常用操作"}},"search":{"distance":100,"findAllMatches":true,"fuseIndexURL":"/search.json","highlightTag":"mark","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.2,"type":"fuse","useExtendedSearch":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.4.0-alpha.1"};</script><script src="/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js" integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src="/lib/translate.min.88eab6458572fed1ef29f13c8cad30a51e0b1b403bcd162eb1a9e2fea0c98c59618a90b1871487d72d34f03fc152edcfc781651a2632ed5dfe68a3291ea11d65.js" integrity="sha512-iOq2RYVy/tHvKfE8jK0wpR4LG0A7zRYusani/qDJjFlhipCxhxSH1y008D/BUu3Px4FlGiYy7V3+aKMpHqEdZQ==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"}};</script><script src="/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js" integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body>
-</html>
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>Haproxy部署与常用操作 - 一个曾经的小码农...</title><meta name=author content="0x5c0f"><meta name=description content="Haproxy部署与常用操作"><meta name=keywords content='linux,haproxy,反向代理'><meta itemprop=name content="Haproxy部署与常用操作"><meta itemprop=description content="Haproxy部署与常用操作"><meta itemprop=datePublished content="2019-04-12T00:00:00+00:00"><meta itemprop=dateModified content="2023-08-02T00:00:00+00:00"><meta itemprop=wordCount content="1604"><meta itemprop=image content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta itemprop=keywords content="Linux,Haproxy,反向代理"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"><meta property="og:site_name" content="一个曾经的小码农..."><meta property="og:title" content="Haproxy部署与常用操作"><meta property="og:description" content="Haproxy部署与常用操作"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-04-12T00:00:00+00:00"><meta property="article:modified_time" content="2023-08-02T00:00:00+00:00"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Haproxy"><meta property="article:tag" content="反向代理"><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta name=twitter:title content="Haproxy部署与常用操作"><meta name=twitter:description content="Haproxy部署与常用操作"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://blog.0x5c0f.cc/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ title="Haproxy部署与常用操作 - 一个曾经的小码农..."><link rel=prev type=text/html href=https://blog.0x5c0f.cc/posts/linux/nginx%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/ title=Nginx安装维护><link rel=next type=text/html href=https://blog.0x5c0f.cc/posts/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/ title=正则表达式介绍><link rel=alternate type=text/markdown href=https://blog.0x5c0f.cc/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/index.md title="Haproxy部署与常用操作 - 一个曾经的小码农..."><link rel=stylesheet href=/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel=stylesheet href=/css/style.min.5516b21935ab930257ccd9906a509eece4fa3eae45fa80681bce0a64aa038d939c84f607bcd216b86fa9f9bd881abb2931053d975b038cbd1a813ed1d842df29.css integrity="sha512-VRayGTWrkwJXzNmQalCe7OT6Pq5F+oBoG84KZKoDjZOchPYHvNIWuG+p+b2IGrspMQU9l1sDjL0agT7R2ELfKQ=="><link rel=preload href=/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel=preload href=/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Haproxy部署与常用操作","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.0x5c0f.cc\/posts\/linux\/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C\/"},"genre":"posts","keywords":"linux, haproxy, 反向代理","wordcount":1604,"url":"https:\/\/blog.0x5c0f.cc\/posts\/linux\/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C\/","datePublished":"2019-04-12T00:00:00+00:00","dateModified":"2023-08-02T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"0x5c0f"},"description":"Haproxy部署与常用操作"}</script><script src=/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=一个曾经的小码农...><span class=typeit><template>0x5c0f.cc</template></span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/posts/>所有文章</a></li><li class=menu-item><a class=menu-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-link href=/archives/>归档</a></li><li class=menu-item><a class=menu-link href=/about/>About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li><li class="menu-item language-switch auto d-none" aria-hidden=true><span role=button aria-label=选择语言 title=选择语言><i class="fa-solid fa-language fa-fw" aria-hidden=true></i></span><ul class=sub-menu><li class="menu-item active" data-type=artificial><a href=/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/ data-lang=zh-CN class="menu-link text-secondary" title=简体中文><i class="fa-solid fa-person fa-fw fa-sm" aria-hidden=true></i> 简体中文</a></li><li class=menu-item-divider aria-hidden=true></li><li class=menu-item data-type=machine><a data-lang=english class=menu-link title=English><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> English</a></li><li class=menu-item data-type=machine><a data-lang=chinese_simplified class=menu-link title=简体中文><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 简体中文</a></li><li class=menu-item data-type=machine><a data-lang=japanese class=menu-link title=日本語><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 日本語</a></li><li class=menu-item data-type=machine><a data-lang=chinese_traditional class=menu-link title=繁體中文><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 繁體中文</a></li></ul></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=一个曾经的小码农...><span class=typeit><template>0x5c0f.cc</template></span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/posts/>所有文章</a></li><li class=menu-item><a class=menu-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-link href=/archives/>归档</a></li><li class=menu-item><a class=menu-link href=/about/>About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span><span id=translate class="menu-system-item language-switch auto d-none" aria-hidden=true>
+<span role=button aria-label=选择语言 title=选择语言 data-current=简体中文>简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden=true></i></span></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>Haproxy部署与常用操作</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://blog.0x5c0f.cc title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><i class="fa-solid fa-user-circle" aria-hidden=true></i>
+0x5c0f</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/linux/ class=post-category title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Linux</a>&ensp;<a href=/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/ class=post-category title="分类 - 运维记事"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> 运维记事</a>&ensp;<a href=/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/ class=post-category title="分类 - 整理收集"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> 整理收集</a> 和 <a href=/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/ class=post-collection title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden=true></i> 运维记事</a></span></div><div class=post-meta-line><span title="发布于 2019-04-12 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2019-04-12>2019-04-12</time></span>&nbsp;<span title="更新于 2023-08-02 00:00:00"><i class="fa-regular fa-calendar-check fa-fw me-1" aria-hidden=true></i><time datetime=2023-08-02>2023-08-02</time></span>&nbsp;<span title="1604 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 1700 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 8 分钟</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-简介>1. 简介</a></li><li><a href=#2-安装>2. 安装</a></li><li><a href=#3-配置>3. 配置</a><ul><li><a href=#31-规划目录>3.1. 规划目录</a></li><li><a href=#32-主配置文件>3.2. 主配置文件</a></li><li><a href=#33-子配置>3.3. 子配置</a></li><li><a href=#34-详细配置说明>3.4. 详细配置说明</a></li><li><a href=#35-启动管理>3.5. 启动管理</a></li></ul></li><li><a href=#4-访问管理>4. 访问管理</a><ul><li><a href=#41-前端>4.1. 前端</a></li><li><a href=#42-后端>4.2. 后端</a></li></ul></li></ul></nav></div></div><div class=content id=content><div class="expiration-reminder details admonition warning open"><div class="details-summary admonition-title"><i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden=true></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class=details-content><div class=admonition-content>本文最后更新于 2023-08-02，文中内容可能已过时。</div></div></div><div class="details admonition quote open"><div class="details-summary admonition-title"><i class="icon fa-fw fa-solid fa-quote-right" aria-hidden=true></i>本文参考以下内容, 由本站重新整理验证发布<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class=details-content><div class=admonition-content><blockquote><p><a href=https://zhang.ge/5125.html target=_blank rel="external nofollow noopener noreferrer">https://zhang.ge/5125.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote><blockquote><p><a href=https://www.kancloud.cn/tuna_dai_/day01/369367 target=_blank rel="external nofollow noopener noreferrer">https://www.kancloud.cn/tuna_dai_/day01/369367<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote></div></div></div><h1 class=heading-element id=1-简介><span>1. 简介</span>
+<a href=#1-%e7%ae%80%e4%bb%8b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><ul><li>HAProxy提供高可用性、负载均衡以及基于TCP和HTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案。</li><li>HAProxy特别适用于那些负载特大的web站点，这些站点通常又需要会话保持或七层处理。</li><li>HAProxy运行在当前的硬件上，完全可以支持数以万计的并发连接。并且它的运行模式使得它可以很简单安全的整合进您当前的架构中， 同时可以保护你的web服务器不被暴露到网络上。</li><li>HAProxy实现了一种事件驱动, 单一进程模型，此模型支持非常大的并发连接数。多进程或多线程模型受内存限制 、系统调度器限制以及无处不在的锁限制，很少能处理数千并发连接。事件驱动模型因为在有更好的资源和时间管理的用户空间(User-Space) 实现所有这些任务，所以没有这些问题。此模型的弊端是，在多核系统上，这些程序通常扩展性较差。这就是为什么他们必须进行优化以 使每个CPU时间片(Cycle)做更多的工作。</li></ul><h1 class=heading-element id=2-安装><span>2. 安装</span>
+<a href=#2-%e5%ae%89%e8%a3%85 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># wget https://www.haproxy.org/download/1.8/src/haproxy-1.8.19.tar.gz</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># tar -xzvf haproxy-1.8.19.tar.gz</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 software<span class=o>]</span><span class=c1># cd haproxy-1.8.19/</span>
+</span></span><span class=line><span class=cl><span class=c1># 安装 </span>
+</span></span><span class=line><span class=cl><span class=c1># 内核版本，使用uname -r查看内核，如：2.6.18-371.el5，此时该参数就为linux26；kernel 大于2.6.28的用：TARGET=linux2628 </span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 haproxy-1.8.19<span class=o>]</span><span class=c1># make TARGET=linux2628 ARCH=x86_64 PREFIX=/opt/haproxy  # PREFIX=/opt/haproxy-1.8.19</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 haproxy-1.8.19<span class=o>]</span><span class=c1># make install PREFIX=/opt/haproxy  # PREFIX=/opt/haproxy-1.8.19</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 haproxy-1.8.19<span class=o>]</span><span class=c1># useradd -u 1012 -M -s /sbin/nologin -d /opt/haproxy haproxy</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 haproxy-1.8.19<span class=o>]</span><span class=c1># chown -R haproxy.haproxy /opt/haproxy-1.8.19</span>
+</span></span><span class=line><span class=cl><span class=c1># [root@00 haproxy-1.8.19]# ln -s /opt/haproxy-1.8.19 /opt/haproxy</span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=3-配置><span>3. 配置</span>
+<a href=#3-%e9%85%8d%e7%bd%ae class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><h2 class=heading-element id=31-规划目录><span>3.1. 规划目录</span>
+<a href=#31-%e8%a7%84%e5%88%92%e7%9b%ae%e5%bd%95 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># haproxy chroot,需要设置所有用户均不具有写权限</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 haproxy-1.8.19<span class=o>]</span><span class=c1># mkdir /opt/haproxy/chroot &amp;&amp; chmod 440 /opt/haproxy/chroot </span>
+</span></span><span class=line><span class=cl><span class=c1># 主配置文件目录</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 haproxy-1.8.19<span class=o>]</span><span class=c1># mkdir /opt/haproxy/etc</span>
+</span></span><span class=line><span class=cl><span class=c1># 子配置文件目录，规划enabled 目录为 ready目录内正式启用的软连接文件</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 haproxy-1.8.19<span class=o>]</span><span class=c1># mkdir /opt/haproxy/etc/{enabled,ready}/{tcp,http} -p </span>
+</span></span><span class=line><span class=cl><span class=c1># 完整目录结构 </span>
+</span></span><span class=line><span class=cl><span class=o>[</span>root@00 haproxy-1.8.19<span class=o>]</span><span class=c1>#  tree /opt/haproxy/etc/</span>
+</span></span><span class=line><span class=cl>/opt/haproxy/etc/
+</span></span><span class=line><span class=cl>├── enabled
+</span></span><span class=line><span class=cl>│   ├── http
+</span></span><span class=line><span class=cl>│   │   └── example.cfg -&gt; ../../ready/http/example.cfg
+</span></span><span class=line><span class=cl>│   └── tcp
+</span></span><span class=line><span class=cl>├── haproxy.cfg
+</span></span><span class=line><span class=cl>└── ready
+</span></span><span class=line><span class=cl>    ├── http
+</span></span><span class=line><span class=cl>    │   └── example.cfg
+</span></span><span class=line><span class=cl>    └── tcp
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>6</span> directories, <span class=m>3</span> files</span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=32-主配置文件><span>3.2. 主配置文件</span>
+<a href=#32-%e4%b8%bb%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># current config: /opt/haproxy/etc/haproxy.cfg </span>
+</span></span><span class=line><span class=cl><span class=c1>###### haproxy 进程信息设置 ######</span>
+</span></span><span class=line><span class=cl>global
+</span></span><span class=line><span class=cl>    log 172.10.10.   local0
+</span></span><span class=line><span class=cl>    maxconn <span class=m>4096</span>              <span class=c1>#最大连接数</span>
+</span></span><span class=line><span class=cl>    chroot /opt/haproxy/chroot <span class=c1>#chroot装录</span>
+</span></span><span class=line><span class=cl>    pidfile /opt/haproxy/haproxy.pid <span class=c1>#haproxy pid</span>
+</span></span><span class=line><span class=cl>    stats socket /opt/haproxy/haproxy.sock mode <span class=m>660</span> level admin <span class=c1>#定义统计信息保存的位置,设置权限660，等级设置为管理,防止使用socat与sock通信是权限不够</span>
+</span></span><span class=line><span class=cl>    user    haproxy           <span class=c1>#用户nobody</span>
+</span></span><span class=line><span class=cl>    group   haproxy           <span class=c1>#组nobody</span>
+</span></span><span class=line><span class=cl>    daemon                    <span class=c1>#守护进程运行</span>
+</span></span><span class=line><span class=cl>    nbproc <span class=m>1</span>                  <span class=c1>#进程数量</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl><span class=c1>##### 默认配置，均可通过后续设置覆盖当前设置 ######</span>
+</span></span><span class=line><span class=cl>defaults
+</span></span><span class=line><span class=cl>   log     global
+</span></span><span class=line><span class=cl>   mode    http               <span class=c1>#7层 http;4层tcp,如果要让haproxy支持虚拟主机，mode 必须设为http </span>
+</span></span><span class=line><span class=cl>   option  httplog            <span class=c1>#记录haproxy 访问日志, http 日志格式</span>
+</span></span><span class=line><span class=cl>   option  httpclose          <span class=c1>#每次请求完毕后主动关闭http通道,haproxy不支持keep-alive,只能模拟这种模式的实现</span>
+</span></span><span class=line><span class=cl>   option  redispatch         <span class=c1>#serverId对应的服务器挂掉后,强制定向到其他健康的服务器</span>
+</span></span><span class=line><span class=cl>   retries <span class=m>3</span>                  <span class=c1>#3次连接失败就认为是服务器不可用</span>
+</span></span><span class=line><span class=cl>   option  dontlognull        <span class=c1>#日志中不记录空连接,比如健康检查日志信息</span>
+</span></span><span class=line><span class=cl>   option forwardfor header X-REAL-IP   <span class=c1># 转发用户真实ip</span>
+</span></span><span class=line><span class=cl>   maxconn <span class=m>2000</span>                     <span class=c1>#最大连接数，受系统ulimit 设置影响</span>
+</span></span><span class=line><span class=cl>   timeout connect      <span class=m>3600000</span>     <span class=c1>#连接超时(毫秒)</span>
+</span></span><span class=line><span class=cl>   timeout client      <span class=m>3600000</span>      <span class=c1>#客户端超时(毫秒)</span>
+</span></span><span class=line><span class=cl>   timeout server      <span class=m>3600000</span>      <span class=c1>#服务器超时(毫秒)</span>
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>listen stats
+</span></span><span class=line><span class=cl>    <span class=nb>bind</span> 0.0.0.0:8888
+</span></span><span class=line><span class=cl>    stats <span class=nb>enable</span>                <span class=c1># 显示状态页面</span>
+</span></span><span class=line><span class=cl>    stats hide-version          <span class=c1># 隐藏 haproxy 版本号</span>
+</span></span><span class=line><span class=cl>    stats refresh       30s     <span class=c1># 页面自动刷新时间</span>
+</span></span><span class=line><span class=cl>    stats uri   /haproxy-status <span class=c1># 统计页面url</span>
+</span></span><span class=line><span class=cl>    stats realm hello<span class=se>\ </span>haproxy  <span class=c1>#统计页面密码框上提示文本</span>
+</span></span><span class=line><span class=cl>    stats auth  haproxy:haproxy <span class=c1># 设置监控页面的用户和密码，可以设置多个</span>
+</span></span><span class=line><span class=cl>    <span class=c1>#stats auth  haproxy:haproxy</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=33-子配置><span>3.3. 子配置</span>
+<a href=#33-%e5%ad%90%e9%85%8d%e7%bd%ae class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># current config: /opt/haproxy/etc/ready/http/example.cfg </span>
+</span></span><span class=line><span class=cl><span class=c1>###### 前端配置 ###### </span>
+</span></span><span class=line><span class=cl>frontend frontend_www.example.com_1 
+</span></span><span class=line><span class=cl>    <span class=c1># </span>
+</span></span><span class=line><span class=cl>    <span class=nb>bind</span> 0.0.0.0:5000
+</span></span><span class=line><span class=cl>    mode http
+</span></span><span class=line><span class=cl><span class=c1>#    acl url_static       path_beg       -i /static /images /javascript /stylesheets</span>
+</span></span><span class=line><span class=cl><span class=c1>#    acl url_static       path_end       -i .jpg .gif .png .css .js</span>
+</span></span><span class=line><span class=cl><span class=c1>#    use_backend static          if url_static</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 请求转发到那个后端</span>
+</span></span><span class=line><span class=cl>    default_backend             backend_www.example.com_1
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#---------------------------------------------------------------------</span>
+</span></span><span class=line><span class=cl><span class=c1># static backend for serving up images, stylesheets and such</span>
+</span></span><span class=line><span class=cl><span class=c1>#---------------------------------------------------------------------</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>###### 后端配置 ###### </span>
+</span></span><span class=line><span class=cl>backend backend_www.example.com_1
+</span></span><span class=line><span class=cl>    option forwardfor header X-REAL-IP
+</span></span><span class=line><span class=cl>    <span class=c1># 健康检查，发送一个HEAD请求，验证节点是否存活</span>
+</span></span><span class=line><span class=cl>    option httpchk HEAD / HTTP/1.0
+</span></span><span class=line><span class=cl>    <span class=c1># 负载均衡模式roundrobin(轮询);source(ip hash);static-rr(权重轮询);leastconn(以服务器连接数轮询，连接数最低的优先连接)</span>
+</span></span><span class=line><span class=cl>    balance     roundrobin
+</span></span><span class=line><span class=cl>    <span class=c1># check: 启用健康检查 </span>
+</span></span><span class=line><span class=cl>    <span class=c1># inter 默认2秒检查 </span>
+</span></span><span class=line><span class=cl>    <span class=c1># rise 检查连续可以的次数，当超过该次数,加入该节点，可用次数一般设置稍大</span>
+</span></span><span class=line><span class=cl>    <span class=c1># 1fall 检查连续不可用的次数，当超过该次数,剔除该节点 </span>
+</span></span><span class=line><span class=cl>    server      node1 172.10.10.11:8081 check inter <span class=m>2000</span> rise <span class=m>30</span> fall <span class=m>15</span>
+</span></span><span class=line><span class=cl>    server      node2 172.10.10.12:8081 check inter <span class=m>2000</span> rise <span class=m>30</span> fall <span class=m>15</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=34-详细配置说明><span>3.4. 详细配置说明</span>
+<a href=#34-%e8%af%a6%e7%bb%86%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-ini data-lang=ini><span class=line><span class=cl><span class=c1>###########全局配置#########</span>
+</span></span><span class=line><span class=cl><span class=na>global</span>
+</span></span><span class=line><span class=cl>　　<span class=na>log 127.0.0.1 local0 #[日志输出配置，所有日志都记录在本机，通过local0输出]</span>
+</span></span><span class=line><span class=cl>　　<span class=na>log 127.0.0.1 local1 notice #定义haproxy 日志级别[error warringinfo debug]</span>
+</span></span><span class=line><span class=cl>　　<span class=na>daemon #以后台形式运行harpoxy</span>
+</span></span><span class=line><span class=cl>　　<span class=na>nbproc 1 #设置进程数量</span>
+</span></span><span class=line><span class=cl>　　<span class=na>maxconn 4096 #默认最大连接数,需考虑ulimit-n限制</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#user haproxy #运行haproxy的用户</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#group haproxy #运行haproxy的用户所在的组</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#pidfile /var/run/haproxy.pid #haproxy 进程PID文件</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#ulimit-n 819200 #ulimit 的数量限制</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#chroot /usr/share/haproxy #chroot运行路径</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#debug #haproxy 调试级别，建议只在开启单进程的时候调试</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#quiet</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########默认配置############</span>
+</span></span><span class=line><span class=cl><span class=na>defaults</span>
+</span></span><span class=line><span class=cl>　　<span class=na>log global</span>
+</span></span><span class=line><span class=cl>　　<span class=na>mode http #默认的模式mode { tcp|http|health }，tcp是4层，http是7层，health只会返回OK</span>
+</span></span><span class=line><span class=cl>　　<span class=na>option httplog #日志类别,采用httplog</span>
+</span></span><span class=line><span class=cl>　　<span class=na>option dontlognull #不记录健康检查日志信息</span>
+</span></span><span class=line><span class=cl>　　<span class=na>retries 2 #两次连接失败就认为是服务器不可用，也可以通过后面设置</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#option forwardfor #如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip</span>
+</span></span><span class=line><span class=cl>　　<span class=na>option httpclose #每次请求完毕后主动关闭http通道,haproxy不支持keep-alive,只能模拟这种模式的实现</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#option redispatch #当serverId对应的服务器挂掉后，强制定向到其他健康的服务器，以后将不支持</span>
+</span></span><span class=line><span class=cl>　　<span class=na>option abortonclose #当服务器负载很高的时候，自动结束掉当前队列处理比较久的链接</span>
+</span></span><span class=line><span class=cl>　　<span class=na>maxconn 4096 #默认的最大连接数</span>
+</span></span><span class=line><span class=cl>　　<span class=na>timeout connect 5000ms #连接超时</span>
+</span></span><span class=line><span class=cl>　　<span class=na>timeout client 30000ms #客户端超时</span>
+</span></span><span class=line><span class=cl>　　<span class=na>timeout server 30000ms #服务器超时</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#timeout check 2000 #心跳检测超时</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#timeout http-keep-alive10s #默认持久连接超时时间</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#timeout http-request 10s #默认http请求超时时间</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#timeout queue 1m #默认队列超时时间</span>
+</span></span><span class=line><span class=cl>　　<span class=na>balance roundrobin #设置默认负载均衡方式，轮询方式</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#balance source #设置默认负载均衡方式，类似于nginx的ip_hash</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#balnace leastconn #设置默认负载均衡方式，最小连接数</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########统计页面配置########</span>
+</span></span><span class=line><span class=cl><span class=na>listen stats</span>
+</span></span><span class=line><span class=cl>　　<span class=na>bind 0.0.0.0:1080 #设置Frontend和Backend的组合体，监控组的名称，按需要自定义名称</span>
+</span></span><span class=line><span class=cl>　　<span class=na>mode http #http的7层模式</span>
+</span></span><span class=line><span class=cl>　　<span class=na>option httplog #采用http日志格式</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#log 127.0.0.1 local0 err #错误日志记录</span>
+</span></span><span class=line><span class=cl>　　<span class=na>maxconn 10 #默认的最大连接数</span>
+</span></span><span class=line><span class=cl>　　<span class=na>stats refresh 30s #统计页面自动刷新时间</span>
+</span></span><span class=line><span class=cl>　　<span class=na>stats uri /stats #统计页面url</span>
+</span></span><span class=line><span class=cl>　　<span class=na>stats realm XingCloud\ Haproxy #统计页面密码框上提示文本</span>
+</span></span><span class=line><span class=cl>　　<span class=na>stats auth admin:admin #设置监控页面的用户和密码:admin,可以设置多个用户名</span>
+</span></span><span class=line><span class=cl>　　<span class=na>stats auth Frank:Frank #设置监控页面的用户和密码：Frank</span>
+</span></span><span class=line><span class=cl>　　<span class=na>stats hide-version #隐藏统计页面上HAProxy的版本信息</span>
+</span></span><span class=line><span class=cl>　　<span class=na>stats admin if TRUE #设置手工启动/禁用，后端服务器(haproxy-1.4.9以后版本)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########设置haproxy 错误页面#####</span>
+</span></span><span class=line><span class=cl><span class=c1>#errorfile 403 /home/haproxy/haproxy/errorfiles/403.http</span>
+</span></span><span class=line><span class=cl><span class=c1>#errorfile 500 /home/haproxy/haproxy/errorfiles/500.http</span>
+</span></span><span class=line><span class=cl><span class=c1>#errorfile 502 /home/haproxy/haproxy/errorfiles/502.http</span>
+</span></span><span class=line><span class=cl><span class=c1>#errorfile 503 /home/haproxy/haproxy/errorfiles/503.http</span>
+</span></span><span class=line><span class=cl><span class=c1>#errorfile 504 /home/haproxy/haproxy/errorfiles/504.http</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########frontend前端配置##############</span>
+</span></span><span class=line><span class=cl><span class=na>frontend main</span>
+</span></span><span class=line><span class=cl>　　<span class=na>bind *:80 #这里建议使用bind *:80的方式，要不然做集群高可用的时候有问题，vip切换到其他机器就不能访问了。</span>
+</span></span><span class=line><span class=cl>　　<span class=na>acl web hdr(host) -i www.abc.com  #acl后面是规则名称，-i为忽略大小写，后面跟的是要访问的域名，如果访问www.abc.com这个域名，就触发web规则，。</span>
+</span></span><span class=line><span class=cl>　　<span class=na>acl img hdr(host) -i img.abc.com  #如果访问img.abc.com这个域名，就触发img规则。</span>
+</span></span><span class=line><span class=cl>　　<span class=na>use_backend webserver if web   #如果上面定义的web规则被触发，即访问www.abc.com，就将请求分发到webserver这个作用域。</span>
+</span></span><span class=line><span class=cl>　　<span class=na>use_backend imgserver if img   #如果上面定义的img规则被触发，即访问img.abc.com，就将请求分发到imgserver这个作用域。</span>
+</span></span><span class=line><span class=cl>　　<span class=na>default_backend dynamic #不满足则响应backend的默认页面</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>###### &gt;&gt; ################################# ACL ################################# &lt;&lt; ######</span>
+</span></span><span class=line><span class=cl><span class=c1>########ACL策略定义#########################</span>
+</span></span><span class=line><span class=cl><span class=c1>#如果请求的域名满足正则表达式返回true -i是忽略大小写</span>
+</span></span><span class=line><span class=cl><span class=na>acl denali_policy hdr_reg(host) -i ^(www.inbank.com|image.inbank.com)$</span>
+</span></span><span class=line><span class=cl><span class=c1>#如果请求域名满足www.inbank.com 返回 true -i是忽略大小写</span>
+</span></span><span class=line><span class=cl><span class=na>acl tm_policy hdr_dom(host) -i www.inbank.com</span>
+</span></span><span class=line><span class=cl><span class=c1>#在请求url中包含sip_apiname=，则此控制策略返回true,否则为false</span>
+</span></span><span class=line><span class=cl><span class=na>acl invalid_req url_sub -i sip_apiname</span><span class=o>=</span><span class=s>#定义一个名为invalid_req的策略</span>
+</span></span><span class=line><span class=cl><span class=c1>#在请求url中存在timetask作为部分地址路径，则此控制策略返回true,否则返回false</span>
+</span></span><span class=line><span class=cl><span class=na>acl timetask_req url_dir -i timetask</span>
+</span></span><span class=line><span class=cl><span class=c1>#当请求的header中Content-length等于0时返回 true</span>
+</span></span><span class=line><span class=cl><span class=na>acl missing_cl hdr_cnt(Content-length) eq 0</span>
+</span></span><span class=line><span class=cl><span class=c1>#########acl策略匹配相应###################</span>
+</span></span><span class=line><span class=cl><span class=c1>#当请求中header中Content-length等于0 阻止请求返回403</span>
+</span></span><span class=line><span class=cl><span class=na>block if missing_cl</span>
+</span></span><span class=line><span class=cl><span class=c1>#block表示阻止请求，返回403错误，当前表示如果不满足策略invalid_req，或者满足策略timetask_req，则阻止请求。</span>
+</span></span><span class=line><span class=cl><span class=na>block if !invalid_req || timetask_req</span>
+</span></span><span class=line><span class=cl><span class=c1>#当满足denali_policy的策略时使用denali_server的backend</span>
+</span></span><span class=line><span class=cl><span class=na>use_backend denali_server if denali_policy</span>
+</span></span><span class=line><span class=cl><span class=c1>#当满足tm_policy的策略时使用tm_server的backend</span>
+</span></span><span class=line><span class=cl><span class=na>use_backend tm_server if tm_policy</span>
+</span></span><span class=line><span class=cl><span class=c1>#reqisetbe关键字定义，根据定义的关键字选择backend</span>
+</span></span><span class=line><span class=cl><span class=na>reqisetbe ^Host:\ img dynamic</span>
+</span></span><span class=line><span class=cl><span class=na>reqisetbe ^[^\ ]*\ /(img|css)/ dynamic</span>
+</span></span><span class=line><span class=cl><span class=na>reqisetbe ^[^\ ]*\ /admin/stats stats</span>
+</span></span><span class=line><span class=cl><span class=c1>#以上都不满足的时候使用默认mms_server的backend</span>
+</span></span><span class=line><span class=cl><span class=na>default_backend mms</span>
+</span></span><span class=line><span class=cl><span class=c1>###### &gt;&gt; ################################# ACL ################################# &lt;&lt; ######</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>########backend后端配置##############</span>
+</span></span><span class=line><span class=cl><span class=na>backend webserver #webserver作用域</span>
+</span></span><span class=line><span class=cl>　　<span class=na>mode http</span>
+</span></span><span class=line><span class=cl>　　<span class=na>balance roundrobin #balance roundrobin 负载轮询，balance source 保存session值，支持static-rr，leastconn，first，uri等参数</span>
+</span></span><span class=line><span class=cl>　　<span class=na>option httpchk /index.html HTTP/1.0 #健康检查, 检测文件，如果分发到后台index.html访问不到就不再分发给它</span>
+</span></span><span class=line><span class=cl>　　<span class=na>server web1 10.16.0.9:8085 cookie 1 weight 5 check inter 2000 rise 2 fall 3</span>
+</span></span><span class=line><span class=cl>　　<span class=na>server web2 10.16.0.10:8085 cookie 2 weight 3 check inter 2000 rise 2 fall 3</span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#cookie 1表示serverid为1，check inter 1500 是检测心跳频率 </span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#rise 2是2次正确认为服务器可用，fall 3是3次失败认为服务器不可用，weight代表权重</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=na>backend imgserver</span>
+</span></span><span class=line><span class=cl>　　<span class=na>mode http</span>
+</span></span><span class=line><span class=cl>　　<span class=na>option httpchk /index.php</span>
+</span></span><span class=line><span class=cl>　　<span class=na>balance roundrobin </span>
+</span></span><span class=line><span class=cl>　　<span class=na>server img01 192.168.137.101:80 check inter 2000 fall 3</span>
+</span></span><span class=line><span class=cl>　　<span class=na>server img02 192.168.137.102:80 check inter 2000 fall 3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=na>backend dynamic </span>
+</span></span><span class=line><span class=cl>　　<span class=na>balance roundrobin </span>
+</span></span><span class=line><span class=cl>　　<span class=na>server test1 192.168.1.23:80 check maxconn 2000 </span>
+</span></span><span class=line><span class=cl>　　<span class=na>server test2 192.168.1.24:80 check maxconn 2000</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=na>listen tcptest </span>
+</span></span><span class=line><span class=cl>　　<span class=na>bind 0.0.0.0:5222 </span>
+</span></span><span class=line><span class=cl>　　<span class=na>mode tcp </span>
+</span></span><span class=line><span class=cl>　　<span class=na>option tcplog #采用tcp日志格式 </span>
+</span></span><span class=line><span class=cl>　　<span class=na>balance source </span>
+</span></span><span class=line><span class=cl>　　<span class=c1>#log 127.0.0.1 local0 debug </span>
+</span></span><span class=line><span class=cl>　　<span class=na>server s1 192.168.100.204:7222 weight 1 </span>
+</span></span><span class=line><span class=cl>　　<span class=na>server s2 192.168.100.208:7222 weight 1</span></span></span></code></pre></td></tr></table></div></div><h2 class=heading-element id=35-启动管理><span>3.5. 启动管理</span>
+<a href=#35-%e5%90%af%e5%8a%a8%e7%ae%a1%e7%90%86 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><ul><li><p>参考 <a href=https://zhang.ge/5125.html target=_blank rel="external nofollow noopener noreferrer">https://zhang.ge/5125.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a> 中脚本微调适应个人需求</p></li><li><p><strong>haproxy.init.sh</strong></p></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/sh
+</span></span></span><span class=line><span class=cl><span class=cp></span><span class=c1>#</span>
+</span></span><span class=line><span class=cl><span class=c1># chkconfig: - 85 15</span>
+</span></span><span class=line><span class=cl><span class=c1># description: HAProxy is a TCP/HTTP reverse proxy which is particularly suited \</span>
+</span></span><span class=line><span class=cl><span class=c1>#              for high availability environments.</span>
+</span></span><span class=line><span class=cl><span class=c1># processname: haproxy</span>
+</span></span><span class=line><span class=cl><span class=c1># config: /opt/haproxy/etc/haproxy.cfg</span>
+</span></span><span class=line><span class=cl><span class=c1># pidfile: /opt/haproxy/haproxy.pid</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Script Author: 0x5c0f(初版作者https://zhang.ge/5125.html)</span>
+</span></span><span class=line><span class=cl><span class=c1># Version: 2004060600</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>PATH</span><span class=o>=</span>/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
+</span></span><span class=line><span class=cl><span class=nb>export</span> PATH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>PROCESS_NAME</span><span class=o>=</span>haproxy
+</span></span><span class=line><span class=cl><span class=nv>BASE_DIR</span><span class=o>=</span>/opt/haproxy
+</span></span><span class=line><span class=cl><span class=nv>EXEC</span><span class=o>=</span><span class=nv>$BASE_DIR</span>/sbin/haproxy
+</span></span><span class=line><span class=cl><span class=nv>PID_FILE</span><span class=o>=</span><span class=nv>$BASE_DIR</span>/haproxy.pid
+</span></span><span class=line><span class=cl><span class=nv>DEFAULT_CONF</span><span class=o>=</span><span class=nv>$BASE_DIR</span>/etc/haproxy.cfg
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># COLOR print</span>
+</span></span><span class=line><span class=cl><span class=nv>COLOR_RED</span><span class=o>=</span><span class=k>$(</span><span class=nb>echo</span> -e <span class=s2>&#34;\e[31;49m&#34;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl><span class=nv>COLOR_GREEN</span><span class=o>=</span><span class=k>$(</span><span class=nb>echo</span> -e <span class=s2>&#34;\e[32;49m&#34;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl><span class=nv>COLOR_RESET</span><span class=o>=</span><span class=k>$(</span><span class=nb>echo</span> -e <span class=s2>&#34;\e[0m&#34;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl>info<span class=o>()</span> <span class=o>{</span> <span class=nb>echo</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>COLOR_GREEN</span><span class=si>}</span><span class=nv>$*</span><span class=si>${</span><span class=nv>COLOR_RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>warn<span class=o>()</span> <span class=o>{</span> <span class=nb>echo</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>COLOR_RED</span><span class=si>}</span><span class=nv>$*</span><span class=si>${</span><span class=nv>COLOR_RESET</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>print_usage<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    info <span class=s2>&#34; Usage: </span><span class=k>$(</span>basename <span class=nv>$0</span><span class=k>)</span><span class=s2> [start|stop|restart|status|test]&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#get Expanding configuration</span>
+</span></span><span class=line><span class=cl>ext_configs<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nv>CONFIGS</span><span class=o>=</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> -d <span class=nv>$BASE_DIR</span>/etc/enabled <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=k>for</span> FILE in <span class=k>$(</span>find <span class=nv>$BASE_DIR</span>/etc/enabled -type l <span class=p>|</span> sort -n<span class=k>)</span><span class=p>;</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>            <span class=nv>CONFIGS</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$CONFIGS</span><span class=s2> -f </span><span class=nv>$FILE</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>done</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> <span class=nv>$CONFIGS</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=c1># check process status</span>
+</span></span><span class=line><span class=cl>check_process<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nv>PID</span><span class=o>=</span><span class=k>$(</span>get_pid<span class=k>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> ps aux <span class=p>|</span> awk <span class=s1>&#39;{print $2}&#39;</span> <span class=p>|</span> grep -qw <span class=nv>$PID</span> 2&gt;/dev/null<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nb>true</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=nb>false</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=c1># check Configuration file</span>
+</span></span><span class=line><span class=cl>check_conf<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nv>$EXEC</span> -c -f <span class=nv>$DEFAULT_CONF</span> <span class=k>$(</span>ext_configs<span class=k>)</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=nv>$?</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>get_pid<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> -f <span class=nv>$PID_FILE</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        cat <span class=nv>$PID_FILE</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        warn <span class=s2>&#34; </span><span class=nv>$PID_FILE</span><span class=s2> not found!&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>start<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> check_process<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        warn <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> is already running!&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        <span class=nv>$EXEC</span> -f <span class=nv>$DEFAULT_CONF</span> <span class=k>$(</span>ext_configs<span class=k>)</span> <span class=o>&amp;&amp;</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> -e <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> start                        [ </span><span class=k>$(</span>info OK<span class=k>)</span><span class=s2> ]&#34;</span> <span class=o>||</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> -e <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> start                        [ </span><span class=k>$(</span>warn Failed<span class=k>)</span><span class=s2> ]&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>stop<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> check_process<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nv>PID</span><span class=o>=</span><span class=k>$(</span>get_pid<span class=k>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>kill</span> -9 <span class=nv>$PID</span> &gt;/dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> -e <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> stop                         [ </span><span class=k>$(</span>info OK<span class=k>)</span><span class=s2> ]&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        warn <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> is not running!&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>restart<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> ! check_process <span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        warn <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> is not running! Starting Now...&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=k>$(</span>check_conf<span class=k>)</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nv>PID</span><span class=o>=</span><span class=k>$(</span>get_pid<span class=k>)</span>
+</span></span><span class=line><span class=cl>        <span class=nv>$EXEC</span> -f <span class=nv>$DEFAULT_CONF</span> <span class=k>$(</span>ext_configs<span class=k>)</span> -st <span class=nv>$PID</span> <span class=o>&amp;&amp;</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> -e <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> restart                      [ </span><span class=k>$(</span>info OK<span class=k>)</span><span class=s2> ]&#34;</span> <span class=o>||</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> -e <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> restart                      [ </span><span class=k>$(</span>warn Failed<span class=k>)</span><span class=s2> ]&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span>
+</span></span><span class=line><span class=cl>        warn <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> Configuration file is not valid, plz check!&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> -e <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> restart                      [ </span><span class=k>$(</span>warn Failed<span class=k>)</span><span class=s2> ]&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=k>fi</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[[</span> <span class=nv>$#</span> !<span class=o>=</span> <span class=m>1</span> <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    print_usage
+</span></span><span class=line><span class=cl>    <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=k>case</span> <span class=nv>$1</span> in
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;start&#34;</span> <span class=p>|</span> <span class=s2>&#34;START&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>        start
+</span></span><span class=line><span class=cl>        <span class=p>;;</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;stop&#34;</span> <span class=p>|</span> <span class=s2>&#34;STOP&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>        stop
+</span></span><span class=line><span class=cl>        <span class=p>;;</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;restart&#34;</span> <span class=p>|</span> <span class=s2>&#34;RESTART&#34;</span> <span class=p>|</span> <span class=s2>&#34;-r&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>        restart
+</span></span><span class=line><span class=cl>        <span class=p>;;</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;status&#34;</span> <span class=p>|</span> <span class=s2>&#34;STATUS&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> check_process<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            info <span class=s2>&#34;</span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> is running OK!&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span>
+</span></span><span class=line><span class=cl>            warn <span class=s2>&#34; </span><span class=si>${</span><span class=nv>PROCESS_NAME</span><span class=si>}</span><span class=s2> not running, plz check&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>        <span class=p>;;</span>
+</span></span><span class=line><span class=cl>    <span class=s2>&#34;test&#34;</span> <span class=p>|</span> <span class=s2>&#34;TEST&#34;</span> <span class=p>|</span> <span class=s2>&#34;-t&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> check_conf<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            info <span class=s2>&#34; Configuration file test Successfully.&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span>
+</span></span><span class=line><span class=cl>            warn <span class=s2>&#34; Configuration file test failed.&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>        <span class=p>;;</span>
+</span></span><span class=line><span class=cl>    *<span class=o>)</span>
+</span></span><span class=line><span class=cl>        print_usage
+</span></span><span class=line><span class=cl>        <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl>        <span class=p>;;</span>
+</span></span><span class=line><span class=cl>    <span class=k>esac</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span></span></span></code></pre></td></tr></table></div></div><h1 class=heading-element id=4-访问管理><span>4. 访问管理</span>
+<a href=#4-%e8%ae%bf%e9%97%ae%e7%ae%a1%e7%90%86 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><h2 class=heading-element id=41-前端><span>4.1. 前端</span>
+<a href=#41-%e5%89%8d%e7%ab%af class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><ul><li>负载均衡vip 访问地址: http://0.0.0.0:5000</li><li>haproxy 管理访问地址: http://0.0.0.0:8888/haproxy-status</li></ul><h2 class=heading-element id=42-后端><span>4.2. 后端</span>
+<a href=#42-%e5%90%8e%e7%ab%af class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><ol><li>后端与haproxy socket 通信操作(需要socat支持)</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>#  节点启用维护模式</span>
+</span></span><span class=line><span class=cl><span class=c1>#  echo &#34;disable server backend_www.example.com_1/node1&#34; |socat stdio /opt/haproxy/haproxy.sock</span>
+</span></span><span class=line><span class=cl><span class=c1>#  节点关闭维护模式</span>
+</span></span><span class=line><span class=cl><span class=c1>#  echo &#34;enable server backend_www.example.com_1/node1&#34; |socat stdio /opt/haproxy/haproxy.sock</span></span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2023-08-02 00:00:00">更新于 2023-08-02&nbsp;</span></div><div class=post-info-license><span><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>CC BY-NC-SA 4.0</a></span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/linux/ class=post-tag title="标签 - Linux">Linux</a><a href=/tags/haproxy/ class=post-tag title="标签 - Haproxy">Haproxy</a><a href=/tags/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/ class=post-tag title="标签 - 反向代理">反向代理</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/linux/nginx%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/ class=post-nav-item rel=prev title=Nginx安装维护><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>Nginx安装维护</a><a href=/posts/linux/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/ class=post-nav-item rel=next title=正则表达式介绍>正则表达式介绍<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=gitalk class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://github.com/gitalk/gitalk rel="external nofollow noopener noreferrer">Gitalk</a>.</noscript></div></article><aside class=toc id=toc-auto aria-label=目录><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jtpwi0tdz1")</script></div><div class=footer-line>托管在&nbsp;<a title=Vercel href=https://vercel.com target=_blank rel="noopener noreffer">Vercel</a> & <a title=Aliyun href=https://www.aliyun.com target=_blank rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class=hugo-icon src=/images/hugo.min.svg alt="Hugo logo"> Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.1"><img class=fixit-icon src=/images/fixit.min.svg alt="FixIt logo"> FixIt</a></div><div class="footer-line copyright" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://blog.0x5c0f.cc target=_blank rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class=gov><img src=/images/gov.png style=height:16px;width:16px;display:inline-block;vertical-align:middle;margin-right:3px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel=noreferrer target=_blank>渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href=https://beian.miit.gov.cn target=_blank>渝ICP备2020011834号-2</a></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div><div class="fixed-button view-comments d-none" role=button aria-label=查看评论><i class="fa-solid fa-comment fa-fw" aria-hidden=true></i></div></div><div id=mask></div><div class=reading-progress-bar style=left:0;top:0></div><noscript><div class=noscript-warning>该网站在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/gitalk/gitalk.min.e525ab86258d1091611cdf6bbc548866f3bf97020fe6aadf3ce8e0ccd9aaec45f31b1cd3dd48d61e1eaf504f02e5666c4d41bd9e580964607a208acefd9cea54.css integrity="sha512-5SWrhiWNEJFhHN9rvFSIZvO/lwIP5qrfPOjgzNmq7EXzGxzT3UjWHh6vUE8C5WZsTUG9nlgJZGB6IIrO/ZzqVA=="><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src=/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src=/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src=/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src=/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type=module></script><script src=/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src=/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src=/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src=/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src=/js/ext-utils.00b3ce7d82b0ec4b5808452e6fdc89937cea0772879e35da39ac4aab50bfdafddf3f2863e7677be1732d17ac21d3563a43c2a0ae96491a02ba776df4f74a9ce1.js integrity="sha512-ALPOfYKw7EtYCEUub9yJk3zqB3KHnjXaOaxKq1C/2v3fPyhj52d74XMtF6wh01Y6Q8KgrpZJGgK6d23090qc4Q==" defer></script><script>window.config={code:{copyTitle:"复制到剪贴板",editLockTitle:"锁定可编辑代码块",editUnLockTitle:"解锁可编辑代码块",editable:!0,maxShownLines:10},comment:{enable:!0,expired:!1,gitalk:{admin:["0x5c0f"],clientID:"3248954ea2af12f77f46",clientSecret:"a463972c37d7b438e2635d4fc0a8f06174565c67",id:"2019-04-12T00:00:00Z",owner:"0x5c0f",repo:"blog",title:"Haproxy部署与常用操作"}},search:{distance:100,findAllMatches:!0,fuseIndexURL:"/search.json",highlightTag:"mark",ignoreFieldNorm:!0,ignoreLocation:!0,isCaseSensitive:!1,location:0,maxResultLength:10,minMatchCharLength:2,noResultsFound:"没有找到结果",snippetLength:30,threshold:.2,type:"fuse",useExtendedSearch:!0},typeit:{cursorChar:"_",cursorSpeed:1e3,duration:9e3,loop:!1,speed:100},version:"v0.4.0-alpha.1"}</script><script src=/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src=/lib/translate.min.88eab6458572fed1ef29f13c8cad30a51e0b1b403bcd162eb1a9e2fea0c98c59618a90b1871487d72d34f03fc152edcfc781651a2632ed5dfe68a3291ea11d65.js integrity="sha512-iOq2RYVy/tHvKfE8jK0wpR4LG0A7zRYusani/qDJjFlhipCxhxSH1y008D/BUu3Px4FlGiYy7V3+aKMpHqEdZQ==" defer></script><script>window.ATConfig={hugoLangCodes:["zh-CN"],hugoLangMap:{"zh-CN":"/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"}}</script><script src=/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body></html>

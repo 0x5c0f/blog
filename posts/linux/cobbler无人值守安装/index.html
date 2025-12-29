@@ -1,863 +1,398 @@
-<!DOCTYPE html>
-<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-    <meta name="robots" content="noodp" />
-    <title>Cobbler无人值守安装 - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
-<meta name="description" content="Cobbler无人值守安装"><meta name="keywords" content='linux, cobbler, 解决方案'>
-  <meta itemprop="name" content="Cobbler无人值守安装">
-  <meta itemprop="description" content="Cobbler无人值守安装">
-  <meta itemprop="datePublished" content="2020-01-19T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2020-01-19T00:00:00+00:00">
-  <meta itemprop="wordCount" content="1382">
-  <meta itemprop="image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-  <meta itemprop="keywords" content="Linux,Cobbler,解决方案"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/">
-  <meta property="og:site_name" content="一个曾经的小码农...">
-  <meta property="og:title" content="Cobbler无人值守安装">
-  <meta property="og:description" content="Cobbler无人值守安装">
-  <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2020-01-19T00:00:00+00:00">
-    <meta property="article:modified_time" content="2020-01-19T00:00:00+00:00">
-    <meta property="article:tag" content="Linux">
-    <meta property="article:tag" content="Cobbler">
-    <meta property="article:tag" content="解决方案">
-    <meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp">
-  <meta name="twitter:title" content="Cobbler无人值守安装">
-  <meta name="twitter:description" content="Cobbler无人值守安装">
-<meta name="application-name" content="FixIt">
-<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/" title="Cobbler无人值守安装 - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" title="介绍在Linux命令行中使用tcpdump" /><link rel="next" type="text/html" href="https://blog.0x5c0f.cc/posts/linux/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" title="Java运维故障记录" /><link rel="alternate" type="text/markdown" href="https://blog.0x5c0f.cc/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/index.md" title="Cobbler无人值守安装 - 一个曾经的小码农..."><link rel="stylesheet" href="/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css" integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel="stylesheet" href="/css/style.min.5516b21935ab930257ccd9906a509eece4fa3eae45fa80681bce0a64aa038d939c84f607bcd216b86fa9f9bd881abb2931053d975b038cbd1a813ed1d842df29.css" integrity="sha512-VRayGTWrkwJXzNmQalCe7OT6Pq5F+oBoG84KZKoDjZOchPYHvNIWuG+p+b2IGrspMQU9l1sDjL0agT7R2ELfKQ=="><link rel="preload" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel="preload" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type="application/ld+json">
-  {
-    "@context": "http://schema.org",
-    "@type": "BlogPosting",
-    "headline": "Cobbler无人值守安装",
-    "inLanguage": "zh-CN",
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85\/"
-    },"genre": "posts","keywords": "linux, cobbler, 解决方案","wordcount":  1382 ,
-    "url": "https:\/\/blog.0x5c0f.cc\/posts\/linux\/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85\/","datePublished": "2020-01-19T00:00:00+00:00","dateModified": "2020-01-19T00:00:00+00:00","publisher": {
-      "@type": "Organization",
-      "name": ""},"author": {
-        "@type": "Person",
-        "name": "0x5c0f"
-      },"description": "Cobbler无人值守安装"
-  }
-  </script><script src="/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js" integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head>
-  <body data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
-  <div class="header-wrapper">
-    <div class="header-title">
-      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
-    <nav>
-      <ul class="menu"><li class="menu-item">
-              <a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item">
-              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
-              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
-              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
-              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
-            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
-            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-              <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
-            </a>
-            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-              <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
-            </a>
-            <span class="search-button search-loading" id="search-loading-desktop">
-              <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-            </span>
-          </li><li class="menu-item theme-switch" title="切换主题">
-          <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
-        </li><li class="menu-item language-switch auto d-none" aria-hidden="true">
-    <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
-    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
-          <a href="/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/" data-lang="zh-CN" class="menu-link text-secondary" title="简体中文">
-            <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
-        </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
-          <a data-lang="english" class="menu-link" title="English">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> English</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="japanese" class="menu-link" title="日本語">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
-        </li><li class="menu-item" data-type="machine">
-          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
-            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
-        </li></ul>
-  </li></ul>
-    </nav>
-  </div>
-</header><header class="mobile animate__faster" id="header-mobile">
-  <div class="header-container">
-    <div class="header-wrapper">
-      <div class="header-title">
-        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
-      <div class="menu-toggle" id="menu-toggle-mobile">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-    <nav>
-      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
-            <div class="search mobile" id="search-mobile">
-              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
-              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                <i class="fa-solid fa-search fa-fw" aria-hidden="true"></i>
-              </a>
-              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                <i class="fa-solid fa-times-circle fa-fw" aria-hidden="true"></i>
-              </a>
-              <span class="search-button search-loading" id="search-loading-mobile">
-                <i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-              </span>
-            </div>
-            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-              取消
-            </a>
-          </li><li class="menu-item"><a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system">
-          <span class="menu-system-item theme-switch" title="切换主题"><i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i></span><span id="translate" class="menu-system-item language-switch auto d-none" aria-hidden="true">
-    <span role="button" aria-label="选择语言" title="选择语言" data-current="简体中文">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
-  </span></li>
-      </ul>
-    </nav>
-  </div>
-</header><div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-  </div>
-  <div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-  </div><main class="fi-container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
-
-  <article class="page single">
-    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><a href="https://www.linuxprobe.com/cobbler-installation-server.html" title="转载 -&gt; https://www.linuxprobe.com/cobbler-installation-server.html"target="_blank" rel="external nofollow noopener noreferrer" class="icon-repost"><i class="fa-solid fa-share fa-fw" aria-hidden="true"></i>
-    </a><span>Cobbler无人值守安装</span>
-      </h1></div><div class="post-meta">
-      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者"target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/" class="post-category" title="分类 - 整理收集"><i class="fa-regular fa-folder fa-fw" aria-hidden="true"></i> 整理收集</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden="true"></i> 运维记事</a></span></div><div class="post-meta-line"><span title="发布于 2020-01-19 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden="true"></i><time datetime="2020-01-19">2020-01-19</time></span>&nbsp;<span title="1382 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden="true"></i>约 1400 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden="true"></i>预计阅读 7 分钟</span>&nbsp;</div>
-    </div><div class="details toc" id="toc-static" data-kept="false">
-        <div class="details-summary toc-title">
-          <span>目录</span>
-          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
-        </div>
-        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#1-cobbler-运行流程">1. Cobbler 运行流程</a></li>
-    <li><a href="#2-搭建-cobbler-无人值守安装服务器">2. 搭建 Cobbler 无人值守安装服务器</a>
-      <ul>
-        <li><a href="#21-安装配置-cobbler">2.1. 安装配置 Cobbler</a>
-          <ul>
-            <li><a href="#211-首先安装-epel-releasecobbler-和-tftp-server-在-base-源中是没有的">2.1.1. 首先安装 epel-release，Cobbler 和 tftp-server 在 base 源中是没有的</a></li>
-            <li><a href="#212-安装-cobbler-其实有一部分软件会被当做依赖进行安装上去比如-tftp-和-httpd-服务我们这里为了方便可以一并安装避免后续出现相关问题">2.1.2. 安装 Cobbler 其实有一部分软件会被当做依赖进行安装上去，比如 tftp 和 httpd 服务，我们这里为了方便可以一并安装，避免后续出现相关问题。</a></li>
-            <li><a href="#213-软件作用说明">2.1.3. 软件作用说明</a></li>
-            <li><a href="#214-cobbler-工作目录介绍">2.1.4. Cobbler 工作目录介绍</a></li>
-            <li><a href="#215-首先启动-cobbler-和-httpd-服务">2.1.5. 首先启动 Cobbler 和 httpd 服务</a></li>
-            <li><a href="#216-检查配置">2.1.6. 检查配置</a></li>
-            <li><a href="#217-修改-cobbler-管理-dhcp-服务">2.1.7. 修改 Cobbler 管理 dhcp 服务</a></li>
-            <li><a href="#218-同步配置文件需要先重启-cobblerd">2.1.8. 同步配置文件，需要先重启 Cobblerd</a></li>
-            <li><a href="#219-挂载光驱">2.1.9. 挂载光驱</a></li>
-            <li><a href="#2110-导入镜像">2.1.10. 导入镜像</a></li>
-            <li><a href="#2111-查看镜像上面是镜像名称下面是启动菜单">2.1.11. 查看镜像，上面是镜像名称，下面是启动菜单。</a></li>
-            <li><a href="#2112-同步-cobbler-配置">2.1.12. 同步 Cobbler 配置</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-      </div><div class="content" id="content"><div class="expiration-reminder details admonition warning open">
-      <div class="details-summary admonition-title">
-        <i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden="true"></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i>
-      </div>
-      <div class="details-content">
-        <div class="admonition-content">本文最后更新于 2020-01-19，文中内容可能已过时。</div>
-      </div>
-    </div><div class="details admonition quote open">
-  <div class="details-summary admonition-title"><i class="icon fa-fw fa-solid fa-quote-right" aria-hidden="true"></i>文章来源<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></div>
-  <div class="details-content">
-    <div class="admonition-content"><blockquote>
-<p><a href="https://www.linuxprobe.com/cobbler-installation-server.html"target="_blank" rel="external nofollow noopener noreferrer">https://www.linuxprobe.com/cobbler-installation-server.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden="true"></i></a></p>
-</blockquote></div>
-  </div>
-</div>
-<h1 class="heading-element" id="1-cobbler-运行流程"><span>1. Cobbler 运行流程</span>
-  <a href="#1-cobbler-%e8%bf%90%e8%a1%8c%e6%b5%81%e7%a8%8b" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><ul>
-<li>
-<p>Server 端：</p>
-<ul>
-<li>第一步：启动 Cobbler 服务</li>
-<li>第二步：进行 Cobbler 错误检查，执行 Cobbler check 命令</li>
-<li>第三步：进行配置同步，执行 Cobbler sync 命令</li>
-<li>第四步：复制相关启动文件文件到 TFTP 目录中</li>
-<li>第五步：启动 DHCP 服务，提供地址分配</li>
-<li>第六步：DHCP 服务分配 IP 地址</li>
-<li>第七步：TFTP 传输启动文件</li>
-<li>第八步：Server 端接收安装信息</li>
-<li>第九步：Server 端发送 ISO 镜像不 Kickstart 文件</li>
-</ul>
-</li>
-<li>
-<p>Client 端：</p>
-<ul>
-<li>第一步：客户端以 PXE 模式启动</li>
-<li>第二步：客户端获取 IP 地址</li>
-<li>第三步：通过 TFTP 服务器获取启动文件</li>
-<li>第四步：进入 Cobbler 安装选择界面</li>
-<li>第五步：客户端确定加载信息</li>
-<li>第六步：根据配置信息准备安装系统</li>
-<li>第七步：加载 Kickstart 文件</li>
-<li>第八步：传输系统安装的其它文件</li>
-<li>第九步：进行安装系统</li>
-</ul>
-</li>
-</ul>
-<h1 class="heading-element" id="2-搭建-cobbler-无人值守安装服务器"><span>2. 搭建 Cobbler 无人值守安装服务器</span>
-  <a href="#2-%e6%90%ad%e5%bb%ba-cobbler-%e6%97%a0%e4%ba%ba%e5%80%bc%e5%ae%88%e5%ae%89%e8%a3%85%e6%9c%8d%e5%8a%a1%e5%99%a8" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h1><h2 class="heading-element" id="21-安装配置-cobbler"><span>2.1. 安装配置 Cobbler</span>
-  <a href="#21-%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae-cobbler" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h2><h3 class="heading-element" id="211-首先安装-epel-releasecobbler-和-tftp-server-在-base-源中是没有的"><span>2.1.1. 首先安装 epel-release，Cobbler 和 tftp-server 在 base 源中是没有的</span>
-  <a href="#211-%e9%a6%96%e5%85%88%e5%ae%89%e8%a3%85-epel-releasecobbler-%e5%92%8c-tftp-server-%e5%9c%a8-base-%e6%ba%90%e4%b8%ad%e6%98%af%e6%b2%a1%e6%9c%89%e7%9a%84" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; yum install -y epel-release</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="212-安装-cobbler-其实有一部分软件会被当做依赖进行安装上去比如-tftp-和-httpd-服务我们这里为了方便可以一并安装避免后续出现相关问题"><span>2.1.2. 安装 Cobbler 其实有一部分软件会被当做依赖进行安装上去，比如 tftp 和 httpd 服务，我们这里为了方便可以一并安装，避免后续出现相关问题。</span>
-  <a href="#212-%e5%ae%89%e8%a3%85-cobbler-%e5%85%b6%e5%ae%9e%e6%9c%89%e4%b8%80%e9%83%a8%e5%88%86%e8%bd%af%e4%bb%b6%e4%bc%9a%e8%a2%ab%e5%bd%93%e5%81%9a%e4%be%9d%e8%b5%96%e8%bf%9b%e8%a1%8c%e5%ae%89%e8%a3%85%e4%b8%8a%e5%8e%bb%e6%af%94%e5%a6%82-tftp-%e5%92%8c-httpd-%e6%9c%8d%e5%8a%a1%e6%88%91%e4%bb%ac%e8%bf%99%e9%87%8c%e4%b8%ba%e4%ba%86%e6%96%b9%e4%be%bf%e5%8f%af%e4%bb%a5%e4%b8%80%e5%b9%b6%e5%ae%89%e8%a3%85%e9%81%bf%e5%85%8d%e5%90%8e%e7%bb%ad%e5%87%ba%e7%8e%b0%e7%9b%b8%e5%85%b3%e9%97%ae%e9%a2%98" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; yum install -y cobbler cobbler-web dhcp tftp-server pykickstart httpd rsync xinetd </span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>注意: 必须把yum源配好，否则无法全部安装以上软件！</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /etc/yum.repos.d/CentOS-Base.repo
-</span></span><span class="line"><span class="cl"><span class="c1">#在CentOS-Base.repo配置文件中添加以下源</span>
-</span></span><span class="line"><span class="cl"><span class="o">[</span>aliyun-os<span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>aliyun-os
-</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>https://mirrors.aliyun.com/centos/7/os/x86_64/
-</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">[</span>aliyun-epel<span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>aliyun-epel
-</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>https://mirrors.aliyun.com/epel/7/x86_64/
-</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">[</span>aliyun-extra<span class="o">]</span>
-</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>aliyun-extra
-</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>https://mirrors.aliyun.com/centos/7/extras/x86_64/
-</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>
-</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="213-软件作用说明"><span>2.1.3. 软件作用说明</span>
-  <a href="#213-%e8%bd%af%e4%bb%b6%e4%bd%9c%e7%94%a8%e8%af%b4%e6%98%8e" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cobbler <span class="c1">#Cobbler 程序包</span>
-</span></span><span class="line"><span class="cl">cobbler-web <span class="c1">#Cobbler 的 Web 服务包</span>
-</span></span><span class="line"><span class="cl">pykickstart <span class="c1">#Cobbler 检查 kickstart 语法错误</span>
-</span></span><span class="line"><span class="cl">httpd <span class="c1">#Apache Web 服务</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="214-cobbler-工作目录介绍"><span>2.1.4. Cobbler 工作目录介绍</span>
-  <a href="#214-cobbler-%e5%b7%a5%e4%bd%9c%e7%9b%ae%e5%bd%95%e4%bb%8b%e7%bb%8d" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; ls /etc/cobbler/
-</span></span><span class="line"><span class="cl">auth.conf         genders.template        named.template  secondary.template  zone.template
-</span></span><span class="line"><span class="cl">cheetah_macros    import_rsync_whitelist  power           settings            zone_templates
-</span></span><span class="line"><span class="cl">cobbler_bash      iso                     pxe             tftpd.template
-</span></span><span class="line"><span class="cl">completions       ldap                    reporting       users.conf
-</span></span><span class="line"><span class="cl">dhcp.template     modules.conf            rsync.exclude   users.digest
-</span></span><span class="line"><span class="cl">dnsmasq.template  mongodb.conf            rsync.template  version</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/etc/cobbler <span class="c1"># 配置文件目录</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/settings <span class="c1"># Cobbler 主配置文件，这个文件是 YAML 栺式，Cobbler 是 python 写的程序。</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/dhcp.template <span class="c1"># DHCP服务的配置模板</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/tftpd.template <span class="c1"># tftp 服务的配置模板</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/rsync.template <span class="c1"># rsync 服务的配置模板</span>
-</span></span><span class="line"><span class="cl">/etc/Cobbler/iso <span class="c1"># iso 模板配置文件目录</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/pxe <span class="c1"># pxe 模板文件目录</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/power <span class="c1"># 电源的配置文件目录</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/users.conf <span class="c1"># Web 服务授权配置文件</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/users.digest <span class="c1"># 用于 Web 访问的用户名密码配置文件</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/dnsmasq.template <span class="c1"># DNS 服务的配置模板</span>
-</span></span><span class="line"><span class="cl">/etc/cobbler/modules.conf <span class="c1"># Cobbler 模块配置文件</span>
-</span></span><span class="line"><span class="cl">/var/lib/cobbler <span class="c1"># Cobbler 数据目录</span>
-</span></span><span class="line"><span class="cl">/var/lib/cobbler/config <span class="c1"># 配置文件</span>
-</span></span><span class="line"><span class="cl">/var/lib/cobbler/kickstarts <span class="c1"># 默认存放 kickstart 文件</span>
-</span></span><span class="line"><span class="cl">/var/lib/cobbler/loaders <span class="c1"># 存放的各种引导程序</span>
-</span></span><span class="line"><span class="cl">/var/www/cobbler <span class="c1"># 系统安装镜像目录</span>
-</span></span><span class="line"><span class="cl">/var/www/cobbler/ks_mirror <span class="c1"># 导入的系统镜像列表</span>
-</span></span><span class="line"><span class="cl">/var/www/cobbler/images <span class="c1"># 导入的系统镜像启动文件</span>
-</span></span><span class="line"><span class="cl">/var/www/cobbler/repo_mirror <span class="c1"># yum 源存储目录</span>
-</span></span><span class="line"><span class="cl">/var/log/cobbler <span class="c1"># 日志目录</span>
-</span></span><span class="line"><span class="cl">/var/log/cobbler/install.log <span class="c1"># 客户端系统安装日志</span>
-</span></span><span class="line"><span class="cl">/var/log/cobbler/cobbler.log <span class="c1"># Cobbler 日志</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="215-首先启动-cobbler-和-httpd-服务"><span>2.1.5. 首先启动 Cobbler 和 httpd 服务</span>
-  <a href="#215-%e9%a6%96%e5%85%88%e5%90%af%e5%8a%a8-cobbler-%e5%92%8c-httpd-%e6%9c%8d%e5%8a%a1" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; systemctl start cobblerd httpd</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="216-检查配置"><span>2.1.6. 检查配置</span>
-  <a href="#216-%e6%a3%80%e6%9f%a5%e9%85%8d%e7%bd%ae" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; cobbler check
-</span></span><span class="line"><span class="cl">The following are potential configuration items that you may want to fix:
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="m">1</span> : The <span class="s1">&#39;server&#39;</span> field in /etc/cobbler/settings must be <span class="nb">set</span> to something other than localhost, or kickstarting features will not work.  This should be a resolvable hostname or IP <span class="k">for</span> the boot server as reachable by all machines that will use it.
-</span></span><span class="line"><span class="cl"><span class="m">2</span> : For PXE to be functional, the <span class="s1">&#39;next_server&#39;</span> field in /etc/cobbler/settings must be <span class="nb">set</span> to something other than 127.0.0.1, and should match the IP of the boot server on the PXE network.
-</span></span><span class="line"><span class="cl"><span class="m">3</span> : change <span class="s1">&#39;disable&#39;</span> to <span class="s1">&#39;no&#39;</span> in /etc/xinetd.d/tftp
-</span></span><span class="line"><span class="cl"><span class="m">4</span> : Some network boot-loaders are missing from /var/lib/cobbler/loaders, you may run <span class="s1">&#39;cobbler get-loaders&#39;</span> to download them, or, <span class="k">if</span> you only want to handle x86/x86_64 netbooting, you may ensure that you have installed a *recent* version of the syslinux package installed and can ignore this message entirely.  Files in this directory, should you want to support all architectures, should include pxelinux.0, menu.c32, elilo.efi, and yaboot. The <span class="s1">&#39;cobbler get-loaders&#39;</span> <span class="nb">command</span> is the easiest way to resolve these requirements.
-</span></span><span class="line"><span class="cl"><span class="m">5</span> : <span class="nb">enable</span> and start rsyncd.service with systemctl
-</span></span><span class="line"><span class="cl"><span class="m">6</span> : debmirror package is not installed, it will be required to manage debian deployments and repositories
-</span></span><span class="line"><span class="cl"><span class="m">7</span> : The default password used by the sample templates <span class="k">for</span> newly installed machines <span class="o">(</span>default_password_crypted in /etc/cobbler/settings<span class="o">)</span> is still <span class="nb">set</span> to <span class="s1">&#39;cobbler&#39;</span> and should be changed, try: <span class="s2">&#34;openssl passwd -1 -salt &#39;random-phrase-here&#39; &#39;your-password-here&#39;&#34;</span> to generate new one
-</span></span><span class="line"><span class="cl"><span class="m">8</span> : fencing tools were not found, and are required to use the <span class="o">(</span>optional<span class="o">)</span> power management features. install cman or fence-agents to use them
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Restart cobblerd and <span class="k">then</span> run <span class="s1">&#39;cobbler sync&#39;</span> to apply changes.</span></span></code></pre></td></tr></table>
-</div>
-</div><p>以上问题我们需要逐步解决。</p>
-<ul>
-<li>问题 1：修改 <code>server</code> 地址为 <code>192.168.1.7</code></li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /etc/cobbler/settings
-</span></span><span class="line"><span class="cl">改：390 server: 127.0.1
-</span></span><span class="line"><span class="cl">为：390 server: 192.168.1.7</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>问题 2：修改 <code>next_server</code> 地址为 <code>192.168.1.7</code></li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /etc/cobbler/settings
-</span></span><span class="line"><span class="cl">改：278 next_server: 127.0.1
-</span></span><span class="line"><span class="cl">为：278 next_server: 192.168.1.7</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>问题 3：修改 <code>tftp</code> 服务被 <code>xinetd</code> 服务管理</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /etc/xinetd.d/tftp
-</span></span><span class="line"><span class="cl">改：14 <span class="nv">disable</span> <span class="o">=</span> yes
-</span></span><span class="line"><span class="cl">为：14 <span class="nv">disable</span> <span class="o">=</span> no
-</span></span><span class="line"><span class="cl">顺便修改 xinetd 和 tftpd 服务开机启动
-</span></span><span class="line"><span class="cl">$&gt; systemctl start xinetd tftp <span class="o">&amp;&amp;</span> systemctl <span class="nb">enable</span> xinetd tftp</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>问题 4：下载操作系统引导文件</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; cobbler get-loaders
-</span></span><span class="line"><span class="cl">task started: 2020-01-04_031204_get_loaders
-</span></span><span class="line"><span class="cl">task started <span class="o">(</span><span class="nv">id</span><span class="o">=</span>Download Bootloader Content, <span class="nv">time</span><span class="o">=</span>Sat Jan  <span class="m">4</span> 03:12:04 2020<span class="o">)</span>
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/README to /var/lib/cobbler/loaders/README
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/COPYING.elilo to /var/lib/cobbler/loaders/COPYING.elilo
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/COPYING.yaboot to /var/lib/cobbler/loaders/COPYING.yaboot
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/COPYING.syslinux to /var/lib/cobbler/loaders/COPYING.syslinux
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/elilo-3.8-ia64.efi to /var/lib/cobbler/loaders/elilo-ia64.efi
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/yaboot-1.3.17 to /var/lib/cobbler/loaders/yaboot
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/pxelinux.0-3.86 to /var/lib/cobbler/loaders/pxelinux.0
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/menu.c32-3.86 to /var/lib/cobbler/loaders/menu.c32
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/grub-0.97-x86.efi to /var/lib/cobbler/loaders/grub-x86.efi
-</span></span><span class="line"><span class="cl">downloading https://cobbler.github.io/loaders/grub-0.97-x86_64.efi to /var/lib/cobbler/loaders/grub-x86_64.efi
-</span></span><span class="line"><span class="cl">*** TASK COMPLETE ***</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>问题 5：修改 <code>rsyncd</code> 服务为开机自启动状态并启用它。</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; systemctl start rsyncd <span class="o">&amp;&amp;</span> systemctl <span class="nb">enable</span> rsyncd</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>问题 6：关于 <code>debian</code> 相关部署管理配置，忽略。</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">debmirror package is not installed, it will be required to manage debian
-</span></span><span class="line"><span class="cl">deployments and repositories <span class="c1"># debmirror 包尚未安装，需要它来管理 debian 部署和存储库</span></span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>问题 7：修改操作系统默认密码</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; openssl passwd -1 -salt <span class="s1">&#39;root&#39;</span> <span class="s1">&#39;123456&#39;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">$1$root$j0bp</span>.KLPyr.u9kgQ428D10
-</span></span><span class="line"><span class="cl">$&gt; vim /etc/cobbler/settings
-</span></span><span class="line"><span class="cl">改：101 default_password_crypted: <span class="s2">&#34;</span><span class="nv">$1$mF86</span><span class="s2">/UHC</span><span class="nv">$WvcIcX2t6crBz2onWxyac</span><span class="s2">.&#34;</span>
-</span></span><span class="line"><span class="cl">为：101 default_password_crypted: <span class="s2">&#34;</span><span class="nv">$1$root$j0bp</span><span class="s2">.KLPyr.u9kgQ428D10&#34;</span>
-</span></span><span class="line"><span class="cl">注：root 为用户描述，123456 为密码</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>问题 8：电源管理相关服务，忽略。</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fencing tools were not found, and are required to use the <span class="o">(</span>optional<span class="o">)</span> power
-</span></span><span class="line"><span class="cl">management features. install cman or fence-agents to use them</span></span></code></pre></td></tr></table>
-</div>
-</div><p>修改完以上配置就可以检查 <code>DHCP</code> 配置了，由于 <code>Cobbler</code> 自动管理 <code>DHCP</code> 服务，我们只需要修改 <code>Cobbler</code> 中的模板配置文件即可。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /etc/cobbler/dhcp.template
-</span></span><span class="line"><span class="cl">改：22 option routers 192.168.1.5<span class="p">;</span> <span class="c1">#修改默认网关地址</span>
-</span></span><span class="line"><span class="cl">为：22 option routers 192.168.1.1<span class="p">;</span> <span class="c1">#以实际的网关为准</span>
-</span></span><span class="line"><span class="cl">改：23 option domain-name-servers 192.168.1.1<span class="p">;</span> <span class="c1">#修改 DNS 地址</span>
-</span></span><span class="line"><span class="cl">为：23 option domain-name-servers 114.114.114.114<span class="p">;</span>
-</span></span><span class="line"><span class="cl">如下：
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="m">21</span> subnet 192.168.1.0 netmask 255.255.255.0 <span class="o">{</span>
-</span></span><span class="line"><span class="cl"> <span class="m">22</span>      option routers             192.168.1.1<span class="p">;</span>
-</span></span><span class="line"><span class="cl"> <span class="m">23</span>      option domain-name-servers 114.114.114.114<span class="p">;</span>
-</span></span><span class="line"><span class="cl"> <span class="m">24</span>      option subnet-mask         255.255.255.0<span class="p">;</span>
-</span></span><span class="line"><span class="cl"> <span class="m">25</span>      range dynamic-bootp        192.168.1.100 192.168.1.254<span class="p">;</span>
-</span></span><span class="line"><span class="cl"> <span class="m">26</span>      default-lease-time         21600<span class="p">;</span>
-</span></span><span class="line"><span class="cl"> <span class="m">27</span>      max-lease-time             43200<span class="p">;</span>
-</span></span><span class="line"><span class="cl"> <span class="m">28</span>      next-server                <span class="nv">$next_server</span><span class="p">;</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>注：配置默认为 <code>192.168.1.0</code> 网段，具体要看你的装机 <code>vlan</code> 划分，现在是实验环境所以保持配不变。</strong><br>
-<strong>注：默认网关地址为 <code>192.168.1.5</code>，这里需要改成你自己局域网中的网关。</strong><br>
-<code>$next_server</code> 为变量值为我们前面修改的主配置文件中的地址 <code>192.168.1.7</code></p>
-<h3 class="heading-element" id="217-修改-cobbler-管理-dhcp-服务"><span>2.1.7. 修改 Cobbler 管理 dhcp 服务</span>
-  <a href="#217-%e4%bf%ae%e6%94%b9-cobbler-%e7%ae%a1%e7%90%86-dhcp-%e6%9c%8d%e5%8a%a1" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; vim /etc/cobbler/settings
-</span></span><span class="line"><span class="cl">改：242 manage_dhcp: <span class="m">0</span>
-</span></span><span class="line"><span class="cl">为：242 manage_dhcp: <span class="m">1</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="218-同步配置文件需要先重启-cobblerd"><span>2.1.8. 同步配置文件，需要先重启 Cobblerd</span>
-  <a href="#218-%e5%90%8c%e6%ad%a5%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e9%9c%80%e8%a6%81%e5%85%88%e9%87%8d%e5%90%af-cobblerd" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; systemctl restart cobblerd
-</span></span><span class="line"><span class="cl">$&gt; cobbler sync
-</span></span><span class="line"><span class="cl">task started: 2020-01-04_032552_sync
-</span></span><span class="line"><span class="cl">task started <span class="o">(</span><span class="nv">id</span><span class="o">=</span>Sync, <span class="nv">time</span><span class="o">=</span>Sat Jan  <span class="m">4</span> 03:25:52 2020<span class="o">)</span>
-</span></span><span class="line"><span class="cl">running pre-sync triggers
-</span></span><span class="line"><span class="cl">cleaning trees
-</span></span><span class="line"><span class="cl">removing: /var/lib/tftpboot/grub/images
-</span></span><span class="line"><span class="cl">copying bootloaders
-</span></span><span class="line"><span class="cl">trying hardlink /var/lib/cobbler/loaders/pxelinux.0 -&gt; /var/lib/tftpboot/pxelinux.0
-</span></span><span class="line"><span class="cl">trying hardlink /var/lib/cobbler/loaders/menu.c32 -&gt; /var/lib/tftpboot/menu.c32
-</span></span><span class="line"><span class="cl">trying hardlink /var/lib/cobbler/loaders/yaboot -&gt; /var/lib/tftpboot/yaboot
-</span></span><span class="line"><span class="cl">trying hardlink /usr/share/syslinux/memdisk -&gt; /var/lib/tftpboot/memdisk
-</span></span><span class="line"><span class="cl">trying hardlink /var/lib/cobbler/loaders/grub-x86.efi -&gt; /var/lib/tftpboot/grub/grub-x86.efi
-</span></span><span class="line"><span class="cl">trying hardlink /var/lib/cobbler/loaders/grub-x86_64.efi -&gt; /var/lib/tftpboot/grub/grub-x86_64.efi
-</span></span><span class="line"><span class="cl">copying distros to tftpboot
-</span></span><span class="line"><span class="cl">copying images
-</span></span><span class="line"><span class="cl">generating PXE configuration files
-</span></span><span class="line"><span class="cl">generating PXE menu structure
-</span></span><span class="line"><span class="cl">rendering DHCP files
-</span></span><span class="line"><span class="cl">generating /etc/dhcp/dhcpd.conf
-</span></span><span class="line"><span class="cl">rendering TFTPD files
-</span></span><span class="line"><span class="cl">generating /etc/xinetd.d/tftp
-</span></span><span class="line"><span class="cl">cleaning link caches
-</span></span><span class="line"><span class="cl">running post-sync triggers
-</span></span><span class="line"><span class="cl">running python triggers from /var/lib/cobbler/triggers/sync/post/*
-</span></span><span class="line"><span class="cl">running python trigger cobbler.modules.sync_post_restart_services
-</span></span><span class="line"><span class="cl">running: dhcpd -t -q
-</span></span><span class="line"><span class="cl">received on stdout: 
-</span></span><span class="line"><span class="cl">received on stderr: 
-</span></span><span class="line"><span class="cl">running: service dhcpd restart
-</span></span><span class="line"><span class="cl">received on stdout: 
-</span></span><span class="line"><span class="cl">received on stderr: Redirecting to /bin/systemctl restart dhcpd.service
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">running shell triggers from /var/lib/cobbler/triggers/sync/post/*
-</span></span><span class="line"><span class="cl">running python triggers from /var/lib/cobbler/triggers/change/*
-</span></span><span class="line"><span class="cl">running python trigger cobbler.modules.manage_genders
-</span></span><span class="line"><span class="cl">running python trigger cobbler.modules.scm_track
-</span></span><span class="line"><span class="cl">running shell triggers from /var/lib/cobbler/triggers/change/*
-</span></span><span class="line"><span class="cl">*** TASK COMPLETE ***</span></span></code></pre></td></tr></table>
-</div>
-</div><p>注意观察 DHCP 服务是否启动。<br>
-重新检查，剩下 2 个可以忽略的问题。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; cobbler check
-</span></span><span class="line"><span class="cl">The following are potential configuration items that you may want to fix:
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="m">1</span> : debmirror package is not installed, it will be required to manage debian deployments and repositories
-</span></span><span class="line"><span class="cl"><span class="m">2</span> : fencing tools were not found, and are required to use the <span class="o">(</span>optional<span class="o">)</span> power management features. install cman or fence-agents to use them
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">Restart cobblerd and <span class="k">then</span> run <span class="s1">&#39;cobbler sync&#39;</span> to apply changes.</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="219-挂载光驱"><span>2.1.9. 挂载光驱</span>
-  <a href="#219-%e6%8c%82%e8%bd%bd%e5%85%89%e9%a9%b1" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; mount /dev/sr0 /mnt</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="2110-导入镜像"><span>2.1.10. 导入镜像</span>
-  <a href="#2110-%e5%af%bc%e5%85%a5%e9%95%9c%e5%83%8f" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; cobbler import --path<span class="o">=</span>/mnt/ --name<span class="o">=</span>CentOS-7.6 --arch<span class="o">=</span>x86_64
-</span></span><span class="line"><span class="cl">task started: 2020-01-04_033346_import
-</span></span><span class="line"><span class="cl">task started <span class="o">(</span><span class="nv">id</span><span class="o">=</span>Media import, <span class="nv">time</span><span class="o">=</span>Sat Jan <span class="m">4</span> 03:33:46 2020<span class="o">)</span>
-</span></span><span class="line"><span class="cl">Found a candidate signature: <span class="nv">breed</span><span class="o">=</span>redhat, <span class="nv">version</span><span class="o">=</span>rhel6
-</span></span><span class="line"><span class="cl">Found a matching signature: <span class="nv">breed</span><span class="o">=</span>redhat, <span class="nv">version</span><span class="o">=</span>rhel6
-</span></span><span class="line"><span class="cl">Adding distros from path /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64:
-</span></span><span class="line"><span class="cl">creating new distro: CentOS-7.6-x86_64
-</span></span><span class="line"><span class="cl">trying symlink: /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64 -&gt; /var/www/cobbler/links/CentOS-7.6-x86_64
-</span></span><span class="line"><span class="cl">creating new profile: CentOS-7.6-x86_64
-</span></span><span class="line"><span class="cl">associating repos
-</span></span><span class="line"><span class="cl">checking <span class="k">for</span> rsync repo<span class="o">(</span>s<span class="o">)</span>
-</span></span><span class="line"><span class="cl">checking <span class="k">for</span> rhn repo<span class="o">(</span>s<span class="o">)</span>
-</span></span><span class="line"><span class="cl">checking <span class="k">for</span> yum repo<span class="o">(</span>s<span class="o">)</span>
-</span></span><span class="line"><span class="cl">starting descent into /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64 <span class="k">for</span> CentOS-7.6-x86_64
-</span></span><span class="line"><span class="cl">processing repo at : /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64
-</span></span><span class="line"><span class="cl">need to process repo/comps: /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64
-</span></span><span class="line"><span class="cl">looking <span class="k">for</span> /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64/repodata/*comps*.xml
-</span></span><span class="line"><span class="cl">Keeping repodata as-is :/var/www/cobbler/ks_mirror/CentOS-7.6-x86_64/repodata
-</span></span><span class="line"><span class="cl">*** TASK COMPLETE ***</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="2111-查看镜像上面是镜像名称下面是启动菜单"><span>2.1.11. 查看镜像，上面是镜像名称，下面是启动菜单。</span>
-  <a href="#2111-%e6%9f%a5%e7%9c%8b%e9%95%9c%e5%83%8f%e4%b8%8a%e9%9d%a2%e6%98%af%e9%95%9c%e5%83%8f%e5%90%8d%e7%a7%b0%e4%b8%8b%e9%9d%a2%e6%98%af%e5%90%af%e5%8a%a8%e8%8f%9c%e5%8d%95" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; cobbler list
-</span></span><span class="line"><span class="cl">distros:
-</span></span><span class="line"><span class="cl">CentOS-7.6-x86_64
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">profiles:
-</span></span><span class="line"><span class="cl">CentOS-7.6-x86_64</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 class="heading-element" id="2112-同步-cobbler-配置"><span>2.1.12. 同步 Cobbler 配置</span>
-  <a href="#2112-%e5%90%8c%e6%ad%a5-cobbler-%e9%85%8d%e7%bd%ae" class="heading-mark">
-    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
-  </a>
-</h3><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$&gt; systemctl restart cobblerd
-</span></span><span class="line"><span class="cl">$&gt; cobbler sync</span></span></code></pre></td></tr></table>
-</div>
-</div><p>至此，搭建 Cobbler 无人值守安装服务器完成！</p>
-</div><div class="post-footer" id="post-footer">
-  <div class="post-info">
-    <div class="post-info-line">
-      <div class="post-info-mod"><span title="更新于 2020-01-19 00:00:00">更新于 2020-01-19&nbsp;</span>
-      </div><div class="post-info-license">
-            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
-          </div></div><div class="post-info-line">
-        <div class="post-info-md"><span><a href="/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span></div>
-        <div class="post-info-share">
-          <span></span>
-        </div>
-      </div></div>
-
-  <div class="post-info-more">
-    <section class="post-tags"><i class="fa-solid fa-tags fa-fw me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/cobbler/" class="post-tag" title="标签 - Cobbler">Cobbler</a><a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-tag" title="标签 - 解决方案">解决方案</a></section>
-    <section><span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
-    </section>
-  </div><div class="post-nav"><a href="/posts/linux/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/" class="post-nav-item" rel="prev" title="介绍在Linux命令行中使用tcpdump"><i class="fa-solid fa-angle-left fa-fw" aria-hidden="true"></i>介绍在Linux命令行中使用tcpdump</a><a href="/posts/linux/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/" class="post-nav-item" rel="next" title="Java运维故障记录">Java运维故障记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
-</div>
-<div id="comments"><div id="gitalk" class="comment"></div><noscript>
-        Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk" rel="external nofollow noopener noreferrer">Gitalk</a>.
-      </noscript></div></article>
-
-  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden="true"></i></h2>
-      <div class="toc-content" id="toc-content-auto"></div></aside></main><footer class="footer">
-    <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
-        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.4.0-alpha.1"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
-        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright fa-fw" aria-hidden="true"></i>
-            <span itemprop="copyrightYear">2022 - 2025</span><span class="author" itemprop="copyrightHolder">
-              <a href="https://blog.0x5c0f.cc"target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
-  </footer></div><div class="widgets"><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up fa-fw" aria-hidden="true"></i><span class="variant-numeric">0%</span>
-        </div><div class="fixed-button view-comments d-none" role="button" aria-label="查看评论"><i class="fa-solid fa-comment fa-fw" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
-    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
-  </noscript>
-</div><link rel="stylesheet" href="/lib/gitalk/gitalk.min.e525ab86258d1091611cdf6bbc548866f3bf97020fe6aadf3ce8e0ccd9aaec45f31b1cd3dd48d61e1eaf504f02e5666c4d41bd9e580964607a208acefd9cea54.css" integrity="sha512-5SWrhiWNEJFhHN9rvFSIZvO/lwIP5qrfPOjgzNmq7EXzGxzT3UjWHh6vUE8C5WZsTUG9nlgJZGB6IIrO/ZzqVA=="><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css" integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src="/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js" integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src="/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js" integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src="/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js" integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src="/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js" integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type="module"></script><script src="/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js" integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src="/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js" integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src="/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js" integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src="/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js" integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src="/js/ext-utils.00b3ce7d82b0ec4b5808452e6fdc89937cea0772879e35da39ac4aab50bfdafddf3f2863e7677be1732d17ac21d3563a43c2a0ae96491a02ba776df4f74a9ce1.js" integrity="sha512-ALPOfYKw7EtYCEUub9yJk3zqB3KHnjXaOaxKq1C/2v3fPyhj52d74XMtF6wh01Y6Q8KgrpZJGgK6d23090qc4Q==" defer></script><script>window.config={"code":{"copyTitle":"复制到剪贴板","editLockTitle":"锁定可编辑代码块","editUnLockTitle":"解锁可编辑代码块","editable":true,"maxShownLines":10},"comment":{"enable":true,"expired":false,"gitalk":{"admin":["0x5c0f"],"clientID":"3248954ea2af12f77f46","clientSecret":"a463972c37d7b438e2635d4fc0a8f06174565c67","id":"2020-01-19T00:00:00Z","owner":"0x5c0f","repo":"blog","title":"Cobbler无人值守安装"}},"search":{"distance":100,"findAllMatches":true,"fuseIndexURL":"/search.json","highlightTag":"mark","ignoreFieldNorm":true,"ignoreLocation":true,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":30,"threshold":0.2,"type":"fuse","useExtendedSearch":true},"typeit":{"cursorChar":"_","cursorSpeed":1000,"duration":9000,"loop":false,"speed":100},"version":"v0.4.0-alpha.1"};</script><script src="/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js" integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src="/lib/translate.min.88eab6458572fed1ef29f13c8cad30a51e0b1b403bcd162eb1a9e2fea0c98c59618a90b1871487d72d34f03fc152edcfc781651a2632ed5dfe68a3291ea11d65.js" integrity="sha512-iOq2RYVy/tHvKfE8jK0wpR4LG0A7zRYusani/qDJjFlhipCxhxSH1y008D/BUu3Px4FlGiYy7V3+aKMpHqEdZQ==" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/"}};</script><script src="/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js" integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body>
-</html>
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>Cobbler无人值守安装 - 一个曾经的小码农...</title><meta name=author content="0x5c0f"><meta name=description content="Cobbler无人值守安装"><meta name=keywords content='linux,cobbler,解决方案'><meta itemprop=name content="Cobbler无人值守安装"><meta itemprop=description content="Cobbler无人值守安装"><meta itemprop=datePublished content="2020-01-19T00:00:00+00:00"><meta itemprop=dateModified content="2020-01-19T00:00:00+00:00"><meta itemprop=wordCount content="1382"><meta itemprop=image content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta itemprop=keywords content="Linux,Cobbler,解决方案"><meta property="og:url" content="https://blog.0x5c0f.cc/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/"><meta property="og:site_name" content="一个曾经的小码农..."><meta property="og:title" content="Cobbler无人值守安装"><meta property="og:description" content="Cobbler无人值守安装"><meta property="og:locale" content="zh_CN"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-01-19T00:00:00+00:00"><meta property="article:modified_time" content="2020-01-19T00:00:00+00:00"><meta property="article:tag" content="Linux"><meta property="article:tag" content="Cobbler"><meta property="article:tag" content="解决方案"><meta property="og:image" content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://blog.0x5c0f.cc/icons/logo_transparent.webp"><meta name=twitter:title content="Cobbler无人值守安装"><meta name=twitter:description content="Cobbler无人值守安装"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical type=text/html href=https://blog.0x5c0f.cc/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/ title="Cobbler无人值守安装 - 一个曾经的小码农..."><link rel=prev type=text/html href=https://blog.0x5c0f.cc/posts/linux/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/ title=介绍在Linux命令行中使用tcpdump><link rel=next type=text/html href=https://blog.0x5c0f.cc/posts/linux/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/ title=Java运维故障记录><link rel=alternate type=text/markdown href=https://blog.0x5c0f.cc/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/index.md title="Cobbler无人值守安装 - 一个曾经的小码农..."><link rel=stylesheet href=/css/config.min.055ba22ec07e226fb0524aa7c1cad7c835a0439ba7eb18280122246ab3ef74d2b8929a575dd59a6c6c27d7d0bee23a499d09df9c23e0542d66c33c4f4fd77599.css integrity="sha512-BVuiLsB+Im+wUkqnwcrXyDWgQ5un6xgoASIkarPvdNK4kppXXdWabGwn19C+4jpJnQnfnCPgVC1mwzxPT9d1mQ=="><link rel=stylesheet href=/css/style.min.5516b21935ab930257ccd9906a509eece4fa3eae45fa80681bce0a64aa038d939c84f607bcd216b86fa9f9bd881abb2931053d975b038cbd1a813ed1d842df29.css integrity="sha512-VRayGTWrkwJXzNmQalCe7OT6Pq5F+oBoG84KZKoDjZOchPYHvNIWuG+p+b2IGrspMQU9l1sDjL0agT7R2ELfKQ=="><link rel=preload href=/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/fontawesome-free/all.min.e47b37745d8010f92934047b5223876dafa545224d78cd840a4c31508c42d50fc52f27064db35aa565c1e2d3fcf3d9394f926ef1fb386f53f9cff881e2731f49.css integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="></noscript><link rel=preload href=/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" as=style onload='this.removeAttribute("onload"),this.rel="stylesheet"'><noscript><link rel=stylesheet href=/lib/animate/animate.min.738daa4d2c3fc0f677ff92c1cc3f81c397fb6d2176a31a2eeb011bf88fe5a9e68a57914321f32fbd1a7bef6cb88dc24b2ae1943a96c931d83f053979d1f25803.css integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw=="></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Cobbler无人值守安装","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog.0x5c0f.cc\/posts\/linux\/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85\/"},"genre":"posts","keywords":"linux, cobbler, 解决方案","wordcount":1382,"url":"https:\/\/blog.0x5c0f.cc\/posts\/linux\/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85\/","datePublished":"2020-01-19T00:00:00+00:00","dateModified":"2020-01-19T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"0x5c0f"},"description":"Cobbler无人值守安装"}</script><script src=/js/head/color-scheme.min.868a4788a670ce019ec1bcfda2ce1a524a209616ec174d2b1e8a110b2c4dabdb7b3ae71eee18de8b1161ff0c42b5bab134a7dc6cb49a662ee677d3f5a172e59a.js integrity="sha512-hopHiKZwzgGewbz9os4aUkoglhbsF00rHooRCyxNq9t7Ouce7hjeixFh/wxCtbqxNKfcbLSaZi7md9P1oXLlmg=="></script></head><body data-header-desktop=sticky data-header-mobile=auto><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title=一个曾经的小码农...><span class=typeit><template>0x5c0f.cc</template></span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/posts/>所有文章</a></li><li class=menu-item><a class=menu-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-link href=/archives/>归档</a></li><li class=menu-item><a class=menu-link href=/about/>About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li><li class="menu-item language-switch auto d-none" aria-hidden=true><span role=button aria-label=选择语言 title=选择语言><i class="fa-solid fa-language fa-fw" aria-hidden=true></i></span><ul class=sub-menu><li class="menu-item active" data-type=artificial><a href=/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/ data-lang=zh-CN class="menu-link text-secondary" title=简体中文><i class="fa-solid fa-person fa-fw fa-sm" aria-hidden=true></i> 简体中文</a></li><li class=menu-item-divider aria-hidden=true></li><li class=menu-item data-type=machine><a data-lang=english class=menu-link title=English><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> English</a></li><li class=menu-item data-type=machine><a data-lang=chinese_simplified class=menu-link title=简体中文><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 简体中文</a></li><li class=menu-item data-type=machine><a data-lang=japanese class=menu-link title=日本語><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 日本語</a></li><li class=menu-item data-type=machine><a data-lang=chinese_traditional class=menu-link title=繁體中文><i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden=true></i> 繁體中文</a></li></ul></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title=一个曾经的小码农...><span class=typeit><template>0x5c0f.cc</template></span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i>
+</a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i>
+</a><span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/posts/>所有文章</a></li><li class=menu-item><a class=menu-link href=/tags/>标签</a></li><li class=menu-item><a class=menu-link href=/categories/>分类</a></li><li class=menu-item><a class=menu-link href=/archives/>归档</a></li><li class=menu-item><a class=menu-link href=/about/>About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span><span id=translate class="menu-system-item language-switch auto d-none" aria-hidden=true>
+<span role=button aria-label=选择语言 title=选择语言 data-current=简体中文>简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden=true></i></span></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=fi-container><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label=合集></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><a href=https://www.linuxprobe.com/cobbler-installation-server.html title="转载 -> https://www.linuxprobe.com/cobbler-installation-server.html" target=_blank rel="external nofollow noopener noreferrer" class=icon-repost><i class="fa-solid fa-share fa-fw" aria-hidden=true></i>
+</a><span>Cobbler无人值守安装</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://blog.0x5c0f.cc title=作者 target=_blank rel="external nofollow noopener noreferrer author" class=author><i class="fa-solid fa-user-circle" aria-hidden=true></i>
+0x5c0f</a></span><span class=post-included-in>&nbsp;收录于 <a href=/categories/linux/ class=post-category title="分类 - Linux"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Linux</a>&ensp;<a href=/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/ class=post-category title="分类 - 整理收集"><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> 整理收集</a> 和 <a href=/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/ class=post-collection title="合集 - 运维记事"><i class="fa-solid fa-layer-group fa-fw" aria-hidden=true></i> 运维记事</a></span></div><div class=post-meta-line><span title="发布于 2020-01-19 00:00:00"><i class="fa-solid fa-calendar-days fa-fw me-1" aria-hidden=true></i><time datetime=2020-01-19>2020-01-19</time></span>&nbsp;<span title="1382 字"><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 1400 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 7 分钟</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-cobbler-运行流程>1. Cobbler 运行流程</a></li><li><a href=#2-搭建-cobbler-无人值守安装服务器>2. 搭建 Cobbler 无人值守安装服务器</a><ul><li><a href=#21-安装配置-cobbler>2.1. 安装配置 Cobbler</a><ul><li><a href=#211-首先安装-epel-releasecobbler-和-tftp-server-在-base-源中是没有的>2.1.1. 首先安装 epel-release，Cobbler 和 tftp-server 在 base 源中是没有的</a></li><li><a href=#212-安装-cobbler-其实有一部分软件会被当做依赖进行安装上去比如-tftp-和-httpd-服务我们这里为了方便可以一并安装避免后续出现相关问题>2.1.2. 安装 Cobbler 其实有一部分软件会被当做依赖进行安装上去，比如 tftp 和 httpd 服务，我们这里为了方便可以一并安装，避免后续出现相关问题。</a></li><li><a href=#213-软件作用说明>2.1.3. 软件作用说明</a></li><li><a href=#214-cobbler-工作目录介绍>2.1.4. Cobbler 工作目录介绍</a></li><li><a href=#215-首先启动-cobbler-和-httpd-服务>2.1.5. 首先启动 Cobbler 和 httpd 服务</a></li><li><a href=#216-检查配置>2.1.6. 检查配置</a></li><li><a href=#217-修改-cobbler-管理-dhcp-服务>2.1.7. 修改 Cobbler 管理 dhcp 服务</a></li><li><a href=#218-同步配置文件需要先重启-cobblerd>2.1.8. 同步配置文件，需要先重启 Cobblerd</a></li><li><a href=#219-挂载光驱>2.1.9. 挂载光驱</a></li><li><a href=#2110-导入镜像>2.1.10. 导入镜像</a></li><li><a href=#2111-查看镜像上面是镜像名称下面是启动菜单>2.1.11. 查看镜像，上面是镜像名称，下面是启动菜单。</a></li><li><a href=#2112-同步-cobbler-配置>2.1.12. 同步 Cobbler 配置</a></li></ul></li></ul></li></ul></nav></div></div><div class=content id=content><div class="expiration-reminder details admonition warning open"><div class="details-summary admonition-title"><i class="icon fa-solid fa-exclamation-triangle fa-fw" aria-hidden=true></i>警告<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class=details-content><div class=admonition-content>本文最后更新于 2020-01-19，文中内容可能已过时。</div></div></div><div class="details admonition quote open"><div class="details-summary admonition-title"><i class="icon fa-fw fa-solid fa-quote-right" aria-hidden=true></i>文章来源<i class="details-icon fa-solid fa-angle-right fa-fw" aria-hidden=true></i></div><div class=details-content><div class=admonition-content><blockquote><p><a href=https://www.linuxprobe.com/cobbler-installation-server.html target=_blank rel="external nofollow noopener noreferrer">https://www.linuxprobe.com/cobbler-installation-server.html<i class="fa-solid fa-external-link-alt fa-fw fa-xs ms-1 text-secondary" aria-hidden=true></i></a></p></blockquote></div></div></div><h1 class=heading-element id=1-cobbler-运行流程><span>1. Cobbler 运行流程</span>
+<a href=#1-cobbler-%e8%bf%90%e8%a1%8c%e6%b5%81%e7%a8%8b class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><ul><li><p>Server 端：</p><ul><li>第一步：启动 Cobbler 服务</li><li>第二步：进行 Cobbler 错误检查，执行 Cobbler check 命令</li><li>第三步：进行配置同步，执行 Cobbler sync 命令</li><li>第四步：复制相关启动文件文件到 TFTP 目录中</li><li>第五步：启动 DHCP 服务，提供地址分配</li><li>第六步：DHCP 服务分配 IP 地址</li><li>第七步：TFTP 传输启动文件</li><li>第八步：Server 端接收安装信息</li><li>第九步：Server 端发送 ISO 镜像不 Kickstart 文件</li></ul></li><li><p>Client 端：</p><ul><li>第一步：客户端以 PXE 模式启动</li><li>第二步：客户端获取 IP 地址</li><li>第三步：通过 TFTP 服务器获取启动文件</li><li>第四步：进入 Cobbler 安装选择界面</li><li>第五步：客户端确定加载信息</li><li>第六步：根据配置信息准备安装系统</li><li>第七步：加载 Kickstart 文件</li><li>第八步：传输系统安装的其它文件</li><li>第九步：进行安装系统</li></ul></li></ul><h1 class=heading-element id=2-搭建-cobbler-无人值守安装服务器><span>2. 搭建 Cobbler 无人值守安装服务器</span>
+<a href=#2-%e6%90%ad%e5%bb%ba-cobbler-%e6%97%a0%e4%ba%ba%e5%80%bc%e5%ae%88%e5%ae%89%e8%a3%85%e6%9c%8d%e5%8a%a1%e5%99%a8 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h1><h2 class=heading-element id=21-安装配置-cobbler><span>2.1. 安装配置 Cobbler</span>
+<a href=#21-%e5%ae%89%e8%a3%85%e9%85%8d%e7%bd%ae-cobbler class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h2><h3 class=heading-element id=211-首先安装-epel-releasecobbler-和-tftp-server-在-base-源中是没有的><span>2.1.1. 首先安装 epel-release，Cobbler 和 tftp-server 在 base 源中是没有的</span>
+<a href=#211-%e9%a6%96%e5%85%88%e5%ae%89%e8%a3%85-epel-releasecobbler-%e5%92%8c-tftp-server-%e5%9c%a8-base-%e6%ba%90%e4%b8%ad%e6%98%af%e6%b2%a1%e6%9c%89%e7%9a%84 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; yum install -y epel-release</span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=212-安装-cobbler-其实有一部分软件会被当做依赖进行安装上去比如-tftp-和-httpd-服务我们这里为了方便可以一并安装避免后续出现相关问题><span>2.1.2. 安装 Cobbler 其实有一部分软件会被当做依赖进行安装上去，比如 tftp 和 httpd 服务，我们这里为了方便可以一并安装，避免后续出现相关问题。</span>
+<a href=#212-%e5%ae%89%e8%a3%85-cobbler-%e5%85%b6%e5%ae%9e%e6%9c%89%e4%b8%80%e9%83%a8%e5%88%86%e8%bd%af%e4%bb%b6%e4%bc%9a%e8%a2%ab%e5%bd%93%e5%81%9a%e4%be%9d%e8%b5%96%e8%bf%9b%e8%a1%8c%e5%ae%89%e8%a3%85%e4%b8%8a%e5%8e%bb%e6%af%94%e5%a6%82-tftp-%e5%92%8c-httpd-%e6%9c%8d%e5%8a%a1%e6%88%91%e4%bb%ac%e8%bf%99%e9%87%8c%e4%b8%ba%e4%ba%86%e6%96%b9%e4%be%bf%e5%8f%af%e4%bb%a5%e4%b8%80%e5%b9%b6%e5%ae%89%e8%a3%85%e9%81%bf%e5%85%8d%e5%90%8e%e7%bb%ad%e5%87%ba%e7%8e%b0%e7%9b%b8%e5%85%b3%e9%97%ae%e9%a2%98 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; yum install -y cobbler cobbler-web dhcp tftp-server pykickstart httpd rsync xinetd </span></span></code></pre></td></tr></table></div></div><p><strong>注意: 必须把yum源配好，否则无法全部安装以上软件！</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; vim /etc/yum.repos.d/CentOS-Base.repo
+</span></span><span class=line><span class=cl><span class=c1>#在CentOS-Base.repo配置文件中添加以下源</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>aliyun-os<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>name</span><span class=o>=</span>aliyun-os
+</span></span><span class=line><span class=cl><span class=nv>baseurl</span><span class=o>=</span>https://mirrors.aliyun.com/centos/7/os/x86_64/
+</span></span><span class=line><span class=cl><span class=nv>enabled</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=nv>gpgcheck</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>aliyun-epel<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>name</span><span class=o>=</span>aliyun-epel
+</span></span><span class=line><span class=cl><span class=nv>baseurl</span><span class=o>=</span>https://mirrors.aliyun.com/epel/7/x86_64/
+</span></span><span class=line><span class=cl><span class=nv>enabled</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=nv>gpgcheck</span><span class=o>=</span><span class=m>0</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>aliyun-extra<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>name</span><span class=o>=</span>aliyun-extra
+</span></span><span class=line><span class=cl><span class=nv>baseurl</span><span class=o>=</span>https://mirrors.aliyun.com/centos/7/extras/x86_64/
+</span></span><span class=line><span class=cl><span class=nv>enabled</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=nv>gpgcheck</span><span class=o>=</span><span class=m>0</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=213-软件作用说明><span>2.1.3. 软件作用说明</span>
+<a href=#213-%e8%bd%af%e4%bb%b6%e4%bd%9c%e7%94%a8%e8%af%b4%e6%98%8e class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cobbler <span class=c1>#Cobbler 程序包</span>
+</span></span><span class=line><span class=cl>cobbler-web <span class=c1>#Cobbler 的 Web 服务包</span>
+</span></span><span class=line><span class=cl>pykickstart <span class=c1>#Cobbler 检查 kickstart 语法错误</span>
+</span></span><span class=line><span class=cl>httpd <span class=c1>#Apache Web 服务</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=214-cobbler-工作目录介绍><span>2.1.4. Cobbler 工作目录介绍</span>
+<a href=#214-cobbler-%e5%b7%a5%e4%bd%9c%e7%9b%ae%e5%bd%95%e4%bb%8b%e7%bb%8d class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; ls /etc/cobbler/
+</span></span><span class=line><span class=cl>auth.conf         genders.template        named.template  secondary.template  zone.template
+</span></span><span class=line><span class=cl>cheetah_macros    import_rsync_whitelist  power           settings            zone_templates
+</span></span><span class=line><span class=cl>cobbler_bash      iso                     pxe             tftpd.template
+</span></span><span class=line><span class=cl>completions       ldap                    reporting       users.conf
+</span></span><span class=line><span class=cl>dhcp.template     modules.conf            rsync.exclude   users.digest
+</span></span><span class=line><span class=cl>dnsmasq.template  mongodb.conf            rsync.template  version</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/etc/cobbler <span class=c1># 配置文件目录</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/settings <span class=c1># Cobbler 主配置文件，这个文件是 YAML 栺式，Cobbler 是 python 写的程序。</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/dhcp.template <span class=c1># DHCP服务的配置模板</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/tftpd.template <span class=c1># tftp 服务的配置模板</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/rsync.template <span class=c1># rsync 服务的配置模板</span>
+</span></span><span class=line><span class=cl>/etc/Cobbler/iso <span class=c1># iso 模板配置文件目录</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/pxe <span class=c1># pxe 模板文件目录</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/power <span class=c1># 电源的配置文件目录</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/users.conf <span class=c1># Web 服务授权配置文件</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/users.digest <span class=c1># 用于 Web 访问的用户名密码配置文件</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/dnsmasq.template <span class=c1># DNS 服务的配置模板</span>
+</span></span><span class=line><span class=cl>/etc/cobbler/modules.conf <span class=c1># Cobbler 模块配置文件</span>
+</span></span><span class=line><span class=cl>/var/lib/cobbler <span class=c1># Cobbler 数据目录</span>
+</span></span><span class=line><span class=cl>/var/lib/cobbler/config <span class=c1># 配置文件</span>
+</span></span><span class=line><span class=cl>/var/lib/cobbler/kickstarts <span class=c1># 默认存放 kickstart 文件</span>
+</span></span><span class=line><span class=cl>/var/lib/cobbler/loaders <span class=c1># 存放的各种引导程序</span>
+</span></span><span class=line><span class=cl>/var/www/cobbler <span class=c1># 系统安装镜像目录</span>
+</span></span><span class=line><span class=cl>/var/www/cobbler/ks_mirror <span class=c1># 导入的系统镜像列表</span>
+</span></span><span class=line><span class=cl>/var/www/cobbler/images <span class=c1># 导入的系统镜像启动文件</span>
+</span></span><span class=line><span class=cl>/var/www/cobbler/repo_mirror <span class=c1># yum 源存储目录</span>
+</span></span><span class=line><span class=cl>/var/log/cobbler <span class=c1># 日志目录</span>
+</span></span><span class=line><span class=cl>/var/log/cobbler/install.log <span class=c1># 客户端系统安装日志</span>
+</span></span><span class=line><span class=cl>/var/log/cobbler/cobbler.log <span class=c1># Cobbler 日志</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=215-首先启动-cobbler-和-httpd-服务><span>2.1.5. 首先启动 Cobbler 和 httpd 服务</span>
+<a href=#215-%e9%a6%96%e5%85%88%e5%90%af%e5%8a%a8-cobbler-%e5%92%8c-httpd-%e6%9c%8d%e5%8a%a1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; systemctl start cobblerd httpd</span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=216-检查配置><span>2.1.6. 检查配置</span>
+<a href=#216-%e6%a3%80%e6%9f%a5%e9%85%8d%e7%bd%ae class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; cobbler check
+</span></span><span class=line><span class=cl>The following are potential configuration items that you may want to fix:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>1</span> : The <span class=s1>&#39;server&#39;</span> field in /etc/cobbler/settings must be <span class=nb>set</span> to something other than localhost, or kickstarting features will not work.  This should be a resolvable hostname or IP <span class=k>for</span> the boot server as reachable by all machines that will use it.
+</span></span><span class=line><span class=cl><span class=m>2</span> : For PXE to be functional, the <span class=s1>&#39;next_server&#39;</span> field in /etc/cobbler/settings must be <span class=nb>set</span> to something other than 127.0.0.1, and should match the IP of the boot server on the PXE network.
+</span></span><span class=line><span class=cl><span class=m>3</span> : change <span class=s1>&#39;disable&#39;</span> to <span class=s1>&#39;no&#39;</span> in /etc/xinetd.d/tftp
+</span></span><span class=line><span class=cl><span class=m>4</span> : Some network boot-loaders are missing from /var/lib/cobbler/loaders, you may run <span class=s1>&#39;cobbler get-loaders&#39;</span> to download them, or, <span class=k>if</span> you only want to handle x86/x86_64 netbooting, you may ensure that you have installed a *recent* version of the syslinux package installed and can ignore this message entirely.  Files in this directory, should you want to support all architectures, should include pxelinux.0, menu.c32, elilo.efi, and yaboot. The <span class=s1>&#39;cobbler get-loaders&#39;</span> <span class=nb>command</span> is the easiest way to resolve these requirements.
+</span></span><span class=line><span class=cl><span class=m>5</span> : <span class=nb>enable</span> and start rsyncd.service with systemctl
+</span></span><span class=line><span class=cl><span class=m>6</span> : debmirror package is not installed, it will be required to manage debian deployments and repositories
+</span></span><span class=line><span class=cl><span class=m>7</span> : The default password used by the sample templates <span class=k>for</span> newly installed machines <span class=o>(</span>default_password_crypted in /etc/cobbler/settings<span class=o>)</span> is still <span class=nb>set</span> to <span class=s1>&#39;cobbler&#39;</span> and should be changed, try: <span class=s2>&#34;openssl passwd -1 -salt &#39;random-phrase-here&#39; &#39;your-password-here&#39;&#34;</span> to generate new one
+</span></span><span class=line><span class=cl><span class=m>8</span> : fencing tools were not found, and are required to use the <span class=o>(</span>optional<span class=o>)</span> power management features. install cman or fence-agents to use them
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Restart cobblerd and <span class=k>then</span> run <span class=s1>&#39;cobbler sync&#39;</span> to apply changes.</span></span></code></pre></td></tr></table></div></div><p>以上问题我们需要逐步解决。</p><ul><li>问题 1：修改 <code>server</code> 地址为 <code>192.168.1.7</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; vim /etc/cobbler/settings
+</span></span><span class=line><span class=cl>改：390 server: 127.0.1
+</span></span><span class=line><span class=cl>为：390 server: 192.168.1.7</span></span></code></pre></td></tr></table></div></div><ul><li>问题 2：修改 <code>next_server</code> 地址为 <code>192.168.1.7</code></li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; vim /etc/cobbler/settings
+</span></span><span class=line><span class=cl>改：278 next_server: 127.0.1
+</span></span><span class=line><span class=cl>为：278 next_server: 192.168.1.7</span></span></code></pre></td></tr></table></div></div><ul><li>问题 3：修改 <code>tftp</code> 服务被 <code>xinetd</code> 服务管理</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; vim /etc/xinetd.d/tftp
+</span></span><span class=line><span class=cl>改：14 <span class=nv>disable</span> <span class=o>=</span> yes
+</span></span><span class=line><span class=cl>为：14 <span class=nv>disable</span> <span class=o>=</span> no
+</span></span><span class=line><span class=cl>顺便修改 xinetd 和 tftpd 服务开机启动
+</span></span><span class=line><span class=cl>$&gt; systemctl start xinetd tftp <span class=o>&amp;&amp;</span> systemctl <span class=nb>enable</span> xinetd tftp</span></span></code></pre></td></tr></table></div></div><ul><li>问题 4：下载操作系统引导文件</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; cobbler get-loaders
+</span></span><span class=line><span class=cl>task started: 2020-01-04_031204_get_loaders
+</span></span><span class=line><span class=cl>task started <span class=o>(</span><span class=nv>id</span><span class=o>=</span>Download Bootloader Content, <span class=nv>time</span><span class=o>=</span>Sat Jan  <span class=m>4</span> 03:12:04 2020<span class=o>)</span>
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/README to /var/lib/cobbler/loaders/README
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/COPYING.elilo to /var/lib/cobbler/loaders/COPYING.elilo
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/COPYING.yaboot to /var/lib/cobbler/loaders/COPYING.yaboot
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/COPYING.syslinux to /var/lib/cobbler/loaders/COPYING.syslinux
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/elilo-3.8-ia64.efi to /var/lib/cobbler/loaders/elilo-ia64.efi
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/yaboot-1.3.17 to /var/lib/cobbler/loaders/yaboot
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/pxelinux.0-3.86 to /var/lib/cobbler/loaders/pxelinux.0
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/menu.c32-3.86 to /var/lib/cobbler/loaders/menu.c32
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/grub-0.97-x86.efi to /var/lib/cobbler/loaders/grub-x86.efi
+</span></span><span class=line><span class=cl>downloading https://cobbler.github.io/loaders/grub-0.97-x86_64.efi to /var/lib/cobbler/loaders/grub-x86_64.efi
+</span></span><span class=line><span class=cl>*** TASK COMPLETE ***</span></span></code></pre></td></tr></table></div></div><ul><li>问题 5：修改 <code>rsyncd</code> 服务为开机自启动状态并启用它。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; systemctl start rsyncd <span class=o>&amp;&amp;</span> systemctl <span class=nb>enable</span> rsyncd</span></span></code></pre></td></tr></table></div></div><ul><li>问题 6：关于 <code>debian</code> 相关部署管理配置，忽略。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>debmirror package is not installed, it will be required to manage debian
+</span></span><span class=line><span class=cl>deployments and repositories <span class=c1># debmirror 包尚未安装，需要它来管理 debian 部署和存储库</span></span></span></code></pre></td></tr></table></div></div><ul><li>问题 7：修改操作系统默认密码</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; openssl passwd -1 -salt <span class=s1>&#39;root&#39;</span> <span class=s1>&#39;123456&#39;</span>
+</span></span><span class=line><span class=cl><span class=nv>$1$root$j0bp</span>.KLPyr.u9kgQ428D10
+</span></span><span class=line><span class=cl>$&gt; vim /etc/cobbler/settings
+</span></span><span class=line><span class=cl>改：101 default_password_crypted: <span class=s2>&#34;</span><span class=nv>$1$mF86</span><span class=s2>/UHC</span><span class=nv>$WvcIcX2t6crBz2onWxyac</span><span class=s2>.&#34;</span>
+</span></span><span class=line><span class=cl>为：101 default_password_crypted: <span class=s2>&#34;</span><span class=nv>$1$root$j0bp</span><span class=s2>.KLPyr.u9kgQ428D10&#34;</span>
+</span></span><span class=line><span class=cl>注：root 为用户描述，123456 为密码</span></span></code></pre></td></tr></table></div></div><ul><li>问题 8：电源管理相关服务，忽略。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>fencing tools were not found, and are required to use the <span class=o>(</span>optional<span class=o>)</span> power
+</span></span><span class=line><span class=cl>management features. install cman or fence-agents to use them</span></span></code></pre></td></tr></table></div></div><p>修改完以上配置就可以检查 <code>DHCP</code> 配置了，由于 <code>Cobbler</code> 自动管理 <code>DHCP</code> 服务，我们只需要修改 <code>Cobbler</code> 中的模板配置文件即可。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; vim /etc/cobbler/dhcp.template
+</span></span><span class=line><span class=cl>改：22 option routers 192.168.1.5<span class=p>;</span> <span class=c1>#修改默认网关地址</span>
+</span></span><span class=line><span class=cl>为：22 option routers 192.168.1.1<span class=p>;</span> <span class=c1>#以实际的网关为准</span>
+</span></span><span class=line><span class=cl>改：23 option domain-name-servers 192.168.1.1<span class=p>;</span> <span class=c1>#修改 DNS 地址</span>
+</span></span><span class=line><span class=cl>为：23 option domain-name-servers 114.114.114.114<span class=p>;</span>
+</span></span><span class=line><span class=cl>如下：
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl> <span class=m>21</span> subnet 192.168.1.0 netmask 255.255.255.0 <span class=o>{</span>
+</span></span><span class=line><span class=cl> <span class=m>22</span>      option routers             192.168.1.1<span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=m>23</span>      option domain-name-servers 114.114.114.114<span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=m>24</span>      option subnet-mask         255.255.255.0<span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=m>25</span>      range dynamic-bootp        192.168.1.100 192.168.1.254<span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=m>26</span>      default-lease-time         21600<span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=m>27</span>      max-lease-time             43200<span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=m>28</span>      next-server                <span class=nv>$next_server</span><span class=p>;</span></span></span></code></pre></td></tr></table></div></div><p><strong>注：配置默认为 <code>192.168.1.0</code> 网段，具体要看你的装机 <code>vlan</code> 划分，现在是实验环境所以保持配不变。</strong><br><strong>注：默认网关地址为 <code>192.168.1.5</code>，这里需要改成你自己局域网中的网关。</strong><br><code>$next_server</code> 为变量值为我们前面修改的主配置文件中的地址 <code>192.168.1.7</code></p><h3 class=heading-element id=217-修改-cobbler-管理-dhcp-服务><span>2.1.7. 修改 Cobbler 管理 dhcp 服务</span>
+<a href=#217-%e4%bf%ae%e6%94%b9-cobbler-%e7%ae%a1%e7%90%86-dhcp-%e6%9c%8d%e5%8a%a1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; vim /etc/cobbler/settings
+</span></span><span class=line><span class=cl>改：242 manage_dhcp: <span class=m>0</span>
+</span></span><span class=line><span class=cl>为：242 manage_dhcp: <span class=m>1</span></span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=218-同步配置文件需要先重启-cobblerd><span>2.1.8. 同步配置文件，需要先重启 Cobblerd</span>
+<a href=#218-%e5%90%8c%e6%ad%a5%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e9%9c%80%e8%a6%81%e5%85%88%e9%87%8d%e5%90%af-cobblerd class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; systemctl restart cobblerd
+</span></span><span class=line><span class=cl>$&gt; cobbler sync
+</span></span><span class=line><span class=cl>task started: 2020-01-04_032552_sync
+</span></span><span class=line><span class=cl>task started <span class=o>(</span><span class=nv>id</span><span class=o>=</span>Sync, <span class=nv>time</span><span class=o>=</span>Sat Jan  <span class=m>4</span> 03:25:52 2020<span class=o>)</span>
+</span></span><span class=line><span class=cl>running pre-sync triggers
+</span></span><span class=line><span class=cl>cleaning trees
+</span></span><span class=line><span class=cl>removing: /var/lib/tftpboot/grub/images
+</span></span><span class=line><span class=cl>copying bootloaders
+</span></span><span class=line><span class=cl>trying hardlink /var/lib/cobbler/loaders/pxelinux.0 -&gt; /var/lib/tftpboot/pxelinux.0
+</span></span><span class=line><span class=cl>trying hardlink /var/lib/cobbler/loaders/menu.c32 -&gt; /var/lib/tftpboot/menu.c32
+</span></span><span class=line><span class=cl>trying hardlink /var/lib/cobbler/loaders/yaboot -&gt; /var/lib/tftpboot/yaboot
+</span></span><span class=line><span class=cl>trying hardlink /usr/share/syslinux/memdisk -&gt; /var/lib/tftpboot/memdisk
+</span></span><span class=line><span class=cl>trying hardlink /var/lib/cobbler/loaders/grub-x86.efi -&gt; /var/lib/tftpboot/grub/grub-x86.efi
+</span></span><span class=line><span class=cl>trying hardlink /var/lib/cobbler/loaders/grub-x86_64.efi -&gt; /var/lib/tftpboot/grub/grub-x86_64.efi
+</span></span><span class=line><span class=cl>copying distros to tftpboot
+</span></span><span class=line><span class=cl>copying images
+</span></span><span class=line><span class=cl>generating PXE configuration files
+</span></span><span class=line><span class=cl>generating PXE menu structure
+</span></span><span class=line><span class=cl>rendering DHCP files
+</span></span><span class=line><span class=cl>generating /etc/dhcp/dhcpd.conf
+</span></span><span class=line><span class=cl>rendering TFTPD files
+</span></span><span class=line><span class=cl>generating /etc/xinetd.d/tftp
+</span></span><span class=line><span class=cl>cleaning link caches
+</span></span><span class=line><span class=cl>running post-sync triggers
+</span></span><span class=line><span class=cl>running python triggers from /var/lib/cobbler/triggers/sync/post/*
+</span></span><span class=line><span class=cl>running python trigger cobbler.modules.sync_post_restart_services
+</span></span><span class=line><span class=cl>running: dhcpd -t -q
+</span></span><span class=line><span class=cl>received on stdout: 
+</span></span><span class=line><span class=cl>received on stderr: 
+</span></span><span class=line><span class=cl>running: service dhcpd restart
+</span></span><span class=line><span class=cl>received on stdout: 
+</span></span><span class=line><span class=cl>received on stderr: Redirecting to /bin/systemctl restart dhcpd.service
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>running shell triggers from /var/lib/cobbler/triggers/sync/post/*
+</span></span><span class=line><span class=cl>running python triggers from /var/lib/cobbler/triggers/change/*
+</span></span><span class=line><span class=cl>running python trigger cobbler.modules.manage_genders
+</span></span><span class=line><span class=cl>running python trigger cobbler.modules.scm_track
+</span></span><span class=line><span class=cl>running shell triggers from /var/lib/cobbler/triggers/change/*
+</span></span><span class=line><span class=cl>*** TASK COMPLETE ***</span></span></code></pre></td></tr></table></div></div><p>注意观察 DHCP 服务是否启动。<br>重新检查，剩下 2 个可以忽略的问题。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; cobbler check
+</span></span><span class=line><span class=cl>The following are potential configuration items that you may want to fix:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>1</span> : debmirror package is not installed, it will be required to manage debian deployments and repositories
+</span></span><span class=line><span class=cl><span class=m>2</span> : fencing tools were not found, and are required to use the <span class=o>(</span>optional<span class=o>)</span> power management features. install cman or fence-agents to use them
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Restart cobblerd and <span class=k>then</span> run <span class=s1>&#39;cobbler sync&#39;</span> to apply changes.</span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=219-挂载光驱><span>2.1.9. 挂载光驱</span>
+<a href=#219-%e6%8c%82%e8%bd%bd%e5%85%89%e9%a9%b1 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; mount /dev/sr0 /mnt</span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=2110-导入镜像><span>2.1.10. 导入镜像</span>
+<a href=#2110-%e5%af%bc%e5%85%a5%e9%95%9c%e5%83%8f class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; cobbler import --path<span class=o>=</span>/mnt/ --name<span class=o>=</span>CentOS-7.6 --arch<span class=o>=</span>x86_64
+</span></span><span class=line><span class=cl>task started: 2020-01-04_033346_import
+</span></span><span class=line><span class=cl>task started <span class=o>(</span><span class=nv>id</span><span class=o>=</span>Media import, <span class=nv>time</span><span class=o>=</span>Sat Jan <span class=m>4</span> 03:33:46 2020<span class=o>)</span>
+</span></span><span class=line><span class=cl>Found a candidate signature: <span class=nv>breed</span><span class=o>=</span>redhat, <span class=nv>version</span><span class=o>=</span>rhel6
+</span></span><span class=line><span class=cl>Found a matching signature: <span class=nv>breed</span><span class=o>=</span>redhat, <span class=nv>version</span><span class=o>=</span>rhel6
+</span></span><span class=line><span class=cl>Adding distros from path /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64:
+</span></span><span class=line><span class=cl>creating new distro: CentOS-7.6-x86_64
+</span></span><span class=line><span class=cl>trying symlink: /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64 -&gt; /var/www/cobbler/links/CentOS-7.6-x86_64
+</span></span><span class=line><span class=cl>creating new profile: CentOS-7.6-x86_64
+</span></span><span class=line><span class=cl>associating repos
+</span></span><span class=line><span class=cl>checking <span class=k>for</span> rsync repo<span class=o>(</span>s<span class=o>)</span>
+</span></span><span class=line><span class=cl>checking <span class=k>for</span> rhn repo<span class=o>(</span>s<span class=o>)</span>
+</span></span><span class=line><span class=cl>checking <span class=k>for</span> yum repo<span class=o>(</span>s<span class=o>)</span>
+</span></span><span class=line><span class=cl>starting descent into /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64 <span class=k>for</span> CentOS-7.6-x86_64
+</span></span><span class=line><span class=cl>processing repo at : /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64
+</span></span><span class=line><span class=cl>need to process repo/comps: /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64
+</span></span><span class=line><span class=cl>looking <span class=k>for</span> /var/www/cobbler/ks_mirror/CentOS-7.6-x86_64/repodata/*comps*.xml
+</span></span><span class=line><span class=cl>Keeping repodata as-is :/var/www/cobbler/ks_mirror/CentOS-7.6-x86_64/repodata
+</span></span><span class=line><span class=cl>*** TASK COMPLETE ***</span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=2111-查看镜像上面是镜像名称下面是启动菜单><span>2.1.11. 查看镜像，上面是镜像名称，下面是启动菜单。</span>
+<a href=#2111-%e6%9f%a5%e7%9c%8b%e9%95%9c%e5%83%8f%e4%b8%8a%e9%9d%a2%e6%98%af%e9%95%9c%e5%83%8f%e5%90%8d%e7%a7%b0%e4%b8%8b%e9%9d%a2%e6%98%af%e5%90%af%e5%8a%a8%e8%8f%9c%e5%8d%95 class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; cobbler list
+</span></span><span class=line><span class=cl>distros:
+</span></span><span class=line><span class=cl>CentOS-7.6-x86_64
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>profiles:
+</span></span><span class=line><span class=cl>CentOS-7.6-x86_64</span></span></code></pre></td></tr></table></div></div><h3 class=heading-element id=2112-同步-cobbler-配置><span>2.1.12. 同步 Cobbler 配置</span>
+<a href=#2112-%e5%90%8c%e6%ad%a5-cobbler-%e9%85%8d%e7%bd%ae class=heading-mark><svg class="octicon octicon-link" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5.0 114.95 4.95l-2.5 2.5a3.5 3.5.0 01-4.95.0.751.751.0 01.018-1.042.751.751.0 011.042-.018 1.998 1.998.0 002.83.0l2.5-2.5a2.002 2.002.0 00-2.83-2.83l-1.25 1.25a.751.751.0 01-1.042-.018.751.751.0 01-.018-1.042zm-4.69 9.64a1.998 1.998.0 002.83.0l1.25-1.25a.751.751.0 011.042.018.751.751.0 01.018 1.042l-1.25 1.25a3.5 3.5.0 11-4.95-4.95l2.5-2.5a3.5 3.5.0 014.95.0.751.751.0 01-.018 1.042.751.751.0 01-1.042.018 1.998 1.998.0 00-2.83.0l-2.5 2.5a1.998 1.998.0 000 2.83z"/></svg></a></h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$&gt; systemctl restart cobblerd
+</span></span><span class=line><span class=cl>$&gt; cobbler sync</span></span></code></pre></td></tr></table></div></div><p>至此，搭建 Cobbler 无人值守安装服务器完成！</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2020-01-19 00:00:00">更新于 2020-01-19&nbsp;</span></div><div class=post-info-license><span><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>CC BY-NC-SA 4.0</a></span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/linux/ class=post-tag title="标签 - Linux">Linux</a><a href=/tags/cobbler/ class=post-tag title="标签 - Cobbler">Cobbler</a><a href=/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/ class=post-tag title="标签 - 解决方案">解决方案</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/linux/%E4%BB%8B%E7%BB%8D%E5%9C%A8linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%AD%E4%BD%BF%E7%94%A8tcpdump/ class=post-nav-item rel=prev title=介绍在Linux命令行中使用tcpdump><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>介绍在Linux命令行中使用tcpdump</a><a href=/posts/linux/java%E8%BF%90%E7%BB%B4%E6%95%85%E9%9A%9C%E8%AE%B0%E5%BD%95/ class=post-nav-item rel=next title=Java运维故障记录>Java运维故障记录<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div><div id=comments><div id=gitalk class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://github.com/gitalk/gitalk rel="external nofollow noopener noreferrer">Gitalk</a>.</noscript></div></article><aside class=toc id=toc-auto aria-label=目录><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside></main><footer class=footer><div class=footer-container><div class=footer-line><script type=text/javascript>(function(e,t,n,s,o,i,a){e[n]=e[n]||function(){(e[n].q=e[n].q||[]).push(arguments)},i=t.createElement(s),i.async=1,i.src="https://www.clarity.ms/tag/"+o,a=t.getElementsByTagName(s)[0],a.parentNode.insertBefore(i,a)})(window,document,"clarity","script","jtpwi0tdz1")</script></div><div class=footer-line>托管在&nbsp;<a title=Vercel href=https://vercel.com target=_blank rel="noopener noreffer">Vercel</a> & <a title=Aliyun href=https://www.aliyun.com target=_blank rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.152.1"><img class=hugo-icon src=/images/hugo.min.svg alt="Hugo logo"> Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.4.0-alpha.1"><img class=fixit-icon src=/images/fixit.min.svg alt="FixIt logo"> FixIt</a></div><div class="footer-line copyright" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2022 - 2025</span><span class=author itemprop=copyrightHolder>
+<a href=https://blog.0x5c0f.cc target=_blank rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh target=_blank>CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class=gov><img src=/images/gov.png style=height:16px;width:16px;display:inline-block;vertical-align:middle;margin-right:3px><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel=noreferrer target=_blank>渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href=https://beian.miit.gov.cn target=_blank>渝ICP备2020011834号-2</a></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class=variant-numeric>0%</span></div><div class="fixed-button view-comments d-none" role=button aria-label=查看评论><i class="fa-solid fa-comment fa-fw" aria-hidden=true></i></div></div><div id=mask></div><div class=reading-progress-bar style=left:0;top:0></div><noscript><div class=noscript-warning>该网站在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/gitalk/gitalk.min.e525ab86258d1091611cdf6bbc548866f3bf97020fe6aadf3ce8e0ccd9aaec45f31b1cd3dd48d61e1eaf504f02e5666c4d41bd9e580964607a208acefd9cea54.css integrity="sha512-5SWrhiWNEJFhHN9rvFSIZvO/lwIP5qrfPOjgzNmq7EXzGxzT3UjWHh6vUE8C5WZsTUG9nlgJZGB6IIrO/ZzqVA=="><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.4da240a43b27e4766b66680f1a246cc89ccd7354d9209947fd4484ead2c58f04ef5728b29d9efd50b0fd0c8ec4e2a267a0326f798c41a70fbe21ae975213ef27.css integrity="sha512-TaJApDsn5HZrZmgPGiRsyJzNc1TZIJlH/USE6tLFjwTvVyiynZ79ULD9DI7E4qJnoDJveYxBpw++Ia6XUhPvJw=="><script src=/lib/gitalk/gitalk.min.dde1928759bb3865d3935d3953043fac0b92996eb1d731702d7bc33a6a0c4cd97217fc783230889b91b0c1bc55b4a6f5b00fcc2109cec2e63b25b8b80de25ca7.js integrity="sha512-3eGSh1m7OGXTk105UwQ/rAuSmW6x1zFwLXvDOmoMTNlyF/x4MjCIm5GwwbxVtKb1sA/MIQnOwuY7Jbi4DeJcpw=="></script><script src=/lib/autocomplete/autocomplete.min.7e654c67e741180b83f7b4d829967003fea37a5d5014f549f0a3d7f945d2b73e73e22a1dd04a7b68712c846f004232f3030d07305784fab026100af12af8f0ac.js integrity="sha512-fmVMZ+dBGAuD97TYKZZwA/6jel1QFPVJ8KPX+UXStz5z4iod0Ep7aHEshG8AQjLzAw0HMFeE+rAmEArxKvjwrA==" defer></script><script src=/lib/fuse/fuse.min.36ac35b47de6a5abe46bd71009ce7359611935f20f74e6324058e557536f7e512d434fd723a650f87fc3dd880976a49426530b00f463fe85e56870856c50a3a1.js integrity="sha512-Nqw1tH3mpavka9cQCc5zWWEZNfIPdOYyQFjlV1NvflEtQ0/XI6ZQ+H/D3YgJdqSUJlMLAPRj/oXlaHCFbFCjoQ==" defer></script><script src=/lib/instant-page/instantpage.min.b9c40b72cc23e52964ed3f0c38f689e0f35253b7838505f1414726a8c52ea7480d4673ad1da26b15355a2da835147485cf65fd45b24a885a1cd8ca97cd6ffec7.js integrity="sha512-ucQLcswj5Slk7T8MOPaJ4PNSU7eDhQXxQUcmqMUup0gNRnOtHaJrFTVaLag1FHSFz2X9RbJKiFoc2MqXzW/+xw==" async defer type=module></script><script src=/lib/typeit/index.umd.1b3200cb448f5cd1f548f2781452643d3511a43584b377b82c03a58055da4fdb7bc8f6c6c2ce846480c7677ff25bfd0d75f15823c09443ab18e0fd2cad792587.js integrity="sha512-GzIAy0SPXNH1SPJ4FFJkPTURpDWEs3e4LAOlgFXaT9t7yPbGws6EZIDHZ3/yW/0NdfFYI8CUQ6sY4P0srXklhw==" defer></script><script src=/lib/pace/pace.min.d9c6ec406768c0d0cf70aba805dd9b09cb09932f3b32fd0b12d0ff9ee9c952093a30e6138153068a14bfc4212084d7f4e033e13622780d9c390710ddd6ec8e77.js integrity="sha512-2cbsQGdowNDPcKuoBd2bCcsJky87Mv0LEtD/nunJUgk6MOYTgVMGihS/xCEghNf04DPhNiJ4DZw5BxDd1uyOdw==" async defer></script><script src=/js/particle.min.19d0e7020a0b241b6aa18b222d41c1d4a0f3fe48feb4bbe5dc127019e86952a3f0bd6fd7cdc87b98da4bb919e3e7ca68ab8b6f96389e2efacb47b36f92e2892c.js integrity="sha512-GdDnAgoLJBtqoYsiLUHB1KDz/kj+tLvl3BJwGehpUqPwvW/Xzch7mNpLuRnj58poq4tvljieLvrLR7NvkuKJLA==" defer></script><script src=/js/watermark.seal.min.3cead0eb6c9989d4fc6d00173ec8836d3919dd8ce75df57a75e113624633c9bce14f893cde7d2ef23642b62a53da22021371732f8e4156128df74ce049262f58.js integrity="sha512-POrQ62yZidT8bQAXPsiDbTkZ3YznXfV6deETYkYzybzhT4k83n0u8jZCtipT2iICE3FzL45BVhKN90zgSSYvWA==" defer></script><script src=/js/ext-utils.00b3ce7d82b0ec4b5808452e6fdc89937cea0772879e35da39ac4aab50bfdafddf3f2863e7677be1732d17ac21d3563a43c2a0ae96491a02ba776df4f74a9ce1.js integrity="sha512-ALPOfYKw7EtYCEUub9yJk3zqB3KHnjXaOaxKq1C/2v3fPyhj52d74XMtF6wh01Y6Q8KgrpZJGgK6d23090qc4Q==" defer></script><script>window.config={code:{copyTitle:"复制到剪贴板",editLockTitle:"锁定可编辑代码块",editUnLockTitle:"解锁可编辑代码块",editable:!0,maxShownLines:10},comment:{enable:!0,expired:!1,gitalk:{admin:["0x5c0f"],clientID:"3248954ea2af12f77f46",clientSecret:"a463972c37d7b438e2635d4fc0a8f06174565c67",id:"2020-01-19T00:00:00Z",owner:"0x5c0f",repo:"blog",title:"Cobbler无人值守安装"}},search:{distance:100,findAllMatches:!0,fuseIndexURL:"/search.json",highlightTag:"mark",ignoreFieldNorm:!0,ignoreLocation:!0,isCaseSensitive:!1,location:0,maxResultLength:10,minMatchCharLength:2,noResultsFound:"没有找到结果",snippetLength:30,threshold:.2,type:"fuse",useExtendedSearch:!0},typeit:{cursorChar:"_",cursorSpeed:1e3,duration:9e3,loop:!1,speed:100},version:"v0.4.0-alpha.1"}</script><script src=/js/theme.min.495a7d0a4c4576e70f3b84b0c735e82d682e5c67c25d73573062e611b4ee729430367036f5cf66a379e1bae8b5e96327e47e4c17822a5203523dbe962956a3a5.js integrity="sha512-SVp9CkxFducPO4SwxzXoLWguXGfCXXNXMGLmEbTucpQwNnA29c9mo3nhuui16WMn5H5MF4IqUgNSPb6WKVajpQ==" defer></script><script src=/lib/translate.min.88eab6458572fed1ef29f13c8cad30a51e0b1b403bcd162eb1a9e2fea0c98c59618a90b1871487d72d34f03fc152edcfc781651a2632ed5dfe68a3291ea11d65.js integrity="sha512-iOq2RYVy/tHvKfE8jK0wpR4LG0A7zRYusani/qDJjFlhipCxhxSH1y008D/BUu3Px4FlGiYy7V3+aKMpHqEdZQ==" defer></script><script>window.ATConfig={hugoLangCodes:["zh-CN"],hugoLangMap:{"zh-CN":"/posts/linux/cobbler%E6%97%A0%E4%BA%BA%E5%80%BC%E5%AE%88%E5%AE%89%E8%A3%85/"}}</script><script src=/js/translate.fixit.min.e3f2ad8113afe03308df2f750857a560d39019deeabe7a3c50ad0f54397a0e407ea765f93dec9499a8eaea2bad096eff7202811a2bff25fdaef834ee19a6a8b9.js integrity="sha512-4/KtgROv4DMI3y91CFelYNOQGd7qvno8UK0PVDl6DkB+p2X5PeyUmajq6iutCW7/cgKBGiv/Jf2u+DTuGaaouQ==" defer></script></body></html>
