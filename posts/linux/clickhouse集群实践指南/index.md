@@ -154,9 +154,10 @@ flowchart TB
 
 即使只有 **1 台机器**，也要：
 
-* 配置 `cluster.xml`
-* 配置 `keeper.xml`
-* 配置 `macros.xml`
+* 配置 [`cluster.xml`](#5-集群配置clusterxml)
+* 配置 [`keeper.xml`](#62-keeperxml最小可用单节点)
+* 配置 [`macros.xml`](#82-高可用版本推荐生产)
+* 配置 [`access_control.xml`](./clickhouse权限与访问控制设计.md#12-用户权限同步)
 * 所有 DDL 使用 `ON CLUSTER`
 * 所有的表都使用 `ReplicatedMergeTree`
 
@@ -314,7 +315,8 @@ flowchart TB
         -->
 
         <!-- 访问控制与权限存储路径 -->
-        <access_control_path>/data/_clickhouse/access/</access_control_path>
+        <!-- 此项设定实际上已过时(低版本兼容可用)，交由 user_directories.local_directory 进行控制 -->
+        <!-- <access_control_path>/data/_clickhouse/access/</access_control_path> -->
 
         <!-- 用户文件沙盒路径 -->
         <user_files_path>/data/_clickhouse/user_files/</user_files_path>
@@ -398,6 +400,9 @@ SETTINGS
 ---
 
 ### 8.2. 高可用版本（推荐，生产）
+<!-- TODO： 更详细的内容查看[](./clickhouse权限与访问控制设计规范.md#1-clickhouse-权限设计的工程背景) -->
+<!-- 元数据托管模式; 传统手动模式 -->
+
 ```xml
 <!-- /etc/clickhouse-server/config.d: macros.xml -->
 <clickhouse>
@@ -411,7 +416,7 @@ SETTINGS
 ```
 
 ```sql
-CREATE TABLE analytics.events
+CREATE TABLE dbtest.test_table
 -- ON CLUSTER 在创建数据库的时候如果已指定，这儿就不需要了，否则会报告错误
 -- ON CLUSTER 的作用是"广播执行", 不是"持续复制"
 ON CLUSTER default_cluster
@@ -424,8 +429,9 @@ ON CLUSTER default_cluster
 -- ReplicatedMergeTree 定义路径在非多租户的情况下，下列模板应是一个最优解
 -- '/clickhouse/tables/{shard}/<db_name>/<table_name>','{replica}'
 -- 为什么要定义路径而不默认由系统自行判定呢?
+-- 注: 当前为手动模式情况下，ZK 路径指定只能在建表或者建库当中的一个指定，当前介绍的是在建表时指定的情况(传统手动模式)
 -- 因为系统默认行为通常会使用类似 /clickhouse/tables/{uuid}/{shard}, 其中uuid
--- 是数据库自动生成的唯一 ID, 这会导致新节点加入时非常很难"自动对接"。 因为新节点在手动创建库时，系统也会生成一个新的随机 uuid。
+-- 是数据库自动生成的唯一 ID, 这会导致新节点加入时非常很难"自动对接"。 因为新节点在手动创建表时，系统也会生成一个新的随机 uuid。
 -- 这意味着新节点生成的自动路径会和旧节点不一致。路径不一致，数据就永远无法自动同步,除非你自己一个个去查询主节点然后手动固定路径，非常痛苦。
 ENGINE = ReplicatedMergeTree('/clickhouse/tables/{shard}/dbtest/test_table', '{replica}')
 PARTITION BY toYYYYMM(event_time)
@@ -449,16 +455,16 @@ SETTINGS
 ## 9. Distributed 表（统一读写入口）
 
 ```sql
-CREATE TABLE analytics.events_all
+CREATE TABLE dbtest.test_table_all
 ON CLUSTER default_cluster
-AS analytics.events
+AS dbtest.test_table
 ENGINE = Distributed(
     --  指定该表要往哪个集群里分发数据
     default_cluster,
     -- 指定本地表所在的数据库名
-    analytics,
+    dbtest,
     -- 指定本地表的名称（数据真正存储的地方）
-    events,
+    test_table,
     -- 分流策略,用于决定数据流向哪个分片
     -- 随机分发: rand()
     -- 固定值分发: 1
@@ -471,8 +477,8 @@ ENGINE = Distributed(
 
 **使用原则**：
 
-* 写 → `events_all`
-* 查 → `events_all`
+* 写 → `test_table_all`
+* 查 → `test_table_all`
 * 不直接访问本地表
 
 ---
@@ -670,7 +676,7 @@ clickhouse-backup create daily_2025_12_18
 
 ### 11.3. 恢复示例（单表）
 ```bash
-clickhouse-backup restore --table analytics.events daily_2025_12_18
+clickhouse-backup restore --table dbtest.test_table daily_2025_12_18
 ```
 
 ### 11.4. 恢复整个数据库
@@ -749,12 +755,7 @@ backend ch_nodes
         
 2. 复制主节点自定义配置文件到新节点的 `/etc/clickhouse-server/config.d`, 修改上述内容
 3. 配置同步后，重启主节点， 然后重启新节点(*这个重启顺序应该没什么关系，实际测试时候是先重启主节点、在重新的新节点*)
-4. 登陆到新节点，手动创建与主节点相同的数据库、相同的表结构(**注: 建表和建库的时候，需要保持与主节点的`ZK`路径完全一致，否则难以自动同步数据,这也是为什么在见表的时候要求手动指定`ZK`路径的原因**)
-
-可手动触发(未测试)：
-```sql
-SYSTEM SYNC REPLICA analytics.events;
-```
+4. 登陆到新节点，等待同步完成，如果没有进行同步那么就需要手动创建与主节点相同的数据库、相同的表结构(**注: 建表和建库的时候，需要保持与主节点的`ZK`路径完全一致，否则难以自动同步数据,这也是为什么在见表的时候要求手动指定`ZK`路径的原因**)
 
 ### 14.2. 如何自动复制？
 - 当你有一个 `ReplicatedMergeTree` 表时：
