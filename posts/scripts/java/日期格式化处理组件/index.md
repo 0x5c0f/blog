@@ -2,7 +2,7 @@
 
 
 # java 日期格式化处理组件 
-{{< highlight java >}}
+```java
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -777,7 +777,7 @@ public class TimeUtil s {
              return dif;
       }
 }
-{{< /highlight >}}
+```
 
 ---
 

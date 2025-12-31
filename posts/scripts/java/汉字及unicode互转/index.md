@@ -2,7 +2,7 @@
 
 
 # java 汉字和unicode互转 
-{{< highlight java >}}
+```java
 import java.io.UnsupportedEncodingException;
 public class UnicodeConverter {
     public static void main(String[] args) throws UnsupportedEncodingException {
@@ -191,8 +191,7 @@ public class UnicodeConverter {
         return new String(out, 0, outLen);
     }
 }
-{{< /highlight >}} 
-
+```
 
 ---
 

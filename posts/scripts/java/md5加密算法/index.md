@@ -3,7 +3,7 @@
 
 # java 下的  MD5 算法  
 
-{{< highlight java >}}
+```java
 /************************************************
 MD5 算法的Java Bean
 @author:Topcat Tuppin
@@ -384,7 +384,7 @@ public class MD5 {
         } else System.out.println("MD5(" + args[0] + ")=" + m.getMD5ofStr(args[0]));
     }
 }
-{{< /highlight >}}
+```
 
 ---
 

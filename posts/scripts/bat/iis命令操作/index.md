@@ -1,7 +1,7 @@
 # IIS命令操作
 
 # 1. IIS 站点部署
-{{< highlight batch >}}
+```bat
 @echo off
 
 title Industrial belt project deployment script 
@@ -62,10 +62,10 @@ exit
 
 :End
 pause
-{{< /highlight >}}
+```
 
 # 2. IIS 站点域名修改 
-{{< highlight batch >}}
+```bat
 @echo off
 
 title update site bind domain 
@@ -87,7 +87,7 @@ set NewDomainName=example.com
 echo The execution is complete, please check the execution result...
 
 pause
-{{< /highlight >}}
+```
 
 ---
 

@@ -172,47 +172,41 @@ flowchart TB
 ---
 
 ## 5. 集群配置：cluster.xml
-
-### 5.1. 文件位置（约定）
-
-```bash
-/etc/clickhouse-server/config.d/cluster.xml
+```xml
+<!-- /etc/clickhouse-server/config.d/cluster.xml -->
+<clickhouse>
+    <!-- 强制指定 ClickHouse 使用IP进行注册 -->
+    <interserver_http_host>172.31.10.12</interserver_http_host>
+    <remote_servers>
+        <!-- 集群名称，后续 SQL 会用到 -->
+        <default_cluster>
+            <!-- shard：数据分片
+                shard 数量 = 数据水平切分的数量
+                一个 shard 可以包含多个 replica（副本节点） -->
+            <shard>
+                <!-- 决定数据是如何在副本之间"流动", 配合 ReplicatedMergeTree 的时候必须设置为 true -->
+                <internal_replication>true</internal_replication>
+                <!-- replica：副本 -->
+                <replica>
+                    <host>172.31.10.12</host>
+                    <port>9000</port>
+                </replica>
+                <!-- <replica>
+                    <host>172.31.10.12</host>
+                    <port>9000</port>
+                </replica> -->
+            </shard>
+        </default_cluster>
+    </remote_servers>
+</clickhouse>
 ```
 
-### 5.2. 示例（单节点起步）
-- 关键说明
-    * **cluster 名字非常重要** 后续所有 `ON CLUSTER xxx` 都依赖它
-    * shard ≠ replica
-        * shard：数据水平切分
-        * replica：同一数据的副本
-
-    ```xml
-    <clickhouse>
-        <!-- 强制指定 ClickHouse 使用IP进行注册 -->
-        <interserver_http_host>172.31.10.12</interserver_http_host>
-        <remote_servers>
-            <!-- 集群名称，后续 SQL 会用到 -->
-            <default_cluster>
-                <!-- shard：数据分片
-                    shard 数量 = 数据水平切分的数量
-                    一个 shard 可以包含多个 replica（副本节点） -->
-                <shard>
-                    <!-- 决定数据是如何在副本之间"流动", 配合 ReplicatedMergeTree 的时候必须设置为 true -->
-                    <internal_replication>true</internal_replication>
-                    <!-- replica：副本 -->
-                    <replica>
-                        <host>172.31.10.12</host>
-                        <port>9000</port>
-                    </replica>
-                    <!-- <replica>
-                        <host>172.31.10.12</host>
-                        <port>9000</port>
-                    </replica> -->
-                </shard>
-            </default_cluster>
-        </remote_servers>
-    </clickhouse>
-    ```
+关键说明: 
+* **cluster 名字非常重要** 后续所有 `ON CLUSTER xxx` 都依赖它
+* shard ≠ replica
+    * shard：数据水平切分
+    * replica：同一数据的副本
+    
 ---
 
 ## 6. Keeper：为什么必须有 ？ & 怎么配 ？

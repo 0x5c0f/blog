@@ -2,7 +2,7 @@
 
 
 # java 的jdbc 连接封装 
-{{< highlight java >}}
+```java
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -230,15 +230,15 @@ public class DB {
         }
     }
 }
-{{< /highlight >}}
+```
 
 #  ODBC 连接配置 
 ODBC配置：开始-->管理工具 -->数据源--> 用户DSN-->添加 -->选择`Oracle in OraDb10g_home1`-->完成  
-`Data Source Name`中填`JdbcOdbc`  
-`Description`为描述可不填  
-`TNS Service Name`中选择`Oracle`  
-User ID中填你要使用的数据库中的用户  
-完成配置后确定  
+- `Data Source Name`中填`JdbcOdbc`  
+- `Description`为描述可不填  
+- `TNS Service Name`中选择`Oracle`  
+- User ID中填你要使用的数据库中的用户, 完成配置后确定  
+
 Java文件中需要配置的东西:
 定义三个值 :
 ```java

@@ -1,7 +1,7 @@
 # 本地安全策略-安全选项
 
 
-{{< highlight batch >}}
+```bat
 ::本地安全策略--安全选项---需重启生效
 ::安全选项
 ::网络访问：可远程访问的注册表路径　
@@ -34,8 +34,7 @@ reg add "HKEY_CURRENT_USER\Control Panel\International" /v sShortDate /t REG_SZ 
 reg add "HKEY_CURRENT_USER\Control Panel\International" /v sTime /t REG_SZ /d : /f
 reg add "HKEY_CURRENT_USER\Control Panel\International" /v sTimeFormat /t REG_SZ /d H:mm:ss /f
 
-{{< /highlight >}}
-
+```
 
 ---
 

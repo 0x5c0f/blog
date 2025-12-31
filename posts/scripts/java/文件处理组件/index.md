@@ -1,7 +1,7 @@
 # Java文件处理组件
 
 
-{{< highlight java >}}
+```java
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -242,7 +242,7 @@ public class FileOperUtil {
           return flag;
      }
 }
-{{< /highlight >}}
+```
 
 ---
 

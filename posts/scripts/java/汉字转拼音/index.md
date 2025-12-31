@@ -3,7 +3,7 @@
 
 # 汉字转拼音(非使用依赖包) 
 
-{{< highlight java >}}
+```java
 
 import java.nio.ByteBuffer;
 import java.util.TreeMap;
@@ -527,7 +527,7 @@ public class CharactorTool {
         System.out.println(getFullSpell(s));
     }
 }
-{{< /highlight >}}
+```
 
 
 ---

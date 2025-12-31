@@ -1,7 +1,7 @@
 # 禁止windows服务
 
 
-{{< highlight batch >}}
+```bat
 @echo off
 color 0A
 title  ############ 禁用并停止系统服务 ###############
@@ -137,8 +137,7 @@ sc config SQLBrowser start= disabled
 echo 正在禁用SQL Server VSS Writer服务
 net stop SQLWriter
 sc config SQLWriter start= disabled
-
-{{< /highlight >}}
+```
 
 ---
 

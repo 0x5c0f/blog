@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zabbix - 标签 - 一个曾经的小码农...</title>
+    <link>http://localhost:1313/tags/zabbix/</link>
+    <description>一个曾经的小码农...</description>
+    <generator>Hugo 0.152.1 &amp; FixIt v0.4.0-alpha.3-20251229083817-74ed94be</generator>
+    <language>zh-CN</language>
+    <managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor>
+    <webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/zabbix/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

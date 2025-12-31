@@ -2,15 +2,15 @@
 
 
 # 开机临时关闭本地安全策略(防止配置出错，导致无法登录)
-{{< highlight batch >}}
+```bat
 netsh ipsec static set policy name=我的规则 assign=n
 ping 127.0 -n 300 >nul 2>nul
 netsh ipsec static set policy name=我的规则 assign=y
 net start  PolicyAgent
-{{< /highlight >}}
+```
 
 # 本地安全策略初始化设置脚本
-{{< highlight batch >}}
+```bat
 @echo off
 title DD-IP策略设置
 color 0A
@@ -209,7 +209,7 @@ net start PolicyAgent
 goto menu
 :ext
 exit
-{{< /highlight >}}
+```
 
 ---
 

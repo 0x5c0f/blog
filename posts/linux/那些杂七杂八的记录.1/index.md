@@ -562,39 +562,39 @@ Jenkins管理界面中打开“Manage Plugins”（管理插件），然后选�
 
 - 利用`cloudflare`的`Workers`来实现
     - 登陆后在左侧栏中，选择`Workers`,点击`创建服务`,输入一个看着顺眼的服务名,选择`http处理程序`,然后点击`创建服务`.然后点击右上角`快速编辑`,在左侧框中填入一下代码，保存部署即可。
-    ```ts
-    const TELEGRAPH_URL = 'https://api.openai.com';
+        ```ts
+        const TELEGRAPH_URL = 'https://api.openai.com';
 
 
-    addEventListener('fetch', event => {
-    event.respondWith(handleRequest(event.request))
-    })
+        addEventListener('fetch', event => {
+        event.respondWith(handleRequest(event.request))
+        })
 
 
-    async function handleRequest(request) {
-    const url = new URL(request.url);
-    url.host = TELEGRAPH_URL.replace(/^https?:\/\//, '');
+        async function handleRequest(request) {
+        const url = new URL(request.url);
+        url.host = TELEGRAPH_URL.replace(/^https?:\/\//, '');
 
 
-    const modifiedRequest = new Request(url.toString(), {
-        headers: request.headers,
-        method: request.method,
-        body: request.body,
-        redirect: 'follow'
-    });
+        const modifiedRequest = new Request(url.toString(), {
+            headers: request.headers,
+            method: request.method,
+            body: request.body,
+            redirect: 'follow'
+        });
 
 
-    const response = await fetch(modifiedRequest);
-    const modifiedResponse = new Response(response.body, response);
+        const response = await fetch(modifiedRequest);
+        const modifiedResponse = new Response(response.body, response);
 
 
-    // 添加允许跨域访问的响应头
-    modifiedResponse.headers.set('Access-Control-Allow-Origin', '*');
+        // 添加允许跨域访问的响应头
+        modifiedResponse.headers.set('Access-Control-Allow-Origin', '*');
 
 
-    return modifiedResponse;
-    }
-    ```
+        return modifiedResponse;
+        }
+        ```
     - 上诉步骤完成后，配置工作基本就算完成了，`cloudflare`会有一个默认的域名，但由于某些原因，可能访问效果不是很好，不过自定义域名可以解决，具体配置在`触发器`中。此处可以定义你自己想要设定的域名，不过，要定义自定义域名，你的域名`ns`需要指定到`cloudflare`中，后续内容自行研究。
 
 - `vercel` 反代`openai`
