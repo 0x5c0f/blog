@@ -219,7 +219,7 @@ SYSTEM SYNC REPLICA dbtest.test_table;
     ENGINE = Replicated('/clickhouse/databases/dbtest', '{shard}', '{replica}');
 
     -- 2. 创建表：严禁指定参数，实现全自动托管
-    CREATE TABLE dbtest.order_items ON CLUSTER default_cluster
+    CREATE TABLE dbtest.order_items
     (
         order_id UInt64,
         price Float64

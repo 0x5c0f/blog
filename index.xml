@@ -3795,7 +3795,7 @@ CREATE DATABASE dbtest ON CLUSTER default_cluster
 ENGINE = Replicated(&amp;#39;/clickhouse/databases/dbtest&amp;#39;, &amp;#39;{shard}&amp;#39;, &amp;#39;{replica}&amp;#39;);
 
 -- 2. 创建表：严禁指定参数，实现全自动托管
-CREATE TABLE dbtest.order_items ON CLUSTER default_cluster
+CREATE TABLE dbtest.order_items
 (
  order_id UInt64,
  price Float64
