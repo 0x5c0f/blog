@@ -1,6 +1,10 @@
 # Haproxy部署与常用操作
 
 
+{{< admonition type=warning title="警告" open=true >}}
+***虽然当前文章在最近更新过，但实际上内容由于 `haproxy` 的迭代升级, 好多都有些过时了，以下资料仅可用于参考。***
+{{< /admonition >}}
+
 {{< admonition type=quote title="本文参考以下内容, 由本站重新整理验证发布" open=true >}}
 > [https://zhang.ge/5125.html](https://zhang.ge/5125.html)  
 
@@ -65,6 +69,7 @@ global
     group   haproxy           #组nobody
     daemon                    #守护进程运行
     nbproc 1                  #进程数量
+    # external-check              #启用外部健康检查功能
  
 ##### 默认配置，均可通过后续设置覆盖当前设置 ######
 defaults
@@ -114,8 +119,19 @@ backend backend_www.example.com_1
     option forwardfor header X-REAL-IP
     # 健康检查，发送一个HEAD请求，验证节点是否存活
     option httpchk HEAD / HTTP/1.0
-    # 负载均衡模式roundrobin(轮询);source(ip hash);static-rr(权重轮询);leastconn(以服务器连接数轮询，连接数最低的优先连接)
+    # 负载均衡模式roundrobin(轮询);source(ip hash);static-rr(权重轮询);leastconn(以服务器连接数轮询，连接数最低的优先连接); first 始终优先选择列表中第一个可用的后端服务器
     balance     roundrobin
+
+    # # global 中需要启用了 external-check 功能
+    # option external-check
+    # # 设置外部检查脚本， 脚本需要返回 0 表示健康，非 0 表示不健康
+    # external-check command /opt/haproxy/scripts/haproxy_check_proxy.sh
+
+    # # # haproxy 本身会传递一些环境变量给外部检查脚本
+    # # HAPROXY_SERVER_ADDR - 当前检查的服务器 IP
+    # # HAPROXY_SERVER_PORT - 当前检查的服务器端口
+    # # HAPROXY_SERVER_NAME - 服务器名称（如 "node1"）
+
     # check: 启用健康检查 
     # inter 默认2秒检查 
     # rise 检查连续可以的次数，当超过该次数,加入该节点，可用次数一般设置稍大
@@ -262,17 +278,16 @@ listen tcptest
 
 - **haproxy.init.sh**   
 ```bash
-#!/bin/sh
-#
-# chkconfig: - 85 15
-# description: HAProxy is a TCP/HTTP reverse proxy which is particularly suited \
-#              for high availability environments.
-# processname: haproxy
-# config: /opt/haproxy/etc/haproxy.cfg
-# pidfile: /opt/haproxy/haproxy.pid
-
-# Script Author: 0x5c0f(初版作者https://zhang.ge/5125.html)
-# Version: 2004060600
+#!/usr/bin/bash
+################################################# 
+#   author      0x5c0f 
+#   date        2026-01-09 
+#   email       mail@0x5c0f.cc 
+#   web         tools.0x5c0f.cc 
+#   version     1.1.0
+#   last update 2026-01-09
+#   descript    Use : ./haproxy.init.sh -h
+################################################# 
 
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
@@ -283,15 +298,82 @@ EXEC=$BASE_DIR/sbin/haproxy
 PID_FILE=$BASE_DIR/haproxy.pid
 DEFAULT_CONF=$BASE_DIR/etc/haproxy.cfg
 
-# COLOR print
-COLOR_RED=$(echo -e "\e[31;49m")
-COLOR_GREEN=$(echo -e "\e[32;49m")
-COLOR_RESET=$(echo -e "\e[0m")
-info() { echo "${COLOR_GREEN}$*${COLOR_RESET}"; }
-warn() { echo "${COLOR_RED}$*${COLOR_RESET}"; }
+__SAY__() {
+    local LOG_LEVEL="${LOG_LEVEL:-ERROR}"
+    
+    local -r ENDCOLOR="\033[0m"
+    local -r INFOCOLOR="\033[1;34m"
+    local -r SUCCESSCOLOR="\033[0;32m"
+    local -r ERRORCOLOR="\033[0;31m"
+    local -r WARNCOLOR="\033[0;33m"
+    local -r DEBUGCOLOR="\033[0;35m"
+    
+    local LOGTYPE="INFOCOLOR"
+    local msg_level="INFO"
+    
+    # 检查第一个参数是否是日志级别(不区分大小写)
+    case "$1" in
+        [Dd][Ee][Bb][Uu][Gg])
+            msg_level="DEBUG"
+            LOGTYPE="DEBUGCOLOR"
+            shift
+            ;;
+        [Ii][Nn][Ff][Oo])
+            msg_level="INFO"
+            LOGTYPE="INFOCOLOR"
+            shift
+            ;;
+        [Ss][Uu][Cc][Cc][Ee][Ss][Ss])
+            msg_level="SUCCESS"
+            LOGTYPE="SUCCESSCOLOR"
+            shift
+            ;;
+        [Ww][Aa][Rr][Nn])
+            msg_level="WARN"
+            LOGTYPE="WARNCOLOR"
+            shift
+            ;;
+        [Ee][Rr][Rr][Oo][Rr])
+            msg_level="ERROR"
+            LOGTYPE="ERRORCOLOR"
+            shift
+            ;;
+    esac
+    
+    # 日志级别过滤：INFO=1 < WARN=2 < ERROR=3 < DEBUG=4
+    local current_priority=1 msg_priority=1
+    
+    case "$LOG_LEVEL" in
+        [Ii][Nn][Ff][Oo]|[Ss][Uu][Cc][Cc][Ee][Ss][Ss]) current_priority=1 ;;
+        [Ww][Aa][Rr][Nn]) current_priority=2 ;;
+        [Ee][Rr][Rr][Oo][Rr]) current_priority=3 ;;
+        [Dd][Ee][Bb][Uu][Gg]) current_priority=4 ;;
+    esac
+    
+    case "$msg_level" in
+        INFO|SUCCESS) msg_priority=1 ;;
+        WARN) msg_priority=2 ;;
+        ERROR) msg_priority=3 ;;
+        DEBUG) msg_priority=4 ;;
+    esac
+    
+    # 消息级别高于设置级别则不显示
+    [ "$msg_priority" -gt "$current_priority" ] && return 0
+    
+    # 构建消息
+    local MESSAGE="$*"
+    
+    # bg 模式
+    if [ "$1" = "bg" ]; then
+        shift
+        MESSAGE="${!LOGTYPE}$*${ENDCOLOR}"
+    fi
+    
+    echo -e "[$(date '+%Y-%m-%d_%H:%M:%S')] [${!LOGTYPE}${msg_level}${ENDCOLOR}] ${MESSAGE}"
+}
 
 print_usage() {
-    info " Usage: $(basename $0) [start|stop|restart|status|test]"
+    __SAY__ info "Usage: $0 [start|stop|restart|status|test]"
 }
 
 #get Expanding configuration
@@ -318,6 +400,8 @@ check_process() {
 }
 # check Configuration file
 check_conf() {
+    echo "$EXEC -c -f $DEFAULT_CONF $(ext_configs) >/dev/null 2>&1"
+    exit 2
     $EXEC -c -f $DEFAULT_CONF $(ext_configs) >/dev/null 2>&1
     return $?
 }
@@ -325,17 +409,19 @@ get_pid() {
     if [[ -f $PID_FILE ]]; then
         cat $PID_FILE
     else
-        warn " $PID_FILE not found!"
+        __SAY__ error "PID file not found!"
         exit 1
     fi
 }
 start() {
     if check_process; then
-        warn " ${PROCESS_NAME} is already running!"
+        __SAY__ warn "${PROCESS_NAME} is already running!"
     else
-        $EXEC -f $DEFAULT_CONF $(ext_configs) &&
-            echo -e " ${PROCESS_NAME} start                        [ $(info OK) ]" ||
-            echo -e " ${PROCESS_NAME} start                        [ $(warn Failed) ]"
+        $EXEC -f $DEFAULT_CONF $(ext_configs) && {
+            __SAY__ success "${PROCESS_NAME} start Successfully!"
+        } || {
+            __SAY__ warn "${PROCESS_NAME} start Failed!"
+        }
     fi
 }
 
@@ -343,30 +429,32 @@ stop() {
     if check_process; then
         PID=$(get_pid)
         kill -9 $PID >/dev/null 2>&1
-        echo -e " ${PROCESS_NAME} stop                         [ $(info OK) ]"
+        __SAY__ success "${PROCESS_NAME} stop Successfully!"
     else
-        warn " ${PROCESS_NAME} is not running!"
+        __SAY__ warn "${PROCESS_NAME} is not running!"
     fi
 }
 
 restart() {
     if ! check_process ; then
-        warn " ${PROCESS_NAME} is not running! Starting Now..."
+        __SAY__ warn "${PROCESS_NAME} is not running! Starting Now..."
     fi
     if $(check_conf); then
         PID=$(get_pid)
-        $EXEC -f $DEFAULT_CONF $(ext_configs) -st $PID &&
-            echo -e " ${PROCESS_NAME} restart                      [ $(info OK) ]" ||
-            echo -e " ${PROCESS_NAME} restart                      [ $(warn Failed) ]"
+        $EXEC -f $DEFAULT_CONF $(ext_configs) -st $PID && {
+            __SAY__ success "${PROCESS_NAME} restart Successfully!"
+        } || {
+            __SAY__ warn "${PROCESS_NAME} restart Failed!"
+        }
     else
-        warn " ${PROCESS_NAME} Configuration file is not valid, plz check!"
-        echo -e " ${PROCESS_NAME} restart                      [ $(warn Failed) ]"
+        __SAY__ warn "${PROCESS_NAME} Configuration file is not valid, plz check!" 
+        __SAY__ error "${PROCESS_NAME} restart Failed!"
     fi
 }
 
-if [[ $# != 1 ]]; then
+if [ -z "$1" ] || [ "${1#-}" != "$1" ]; then
     print_usage
-    exit 1
+    exit 0
 else
     case $1 in
     "start" | "START")
@@ -379,17 +467,18 @@ else
         restart
         ;;
     "status" | "STATUS")
-        if check_process; then
-            info "${PROCESS_NAME} is running OK!"
+        if $(check_process); then
+            __SAY__ info "${PROCESS_NAME} is running OK!"
         else
-            warn " ${PROCESS_NAME} not running, plz check"
+            __SAY__ warn "${PROCESS_NAME} not running, plz check"
         fi
         ;;
     "test" | "TEST" | "-t")
-        if check_conf; then
-            info " Configuration file test Successfully."
+        echo "$EXEC -c -f $DEFAULT_CONF $(ext_configs)"
+        if $(check_conf); then
+            __SAY__ info "Configuration file test Successfully."
         else
-            warn " Configuration file test failed."
+            __SAY__ warn "Configuration file test failed."
         fi
         ;;
     *)
@@ -398,7 +487,6 @@ else
         ;;
     esac
 fi
-
 ```
 
 # 4. 访问管理
