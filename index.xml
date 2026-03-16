@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.152.1 &amp; FixIt v0.4.2</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 29 Dec 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.152.1 &amp; FixIt v0.4.2</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 16 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
 &lt;p&gt;第一篇文章当然是&lt;code&gt;hello world&lt;/code&gt;了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt; echo &amp;#34;hello world !&amp;#34;&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>那些杂七杂八的记录(三)</title><link>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/</link><pubDate>Tue, 17 Jun 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;h2 class="heading-element" id="nginx-安装-modsecurity-waf-以增强网站安全"&gt;&lt;span&gt;Nginx 安装 ModSecurity WAF 以增强网站安全&lt;/span&gt;
@@ -269,7 +269,56 @@ networks:
 
 # 访问宿主机应用 http://host.docker.internal:8080
 # 访问其他容器应用: http://host.docker.internal:8010&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>那些杂七杂八的记录(二)</title><link>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</link><pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;h2 class="heading-element" id="debian-12-下-rootn--用户无法设置中文问题"&gt;&lt;span&gt;debian 12 下 ROOTN 用户，无法设置中文问题&lt;/span&gt;
+&lt;/ol&gt;
+&lt;h2 class="heading-element" id="git-的一些好用操作"&gt;&lt;span&gt;git 的一些好用操作&lt;/span&gt;
+ &lt;a href="#git-%e7%9a%84%e4%b8%80%e4%ba%9b%e5%a5%bd%e7%94%a8%e6%93%8d%e4%bd%9c" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 将最新的提交追加到上一次提交中 
+$&amp;gt; git add 漏掉的文件.py
+# # 直接合并 不修改提交信息 
+# $&amp;gt; git commit --amend --no-edit
+# 添加新的提交信息
+$&amp;gt; git commit --amend -m &amp;#34;新的提交信息&amp;#34;
+
+# https 提交需要输入用户名密码的问题
+# 设置凭据助手，设置完成后 git push 一下，输入用户名和token
+# token: Settings --&amp;gt; Developer settings --&amp;gt; Personal access tokens --&amp;gt; Tokens (classic) --&amp;gt; Generate new token -&amp;gt; Generate new token (classic)
+# Select scopes: 勾选 repo 
+$&amp;gt; git config --global credential.helper store
+
+# 查看 Git 配置
+$&amp;gt; git config --get credential.helper
+
+# 明文存储的文件位置
+$&amp;gt; cat ~/.git-credentials&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="python-中-alembic-的一些常用操作"&gt;&lt;span&gt;python 中 alembic 的一些常用操作&lt;/span&gt;
+ &lt;a href="#python-%e4%b8%ad-alembic-%e7%9a%84%e4%b8%80%e4%ba%9b%e5%b8%b8%e7%94%a8%e6%93%8d%e4%bd%9c" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 生成迁移文件
+$&amp;gt; alembic revision --autogenerate -m &amp;#34;迁移描述&amp;#34;
+
+# 查看迁移文件
+$&amp;gt; alembic history
+
+# 执行迁移文件
+$&amp;gt; alembic upgrade head
+
+# 回滚迁移文件
+$&amp;gt; alembic downgrade -1
+
+# 两个分支都同时修改了 alembic 数据库后的合并解决方案
+# 1. 确认分叉状态, 获取到输出中有两个（或更多）版本号，且它们都被标记为 (head)
+$&amp;gt; alembic heads
+
+# 2. 执行合并命令， ae123456... 和 bc0987... 是你刚才查到的两个 head 版本号
+$&amp;gt; alembic merge ae1234567890 bc0987654321 -m &amp;#34;Merge branch A and B&amp;#34;
+
+# # 直接合并
+# $&amp;gt; alembic merge heads -m &amp;#34;merge branch heads&amp;#34;
+
+# 3. 完成迁移
+$&amp;gt; alembic upgrade head&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>那些杂七杂八的记录(二)</title><link>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</link><pubDate>Wed, 04 Aug 2021 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.2/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;h2 class="heading-element" id="debian-12-下-rootn--用户无法设置中文问题"&gt;&lt;span&gt;debian 12 下 ROOTN 用户，无法设置中文问题&lt;/span&gt;
  &lt;a href="#debian-12-%e4%b8%8b-rootn--%e7%94%a8%e6%88%b7%e6%97%a0%e6%b3%95%e8%ae%be%e7%bd%ae%e4%b8%ad%e6%96%87%e9%97%ae%e9%a2%98" class="heading-mark"&gt;
  &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
  &lt;/a&gt;

@@ -273,6 +273,58 @@ vm.swappiness = 0
     # 访问其他容器应用: http://host.docker.internal:8010
     ```
 
+## git 的一些好用操作 
+```bash
+# 将最新的提交追加到上一次提交中 
+$> git add 漏掉的文件.py
+# # 直接合并 不修改提交信息 
+# $> git commit --amend --no-edit
+# 添加新的提交信息
+$> git commit --amend -m "新的提交信息"
+
+# https 提交需要输入用户名密码的问题
+# 设置凭据助手，设置完成后 git push 一下，输入用户名和token
+# token: Settings --> Developer settings --> Personal access tokens --> Tokens (classic) --> Generate new token -> Generate new token (classic)
+# Select scopes: 勾选 repo 
+$> git config --global credential.helper store
+
+# 查看 Git 配置
+$> git config --get credential.helper
+
+# 明文存储的文件位置
+$> cat ~/.git-credentials
+```
+
+## python 中 alembic 的一些常用操作
+```bash
+# 生成迁移文件
+$> alembic revision --autogenerate -m "迁移描述"
+
+# 查看迁移文件
+$> alembic history
+
+# 执行迁移文件
+$> alembic upgrade head
+
+# 回滚迁移文件
+$> alembic downgrade -1
+
+# 两个分支都同时修改了 alembic 数据库后的合并解决方案
+# 1. 确认分叉状态, 获取到输出中有两个（或更多）版本号，且它们都被标记为 (head)
+$> alembic heads
+
+# 2. 执行合并命令， ae123456... 和 bc0987... 是你刚才查到的两个 head 版本号
+$> alembic merge ae1234567890 bc0987654321 -m "Merge branch A and B"
+
+# # 直接合并
+# $>  alembic merge heads -m "merge branch heads"
+
+# 3. 完成迁移
+$> alembic upgrade head
+```
+
+
+
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
