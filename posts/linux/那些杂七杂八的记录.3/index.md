@@ -277,6 +277,7 @@ vm.swappiness = 0
 ```bash
 # 将最新的提交追加到上一次提交中 
 $> git add 漏掉的文件.py
+
 # # 直接合并 不修改提交信息 
 # $> git commit --amend --no-edit
 # 添加新的提交信息
