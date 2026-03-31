@@ -1,6 +1,7 @@
 # AI创作内容声明组件
 
 
+> [!TIP] 当前声明组件已添加为 [`Fixit`](https://github.com/hugo-fixit/FixIt) 主题组件，[点击查看详情](https://github.com/0x5c0f/cmpt-ai-declaration)
 
 # 1. 本文使用 `custom-post__content:before` 自定义块实现
 ## 1.1. 文章页内容前自定义块	 
