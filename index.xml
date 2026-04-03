@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.159.0 &amp; FixIt v0.4.5</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Tue, 31 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.159.0 &amp; FixIt v0.4.5</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 03 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
 &lt;p&gt;第一篇文章当然是&lt;code&gt;hello world&lt;/code&gt;了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt; echo &amp;#34;hello world !&amp;#34;&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>那些杂七杂八的记录(三)</title><link>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/</link><pubDate>Tue, 17 Jun 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;h2 class="heading-element" id="nginx-安装-modsecurity-waf-以增强网站安全"&gt;&lt;span&gt;Nginx 安装 ModSecurity WAF 以增强网站安全&lt;/span&gt;
@@ -2127,7 +2127,1906 @@ $&amp;gt; git push --force origin main
 # 如果报错，原因可能就是 远程仓库禁止 强制推送 
 # 错误：无法推送一些引用到 xxxxxxxxx 
 
-# 报错要修改就只能开分支然后在推送，最后其申请合并 &lt;/code&gt;&lt;/pre&gt;</description></item><item><title>clickhouse集群实践指南</title><link>https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</link><pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;div class="details admonition info open"&gt;
+# 报错要修改就只能开分支然后在推送，最后其申请合并 &lt;/code&gt;&lt;/pre&gt;</description></item><item><title>从零自建 Headscale 服务</title><link>https://blog.0x5c0f.cc/posts/linux/headscale-selfhosted/</link><pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/headscale-selfhosted/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category><category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</category><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;h1 class="heading-element" id="从零自建-headscale-控制平面一套适合个人与家庭的-tailscale-替代方案"&gt;&lt;span&gt;从零自建 Headscale 控制平面：一套适合个人与家庭的 Tailscale 替代方案&lt;/span&gt;
+ &lt;a href="#%e4%bb%8e%e9%9b%b6%e8%87%aa%e5%bb%ba-headscale-%e6%8e%a7%e5%88%b6%e5%b9%b3%e9%9d%a2%e4%b8%80%e5%a5%97%e9%80%82%e5%90%88%e4%b8%aa%e4%ba%ba%e4%b8%8e%e5%ae%b6%e5%ba%ad%e7%9a%84-tailscale-%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;这是一篇基于真实部署过程整理出来的复盘文档，已做脱敏处理。&lt;br&gt;
+文中的真实域名、主机名、证书路径、密钥、节点名、代理地址均已替换。&lt;br&gt;
+读者默认是 Linux 用户。&lt;br&gt;
+本文重点是自建 &lt;code&gt;Headscale&lt;/code&gt; 控制平面，客户端使用官方 &lt;code&gt;Tailscale&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 class="heading-element" id="一这篇文章解决什么问题"&gt;&lt;span&gt;一、这篇文章解决什么问题&lt;/span&gt;
+ &lt;a href="#%e4%b8%80%e8%bf%99%e7%af%87%e6%96%87%e7%ab%a0%e8%a7%a3%e5%86%b3%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;如果你有下面这些需求，这篇文章适合你：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;想自建一个个人或家庭使用的 Tailscale 控制平面&lt;/li&gt;
+&lt;li&gt;不想把控制权完全交给官方 SaaS&lt;/li&gt;
+&lt;li&gt;家里有一台长期在线的 Linux 机器&lt;/li&gt;
+&lt;li&gt;还有一台公网可访问的边缘服务器&lt;/li&gt;
+&lt;li&gt;愿意自己维护证书、反向代理和内网穿透&lt;/li&gt;
+&lt;li&gt;希望后续还能统一管理用户、节点和接入命令&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;我最终采用的方案是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;家里的 Linux 节点运行 &lt;code&gt;Headscale + SQLite&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;公网边缘节点运行 &lt;code&gt;Nginx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;通过一条内网穿透或专线把边缘节点和家里节点打通&lt;/li&gt;
+&lt;li&gt;对外只暴露一个 HTTPS 域名&lt;/li&gt;
+&lt;li&gt;客户端使用官方 &lt;code&gt;Tailscale&lt;/code&gt; 接入&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 class="heading-element" id="二最终架构"&gt;&lt;span&gt;二、最终架构&lt;/span&gt;
+ &lt;a href="#%e4%ba%8c%e6%9c%80%e7%bb%88%e6%9e%b6%e6%9e%84" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;本文中的环境统一脱敏为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;home-node&lt;/code&gt;：家里的 Headscale 控制平面节点&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;edge-node&lt;/code&gt;：公网入口节点，负责 HTTPS 和反向代理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;headscale.example.com&lt;/code&gt;：对外控制平面域名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;flowchart LR
+ A[Linux Client A]
+ B[Linux Client B]
+ M[Mobile/Desktop Clients]
+ E[edge-node&amp;lt;br/&amp;gt;Nginx &amp;#43; TLS]
+ T[Tunnel / Private Link&amp;lt;br/&amp;gt;FRP or equivalent]
+ H[home-node&amp;lt;br/&amp;gt;Headscale &amp;#43; SQLite]
+
+ A --&amp;gt;|HTTPS 注册/控制流| E
+ B --&amp;gt;|HTTPS 注册/控制流| E
+ M --&amp;gt;|HTTPS 注册/控制流| E
+
+ E --&amp;gt;|反向代理| T
+ T --&amp;gt;|转发到 8080| H
+
+ A &amp;lt;--&amp;gt; |WireGuard / DERP / NAT 穿透| B
+ A &amp;lt;--&amp;gt; |WireGuard / DERP / NAT 穿透| M
+ B &amp;lt;--&amp;gt; |WireGuard / DERP / NAT 穿透| M&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里要注意两件事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Headscale&lt;/code&gt; 负责控制面，也就是用户、节点、Auth Key、路由审批这些管理行为&lt;/li&gt;
+&lt;li&gt;客户端之间的实际数据流量，仍然主要走 &lt;code&gt;Tailscale/WireGuard&lt;/code&gt; 的点对点链路，而不是全部穿过你的 &lt;code&gt;Headscale&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 class="heading-element" id="三前置条件"&gt;&lt;span&gt;三、前置条件&lt;/span&gt;
+ &lt;a href="#%e4%b8%89%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;开始之前，建议先确认这些条件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;你有一个域名，例如 &lt;code&gt;example.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;你有一个公网可访问的子域名，例如 &lt;code&gt;headscale.example.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;edge-node&lt;/code&gt; 上已经能正确跑 Nginx，并有可用证书&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;home-node&lt;/code&gt; 能稳定联网&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;edge-node&lt;/code&gt; 和 &lt;code&gt;home-node&lt;/code&gt; 之间已经能通过内网穿透或私网打通&lt;/li&gt;
+&lt;li&gt;你愿意先用最小可用配置，不一开始就上 OIDC、MagicDNS、复杂 ACL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;本文默认：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据库使用 &lt;code&gt;SQLite&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;反向代理使用 &lt;code&gt;Nginx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Linux 客户端优先&lt;/li&gt;
+&lt;li&gt;先关闭 &lt;code&gt;MagicDNS&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;先使用最简单的 ACL 策略&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="heading-element" id="四版本说明"&gt;&lt;span&gt;四、版本说明&lt;/span&gt;
+ &lt;a href="#%e5%9b%9b%e7%89%88%e6%9c%ac%e8%af%b4%e6%98%8e" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;本文整理时，我实际核对到的版本是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;截至 &lt;code&gt;2026-04-03&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Headscale&lt;/code&gt; 最新稳定版为 &lt;code&gt;v0.27.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;客户端使用官方 &lt;code&gt;Tailscale Linux&lt;/code&gt; 包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你看到这篇文章时版本已经更新，请优先看官方 Release 和文档。&lt;/p&gt;
+&lt;h2 class="heading-element" id="五在-home-node-上部署-headscale"&gt;&lt;span&gt;五、在 home-node 上部署 Headscale&lt;/span&gt;
+ &lt;a href="#%e4%ba%94%e5%9c%a8-home-node-%e4%b8%8a%e9%83%a8%e7%bd%b2-headscale" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;h3 class="heading-element" id="51-安装依赖"&gt;&lt;span&gt;5.1 安装依赖&lt;/span&gt;
+ &lt;a href="#51-%e5%ae%89%e8%a3%85%e4%be%9d%e8%b5%96" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;在 &lt;code&gt;home-node&lt;/code&gt; 上执行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get install -y ca-certificates curl sqlite3&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你是 Debian 12，这一步没有问题。&lt;br&gt;
+官方其实更推荐使用 &lt;code&gt;headscale&lt;/code&gt; 的 &lt;code&gt;.deb&lt;/code&gt; 包，但我这次真实部署采用的是独立二进制 + 自定义 systemd，因为它更容易完全掌控目录和启动方式。&lt;/p&gt;
+&lt;h3 class="heading-element" id="52-创建运行用户和目录"&gt;&lt;span&gt;5.2 创建运行用户和目录&lt;/span&gt;
+ &lt;a href="#52-%e5%88%9b%e5%bb%ba%e8%bf%90%e8%a1%8c%e7%94%a8%e6%88%b7%e5%92%8c%e7%9b%ae%e5%bd%95" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;sudo groupadd --system headscale || true
+
+id -u headscale &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 || sudo useradd \
+ --create-home \
+ --home-dir /var/lib/headscale \
+ --system \
+ --gid headscale \
+ --shell /usr/sbin/nologin \
+ headscale
+
+sudo install -d -m 0755 /etc/headscale
+sudo install -d -o headscale -g headscale -m 0750 /var/lib/headscale
+sudo install -d -o headscale -g headscale -m 0750 /var/run/headscale&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="53-下载-headscale-二进制"&gt;&lt;span&gt;5.3 下载 Headscale 二进制&lt;/span&gt;
+ &lt;a href="#53-%e4%b8%8b%e8%bd%bd-headscale-%e4%ba%8c%e8%bf%9b%e5%88%b6" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;如果网络没问题：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HEADSCALE_VERSION=&amp;#34;0.27.1&amp;#34;
+HEADSCALE_ARCH=&amp;#34;amd64&amp;#34;
+
+curl -fsSL -o /tmp/headscale \
+ &amp;#34;https://github.com/juanfont/headscale/releases/download/v${HEADSCALE_VERSION}/headscale_${HEADSCALE_VERSION}_linux_${HEADSCALE_ARCH}&amp;#34;
+
+sudo install -m 0755 /tmp/headscale /usr/local/bin/headscale
+headscale version&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你的环境下载 GitHub 容易失败，可以显式走代理：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -fsSL --proxy socks5h://127.0.0.1:7891 -o /tmp/headscale \
+ &amp;#34;https://github.com/juanfont/headscale/releases/download/v${HEADSCALE_VERSION}/headscale_${HEADSCALE_VERSION}_linux_${HEADSCALE_ARCH}&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="54-初始化-sqlite-数据库"&gt;&lt;span&gt;5.4 初始化 SQLite 数据库&lt;/span&gt;
+ &lt;a href="#54-%e5%88%9d%e5%a7%8b%e5%8c%96-sqlite-%e6%95%b0%e6%8d%ae%e5%ba%93" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;sudo install -o headscale -g headscale -m 0640 /dev/null /var/lib/headscale/db.sqlite
+sudo -u headscale sqlite3 /var/lib/headscale/db.sqlite &amp;#39;PRAGMA journal_mode=WAL;&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;说明：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;这一步只是先创建数据库文件并启用 &lt;code&gt;WAL&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;表结构会在 &lt;code&gt;headscale serve&lt;/code&gt; 首次启动时自动初始化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 class="heading-element" id="55-写入最小可用配置"&gt;&lt;span&gt;5.5 写入最小可用配置&lt;/span&gt;
+ &lt;a href="#55-%e5%86%99%e5%85%a5%e6%9c%80%e5%b0%8f%e5%8f%af%e7%94%a8%e9%85%8d%e7%bd%ae" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;创建 &lt;code&gt;/etc/headscale/config.yaml&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server_url: https://headscale.example.com
+listen_addr: 0.0.0.0:8080
+metrics_listen_addr: 127.0.0.1:9090
+grpc_listen_addr: 127.0.0.1:50443
+grpc_allow_insecure: false
+
+noise:
+ private_key_path: /var/lib/headscale/noise_private.key
+
+prefixes:
+ v4: 100.64.0.0/10
+ v6: fd7a:115c:a1e0::/48
+
+allocation: sequential
+
+derp:
+ server:
+ enabled: false
+ urls:
+ - https://controlplane.tailscale.com/derpmap/default
+ paths: []
+ auto_update_enabled: true
+ update_frequency: 3h
+
+disable_check_updates: true
+ephemeral_node_inactivity_timeout: 30m
+
+database:
+ type: sqlite
+ debug: false
+ gorm:
+ prepare_stmt: true
+ parameterized_queries: true
+ skip_err_record_not_found: true
+ slow_threshold: 1000
+ sqlite:
+ path: /var/lib/headscale/db.sqlite
+ write_ahead_log: true
+ wal_autocheckpoint: 1000
+
+tls_cert_path: &amp;#34;&amp;#34;
+tls_key_path: &amp;#34;&amp;#34;
+
+log:
+ level: info
+ format: text
+
+policy:
+ mode: file
+ path: /etc/headscale/acl.hujson
+
+dns:
+ magic_dns: false
+ base_domain: tail.example.com
+ override_local_dns: false
+ nameservers:
+ global: []
+ search_domains: []
+ extra_records: []
+
+unix_socket: /var/run/headscale/headscale.sock
+unix_socket_permission: &amp;#34;0770&amp;#34;
+
+logtail:
+ enabled: false
+
+randomize_client_port: false&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再修正权限：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo chown root:headscale /etc/headscale/config.yaml
+sudo chmod 0640 /etc/headscale/config.yaml&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="56-写入最小-acl"&gt;&lt;span&gt;5.6 写入最小 ACL&lt;/span&gt;
+ &lt;a href="#56-%e5%86%99%e5%85%a5%e6%9c%80%e5%b0%8f-acl" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;创建 &lt;code&gt;/etc/headscale/acl.hujson&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{}&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;再修正权限：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo chown root:headscale /etc/headscale/acl.hujson
+sudo chmod 0640 /etc/headscale/acl.hujson&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里我一开始采用的是最小 ACL。&lt;br&gt;
+这样做的原因很简单：先把整条链路跑通，再谈收敛策略。&lt;/p&gt;
+&lt;h3 class="heading-element" id="57-配置-systemd"&gt;&lt;span&gt;5.7 配置 systemd&lt;/span&gt;
+ &lt;a href="#57-%e9%85%8d%e7%bd%ae-systemd" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;创建 &lt;code&gt;/etc/systemd/system/headscale.service&lt;/code&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[Unit]
+Description=Headscale Control Server
+Documentation=https://headscale.net/stable/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=headscale
+Group=headscale
+WorkingDirectory=/var/lib/headscale
+ExecStart=/usr/local/bin/headscale serve
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=5s
+RuntimeDirectory=headscale
+RuntimeDirectoryMode=0750
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/headscale /var/run/headscale
+
+[Install]
+WantedBy=multi-user.target&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="58-先做-configtest再启动服务"&gt;&lt;span&gt;5.8 先做 configtest，再启动服务&lt;/span&gt;
+ &lt;a href="#58-%e5%85%88%e5%81%9a-configtest%e5%86%8d%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;注意：这里最好用 &lt;code&gt;headscale&lt;/code&gt; 用户来执行 &lt;code&gt;configtest&lt;/code&gt;。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo -u headscale headscale configtest
+sudo systemctl daemon-reload
+sudo systemctl enable --now headscale
+sudo systemctl status headscale --no-pager&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="59-本机健康检查"&gt;&lt;span&gt;5.9 本机健康检查&lt;/span&gt;
+ &lt;a href="#59-%e6%9c%ac%e6%9c%ba%e5%81%a5%e5%ba%b7%e6%a3%80%e6%9f%a5" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;curl http://127.0.0.1:8080/health&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果正常，应该返回：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;{&amp;#34;status&amp;#34;:&amp;#34;pass&amp;#34;}&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="六在-edge-node-上配置-nginx-反向代理"&gt;&lt;span&gt;六、在 edge-node 上配置 Nginx 反向代理&lt;/span&gt;
+ &lt;a href="#%e5%85%ad%e5%9c%a8-edge-node-%e4%b8%8a%e9%85%8d%e7%bd%ae-nginx-%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;h3 class="heading-element" id="61-为什么要有-edge-node"&gt;&lt;span&gt;6.1 为什么要有 edge-node&lt;/span&gt;
+ &lt;a href="#61-%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e6%9c%89-edge-node" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;我的实际拓扑里，&lt;code&gt;home-node&lt;/code&gt; 不直接暴露在公网。&lt;br&gt;
+对外暴露的是 &lt;code&gt;edge-node&lt;/code&gt;，它负责：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;终止 TLS&lt;/li&gt;
+&lt;li&gt;暴露 &lt;code&gt;headscale.example.com&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;反向代理到边缘节点本地的落地端口&lt;/li&gt;
+&lt;li&gt;这个落地端口再由内网穿透或私网连接转发到 &lt;code&gt;home-node:8080&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;你完全可以把这理解成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;edge-node&lt;/code&gt; 是门面&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;home-node&lt;/code&gt; 是真正的 Headscale&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 class="heading-element" id="62-nginx-配置"&gt;&lt;span&gt;6.2 Nginx 配置&lt;/span&gt;
+ &lt;a href="#62-nginx-%e9%85%8d%e7%bd%ae" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;假设：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;headscale.example.com&lt;/code&gt; 已经解析到 &lt;code&gt;edge-node&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;edge-node&lt;/code&gt; 上本地 &lt;code&gt;127.0.0.1:18080&lt;/code&gt; 已经映射到 &lt;code&gt;home-node:8080&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;证书已经可用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Nginx 配置可以是这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;server {
+ listen 80;
+ listen [::]:80;
+ server_name headscale.example.com;
+
+ return 301 https://$host$request_uri;
+}
+
+server {
+ listen 443 ssl;
+ listen [::]:443 ssl;
+ http2 on;
+
+ server_name headscale.example.com;
+
+ access_log /var/log/nginx/headscale.example.com.access.log;
+ error_log /var/log/nginx/headscale.example.com.error.log;
+
+ ssl_certificate /etc/nginx/ssl/example.com/fullchain.pem;
+ ssl_certificate_key /etc/nginx/ssl/example.com/privkey.pem;
+
+ location / {
+ proxy_pass http://127.0.0.1:18080;
+
+ proxy_http_version 1.1;
+ proxy_buffering off;
+ proxy_read_timeout 3600;
+ proxy_send_timeout 3600;
+
+ proxy_set_header Upgrade $http_upgrade;
+ proxy_set_header Connection $connection_upgrade;
+ proxy_set_header Host $host;
+ proxy_set_header X-Real-IP $remote_addr;
+ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+ proxy_set_header X-Forwarded-Proto $scheme;
+ proxy_set_header X-Forwarded-Host $host;
+ proxy_set_header X-Forwarded-Port $server_port;
+
+ proxy_redirect http:// https://;
+ }
+}&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你的全局配置里还没有这段，需要在 &lt;code&gt;http {}&lt;/code&gt; 里定义：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;map $http_upgrade $connection_upgrade {
+ default upgrade;
+ &amp;#39;&amp;#39; close;
+}&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="63-检查-nginx"&gt;&lt;span&gt;6.3 检查 Nginx&lt;/span&gt;
+ &lt;a href="#63-%e6%a3%80%e6%9f%a5-nginx" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;nginx -t
+nginx -s reload&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="64-逐层检查链路"&gt;&lt;span&gt;6.4 逐层检查链路&lt;/span&gt;
+ &lt;a href="#64-%e9%80%90%e5%b1%82%e6%a3%80%e6%9f%a5%e9%93%be%e8%b7%af" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;建议按这三个层次检查：&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;home-node&lt;/code&gt; 上：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl http://127.0.0.1:8080/health&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在 &lt;code&gt;edge-node&lt;/code&gt; 上：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl http://127.0.0.1:18080/health&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在任意外部机器上：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -I https://headscale.example.com/health&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我的实际排障过程里，曾经出现过：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;本机 &lt;code&gt;200&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Nginx &lt;code&gt;502&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种情况通常不是 Headscale 挂了，而是边缘节点到内网节点的映射还没打通。&lt;/p&gt;
+&lt;h2 class="heading-element" id="七创建第一个用户和第一个接入-key"&gt;&lt;span&gt;七、创建第一个用户和第一个接入 Key&lt;/span&gt;
+ &lt;a href="#%e4%b8%83%e5%88%9b%e5%bb%ba%e7%ac%ac%e4%b8%80%e4%b8%aa%e7%94%a8%e6%88%b7%e5%92%8c%e7%ac%ac%e4%b8%80%e4%b8%aa%e6%8e%a5%e5%85%a5-key" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;h3 class="heading-element" id="71-创建用户"&gt;&lt;span&gt;7.1 创建用户&lt;/span&gt;
+ &lt;a href="#71-%e5%88%9b%e5%bb%ba%e7%94%a8%e6%88%b7" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;headscale users create home
+headscale users list&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="72-创建预认证-key"&gt;&lt;span&gt;7.2 创建预认证 Key&lt;/span&gt;
+ &lt;a href="#72-%e5%88%9b%e5%bb%ba%e9%a2%84%e8%ae%a4%e8%af%81-key" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;需要注意一个版本细节：&lt;/p&gt;
+&lt;p&gt;在我这次用的版本里，&lt;code&gt;preauthkeys create --user&lt;/code&gt; 接受的是 &lt;strong&gt;用户 ID&lt;/strong&gt;，不是用户名。&lt;/p&gt;
+&lt;p&gt;也就是说要写：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;headscale preauthkeys create --user 1&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;而不是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;headscale preauthkeys create --user home&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;例如创建一个 24 小时有效的一次性 Key：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;headscale preauthkeys create --user 1 --expiration 24h&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你想给家庭多台设备复用一条 Key，可以这么做：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;headscale preauthkeys create --user 1 --expiration 30d --reusable&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="八第一台-linux-客户端接入"&gt;&lt;span&gt;八、第一台 Linux 客户端接入&lt;/span&gt;
+ &lt;a href="#%e5%85%ab%e7%ac%ac%e4%b8%80%e5%8f%b0-linux-%e5%ae%a2%e6%88%b7%e7%ab%af%e6%8e%a5%e5%85%a5" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;h3 class="heading-element" id="81-安装-tailscale"&gt;&lt;span&gt;8.1 安装 Tailscale&lt;/span&gt;
+ &lt;a href="#81-%e5%ae%89%e8%a3%85-tailscale" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;官方 Linux 安装方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -fsSL https://tailscale.com/install.sh | sh&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果你环境里需要代理，先把代理环境准备好，或者让脚本自己处理。&lt;/p&gt;
+&lt;h3 class="heading-element" id="82-正式接入"&gt;&lt;span&gt;8.2 正式接入&lt;/span&gt;
+ &lt;a href="#82-%e6%ad%a3%e5%bc%8f%e6%8e%a5%e5%85%a5" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;sudo tailscale up \
+ --login-server https://headscale.example.com \
+ --auth-key &amp;lt;你的-auth-key&amp;gt; \
+ --accept-dns=false&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这里我显式加了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;--accept-dns=false&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;原因很现实：&lt;br&gt;
+我在真实环境里第一次接入时，碰到过 &lt;code&gt;/etc/resolv.conf&lt;/code&gt; 权限告警。&lt;br&gt;
+先关闭客户端接管 DNS，可以减少初次接入的干扰。&lt;/p&gt;
+&lt;h3 class="heading-element" id="83-查看接入结果"&gt;&lt;span&gt;8.3 查看接入结果&lt;/span&gt;
+ &lt;a href="#83-%e6%9f%a5%e7%9c%8b%e6%8e%a5%e5%85%a5%e7%bb%93%e6%9e%9c" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;tailscale status
+tailscale ip -4&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果正常，你会看到类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;100.64.0.1 laptop home linux -&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这就表示：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;节点已经成功加入你的 tailnet&lt;/li&gt;
+&lt;li&gt;归属用户是 &lt;code&gt;home&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;已分配 &lt;code&gt;100.x.x.x&lt;/code&gt; 地址&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 class="heading-element" id="84-服务端查看节点"&gt;&lt;span&gt;8.4 服务端查看节点&lt;/span&gt;
+ &lt;a href="#84-%e6%9c%8d%e5%8a%a1%e7%ab%af%e6%9f%a5%e7%9c%8b%e8%8a%82%e7%82%b9" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;headscale nodes list&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="九如何理解其他机器怎么加入"&gt;&lt;span&gt;九、如何理解“其他机器怎么加入”&lt;/span&gt;
+ &lt;a href="#%e4%b9%9d%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e5%85%b6%e4%bb%96%e6%9c%ba%e5%99%a8%e6%80%8e%e4%b9%88%e5%8a%a0%e5%85%a5" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;这个问题我当时自己也专门确认过。&lt;/p&gt;
+&lt;p&gt;答案是：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;每一台要加入 tailnet 的机器，都要各自执行一次 &lt;code&gt;tailscale up&lt;/code&gt;。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;不是在一台机器上执行一次，全网就自动进来。&lt;/p&gt;
+&lt;p&gt;正确理解是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Headscale&lt;/code&gt; 管的是控制面&lt;/li&gt;
+&lt;li&gt;每个客户端要自己安装 &lt;code&gt;Tailscale&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;每个客户端要自己执行一次接入命令&lt;/li&gt;
+&lt;li&gt;每个客户端会各自注册成一个节点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A 机器执行一次，A 加入&lt;/li&gt;
+&lt;li&gt;B 机器执行一次，B 加入&lt;/li&gt;
+&lt;li&gt;C 机器执行一次，C 加入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="heading-element" id="十统一管理脚本-hsctl"&gt;&lt;span&gt;十、统一管理脚本 &lt;code&gt;hsctl&lt;/code&gt;&lt;/span&gt;
+ &lt;a href="#%e5%8d%81%e7%bb%9f%e4%b8%80%e7%ae%a1%e7%90%86%e8%84%9a%e6%9c%ac-hsctl" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;部署完成后，我又补了一层统一管理脚本 &lt;code&gt;hsctl&lt;/code&gt;，解决两个痛点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;服务端命令太散，不方便统一操作&lt;/li&gt;
+&lt;li&gt;新机器第一次接入时，希望能自动初始化，而不是每台都手敲一堆命令&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;hsctl&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_NAME=&amp;#34;${0##*/}&amp;#34;
+SCRIPT_VERSION=&amp;#34;0.2.0&amp;#34;
+HEADSCALE_CONFIG=&amp;#34;${HEADSCALE_CONFIG:-/etc/headscale/config.yaml}&amp;#34;
+DEFAULT_LOGIN_SERVER=&amp;#34;${HEADSCALE_SERVER_URL:-https://headscale.0x5c0f.cc}&amp;#34;
+DEFAULT_BIN_DIR=&amp;#34;/usr/local/bin&amp;#34;
+DEFAULT_PROXY=&amp;#34;${HSCTL_PROXY:-${ALL_PROXY:-${HTTPS_PROXY:-${HTTP_PROXY:-}}}}&amp;#34;
+
+has_cmd() {
+ command -v &amp;#34;$1&amp;#34; &amp;gt;/dev/null 2&amp;gt;&amp;amp;1
+}
+
+need_cmd() {
+ has_cmd &amp;#34;$1&amp;#34; || die &amp;#34;缺少命令: $1&amp;#34;
+}
+
+info() {
+ printf &amp;#39;[INFO] %s\n&amp;#39; &amp;#34;$*&amp;#34; &amp;gt;&amp;amp;2
+}
+
+warn() {
+ printf &amp;#39;[WARN] %s\n&amp;#39; &amp;#34;$*&amp;#34; &amp;gt;&amp;amp;2
+}
+
+die() {
+ printf &amp;#39;[ERROR] %s\n&amp;#39; &amp;#34;$*&amp;#34; &amp;gt;&amp;amp;2
+ exit 1
+}
+
+is_int() {
+ [[ &amp;#34;${1:-}&amp;#34; =~ ^[0-9]&amp;#43;$ ]]
+}
+
+run_as_root() {
+ if [ &amp;#34;$(id -u)&amp;#34; -eq 0 ]; then
+ &amp;#34;$@&amp;#34;
+ elif has_cmd sudo; then
+ sudo &amp;#34;$@&amp;#34;
+ else
+ die &amp;#34;需要 root 或 sudo 权限: $*&amp;#34;
+ fi
+}
+
+hs() {
+ need_cmd headscale
+ run_as_root headscale -c &amp;#34;$HEADSCALE_CONFIG&amp;#34; --force &amp;#34;$@&amp;#34;
+}
+
+ts_ro() {
+ need_cmd tailscale
+ tailscale &amp;#34;$@&amp;#34;
+}
+
+ts_rw() {
+ need_cmd tailscale
+ run_as_root tailscale &amp;#34;$@&amp;#34;
+}
+
+need_python() {
+ need_cmd python3
+}
+
+resolve_self_path() {
+ local src
+ src=&amp;#34;${BASH_SOURCE[0]}&amp;#34;
+ if has_cmd readlink; then
+ src=&amp;#34;$(readlink -f &amp;#34;$src&amp;#34; 2&amp;gt;/dev/null || printf &amp;#39;%s&amp;#39; &amp;#34;$src&amp;#34;)&amp;#34;
+ fi
+ [ -f &amp;#34;$src&amp;#34; ] || die &amp;#34;无法定位当前脚本路径，请先把脚本保存为文件再执行。&amp;#34;
+ printf &amp;#39;%s\n&amp;#39; &amp;#34;$src&amp;#34;
+}
+
+install_self() {
+ local bin_dir=&amp;#34;${1:-$DEFAULT_BIN_DIR}&amp;#34;
+ local src target
+ src=&amp;#34;$(resolve_self_path)&amp;#34;
+ target=&amp;#34;$bin_dir/hsctl&amp;#34;
+ run_as_root install -d -m 0755 &amp;#34;$bin_dir&amp;#34;
+ if [ &amp;#34;$src&amp;#34; = &amp;#34;$target&amp;#34; ]; then
+ info &amp;#34;脚本已经在 $target&amp;#34;
+ return
+ fi
+ run_as_root install -m 0755 &amp;#34;$src&amp;#34; &amp;#34;$target&amp;#34;
+ info &amp;#34;已安装脚本到 $target&amp;#34;
+}
+
+pkg_manager() {
+ if has_cmd apt-get; then
+ echo apt
+ elif has_cmd dnf; then
+ echo dnf
+ elif has_cmd yum; then
+ echo yum
+ elif has_cmd zypper; then
+ echo zypper
+ elif has_cmd pacman; then
+ echo pacman
+ else
+ echo unknown
+ fi
+}
+
+install_packages() {
+ [ $# -gt 0 ] || return 0
+ case &amp;#34;$(pkg_manager)&amp;#34; in
+ apt)
+ run_as_root apt-get update
+ run_as_root apt-get install -y &amp;#34;$@&amp;#34;
+ ;;
+ dnf)
+ run_as_root dnf install -y &amp;#34;$@&amp;#34;
+ ;;
+ yum)
+ run_as_root yum install -y &amp;#34;$@&amp;#34;
+ ;;
+ zypper)
+ run_as_root zypper --non-interactive install &amp;#34;$@&amp;#34;
+ ;;
+ pacman)
+ run_as_root pacman -Sy --noconfirm &amp;#34;$@&amp;#34;
+ ;;
+ *)
+ die &amp;#34;无法识别包管理器，无法自动安装: $*&amp;#34;
+ ;;
+ esac
+}
+
+ensure_curl() {
+ if has_cmd curl; then
+ return
+ fi
+ info &amp;#34;系统缺少 curl，开始自动安装 curl 和 ca-certificates&amp;#34;
+ install_packages curl ca-certificates
+}
+
+systemctl_has_unit() {
+ local unit=&amp;#34;$1&amp;#34;
+ has_cmd systemctl || return 1
+ systemctl list-unit-files &amp;#34;$unit&amp;#34; &amp;gt;/dev/null 2&amp;gt;&amp;amp;1
+}
+
+ensure_service_started() {
+ local unit=&amp;#34;$1&amp;#34;
+ if systemctl_has_unit &amp;#34;$unit&amp;#34;; then
+ run_as_root systemctl enable --now &amp;#34;$unit&amp;#34;
+ else
+ warn &amp;#34;系统中未发现 systemd 单元 $unit，已跳过 enable/start&amp;#34;
+ fi
+}
+
+extract_json_value() {
+ local field=&amp;#34;$1&amp;#34;
+ local json
+ json=&amp;#34;$(cat)&amp;#34;
+ need_python
+ python3 -c &amp;#39;
+import json, sys
+field = sys.argv[1].split(&amp;#34;.&amp;#34;)
+obj = json.load(sys.stdin)
+value = obj
+for part in field:
+ if not isinstance(value, dict):
+ raise SystemExit(f&amp;#34;field not found: {sys.argv[1]}&amp;#34;)
+ value = value.get(part)
+if value is None:
+ raise SystemExit(f&amp;#34;field not found: {sys.argv[1]}&amp;#34;)
+print(str(value).lower() if isinstance(value, bool) else value)
+&amp;#39; &amp;#34;$field&amp;#34; &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;
+}
+
+resolve_user_id() {
+ local ident=&amp;#34;${1:-}&amp;#34;
+ [ -n &amp;#34;$ident&amp;#34; ] || die &amp;#34;缺少用户标识&amp;#34;
+ if is_int &amp;#34;$ident&amp;#34;; then
+ printf &amp;#39;%s\n&amp;#39; &amp;#34;$ident&amp;#34;
+ return
+ fi
+ local json
+ json=&amp;#34;$(hs users list -o json)&amp;#34;
+ need_python
+ python3 -c &amp;#39;
+import json, sys
+ident = sys.argv[1]
+data = json.load(sys.stdin)
+matches = [str(item[&amp;#34;id&amp;#34;]) for item in data if item.get(&amp;#34;name&amp;#34;) == ident]
+if len(matches) == 1:
+ print(matches[0])
+ raise SystemExit(0)
+if not matches:
+ print(f&amp;#34;user not found: {ident}&amp;#34;, file=sys.stderr)
+else:
+ print(f&amp;#34;multiple users match: {ident}&amp;#34;, file=sys.stderr)
+raise SystemExit(1)
+&amp;#39; &amp;#34;$ident&amp;#34; &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;
+}
+
+resolve_user_name() {
+ local ident=&amp;#34;${1:-}&amp;#34;
+ [ -n &amp;#34;$ident&amp;#34; ] || die &amp;#34;缺少用户标识&amp;#34;
+ if ! is_int &amp;#34;$ident&amp;#34;; then
+ printf &amp;#39;%s\n&amp;#39; &amp;#34;$ident&amp;#34;
+ return
+ fi
+ local json
+ json=&amp;#34;$(hs users list -o json)&amp;#34;
+ need_python
+ python3 -c &amp;#39;
+import json, sys
+ident = int(sys.argv[1])
+for item in json.load(sys.stdin):
+ if item.get(&amp;#34;id&amp;#34;) == ident:
+ print(item.get(&amp;#34;name&amp;#34;))
+ raise SystemExit(0)
+print(f&amp;#34;user not found: {ident}&amp;#34;, file=sys.stderr)
+raise SystemExit(1)
+&amp;#39; &amp;#34;$ident&amp;#34; &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;
+}
+
+resolve_node_id() {
+ local ident=&amp;#34;${1:-}&amp;#34;
+ [ -n &amp;#34;$ident&amp;#34; ] || die &amp;#34;缺少节点标识&amp;#34;
+ if is_int &amp;#34;$ident&amp;#34;; then
+ printf &amp;#39;%s\n&amp;#39; &amp;#34;$ident&amp;#34;
+ return
+ fi
+ local json
+ json=&amp;#34;$(hs nodes list -o json)&amp;#34;
+ need_python
+ python3 -c &amp;#39;
+import json, sys
+ident = sys.argv[1]
+data = json.load(sys.stdin)
+matches = [str(item[&amp;#34;id&amp;#34;]) for item in data if item.get(&amp;#34;name&amp;#34;) == ident or item.get(&amp;#34;given_name&amp;#34;) == ident]
+if len(matches) == 1:
+ print(matches[0])
+ raise SystemExit(0)
+if not matches:
+ print(f&amp;#34;node not found: {ident}&amp;#34;, file=sys.stderr)
+else:
+ print(f&amp;#34;multiple nodes match: {ident}&amp;#34;, file=sys.stderr)
+raise SystemExit(1)
+&amp;#39; &amp;#34;$ident&amp;#34; &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;
+}
+
+show_user_json() {
+ local ident=&amp;#34;$1&amp;#34;
+ local json
+ json=&amp;#34;$(hs users list -o json)&amp;#34;
+ need_python
+ python3 -c &amp;#39;
+import json, sys
+ident = sys.argv[1]
+data = json.load(sys.stdin)
+want_id = ident.isdigit()
+for item in data:
+ if (want_id and item.get(&amp;#34;id&amp;#34;) == int(ident)) or ((not want_id) and item.get(&amp;#34;name&amp;#34;) == ident):
+ print(json.dumps(item, indent=2, ensure_ascii=False))
+ raise SystemExit(0)
+print(f&amp;#34;user not found: {ident}&amp;#34;, file=sys.stderr)
+raise SystemExit(1)
+&amp;#39; &amp;#34;$ident&amp;#34; &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;
+}
+
+show_node_json() {
+ local ident=&amp;#34;$1&amp;#34;
+ local json
+ json=&amp;#34;$(hs nodes list -o json)&amp;#34;
+ need_python
+ python3 -c &amp;#39;
+import json, sys
+ident = sys.argv[1]
+data = json.load(sys.stdin)
+want_id = ident.isdigit()
+for item in data:
+ if (want_id and item.get(&amp;#34;id&amp;#34;) == int(ident)) or ((not want_id) and (item.get(&amp;#34;name&amp;#34;) == ident or item.get(&amp;#34;given_name&amp;#34;) == ident)):
+ print(json.dumps(item, indent=2, ensure_ascii=False))
+ raise SystemExit(0)
+print(f&amp;#34;node not found: {ident}&amp;#34;, file=sys.stderr)
+raise SystemExit(1)
+&amp;#39; &amp;#34;$ident&amp;#34; &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;
+}
+
+show_key_json() {
+ local user_id=&amp;#34;$1&amp;#34;
+ local key=&amp;#34;$2&amp;#34;
+ local json
+ json=&amp;#34;$(hs preauthkeys list -u &amp;#34;$user_id&amp;#34; -o json)&amp;#34;
+ need_python
+ python3 -c &amp;#39;
+import json, sys
+want = sys.argv[1]
+for item in json.load(sys.stdin):
+ if item.get(&amp;#34;key&amp;#34;) == want:
+ print(json.dumps(item, indent=2, ensure_ascii=False))
+ raise SystemExit(0)
+print(f&amp;#34;preauth key not found: {want}&amp;#34;, file=sys.stderr)
+raise SystemExit(1)
+&amp;#39; &amp;#34;$key&amp;#34; &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;
+}
+
+create_key_json() {
+ local user_id=&amp;#34;$1&amp;#34;
+ local expiration=&amp;#34;$2&amp;#34;
+ local reusable=&amp;#34;$3&amp;#34;
+ local ephemeral=&amp;#34;$4&amp;#34;
+ local tags=&amp;#34;$5&amp;#34;
+ local args
+ args=(preauthkeys create -u &amp;#34;$user_id&amp;#34; --expiration &amp;#34;$expiration&amp;#34; -o json)
+ [ &amp;#34;$reusable&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(--reusable)
+ [ &amp;#34;$ephemeral&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(--ephemeral)
+ [ -n &amp;#34;$tags&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(--tags &amp;#34;$tags&amp;#34;)
+ hs &amp;#34;${args[@]}&amp;#34;
+}
+
+ensure_tailscale_installed() {
+ local proxy=&amp;#34;${1:-$DEFAULT_PROXY}&amp;#34;
+ if has_cmd tailscale &amp;amp;&amp;amp; has_cmd tailscaled; then
+ info &amp;#34;检测到 tailscale/tailscaled 已安装，跳过安装步骤&amp;#34;
+ return
+ fi
+ ensure_curl
+ local tmp
+ tmp=&amp;#34;$(mktemp)&amp;#34;
+ trap &amp;#39;rm -f &amp;#34;$tmp&amp;#34;&amp;#39; RETURN
+ info &amp;#34;按照 Tailscale 官方 Linux 安装方式下载 install.sh&amp;#34;
+ if [ -n &amp;#34;$proxy&amp;#34; ]; then
+ curl -fsSL --proxy &amp;#34;$proxy&amp;#34; -o &amp;#34;$tmp&amp;#34; https://tailscale.com/install.sh
+ else
+ curl -fsSL -o &amp;#34;$tmp&amp;#34; https://tailscale.com/install.sh
+ fi
+ run_as_root sh &amp;#34;$tmp&amp;#34;
+ rm -f &amp;#34;$tmp&amp;#34;
+ trap - RETURN
+}
+
+require_tailscale_set() {
+ need_cmd tailscale
+ tailscale set --help &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 || die &amp;#34;当前 tailscale 版本不支持 &amp;#39;tailscale set&amp;#39;，请改用 client join 或升级 tailscale。&amp;#34;
+}
+
+client_join_impl() {
+ local authkey=&amp;#34;$1&amp;#34;
+ shift
+ local server_url=&amp;#34;$DEFAULT_LOGIN_SERVER&amp;#34;
+ local hostname=&amp;#34;&amp;#34;
+ local accept_dns=&amp;#34;false&amp;#34;
+ local accept_routes=&amp;#34;false&amp;#34;
+ local advertise_routes=&amp;#34;&amp;#34;
+ local advertise_tags=&amp;#34;&amp;#34;
+ local enable_ssh=&amp;#34;0&amp;#34;
+ local advertise_exit_node=&amp;#34;0&amp;#34;
+ while [ $# -gt 0 ]; do
+ case &amp;#34;$1&amp;#34; in
+ --server|--login-server)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ server_url=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --hostname)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ hostname=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --accept-dns)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ accept_dns=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --accept-routes)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ accept_routes=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --advertise-routes)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ advertise_routes=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --advertise-tags)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ advertise_tags=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --ssh)
+ enable_ssh=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --advertise-exit-node)
+ advertise_exit_node=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ *)
+ die &amp;#34;未知 client join 参数: $1&amp;#34;
+ ;;
+ esac
+ done
+ ensure_service_started tailscaled.service
+ local args
+ args=(up &amp;#34;--login-server=$server_url&amp;#34; &amp;#34;--auth-key=$authkey&amp;#34; &amp;#34;--accept-dns=$accept_dns&amp;#34; &amp;#34;--accept-routes=$accept_routes&amp;#34;)
+ [ -n &amp;#34;$hostname&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(&amp;#34;--hostname=$hostname&amp;#34;)
+ [ -n &amp;#34;$advertise_routes&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(&amp;#34;--advertise-routes=$advertise_routes&amp;#34;)
+ [ -n &amp;#34;$advertise_tags&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(&amp;#34;--advertise-tags=$advertise_tags&amp;#34;)
+ [ &amp;#34;$enable_ssh&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(--ssh)
+ [ &amp;#34;$advertise_exit_node&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(--advertise-exit-node)
+ ts_rw &amp;#34;${args[@]}&amp;#34;
+}
+
+usage() {
+ cat &amp;lt;&amp;lt;EOF
+$SCRIPT_NAME v$SCRIPT_VERSION
+
+统一的 Headscale / Tailscale 管理脚本。
+
+模式说明：
+ $SCRIPT_NAME server ... 在 Headscale 控制平面服务器上执行，管理用户、节点、Auth Key 和服务状态。
+ $SCRIPT_NAME client ... 在安装了 Tailscale 的客户端机器上执行，初始化客户端、加入网络、查看状态等。
+
+最常用命令：
+ $SCRIPT_NAME server init
+ 初始化服务端脚本环境：校验 headscale 配置、检查 systemd 服务，并把脚本安装到 /usr/local/bin/hsctl。
+
+ $SCRIPT_NAME server join-cmd home --mode hsctl --cmd ./hsctl.sh --hostname laptop
+ 生成一条“新机器下载脚本后可直接执行”的接入命令。
+
+ $SCRIPT_NAME client init --self-install --authkey &amp;lt;key&amp;gt; --hostname laptop
+ 在新客户端上初始化：安装 tailscale、启动 tailscaled、把脚本安装为 hsctl，并直接加入你的 Headscale。
+
+ $SCRIPT_NAME client status
+ 查看当前客户端是否已经连入 tailnet。
+
+环境变量：
+ HEADSCALE_CONFIG Headscale 配置文件路径，默认 /etc/headscale/config.yaml
+ HEADSCALE_SERVER_URL 登录服务器地址，默认 $DEFAULT_LOGIN_SERVER
+ HSCTL_PROXY 初始化时下载 tailscale 安装脚本使用的代理，如 socks5h://192.168.1.4:7891
+EOF
+}
+
+server_usage() {
+ cat &amp;lt;&amp;lt;EOF
+服务端命令：
+ $SCRIPT_NAME server init [--self-install|--no-self-install] [--bin-dir DIR] [--start|--no-start]
+ 初始化服务端脚本环境：校验 headscale 是否可用、运行 configtest，可选启动/拉起 systemd 服务，并把脚本安装到指定目录。
+
+ $SCRIPT_NAME server health
+ 查看 headscale 健康状态。
+
+ $SCRIPT_NAME server configtest
+ 校验当前 Headscale 配置文件是否合法。
+
+ $SCRIPT_NAME server service status|logs [N]|restart
+ 管理 headscale systemd 服务：查看状态、查看日志、重启服务。
+
+ $SCRIPT_NAME server users list [--json]
+ 列出全部用户。
+
+ $SCRIPT_NAME server users show &amp;lt;user|id&amp;gt;
+ 查看指定用户的详细 JSON 信息。
+
+ $SCRIPT_NAME server users id &amp;lt;user&amp;gt;
+ 把用户名解析成用户 ID，便于后续脚本化操作。
+
+ $SCRIPT_NAME server users create &amp;lt;name&amp;gt; [--display-name X] [--email X] [--picture-url X]
+ 创建新用户。
+
+ $SCRIPT_NAME server users rename &amp;lt;user|id&amp;gt; &amp;lt;new-name&amp;gt;
+ 重命名用户。
+
+ $SCRIPT_NAME server users delete &amp;lt;user|id&amp;gt;
+ 删除用户。
+
+ $SCRIPT_NAME server nodes list [--user &amp;lt;user|id&amp;gt;] [--json] [--tags]
+ 列出节点，可按用户过滤，也可带标签显示。
+
+ $SCRIPT_NAME server nodes show &amp;lt;node|id&amp;gt;
+ 查看节点详细 JSON 信息。
+
+ $SCRIPT_NAME server nodes rename &amp;lt;node|id&amp;gt; &amp;lt;new-name&amp;gt;
+ 重命名节点。
+
+ $SCRIPT_NAME server nodes move &amp;lt;node|id&amp;gt; &amp;lt;user|id&amp;gt;
+ 把节点转移到另一个用户名下。
+
+ $SCRIPT_NAME server nodes expire &amp;lt;node|id&amp;gt; [RFC3339]
+ 让节点立即失效或按指定时间失效，节点会被迫重新认证。
+
+ $SCRIPT_NAME server nodes delete &amp;lt;node|id&amp;gt;
+ 删除节点。
+
+ $SCRIPT_NAME server nodes routes &amp;lt;node|id&amp;gt;
+ 查看某个节点声明的路由。
+
+ $SCRIPT_NAME server nodes approve-routes &amp;lt;node|id&amp;gt; &amp;lt;route1,route2&amp;gt;
+ 批准节点声明的子网路由。
+
+ $SCRIPT_NAME server nodes tag &amp;lt;node|id&amp;gt; &amp;lt;tag:foo,tag:bar&amp;gt;
+ 给节点打标签。
+
+ $SCRIPT_NAME server keys list &amp;lt;user|id&amp;gt; [--json]
+ 列出某个用户的 preauth keys。
+
+ $SCRIPT_NAME server keys show &amp;lt;user|id&amp;gt; &amp;lt;key&amp;gt;
+ 查看指定 key 的详细信息。
+
+ $SCRIPT_NAME server keys create &amp;lt;user|id&amp;gt; [--expiration 24h] [--reusable] [--ephemeral] [--tags tag:a,tag:b] [--json]
+ 为某个用户创建新的 preauth key；默认输出 key 本身。
+
+ $SCRIPT_NAME server keys expire &amp;lt;user|id&amp;gt; &amp;lt;key&amp;gt;
+ 立即吊销某条 preauth key。
+
+ $SCRIPT_NAME server join-cmd &amp;lt;user|id&amp;gt; [--expiration 24h] [--reusable] [--ephemeral] [--tags tag:a,tag:b] [--hostname NAME] [--server URL] [--accept-dns false] [--accept-routes false] [--mode tailscale|hsctl] [--cmd hsctl]
+ 生成一条新机器接入命令：
+ mode=tailscale 输出原生 tailscale up 命令；
+ mode=hsctl 输出基于本脚本的 client init 命令，适合“先下载脚本，再直接初始化&amp;#43;入网”的场景。
+
+ $SCRIPT_NAME server raw &amp;lt;headscale args...&amp;gt;
+ 透传原生 headscale 命令。
+EOF
+}
+
+client_usage() {
+ cat &amp;lt;&amp;lt;EOF
+客户端命令：
+ $SCRIPT_NAME client init [--self-install|--no-self-install] [--bin-dir DIR] [--proxy URL] [--authkey KEY] [--server URL] [--hostname NAME] [--accept-dns false] [--accept-routes false] [--advertise-routes CIDR[,CIDR]] [--advertise-tags tag:a,tag:b] [--ssh] [--advertise-exit-node]
+ 新机器初始化入口：
+ 1. 如未安装 tailscale，则按 Tailscale 官方 Linux install.sh 自动安装；
+ 2. 拉起 tailscaled 服务；
+ 3. 可把当前脚本自安装为 /usr/local/bin/hsctl；
+ 4. 如果提供 --authkey，则初始化后立即加入你的 Headscale 网络。
+
+ $SCRIPT_NAME client version
+ 查看本机 tailscale 客户端版本。
+
+ $SCRIPT_NAME client status
+ 查看当前客户端状态。
+
+ $SCRIPT_NAME client status-json
+ 以 JSON 形式输出客户端状态，便于脚本处理。
+
+ $SCRIPT_NAME client ip
+ 查看本机分配到的 Tailscale IPv4 / IPv6 地址。
+
+ $SCRIPT_NAME client join &amp;lt;authkey&amp;gt; [--server URL] [--hostname NAME] [--accept-dns false] [--accept-routes false] [--advertise-routes CIDR[,CIDR]] [--advertise-tags tag:a,tag:b] [--ssh] [--advertise-exit-node]
+ 让当前机器加入你的 Headscale 网络。
+
+ $SCRIPT_NAME client dns on|off
+ 开启或关闭客户端接受 Headscale/Tailscale 下发的 DNS 配置。
+
+ $SCRIPT_NAME client routes on|off
+ 开启或关闭客户端接受子网路由。
+
+ $SCRIPT_NAME client ping &amp;lt;ip-or-name&amp;gt;
+ 通过 tailscale ping 测试到目标节点的连通性。
+
+ $SCRIPT_NAME client logout
+ 让当前机器退出 tailnet。
+
+ $SCRIPT_NAME client raw &amp;lt;tailscale args...&amp;gt;
+ 透传原生 tailscale 命令。
+EOF
+}
+
+server_service() {
+ local action=&amp;#34;${1:-status}&amp;#34;
+ case &amp;#34;$action&amp;#34; in
+ status)
+ run_as_root systemctl --no-pager --full status headscale
+ ;;
+ logs)
+ local lines=&amp;#34;${2:-100}&amp;#34;
+ run_as_root journalctl -u headscale -n &amp;#34;$lines&amp;#34; --no-pager
+ ;;
+ restart)
+ run_as_root systemctl restart headscale
+ run_as_root systemctl --no-pager --full status headscale | sed -n &amp;#39;1,20p&amp;#39;
+ ;;
+ *)
+ die &amp;#34;未知服务动作: $action&amp;#34;
+ ;;
+ esac
+}
+
+server_init() {
+ local self_install=&amp;#34;1&amp;#34;
+ local bin_dir=&amp;#34;$DEFAULT_BIN_DIR&amp;#34;
+ local start_service=&amp;#34;1&amp;#34;
+ while [ $# -gt 0 ]; do
+ case &amp;#34;$1&amp;#34; in
+ --self-install)
+ self_install=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --no-self-install)
+ self_install=&amp;#34;0&amp;#34;
+ shift
+ ;;
+ --bin-dir)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ bin_dir=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --start)
+ start_service=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --no-start)
+ start_service=&amp;#34;0&amp;#34;
+ shift
+ ;;
+ *)
+ die &amp;#34;未知 server init 参数: $1&amp;#34;
+ ;;
+ esac
+ done
+ [ &amp;#34;$self_install&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; install_self &amp;#34;$bin_dir&amp;#34;
+ need_cmd headscale
+ [ -f &amp;#34;$HEADSCALE_CONFIG&amp;#34; ] || die &amp;#34;未找到 Headscale 配置文件: $HEADSCALE_CONFIG&amp;#34;
+ info &amp;#34;开始校验 Headscale 配置&amp;#34;
+ hs configtest
+ if [ &amp;#34;$start_service&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; systemctl_has_unit headscale.service; then
+ info &amp;#34;尝试拉起 headscale.service&amp;#34;
+ run_as_root systemctl enable --now headscale.service
+ fi
+ if systemctl_has_unit headscale.service; then
+ run_as_root systemctl --no-pager --full status headscale.service | sed -n &amp;#39;1,15p&amp;#39;
+ else
+ warn &amp;#34;未发现 headscale.service，已跳过 systemd 状态检查&amp;#34;
+ fi
+}
+
+server_users() {
+ local action=&amp;#34;${1:-list}&amp;#34;
+ shift || true
+ case &amp;#34;$action&amp;#34; in
+ list)
+ if [ &amp;#34;${1:-}&amp;#34; = &amp;#34;--json&amp;#34; ]; then
+ hs users list -o json
+ else
+ hs users list
+ fi
+ ;;
+ show)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server users show &amp;lt;user|id&amp;gt;&amp;#34;
+ show_user_json &amp;#34;$1&amp;#34;
+ ;;
+ id)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server users id &amp;lt;user|id&amp;gt;&amp;#34;
+ resolve_user_id &amp;#34;$1&amp;#34;
+ ;;
+ create)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server users create &amp;lt;name&amp;gt; [--display-name X] [--email X] [--picture-url X]&amp;#34;
+ local name=&amp;#34;$1&amp;#34;
+ shift
+ local args
+ args=(users create &amp;#34;$name&amp;#34;)
+ while [ $# -gt 0 ]; do
+ case &amp;#34;$1&amp;#34; in
+ --display-name|--email|--picture-url)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ args&amp;#43;=(&amp;#34;$1&amp;#34; &amp;#34;$2&amp;#34;)
+ shift 2
+ ;;
+ *)
+ die &amp;#34;未知 users create 参数: $1&amp;#34;
+ ;;
+ esac
+ done
+ hs &amp;#34;${args[@]}&amp;#34;
+ ;;
+ rename)
+ [ $# -ge 2 ] || die &amp;#34;用法: $SCRIPT_NAME server users rename &amp;lt;user|id&amp;gt; &amp;lt;new-name&amp;gt;&amp;#34;
+ if is_int &amp;#34;$1&amp;#34;; then
+ hs users rename -i &amp;#34;$1&amp;#34; -r &amp;#34;$2&amp;#34;
+ else
+ hs users rename -n &amp;#34;$1&amp;#34; -r &amp;#34;$2&amp;#34;
+ fi
+ ;;
+ delete|destroy)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server users delete &amp;lt;user|id&amp;gt;&amp;#34;
+ if is_int &amp;#34;$1&amp;#34;; then
+ hs users destroy -i &amp;#34;$1&amp;#34;
+ else
+ hs users destroy -n &amp;#34;$1&amp;#34;
+ fi
+ ;;
+ raw)
+ hs users &amp;#34;$@&amp;#34;
+ ;;
+ *)
+ die &amp;#34;未知 users 动作: $action&amp;#34;
+ ;;
+ esac
+}
+
+server_nodes() {
+ local action=&amp;#34;${1:-list}&amp;#34;
+ shift || true
+ case &amp;#34;$action&amp;#34; in
+ list)
+ local user=&amp;#34;&amp;#34;
+ local want_json=&amp;#34;0&amp;#34;
+ local want_tags=&amp;#34;0&amp;#34;
+ local args
+ args=(nodes list)
+ while [ $# -gt 0 ]; do
+ case &amp;#34;$1&amp;#34; in
+ --user|-u)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ user=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --json)
+ want_json=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --tags)
+ want_tags=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ *)
+ die &amp;#34;未知 nodes list 参数: $1&amp;#34;
+ ;;
+ esac
+ done
+ [ -n &amp;#34;$user&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(-u &amp;#34;$(resolve_user_name &amp;#34;$user&amp;#34;)&amp;#34;)
+ [ &amp;#34;$want_tags&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(-t)
+ [ &amp;#34;$want_json&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; args&amp;#43;=(-o json)
+ hs &amp;#34;${args[@]}&amp;#34;
+ ;;
+ show)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server nodes show &amp;lt;node|id&amp;gt;&amp;#34;
+ show_node_json &amp;#34;$1&amp;#34;
+ ;;
+ rename)
+ [ $# -ge 2 ] || die &amp;#34;用法: $SCRIPT_NAME server nodes rename &amp;lt;node|id&amp;gt; &amp;lt;new-name&amp;gt;&amp;#34;
+ hs nodes rename -i &amp;#34;$(resolve_node_id &amp;#34;$1&amp;#34;)&amp;#34; &amp;#34;$2&amp;#34;
+ ;;
+ move)
+ [ $# -ge 2 ] || die &amp;#34;用法: $SCRIPT_NAME server nodes move &amp;lt;node|id&amp;gt; &amp;lt;user|id&amp;gt;&amp;#34;
+ hs nodes move -i &amp;#34;$(resolve_node_id &amp;#34;$1&amp;#34;)&amp;#34; -u &amp;#34;$(resolve_user_id &amp;#34;$2&amp;#34;)&amp;#34;
+ ;;
+ expire)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server nodes expire &amp;lt;node|id&amp;gt; [RFC3339]&amp;#34;
+ local node_id
+ node_id=&amp;#34;$(resolve_node_id &amp;#34;$1&amp;#34;)&amp;#34;
+ if [ $# -ge 2 ]; then
+ hs nodes expire -i &amp;#34;$node_id&amp;#34; -e &amp;#34;$2&amp;#34;
+ else
+ hs nodes expire -i &amp;#34;$node_id&amp;#34;
+ fi
+ ;;
+ delete)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server nodes delete &amp;lt;node|id&amp;gt;&amp;#34;
+ hs nodes delete -i &amp;#34;$(resolve_node_id &amp;#34;$1&amp;#34;)&amp;#34;
+ ;;
+ routes)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server nodes routes &amp;lt;node|id&amp;gt;&amp;#34;
+ hs nodes list-routes -i &amp;#34;$(resolve_node_id &amp;#34;$1&amp;#34;)&amp;#34;
+ ;;
+ approve-routes)
+ [ $# -ge 2 ] || die &amp;#34;用法: $SCRIPT_NAME server nodes approve-routes &amp;lt;node|id&amp;gt; &amp;lt;route1,route2&amp;gt;&amp;#34;
+ hs nodes approve-routes -i &amp;#34;$(resolve_node_id &amp;#34;$1&amp;#34;)&amp;#34; -r &amp;#34;$2&amp;#34;
+ ;;
+ tag)
+ [ $# -ge 2 ] || die &amp;#34;用法: $SCRIPT_NAME server nodes tag &amp;lt;node|id&amp;gt; &amp;lt;tag:foo,tag:bar&amp;gt;&amp;#34;
+ hs nodes tag -i &amp;#34;$(resolve_node_id &amp;#34;$1&amp;#34;)&amp;#34; -t &amp;#34;$2&amp;#34;
+ ;;
+ raw)
+ hs nodes &amp;#34;$@&amp;#34;
+ ;;
+ *)
+ die &amp;#34;未知 nodes 动作: $action&amp;#34;
+ ;;
+ esac
+}
+
+server_keys() {
+ local action=&amp;#34;${1:-list}&amp;#34;
+ shift || true
+ case &amp;#34;$action&amp;#34; in
+ list)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server keys list &amp;lt;user|id&amp;gt; [--json]&amp;#34;
+ local user_id
+ user_id=&amp;#34;$(resolve_user_id &amp;#34;$1&amp;#34;)&amp;#34;
+ shift
+ if [ &amp;#34;${1:-}&amp;#34; = &amp;#34;--json&amp;#34; ]; then
+ hs preauthkeys list -u &amp;#34;$user_id&amp;#34; -o json
+ else
+ hs preauthkeys list -u &amp;#34;$user_id&amp;#34;
+ fi
+ ;;
+ show)
+ [ $# -ge 2 ] || die &amp;#34;用法: $SCRIPT_NAME server keys show &amp;lt;user|id&amp;gt; &amp;lt;key&amp;gt;&amp;#34;
+ local show_user_id
+ show_user_id=&amp;#34;$(resolve_user_id &amp;#34;$1&amp;#34;)&amp;#34;
+ show_key_json &amp;#34;$show_user_id&amp;#34; &amp;#34;$2&amp;#34;
+ ;;
+ create)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server keys create &amp;lt;user|id&amp;gt; [--expiration 24h] [--reusable] [--ephemeral] [--tags tag:a,tag:b] [--json]&amp;#34;
+ local user_id expiration reusable ephemeral tags output json
+ user_id=&amp;#34;$(resolve_user_id &amp;#34;$1&amp;#34;)&amp;#34;
+ shift
+ expiration=&amp;#34;24h&amp;#34;
+ reusable=&amp;#34;0&amp;#34;
+ ephemeral=&amp;#34;0&amp;#34;
+ tags=&amp;#34;&amp;#34;
+ output=&amp;#34;plain&amp;#34;
+ while [ $# -gt 0 ]; do
+ case &amp;#34;$1&amp;#34; in
+ --expiration|-e)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ expiration=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --reusable)
+ reusable=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --ephemeral)
+ ephemeral=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --tags)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ tags=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --json)
+ output=&amp;#34;json&amp;#34;
+ shift
+ ;;
+ *)
+ die &amp;#34;未知 keys create 参数: $1&amp;#34;
+ ;;
+ esac
+ done
+ json=&amp;#34;$(create_key_json &amp;#34;$user_id&amp;#34; &amp;#34;$expiration&amp;#34; &amp;#34;$reusable&amp;#34; &amp;#34;$ephemeral&amp;#34; &amp;#34;$tags&amp;#34;)&amp;#34;
+ if [ &amp;#34;$output&amp;#34; = &amp;#34;json&amp;#34; ]; then
+ printf &amp;#39;%s\n&amp;#39; &amp;#34;$json&amp;#34;
+ else
+ extract_json_value key &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;
+ fi
+ ;;
+ expire)
+ [ $# -ge 2 ] || die &amp;#34;用法: $SCRIPT_NAME server keys expire &amp;lt;user|id&amp;gt; &amp;lt;key&amp;gt;&amp;#34;
+ hs preauthkeys expire -u &amp;#34;$(resolve_user_id &amp;#34;$1&amp;#34;)&amp;#34; &amp;#34;$2&amp;#34;
+ ;;
+ raw)
+ hs preauthkeys &amp;#34;$@&amp;#34;
+ ;;
+ *)
+ die &amp;#34;未知 keys 动作: $action&amp;#34;
+ ;;
+ esac
+}
+
+server_join_cmd() {
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME server join-cmd &amp;lt;user|id&amp;gt; [...]&amp;#34;
+ local user_id expiration reusable ephemeral tags hostname server_url accept_dns accept_routes mode cmd_name json key
+ user_id=&amp;#34;$(resolve_user_id &amp;#34;$1&amp;#34;)&amp;#34;
+ shift
+ expiration=&amp;#34;24h&amp;#34;
+ reusable=&amp;#34;0&amp;#34;
+ ephemeral=&amp;#34;0&amp;#34;
+ tags=&amp;#34;&amp;#34;
+ hostname=&amp;#34;&amp;#34;
+ server_url=&amp;#34;$DEFAULT_LOGIN_SERVER&amp;#34;
+ accept_dns=&amp;#34;false&amp;#34;
+ accept_routes=&amp;#34;false&amp;#34;
+ mode=&amp;#34;tailscale&amp;#34;
+ cmd_name=&amp;#34;hsctl&amp;#34;
+ while [ $# -gt 0 ]; do
+ case &amp;#34;$1&amp;#34; in
+ --expiration|-e)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ expiration=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --reusable)
+ reusable=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --ephemeral)
+ ephemeral=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --tags)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ tags=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --hostname)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ hostname=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --server|--login-server)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ server_url=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --accept-dns)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ accept_dns=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --accept-routes)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ accept_routes=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --mode)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ mode=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --cmd)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ cmd_name=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ *)
+ die &amp;#34;未知 join-cmd 参数: $1&amp;#34;
+ ;;
+ esac
+ done
+ json=&amp;#34;$(create_key_json &amp;#34;$user_id&amp;#34; &amp;#34;$expiration&amp;#34; &amp;#34;$reusable&amp;#34; &amp;#34;$ephemeral&amp;#34; &amp;#34;$tags&amp;#34;)&amp;#34;
+ key=&amp;#34;$(extract_json_value key &amp;lt;&amp;lt;&amp;lt;&amp;#34;$json&amp;#34;)&amp;#34;
+ case &amp;#34;$mode&amp;#34; in
+ tailscale)
+ printf &amp;#39;sudo tailscale up --login-server %q --auth-key %q --accept-dns=%q --accept-routes=%q&amp;#39; &amp;#34;$server_url&amp;#34; &amp;#34;$key&amp;#34; &amp;#34;$accept_dns&amp;#34; &amp;#34;$accept_routes&amp;#34;
+ [ -n &amp;#34;$hostname&amp;#34; ] &amp;amp;&amp;amp; printf &amp;#39; --hostname=%q&amp;#39; &amp;#34;$hostname&amp;#34;
+ printf &amp;#39;\n&amp;#39;
+ ;;
+ hsctl)
+ printf &amp;#39;sudo %q client init --authkey %q --server %q --accept-dns %q --accept-routes %q&amp;#39; &amp;#34;$cmd_name&amp;#34; &amp;#34;$key&amp;#34; &amp;#34;$server_url&amp;#34; &amp;#34;$accept_dns&amp;#34; &amp;#34;$accept_routes&amp;#34;
+ [ -n &amp;#34;$hostname&amp;#34; ] &amp;amp;&amp;amp; printf &amp;#39; --hostname %q&amp;#39; &amp;#34;$hostname&amp;#34;
+ printf &amp;#39;\n&amp;#39;
+ ;;
+ *)
+ die &amp;#34;join-cmd 的 --mode 仅支持 tailscale 或 hsctl&amp;#34;
+ ;;
+ esac
+}
+
+server_main() {
+ local action=&amp;#34;${1:-help}&amp;#34;
+ shift || true
+ case &amp;#34;$action&amp;#34; in
+ help|-h|--help)
+ server_usage
+ ;;
+ init)
+ server_init &amp;#34;$@&amp;#34;
+ ;;
+ health)
+ hs health
+ ;;
+ configtest)
+ hs configtest
+ ;;
+ service)
+ server_service &amp;#34;$@&amp;#34;
+ ;;
+ users|user)
+ server_users &amp;#34;$@&amp;#34;
+ ;;
+ nodes|node)
+ server_nodes &amp;#34;$@&amp;#34;
+ ;;
+ keys|key|preauthkeys|authkey)
+ server_keys &amp;#34;$@&amp;#34;
+ ;;
+ join-cmd)
+ server_join_cmd &amp;#34;$@&amp;#34;
+ ;;
+ raw)
+ hs &amp;#34;$@&amp;#34;
+ ;;
+ *)
+ die &amp;#34;未知 server 动作: $action&amp;#34;
+ ;;
+ esac
+}
+
+client_init() {
+ local self_install=&amp;#34;1&amp;#34;
+ local bin_dir=&amp;#34;$DEFAULT_BIN_DIR&amp;#34;
+ local proxy=&amp;#34;$DEFAULT_PROXY&amp;#34;
+ local authkey=&amp;#34;&amp;#34;
+ local join_args=()
+ while [ $# -gt 0 ]; do
+ case &amp;#34;$1&amp;#34; in
+ --self-install)
+ self_install=&amp;#34;1&amp;#34;
+ shift
+ ;;
+ --no-self-install)
+ self_install=&amp;#34;0&amp;#34;
+ shift
+ ;;
+ --bin-dir)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ bin_dir=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --proxy)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ proxy=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --authkey)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ authkey=&amp;#34;$2&amp;#34;
+ shift 2
+ ;;
+ --server|--login-server|--hostname|--accept-dns|--accept-routes|--advertise-routes|--advertise-tags)
+ [ $# -ge 2 ] || die &amp;#34;参数 $1 缺少值&amp;#34;
+ join_args&amp;#43;=(&amp;#34;$1&amp;#34; &amp;#34;$2&amp;#34;)
+ shift 2
+ ;;
+ --ssh|--advertise-exit-node)
+ join_args&amp;#43;=(&amp;#34;$1&amp;#34;)
+ shift
+ ;;
+ *)
+ die &amp;#34;未知 client init 参数: $1&amp;#34;
+ ;;
+ esac
+ done
+ [ &amp;#34;$self_install&amp;#34; = &amp;#34;1&amp;#34; ] &amp;amp;&amp;amp; install_self &amp;#34;$bin_dir&amp;#34;
+ ensure_tailscale_installed &amp;#34;$proxy&amp;#34;
+ ensure_service_started tailscaled.service
+ if [ -n &amp;#34;$authkey&amp;#34; ]; then
+ info &amp;#34;检测到 --authkey，初始化完成后立即加入 Headscale&amp;#34;
+ client_join_impl &amp;#34;$authkey&amp;#34; &amp;#34;${join_args[@]}&amp;#34;
+ else
+ info &amp;#34;初始化完成，尚未加入网络。你现在可以执行：&amp;#34;
+ info &amp;#34; $SCRIPT_NAME client join &amp;lt;authkey&amp;gt;&amp;#34;
+ fi
+}
+
+client_main() {
+ local action=&amp;#34;${1:-help}&amp;#34;
+ shift || true
+ case &amp;#34;$action&amp;#34; in
+ help|-h|--help)
+ client_usage
+ ;;
+ init)
+ client_init &amp;#34;$@&amp;#34;
+ ;;
+ version)
+ ts_ro version
+ ;;
+ status)
+ ts_ro status
+ ;;
+ status-json)
+ ts_ro status --json
+ ;;
+ ip)
+ ts_ro ip -4 || true
+ ts_ro ip -6 || true
+ ;;
+ join|up|login)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME client join &amp;lt;authkey&amp;gt; [...]&amp;#34;
+ client_join_impl &amp;#34;$@&amp;#34;
+ ;;
+ dns)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME client dns on|off&amp;#34;
+ require_tailscale_set
+ case &amp;#34;$1&amp;#34; in
+ on) ts_rw set --accept-dns=true ;;
+ off) ts_rw set --accept-dns=false ;;
+ *) die &amp;#34;用法: $SCRIPT_NAME client dns on|off&amp;#34; ;;
+ esac
+ ;;
+ routes)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME client routes on|off&amp;#34;
+ require_tailscale_set
+ case &amp;#34;$1&amp;#34; in
+ on) ts_rw set --accept-routes=true ;;
+ off) ts_rw set --accept-routes=false ;;
+ *) die &amp;#34;用法: $SCRIPT_NAME client routes on|off&amp;#34; ;;
+ esac
+ ;;
+ ping)
+ [ $# -ge 1 ] || die &amp;#34;用法: $SCRIPT_NAME client ping &amp;lt;ip-or-name&amp;gt;&amp;#34;
+ ts_ro ping &amp;#34;$1&amp;#34;
+ ;;
+ logout)
+ ts_rw logout
+ ;;
+ raw)
+ ts_rw &amp;#34;$@&amp;#34;
+ ;;
+ *)
+ die &amp;#34;未知 client 动作: $action&amp;#34;
+ ;;
+ esac
+}
+
+main() {
+ local mode=&amp;#34;${1:-help}&amp;#34;
+ shift || true
+ case &amp;#34;$mode&amp;#34; in
+ help|-h|--help)
+ usage
+ ;;
+ server)
+ server_main &amp;#34;$@&amp;#34;
+ ;;
+ client)
+ client_main &amp;#34;$@&amp;#34;
+ ;;
+ version)
+ printf &amp;#39;%s\n&amp;#39; &amp;#34;$SCRIPT_VERSION&amp;#34;
+ ;;
+ *)
+ usage
+ exit 1
+ ;;
+ esac
+}
+
+main &amp;#34;$@&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="101-脚本放置位置"&gt;&lt;span&gt;10.1 脚本放置位置&lt;/span&gt;
+ &lt;a href="#101-%e8%84%9a%e6%9c%ac%e6%94%be%e7%bd%ae%e4%bd%8d%e7%bd%ae" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;在服务端：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/opt/headscale-tools/hsctl.sh
+/usr/local/bin/hsctl&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="102-它能做什么"&gt;&lt;span&gt;10.2 它能做什么&lt;/span&gt;
+ &lt;a href="#102-%e5%ae%83%e8%83%bd%e5%81%9a%e4%bb%80%e4%b9%88" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;服务端模式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;管理用户&lt;/li&gt;
+&lt;li&gt;管理节点&lt;/li&gt;
+&lt;li&gt;管理 preauth key&lt;/li&gt;
+&lt;li&gt;查看服务状态&lt;/li&gt;
+&lt;li&gt;生成接入命令&lt;/li&gt;
+&lt;li&gt;初始化服务端脚本环境&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;客户端模式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初始化新机器&lt;/li&gt;
+&lt;li&gt;自动安装 tailscale&lt;/li&gt;
+&lt;li&gt;启动 &lt;code&gt;tailscaled&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自安装脚本&lt;/li&gt;
+&lt;li&gt;直接加入 Headscale&lt;/li&gt;
+&lt;li&gt;查看状态、IP、DNS、路由、退出等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 class="heading-element" id="103-中文帮助"&gt;&lt;span&gt;10.3 中文帮助&lt;/span&gt;
+ &lt;a href="#103-%e4%b8%ad%e6%96%87%e5%b8%ae%e5%8a%a9" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;查看总帮助：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hsctl help&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看服务端帮助：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hsctl server help&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;查看客户端帮助：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hsctl client help&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="104-服务端初始化"&gt;&lt;span&gt;10.4 服务端初始化&lt;/span&gt;
+ &lt;a href="#104-%e6%9c%8d%e5%8a%a1%e7%ab%af%e5%88%9d%e5%a7%8b%e5%8c%96" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;hsctl server init&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;它会做这些事：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;校验 &lt;code&gt;headscale&lt;/code&gt; 命令可用&lt;/li&gt;
+&lt;li&gt;校验 &lt;code&gt;/etc/headscale/config.yaml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;执行 &lt;code&gt;configtest&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;可选检查和拉起 &lt;code&gt;headscale.service&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;把脚本安装到 &lt;code&gt;/usr/local/bin/hsctl&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 class="heading-element" id="105-生成新机器接入命令"&gt;&lt;span&gt;10.5 生成新机器接入命令&lt;/span&gt;
+ &lt;a href="#105-%e7%94%9f%e6%88%90%e6%96%b0%e6%9c%ba%e5%99%a8%e6%8e%a5%e5%85%a5%e5%91%bd%e4%bb%a4" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;原生 &lt;code&gt;tailscale up&lt;/code&gt; 方式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hsctl server join-cmd home --mode tailscale --hostname laptop&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale up --login-server https://headscale.example.com --auth-key &amp;lt;key&amp;gt; --accept-dns=false --accept-routes=false --hostname=laptop&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;基于 &lt;code&gt;hsctl&lt;/code&gt; 的初始化方式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hsctl server join-cmd home --mode hsctl --cmd ./hsctl.sh --hostname laptop&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;输出类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo ./hsctl.sh client init --authkey &amp;lt;key&amp;gt; --server https://headscale.example.com --accept-dns false --accept-routes false --hostname laptop&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="106-新客户端第一次接入"&gt;&lt;span&gt;10.6 新客户端第一次接入&lt;/span&gt;
+ &lt;a href="#106-%e6%96%b0%e5%ae%a2%e6%88%b7%e7%ab%af%e7%ac%ac%e4%b8%80%e6%ac%a1%e6%8e%a5%e5%85%a5" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;假设你已经把脚本下载到目标机器：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;scp root@home-node:/opt/headscale-tools/hsctl.sh ./hsctl.sh
+chmod &amp;#43;x ./hsctl.sh&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第一次接入可以直接执行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo ./hsctl.sh client init --authkey &amp;lt;key&amp;gt; --server https://headscale.example.com --hostname laptop&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;它会自动完成：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装 &lt;code&gt;tailscale&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动 &lt;code&gt;tailscaled&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;可选把脚本自安装到 &lt;code&gt;/usr/local/bin/hsctl&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;直接加入你的 Headscale&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果你的客户端下载要走代理：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo HSCTL_PROXY=socks5h://127.0.0.1:7891 ./hsctl.sh client init \
+ --authkey &amp;lt;key&amp;gt; \
+ --server https://headscale.example.com \
+ --hostname laptop&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="107-常用服务端命令"&gt;&lt;span&gt;10.7 常用服务端命令&lt;/span&gt;
+ &lt;a href="#107-%e5%b8%b8%e7%94%a8%e6%9c%8d%e5%8a%a1%e7%ab%af%e5%91%bd%e4%bb%a4" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;hsctl server users list
+hsctl server users create home2 --display-name &amp;#34;Home 2&amp;#34;
+hsctl server users rename home2 family
+hsctl server users delete family
+
+hsctl server nodes list
+hsctl server nodes list --user home
+hsctl server nodes show laptop
+hsctl server nodes rename laptop workstation
+hsctl server nodes move workstation home
+hsctl server nodes expire workstation
+hsctl server nodes delete workstation
+
+hsctl server keys list home
+hsctl server keys create home --expiration 24h
+hsctl server keys create home --expiration 30d --reusable
+hsctl server keys expire home &amp;lt;key&amp;gt;
+
+hsctl server service status
+hsctl server service logs 100
+hsctl server service restart&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="108-常用客户端命令"&gt;&lt;span&gt;10.8 常用客户端命令&lt;/span&gt;
+ &lt;a href="#108-%e5%b8%b8%e7%94%a8%e5%ae%a2%e6%88%b7%e7%ab%af%e5%91%bd%e4%bb%a4" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;hsctl client status
+hsctl client status-json
+hsctl client ip
+hsctl client dns off
+hsctl client routes on
+hsctl client ping 100.64.0.1
+hsctl client logout&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="十一常见故障排查"&gt;&lt;span&gt;十一、常见故障排查&lt;/span&gt;
+ &lt;a href="#%e5%8d%81%e4%b8%80%e5%b8%b8%e8%a7%81%e6%95%85%e9%9a%9c%e6%8e%92%e6%9f%a5" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;这一章是整篇文章最值得保留的部分，因为它基本来自真实踩坑。&lt;/p&gt;
+&lt;h3 class="heading-element" id="111-nginx-返回-502"&gt;&lt;span&gt;11.1 Nginx 返回 502&lt;/span&gt;
+ &lt;a href="#111-nginx-%e8%bf%94%e5%9b%9e-502" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;现象：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl -I https://headscale.example.com/health&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;返回：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HTTP/2 502&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;通常说明：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;edge-node&lt;/code&gt; 的 Nginx 已经工作了&lt;/li&gt;
+&lt;li&gt;域名、证书、80 跳转、443 入口都没问题&lt;/li&gt;
+&lt;li&gt;但 &lt;code&gt;edge-node -&amp;gt; home-node:8080&lt;/code&gt; 这段链路没打通&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;优先检查：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;curl http://127.0.0.1:18080/health&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果这里不通，问题通常在：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;内网穿透未建立&lt;/li&gt;
+&lt;li&gt;落地端口错了&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;home-node&lt;/code&gt; 没监听 8080&lt;/li&gt;
+&lt;li&gt;映射目标地址不对&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 class="heading-element" id="112-tailscale-status-提示-dns-配置失败"&gt;&lt;span&gt;11.2 &lt;code&gt;tailscale status&lt;/code&gt; 提示 DNS 配置失败&lt;/span&gt;
+ &lt;a href="#112-tailscale-status-%e6%8f%90%e7%a4%ba-dns-%e9%85%8d%e7%bd%ae%e5%a4%b1%e8%b4%a5" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;真实报错类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;writing to &amp;#34;/etc/resolv.pre-tailscale-backup.conf&amp;#34; ...
+permission denied&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这是客户端想改本机 DNS，但没有权限。&lt;/p&gt;
+&lt;p&gt;最直接的做法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale set --accept-dns=false&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果版本较老，也可以重新执行：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo tailscale up --login-server https://headscale.example.com --accept-dns=false&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;在个人/家庭最小部署里，这通常不是控制平面问题。&lt;/p&gt;
+&lt;h3 class="heading-element" id="113-503-service-unavailable-no-backend"&gt;&lt;span&gt;11.3 &lt;code&gt;503 Service Unavailable: no backend&lt;/code&gt;&lt;/span&gt;
+ &lt;a href="#113-503-service-unavailable-no-backend" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;真实报错类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;failed to connect to local tailscaled ... 503 Service Unavailable: no backend&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这不是 Headscale 挂了，而是 &lt;strong&gt;本地 &lt;code&gt;tailscaled&lt;/code&gt; 后端没起来&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;最常见原因：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这台机器缺少 &lt;code&gt;/dev/net/tun&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;常见于 &lt;code&gt;LXC&lt;/code&gt; 容器、某些 Docker 场景、受限虚拟化环境&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;先检查：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;systemctl status tailscaled --no-pager
+journalctl -u tailscaled -n 100 --no-pager
+ls -l /dev/net/tun&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果 &lt;code&gt;/dev/net/tun&lt;/code&gt; 不存在，这台机器通常不能作为标准 Tailscale 节点加入。&lt;/p&gt;
+&lt;p&gt;如果你是在 Proxmox 的 LXC 里跑，官方建议给容器放行 TUN。&lt;br&gt;
+例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pct set CTID --dev0 /dev/net/tun
+pct set CTID --features keyctl=1,nesting=1&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;更老的方式是在容器配置里加入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;lxc.cgroup2.devices.allow: c 10:200 rwm
+lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后重启容器。&lt;/p&gt;
+&lt;h3 class="heading-element" id="114-接入地址写错了"&gt;&lt;span&gt;11.4 接入地址写错了&lt;/span&gt;
+ &lt;a href="#114-%e6%8e%a5%e5%85%a5%e5%9c%b0%e5%9d%80%e5%86%99%e9%94%99%e4%ba%86" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;我实际排障时，还遇到过一个很典型的问题：&lt;/p&gt;
+&lt;p&gt;把控制平面地址写成了：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;https://tailscale.example.com&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;但真正应该写的是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;https://headscale.example.com&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;一定要记住：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;客户端接入的是你自建的 &lt;code&gt;Headscale&lt;/code&gt; 域名&lt;/li&gt;
+&lt;li&gt;不是官方 Tailscale 域名&lt;/li&gt;
+&lt;li&gt;也不是你随手起的别的子域名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 class="heading-element" id="115-noise_privatekey-权限错误"&gt;&lt;span&gt;11.5 &lt;code&gt;noise_private.key&lt;/code&gt; 权限错误&lt;/span&gt;
+ &lt;a href="#115-noise_privatekey-%e6%9d%83%e9%99%90%e9%94%99%e8%af%af" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;真实问题是这样的：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我先用 &lt;code&gt;root&lt;/code&gt; 运行了 &lt;code&gt;headscale configtest&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;第一次启动时 &lt;code&gt;noise_private.key&lt;/code&gt; 被创建成了 &lt;code&gt;root:root&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;但 systemd 是以 &lt;code&gt;headscale&lt;/code&gt; 用户运行&lt;/li&gt;
+&lt;li&gt;结果服务起来就报权限错误&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;表现类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;failed to read or create Noise protocol private key
+permission denied&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;修复方式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo chown -R headscale:headscale /var/lib/headscale
+sudo systemctl restart headscale&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;避免这个问题的更好做法是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo -u headscale headscale configtest&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="116-新客户端是-lxc没有-tun-怎么办"&gt;&lt;span&gt;11.6 新客户端是 LXC，没有 TUN 怎么办&lt;/span&gt;
+ &lt;a href="#116-%e6%96%b0%e5%ae%a2%e6%88%b7%e7%ab%af%e6%98%af-lxc%e6%b2%a1%e6%9c%89-tun-%e6%80%8e%e4%b9%88%e5%8a%9e" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;答案分两种：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果你想让它作为正常 Tailscale 节点加入 tailnet&lt;br&gt;
+那就应该给它 TUN&lt;/li&gt;
+&lt;li&gt;如果它只是一个非常受限的容器&lt;br&gt;
+可以考虑 Tailscale 的 userspace networking 模式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;但对个人/家庭常规节点来说，我的建议很明确：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;重要节点优先使用物理机或 VM&lt;/li&gt;
+&lt;li&gt;容器里跑 Tailscale，尽量先确认 &lt;code&gt;/dev/net/tun&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="heading-element" id="十二一些实战建议"&gt;&lt;span&gt;十二、一些实战建议&lt;/span&gt;
+ &lt;a href="#%e5%8d%81%e4%ba%8c%e4%b8%80%e4%ba%9b%e5%ae%9e%e6%88%98%e5%bb%ba%e8%ae%ae" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;h3 class="heading-element" id="121-先从最小可用开始"&gt;&lt;span&gt;12.1 先从最小可用开始&lt;/span&gt;
+ &lt;a href="#121-%e5%85%88%e4%bb%8e%e6%9c%80%e5%b0%8f%e5%8f%af%e7%94%a8%e5%bc%80%e5%a7%8b" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;不要一上来就同时做这些事：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OIDC&lt;/li&gt;
+&lt;li&gt;MagicDNS&lt;/li&gt;
+&lt;li&gt;Exit Node&lt;/li&gt;
+&lt;li&gt;子网路由&lt;/li&gt;
+&lt;li&gt;复杂 ACL&lt;/li&gt;
+&lt;li&gt;多用户隔离&lt;/li&gt;
+&lt;li&gt;自动化证书更新&lt;/li&gt;
+&lt;li&gt;全平台接入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;更稳的顺序是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;先让 &lt;code&gt;health&lt;/code&gt; 通&lt;/li&gt;
+&lt;li&gt;先让第一台 Linux 客户端入网&lt;/li&gt;
+&lt;li&gt;先能 &lt;code&gt;headscale nodes list&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;再扩展其他特性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 class="heading-element" id="122-家庭场景优先使用一次性-key"&gt;&lt;span&gt;12.2 家庭场景优先使用一次性 Key&lt;/span&gt;
+ &lt;a href="#122-%e5%ae%b6%e5%ba%ad%e5%9c%ba%e6%99%af%e4%bc%98%e5%85%88%e4%bd%bf%e7%94%a8%e4%b8%80%e6%ac%a1%e6%80%a7-key" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;默认建议：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;headscale preauthkeys create --user 1 --expiration 24h&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;好处是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;风险更低&lt;/li&gt;
+&lt;li&gt;不容易泄露后一条 Key 加满一堆设备&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果是你自己明确掌控的家庭设备，也可以再补一条 &lt;code&gt;--reusable&lt;/code&gt; Key。&lt;/p&gt;
+&lt;h3 class="heading-element" id="123-sqlite-足够个人和家庭使用"&gt;&lt;span&gt;12.3 SQLite 足够个人和家庭使用&lt;/span&gt;
+ &lt;a href="#123-sqlite-%e8%b6%b3%e5%a4%9f%e4%b8%aa%e4%ba%ba%e5%92%8c%e5%ae%b6%e5%ba%ad%e4%bd%bf%e7%94%a8" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;对这个场景来说，SQLite 的优势非常明显：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;简单&lt;/li&gt;
+&lt;li&gt;迁移容易&lt;/li&gt;
+&lt;li&gt;备份容易&lt;/li&gt;
+&lt;li&gt;不需要额外维护 PostgreSQL&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;备份时只要把 &lt;code&gt;/var/lib/headscale&lt;/code&gt; 和 &lt;code&gt;/etc/headscale&lt;/code&gt; 保住，基本就够了。&lt;/p&gt;
+&lt;h3 class="heading-element" id="124-不着急开启-magicdns"&gt;&lt;span&gt;12.4 不着急开启 MagicDNS&lt;/span&gt;
+ &lt;a href="#124-%e4%b8%8d%e7%9d%80%e6%80%a5%e5%bc%80%e5%90%af-magicdns" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;p&gt;在我这次实际部署里，先关闭 &lt;code&gt;MagicDNS&lt;/code&gt; 反而让整体问题简单很多。&lt;br&gt;
+因为一旦 DNS 行为介入，你还要同时考虑：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;resolv.conf&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;容器 DNS 写入权限&lt;/li&gt;
+&lt;li&gt;Proxmox/LXC 的 DNS 覆写行为&lt;/li&gt;
+&lt;li&gt;局域网已有 DNS 体系&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所以我的建议是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一阶段用 &lt;code&gt;100.x.x.x&lt;/code&gt; 直接互联&lt;/li&gt;
+&lt;li&gt;第二阶段再考虑名字解析&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 class="heading-element" id="十三最后的总结"&gt;&lt;span&gt;十三、最后的总结&lt;/span&gt;
+ &lt;a href="#%e5%8d%81%e4%b8%89%e6%9c%80%e5%90%8e%e7%9a%84%e6%80%bb%e7%bb%93" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;这套方案最终验证下来，核心结论是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;用 &lt;code&gt;Headscale + SQLite&lt;/code&gt; 做个人/家庭控制平面是完全可行的&lt;/li&gt;
+&lt;li&gt;家里的 &lt;code&gt;home-node&lt;/code&gt; 负责跑控制面即可，不必直接暴露公网&lt;/li&gt;
+&lt;li&gt;公网入口交给 &lt;code&gt;edge-node + Nginx + TLS&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中间用内网穿透或私网去接通两台机器&lt;/li&gt;
+&lt;li&gt;Linux 客户端最容易先跑通&lt;/li&gt;
+&lt;li&gt;做一层自己的 &lt;code&gt;hsctl&lt;/code&gt; 脚本，长期维护成本会明显下降&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果只记住一句话，那就是：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;先把控制面跑通，再把第一台 Linux 客户端接上，最后再谈管理体验和复杂功能。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 class="heading-element" id="十四官方文档参考"&gt;&lt;span&gt;十四、官方文档参考&lt;/span&gt;
+ &lt;a href="#%e5%8d%81%e5%9b%9b%e5%ae%98%e6%96%b9%e6%96%87%e6%a1%a3%e5%8f%82%e8%80%83" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;以下是我整理这次部署和排障时重点参考过的官方文档：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Headscale 官方安装文档&lt;br&gt;
+&lt;a href="https://headscale.net/development/setup/install/official/" target="_blank" rel="external nofollow noopener noreferrer"&gt;https://headscale.net/development/setup/install/official/&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Headscale Getting Started&lt;br&gt;
+&lt;a href="https://headscale.net/stable/usage/getting-started/" target="_blank" rel="external nofollow noopener noreferrer"&gt;https://headscale.net/stable/usage/getting-started/&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tailscale Linux 安装文档&lt;br&gt;
+&lt;a href="https://tailscale.com/kb/1031/install-linux" target="_blank" rel="external nofollow noopener noreferrer"&gt;https://tailscale.com/kb/1031/install-linux&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tailscale 在 LXC 中运行&lt;br&gt;
+&lt;a href="https://tailscale.com/kb/1130/lxc" target="_blank" rel="external nofollow noopener noreferrer"&gt;https://tailscale.com/kb/1130/lxc&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tailscale Userspace Networking&lt;br&gt;
+&lt;a href="https://tailscale.com/docs/concepts/userspace-networking" target="_blank" rel="external nofollow noopener noreferrer"&gt;https://tailscale.com/docs/concepts/userspace-networking&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tailscale 与 Proxmox 相关说明&lt;br&gt;
+&lt;a href="https://tailscale.com/docs/integrations/proxmox" target="_blank" rel="external nofollow noopener noreferrer"&gt;https://tailscale.com/docs/integrations/proxmox&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>clickhouse集群实践指南</title><link>https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</link><pubDate>Wed, 17 Dec 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;div class="details admonition info open"&gt;
  &lt;div class="details-summary admonition-title"&gt;&lt;i class="icon fa-solid fa-circle-info" aria-hidden="true"&gt;&lt;/i&gt;信息&lt;i class="details-icon fa-solid fa-angle-right" aria-hidden="true"&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class="details-content"&gt;
  &lt;div class="admonition-content"&gt;&lt;p&gt;当前测试环境:&lt;/p&gt;
 &lt;ul&gt;
@@ -5812,44 +7711,4 @@ sudo -u postgres psql -c &amp;#34;SELECT * FROM pg_stat_wal_receiver;&amp;#34;&l
  &lt;/a&gt;
 &lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;本文记录是根据实际搭建和测试完成后的草稿重新编写，实操时可能会有些新问题产生，有问题自行解决&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>Redis高并发常见3大问题</title><link>https://blog.0x5c0f.cc/posts/linux/redis%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B8%B8%E8%A7%813%E5%A4%A7%E9%97%AE%E9%A2%98/</link><pubDate>Tue, 20 May 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/redis%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B8%B8%E8%A7%813%E5%A4%A7%E9%97%AE%E9%A2%98/</guid><description>&lt;h2 class="heading-element" id="缓存穿透"&gt;&lt;span&gt;缓存穿透&lt;/span&gt;
- &lt;a href="#%e7%bc%93%e5%ad%98%e7%a9%bf%e9%80%8f" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h2&gt;&lt;p&gt;  他是指大量请求访问的数据，在缓存和数据库中均不存在，导致请求直接穿透缓存层，频繁访问数据库，造成数据库压力过大，响应过慢，甚至宕机。其原因可能是黑客构造大量不存在的key发送请求，或者业务代码逻辑&lt;code&gt;bug&lt;/code&gt;，查询了大量&lt;code&gt;key&lt;/code&gt;不存在或者无效数据。&lt;/p&gt;
-&lt;h3 class="heading-element" id="解决方案"&gt;&lt;span&gt;解决方案&lt;/span&gt;
- &lt;a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;在数据查询不到数据时，向&lt;code&gt;redis&lt;/code&gt;缓存一个空值，并设置一个较短的过期时间(比如&lt;code&gt;5&lt;/code&gt;分钟)，这样下次请求相同的&lt;code&gt;key&lt;/code&gt;时就能命中缓存，将空值返回给客户端。&lt;/li&gt;
-&lt;li&gt;使用布隆过滤器对所有的key进行预判，对于不存在的&lt;code&gt;key&lt;/code&gt;，直接返回或拒绝请求，只有存在的&lt;code&gt;key&lt;/code&gt;才会去查询缓存&lt;/li&gt;
-&lt;li&gt;对请求参数进行校验，过滤掉明显无效的请求，如ID格式必须合法等，只有合法的&lt;code&gt;ID&lt;/code&gt;才会去查询缓存&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 class="heading-element" id="缓存击穿"&gt;&lt;span&gt;缓存击穿&lt;/span&gt;
- &lt;a href="#%e7%bc%93%e5%ad%98%e5%87%bb%e7%a9%bf" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h2&gt;&lt;p&gt;  他是指某个热点数据在缓存中过期，导致大量请求同时访问数据库，造成数据库瞬间压力过大，甚至服务不可用&lt;/p&gt;
-&lt;h3 class="heading-element" id="解决方案-1"&gt;&lt;span&gt;解决方案&lt;/span&gt;
- &lt;a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88-1" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;对于核心热点数据，可以设置永不过期，或者使用定时任务定期更新缓存，确保热点数据可以命中缓存&lt;/li&gt;
-&lt;li&gt;在缓存失效时，使用分布式锁(如&lt;code&gt;redis&lt;/code&gt;的&lt;code&gt;setnx&lt;/code&gt;)保证只有一个请求去查询数据库，其他请求等待，该请求查询到数据库后在更新到缓存中，这样后续请求就又能命中缓存了&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 class="heading-element" id="缓存雪崩"&gt;&lt;span&gt;缓存雪崩&lt;/span&gt;
- &lt;a href="#%e7%bc%93%e5%ad%98%e9%9b%aa%e5%b4%a9" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h2&gt;&lt;p&gt;  他是指大量缓存数据在同一时间点过期，导致大量请求直接访问数据库，造成数据库崩溃，可能的原因是设置了相同的过期时间，或者redis服务器宕机或者重启&lt;/p&gt;
-&lt;h3 class="heading-element" id="解决方案-2"&gt;&lt;span&gt;解决方案&lt;/span&gt;
- &lt;a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88-2" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;设置不同的过期时间，避免大量数据同时过期&lt;/li&gt;
-&lt;li&gt;缓存预热，在系统启动时，提前将热点数据加载到缓存中&lt;/li&gt;
-&lt;li&gt;熔断降级，使用熔断器(如&lt;code&gt;Hystrix&lt;/code&gt;)对请求进行限流，限制数据库访问量，当数据库压力过大时候，直接返回默认值或错误提示&lt;/li&gt;
 &lt;/ul&gt;</description></item></channel></rss>
