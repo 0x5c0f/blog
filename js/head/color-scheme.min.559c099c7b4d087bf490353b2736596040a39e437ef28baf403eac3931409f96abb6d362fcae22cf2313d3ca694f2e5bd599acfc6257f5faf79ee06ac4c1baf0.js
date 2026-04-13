@@ -1,0 +1,1 @@
+"use strict";(()=>{var e={defaultTheme:"auto"};(function(){let t=window.localStorage?.getItem("theme-mode")||(e.defaultTheme==="light"||e.defaultTheme==="dark"?e.defaultTheme:"auto");document.documentElement.dataset.themeMode=t})();})();

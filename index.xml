@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.159.0 &amp; FixIt v0.4.5</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 03 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.159.0 &amp; FixIt v0.4.5</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 13 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
 &lt;p&gt;第一篇文章当然是&lt;code&gt;hello world&lt;/code&gt;了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt; echo &amp;#34;hello world !&amp;#34;&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>那些杂七杂八的记录(三)</title><link>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/</link><pubDate>Tue, 17 Jun 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;h2 class="heading-element" id="nginx-安装-modsecurity-waf-以增强网站安全"&gt;&lt;span&gt;Nginx 安装 ModSecurity WAF 以增强网站安全&lt;/span&gt;
@@ -1997,30 +1997,35 @@ $&amp;gt; sudo resize2fs /dev/vdc &lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading
  &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
  &lt;/a&gt;
 &lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;例如 &lt;code&gt;mailto://&lt;/code&gt; 可以唤起指定的邮件应用,下面以一个&lt;code&gt;appimage&lt;/code&gt;程序为例，假设其唤醒协议是&lt;code&gt;folo://&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;例如 &lt;code&gt;mailto://&lt;/code&gt; 可以唤起指定的邮件应用,下面以一个&lt;code&gt;appimage&lt;/code&gt;程序为例，假设其唤醒协议是&lt;code&gt;openscreen://&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre&gt;&lt;code&gt;# 创建一个desktop文件(~/.local/share/applications)
 $&amp;gt; vim ~/.local/share/applications/appimagekit-example.desktop 
 [Desktop Entry]
+Type=Application
+
 Name=Example
 Comment=Example desktop
 
-Exec=/opt/tools/example.appImage %U
+Exec=/opt/tools/example.appImage --no-sandbox %U
+TryExec=/opt/tools/example.appImage
 
 Icon=Icon=/usr/share/icons/logo.svg
 
 Terminal=false
-Type=Application
-Categories=Application;Development;
 StartupNotify=true
-# 主要是这个 MimeType, folo 即为相关协议(浏览器请求 folo:// 打开此程序)
-MimeType=x-scheme-handler/folo;
+
+Categories=Utility;Development;
+
+# StartupWMClass=openscreen
+# 主要是这个 MimeType, openscreen 即为相关协议(浏览器请求 openscreen:// 打开此程序)
+MimeType=x-scheme-handler/openscreen;
 
 # 绑定协议到指定的应用上
-$&amp;gt; xdg-mime default appimagekit-example.desktop x-scheme-handler/folo
+$&amp;gt; xdg-mime default appimagekit-example.desktop x-scheme-handler/openscreen
 
 # 查询已绑定的信息 
-$&amp;gt; xdg-mime query default x-scheme-handler/folo&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题"&gt;&lt;span&gt;解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)&lt;/span&gt;
+$&amp;gt; xdg-mime query default x-scheme-handler/openscreen&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="解决-virtualbox-仅主机模式无法定制ip网段的问题仅主机模式无法连接公网的问题"&gt;&lt;span&gt;解决 Virtualbox 仅主机模式无法定制IP网段的问题(仅主机模式无法连接公网的问题)&lt;/span&gt;
  &lt;a href="#%e8%a7%a3%e5%86%b3-virtualbox-%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e5%ae%9a%e5%88%b6ip%e7%bd%91%e6%ae%b5%e7%9a%84%e9%97%ae%e9%a2%98%e4%bb%85%e4%b8%bb%e6%9c%ba%e6%a8%a1%e5%bc%8f%e6%97%a0%e6%b3%95%e8%bf%9e%e6%8e%a5%e5%85%ac%e7%bd%91%e7%9a%84%e9%97%ae%e9%a2%98" class="heading-mark"&gt;
  &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
  &lt;/a&gt;
@@ -2127,7 +2132,185 @@ $&amp;gt; git push --force origin main
 # 如果报错，原因可能就是 远程仓库禁止 强制推送 
 # 错误：无法推送一些引用到 xxxxxxxxx 
 
-# 报错要修改就只能开分支然后在推送，最后其申请合并 &lt;/code&gt;&lt;/pre&gt;</description></item><item><title>从零自建 Headscale 服务</title><link>https://blog.0x5c0f.cc/posts/linux/headscale-selfhosted/</link><pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/headscale-selfhosted/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category><category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</category><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;h1 class="heading-element" id="从零自建-headscale-控制平面一套适合个人与家庭的-tailscale-替代方案"&gt;&lt;span&gt;从零自建 Headscale 控制平面：一套适合个人与家庭的 Tailscale 替代方案&lt;/span&gt;
+# 报错要修改就只能开分支然后在推送，最后其申请合并 &lt;/code&gt;&lt;/pre&gt;</description></item><item><title>FixIt主题接入Pagefind原生搜索</title><link>https://blog.0x5c0f.cc/posts/hugo/fixit%E4%B8%BB%E9%A2%98%E6%8E%A5%E5%85%A5pagefind%E5%8E%9F%E7%94%9F%E6%90%9C%E7%B4%A2/</link><pubDate>Mon, 13 Apr 2026 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/hugo/fixit%E4%B8%BB%E9%A2%98%E6%8E%A5%E5%85%A5pagefind%E5%8E%9F%E7%94%9F%E6%90%9C%E7%B4%A2/</guid><category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category><category domain="https://blog.0x5c0f.cc/categories/hugo/">Hugo</category><description>&lt;p&gt;&lt;code&gt;FixIt&lt;/code&gt; 在保持原有搜索能力的基础上，支持将 &lt;a href="https://pagefind.app/" target="_blank" rel="external nofollow noopener noreferrer"&gt;&lt;code&gt;Pagefind&lt;/code&gt;&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt; 作为原生搜索引擎使用。该方案适用于静态部署场景，能够在不依赖第三方搜索服务的前提下提供较完整的全文检索能力。&lt;/p&gt;
+&lt;p&gt;本文用于说明 &lt;code&gt;Pagefind&lt;/code&gt; 原生搜索的配置方式、构建流程与当前能力边界。&lt;/p&gt;
+&lt;h2 class="heading-element" id="1-启用方式"&gt;&lt;span&gt;1. 启用方式&lt;/span&gt;
+ &lt;a href="#1-%e5%90%af%e7%94%a8%e6%96%b9%e5%bc%8f" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;启用 &lt;code&gt;Pagefind&lt;/code&gt; 搜索时，可按如下方式配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[params.search]
+enable = true
+type = &amp;#34;pagefind&amp;#34;
+placeholder = &amp;#34;&amp;#34;
+maxResultLength = 10
+snippetLength = 30
+highlightTag = &amp;#34;em&amp;#34;
+
+[params.search.pagefind]
+bundlePath = &amp;#34;pagefind/&amp;#34;
+debounceTimeoutMs = 300
+useBuiltInFilters = true
+sortBy = &amp;#34;&amp;#34;
+sortOrder = &amp;#34;desc&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="11-参数说明"&gt;&lt;span&gt;1.1. 参数说明&lt;/span&gt;
+ &lt;a href="#11-%e5%8f%82%e6%95%b0%e8%af%b4%e6%98%8e" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;params.search.type&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;设为 &lt;code&gt;pagefind&lt;/code&gt; 后，主题将启用原生 &lt;code&gt;Pagefind&lt;/code&gt; 搜索分支。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;params.search.snippetLength&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;用于控制搜索结果摘要长度。&lt;/li&gt;
+&lt;li&gt;当前实现直接复用该参数，不再额外引入重复的摘要长度配置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;params.search.pagefind.bundlePath&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Pagefind&lt;/code&gt; 索引资源目录路径。&lt;/li&gt;
+&lt;li&gt;默认值为 &lt;code&gt;pagefind/&lt;/code&gt;，按站点基路径解析，适用于根路径与子路径部署。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;params.search.pagefind.debounceTimeoutMs&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;输入防抖时间，单位毫秒。&lt;/li&gt;
+&lt;li&gt;设为 &lt;code&gt;0&lt;/code&gt; 时表示关闭防抖。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;params.search.pagefind.useBuiltInFilters&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;是否遵循主题内置的搜索可见性规则。&lt;/li&gt;
+&lt;li&gt;当前实现会自动排除以下页面内容：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;hiddenFromSearch = true&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设置了 &lt;code&gt;password&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;params.search.pagefind.sortBy&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;排序字段。&lt;/li&gt;
+&lt;li&gt;当前稳定支持的内置值仅为 &lt;code&gt;date&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;留空表示不启用排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;params.search.pagefind.sortOrder&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;可选值为 &lt;code&gt;asc&lt;/code&gt; 或 &lt;code&gt;desc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="heading-element" id="2-构建方式"&gt;&lt;span&gt;2. 构建方式&lt;/span&gt;
+ &lt;a href="#2-%e6%9e%84%e5%bb%ba%e6%96%b9%e5%bc%8f" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;Pagefind&lt;/code&gt; 与 &lt;code&gt;Fuse.js&lt;/code&gt; 不同，它不是仅靠前端配置即可直接使用的搜索方案。&lt;/p&gt;
+&lt;p&gt;在完成 Hugo 构建后，还需要额外执行一次索引生成：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hugo --gc --minify
+pagefind --site public&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果站点构建输出目录不是 &lt;code&gt;public&lt;/code&gt;，则将 &lt;code&gt;public&lt;/code&gt; 替换为实际目录即可。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pagefind --site docs&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="3-搜索范围"&gt;&lt;span&gt;3. 搜索范围&lt;/span&gt;
+ &lt;a href="#3-%e6%90%9c%e7%b4%a2%e8%8c%83%e5%9b%b4" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;当前实现不会将整个页面外壳直接纳入索引，而是仅标记正文链路中的关键内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文章标题&lt;/li&gt;
+&lt;li&gt;正文内容容器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这样处理的目的主要有两点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;避免导航、页脚、分页、外围提示等无关内容进入索引&lt;/li&gt;
+&lt;li&gt;使搜索结果摘要尽量贴近正文内容本身&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 class="heading-element" id="4-排序能力"&gt;&lt;span&gt;4. 排序能力&lt;/span&gt;
+ &lt;a href="#4-%e6%8e%92%e5%ba%8f%e8%83%bd%e5%8a%9b" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;当前原生支持保留了一个较克制的排序配置：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[params.search.pagefind]
+sortBy = &amp;#34;date&amp;#34;
+sortOrder = &amp;#34;desc&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当前 &lt;code&gt;sortBy&lt;/code&gt; 的支持范围如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;不启用排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;date&amp;quot;&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;按页面日期排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其他字段当前不作为主题原生稳定能力提供（主题目前只统一输出了 &lt;code&gt;date&lt;/code&gt; 的排序元数据，其他字段尚未建立一致的索引标记与兼容约定）。&lt;/p&gt;
+&lt;p&gt;这里有一个需要明确的边界：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Pagefind&lt;/code&gt; 的查询排序不是多条件联合排序，而是单字段排序。因此配置上采用了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sortBy&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sortOrder&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种形式语义更直接，也更符合主题原生参数的表达方式。&lt;/p&gt;
+&lt;h2 class="heading-element" id="5-关于子路径部署"&gt;&lt;span&gt;5. 关于子路径部署&lt;/span&gt;
+ &lt;a href="#5-%e5%85%b3%e4%ba%8e%e5%ad%90%e8%b7%af%e5%be%84%e9%83%a8%e7%bd%b2" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;如果站点部署在子路径下，例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;https://example.com/blog/&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;则不应将 &lt;code&gt;bundlePath&lt;/code&gt; 简单写死为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;bundlePath = &amp;#34;/pagefind/&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;否则前端会尝试请求域名根路径下的：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/pagefind/pagefind.js&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;从而导致子路径部署失效。&lt;/p&gt;
+&lt;p&gt;推荐配置如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;bundlePath = &amp;#34;pagefind/&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;当前实现会按站点基路径归一化该路径，因此：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;根路径部署可用&lt;/li&gt;
+&lt;li&gt;子路径部署也可用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="heading-element" id="6-当前配置取舍"&gt;&lt;span&gt;6. 当前配置取舍&lt;/span&gt;
+ &lt;a href="#6-%e5%bd%93%e5%89%8d%e9%85%8d%e7%bd%ae%e5%8f%96%e8%88%8d" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;为了保持 &lt;code&gt;FixIt&lt;/code&gt; 原生搜索配置的简洁性，当前实现没有继续开放过多底层高级参数，例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;filters&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ranking&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;indexWeight&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mergeFilter&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;highlightParam&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当前保留的能力，主要集中在主题层价值明确且维护成本可控的部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;原生搜索接入&lt;/li&gt;
+&lt;li&gt;构建后索引生成&lt;/li&gt;
+&lt;li&gt;摘要长度复用&lt;/li&gt;
+&lt;li&gt;内置可见性过滤&lt;/li&gt;
+&lt;li&gt;按日期排序&lt;/li&gt;
+&lt;li&gt;子路径部署兼容&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="heading-element" id="7-注意事项"&gt;&lt;span&gt;7. 注意事项&lt;/span&gt;
+ &lt;a href="#7-%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;启用 &lt;code&gt;Pagefind&lt;/code&gt; 后，构建阶段出现相关提醒是正常行为。&lt;/li&gt;
+&lt;li&gt;该提醒用于提示站点在 Hugo 构建完成后仍需执行 &lt;code&gt;pagefind --site &amp;lt;publicDir&amp;gt;&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;即使索引目录已经存在，也不代表当前索引一定与最新构建内容同步，因此该提醒默认不会自动消失。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 class="heading-element" id="8-小结"&gt;&lt;span&gt;8. 小结&lt;/span&gt;
+ &lt;a href="#8-%e5%b0%8f%e7%bb%93" class="heading-mark"&gt;
+ &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
+ &lt;/a&gt;
+&lt;/h2&gt;&lt;p&gt;对于偏静态部署、希望减少外部服务依赖的站点，&lt;code&gt;Pagefind&lt;/code&gt; 是一个适合 &lt;code&gt;FixIt&lt;/code&gt; 的原生搜索方案。&lt;/p&gt;
+&lt;p&gt;当前实现遵循以下原则：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;尽量复用主题已有搜索参数&lt;/li&gt;
+&lt;li&gt;只增加少量真正必要的 &lt;code&gt;pagefind&lt;/code&gt; 参数&lt;/li&gt;
+&lt;li&gt;不引入组件式补丁逻辑&lt;/li&gt;
+&lt;li&gt;保持对子路径部署和现有页面可见性规则的兼容&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>从零自建 Headscale 服务</title><link>https://blog.0x5c0f.cc/posts/linux/headscale-selfhosted/</link><pubDate>Fri, 03 Apr 2026 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/headscale-selfhosted/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E6%95%B4%E7%90%86%E6%94%B6%E9%9B%86/">整理收集</category><category domain="https://blog.0x5c0f.cc/categories/%E9%82%A3%E4%BA%9B%E6%9C%89%E7%94%A8%E6%B2%A1%E7%94%A8%E7%9A%84/">那些有用没用的</category><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;h1 class="heading-element" id="从零自建-headscale-控制平面一套适合个人与家庭的-tailscale-替代方案"&gt;&lt;span&gt;从零自建 Headscale 控制平面：一套适合个人与家庭的 Tailscale 替代方案&lt;/span&gt;
  &lt;a href="#%e4%bb%8e%e9%9b%b6%e8%87%aa%e5%bb%ba-headscale-%e6%8e%a7%e5%88%b6%e5%b9%b3%e9%9d%a2%e4%b8%80%e5%a5%97%e9%80%82%e5%90%88%e4%b8%aa%e4%ba%ba%e4%b8%8e%e5%ae%b6%e5%ba%ad%e7%9a%84-tailscale-%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88" class="heading-mark"&gt;
  &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
  &lt;/a&gt;
@@ -6967,748 +7150,4 @@ sudo tail -f /opt/vault/audit/vault-audit.log | jq .&lt;/code&gt;&lt;/pre&gt;&lt
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;a href="https://developer.hashicorp.com/vault/docs" target="_blank" rel="external nofollow noopener noreferrer"&gt;Vault官方文档&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://static.0x5c0f.cc/document/archive/HashiCorpVault%E5%AE%9E%E6%96%BD%E5%AF%B9%E8%AF%9D%E8%AE%B0%E5%BD%95.pdf" target="_blank" rel="external nofollow noopener noreferrer"&gt;HashiCorp Vault 实施对话记录&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;</description></item><item><title>PostgreSQL主从复制及repmgr高可用</title><link>https://blog.0x5c0f.cc/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/</link><pubDate>Fri, 29 Aug 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;p&gt;&lt;em&gt;&lt;em&gt;本文为&lt;code&gt;PostgreSQL&lt;/code&gt;主从复制及&lt;code&gt;repmgr&lt;/code&gt;高可用解决方案, 单主从架构, 适用于中小型数据库集群。文中记录为真是场景测试案例(未进行参数优化)，集群于亚马逊&lt;code&gt;EC2&lt;/code&gt;，&lt;code&gt;VIP&lt;/code&gt;能力由&lt;/em&gt;&lt;code&gt;亚马逊私有辅助IP&lt;/code&gt;&lt;em&gt;实现&lt;/em&gt;&lt;/em&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h1 class="heading-element" id="基础环境信息"&gt;&lt;span&gt;基础环境信息&lt;/span&gt;
- &lt;a href="#%e5%9f%ba%e7%a1%80%e7%8e%af%e5%a2%83%e4%bf%a1%e6%81%af" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;操作系统: &lt;code&gt;Ubuntu 24.04.3&lt;/code&gt;、&lt;code&gt;4G&lt;/code&gt;、&lt;code&gt;8vCPU&lt;/code&gt;、&lt;code&gt;500G&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;PostgreSQL: &lt;code&gt;16.10&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Repmgr: &lt;code&gt;5.5.0&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;节点信息: &lt;code&gt;主-pgsql_node_01(10.0.2.113)&lt;/code&gt;、&lt;code&gt;从-pgsql_node_02(10.0.3.114)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;VIP: &lt;code&gt;10.0.1.100&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;资源环境: &lt;code&gt;AWS EC2&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 class="heading-element" id="环境搭建"&gt;&lt;span&gt;环境搭建&lt;/span&gt;
- &lt;a href="#%e7%8e%af%e5%a2%83%e6%90%ad%e5%bb%ba" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h1&gt;&lt;h2 class="heading-element" id="安装及配置"&gt;&lt;span&gt;安装及配置&lt;/span&gt;
- &lt;a href="#%e5%ae%89%e8%a3%85%e5%8f%8a%e9%85%8d%e7%bd%ae" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;# 在两台机器同时执行
-$&amp;gt; sudo apt update
-$&amp;gt; sudo apt install -y postgresql-common
-$&amp;gt; sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
-
-# 安装 PostgreSQL 16、repmgr， 此举将安装最新版的 PostgreSQL 16最新版本，截止文档编写
-# PostgreSQL 最新版本为 16.10 
-$&amp;gt; sudo apt install -y postgresql-16 postgresql-client-16 postgresql-16-repmgr jq curl
-
-# 版本验证
-$&amp;gt; psql --version # 客户端版本
-$&amp;gt; sudo -u postgres psql -c &amp;#39;SELECT version();&amp;#39; # 服务器版本
-$&amp;gt; pg_lsclusters # 查看集群列表与监听端口
-$&amp;gt; systemctl status postgresql@16-main&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="postgresql-数据目录迁移"&gt;&lt;span&gt;PostgreSQL 数据目录迁移&lt;/span&gt;
- &lt;a href="#postgresql-%e6%95%b0%e6%8d%ae%e7%9b%ae%e5%bd%95%e8%bf%81%e7%a7%bb" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h2&gt;&lt;p&gt;此项根据自己需求看是否调整，可忽略此步骤&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 停止现有集群
-sudo pg_ctlcluster 16 main stop
-
-# 准备新目录
-sudo mkdir -p /data/_pgsql_data/16/main
-sudo chown postgres:postgres /data/_pgsql_data -R
-
-# 使用 initdb 初始化到新目录
-sudo -u postgres /usr/lib/postgresql/16/bin/initdb -D /data/_pgsql_data/16/main
-
-# 切换配置到新目录
-sudo sed -i &amp;#34;s|^#\?data_directory =.*|data_directory = &amp;#39;/data/_pgsql_data/16/main&amp;#39;|&amp;#34; /etc/postgresql/16/main/postgresql.conf
-
-# 5) 启动并验证
-sudo pg_ctlcluster 16 main start
-pg_lsclusters&lt;/code&gt;&lt;/pre&gt;&lt;h2 class="heading-element" id="初始化与主从复制"&gt;&lt;span&gt;初始化与主从复制&lt;/span&gt;
- &lt;a href="#%e5%88%9d%e5%a7%8b%e5%8c%96%e4%b8%8e%e4%b8%bb%e4%bb%8e%e5%a4%8d%e5%88%b6" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h2&gt;&lt;h3 class="heading-element" id="配置文件-postgresqlconf"&gt;&lt;span&gt;配置文件 postgresql.conf&lt;/span&gt;
- &lt;a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6-postgresqlconf" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;主、从节点同时执行
-&lt;pre&gt;&lt;code&gt;$&amp;gt; vim /etc/postgresql/16/main/postgresql.conf
-
-listen_addresses = &amp;#39;*&amp;#39;
-wal_level = replica
-max_wal_senders = 10
-max_replication_slots = 10
-hot_standby = on
-wal_keep_size = 512MB # 该值理论上应该通过计算得出，但当前库主要用于测试和读取 512 是一个略微合理的值
-shared_buffers = 2GB # 推荐系统内存的25%(8G)
-
-password_encryption = scram-sha-256
-
-# 日志与慢查询
-logging_collector = on
-log_directory = &amp;#39;log&amp;#39; # Debian系列 默认符号链接到 /var/log/postgresql
-log_filename = &amp;#39;postgresql-%Y-%m-%d.log&amp;#39;
-log_rotation_age = 1d
-log_rotation_size = 10MB
-log_line_prefix = &amp;#39;%m [%p] %u@%d %r &amp;#39; # 时间, PID, 用户@库, 远端地址
-log_statement = &amp;#39;ddl&amp;#39; # 记录 DDL
-log_duration = off
-log_min_duration_statement = 500ms # 慢查询阈值
-
-# repmgr 主从切换要求归档
-archive_mode = on
-# # 这个目录需要主动维护
-# mkdir -p /data/_pgsql_data/wal_archive &amp;amp;&amp;amp; chown postgres:postgres /data/_pgsql_data/wal_archive
-archive_command = &amp;#39;cp %p /data/_pgsql_data/wal_archive/%f&amp;#39; 
-shared_preload_libraries = &amp;#39;repmgr&amp;#39;
-wal_log_hints = on
-
-shared_preload_libraries = &amp;#39;repmgr&amp;#39;
-
-# 重启 postgresql
-$&amp;gt; sudo systemctl restart postgresql@16-main&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 class="heading-element" id="创建复制与管理用户"&gt;&lt;span&gt;创建复制与管理用户&lt;/span&gt;
- &lt;a href="#%e5%88%9b%e5%bb%ba%e5%a4%8d%e5%88%b6%e4%b8%8e%e7%ae%a1%e7%90%86%e7%94%a8%e6%88%b7" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# 主节点-pgsql_node_01(10.0.2.113)执行
-$&amp;gt; sudo -u postgres psql 
-postgres=# CREATE USER repl WITH REPLICATION LOGIN PASSWORD &amp;#39;{{ REPL_PASSWORD }}&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="配置文件-pg_hbaconf"&gt;&lt;span&gt;配置文件 pg_hba.conf&lt;/span&gt;
- &lt;a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6-pg_hbaconf" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# 主、从环境同时执行
-$&amp;gt; vim /etc/postgresql/16/main/pg_hba.conf
-host all all 10.0.0.0/16 scram-sha-256
-host replication repl 10.0.0.0/16 scram-sha-256&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="从库基准拷贝"&gt;&lt;span&gt;从库基准拷贝&lt;/span&gt;
- &lt;a href="#%e4%bb%8e%e5%ba%93%e5%9f%ba%e5%87%86%e6%8b%b7%e8%b4%9d" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# 从节点 pgsql_node_02(10.0.3.114) 执行
-$&amp;gt; sudo systemctl stop postgresql@16-main
-$&amp;gt; sudo rm -rf /data/_pgsql_data/16/main
-# 执行 basebackup：
-$&amp;gt; sudo -u postgres pg_basebackup -h 10.0.2.113 -U repl -D /data/_pgsql_data/16/main -Fp -Xs -P -R
-# -R 会自动写入 standby.signal 与 primary_conninfo
-
-# 启动从库
-$&amp;gt; sudo systemctl start postgresql@16-main
-
-# 验证复制：
-# 在 10.0.2.113/20 查看 state 应为 streaming， sync_state 应为 async, 若开启强一致性 sync_state 应为 sync
-# synchronous_commit: 
-## on：事务提交时等待 WAL 日志传输并确认写入到同步 standby。 
-## remote_write：只等待从库确认写入 WAL，但不等待 fsync（性能稍好，但仍有丢数据风险）。
-## remote_apply：等到 standby 真正应用了事务才返回（最强一致性，但延迟最大）。
-# synchronous_commit = on
-# synchronous_standby_names
-# 指定哪些从库是同步复制候选者。
-# FIRST 1 (...) 表示主库只需要 任意 1 个 standby 确认就算成功。
-# 可以列出多个，从库名需要和从库的 primary_conninfo 里的 application_name 匹配。
-# synchronous_standby_names = &amp;#39;FIRST 1 (standby1, standby2)&amp;#39;
-# 关于强一致性是否开启, 主库事务提交前必须等待至少一个同步备库确认写入 WAL，确保即使主库崩溃，数据也已经持久化到备库。
-# 因此单主单从节点是不建议开启的， 否则从库离线，主库可能将一直处于等待状态。
-$&amp;gt; sudo -u postgres psql -c &amp;#34;select client_addr, state, sync_state from pg_stat_replication;&amp;#34; 
-
-# 在 10.0.3.114/20 查看，应为 t
-$&amp;gt; sudo -u postgres psql -c &amp;#34;select pg_is_in_recovery();&amp;#34; &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;主从复制完成&lt;/em&gt;&lt;/p&gt;
-&lt;h2 class="heading-element" id="repmgr-服务配置"&gt;&lt;span&gt;repmgr 服务配置&lt;/span&gt;
- &lt;a href="#repmgr-%e6%9c%8d%e5%8a%a1%e9%85%8d%e7%bd%ae" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h2&gt;&lt;h3 class="heading-element" id="repmgr-数据库用户授权扩展"&gt;&lt;span&gt;repmgr 数据库、用户、授权、扩展&lt;/span&gt;
- &lt;a href="#repmgr-%e6%95%b0%e6%8d%ae%e5%ba%93%e7%94%a8%e6%88%b7%e6%8e%88%e6%9d%83%e6%89%a9%e5%b1%95" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;-- # 主节点-pgsql_node_01(10.0.2.113)执行，创建相关用户(由于主从复制完成，从库会自动同步这些信息)
-$&amp;gt; sudo -u postgres psql 
-# -- 确保在干净的环境中开始，如果 repmgr 数据库和用户已存在，则删除它们。
-postgres=# DROP DATABASE IF EXISTS repmgr;
-postgres=# DROP ROLE IF EXISTS repmgr;
-
-# -- 3. 授予 repmgr 用户对 repmgr 数据库的所有权限。
-# -- 正常来说，此处使用的授权应该是具体的权限，而不是 SUPERUSER, 但为了方便，此处使用 SUPERUSER， 官方也建议用 SUPERUSER。
-postgres=# CREATE ROLE repmgr WITH SUPERUSER LOGIN PASSWORD &amp;#39;{{ REPMGR_PASSWORD }}&amp;#39;;
-postgres=# CREATE DATABASE repmgr OWNER repmgr;
-
-# -- 切换到新创建的 repmgr 数据库
-postgres=# \c repmgr
-
-# -- 1. 创建 repmgr 扩展。这会自动创建 &amp;#39;repmgr&amp;#39; 模式和所有所需的表。
-repmgr=# CREATE EXTENSION repmgr;
-
-# -- 退出 psql
-repmgr=# \q &lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="repmgr-配置文件"&gt;&lt;span&gt;repmgr 配置文件&lt;/span&gt;
- &lt;a href="#repmgr-%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/EnterpriseDB/repmgr/blob/master/repmgr.conf.sample" target="_blank" rel="external nofollow noopener noreferrer"&gt;https://github.com/EnterpriseDB/repmgr/blob/master/repmgr.conf.sample&lt;i class="fa-solid fa-external-link-alt fa-xs ms-1 text-secondary" aria-hidden="true"&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;主节点-pgsql_node_01(10.0.2.113)配置: &lt;code&gt;/etc/sudoer.d/postgres&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 添加 repmgr 操作时需要的一些权限
-$&amp;gt; vim /etc/sudoer.d/postgres
-Defaults:postgres !requiretty
-postgres ALL = NOPASSWD: /usr/bin/systemctl stop postgresql@16-main.service, /usr/bin/systemctl start postgresql@16-main.service, /usr/bin/systemctl restart postgresql@16-main.service, /usr/bin/systemctl start repmgrd.service, /usr/bin/systemctl stop repmgrd.service, /usr/sbin/ip&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;主节点-pgsql_node_01(10.0.2.113)配置: &lt;code&gt;/etc/repmgr.conf&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 主节点配置
-$&amp;gt; vim /etc/repmgr.conf
-node_id=1
-node_name=&amp;#39;pgsql_node_01&amp;#39;
-
-# 注意 host 无论什么情况下，一定是本机节点
-conninfo=&amp;#39;host=10.0.2.113 user=repmgr dbname=repmgr connect_timeout=2 password={{ REPMGR_PASSWORD }}&amp;#39;
-data_directory=&amp;#39;/data/_pgsql_data/16/main&amp;#39;
-
-replication_user=&amp;#39;repmgr&amp;#39;
-
-replication_type=&amp;#39;physical&amp;#39;
-log_level=&amp;#39;INFO&amp;#39;
-
-log_file=&amp;#39;/var/log/repmgr/repmgrd.log&amp;#39;
-log_status_interval=300
-
-pg_bindir=&amp;#39;/usr/lib/postgresql/16/bin&amp;#39;
-failover=&amp;#39;automatic&amp;#39;
-
-connection_check_type=&amp;#39;ping&amp;#39;
-reconnect_attempts=6
-reconnect_interval=5
-promote_command=&amp;#39;repmgr standby promote -f /etc/repmgr.conf --log-to-file&amp;#39;
-follow_command=&amp;#39;repmgr standby follow -f /etc/repmgr.conf --upstream-node-id=%n --log-to-file&amp;#39;
-
-event_notification_command=&amp;#39;/usr/local/bin/vip_failover_switch.sh %n %e %s %t &amp;#34;%d&amp;#34;&amp;#39;
-# child_nodes_disconnect_command=&amp;#39;/usr/local/bin/vip_failover_switch.sh %n child_nodes_disconnect_command 1 %t &amp;#34;%d&amp;#34;&amp;#39;
-
-repmgrd_pid_file=&amp;#39;/var/run/postgresql/repmgrd.pid&amp;#39;
-
-# # this is required when running sudo over ssh without -t:
-# Defaults:postgres !requiretty
-# postgres ALL = NOPASSWD: /usr/bin/systemctl stop postgresql@16-main.service, /usr/bin/systemctl start postgresql@16-main.service, /usr/bin/systemctl restart postgresql@16-main.service, /usr/bin/systemctl start repmgrd.service, /usr/bin/systemctl stop repmgrd.service
-
-service_start_command = &amp;#39;sudo systemctl start postgresql@16-main.service&amp;#39;
-service_stop_command = &amp;#39;sudo systemctl stop postgresql@16-main.service&amp;#39;
-service_restart_command = &amp;#39;sudo systemctl restart postgresql@16-main.service&amp;#39;
-service_reload_command = &amp;#39;sudo systemctl reload postgresql@16-main.service&amp;#39;
-
-repmgrd_service_start_command = &amp;#39;sudo systemctl start repmgrd.service&amp;#39;
-repmgrd_service_stop_command = &amp;#39;sudo systemctl stop repmgrd.service&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;从节点-pgsql_node_02(10.0.3.114)执行配置: &lt;code&gt;/etc/repmgr.conf&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;; 从节点配置
-node_id=2
-node_name=&amp;#39;pgsql_node_02&amp;#39;
-# 注意 host 无论什么情况下，一定是本机节点
-conninfo=&amp;#39;host=10.0.3.114 user=repmgr dbname=repmgr connect_timeout=2 password={{ REPMGR_PASSWORD }}&amp;#39;
-data_directory=&amp;#39;/data/_pgsql_data/16/main&amp;#39;
-
-replication_user=&amp;#39;repmgr&amp;#39;
-replication_type=&amp;#39;physical&amp;#39;
-log_level=&amp;#39;INFO&amp;#39;
-log_file=&amp;#39;/var/log/repmgr/repmgrd.log&amp;#39;
-
-pg_bindir=&amp;#39;/usr/lib/postgresql/16/bin&amp;#39;
-failover=&amp;#39;automatic&amp;#39;
-
-connection_check_type=&amp;#39;ping&amp;#39;
-reconnect_attempts=6
-reconnect_interval=10
-promote_command=&amp;#39;repmgr standby promote -f /etc/repmgr.conf --log-to-file&amp;#39;
-follow_command=&amp;#39;repmgr standby follow -f /etc/repmgr.conf --upstream-node-id=%n --log-to-file&amp;#39;
-
-# vip 切换核心，监听特殊事件并通知
-event_notification_command = &amp;#39;/usr/local/bin/vip_failover_switch.sh %n %e %s %t &amp;#34;%d&amp;#34;&amp;#39;
-# child_nodes_disconnect_command=&amp;#39;/usr/local/bin/vip_failover_switch.sh %n child_nodes_disconnect_command 1 %t &amp;#34;%d&amp;#34;&amp;#39;
-repmgrd_pid_file=&amp;#39;/var/run/postgresql/repmgrd.pid&amp;#39;
-
-# # this is required when running sudo over ssh without -t:
-# Defaults:postgres !requiretty
-# postgres ALL = NOPASSWD: /usr/bin/systemctl stop postgresql@16-main.service, /usr/bin/systemctl start postgresql@16-main.service, /usr/bin/systemctl restart postgresql@16-main.service, /usr/bin/systemctl start repmgrd.service, /usr/bin/systemctl stop repmgrd.service
-
-service_start_command = &amp;#39;sudo systemctl start postgresql@16-main.service&amp;#39;
-service_stop_command = &amp;#39;sudo systemctl stop postgresql@16-main.service&amp;#39;
-service_restart_command = &amp;#39;sudo systemctl restart postgresql@16-main.service&amp;#39;
-service_reload_command = &amp;#39;sudo systemctl reload postgresql@16-main.service&amp;#39;
-
-repmgrd_service_start_command = &amp;#39;sudo systemctl start repmgrd.service&amp;#39;
-repmgrd_service_stop_command = &amp;#39;sudo systemctl stop repmgrd.service&amp;#39;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 class="heading-element" id="创建默认的-pid-文件并更新权限"&gt;&lt;span&gt;创建默认的 pid 文件，并更新权限&lt;/span&gt;
- &lt;a href="#%e5%88%9b%e5%bb%ba%e9%bb%98%e8%ae%a4%e7%9a%84-pid-%e6%96%87%e4%bb%b6%e5%b9%b6%e6%9b%b4%e6%96%b0%e6%9d%83%e9%99%90" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;这个步骤理论上是不需要做的，但是有时候有问题，建议执行&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$&amp;gt; touch /var/run/postgresql/repmgrd.pid &amp;amp;&amp;amp; chown postgres:postgres /var/run/postgresql/repmgrd.pid
-$&amp;gt; mkdir /var/log/repmgr &amp;amp;&amp;amp; chown postgres:postgres /var/log/repmgr&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="创建-vip-漂移管理脚本及亚马逊权限管理"&gt;&lt;span&gt;创建 VIP 漂移管理脚本及亚马逊权限管理&lt;/span&gt;
- &lt;a href="#%e5%88%9b%e5%bb%ba-vip-%e6%bc%82%e7%a7%bb%e7%ae%a1%e7%90%86%e8%84%9a%e6%9c%ac%e5%8f%8a%e4%ba%9a%e9%a9%ac%e9%80%8a%e6%9d%83%e9%99%90%e7%ae%a1%e7%90%86" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;亚马逊 创建 &lt;code&gt;IAM Policy&lt;/code&gt; 并附加到两台 &lt;code&gt;EC2&lt;/code&gt; 的实例角色&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;创建权限策略 &lt;code&gt;PostgresVipFailoverPolicy&lt;/code&gt;
-&lt;pre&gt;&lt;code&gt;{
- &amp;#34;Version&amp;#34;: &amp;#34;2012-10-17&amp;#34;,
- &amp;#34;Statement&amp;#34;: [
- {
- &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;,
- &amp;#34;Action&amp;#34;: [
- &amp;#34;ec2:DescribeInstances&amp;#34;,
- &amp;#34;ec2:DescribeNetworkInterfaces&amp;#34;,
- &amp;#34;ec2:AssignPrivateIpAddresses&amp;#34;,
- &amp;#34;ec2:UnassignPrivateIpAddresses&amp;#34;
- ],
- &amp;#34;Resource&amp;#34;: &amp;#34;*&amp;#34;
- }
- ]
-}&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;创建一个&lt;code&gt;IMA角色&lt;/code&gt;， 点击 &lt;code&gt;角色&lt;/code&gt;-&lt;code&gt;创建角色&lt;/code&gt;-&lt;code&gt;可信实体(AWS服务)&lt;/code&gt;-&lt;code&gt;使用案例(EC2)&lt;/code&gt;， 下一步， 权限策略选择 &lt;code&gt;PostgresVipFailoverPolicy&lt;/code&gt;， 下一步，输入角色名称 &lt;code&gt;PostgresVipFailoverPolicy&lt;/code&gt;， 下一步，完成创建, 创建完成后，在&lt;code&gt;EC2&lt;/code&gt;找到对应的机器，将&lt;code&gt;IMA角色&lt;/code&gt;附加上去即可。(&lt;em&gt;&lt;strong&gt;IMA角色的附加可以防止在服务器上面配置ak/sk，也可以使用aws cli的调用，大大降低ak/sk泄露风险&lt;/strong&gt;&lt;/em&gt;)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;/usr/local/bin/vip_failover_switch.sh&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;$&amp;gt; touch /usr/local/bin/vip_failover_switch.sh &amp;amp;&amp;amp; chmod &amp;#43;x /usr/local/bin/vip_failover_switch.sh
-# 脚本目前处于试运行阶段，事件处理可能还不太完善，后续遇到问题在修改
-$&amp;gt; vim /usr/local/bin/vip_failover_switch.sh
-#!/usr/bin/env bash
-################################################# 
-# author 0x5c0f
-# date 2025-08-28 
-# email mail@0x5c0f.cc 
-# web tools.0x5c0f.cc 
-# version 1.2.5
-# last update 2025-08-28
-# descript Use : ./vip_failover_switch.sh -h
-################################################# 
-set -euo pipefail
-
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
-export PATH
-
-# sudoer 授权
-# postgres ALL = NOPASSWD: /usr/sbin/ip addr add * dev *, /usr/sbin/ip addr del * dev *
-
-########################################
-# 配置区（按需修改）
-########################################
-declare -r PG_VIP=&amp;#34;10.0.1.100&amp;#34; # VIP 地址（不带掩码）
-declare -Ar AWS_CLI_PROFILE_MAP_INSTANCE=( # 本机私有IP -&amp;gt; 该节点对应的 instance-id
- [&amp;#34;10.0.3.114&amp;#34;]=&amp;#34;{{ EC2_INSTANCE_ID }}&amp;#34;
- [&amp;#34;10.0.2.113&amp;#34;]=&amp;#34;{{ EC2_INSTANCE_ID }}&amp;#34;
-)
-declare -r NICNAME=&amp;#34;ens5&amp;#34; # 本地网卡名
-declare -r DEVICE_INDEX=&amp;#34;0&amp;#34; # ENI 上的 device-index（通常0）
-declare -r LOG_FILE=&amp;#34;/var/log/repmgr/vip_failover_switch.log&amp;#34;
-declare -r AWS_RETRY=3 # AWS API 重试次数
-declare -r AWS_RETRY_SLEEP=2 # 重试间隔(s)
-
-########################################
-# 日志函数
-########################################
-__SAY__() {
- local -- LOG_LEVEL=&amp;#34;${LOG_LEVEL:-DEBUG}&amp;#34;
- local -r ENDCOLOR=&amp;#34;\033[0m&amp;#34;
- local -r INFOCOLOR=&amp;#34;\033[1;34m&amp;#34;
- local -r SUCCESSCOLOR=&amp;#34;\033[0;32m&amp;#34;
- local -r ERRORCOLOR=&amp;#34;\033[0;31m&amp;#34;
- local -r WARNCOLOR=&amp;#34;\033[0;33m&amp;#34;
- local -r DEBUGCOLOR=&amp;#34;\033[0;35m&amp;#34;
- local LOGTYPE
-
- # 是否传入等级标记
- if [ -n &amp;#34;${1:-}&amp;#34; ] &amp;amp;&amp;amp; [[ &amp;#34;${1}&amp;#34; =~ ^[A-Za-z]&amp;#43;$ ]]; then
- if [ &amp;#34;${LOG_LEVEL^^}&amp;#34; == &amp;#34;INFO&amp;#34; ]; then
- if [ &amp;#34;${1^^}&amp;#34; == &amp;#34;DEBUG&amp;#34; -o &amp;#34;${1^^}&amp;#34; == &amp;#34;ERROR&amp;#34; -o &amp;#34;${1^^}&amp;#34; == &amp;#34;WARN&amp;#34; ]; then
- return 0
- fi
- elif [ &amp;#34;${LOG_LEVEL^^}&amp;#34; == &amp;#34;WARN&amp;#34; ]; then
- if [ &amp;#34;${1^^}&amp;#34; == &amp;#34;DEBUG&amp;#34; -o &amp;#34;${1^^}&amp;#34; == &amp;#34;ERROR&amp;#34; ]; then
- return 0
- fi
- elif [ &amp;#34;${LOG_LEVEL^^}&amp;#34; == &amp;#34;ERROR&amp;#34; ]; then
- if [ &amp;#34;${1^^}&amp;#34; == &amp;#34;DEBUG&amp;#34; ]; then
- return 0
- fi
- fi
-
- LOGTYPE=&amp;#34;${1^^}COLOR&amp;#34;
- if [ -z &amp;#34;${!LOGTYPE:-}&amp;#34; ]; then
- LOGTYPE=&amp;#34;INFOCOLOR&amp;#34;
- else
- shift
- fi
- else
- LOGTYPE=&amp;#34;INFOCOLOR&amp;#34;
- fi
-
- local MESSAGE=&amp;#34;$*&amp;#34;
- echo -e &amp;#34;[$(date &amp;#39;&amp;#43;%Y-%m-%d_%H:%M:%S&amp;#39;)] [${!LOGTYPE}${LOGTYPE%%COLOR}${ENDCOLOR}] ${MESSAGE}&amp;#34; | tee -a &amp;#34;${LOG_FILE}&amp;#34;
-}
-
-# 获取网卡上的私有IP（不带掩码）
-function _GET_PRIVATE_IP() {
- sudo /usr/sbin/ip -4 addr show &amp;#34;${NICNAME}&amp;#34; 2&amp;gt;/dev/null | grep -oP &amp;#39;inet \K[\d.]&amp;#43;&amp;#39; | head -1 || true
-}
-
-# 获取本实例ID（通过私有 IP 映射）
-function _GET_INSTANCE_ID() {
- local _PRIVATE_IP_=$(_GET_PRIVATE_IP)
- if [ -z &amp;#34;${_PRIVATE_IP_}&amp;#34; ]; then
- __SAY__ error &amp;#34;无法从本机获取私有IP（NIC=${NICNAME}），请检查网卡名&amp;#34;
- return 1
- fi
- echo &amp;#34;${AWS_CLI_PROFILE_MAP_INSTANCE[${_PRIVATE_IP_}]:-}&amp;#34;
-}
-
-# 获取当前实例所用 ENI ID
-function _GET_ENI_ID() {
- local inst
- inst=$(_GET_INSTANCE_ID) || return 1
- if [ -z &amp;#34;${inst}&amp;#34; ]; then
- __SAY__ error &amp;#34;未为本机私有IP配置 InstanceID 映射&amp;#34;
- return 1
- fi
- aws ec2 describe-network-interfaces \
- --filters &amp;#34;Name=attachment.instance-id,Values=${inst}&amp;#34; &amp;#34;Name=attachment.device-index,Values=${DEVICE_INDEX}&amp;#34; \
- --query &amp;#39;NetworkInterfaces[].NetworkInterfaceId&amp;#39; --output text
-}
-
-# 从本地网卡获取掩码位长度（例如 20）
-function _GET_LOCAL_MASK() {
- sudo /usr/sbin/ip -o -f inet addr show &amp;#34;${NICNAME}&amp;#34; 2&amp;gt;/dev/null | awk &amp;#39;{print $4}&amp;#39; | head -1 | cut -d/ -f2 || echo &amp;#34;20&amp;#34;
-}
-
-# 判断本机系统层是否已经存在该 VIP（返回 0 表示存在）
-function _SYSTEM_HAS_VIP() {
- local mask
- mask=$(_GET_LOCAL_MASK)
- if sudo /usr/sbin/ip addr show dev &amp;#34;${NICNAME}&amp;#34; 2&amp;gt;/dev/null | grep -q &amp;#34;${PG_VIP}/${mask}&amp;#34;; then
- return 0
- fi
- # 兼容没有掩码直接匹配
- if sudo /usr/sbin/ip addr show dev &amp;#34;${NICNAME}&amp;#34; 2&amp;gt;/dev/null | grep -q &amp;#34;${PG_VIP}&amp;#34;; then
- return 0
- fi
- return 1
-}
-
-function ADD_VIP() {
- local _ENI_ID_ _mask _i _found _aws_output
- _ENI_ID_=$(_GET_ENI_ID) || { __SAY__ error &amp;#34;无法获取 ENI ID&amp;#34;; return 1; }
-
- # 检查特定的 ENI 上是否绑定了特定的 VIP
- __SAY__ debug &amp;#34;检查特定ENI上是否已经绑定了VIP: aws ec2 describe-network-interfaces --network-interface-ids ${_ENI_ID_} --query \&amp;#34;NetworkInterfaces[].PrivateIpAddresses[?PrivateIpAddress==&amp;#39;${PG_VIP}&amp;#39;].PrivateIpAddress\&amp;#34; --output text&amp;#34;
-
- _found=$(aws ec2 describe-network-interfaces --network-interface-ids &amp;#34;${_ENI_ID_}&amp;#34; --query &amp;#34;NetworkInterfaces[].PrivateIpAddresses[?PrivateIpAddress==&amp;#39;${PG_VIP}&amp;#39;].PrivateIpAddress&amp;#34; --output text 2&amp;gt;/dev/null || true)
-
- if [ &amp;#34;${_found}&amp;#34; == &amp;#34;${PG_VIP}&amp;#34; ]; then
- __SAY__ warn &amp;#34;AWS: ENI ${_ENI_ID_} 已存在 VIP ${PG_VIP}，跳过分配&amp;#34;
- else
- __SAY__ info &amp;#34;开始添加 VIP ${PG_VIP} 到 ENI ${_ENI_ID_}&amp;#34;
-
- __SAY__ debug &amp;#34;aws ec2 assign-private-ip-addresses --network-interface-id ${_ENI_ID_} --private-ip-addresses ${PG_VIP} --allow-reassignment&amp;#34;
- for _i in $(seq 1 ${AWS_RETRY}); do
- _aws_output=$(aws ec2 assign-private-ip-addresses --network-interface-id &amp;#34;${_ENI_ID_}&amp;#34; --private-ip-addresses &amp;#34;${PG_VIP}&amp;#34; --allow-reassignment)
-
- if [ $? -eq 0 ] &amp;amp;&amp;amp; echo &amp;#34;${_aws_output}&amp;#34; | jq -e &amp;#34;.AssignedPrivateIpAddresses[] | select(.PrivateIpAddress==\&amp;#34;${PG_VIP}\&amp;#34;)&amp;#34; &amp;gt; /dev/null; then
- __SAY__ success &amp;#34;AWS: 成功为 ENI ${_ENI_ID_} 分配 VIP ${PG_VIP}&amp;#34;
- __SAY__ debug &amp;#34;AWS Rsp: ${_aws_output}&amp;#34;
- break
- else
- __SAY__ warn &amp;#34;AWS: 为 ENI ${_ENI_ID_} 分配 VIP ${PG_VIP} 第 ${_i} 次失败，重试...&amp;#34;
- __SAY__ debug &amp;#34;AWS Rsp: ${_aws_output}&amp;#34;
- sleep ${AWS_RETRY_SLEEP}
- fi
-
- if [ &amp;#34;${_i}&amp;#34; -eq &amp;#34;${AWS_RETRY}&amp;#34; ]; then
- __SAY__ error &amp;#34;AWS: 多次尝试分配 VIP 失败，放弃操作&amp;#34;
- return 1
- fi
- done
- fi
-
- # 等待几秒让 AWS 侧生效
- sleep 2
-
- if _SYSTEM_HAS_VIP; then
- __SAY__ warn &amp;#34;系统网卡 ${NICNAME} 已存在 VIP ${PG_VIP}，跳过本地添加&amp;#34;
- else
- _mask=$(_GET_LOCAL_MASK)
- __SAY__ debug &amp;#34;sudo /usr/sbin/ip addr add ${PG_VIP}/${_mask} dev ${NICNAME}&amp;#34;
- if sudo /usr/sbin/ip addr add &amp;#34;${PG_VIP}/${_mask}&amp;#34; dev &amp;#34;${NICNAME}&amp;#34;; then
- __SAY__ success &amp;#34;系统: VIP ${PG_VIP}/${_mask} 已添加到 ${NICNAME}&amp;#34;
- else
- __SAY__ error &amp;#34;系统: 添加 VIP ${PG_VIP}/${_mask} 到 ${NICNAME} 失败&amp;#34;
- return 1
- fi
- fi
-
- return 0
-}
-
-function DEL_VIP() {
- local _ENI_ID_ _mask _found
- _ENI_ID_=$(_GET_ENI_ID) || { __SAY__ error &amp;#34;无法获取 ENI ID&amp;#34;; return 1; }
-
- __SAY__ info &amp;#34;开始从 ENI ${_ENI_ID_} / 本地网卡 ${NICNAME} 删除 VIP ${PG_VIP}&amp;#34;
-
- # _found=$(aws ec2 describe-network-interfaces --network-interface-ids &amp;#34;${_ENI_ID_}&amp;#34; \
- # --query &amp;#34;NetworkInterfaces[].PrivateIpAddresses[?PrivateIpAddress==&amp;#39;${PG_VIP}&amp;#39;] | [0].PrivateIpAddress&amp;#34; --output text 2&amp;gt;/dev/null || true)
- # if [ &amp;#34;${_found}&amp;#34; == &amp;#34;${PG_VIP}&amp;#34; ]; then
- # if aws ec2 unassign-private-ip-addresses --network-interface-id &amp;#34;${_ENI_ID_}&amp;#34; --private-ip-addresses &amp;#34;${PG_VIP}&amp;#34;; then
- # __SAY__ success &amp;#34;AWS: 成功从 ENI ${_ENI_ID_} 解绑 VIP ${PG_VIP}&amp;#34;
- # else
- # __SAY__ warn &amp;#34;AWS: 解绑 VIP ${PG_VIP} 失败或已被 reassigned，继续进行本地清理&amp;#34;
- # fi
- # else
- # __SAY__ debug &amp;#34;AWS: ENI ${_ENI_ID_} 未绑定 VIP ${PG_VIP}，跳过 unassign&amp;#34;
- # fi
-
- # 系统层：删除本地 IP
- if _SYSTEM_HAS_VIP; then
- _mask=$(_GET_LOCAL_MASK)
- __SAY__ debug &amp;#34;sudo /usr/sbin/ip addr del ${PG_VIP}/${_mask} dev ${NICNAME}&amp;#34;
- if sudo /usr/sbin/ip addr del &amp;#34;${PG_VIP}/${_mask}&amp;#34; dev &amp;#34;${NICNAME}&amp;#34;; then
- __SAY__ success &amp;#34;系统: VIP ${PG_VIP}/${_mask} 已从 ${NICNAME} 删除&amp;#34;
- else
- __SAY__ warn &amp;#34;系统: 删除 VIP ${PG_VIP}/${_mask} 失败（可能掩码不同），尝试模糊删除&amp;#34;
- # 最后尝试强匹配删除（不推荐，但兜底）
- if sudo /usr/sbin/ip addr show dev &amp;#34;${NICNAME}&amp;#34; | grep -q &amp;#34;${PG_VIP}&amp;#34;; then
- # 查找确切 cidr 并删除
- local found_cidr
- found_cidr=$(sudo /usr/sbin/ip -o -f inet addr show &amp;#34;${NICNAME}&amp;#34; | awk -v vip=&amp;#34;${PG_VIP}&amp;#34; &amp;#39;$0~vip {print $4; exit}&amp;#39;)
- if [ -n &amp;#34;${found_cidr}&amp;#34; ]; then
- sudo /usr/sbin/ip addr del &amp;#34;${found_cidr}&amp;#34; dev &amp;#34;${NICNAME}&amp;#34; || __SAY__ error &amp;#34;系统: 最后兜底删除失败&amp;#34;
- __SAY__ success &amp;#34;系统: 使用 ${found_cidr} 删除 VIP ${PG_VIP}&amp;#34;
- fi
- fi
- fi
- else
- __SAY__ warn &amp;#34;系统网卡 ${NICNAME} 不存在 VIP ${PG_VIP}，跳过本地删除&amp;#34;
- fi
-
- return 0
-}
-
-########################################
-# main: 参数解析（来自 repmgr event_notification_command）
-# usage: script NODE_ID EVENT_TYPE SUCCESS [TIMESTAMP] [DETAILS]
-########################################
-if [ &amp;#34;$#&amp;#34; -lt 3 ]; then
- __SAY__ warn &amp;#34;用法: $0 &amp;lt;NODE_ID&amp;gt; &amp;lt;EVENT_TYPE&amp;gt; &amp;lt;SUCCESS&amp;gt; [TIMESTAMP] [DETAILS]&amp;#34;
- __SAY__ warn &amp;#34;应当在 repmgr.conf 中配置: &amp;#34;
- __SAY__ warn &amp;#34;\tevent_notification_command = &amp;#39;sudo $0 %n %e %s %t \&amp;#34;%d\&amp;#34;&amp;#39;&amp;#34;
- __SAY__ warn &amp;#34;\tchild_nodes_disconnect_command=&amp;#39;sudo $0 %n child_nodes_disconnect_command 1 %t \&amp;#34;%d\&amp;#34;&amp;#39;&amp;#34;
- exit 1
-fi
-
-declare -- NODE_ID=&amp;#34;${1}&amp;#34;
-declare -- EVENT_TYPE=&amp;#34;${2}&amp;#34;
-declare -- SUCCESS=&amp;#34;${3}&amp;#34;
-declare -- TIMESTAMP=&amp;#34;${4:-$(date &amp;#39;&amp;#43;%Y-%m-%d %H:%M:%S&amp;#39;)}&amp;#34;
-declare -- DETAILS=&amp;#34;${5:-}&amp;#34;
-
-__SAY__ debug &amp;#34;触发 repmgr 事件: NODE_ID=${NODE_ID} EVENT_TYPE=${EVENT_TYPE} SUCCESS=${SUCCESS} TIMESTAMP=${TIMESTAMP} DETAILS=${DETAILS}&amp;#34;
-
-# 仅对成功事件执行操作（SUCCESS=1）
-if [[ &amp;#34;${SUCCESS}&amp;#34; != &amp;#34;1&amp;#34; ]]; then
- __SAY__ warn &amp;#34;事件未成功（SUCCESS=${SUCCESS}），仅记录日志，跳过 VIP 操作&amp;#34;
- exit 0
-fi
-
-# 事件 -&amp;gt; 行为映射
-case &amp;#34;${EVENT_TYPE}&amp;#34; in
- # 新主就位（挂 VIP）
- &amp;#34;standby_promote&amp;#34;|&amp;#34;repmgrd_failover_promote&amp;#34;|&amp;#34;standby_switchover&amp;#34;|&amp;#34;primary_register&amp;#34;)
- __SAY__ info &amp;#34;事件 ${EVENT_TYPE} 表示本节点为主，尝试挂载 VIP（DETAILS=${DETAILS})&amp;#34;
- if ADD_VIP; then
- __SAY__ success &amp;#34;ADD_VIP 操作完成（事件=${EVENT_TYPE}）&amp;#34;
- else
- __SAY__ error &amp;#34;ADD_VIP 操作失败（事件=${EVENT_TYPE}），请手动检查&amp;#34;
- exit 1
- fi
- ;;
-
- # 节点不再为主或需要自我隔离（摘 VIP）
- &amp;#34;standby_follow&amp;#34;|&amp;#34;primary_unregister&amp;#34;|&amp;#34;standby_register&amp;#34;)
- # &amp;#34;repmgrd_local_disconnect&amp;#34; 事件在主节点临时关闭时也会触发，这个时候不应删除 VIP
- # &amp;#34;child_nodes_disconnect_command&amp;#34; 事件在单主单备情况下也不应删除 VIP
- __SAY__ warn &amp;#34;事件 ${EVENT_TYPE} 表示本节点不应持有 VIP，尝试删除 VIP（DETAILS=${DETAILS})&amp;#34;
- if DEL_VIP; then
- __SAY__ success &amp;#34;DEL_VIP 操作完成（事件=${EVENT_TYPE}）&amp;#34;
- else
- __SAY__ error &amp;#34;DEL_VIP 操作失败（事件=${EVENT_TYPE}），请手动检查&amp;#34;
- exit 1
- fi
- ;;
-
- # 这些事件只记录告警/信息，不做 VIP 操作（防止脑裂）
- &amp;#34;repmgrd_upstream_disconnect&amp;#34;|&amp;#34;standby_disconnect_manual&amp;#34;|&amp;#34;standby_failure&amp;#34;|&amp;#34;standby_recovery&amp;#34;|&amp;#34;repmgrd_promote_error&amp;#34;)
- __SAY__ warn &amp;#34;事件 ${EVENT_TYPE} 仅为连接/错误类通知，记录日志并跳过 VIP 操作（DETAILS=${DETAILS})&amp;#34;
- ;;
-
- *)
- __SAY__ debug &amp;#34;未被脚本处理的事件: ${EVENT_TYPE}（DETAILS=${DETAILS}），仅记录&amp;#34;
- ;;
-esac
-
-exit 0&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 class="heading-element" id="配置repmgrd服务"&gt;&lt;span&gt;配置repmgrd服务&lt;/span&gt;
- &lt;a href="#%e9%85%8d%e7%bd%aerepmgrd%e6%9c%8d%e5%8a%a1" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;默认安装 &lt;code&gt;postgresql-16-repmgr&lt;/code&gt; 后会创建一个 &lt;code&gt;/etc/init.d/repmgrd&lt;/code&gt; 用于管理 &lt;code&gt;repmgrd&lt;/code&gt;服务, 但这个脚本似乎有很严重的兼容问题，这里直接删除后重建服务
-&lt;pre&gt;&lt;code&gt;# 在主从节点均执行
-$&amp;gt; rm -rf /etc/init.d/repmgrd
-$&amp;gt; systemctl daemon-reload
-$&amp;gt; vim /etc/systemd/system/repmgrd.service
-[Unit]
-Description=PostgreSQL Replication Manager Daemon
-After=postgresql@16-main.service
-
-[Service]
-Type=simple
-User=postgres
-Group=postgres
-PIDFile=/var/run/postgresql/repmgrd.pid
-ExecStart=/usr/bin/repmgrd -f /etc/repmgr.conf -d
-ExecReload=/bin/kill -HUP $MAINPID
-KillMode=process
-PrivateTmp=true
-
-[Install]
-WantedBy=multi-user.target
-
-$&amp;gt; systemctl daemon-reload
-## 配置完成后，先不要启动该服务 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;配置 &lt;code&gt;/etc/postgresql/16/main/pg_hba.conf&lt;/code&gt;
-&lt;pre&gt;&lt;code&gt;sudo vim /etc/postgresql/16/main/pg_hba.conf
-# repmgr 连接权限
-host repmgr repmgr 10.0.0.0/16 scram-sha-256
-host replication repmgr 10.0.0.0/16 scram-sha-256&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 class="heading-element" id="注册及校验"&gt;&lt;span&gt;注册及校验&lt;/span&gt;
- &lt;a href="#%e6%b3%a8%e5%86%8c%e5%8f%8a%e6%a0%a1%e9%aa%8c" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;# 主节点-pgsql_node_01(10.0.2.113)执行注册
-$&amp;gt; sudo -u postgres repmgr primary register -f /etc/repmgr.conf
-
-# 检查注册是否成功
-$&amp;gt; sudo -u postgres repmgr cluster show -f /etc/repmgr.conf
-
-# 从库注册前需要先配置application_name , 该值和当前节点 /etc/repmgrd.conf 中的 node_name 保持一致
-# 从库执行修改
-$&amp;gt; vim /data/_pgsql_data/16/main/postgresql.auto.conf
-# 由于初次配置是通过 sudo -u postgres pg_basebackup -h 10.0.2.113 -U repl -D /data/_pgsql_data/16/main -Fp -Xs -P -R 基准复制拷贝的
-# 所以直接在primary_conninfo 配置末尾添加 applicatoin_name=pgsql_node_02 即可
-# 应该也可以直接删除原有的，直接配置 primary_conninfo = &amp;#39;host=10.0.2.113 port=5432 user=repmgr application_name=pgsql_node_02 password={{ REPMGR_PASSWORD }} connect_timeout=2&amp;#39;
-# 调整完成后, 重载配置
-$&amp;gt; sudo systemctl reload postgresql@16-main.service
-# 查看配置是否成功
-$&amp;gt; sudo -u postgres psql -c &amp;#34;SHOW primary_conninfo;&amp;#34;
-# 在从节点上执行注册--upstream-node-id 指定的是上游节点，也就是主节点配置的node_id
-$&amp;gt; sudo -u postgres repmgr standby register -f /etc/repmgr.conf --upstream-node-id=1
-
-#########
-## 主从节点启动 repmgrd 服务
-$&amp;gt; sudo systemctl start repmgrd
-#########
-
-# 查看集群状态
-# 查看完整的集群状态
-$&amp;gt; sudo -u postgres repmgr cluster show -f /etc/repmgr.conf
-
-# 查看所有节点的详细信息
-$&amp;gt; sudo -u postgres repmgr cluster event --event=register -f /etc/repmgr.conf
-# 在主节点上检查复制状态
-$&amp;gt; sudo -u postgres psql -c &amp;#34;SELECT * FROM pg_stat_replication;&amp;#34;
-
-# 在从节点上检查复制状态
-$&amp;gt; sudo -u postgres psql -c &amp;#34;SELECT * FROM pg_stat_wal_receiver;&amp;#34;
-
-# 检查repmgr.nodes表
-$&amp;gt; sudo -u postgres psql -d repmgr -c &amp;#34;SELECT * FROM repmgr.nodes;&amp;#34;
-
-# 查看节点状态
-$&amp;gt; sudo -u postgres repmgr node status
-# 查询当前备库从主库接收WAL日志流的状态
-$&amp;gt; sudo -u postgres psql -c &amp;#34;SELECT * FROM pg_stat_wal_receiver;&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;h3 class="heading-element" id="主从切换测试"&gt;&lt;span&gt;主从切换测试&lt;/span&gt;
- &lt;a href="#%e4%b8%bb%e4%bb%8e%e5%88%87%e6%8d%a2%e6%b5%8b%e8%af%95" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;非重建模式&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;# 主节点-pgsql_node_01(10.0.2.113)执行
-$&amp;gt; sudo systemctl stop postgresql@16-main.service
-# 等待 1-2 分钟
-
-# 验证集群状态，只有在 Status 为 - failed 时候， 从节点才会触发晋升从而变为主节点
-# 等待阶段 Status 为 ? unreachable， 此时主库正在执行健康检查， 等待主库恢复中
-$&amp;gt; sudo -u postgres repmgr cluster show
-
-### 集群状态恢复后，可以观察VIP是否已经漂移到新主节点了，如果没有，需要观察日志 /var/log/repmgr/vip_failover_switch.log, 其中记录了VIP的漂移过程，不过此时原主库上仍然绑定着VIP，可以手动删除，或者直接忽略，VIP的实现是靠的亚马逊私有辅助IP实现的，服务器上直接绑定无效，需要AWS绑定了，服务器上才能实际添加，该VIP会在注册从节点时自动删除， 手动删除key使用
-# $&amp;gt; ip addr del 10.0.1.100/20 dev ens5 # systemctl restart systemd-networkd
-
-# 从库晋升主库后的恢复
-# 启动原主库
-$&amp;gt; systemctl start postgresql@16-main.service
-# 将原主库置为从库 
-$&amp;gt; sudo -u postgres touch /data/_pgsql_data/16/main/standby.signal &amp;amp;&amp;amp; sudo chmod 600 /data/_pgsql_data/16/main/standby.signal
-# 修正 原主库的 primary_conninfo 连接信息 
-$&amp;gt; vim /data/_pgsql_data/16/main/postgresql.auto.conf
-## 如果配置文件中不存在，则直接添加， 注意 host 是主节点信息， application_name 是当前节点 /etc/repmgr.conf 中的 node_name
-primary_conninfo = &amp;#39;host=10.0.3.114 port=5432 user=repmgr password={{ REPMGR_PASSWORD }} application_name=pgsql_node_01&amp;#39;
-
-# 重载配置
-$&amp;gt; sudo systemctl reload postgresql@16-main.service # sudo systemctl restart postgresql@16-main.service
-# 重启 repmgrd 服务
-$&amp;gt; sudo systemctl restart repmgrd
-# 查看集群状态
-$&amp;gt; sudo -u postgres repmgr cluster show
-# 注意此时集群状态可能有两种情况，一种是 Status 没有任何标识， Upstream 也没有任何标识， 这种情况代表同步恢复完成，但是注册信息更新失败，可以等待一段时间后在观察，若仍然没有恢复，则重新注册一下，此时一般需要强制注册, --upstream-node-id 是主节点的node_id , 还有一种带有！号的， 代表同步重建完全失败， 这个可能是两者数据流差异过大引起，此时重建同步 
-$&amp;gt; sudo -u postgres repmgr standby register -f /etc/repmgr.conf --upstream-node-id=1 --force&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;重建模式&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;## 创建 /var/lib/postgresql/.pgpass 文件，用于重新克隆服务基准数据时使用
-$&amp;gt; touch /var/lib/postgresql/.pgpass &amp;amp;&amp;amp; chown postgres:postgres /var/lib/postgresql/.pgpass &amp;amp;&amp;amp; chmod 600 /var/lib/postgresql/.pgpass
-$&amp;gt; /var/lib/postgresql/.pgpass 
-10.0.3.114:5432:repmgr:repmgr:{{ REPMGR_PASSWORD }}
-10.0.2.113:5432:repmgr:repmgr:{{ REPMGR_PASSWORD }}
-
-
-# 停止新从节点
-$&amp;gt; sudo systemctl stop postgresql@16-main
-
-# 备份数据目录
-$&amp;gt; sudo mv /data/_pgsql_data/16/main /data/_pgsql_data/16/main.backup.$(date &amp;#43;%Y%m%d_%H%M%S)
-
-# 使用正确的配置重新克隆
-# host 为新主节点IP
-$&amp;gt; sudo -u postgres repmgr standby clone --force --verbose --host=10.0.3.114 --port=5432 --user=repmgr --dbname=repmgr
-
-# 启动从节点
-sudo systemctl start postgresql@16-main
-
-# 重新注册
-sudo -u postgres repmgr standby register --force
-
-# 验证
-sudo -u postgres repmgr node status
-sudo -u postgres psql -c &amp;#34;SELECT * FROM pg_stat_wal_receiver;&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 class="heading-element" id="其他"&gt;&lt;span&gt;其他&lt;/span&gt;
- &lt;a href="#%e5%85%b6%e4%bb%96" class="heading-mark"&gt;
- &lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;
- &lt;/a&gt;
-&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;本文记录是根据实际搭建和测试完成后的草稿重新编写，实操时可能会有些新问题产生，有问题自行解决&lt;/li&gt;
-&lt;/ul&gt;</description></item></channel></rss>
+&lt;/ol&gt;</description></item></channel></rss>
