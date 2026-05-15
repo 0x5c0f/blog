@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.159.0 &amp; FixIt v0.4.5</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 13 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.159.0 &amp; FixIt v0.4.5</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Fri, 15 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
 &lt;p&gt;第一篇文章当然是&lt;code&gt;hello world&lt;/code&gt;了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;pre&gt;&lt;code&gt; echo &amp;#34;hello world !&amp;#34;&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>那些杂七杂八的记录(三)</title><link>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/</link><pubDate>Tue, 17 Jun 2025 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/linux/%E9%82%A3%E4%BA%9B%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB%E7%9A%84%E8%AE%B0%E5%BD%95.3/</guid><category domain="https://blog.0x5c0f.cc/categories/linux/">Linux</category><category domain="https://blog.0x5c0f.cc/categories/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/">运维记事</category><description>&lt;h2 class="heading-element" id="nginx-安装-modsecurity-waf-以增强网站安全"&gt;&lt;span&gt;Nginx 安装 ModSecurity WAF 以增强网站安全&lt;/span&gt;
@@ -725,59 +725,105 @@ function handler(event) {
  var request = event.request;
  var host = request.headers.host.value.toLowerCase();
  var uri = request.uri;
+ var qs = request.querystring;
 
- // -----------------------------------------
- // 1. Host 跳转规则
- // -----------------------------------------
- var redirectRules = {
+ // -------------------------
+ // host canonical
+ // -------------------------
+ var hostMap = {
  &amp;#39;example.com&amp;#39;: &amp;#39;www.example.com&amp;#39;
  };
 
- if (redirectRules[host]) {
+ var targetHost = hostMap[host] || host;
+
+ // -------------------------
+ // query string
+ // -------------------------
+ function buildQS(qsObj) {
+ var arr = [];
+
+ for (var k in qsObj) {
+ if (qsObj[k].multiValue) {
+ qsObj[k].multiValue.forEach(function(v) {
+ arr.push(k &amp;#43; &amp;#39;=&amp;#39; &amp;#43; v.value);
+ });
+ } else {
+ arr.push(k &amp;#43; &amp;#39;=&amp;#39; &amp;#43; qsObj[k].value);
+ }
+ }
+
+ return arr.length ? &amp;#39;?&amp;#39; &amp;#43; arr.join(&amp;#39;&amp;amp;&amp;#39;) : &amp;#39;&amp;#39;;
+ }
+
+ var query = buildQS(qs);
+
+ // -------------------------
+ // rules
+ // -------------------------
+
+ function isStatic(uri) {
+ return /\.[a-zA-Z0-9]&amp;#43;$/.test(uri);
+ }
+
+ function isForceNoSlash(uri) {
+ return (
+ uri.indexOf(&amp;#39;/api&amp;#39;) === 0 ||
+ uri.indexOf(&amp;#39;/login&amp;#39;) === 0 ||
+ uri.indexOf(&amp;#39;/health&amp;#39;) === 0 ||
+ uri.indexOf(&amp;#39;/sso&amp;#39;) === 0
+ );
+ }
+
+ function isForceSlash(uri) {
+ return (
+ uri.indexOf(&amp;#39;/blog&amp;#39;) === 0 ||
+ uri.indexOf(&amp;#39;/docs&amp;#39;) === 0 ||
+ uri.indexOf(&amp;#39;/products&amp;#39;) === 0
+ );
+ }
+
+ // -------------------------
+ // slash normalization
+ // -------------------------
+ function normalize(uri) {
+
+ // 静态资源
+ if (isStatic(uri)) {
+ return uri;
+ }
+
+ // 强制无 slash
+ if (isForceNoSlash(uri)) {
+ return uri.replace(/\/&amp;#43;$/, &amp;#39;&amp;#39;);
+ }
+
+ // 强制有 slash
+ if (isForceSlash(uri)) {
+ return uri.endsWith(&amp;#39;/&amp;#39;) ? uri : uri &amp;#43; &amp;#39;/&amp;#39;;
+ }
+
+ // 默认策略（SEO 常见：目录型）
+ return uri.endsWith(&amp;#39;/&amp;#39;) ? uri : uri &amp;#43; &amp;#39;/&amp;#39;;
+ }
+
+ var targetUri = normalize(uri);
+
+ // -------------------------
+ // single redirect
+ // -------------------------
+ if (host !== targetHost || uri !== targetUri) {
  return {
  statusCode: 301,
  statusDescription: &amp;#39;Moved Permanently&amp;#39;,
  headers: {
- location: { value: `https://${redirectRules[host]}${uri}` }
+ location: {
+ value: &amp;#39;https://&amp;#39; &amp;#43; targetHost &amp;#43; targetUri &amp;#43; query
+ }
  }
  };
  }
 
- // -----------------------------------------
- // 2. Trailing Slash SEO 优化
- // -----------------------------------------
-
- // // 需要排除不加 / 的路径（灵活配置）
- // var noSlashWhitelist = [
- // &amp;#39;/api&amp;#39;,
- // &amp;#39;/health&amp;#39;,
- // &amp;#39;/login&amp;#39;,
- // &amp;#39;/sso&amp;#39;
- // ];
-
- // // 如果在白名单中 → 不添加 /
- // if (noSlashWhitelist.includes(uri)) {
- // return request;
- // }
-
- // 如果已有 `/` 结尾，不处理
- if (uri.endsWith(&amp;#39;/&amp;#39;)) {
  return request;
- }
-
- // 如果路径包含扩展名，例如 .css, .png, .html 不处理
- if (/\.[a-zA-Z0-9]&amp;#43;$/.test(uri)) {
- return request;
- }
-
- // 执行 301 永久重定向到带 `/` 的版本
- return {
- statusCode: 301,
- statusDescription: &amp;#39;Moved Permanently&amp;#39;,
- headers: {
- location: { value: `https://${host}${uri}/` }
- }
- };
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/tab-container&gt;&lt;/li&gt;
 &lt;/ul&gt;

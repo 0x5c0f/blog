@@ -358,59 +358,105 @@ function handler(event) {
     var request = event.request;
     var host = request.headers.host.value.toLowerCase();
     var uri = request.uri;
+    var qs = request.querystring;
 
-    // -----------------------------------------
-    // 1. Host 跳转规则
-    // -----------------------------------------
-    var redirectRules = {
+    // -------------------------
+    // host canonical
+    // -------------------------
+    var hostMap = {
         'example.com': 'www.example.com'
     };
 
-    if (redirectRules[host]) {
+    var targetHost = hostMap[host] || host;
+
+    // -------------------------
+    // query string
+    // -------------------------
+    function buildQS(qsObj) {
+        var arr = [];
+
+        for (var k in qsObj) {
+            if (qsObj[k].multiValue) {
+                qsObj[k].multiValue.forEach(function(v) {
+                    arr.push(k + '=' + v.value);
+                });
+            } else {
+                arr.push(k + '=' + qsObj[k].value);
+            }
+        }
+
+        return arr.length ? '?' + arr.join('&') : '';
+    }
+
+    var query = buildQS(qs);
+
+    // -------------------------
+    // rules
+    // -------------------------
+
+    function isStatic(uri) {
+        return /\.[a-zA-Z0-9]+$/.test(uri);
+    }
+
+    function isForceNoSlash(uri) {
+        return (
+            uri.indexOf('/api') === 0 ||
+            uri.indexOf('/login') === 0 ||
+            uri.indexOf('/health') === 0 ||
+            uri.indexOf('/sso') === 0
+        );
+    }
+
+    function isForceSlash(uri) {
+        return (
+            uri.indexOf('/blog') === 0 ||
+            uri.indexOf('/docs') === 0 ||
+            uri.indexOf('/products') === 0
+        );
+    }
+
+    // -------------------------
+    // slash normalization
+    // -------------------------
+    function normalize(uri) {
+
+        // 静态资源
+        if (isStatic(uri)) {
+            return uri;
+        }
+
+        // 强制无 slash
+        if (isForceNoSlash(uri)) {
+            return uri.replace(/\/+$/, '');
+        }
+
+        // 强制有 slash
+        if (isForceSlash(uri)) {
+            return uri.endsWith('/') ? uri : uri + '/';
+        }
+
+        // 默认策略（SEO 常见：目录型）
+        return uri.endsWith('/') ? uri : uri + '/';
+    }
+
+    var targetUri = normalize(uri);
+
+    // -------------------------
+    // single redirect
+    // -------------------------
+    if (host !== targetHost || uri !== targetUri) {
         return {
             statusCode: 301,
             statusDescription: 'Moved Permanently',
             headers: {
-                location: { value: `https://${redirectRules[host]}${uri}` }
+                location: {
+                    value: 'https://' + targetHost + targetUri + query
+                }
             }
         };
     }
 
-    // -----------------------------------------
-    // 2. Trailing Slash SEO 优化
-    // -----------------------------------------
-
-    // // 需要排除不加 / 的路径（灵活配置）
-    // var noSlashWhitelist = [
-    //     '/api',
-    //     '/health',
-    //     '/login',
-    //     '/sso'
-    // ];
-
-    // // 如果在白名单中 → 不添加 /
-    // if (noSlashWhitelist.includes(uri)) {
-    //     return request;
-    // }
-
-    // 如果已有 `/` 结尾，不处理
-    if (uri.endsWith('/')) {
-        return request;
-    }
-
-    // 如果路径包含扩展名，例如 .css, .png, .html 不处理
-    if (/\.[a-zA-Z0-9]+$/.test(uri)) {
-        return request;
-    }
-
-    // 执行 301 永久重定向到带 `/` 的版本
-    return {
-        statusCode: 301,
-        statusDescription: 'Moved Permanently',
-        headers: {
-            location: { value: `https://${host}${uri}/` }
-        }
-    };
+    return request;
 }
 ```
 {{% /tab %}}
