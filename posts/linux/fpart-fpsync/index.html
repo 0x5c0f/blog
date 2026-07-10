@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+    <meta name="robots" content="noodp" />
+    <title>大规模数据并行迁移神器fpart &amp; Fpsync - 一个曾经的小码农...</title><meta name="author" content="0x5c0f">
+<meta name="description" content="本章节旨在帮助你无门槛地理解、安装并掌握 fpart 与 fpsync 这对高性能数据同步组合。"><meta name="keywords" content='linux, 优化, 解决方案, 同步, rsync, AI'>
+  <meta itemprop="name" content="大规模数据并行迁移神器fpart & fpsync">
+  <meta itemprop="description" content="本章节旨在帮助你无门槛地理解、安装并掌握 fpart 与 fpsync 这对高性能数据同步组合。">
+  <meta itemprop="datePublished" content="2026-07-06T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-07-07T00:00:00+00:00">
+  <meta itemprop="wordCount" content="984">
+  <meta itemprop="image" content="http://localhost:1313/icons/logo_transparent.webp">
+  <meta itemprop="keywords" content="Linux,优化,解决方案,同步,Rsync,AI"><meta property="og:url" content="http://localhost:1313/posts/linux/fpart-fpsync/">
+  <meta property="og:site_name" content="一个曾经的小码农...">
+  <meta property="og:title" content="大规模数据并行迁移神器fpart & fpsync">
+  <meta property="og:description" content="本章节旨在帮助你无门槛地理解、安装并掌握 fpart 与 fpsync 这对高性能数据同步组合。">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-07-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-07T00:00:00+00:00">
+    <meta property="article:tag" content="Linux">
+    <meta property="article:tag" content="优化">
+    <meta property="article:tag" content="解决方案">
+    <meta property="article:tag" content="同步">
+    <meta property="article:tag" content="Rsync">
+    <meta property="article:tag" content="AI">
+    <meta property="og:image" content="http://localhost:1313/icons/logo_transparent.webp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/icons/logo_transparent.webp">
+  <meta name="twitter:title" content="大规模数据并行迁移神器fpart & fpsync">
+  <meta name="twitter:description" content="本章节旨在帮助你无门槛地理解、安装并掌握 fpart 与 fpsync 这对高性能数据同步组合。">
+<meta name="application-name" content="FixIt">
+<meta name="apple-mobile-web-app-title" content="FixIt"><meta name="theme-color" data-light="#f8f8f8" data-dark="#252627" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" type="text/html" href="http://localhost:1313/posts/linux/fpart-fpsync/" title="大规模数据并行迁移神器fpart &amp; fpsync - 一个曾经的小码农..." /><link rel="prev" type="text/html" href="http://localhost:1313/posts/hugo/fixit%E4%B8%BB%E9%A2%98%E6%8E%A5%E5%85%A5pagefind%E5%8E%9F%E7%94%9F%E6%90%9C%E7%B4%A2/" title="FixIt主题接入Pagefind原生搜索" /><link rel="next" type="text/html" href="http://localhost:1313/posts/other/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%A2%98-%E8%BF%90%E7%BB%B4%E6%B5%81%E7%A8%8B%E8%A7%84/" title="运维常见题-运维流程规范" /><link rel="alternate" type="text/markdown" href="http://localhost:1313/posts/linux/fpart-fpsync/index.md" title="大规模数据并行迁移神器fpart & fpsync - 一个曾经的小码农..."><link rel="stylesheet" href="/css/config.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.removeAttribute('onload');this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "大规模数据并行迁移神器fpart \u0026 fpsync",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "http:\/\/localhost:1313\/posts\/linux\/fpart-fpsync\/"
+    },"genre": "posts","keywords": "linux, 优化, 解决方案, 同步, rsync, AI","wordcount":  984 ,
+    "url": "http:\/\/localhost:1313\/posts\/linux\/fpart-fpsync\/","datePublished": "2026-07-06T00:00:00+00:00","dateModified": "2026-07-07T00:00:00+00:00","publisher": {
+      "@type": "Organization",
+      "name": ""},"author": {
+        "@type": "Person",
+        "name": "0x5c0f"
+      },"description": "本章节旨在帮助你无门槛地理解、安装并掌握 fpart 与 fpsync 这对高性能数据同步组合。"
+  }
+  </script><script src="/js/head/color-scheme.min.js"></script><link rel="stylesheet" href="/css/cmpt-ai-declaration.fixit.min.css"><script>window.__cmptPagefindConfig={"enabled":true,"maxResultLength":10,"pagefind":{"baseUrl":"","bundlePath":"/pagefind/","debounceTimeoutMs":300,"excerptLength":30,"filters":{},"highlightParam":"","indexWeight":{},"maxResultLength":10,"mergeFilter":{},"mode":"basic","ranking":{},"sort":{},"useBuiltInFilters":true}};</script><meta data-pagefind-filter="hidden:false">
+    <meta data-pagefind-filter="encrypted:false">
+    <meta data-pagefind-meta="date:2026-07-06">
+    <meta data-pagefind-sort="date:1783296000"><script src="/js/cmpt-pagefind-component.head.min.js" defer></script></head>
+  <body data-instant-intensity="viewport" data-header-desktop="sticky" data-header-mobile="auto"><div class="wrapper" data-page-style="normal"><header class="desktop animate__faster" id="header-desktop">
+  <div class="header-wrapper">
+    <div class="header-title">
+      <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+    <nav>
+      <ul class="menu"><li class="menu-item">
+              <a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item">
+              <a class="menu-link" href="/tags/">标签</a></li><li class="menu-item">
+              <a class="menu-link" href="/categories/">分类</a></li><li class="menu-item">
+              <a class="menu-link" href="/archives/">归档</a></li><li class="menu-item">
+              <a class="menu-link" href="/about/">About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id="search-desktop">
+            <input type="text" placeholder="搜索文章标题或内容……" id="search-input-desktop">
+            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+              <i class="fa-solid fa-search" aria-hidden="true"></i>
+            </a>
+            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+              <i class="fa-solid fa-times-circle" aria-hidden="true"></i>
+            </a>
+            <span class="search-button search-loading" id="search-loading-desktop">
+              <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+            </span>
+          </li><li class="menu-item theme-switch" role="button" aria-label="切换主题" title="切换主题"><i class="fa-solid fa-adjust" aria-hidden="true"></i></li><li class="menu-item language-switch auto d-none" aria-hidden="true">
+    <span role="button" aria-label="选择语言" title="选择语言"><i class="fa-solid fa-language fa-fw" aria-hidden="true"></i></span>
+    <ul class="sub-menu"><li class="menu-item active" data-type="artificial">
+          <a href="/posts/linux/fpart-fpsync/" data-lang="zh-CN" class="menu-link text-secondary" title="简体中文">
+            <i class="fa-solid fa-person fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item-divider" aria-hidden="true"></li><li class="menu-item" data-type="machine">
+          <a data-lang="english" class="menu-link" title="English">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> English</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_simplified" class="menu-link" title="简体中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 简体中文</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="japanese" class="menu-link" title="日本語">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 日本語</a>
+        </li><li class="menu-item" data-type="machine">
+          <a data-lang="chinese_traditional" class="menu-link" title="繁體中文">
+            <i class="fa-solid fa-robot fa-fw fa-sm" aria-hidden="true"></i> 繁體中文</a>
+        </li></ul>
+  </li></ul>
+    </nav>
+  </div>
+</header><header class="mobile animate__faster" id="header-mobile">
+  <div class="header-container">
+    <div class="header-wrapper">
+      <div class="header-title">
+        <a href="/" title="一个曾经的小码农..."><span class="typeit"><template>0x5c0f.cc</template></span></a><span class="header-subtitle"></span></div>
+      <div class="theme-switch" role="button" aria-label="切换主题"><i class="fa-solid fa-adjust" aria-hidden="true"></i></div>
+      <div class="menu-toggle" id="menu-toggle-mobile" role="button" aria-labelledby="menu-mobile">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <nav>
+      <ul class="menu" id="menu-mobile"><li class="search-wrapper">
+            <div class="search mobile" id="search-mobile">
+              <input type="text" placeholder="搜索文章标题或内容……" id="search-input-mobile">
+              <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                <i class="fa-solid fa-search" aria-hidden="true"></i>
+              </a>
+              <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                <i class="fa-solid fa-times-circle" aria-hidden="true"></i>
+              </a>
+              <span class="search-button search-loading" id="search-loading-mobile">
+                <i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i>
+              </span>
+            </div>
+            <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+              取消
+            </a>
+          </li><li class="menu-item"><a class="menu-link" href="/posts/">所有文章</a></li><li class="menu-item"><a class="menu-link" href="/tags/">标签</a></li><li class="menu-item"><a class="menu-link" href="/categories/">分类</a></li><li class="menu-item"><a class="menu-link" href="/archives/">归档</a></li><li class="menu-item"><a class="menu-link" href="/about/">About</a></li><li class="menu-item menu-system"><span id="translate" class="menu-system-item language-switch auto d-none" aria-hidden="true">
+    <span role="button" aria-label="选择语言" title="选择语言" data-current="简体中文">简体中文<i class="dropdown-icon fa-solid fa-chevron-down" aria-hidden="true"></i></span>
+  </span></li>
+      </ul>
+    </nav>
+  </div>
+</header><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+  </div>
+  <div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+  </div><main class="fi-container"><aside class="aside-collection animate__animated animate__fadeIn animate__faster" aria-label="合集"></aside>
+
+  <article class="page single">
+    <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>大规模数据并行迁移神器fpart &amp; Fpsync</span>
+      </h1></div><div class="post-meta">
+      <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者" target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/ai/" class="post-category" title="分类 - AI"><i class="fa-regular fa-folder" aria-hidden="true"></i> AI</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 运维记事</a>&ensp;<a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2026-07-06 00:00:00"><i class="fa-solid fa-calendar-days me-1" aria-hidden="true"></i><time datetime="2026-07-06">2026-07-06</time></span>&nbsp;<span title="更新于 2026-07-07 00:00:00"><i class="fa-regular fa-calendar-check me-1" aria-hidden="true"></i><time datetime="2026-07-07">2026-07-07</time></span>&nbsp;<span title="984 字"><i class="fa-solid fa-pencil-alt me-1" aria-hidden="true"></i>约 1000 字</span>&nbsp;<span><i class="fa-regular fa-clock me-1" aria-hidden="true"></i>预计阅读 5 分钟</span>&nbsp;</div>
+    </div><div class="details toc" id="toc-static" data-kept="false">
+        <div class="details-summary toc-title">
+          <span>目录</span>
+          <span><i class="details-icon fa-solid fa-angle-right" aria-hidden="true"></i></span>
+        </div>
+        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#-一-核心概念与底层架构设计">📌 一、 核心概念与底层架构设计</a>
+      <ul>
+        <li><a href="#1-两者的核心关系与分工-">1. 两者的核心关系与分工 🧩</a></li>
+        <li><a href="#2-底层工作架构设计图-">2. 底层工作架构设计图 📐</a>
+          <ul>
+            <li><a href="#-本地并行模式单机并发">① 本地并行模式（单机并发）</a></li>
+            <li><a href="#-远程分布式模式多机器集群并发">② 远程分布式模式（多机器集群并发）</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-核心难点攻克目录元数据保真-">3. 核心难点攻克：目录元数据保真 🔬</a></li>
+      </ul>
+    </li>
+    <li><a href="#-二-环境部署与安装指南">📥 二、 环境部署与安装指南</a>
+      <ul>
+        <li><a href="#1-ubuntu--debian-系统的安装-">1. Ubuntu / Debian 系统的安装 🟠</a></li>
+        <li><a href="#2-centos--rhel--rocky-linux-系统的安装-">2. CentOS / RHEL / Rocky Linux 系统的安装 🔵</a></li>
+        <li><a href="#3-freebsd-系统的安装-">3. FreeBSD 系统的安装 🐉</a></li>
+        <li><a href="#4-安装验证-">4. 安装验证 ✅</a></li>
+      </ul>
+    </li>
+    <li><a href="#-三-新人快速上手基础同步与核心参数拆解">⚡ 三、 新人快速上手：基础同步与核心参数拆解</a>
+      <ul>
+        <li><a href="#1-新人必看两条铁律-">1. 新人必看：两条铁律 ⚠️</a></li>
+        <li><a href="#2-最基础的本地同步示例-">2. 最基础的本地同步示例 📂</a></li>
+        <li><a href="#3-控制并发与分块大小核心调优-">3. 控制并发与分块大小（核心调优） 🎛️</a></li>
+        <li><a href="#4-跨机器远程同步-">4. 跨机器远程同步 🌐</a></li>
+        <li><a href="#5-排除不需要同步的文件-">5. 排除不需要同步的文件 🚫</a></li>
+      </ul>
+    </li>
+    <li><a href="#-四-任务管理与断点续传设计">🛠️ 四、 任务管理与断点续传设计</a>
+      <ul>
+        <li><a href="#1-任务的生命周期管理命令-">1. 任务的生命周期管理命令 🔄</a></li>
+        <li><a href="#2-完美的断点续传实战演练-">2. 完美的“断点续传”实战演练 🧭</a></li>
+      </ul>
+    </li>
+    <li><a href="#-五-高级进阶多节点集群并发与最佳实践">🚀 五、 高级进阶：多节点集群并发与最佳实践</a>
+      <ul>
+        <li><a href="#1-跨多台机器的分布式数据迁移ssh-workers-">1. 跨多台机器的分布式数据迁移（SSH Workers） 📡</a></li>
+        <li><a href="#2-企业级黄金迁移法则三阶段迁移法-">2. 企业级黄金迁移法则：三阶段迁移法 🏆</a></li>
+        <li><a href="#3-最佳性能调优速查表-">3. 最佳性能调优速查表 📊</a></li>
+      </ul>
+    </li>
+    <li><a href="#-六-关键限制与故障排查">⚠️ 六、 关键限制与故障排查</a>
+      <ul>
+        <li><a href="#1-无法直接支持硬链接-">1. 无法直接支持硬链接 🔗</a></li>
+        <li><a href="#2-慎用--e按目录模式--最终数据对齐-">2. 慎用 <code>-E</code>（按目录模式 / 最终数据对齐） 🚨</a></li>
+        <li><a href="#3-日志与排错路径-">3. 日志与排错路径 📂</a></li>
+      </ul>
+    </li>
+    <li><a href="#-七-总结">📋 七、 总结</a></li>
+  </ul>
+</nav></div>
+      </div><div class="ai-declaration" data-expanded="false">
+      <button
+        type="button"
+        class="ai-declaration-header"
+        aria-expanded="false"
+        onclick="const p=this.parentElement;const expanded=p.dataset.expanded==='true';p.dataset.expanded=expanded?'false':'true';this.setAttribute('aria-expanded', expanded?'false':'true');"
+      >
+        <svg class="ai-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <span class="ai-declaration-text">作者声明：内容由AI辅助创作</span>
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </button>
+      <div class="ai-declaration-content">
+        <div class="ai-detail-item">
+          <svg class="detail-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+            <path d="M12 16V12M12 8H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+          <div class="ai-value">本章内容由AI整理创作。</div>
+        </div></div>
+    </div><div class="content" id="content"><h2 class="heading-element" id="-一-核心概念与底层架构设计"><span>📌 一、 核心概念与底层架构设计</span>
+  <a href="#-%e4%b8%80-%e6%a0%b8%e5%bf%83%e6%a6%82%e5%bf%b5%e4%b8%8e%e5%ba%95%e5%b1%82%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>在传统的运维场景中，<code>rsync</code> 是数据同步的瑞士军刀。但在面对 PB 级数据或海量小文件（如千万级图片、日志）时，<code>rsync</code> 会暴露出致命缺陷：<strong>单线程构建文件列表</strong>。它必须先花数小时把所有文件扫描进内存，然后才开始慢吞吞地单线程传输。一旦中断，扫描工作全部重来。</p>
+<p>为了攻克这一痛点，<code>fpart</code> 项目应运而生，它通过**&ldquo;分区+并行&rdquo;**的思想重新定义了大规模数据迁移。</p>
+<h3 class="heading-element" id="1-两者的核心关系与分工-"><span>1. 两者的核心关系与分工 🧩</span>
+  <a href="#1-%e4%b8%a4%e8%80%85%e7%9a%84%e6%a0%b8%e5%bf%83%e5%85%b3%e7%b3%bb%e4%b8%8e%e5%88%86%e5%b7%a5-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p><code>fpart</code> 项目包含两个核心组件，它们分工明确：</p>
+<ul>
+<li><strong>fpart (底层的“核心引擎”) 🛠️</strong>：它是一个用 C 语言编写的超高性能文件系统分区器。它采用 <strong>bin-packing（装箱）算法</strong>，以极快的速度遍历文件树，并根据你指定的“文件数量”或“数据大小”，把庞大的文件树动态切分成一个个体量均衡的独立“任务块”。</li>
+<li><strong>fpsync (表层的“高级调度器”) 🚀</strong>：它是一个基于 <code>fpart</code> 封装的 Shell 脚本。它实现了**“边爬取、边切分、边传输”**的流式工作流（Live Mode）。一边让 <code>fpart</code> 扫描切片，一边同时维护一个并发任务队列，调度多个本地进程（默认调用 <code>rsync</code>）或远程 SSH 节点来并行传输这些切片。</li>
+</ul>
+<h3 class="heading-element" id="2-底层工作架构设计图-"><span>2. 底层工作架构设计图 📐</span>
+  <a href="#2-%e5%ba%95%e5%b1%82%e5%b7%a5%e4%bd%9c%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1%e5%9b%be-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><h4 class="heading-element" id="-本地并行模式单机并发"><span>① 本地并行模式（单机并发）</span>
+  <a href="#-%e6%9c%ac%e5%9c%b0%e5%b9%b6%e8%a1%8c%e6%a8%a1%e5%bc%8f%e5%8d%95%e6%9c%ba%e5%b9%b6%e5%8f%91" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>在这个模式下，<code>fpsync</code> 在本地高效压榨多核 CPU 和磁盘带宽。<code>fpart</code> 启用 Live 模式，无需等待全量扫描完毕，边扫描边生成分区清单（part.0, part.1&hellip;），调度器立即将这些清单派发给并行的 <code>rsync</code> 进程。</p>
+<div class="diagram-container">
+  <pre class="mermaid">graph TD
+    A[fpsync 调度主进程] -->|1. 启动并实时传参| B(fpart 核心引擎)
+    B -->|2. 流式实时爬取| C[源目录 src_dir]
+    B -->|3. 动态生成分区清单| D{任务队列 Partitions}
+    D -->|分区 part.0| E[rsync 进程 1]
+    D -->|分区 part.1| F[rsync 进程 2]
+    D -->|分区 part.n| G[rsync 进程 n]
+    E -->|并行写入| H[目标目录 dst_url]
+    F -->|并行写入| H
+    G -->|并行写入| H</pre>
+  <pre class="mermaid-dark">graph TD
+    A[fpsync 调度主进程] -->|1. 启动并实时传参| B(fpart 核心引擎)
+    B -->|2. 流式实时爬取| C[源目录 src_dir]
+    B -->|3. 动态生成分区清单| D{任务队列 Partitions}
+    D -->|分区 part.0| E[rsync 进程 1]
+    D -->|分区 part.1| F[rsync 进程 2]
+    D -->|分区 part.n| G[rsync 进程 n]
+    E -->|并行写入| H[目标目录 dst_url]
+    F -->|并行写入| H
+    G -->|并行写入| H</pre>
+  <pre class="mermaid-neutral">graph TD
+    A[fpsync 调度主进程] -->|1. 启动并实时传参| B(fpart 核心引擎)
+    B -->|2. 流式实时爬取| C[源目录 src_dir]
+    B -->|3. 动态生成分区清单| D{任务队列 Partitions}
+    D -->|分区 part.0| E[rsync 进程 1]
+    D -->|分区 part.1| F[rsync 进程 2]
+    D -->|分区 part.n| G[rsync 进程 n]
+    E -->|并行写入| H[目标目录 dst_url]
+    F -->|并行写入| H
+    G -->|并行写入| H</pre><div class="diagram-copy-btn" aria-label="Copy Mermaid code" role="button"><i class="fa-regular fa-clone fa-width-auto" aria-hidden="true"></i></div>
+<template><pre>graph TD
+    A[fpsync 调度主进程] -->|1. 启动并实时传参| B(fpart 核心引擎)
+    B -->|2. 流式实时爬取| C[源目录 src_dir]
+    B -->|3. 动态生成分区清单| D{任务队列 Partitions}
+    D -->|分区 part.0| E[rsync 进程 1]
+    D -->|分区 part.1| F[rsync 进程 2]
+    D -->|分区 part.n| G[rsync 进程 n]
+    E -->|并行写入| H[目标目录 dst_url]
+    F -->|并行写入| H
+    G -->|并行写入| H</pre></template>
+</div><h4 class="heading-element" id="-远程分布式模式多机器集群并发"><span>② 远程分布式模式（多机器集群并发）</span>
+  <a href="#-%e8%bf%9c%e7%a8%8b%e5%88%86%e5%b8%83%e5%bc%8f%e6%a8%a1%e5%bc%8f%e5%a4%9a%e6%9c%ba%e5%99%a8%e9%9b%86%e7%be%a4%e5%b9%b6%e5%8f%91" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h4><p>当你拥有多台机器和共享存储（如 NFS）时，<code>fpsync</code> 可以跨机器分发任务。主控节点上的 <code>fpart</code> 将生成的分区清单写入 NFS 共享目录，然后通过 SSH 指挥各个 Worker 节点读取清单并执行传输。</p>
+<div class="diagram-container">
+  <pre class="mermaid">graph TD
+    A[fpsync 主控节点] -->|1. 启动| B(fpart)
+    B -->|2. 动态生成任务清单| C[NFS 共享目录 /shared/dir]
+    A -->|3. 跨网络分发指令| D[SSH Worker 1]
+    A -->|3. 跨网络分发指令| E[SSH Worker 2]
+    D -->|4. 读取分配到的清单| C
+    E -->|4. 读取分配到的清单| C
+    D -->|5. 多机并行传输数据| F[远端目标存储]
+    E -->|5. 多机并行传输数据| F</pre>
+  <pre class="mermaid-dark">graph TD
+    A[fpsync 主控节点] -->|1. 启动| B(fpart)
+    B -->|2. 动态生成任务清单| C[NFS 共享目录 /shared/dir]
+    A -->|3. 跨网络分发指令| D[SSH Worker 1]
+    A -->|3. 跨网络分发指令| E[SSH Worker 2]
+    D -->|4. 读取分配到的清单| C
+    E -->|4. 读取分配到的清单| C
+    D -->|5. 多机并行传输数据| F[远端目标存储]
+    E -->|5. 多机并行传输数据| F</pre>
+  <pre class="mermaid-neutral">graph TD
+    A[fpsync 主控节点] -->|1. 启动| B(fpart)
+    B -->|2. 动态生成任务清单| C[NFS 共享目录 /shared/dir]
+    A -->|3. 跨网络分发指令| D[SSH Worker 1]
+    A -->|3. 跨网络分发指令| E[SSH Worker 2]
+    D -->|4. 读取分配到的清单| C
+    E -->|4. 读取分配到的清单| C
+    D -->|5. 多机并行传输数据| F[远端目标存储]
+    E -->|5. 多机并行传输数据| F</pre><div class="diagram-copy-btn" aria-label="Copy Mermaid code" role="button"><i class="fa-regular fa-clone fa-width-auto" aria-hidden="true"></i></div>
+<template><pre>graph TD
+    A[fpsync 主控节点] -->|1. 启动| B(fpart)
+    B -->|2. 动态生成任务清单| C[NFS 共享目录 /shared/dir]
+    A -->|3. 跨网络分发指令| D[SSH Worker 1]
+    A -->|3. 跨网络分发指令| E[SSH Worker 2]
+    D -->|4. 读取分配到的清单| C
+    E -->|4. 读取分配到的清单| C
+    D -->|5. 多机并行传输数据| F[远端目标存储]
+    E -->|5. 多机并行传输数据| F</pre></template>
+</div><h3 class="heading-element" id="3-核心难点攻克目录元数据保真-"><span>3. 核心难点攻克：目录元数据保真 🔬</span>
+  <a href="#3-%e6%a0%b8%e5%bf%83%e9%9a%be%e7%82%b9%e6%94%bb%e5%85%8b%e7%9b%ae%e5%bd%95%e5%85%83%e6%95%b0%e6%8d%ae%e4%bf%9d%e7%9c%9f-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>并行传输 <code>cpio</code> 或 <code>tar</code> 时有一个经典难题：如果父目录和子文件被分到不同分区并行处理，目录的修改时间会被多次覆盖，导致元数据丢失。</p>
+<p><strong>fpart 的解决方案</strong>：fpsync 1.6.0 起，底层自动调用 fpart 的 <code>-zzz</code> 和 <code>-P</code> 参数。</p>
+<ul>
+<li><code>-zzz</code>：把所有目录（包括空目录）作为 0 字节条目打包进分区。</li>
+<li><code>-P</code>：在关闭每个分区时，自动补上该分区所有文件的父目录链。
+这确保了无论分区以什么乱序被处理，父目录的元数据总是在最后被正确应用一次。</li>
+</ul>
+<hr>
+<h2 class="heading-element" id="-二-环境部署与安装指南"><span>📥 二、 环境部署与安装指南</span>
+  <a href="#-%e4%ba%8c-%e7%8e%af%e5%a2%83%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%ae%89%e8%a3%85%e6%8c%87%e5%8d%97" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>在绝大多数现代 Linux 发行版中，官方仓库已经收录了 <code>fpart</code>。<strong>你只需要安装 <code>fpart</code>，即可自动获得 <code>fpsync</code> 命令</strong>。</p>
+<h3 class="heading-element" id="1-ubuntu--debian-系统的安装-"><span>1. Ubuntu / Debian 系统的安装 🟠</span>
+  <a href="#1-ubuntu--debian-%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%ae%89%e8%a3%85-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 更新本地软件包索引</span>
+</span></span><span class="line"><span class="cl">sudo apt update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 安装 fpart (fpsync 会随之自动安装)</span>
+</span></span><span class="line"><span class="cl">sudo apt install fpart rsync -y</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 class="heading-element" id="2-centos--rhel--rocky-linux-系统的安装-"><span>2. CentOS / RHEL / Rocky Linux 系统的安装 🔵</span>
+  <a href="#2-centos--rhel--rocky-linux-%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%ae%89%e8%a3%85-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>RHEL 系系统需先启用 EPEL 仓库：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 安装并启用 EPEL 仓库</span>
+</span></span><span class="line"><span class="cl">sudo dnf install epel-release -y
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 安装 fpart 和 rsync</span>
+</span></span><span class="line"><span class="cl">sudo dnf install fpart rsync -y</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 class="heading-element" id="3-freebsd-系统的安装-"><span>3. FreeBSD 系统的安装 🐉</span>
+  <a href="#3-freebsd-%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%ae%89%e8%a3%85-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo pkg install sysutils/fpart</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 class="heading-element" id="4-安装验证-"><span>4. 安装验证 ✅</span>
+  <a href="#4-%e5%ae%89%e8%a3%85%e9%aa%8c%e8%af%81-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 验证 fpart 引擎</span>
+</span></span><span class="line"><span class="cl">fpart -V
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证 fpsync 调度器</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意：1.7.1 版本才新增了 -V 选项，如果你的版本是 1.7.0，请使用 fpsync -h</span>
+</span></span><span class="line"><span class="cl">fpsync -h <span class="p">|</span> head -n <span class="m">5</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<h2 class="heading-element" id="-三-新人快速上手基础同步与核心参数拆解"><span>⚡ 三、 新人快速上手：基础同步与核心参数拆解</span>
+  <a href="#-%e4%b8%89-%e6%96%b0%e4%ba%ba%e5%bf%ab%e9%80%9f%e4%b8%8a%e6%89%8b%e5%9f%ba%e7%a1%80%e5%90%8c%e6%ad%a5%e4%b8%8e%e6%a0%b8%e5%bf%83%e5%8f%82%e6%95%b0%e6%8b%86%e8%a7%a3" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 class="heading-element" id="1-新人必看两条铁律-"><span>1. 新人必看：两条铁律 ⚠️</span>
+  <a href="#1-%e6%96%b0%e4%ba%ba%e5%bf%85%e7%9c%8b%e4%b8%a4%e6%9d%a1%e9%93%81%e5%be%8b-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>在敲下任何同步命令前，必须死记以下两条规则，否则程序会直接报错：</p>
+<ul>
+<li><strong>铁律 1：路径必须是绝对路径！</strong> 源目录和目标目录绝对不能写相对路径（如 <code>./data</code>），必须写完整路径（如 <code>/data/src/</code>）。</li>
+<li><strong>铁律 2：源目录结尾必须带斜杠 <code>/</code>！</strong> <code>fpsync</code> 强制要求对源目录执行内容级同步。带有斜杠（如 <code>/src/</code>）代表同步目录下的<strong>内容</strong>。</li>
+</ul>
+<h3 class="heading-element" id="2-最基础的本地同步示例-"><span>2. 最基础的本地同步示例 📂</span>
+  <a href="#2-%e6%9c%80%e5%9f%ba%e7%a1%80%e7%9a%84%e6%9c%ac%e5%9c%b0%e5%90%8c%e6%ad%a5%e7%a4%ba%e4%be%8b-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>将本地的 <code>/data/source/</code> 目录下的所有文件同步到 <code>/data/destination/</code> 目录中：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fpsync /data/source/ /data/destination/</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>💡 <strong>新人解惑</strong>：当你什么参数都不加时，<code>fpsync</code> 默认会启动 <strong>2 个并发任务</strong>，每个同步任务块最多包含 <strong>2000 个文件</strong> 或最高 <strong>4GB 的数据量</strong>。</p>
+<h3 class="heading-element" id="3-控制并发与分块大小核心调优-"><span>3. 控制并发与分块大小（核心调优） 🎛️</span>
+  <a href="#3-%e6%8e%a7%e5%88%b6%e5%b9%b6%e5%8f%91%e4%b8%8e%e5%88%86%e5%9d%97%e5%a4%a7%e5%b0%8f%e6%a0%b8%e5%bf%83%e8%b0%83%e4%bc%98-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li><code>-n</code>：设置最大并行任务数（并发数）。</li>
+<li><code>-f</code>：设置每个任务块最多包含多少个文件。</li>
+<li><code>-s</code>：设置每个任务块的最大数据字节量（支持 k/m/g/t/p 后缀）。</li>
+</ul>
+<p><strong>实战命令：</strong> 启动 4 个并发任务，限制每个任务块最多处理 1000 个文件、大小不超过 100MB：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fpsync -n <span class="m">4</span> -f <span class="m">1000</span> -s 100m /data/source/ /data/destination/</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 class="heading-element" id="4-跨机器远程同步-"><span>4. 跨机器远程同步 🌐</span>
+  <a href="#4-%e8%b7%a8%e6%9c%ba%e5%99%a8%e8%bf%9c%e7%a8%8b%e5%90%8c%e6%ad%a5-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>通过 SSH 将本地数据安全地同步到远程服务器上：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fpsync -n <span class="m">4</span> /data/source/ user@192.168.1.100:/data/destination/</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p><em>💡 <strong>安全小贴士</strong>：强烈建议在两台服务器之间配置好 <strong>SSH 免密登录（密钥认证）</strong>，否则在并发执行时系统会反复索要密码。</em></p>
+<h3 class="heading-element" id="5-排除不需要同步的文件-"><span>5. 排除不需要同步的文件 🚫</span>
+  <a href="#5-%e6%8e%92%e9%99%a4%e4%b8%8d%e9%9c%80%e8%a6%81%e5%90%8c%e6%ad%a5%e7%9a%84%e6%96%87%e4%bb%b6-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>如果你需要排除某些文件（如 <code>.snapshot</code> 或 <code>*.tmp</code>），需要使用 <code>-O</code> 参数透传给底层 <code>fpart</code>。
+⚠️ <strong>注意：语法极其特殊，必须用管道符 <code>|</code> 分隔选项和值！</strong></p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 正确写法：排除 .snapshot* 和 *.tmp</span>
+</span></span><span class="line"><span class="cl">fpsync -n <span class="m">4</span> -O <span class="s2">&#34;-x|.snapshot*|-x|*.tmp&#34;</span> /data/source/ /data/destination/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 错误写法：用空格分隔不会生效</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># fpsync -O &#34;-x .snapshot* -x *.tmp&#34; ...</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div><hr>
+<h2 class="heading-element" id="-四-任务管理与断点续传设计"><span>🛠️ 四、 任务管理与断点续传设计</span>
+  <a href="#-%e5%9b%9b-%e4%bb%bb%e5%8a%a1%e7%ae%a1%e7%90%86%e4%b8%8e%e6%96%ad%e7%82%b9%e7%bb%ad%e4%bc%a0%e8%ae%be%e8%ae%a1" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p>海量数据同步往往需要数小时甚至数天，中途网络波动是家常便饭。<code>fpsync</code> 内置了极其强大的任务跟踪与断点续传机制。</p>
+<h3 class="heading-element" id="1-任务的生命周期管理命令-"><span>1. 任务的生命周期管理命令 🔄</span>
+  <a href="#1-%e4%bb%bb%e5%8a%a1%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e7%ae%a1%e7%90%86%e5%91%bd%e4%bb%a4-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>每个 <code>fpsync</code> 任务在启动时，都会被自动分配一个唯一的任务 ID（称为 <code>runid</code>）。</p>
+<div class="table-wrapper">
+  <table>
+    <thead>
+        <tr>
+            <th>动作</th>
+            <th>命令语法</th>
+            <th>适用场景</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>列出历史</strong> 📄</td>
+            <td><code>fpsync -l</code></td>
+            <td>查看过去和当前正在运行的所有同步任务及其状态</td>
+        </tr>
+        <tr>
+            <td><strong>断点续传</strong> 🔁</td>
+            <td><code>fpsync -r &lt;runid&gt;</code></td>
+            <td><strong>最核心功能。</strong> 任务中途意外中断后，输入该命令即可从上次失败的地方继续，绝不重复传输已成功的分区。</td>
+        </tr>
+        <tr>
+            <td><strong>任务重放</strong> 🔄</td>
+            <td><code>fpsync -r &lt;runid&gt; -R</code></td>
+            <td>强制重新同步该任务对应的所有分区，无论之前是否成功。适用于反复跑最终清理。</td>
+        </tr>
+        <tr>
+            <td><strong>打包归档</strong> 📦</td>
+            <td><code>fpsync -a &lt;runid&gt;</code></td>
+            <td>将指定任务的运行日志和配置打包压缩，便于留存或分析。</td>
+        </tr>
+        <tr>
+            <td><strong>清理删除</strong> ❌</td>
+            <td><code>fpsync -D &lt;runid&gt;</code></td>
+            <td>从系统中彻底抹除该同步任务的所有临时文件和记录。</td>
+        </tr>
+    </tbody>
+  </table>
+</div><h3 class="heading-element" id="2-完美的断点续传实战演练-"><span>2. 完美的“断点续传”实战演练 🧭</span>
+  <a href="#2-%e5%ae%8c%e7%be%8e%e7%9a%84%e6%96%ad%e7%82%b9%e7%bb%ad%e4%bc%a0%e5%ae%9e%e6%88%98%e6%bc%94%e7%bb%83-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li>
+<p><strong>第一步：</strong> 正常运行一个大任务，假设中途由于网络断开崩溃了：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fpsync -n <span class="m">8</span> /bigdata/src/ /bigdata/dst/</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p><strong>第二步：</strong> 待网络恢复后，查询刚才中断的任务 ID：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fpsync -l
+</span></span><span class="line"><span class="cl"><span class="c1"># 终端会输出类似以下的信息：</span>
+</span></span><span class="line"><span class="cl">Run 20250101_120000_abc123: INTERRUPTED <span class="o">(</span>partitions 5,6,7 pending<span class="o">)</span></span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+<li>
+<p><strong>第三步：</strong> 一键恢复，无缝续传：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fpsync -r 20250101_120000_abc123</span></span></code></pre></td></tr></table></div>
+</div>
+</div></li>
+</ul>
+<hr>
+<h2 class="heading-element" id="-五-高级进阶多节点集群并发与最佳实践"><span>🚀 五、 高级进阶：多节点集群并发与最佳实践</span>
+  <a href="#-%e4%ba%94-%e9%ab%98%e7%ba%a7%e8%bf%9b%e9%98%b6%e5%a4%9a%e8%8a%82%e7%82%b9%e9%9b%86%e7%be%a4%e5%b9%b6%e5%8f%91%e4%b8%8e%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 class="heading-element" id="1-跨多台机器的分布式数据迁移ssh-workers-"><span>1. 跨多台机器的分布式数据迁移（SSH Workers） 📡</span>
+  <a href="#1-%e8%b7%a8%e5%a4%9a%e5%8f%b0%e6%9c%ba%e5%99%a8%e7%9a%84%e5%88%86%e5%b8%83%e5%bc%8f%e6%95%b0%e6%8d%ae%e8%bf%81%e7%a7%bbssh-workers-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>当单台机器的网卡或 CPU 算力达到极限时，我们可以拉上局域网内的其他机器一起来分担同步压力。</p>
+<p><strong>前置绝对必要条件：</strong></p>
+<ol>
+<li><strong>必须要有一个共享目录</strong>（如 NFS 挂载），且主控节点和所有 Worker 节点都必须将该共享目录挂载到<strong>完全相同的绝对路径</strong>下。</li>
+<li>主控节点到所有 Worker 节点必须实现 <strong>SSH 免密登录</strong>。</li>
+</ol>
+<p><strong>分布式实战命令：</strong> 借助 <code>machine1</code> 和 <code>machine2</code> 两台外部机器，共同并发执行 8 个同步任务：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="1" style="--fi-max-shown-lines:12;--fi-line-digit:1;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fpsync -n <span class="m">8</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -w <span class="s1">&#39;root@machine1 root@machine2&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  -d /mnt/nfs/fpsync_shared/ <span class="se">\
+</span></span></span><span class="line"><span class="cl">  /mnt/nfs/source_data/ /mnt/nfs/destination_data/</span></span></code></pre></td></tr></table></div>
+</div>
+</div><p>🛠️ <strong>参数拆解</strong>：<code>-w</code> 后面指定 Worker 节点的 SSH 登录信息（空格分隔）；<code>-d</code> 指定它们都能共同读写的 NFS 共享目录路径。</p>
+<h3 class="heading-element" id="2-企业级黄金迁移法则三阶段迁移法-"><span>2. 企业级黄金迁移法则：三阶段迁移法 🏆</span>
+  <a href="#2-%e4%bc%81%e4%b8%9a%e7%ba%a7%e9%bb%84%e9%87%91%e8%bf%81%e7%a7%bb%e6%b3%95%e5%88%99%e4%b8%89%e9%98%b6%e6%ae%b5%e8%bf%81%e7%a7%bb%e6%b3%95-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>经过大规模实战验证，最安全高效的迁移策略分为三个阶段（综合使用不同后端工具）：</p>
+<div class="code-block highlight" data-mode="classic" data-copyable="true"><div class="chroma">
+<div class="code-header language-bash"><span class="code-title"><i class="arrow fa-solid fa-chevron-down" aria-hidden="true"></i></span><span class="ellipses-btn" aria-label="Show more options" role="button"><i class="fa-solid fa-ellipsis-h" aria-hidden="true"></i></span><span class="action-btn line-nos-btn" aria-label="切换行号" role="button" title="切换行号" data-ct-tooltip><i class="fa-solid fa-list-ol" aria-hidden="true"></i></span><span class="action-btn line-wrap-btn" aria-label="切换自动换行" role="button" title="切换自动换行" data-ct-tooltip><i class="fa-solid fa-right-left" aria-hidden="true"></i></span><span class="action-btn copy-btn" aria-label="复制到剪贴板" role="button" title="复制到剪贴板" data-copied-text="已复制" data-ct-tooltip><i class="fa-regular fa-clone" aria-hidden="true"></i></span></div><div class="code-wrapper" data-max="12" data-line-digit="2" style="--fi-max-shown-lines:12;--fi-line-digit:2;--fi-line-start:1;"><table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1. 基线全量（用 cpio 后端，速度最快，目录元数据由底层 -zzz -P 修复）</span>
+</span></span><span class="line"><span class="cl">fpsync -v -m cpio -n <span class="m">16</span> /data/src/ /data/dst/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 增量同步（用默认 rsync 后端，捕获变更，建议跑多次）</span>
+</span></span><span class="line"><span class="cl">fpsync -v -n <span class="m">64</span> /data/src/ /data/dst/
+</span></span><span class="line"><span class="cl">fpsync -v -n <span class="m">64</span> /data/src/ /data/dst/ 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 最终清理（加 -E 目录模式，删除目标端多余文件）</span>
+</span></span><span class="line"><span class="cl">fpsync -v -E -n <span class="m">64</span> /data/src/ /data/dst/</span></span></code></pre></td></tr></table></div>
+</div>
+</div><h3 class="heading-element" id="3-最佳性能调优速查表-"><span>3. 最佳性能调优速查表 📊</span>
+  <a href="#3-%e6%9c%80%e4%bd%b3%e6%80%a7%e8%83%bd%e8%b0%83%e4%bc%98%e9%80%9f%e6%9f%a5%e8%a1%a8-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>根据你的实际硬件和文件类型，参考下表调整参数能让速度成倍提升：</p>
+<div class="table-wrapper">
+  <table>
+    <thead>
+        <tr>
+            <th>数据场景特点</th>
+            <th>💡 建议并发数 (<code>-n</code>)</th>
+            <th>📄 建议分块文件数 (<code>-f</code>)</th>
+            <th>💾 建议分块大小限制 (<code>-s</code>)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>海量小文件</strong> (如头像、小碎日志)</td>
+            <td><code>16</code> 到 <code>64</code></td>
+            <td><code>5000</code> 到 <code>10000</code></td>
+            <td><code>100MB</code> 到 <code>500MB</code></td>
+        </tr>
+        <tr>
+            <td><strong>常规混合文件</strong> (日常办公文档、代码库)</td>
+            <td><code>8</code> 到 <code>16</code></td>
+            <td><code>1000</code> 到 <code>2000</code></td>
+            <td><code>500MB</code> 到 <code>1GB</code></td>
+        </tr>
+        <tr>
+            <td><strong>少量超大文件</strong> (如高清视频、虚拟机镜像)</td>
+            <td><code>4</code> 到 <code>8</code></td>
+            <td><code>0</code> (不限)</td>
+            <td><code>4GB</code> 到 <code>16GB</code></td>
+        </tr>
+    </tbody>
+  </table>
+</div><hr>
+<h2 class="heading-element" id="-六-关键限制与故障排查"><span>⚠️ 六、 关键限制与故障排查</span>
+  <a href="#-%e5%85%ad-%e5%85%b3%e9%94%ae%e9%99%90%e5%88%b6%e4%b8%8e%e6%95%85%e9%9a%9c%e6%8e%92%e6%9f%a5" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><h3 class="heading-element" id="1-无法直接支持硬链接-"><span>1. 无法直接支持硬链接 🔗</span>
+  <a href="#1-%e6%97%a0%e6%b3%95%e7%9b%b4%e6%8e%a5%e6%94%af%e6%8c%81%e7%a1%ac%e9%93%be%e6%8e%a5-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><ul>
+<li><strong>原因</strong>：<code>rsync</code> 是在单次运行中收集硬链接元数据的。而 <code>fpart</code> 会把文件切碎到不同分区里，导致同一个硬链接的两个源文件极有可能被分到了不同的同步进程中，从而丢失硬链接属性。</li>
+<li><strong>避坑指南</strong>：如果你必须完整保留硬链接，推荐方案：在 <code>fpsync</code> 大规模并行传输彻底完成后，最后用一次原生的单线程 <code>rsync -aH --delete /src/ /dst/</code> 命令进行全局硬链接修复。</li>
+</ul>
+<h3 class="heading-element" id="2-慎用--e按目录模式--最终数据对齐-"><span>2. 慎用 <code>-E</code>（按目录模式 / 最终数据对齐） 🚨</span>
+  <a href="#2-%e6%85%8e%e7%94%a8--e%e6%8c%89%e7%9b%ae%e5%bd%95%e6%a8%a1%e5%bc%8f--%e6%9c%80%e7%bb%88%e6%95%b0%e6%8d%ae%e5%af%b9%e9%bd%90-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>默认情况下，<code>fpsync</code> 是基于“文件列表”传输的，它不会删除目标目录中多余的文件。
+如果你加上了 <code>-E</code> 选项，<code>fpsync</code> 会切换到“目录模式”并<strong>自动强制启用 rsync 的 <code>--delete</code> 选项</strong>。这意味着：<strong>如果目标目录中存在某些源目录没有的文件，它们会被瞬间抹除！</strong></p>
+<ul>
+<li><strong>最佳实践推荐</strong>：在迁移的前几天，不加 <code>-E</code> 跑多次增量同步；在正式业务割接的当天，加 <code>-E</code> 跑最后一次最终同步，实现两端数据的完美对齐。</li>
+</ul>
+<h3 class="heading-element" id="3-日志与排错路径-"><span>3. 日志与排错路径 📂</span>
+  <a href="#3-%e6%97%a5%e5%bf%97%e4%b8%8e%e6%8e%92%e9%94%99%e8%b7%af%e5%be%84-" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h3><p>当任务失败或卡住时，<code>fpsync</code> 的所有日志都保存在临时目录中（默认在 <code>/tmp/fpsync/fpsync.&lt;runid&gt;/</code> 下）：</p>
+<ul>
+<li><code>fpsync.log</code>：调度器主日志，查看整体进度和报错。</li>
+<li><code>logs/job.0.stderr</code>：<strong>最重要的排错文件</strong>。如果某个分区同步失败，这里会记录最底层的 <code>rsync</code> 报错信息（如权限不足、网络超时等）。</li>
+</ul>
+<hr>
+<h2 class="heading-element" id="-七-总结"><span>📋 七、 总结</span>
+  <a href="#-%e4%b8%83-%e6%80%bb%e7%bb%93" class="heading-mark">
+    <svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg>
+  </a>
+</h2><p><code>fpart</code> 与 <code>fpsync</code> 的核心魅力在于将“大任务化小，小任务并发”。它巧妙地将文件系统遍历与数据传输解耦，通过 Live Mode 实现了边遍历边传输的流水线作业。</p>
+<p>只要你严格遵守“<strong>绝对路径</strong>”与“<strong>源目录尾部加斜杠</strong>”这两条铁律，避开 <code>-O</code> 参数的管道符语法陷阱，并灵活运用 <code>-n</code> 控制并发，你就能轻松驾驭任何 PB 级、千万级文件的极限数据迁移挑战！</p>
+</div><div class="post-footer" id="post-footer">
+  <div class="post-info">
+    <div class="post-info-line">
+      <div class="post-info-mod"><span title="更新于 2026-07-07 00:00:00">更新于 2026-07-07&nbsp;</span>
+      </div><div class="post-info-license">
+            <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
+          </div></div><div class="post-info-line">
+        <div class="post-info-md"><span><a href="/posts/linux/fpart-fpsync/index.md" title="阅读原始文档" class="link-to-markdown">阅读原始文档</a></span><span><a href="vscode://file//home/cxd/Projects/notes/content/posts/linux/fpart-fpsync.md" title="在编辑器中打开" target="_blank" rel="external nofollow noopener noreferrer" class="link-to-vscode">在编辑器中打开</a></span></div>
+        <div class="post-info-share">
+          <span></span>
+        </div>
+      </div></div>
+
+  <div class="post-info-more">
+    <section class="post-tags"><i class="fa-solid fa-tags me-1" aria-hidden="true"></i><a href="/tags/linux/" class="post-tag" title="标签 - Linux">Linux</a><a href="/tags/%E4%BC%98%E5%8C%96/" class="post-tag" title="标签 - 优化">优化</a><a href="/tags/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-tag" title="标签 - 解决方案">解决方案</a><a href="/tags/%E5%90%8C%E6%AD%A5/" class="post-tag" title="标签 - 同步">同步</a><a href="/tags/rsync/" class="post-tag" title="标签 - Rsync">Rsync</a><a href="/tags/ai/" class="post-tag" title="标签 - AI">AI</a></section>
+    <section><span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+    </section>
+  </div><div class="post-nav"><a href="/posts/hugo/fixit%E4%B8%BB%E9%A2%98%E6%8E%A5%E5%85%A5pagefind%E5%8E%9F%E7%94%9F%E6%90%9C%E7%B4%A2/" class="post-nav-item" rel="prev" title="FixIt主题接入Pagefind原生搜索"><i class="fa-solid fa-angle-left" aria-hidden="true"></i>FixIt主题接入Pagefind原生搜索</a><a href="/posts/other/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%A2%98-%E8%BF%90%E7%BB%B4%E6%B5%81%E7%A8%8B%E8%A7%84/" class="post-nav-item" rel="next" title="运维常见题-运维流程规范">运维常见题-运维流程规范<i class="fa-solid fa-angle-right" aria-hidden="true"></i></a></div>
+</div>
+</article>
+
+  <aside class="toc" id="toc-auto" aria-label="目录"><h2 class="toc-title">目录&nbsp;<i class="toc-icon fa-solid fa-angle-down" aria-hidden="true"></i></h2>
+      <div class="toc-content" id="toc-content-auto"></div></aside><dialog id="toc-dialog" aria-labelledby="toc-dialog-title" role="dialog">
+      <div class="toc">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content" id="toc-content-drawer"><nav >
+  <ul>
+    <li><a href="#-一-核心概念与底层架构设计">📌 一、 核心概念与底层架构设计</a>
+      <ul>
+        <li><a href="#1-两者的核心关系与分工-">1. 两者的核心关系与分工 🧩</a></li>
+        <li><a href="#2-底层工作架构设计图-">2. 底层工作架构设计图 📐</a>
+          <ul>
+            <li><a href="#-本地并行模式单机并发">① 本地并行模式（单机并发）</a></li>
+            <li><a href="#-远程分布式模式多机器集群并发">② 远程分布式模式（多机器集群并发）</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-核心难点攻克目录元数据保真-">3. 核心难点攻克：目录元数据保真 🔬</a></li>
+      </ul>
+    </li>
+    <li><a href="#-二-环境部署与安装指南">📥 二、 环境部署与安装指南</a>
+      <ul>
+        <li><a href="#1-ubuntu--debian-系统的安装-">1. Ubuntu / Debian 系统的安装 🟠</a></li>
+        <li><a href="#2-centos--rhel--rocky-linux-系统的安装-">2. CentOS / RHEL / Rocky Linux 系统的安装 🔵</a></li>
+        <li><a href="#3-freebsd-系统的安装-">3. FreeBSD 系统的安装 🐉</a></li>
+        <li><a href="#4-安装验证-">4. 安装验证 ✅</a></li>
+      </ul>
+    </li>
+    <li><a href="#-三-新人快速上手基础同步与核心参数拆解">⚡ 三、 新人快速上手：基础同步与核心参数拆解</a>
+      <ul>
+        <li><a href="#1-新人必看两条铁律-">1. 新人必看：两条铁律 ⚠️</a></li>
+        <li><a href="#2-最基础的本地同步示例-">2. 最基础的本地同步示例 📂</a></li>
+        <li><a href="#3-控制并发与分块大小核心调优-">3. 控制并发与分块大小（核心调优） 🎛️</a></li>
+        <li><a href="#4-跨机器远程同步-">4. 跨机器远程同步 🌐</a></li>
+        <li><a href="#5-排除不需要同步的文件-">5. 排除不需要同步的文件 🚫</a></li>
+      </ul>
+    </li>
+    <li><a href="#-四-任务管理与断点续传设计">🛠️ 四、 任务管理与断点续传设计</a>
+      <ul>
+        <li><a href="#1-任务的生命周期管理命令-">1. 任务的生命周期管理命令 🔄</a></li>
+        <li><a href="#2-完美的断点续传实战演练-">2. 完美的“断点续传”实战演练 🧭</a></li>
+      </ul>
+    </li>
+    <li><a href="#-五-高级进阶多节点集群并发与最佳实践">🚀 五、 高级进阶：多节点集群并发与最佳实践</a>
+      <ul>
+        <li><a href="#1-跨多台机器的分布式数据迁移ssh-workers-">1. 跨多台机器的分布式数据迁移（SSH Workers） 📡</a></li>
+        <li><a href="#2-企业级黄金迁移法则三阶段迁移法-">2. 企业级黄金迁移法则：三阶段迁移法 🏆</a></li>
+        <li><a href="#3-最佳性能调优速查表-">3. 最佳性能调优速查表 📊</a></li>
+      </ul>
+    </li>
+    <li><a href="#-六-关键限制与故障排查">⚠️ 六、 关键限制与故障排查</a>
+      <ul>
+        <li><a href="#1-无法直接支持硬链接-">1. 无法直接支持硬链接 🔗</a></li>
+        <li><a href="#2-慎用--e按目录模式--最终数据对齐-">2. 慎用 <code>-E</code>（按目录模式 / 最终数据对齐） 🚨</a></li>
+        <li><a href="#3-日志与排错路径-">3. 日志与排错路径 📂</a></li>
+      </ul>
+    </li>
+    <li><a href="#-七-总结">📋 七、 总结</a></li>
+  </ul>
+</nav></div>
+      </div>
+    </dialog></main><footer class="footer">
+    <div class="footer-container"><div class="footer-line"><script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","jtpwi0tdz1");</script></div><div class="footer-line">
+        托管在&nbsp;<a title="Vercel" href="https://vercel.com" target="_blank" rel="noopener noreffer">Vercel</a> & <a title="Aliyun" href="https://www.aliyun.com" target="_blank" rel="noopener noreffer">Aliyun</a></div><div class="footer-line powered">由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreferrer" title="Hugo 0.159.0"><img class="hugo-icon" src="/images/hugo.min.svg" alt="Hugo logo" /> Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/hugo-fixit/FixIt" target="_blank" rel="external" title="FixIt v0.4.5"><img class="fixit-icon" src="/images/fixit.min.svg" alt="FixIt logo" /> FixIt</a>
+        </div><div class="footer-line copyright" itemscope itemtype="http://schema.org/CreativeWork"><i class="fa-regular fa-copyright" aria-hidden="true"></i>
+            <span itemprop="copyrightYear">2022 - 2026</span><span class="author" itemprop="copyrightHolder">
+              <a href="https://blog.0x5c0f.cc" target="_blank" rel="external nofollow noopener noreferrer">0x5c0f</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span></div><div class="footer-line beian"><span class="gov"><img src="/images/gov.png" style="height: 16px;width: 16px; display: inline-block;vertical-align: middle;margin-right: 3px;"/><a href="https://beian.mps.gov.cn/#/query/webSearch?code=50010602503871" rel="noreferrer" target="_blank">渝公网安备50010602503871</a></span><span class="icp footer-divider"><a href="https://beian.miit.gov.cn" target="_blank">渝ICP备2020011834号-2</a></span></div></div>
+  </footer></div><div class="widgets"><div class="fixed-buttons"><div class="fixed-button back-to-top animate__faster d-none" role="button" aria-label="回到顶部"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><svg viewBox="0 0 100 100">
+              <circle class="bg" cx="50" cy="50" r="50"></circle>
+              <circle class="progress" cx="50" cy="50" r="50"></circle>
+            </svg></div><div id="toc-drawer-button" class="fixed-button toc-drawer-button d-none" role="button" aria-label="目录"><i class="fa-solid fa-bars" aria-hidden="true"></i></div></div><div id="mask"></div><div class="reading-progress-bar" style="left: 0;top: 0;"></div><noscript>
+    <div class="noscript-warning">该网站在启用 JavaScript 的情况下效果最佳。</div>
+  </noscript>
+</div><link rel="stylesheet" href="/lib/pace/themes/blue/pace-theme-minimal.css"><script src="/lib/autocomplete/autocomplete.min.js" defer></script><script src="/lib/instant-page/instantpage.min.js" async defer type="module"></script><script src="/lib/typeit/index.umd.js" defer></script><script src="/lib/cell-tooltip/cell-tooltip.umd.js" defer></script><script src="/lib/pace/pace.min.js" async defer></script><script src="/js/particle.min.js" defer></script><script src="/js/watermark.seal.min.js" defer></script><script src="/js/ext-utils.js" defer></script><script src="/js/config/c77e3719ccadc3eb48ef3a1498138076.js" defer></script><script src="/js/lib/mermaid.js" type="module"></script><script src="/js/theme.min.js" defer></script><script src="/lib/translate.js" defer></script><script>window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/fpart-fpsync/"}};console.log('Auto Translate config:', window.ATConfig);</script><script src="/js/translate.fixit.min.js" defer></script></body>
+</html>
