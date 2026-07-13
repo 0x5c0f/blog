@@ -95,10 +95,248 @@
             - **核心命令（在 PREROUTING 链）**： `iptables -t nat -A PREROUTING -d 202.100.1.1 -p tcp --dport 3306 -j DNAT --to-destination 192.168.1.10:3306`
 
 ## 简述 RAID0、RAID1、RAID5 和 RAID10 的区别与适用场景？  
+- `RAID 0`(条带化/Stripping)
+    - **工作原理**：将数据切分成块，均匀地、交错地写入到所有磁盘中。
+    - **磁盘利用率**：100%（$N$ 块盘，容量为 $N \times \text{单盘容量}$）。
+    - **优缺点**：
+        - **优点**：读写性能在所有 RAID 中最高，因为多块盘可以并行读写。
+        - **缺点**：没有任何冗余能力。任何一块盘损坏，整个阵列的数据全部崩溃。
+    - **适用场景**：对安全性零要求，但对读写速度要求极高的临时数据或缓存场景，如视频剪辑的临时渲染盘、分布式计算的临时缓存区（Swap / Scratch Space）。
+    - **最少磁盘数**：1 块（通常 2 块及以上才能体现性能优势）。
+
+- `RAID 1`(镜像/Mirroring)
+    - **工作原理**：将数据完全复制到所有磁盘中。
+    - **磁盘利用率**：50%（$N$ 块盘，容量为 $\frac{N}{2} \times \text{单盘容量}$）
+    - **优缺点**：
+        - **优点**：安全性极高，只要有一块盘存活，数据就不会丢失。读取性能好（可以从两块盘并行读）。
+        - **缺点**：写入性能受限于最慢的那块盘，且磁盘利用率极低，成本高。
+    - **适用场景**：对数据安全性要求极高、系统盘或者核心配置存储。例如操作系统的引导盘（OS Boot Disk）、金融系统的核心日志盘。
+    - **最少磁盘数**：2 块。
+
+- `RAID 5`（分布式奇偶校验 / Distributed Parity）
+    - **工作原理**：数据条带化存储，但每次写入时会计算出奇偶校验信息（Parity），并将校验数据轮流循环存储在每块磁盘上。
+    - **磁盘利用率**：$\frac{N-1}{N}$（$N$ 块盘，牺牲一块盘的容量来存校验信息）
+    - **优缺点**：
+        - **优点**：兼顾了性能、安全和成本。允许任意一块磁盘损坏而不丢失数据（通过其余盘和校验块计算恢复）。
+        - **缺点**：写入时需要重新计算校验码（写惩罚较大），写入性能一般。如果坏了一块盘，在更换新盘进行"数据重构（Rebuild）"时，剩余磁盘的 I/O 压力极大，此时极易再坏第二块盘导致整个阵列瘫痪。
+    - **适用场景**：适合读多写少、对性价比要求高的大容量存储。例如企业内部的常规文件服务器、非核心业务的日志存储、代码仓库。
+    - **最少磁盘数**：3 块。
+
+- `RAID 10`（先镜像再条带化 / RAID 1 + 0）
+    - **工作原理**：它是 RAID 1 和 RAID 0 的组合拳。先每两块盘组成一个 RAID 1 镜像对保证安全，再将这些镜像对组合成一个 RAID 0 进行条带化提升性能。  
+    - **磁盘利用率**：50%。  
+    - **优缺点**：  
+        - **优点**：继承了 RAID 0 的高读写性能和 RAID 1 的高安全性。在最理想的情况下，即使坏掉一半数量的磁盘（只要不是同一个 RAID 1 镜像对里的两块盘同时坏），阵列依然能正常运转。数据重构时只需在镜像对内对拷，速度极快，风险较低。  
+        - **缺点**：成本昂贵，磁盘利用率低。  
+    - **适用场景**：高并发、高负载、对数据安全和性能都有极高要求的核心生产环境。例如大型核心关系型数据库（MySQL / Oracle / PostgreSQL）、虚拟化宿主机的底层存储。
+    - **最少磁盘数**：4 块（通常 6 块及以上才能体现性能优势，必须是偶数）。
+
+- **协助记忆**：
+    - 快(RAID 0) -> 保(RAID 1) -> 省(RAID 5) -> 豪(RAID 10)
+
+- **进阶思考**：
+    - 如果线上一个核心数据库的 RAID 10 阵列（由 4 块盘组成）中，突然有一块硬盘报红灯损坏（Degraded 状态）。此时作为运维，你该如何处理？在处理过程中有哪些高风险点需要注意？
+        - 第一步：立即确认数据备份；在对硬件进行任何物理操作之前，必须第一时间检查该数据库的自动化备份（如全备、增量日志/binlog）是否完整、可用。因为任何硬件更换都有引发二次故障的极端风险，必须有备份兜底
+        - 第二步：通过工具定位故障盘物理位置；使用服务器厂商提供的命令行工具（如戴尔的 perccli、华为的 storcli 或 MegaRAID 的 MegaCli）查看阵列状态，确认损坏盘的 Slot（槽位号），并开启定位灯（Enclosure Beacon），防止在线拔错盘（运维大忌：拔错盘会导致阵列直接崩溃）。
+        - 第三步：在线热插拔更换新盘（同型号、同容量）； RAID 10 支持热插拔。确认槽位后，拔出坏盘，插入准备好的同型号、同容量新盘。
+        - 第四步：监控数据重构（Rebuild）状态与系统负载，新盘插入后，阵列会自动开始 Rebuild。此时需要：
+            - 监控重构进度（使用 storcli /c0/eall/sall show rebuild）
+            - 控制业务线上的 I/O 负载：数据重构会极大地消耗剩余那块镜像盘的 I/O 性能。如果此时线上依然有高并发的密集写入，可能会导致重构时间拉长，甚至让仅存的那块镜像盘过载损坏。因此，必要时应该在业务低峰期进行、或者限制重构的 I/O 速率（Throttling）。
+    - `RAID 3` 是什么？
+        - RAID 3（专用校验盘 + 字节级条带化）：
+            - **机制**：它把数据分成很小的字节（Byte）级别，轮流写入各个数据盘。最核心的是，它固定使用一块专门的磁盘来存储所有的校验数据。
+            - **缺点**：由于每次写数据都要更新校验信息，那块专用的校验盘就会遭遇严重的 I/O 瓶颈（写热点），极易过载损坏。因此，RAID 3 在现代运维中几乎已经被淘汰。
+    - `RAID 10` 和 `RAID 01` 有什么区别？
+        - `RAID 10`（先镜像，再条带化 - 推荐）：
+            - **结构**：假设有 4 块盘，两两一组。A1 和 A2 组成 RAID 1 镜像，B1 和 B2 组成另一个 RAID 1 镜像。然后这两个独立的镜像组再拼成一个 RAID 0。
+            - **坏盘容错**：如果 A1 坏了，只有 A1 所在的局部镜像受影响。此时只要 A2 不坏，整个阵列完好无损，依然拥有高性能。更换 A1 时，也只需要从 A2 单对单对拷，重构极快。 
+        - `RAID 01`（先条带化，再镜像 - 极少使用）：
+            - **结构**：A1 和 B1 拼成一个具有高性能的 RAID 0，A2 和 B2 拼成另一个 RAID 0。然后这两个庞大的 RAID 0 互为镜像。
+            - **坏盘容错**：如果 A1 坏了，导致它所在的左侧整个 RAID 0 直接瘫痪。此时系统只能完全依靠右侧的 RAID 0 顶着。更换 A1 新盘时，由于左侧阵列已经崩了，必须从右侧的 A2 和 B2 整组读取数据来重构左侧，这会导致剩余磁盘面临巨大的 I/O 压力，极易引发二次坏盘崩溃。
+        - **RAID 10 vs RAID 01**：RAID 10 在安全性上完爆 RAID 01。在生产环境中，请永远选择 RAID 10，忘掉 RAID 01。
+
+
 ## 提示磁盘空间已满，该如何解决？  
+如果在生产环境中遇到提示磁盘空间已满（Disk Full），通常会分两个大方向去快速排查和定位：第一是空间真正被占满，第二是 Inode 节点耗尽。
+- **应急止血，恢复可用性**：磁盘写满可能导致服务崩溃甚至 SSH 登不上，先腾点空间让系统喘口气(*建议可以在服务器初始化的时候，就创建一个几GB大小的文件，用于应急时候的清理*)
+    1. 确认哪个挂载点满了: `df -h`
+    2. systemd 日志，清理一天前的内容，释放很快: `journalctl --vacuum-time=1d`
+    3. 清空日志内容但不删文件，进程句柄不受影响(truncate -s 0 /var/log/messages)。尽量别用 rm，否则进程还抓着旧 inode 空间不归还 
+    4. 清理临时目录: `rm -rf /tmp/* /var/tmp/*`
+
+- **精准定位元凶**：
+    - `df -i` 查 Inode（经典坑：df -h 显示正常但写不进文件） 
+        - `Inode` 满了说明海量小文件撑爆了`inode`表。用 `find /path -type f | wc -l` 定位目录，然后 `find /path -type f -delete` 或 `xargs rm -f` 批量清理
+        - `lsof | grep '(deleted)'` 查已删文件但进程还抓着句柄不放
+        - `lsof` 用 (`deleted`) 标记未释放的句柄，找到对应 PID 后 `systemctl restart <service>` 或 `kill` 掉
+        - `du -h --max-depth=1 /var | sort -hr | head 10` 逐级往下找大目录
+        - `find / -type f -size +1G` 直接盘全盘的大文件
+
+- **协助记忆**
+    - 一止血（journalctl / truncate），二排雷（df -i / lsof / du），三根治（logrotate + 监控）
+
+- **进阶思考**
+    - truncate 了日志但空间没变化？
+        - 进程没收到 SIGHUP，还在往旧 inode 写。kill -HUP <PID> 让进程重新 open 日志文件。logrotate 的 postrotate 脚本就是这个原理
+    - df 和 du 不一致？
+        - 大概率有进程在写一个大文件并且中途被删了。lsof | grep '(deleted)' 定位后重启服务
+
 ## 简述 DNS 解析过程？  
+- DNS（Domain Name System）解析的核心是将人类可读的域名（如 www.example.com）转换为机器可读的 IP 地址（如93.184.216.34）。整个过程涉及多级缓存和多级递归查询，目的是尽量让解析结果在离用户最近的地方命中，减少逐级往上问的耗时  
+    1. **本地缓存与 hosts 文件（系统级命中）**：
+        - `浏览器自身缓存` → `操作系统缓存`（如 systemd-resolved / nscd）→ `/etc/hosts` 文件, `/etc/nsswitch.conf` 控制解析顺序（通常配置为 hosts: files dns，先查 hosts 再走 DNS）, 这一步如果命中就直接返回，不产生网络请求
+    2. **向本地 DNS 递归服务器发起查询**
+        - 检查 `/etc/resolv.conf` 里配置的 nameserver（通常是 网关、运营商 DNS 或 内网 DNS 如 8.8.8.8 / 114.114.114.114）; 如果本地 DNS 有缓存，直接返回；没有则往下走 
+    3. **逐级递归查询（从根到叶子）**
+        - **根域名服务器（Root Server）**：全世界共 13 组（a.root-servers.net ~ m.root-servers.net），返回顶级域（.com / .cn / .org 等）的 NS 地址
+        - **顶级域名服务器（TLD Server）**：返回该域名的权威 NS 地址，例如 example.com 的权威 NS 是 dns1.namecheap.com
+        - **权威域名服务器（Authoritative Server）**：这是域名的最终归宿，直接返回域名对应的记录（A / AAAA / CNAME / MX 等
+    4. **DNS 记录类型（常见的几种）**
+        - `A / AAAA`：域名对 IPv4 / IPv6 地址
+        - `CNAME`：别名指向（www → example.com）
+        - `MX`：邮件交换记录
+        - `NS`：域名服务器记录
+        - `TXT`：文本记录（常用于域名验证 / SPF / DKIM）
+
+
+- **常用排查命令**
+    - `dig +trace example.com`：完整追踪递归路径
+    - `nslookup example.com`：基础查询
+    - `host example.com`：快速查 IP
+
+- **协助记忆**： 
+    - 查通讯录（本地缓存/hosts）→ 问总机（递归 DNS）→ 总台指引区域（根）→ 区域指到门牌（TLD）→ 门牌给电话（权威）
+
+- **进阶思考**：
+    - `dig` 返回了结果但浏览器就是打不开，还可能是什么问题?
+        - ：可能是 /etc/nsswitch.conf 里 hosts: dns files 顺序颠倒了，或者 systemd-resolved 的缓存污染了，resolvectl flush-caches 清一下
+    - DNS 解析异常缓慢，怎么定位瓶颈?
+        - dig + trace 看每级响应时间，如果根或 TLD 响应慢是运营商递归 DNS 的问题；如果权威 NS 慢是对方的服务问题。也可以对比 dig @8.8.8.8 和 dig @114.114.114.114 看谁的递归
+    - 内网 DNS 解析公司内部域名怎么设计的？
+        - 通常自建 DNS 服务器（如 dnsmasq / CoreDNS / Bind），配置内部域名转发到内网权威 NS，外部域名转发到上游运营商或 8.8.8.8。核心要点是内外分离，避免内网域名泄漏到公
+
 ## 简述 Linux 系统启动过程？  
+- Linux 从按下电源到出现登录提示符，大体经过五个阶段：`固件自检` → `Boot Loader` → `内核加载` → `init 进程` → `服务启动`  
+    - **第一阶段**：固件（BIOS / UEFI） 
+        - 通电后 CPU 执行固件代码，进行 POST（Power-On Self Test），检测 CPU、内存等基础硬件
+        - 按配置的启动顺序检查设备（硬盘 / U盘 / 网络），找到包含 Boot Loader 的设备并执行
+        - UEFI 比传统 BIOS 多了安全启动（Secure Boot）和 GPT 分区支持
+
+    - **第二阶段**：Boot Loader（GRUB 2）
+        - 读取 /boot/grub2/grub.cfg（或 /boot/efi/EFI/redhat/grub.cfg），显示系统选择菜单
+        - 选中内核后，GRUB 把内核文件（vmlinuz）和 initramfs 加载到内存
+        - 可以在此阶段编辑内核参数（如 single 进入单用户模式、rd.debug 调试 initramfs
+
+    - **第三阶段**：内核初始化
+        - 内核解压后执行，检测 CPU、内存、总线等硬件
+        - 挂载 initramfs（临时根文件系统），加载磁盘控制器、文件系统等必要驱动
+        - 挂载真正的根文件系统（/），执行 switch_root 切换到真实根
+        - initramfs 通常在完成后会被回收，释放内
+
+    - **第四阶段**：init 进程（systemd）
+        - 内核找到 /sbin/init（软链接到 systemd）作为 PID 1
+        - systemd 读取 /etc/systemd/system/default.target（通常指向 multi-user.target 或 graphical.target）
+        - 按依赖关系并行启动各单元（Unit），如挂载分区、启动网络、启动 sshd
+
+    - **第五阶段**：服务启动与登录
+        - systemd 执行该 target 下的所有必要服务
+        - 最后启动 getty（虚拟终端）或 display manager（图形界面），显示登录提示
+
+- **常用排查命令**：
+    - `dmesg` 或 `journalctl -k`：查看内核日志
+    - `journalctl -b`：查看本次启动的 systemd 日志
+    - `systemd-analyze`：查看总启动耗时
+    - `systemd-analyze blame`：按耗时排序各服务的启动时间
+    - `systemctl list-dependencies multi-user.target`：查看依赖
+
+- **协助记忆**： `固件通电自检` → `GRUB 捞内核` → `内核解压跑驱动` → `switch_root 交棒` → `systemd 拉起全家桶`
+- **进阶思考**：
+    - **系统启动卡住了，怎么定位是哪一步的问题(相关命令未测试)？**
+        - `dmesg` 看内核阶段有没有 `panic` 或挂载失败；
+        - `journalctl -b` 看 `systemd` 阶段哪个 unit 超时；
+        - `GRUB` 启动时按 e 编辑内核参数加 `systemd.log_level=debug` 或 `rd.debug` 输出更多信息, `Ctrl+x` 或 `F10` 启动
+
+    - **Boot Loader 坏了进不了系统怎么修复(相关命令未测试)**
+        - 用安装 U 盘进入 Rescue 模式 chroot 后：
+            - **BIOS 环境**：grub2-install /dev/sda（RHEL 系）或 grub-install /dev/sda（Debian 系）
+            - **UEFI 环境**：grub2-install --target=x86_64-efi --efi-directory=/boot/efi
+            - **重建配置**：grub2-mkconfig -o /boot/grub2/grub.cfg（RHEL 系）或 update-grub（Debian 系）
+
+    - **initramfs 损坏或缺失怎么办(相关命令未测试)？**
+        - `Rescue` 模式 `chroot` 后：
+            - **RHEL 系**：`dracut -f`
+            - **Debian 系**：`update-initramfs -u`
+
+
 ## 请说一下你经常用的 Linux 系统性能分析工具及用途？  
+- Linux 性能分析通常按 USE 原则（Utilization / Saturation / Errors）; 去拆：CPU、内存、磁盘、网络，每个维度有对应的工具链，从宏观到微观逐级缩小范围。  
+    - **Top** — 整体概览
+        - 一上来先跑 top，看几个核心指标：us（用户态）、sy（内核态）、wa（IO 等待）、id（空闲）、st（被宿主机偷走的 CPU）
+            - **us（User）— 用户态**：过高说明应用程序在做大量计算
+                - **常见原因**：Java 应用的业务逻辑死循环、频繁 GC、序列化/反序列化；数据库的全表扫描；Nginx/OpenResty 的 Lua 脚本运算过重
+                - **排查方向**：top -H 定位线程 → jstack / perf 抓堆
+            - **sy（System）— 内核态**：过高说明系统调用频繁
+                - **常见原因**：大量的上下文切换（线程数过多）、磁盘/网络 IO 中断密集、锁竞争激烈
+                - **排查方向**：vmstat 1 看 cs（context switch）是否异常；pidstat -w 1 看具体进程的上下文切换次数
+            - **wa（I/O Wait）— 等待 IO**：过高说明磁盘读写成了瓶颈
+                - **常见原因**：磁盘 IOPS 或带宽达到上限、RAID 卡缓存策略问题、文件系统层面的 lock contention
+                - **排查方向**：`iostat -xz 1` 看 `%util` / `await` / `r/s+w/s` 是否超标；iotop 确认是哪个进程在大量读写
+            - **hi（Hardware IRQ）— 硬中断**：过高说明硬件设备在频繁打断 CPU
+                - **常见原因**：万兆网卡的中断风暴、NVMe 盘中断过多
+                - **排查方向**：`cat /proc/interrupts` 看哪个设备在刷中断数；调整中断亲和性（`irqbalance` 或 `/proc/irq/*/smp_affinity`）
+            - **si（Software IRQ）— 软中断**：过高说明内核在排队处理软件中断
+                - **常见原因**：网络收发包量过大（特别是单队列网卡场景）、CPU 核心数较少时大量小包打进来
+                - **排查方向**：`cat /proc/softirqs` 看 NET_RX 是否异常；`sar -n DEV 1` 看 PPS（每秒包数）是否打到上限
+            - **st（Steal）— 被偷走的 CPU**：虚拟机环境下宿主机在占用本应分配给你的时间片
+                - **常见原因**：宿主机超分严重、同宿主机的其他 VM 在大量抢资源
+                - **排查方向**：st 超过 10% 就需要跟虚拟化团队沟通调整资源分配
+            - **id（Idle）— 空闲**：这个本身不是问题指标，但 id 为 0 且 CPU 都是 us/sy，说明系统在全力工作；id 为 0 但 wa 占了大头，说明 CPU在空等磁盘
+        - 按 P 按 CPU 排序，按 M 按内存排序，快速锁定异常进程 
+        - `top -H -p <PID>` 看具体线程
+    
+    - **vmstat** — 系统级快照
+        - `vmstat 1`（每秒输出一次），重点看这四列：
+            - `r`：正在运行的进程数（超过 CPU 核数说明 CPU 饱和）
+            - `b`：不可中断睡眠的进程数（IO 阻塞）
+            - `si` / so：swap 换入换出（大于 0 说明内存不足）
+            - `us` / `sy` / `wa` / `id`：CPU 时间分布
+
+    - **iostat** — 磁盘 IO 分析
+        - `iostat -xz 1`，重点关注：
+            - `%util`：磁盘忙绿比例（警惕，但 NVMe 盘在高 IOPS 下即使 100% 也可能正常，要看 r/s + w/s）
+            - `r/s` / `w/s`：每秒读写次数
+            - `await`：IO 平均等待时间（超过磁盘标称值说明有排队）
+            - `svctm`：服务时间（现代内核已不准确，仅供参考）
+
+    - **sar** — 历史回溯(需要在 `/etc/default/sysstat` 中开启 `ENABLED="true"`)
+        - `/var/log/sa/saXX` 记录了系统历史的 CPU / 内存 / 网络 / 磁盘数据
+        - `sar -u -f /var/log/sa/sa11` 看 11 号那天的 CPU 走势
+        - 线上排查时最常用的命令之一，出问题时先看 sar 回放确认时间点
+
+    - **ss** — 网络连接
+        - `ss -tuln`：查看所有监听端口
+        - `ss -s`：连接数统计（TIME_WAIT / ESTAB 数量）
+        - `ss -t -a` 或 `ss -o state time-wait`：精确过滤特定状态的连接
+
+    - **perf / strace** — 深挖到底
+        - `perf top`：直接看 CPU 在跑哪些内核函数或用户态函数，跳过 PID 的干扰
+        - `strace -cp <PID>`：统计该进程的系统调用耗时分布
+        - 这两步通常是前几项定位不到根因时才上 
+
+
+- **协助记忆**：
+    - top 挂号看整体，vmstat 量血压（CPU/内存快速读数）
+    - iostat 拍 X 光（磁盘在忙什么），sar 翻病历（回看历史指标）
+    - ss 听心跳（网络连接状态），perf/strace 上 CT 扫描（深挖到底
+
+
+- **进阶思考**：
+    - iostat 里的 %util 达到 100% 一定说明磁盘有问题吗？
+        - 不一定。%util 统计的是磁盘设备在采样周期内有多长时间在处理请求。对于机械盘，100% 通常意味着饱和；对于 NVMe 固态盘，因为它支持多队列并发，100% 的 util 下可能还有大量余量，要结合 r/s + w/s（是否达到盘标的 IOPS 上限）和 await（请求是否在排队）综合判断  
+    
+    - 什么情况下优先用 pidstat 而不是 top？  
+        - 遇到 CPU 飙高但 top 按 P 排序找不到高占用进程时（短生命周期进程频繁起停）。pidstat 1 每秒采样，能捕捉到瞬间出现又消失的进程。原理是 pidstat 在内核里抓 /proc 的统计快照，短进程死之前留下了足迹（这个之前在 CPU 隐蔽故障篇有覆盖）
+
 ## 简述 FTP 工作模式？  
 ## 简述 ext4 日志文件系统原理？  
 ## Linux 进程有哪几种状态？  

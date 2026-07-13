@@ -9,7 +9,7 @@
   <meta itemprop="name" content="大规模数据并行迁移神器fpart & fpsync">
   <meta itemprop="description" content="本章节旨在帮助你无门槛地理解、安装并掌握 fpart 与 fpsync 这对高性能数据同步组合。">
   <meta itemprop="datePublished" content="2026-07-06T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2026-07-07T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2026-07-10T00:00:00+00:00">
   <meta itemprop="wordCount" content="984">
   <meta itemprop="image" content="http://localhost:1313/icons/logo_transparent.webp">
   <meta itemprop="keywords" content="Linux,优化,解决方案,同步,Rsync,AI"><meta property="og:url" content="http://localhost:1313/posts/linux/fpart-fpsync/">
@@ -20,7 +20,7 @@
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
     <meta property="article:published_time" content="2026-07-06T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-07-07T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-07-10T00:00:00+00:00">
     <meta property="article:tag" content="Linux">
     <meta property="article:tag" content="优化">
     <meta property="article:tag" content="解决方案">
@@ -48,7 +48,7 @@
       "@type": "WebPage",
       "@id": "http:\/\/localhost:1313\/posts\/linux\/fpart-fpsync\/"
     },"genre": "posts","keywords": "linux, 优化, 解决方案, 同步, rsync, AI","wordcount":  984 ,
-    "url": "http:\/\/localhost:1313\/posts\/linux\/fpart-fpsync\/","datePublished": "2026-07-06T00:00:00+00:00","dateModified": "2026-07-07T00:00:00+00:00","publisher": {
+    "url": "http:\/\/localhost:1313\/posts\/linux\/fpart-fpsync\/","datePublished": "2026-07-06T00:00:00+00:00","dateModified": "2026-07-10T00:00:00+00:00","publisher": {
       "@type": "Organization",
       "name": ""},"author": {
         "@type": "Person",
@@ -145,7 +145,7 @@
     <div class="header"><h1 class="single-title animate__animated animate__flipInX"><span>大规模数据并行迁移神器fpart &amp; Fpsync</span>
       </h1></div><div class="post-meta">
       <div class="post-meta-line"><span class="post-author"><a href="https://blog.0x5c0f.cc" title="作者" target="_blank" rel="external nofollow noopener noreferrer author" class="author"><i class="fa-solid fa-user-circle" aria-hidden="true"></i>
-    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/ai/" class="post-category" title="分类 - AI"><i class="fa-regular fa-folder" aria-hidden="true"></i> AI</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 运维记事</a>&ensp;<a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2026-07-06 00:00:00"><i class="fa-solid fa-calendar-days me-1" aria-hidden="true"></i><time datetime="2026-07-06">2026-07-06</time></span>&nbsp;<span title="更新于 2026-07-07 00:00:00"><i class="fa-regular fa-calendar-check me-1" aria-hidden="true"></i><time datetime="2026-07-07">2026-07-07</time></span>&nbsp;<span title="984 字"><i class="fa-solid fa-pencil-alt me-1" aria-hidden="true"></i>约 1000 字</span>&nbsp;<span><i class="fa-regular fa-clock me-1" aria-hidden="true"></i>预计阅读 5 分钟</span>&nbsp;</div>
+    0x5c0f</a></span><span class="post-included-in">&nbsp;收录于 <a href="/categories/linux/" class="post-category" title="分类 - Linux"><i class="fa-regular fa-folder" aria-hidden="true"></i> Linux</a>&ensp;<a href="/categories/ai/" class="post-category" title="分类 - AI"><i class="fa-regular fa-folder" aria-hidden="true"></i> AI</a> 和 <a href="/collections/%E8%BF%90%E7%BB%B4%E8%AE%B0%E4%BA%8B/" class="post-collection" title="合集 - 运维记事"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 运维记事</a>&ensp;<a href="/collections/%E6%9D%82%E8%AE%B0/" class="post-collection" title="合集 - 杂记"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> 杂记</a></span></div><div class="post-meta-line"><span title="发布于 2026-07-06 00:00:00"><i class="fa-solid fa-calendar-days me-1" aria-hidden="true"></i><time datetime="2026-07-06">2026-07-06</time></span>&nbsp;<span title="更新于 2026-07-10 00:00:00"><i class="fa-regular fa-calendar-check me-1" aria-hidden="true"></i><time datetime="2026-07-10">2026-07-10</time></span>&nbsp;<span title="984 字"><i class="fa-solid fa-pencil-alt me-1" aria-hidden="true"></i>约 1000 字</span>&nbsp;<span><i class="fa-regular fa-clock me-1" aria-hidden="true"></i>预计阅读 5 分钟</span>&nbsp;</div>
     </div><div class="details toc" id="toc-static" data-kept="false">
         <div class="details-summary toc-title">
           <span>目录</span>
@@ -726,7 +726,7 @@
 </div><div class="post-footer" id="post-footer">
   <div class="post-info">
     <div class="post-info-line">
-      <div class="post-info-mod"><span title="更新于 2026-07-07 00:00:00">更新于 2026-07-07&nbsp;</span>
+      <div class="post-info-mod"><span title="更新于 2026-07-10 00:00:00">更新于 2026-07-10&nbsp;</span>
       </div><div class="post-info-license">
             <span><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">CC BY-NC-SA 4.0</a></span>
           </div></div><div class="post-info-line">
