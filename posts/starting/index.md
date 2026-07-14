@@ -11,5 +11,5 @@
 ---
 
 > 作者: [0x5c0f](https://blog.0x5c0f.cc)  
-> URL: https://blog.0x5c0f.cc/posts/starting/  
+> URL: http://localhost:1313/posts/starting/  
 

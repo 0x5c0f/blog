@@ -338,10 +338,296 @@
         - 遇到 CPU 飙高但 top 按 P 排序找不到高占用进程时（短生命周期进程频繁起停）。pidstat 1 每秒采样，能捕捉到瞬间出现又消失的进程。原理是 pidstat 在内核里抓 /proc 的统计快照，短进程死之前留下了足迹（这个之前在 CPU 隐蔽故障篇有覆盖）
 
 ## 简述 FTP 工作模式？  
+- `FTP（File Transfer Protocol）` 基于 `客户端`-`服务端` 模型，使用 两条 TCP 连接：一条控制连接（端口
+21）传输指令，一条数据连接（动态端口）传输文件。它的工作模式核心区别在于数据连接由谁发起  
+    - **主动模式（PORT / Active Mode）** 
+        - 客户端随机打开一个高位端口（假设 N）作为数据接收端，通过 PORT 命令告知服务端 IP 和 N
+        - 服务端从端口 20 主动连接客户端的 N 端口，建立数据通道
+        - 致命问题：客户端必须开放一个高位端口等待服务端连接。如果客户端在 NAT 网关或防火墙后面，外部无法主动连接到这个端口，连接会失败
+        - 极少用，现代 FTP 基本只在服务端防火墙限制严格时才被迫开启  
+    - **被动模式（PASV / Passive Mode）**
+        - 客户端发送 PASV 命令
+        - 服务端打开一个随机高位端口（假设 P），通过 PASV 响应告知客户端
+        - 客户端从自己的高位端口主动连接服务端的 P 端口，建立数据通道
+        - 优点：客户端只需要能发起出站连接即可，不要求公网 IP 或开放入站端口
+        - 现代 FTP 的默认模式
+    - **两种模式对比**
+        | 特征             | 主动(PORT)              | 被动(PASV)                 |
+        | ---------------- | ----------------------- | -------------------------- |
+        | 数据连接发起方   | 服务端 -> 客户端        | 客户端 -> 服务端           |
+        | 防火墙友好度     | ❌ 需客户端开放入站端口 | ✅ 仅需客户端出站          |
+        | NAT 环境可用     | ❌ 基本不能             | ✅ 正常使用                |
+        | 服务端防火墙配置 | 只需开放 21 + 20 端口   | 需开放 21 + 一个高位端口池 |
+    - **相关协议区分（易混淆）** ：
+        - **FTPS（FTP over SSL/TLS）**：标准 FTP + TLS 加密，仍用 PORT/PASV 模式，端口 990（隐式）或 21（显式 AUTH TLS）
+        - **SFTP（SSH File Transfer Protocol）**：基于 SSH 的文件传输协议，不是 FTP 的加密版，端口 22，完全不同的协议栈
+    - **常用服务端配置参考（vsftpd）** ：
+        ```ini
+        # 强制使用被动模式
+        pasv_enable=YES
+        pasv_min_port=30000
+        pasv_max_port=31000
+        pasv_address=<公网 IP>  # NAT 环境需指
+        ```
+- **协助记忆**：
+    - **主动模式**：你去找人拿快递，你告诉店家你在门口等，店家走出来递给你 → 需要你能接收
+    - **被动模式**：你去找人拿快递，店家说"我在门口等你"，你出门去他那取 → 你主动去取就行
+    - **一句话**：主动是服务端连客户端，被动是客户端连服务端数据端口
+
+- **进阶思考**：
+    - **为什么 FTP 不像 HTTP 只用一条连接？**
+        - FTP 设计于 1971 年，当时控制通道和数据通道分离的设计是为了在传输大文件时不受控制指令干扰，且能在传输中随时中断/续传。HTTP 是现代协议，一条连接同时承载控制（Header）和数据（Body），适用于短连接轻量传输。从协议设计哲学上就是两代产物
+
+    - **主动模式在什么场景下反而更适合？**
+        - 服务端防火墙极其严格、只允许开放 20 和 21端口，不允许开放高位端口池时。例如某些银行内部的文件传输，安全策略要求尽量少开放端口，就会让客户端自己去接收连接。但代价是客户端必须有公网 IP 且防火墙放行入站
+
+    - **EPSV 和 EPRT 是什么？**
+        - 扩展被动/主动模式，用于 IPv6 环境。PASV 的响应格式中 IP 地址是点分十进制（IPv4），在 IPv6 下无法表示，EPSV改用更简洁的协议号表示（EPSV → 229 Entering Extended Passive Mode (|||port|)），不传输 IP 地址，兼容性更好
+
 ## 简述 ext4 日志文件系统原理？  
+- `ext4` 是 `ext3` 的演进版本，继承了 `ext3` 的日志（Journal）机制，在此基础上引入了区段、延时分配、多块分配等核心改进  
+    - **日志机制（Journaling）**—— ext3 继承的核心, 日志的目的是保证文件系统在意外崩溃后能快速恢复一致性，不需要像 ext2 那样跑几小时的 fsck。原理是 **先写日志、再落数据**：
+        1. **事务开始（Begin）**：内核准备修改元数据（如分配 inode、创建目录项），标记一个事务开始
+        2. **写日志（Journal Write）**：将即将修改的元数据块提前写入日志区域（`/proc/fs/ext4/dm-X/journal` 或磁盘上的保留区域）
+        3. **提交（Commit）**：所有日志条目写入完成后，写入提交记录，表示该事务已完成
+        4. **回放（Checkpoint）**：将日志中的内容真正应用到文件系统对应位置，完成实际写操作
+        5. 崩溃重启后，内核检查日志——如果有未完成的提交则重放（replay），如果没有则直接跳过，不需要全盘 fsck
+    - **三种日志模式**（`man mount` → `data=journal` / `data=ordered` / `data=writeback，ordered` 是默认模式）
+        |模式|行为|安全性|性能|
+        |---|---|---|---|
+        |`journal`|元数据+文件数据都写日志|最高，断电能恢复全部数据|最慢|
+        |`ordered（默认）`|仅元数据写日志，数据先落盘|中等，日志保证元数据一致|中等|
+        |`writeback`|仅元数据写日志，数据可后写|最低，崩溃后文件内容可能全是零或垃圾|最快|
+
+    - **ext4 相比 ext3 的核心改进**
+        - **区段（Extents）** ：传统 ext3 用块映射（block mapping），每个文件需要一个间接块树来记录占用了哪些数据块。大文件（如 4GB）的块映射非常庞大。ext4 改用区段树（extent tree），每个区段记录一段连续物理块的起始位置 + 长度，大幅减少元数据量
+            - **类比**：以前是一个格子一个格子记"我占了第 1000 块、第 1001 块、第 1002 块……"，现在是一句话"我占了第 1000 到 2000 块"
+        - **延时分配（Delayed Allocation）**：应用程序发起 write() 时，ext4 不立即分配磁盘块，而是先在内存中攒着，等攒够了或真正要刷盘（flush）时再一次性分配连续的物理块
+            - **好处**：减少文件碎片（攒够了一个 extent 再分配）、提高写入合并效率
+            - **风险**：异常掉电时未分配的数据会丢失（写入承诺但还没入盘的内容）
+        - **多块分配器（mballoc）** ：传统文件系统一次只分配一个块，ext4 优先一次性分配多个连续块，减少 CPU 开销和碎片
+        - **Flex 块组**：将多个块组的元数据（inode table、block bitmap）集中存放，减少磁盘寻道时间
+        - **校验和（Checksum）** ：对日志和元数据增加校验，崩溃恢复阶段可以检测损坏
+        - **纳秒时间戳**：inode 的时间戳精度从秒级提升到纳秒级，并增加了 crtime（文件创建时间）
+
+    - **常用排查命令**
+        - `tune2fs -l /dev/sda1 | grep -i 'Filesystem features'`：查看该 ext4 分区开启了哪些特性
+        - `dumpe2fs -h /dev/sda1`：查看文件系统详细信息
+        - `fsck.ext4 -fn /dev/sda1`：不修复只检查，确认是否有日志不一致
+    
+- **协助记忆**
+    - **日志机制**：先记账（写日志）→ 再报账（落数据）→ 烂账了翻账本（崩溃重放）
+    - **三种模式**：journal（全记账）→ ordered（记摘要，原文先发）→ writeback（只记摘要不动原文）
+    - **ext4 的改进**：区段省地（一块连续的只记一次）→ 延时攒批（减少碎片）→ 多块分配（少跑几趟）
+
+- **进阶思考**
+    - **ordered 模式下断电，文件内容会不会出现脏数据？**
+        - 会。ordered 只保证元数据一致（文件系统不会损坏），但不保证应用层写入的数据 100% 完整。例如你正在用 Vi 写文档，断电后重新开机文件可能不是保存时的最终版本。要保证应用层数据完整性，需要上层做 fsync/fdatasync（数据库 redo log 就是这个原理）
+    - **ext4 和 xfs 应该如何选？**
+        - 说结论——没有绝对优劣，关键看场景：
+            - `ext4`：单文件系统容量不大（< 50TB）、文件数量不多、通用场景。RHEL 7+ 默认就是 xfs，但 ext4 依然广泛用于 Ubuntu 默认选和嵌入式场景
+            - `xfs`：大容量（单文件系统支持到 EB 级）、海量文件并行读写（如文件服务器、大数据存储）。xfs 的分配组（AG）设计使它并发写入性能更好
+            - 一句话：通用场景 ext4 足够，大容量高并发上 xfs
+    - **ext4 的 Inline Data 是什么？**
+        - 极小的文件（默认 60 字节以内）直接存放在 inode 结构体内，不分配数据块。这对于保存大量小文件（如 Git 对象、邮件存储）能极大减少磁盘寻道和元数据开销。tune2fs -l 里看到 inline_data 特性就是开启了这个。
+
 ## Linux 进程有哪几种状态？  
+- Linux 内核将进程状态定义在 `include/linux/sched.h` 中，`ps` 和 `top` 里看到的字母对应内核中的宏定义。总共分为`运行`、`睡眠`（两种）、`暂停`、`僵尸`、`退出`五种大类
+    - **R（TASK_RUNNING）**— 运行态
+        - 进程正在 CPU 上执行，或者已经准备好随时可以被调度器切换到 CPU 上运行
+        - 单纯看到 R 不一定是坏事，也可能只是刚在排队
+        - 如果 R 状态的进程数持续超过 CPU 核心数（可以通过 vmstat 的 r 列看），说明 CPU 饱和了
+
+    - **S（TASK_INTERRUPTIBLE）**— 可中断睡眠
+        - 进程在等待某个条件满足（等待 IO 完成、等待锁、等待 socket 数据），但可以被信号唤醒
+        - 这是最正常的睡眠状态，大部分服务进程（nginx worker、sshd 等）大部分时间处于此状态
+        - 如果系统空闲时大量进程停在 S 上是正常的
+
+    - **D（TASK_UNINTERRUPTIBLE）**— 不可中断睡眠
+        - 进程在内核态等待某个事件（通常是磁盘 IO），在此期间不响应任何信号，即使 kill -9 也杀不掉
+        - 正常的 D 状态是瞬时的（磁盘 IO 完成就切回），但如果大量进程长期卡在 D 状态，说明磁盘 IO 或存储系统出了问题
+        - 内核开发者也意识到了纯 D 状态的问题，后来引入了 TASK_KILLABLE（内核宏 SK），这是一种"可被杀死的 D 状态"——ext4 和 NFS 的一些 IO 路径已改用此模式
+
+    - **T（TASK_STOPPED）**— 暂停态
+        - 进程收到 SIGSTOP / SIGTSTP / SIGTTIN / SIGTTOU 等停止信号后被挂起
+        - 用 kill -CONT 发送 SIGCONT 可以让其恢复运行
+        - 常见场景：Shell 中按 Ctrl+Z 将一个前台任务放到后台暂停
+
+    - **t（TASK_TRACED）**— 追踪态
+        - 进程正在被 `ptrace` 系统调用跟踪，最常见的就是被 `strace` 或 `gdb` 附加的时候
+        - 本质上也是暂停状态，但专门由调试器控制
+
+    - **Z（EXIT_ZOMBIE）**— 僵尸态
+        - 子进程已退出，资源已释放，但父进程没有调用 `wait()` / `waitpid()` 来读取它的退出码，进程描述符还留在系统进程表中
+        - 少量短暂的 Z 是正常的（子进程刚死，父进程还没反应过来），但如果大量 Z 持续存在，说明父进程有 `Bug`，没有正确回收子进程
+        - `ps aux | grep Z `可以查到，`kill` 杀不掉——因为它已经死了
+        - 处理方式：僵尸进程的父进程如果是 `init/systemd（PID 1）`，`systemd` 会自动回收；如果是其他进程，需要 `kill` 掉它的父进程，僵尸会被 `init` 继承并回收
+    
+    - **X（EXIT_DEAD）**— 死亡态
+        - 进程已完全退出，正在被内核做最后清理（释放 task_struct）。这个状态在 ps 中几乎看不到，因为它只持续一瞬间
+
+- **协助记忆**
+    - **R**：在跑或等着跑
+    - **S**：在等资源，响了就醒
+    - **D**：在等磁盘，打死也不醒
+    - **T**：被暂停了，Ctrl+Z 就它
+    - **t**：被调试器绑起来了
+    - **Z**：死了但爹还没收尸
+    - **X**：尸体正在火化，看不到了
+
+- **进阶思考**
+    - **有一个进程卡在 D 状态很久了，kill -9 也杀不掉，怎么办？**
+        - D 状态意味着进程在内核态等待 IO，不响应任何信号。首先确认是哪个存储设备出了问题——`cat /proc/<PID>/status` 看 Wchan（等待的内核函数）和 `cat /proc/<PID>/stack` 看内核调用栈。通常是 NFS 服务端挂了、磁盘硬件故障、或 iSCSI 链路断了。解决方法是先恢复存储链路，如果还不行，只能重启系统。在日常运维中如果遇到不可恢复的 D 状态进程较多且影响业务，可以考虑 sysrq 触发紧急重启：`echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger`
+
+    - **大量僵尸进程怎么清理？**
+        - 先找到僵尸进程的父进程 `ps -eo pid,ppid,stat,cmd | grep Z`，确认父进程是谁。如果父进程还能正常运作，检查它是否没正确调用 waitpid()，这应是应用 Bug；如果父进程本身就是坏的，kill -9 <父PID> 杀掉父进程，僵尸被 systemd（PID 1）继承后自动回收。如果父进程已经是 PID 1（出现在容器场景中比较常见），那就比较棘手，可能需要重建容器或触发容器的重新初始化
+
+    - **TASK_KILLABLE 是什么时候引入的？**
+        - TASK_KILLABLE（内核中定义为 TASK_UNINTERRUPTIBLE | TASK_WAKEKILL）在 Linux 2.6.25 左右引入，目的是解决部分 D 状态进程连 kill -9 都杀不掉的问题。应用此机制的包括 NFS 客户端的一些等待路径、ext4 的部分 IO 操作。它在不可中断睡眠的基础上增加了一个可被杀死的标记——内核在进入睡眠时如果把 TASK_WAKEKILL 标记加上，收到致命信号（SIGKILL）时就会被唤醒并退出。但这没有覆盖所有 D 状态场景，所以普通的磁盘驱动 IO 路径上还是纯 D
+
+    - **ps aux 里看到的 Ss、S+、Sl 等不是单一字母，这些附加字母代表什么？**
+        - 大写字母（S / D / R / Z）是内核基础进程状态，附加小写字符描述额外属性：
+            - `s（session leader）`：会话领导者，通常是登录 Shell（bash）或终端会话的第一个进程
+            - `+（foreground）`：在前台进程组中，你正在当前终端跑的命令
+            - `l（multi-threaded）`：多线程进程（Java、mysqld、Nginx worker）
+            - `<（high priority）`：高优先级（负 nice 值），通常被 renice 提权
+            - `N（low priority）`：低优先级（正 nice 值），如 nice -n 10 启动的后台任务
+        - 组合示例：Ss = 可中断睡眠 + 会话领导者（bash 等命令），Sl = 可中断睡眠 + 多线程（Java 应用），R+ = 正在前台运行的命令
+
 ## Linux 进程间有哪些通信方式？  
+- **Linux 下进程间通信（IPC）的方式很多，从最简单的信号传递到高效的共享内存，各自适用不同场景和性能需求**
+    - **管道 / Pipe（|）**
+        - 内核维护的一块环形缓冲区，一个进程写另一端读，单向数据流
+        - 无名管道：pipe() 系统调用创建，仅用于父子进程或有亲缘关系的进程
+        - 命名管道 / FIFO：mkfifo 创建，有文件路径名，没有亲缘关系的进程也能通信，但依然单向
+        - 内核保证写不超过 PIPE_BUF（通常 4096 字节）的原子性
+
+    - **信号 / Signal**
+        - 异步通知机制，进程收到信号后执行预置的处理函数（默认动作 / 自定义 / 忽略）
+        - 发送端：kill() / raise() / sigqueue()
+        - 接收端：signal() / sigaction() 注册处理函数
+        - 传输信息量极少，只有信号编号 + siginfo_t 附带的一小段数据（PID、UID、错误码等），主要用于通知"发生了某事件"而不是传递业务数据
+
+    - **消息队列 / Message Queue**
+        - 内核维护的消息链表，每个消息有类型标识符，进程可以按类型读取
+        - POSIX 版本：mq_open() / mq_send() / mq_receive()
+        - SysV 版本：msgget() / msgsnd() / msgrcv()
+        - 相比管道，消息队列支持按消息类型优先读取，多个读者时可以做到定向分发
+        - 但所有消息都要经过内核拷贝，性能不如共享内存
+
+    - **共享内存 / Shared Memory**
+        - 最快的 IPC 方式——两个（或多个）进程将同一块物理内存映射到各自的虚拟地址空间，数据写入后对方立刻可见，不需要经过内核拷贝
+        - POSIX 版本：shm_open() + mmap()（内存映射文件到共享内存）
+        - SysV 版本：shmget() + shmat()（传统 System V 接口）
+        - 共享内存本身没有同步机制，必须配合信号量或互斥锁使用，否则会出现竞态条件
+        - ipcs -m 可以查看系统当前的共享内存段
+
+    - **信号量 / Semaphore**
+        - 不是传递数据的通道，而是同步原语，用于协调多个进程对共享资源的访问
+        - POSIX 版本：sem_open() / sem_wait() / sem_post()（命名信号量，可用于不相关进程）
+        - SysV 版本：semget() / semop()（集合式信号量，支持同时操作多个）
+        - 典型用法：共享内存 + 信号量组合使用，信号量控制"能不能读/写"而共享内存承载数据
+
+    - **套接字 / Socket**
+        - 最通用、最灵活的 IPC 方式，不仅用于网络通信，也可用于同一台机器的进程间通信
+        - Unix domain socket（AF_UNIX / AF_LOCAL）：不走网络协议栈，在内核内部直接拷贝数据，比 TCP loopback
+        快得多。有流式（SOCK_STREAM）和数据报（SOCK_DGRAM）两种
+        - 典型应用：MySQL 的 /var/run/mysqld/mysqld.sock、Docker 的 /var/run/docker.sock
+
+    - **内存映射文件 / mmap**
+        - mmap() 将文件映射到进程的虚拟地址空间，多个进程映射同一个文件时共享物理内存页
+        - 和共享内存类似，但以文件为后端（file-backed），数据会同步回磁盘，掉电不丢失
+        - MAP_SHARED 标志使所有进程的修改互相可见，MAP_PRIVATE 则触发写时复制（COW）
+
+- **协助记忆**
+    - **管道**: 两个人之间用一根管子传递纸条，单向
+    - **命名管道**: 一个带名字的公用管子，大家都可以往里塞纸条，但也单向
+    - **信号**: 你朝对面喊一声"食堂开饭了"（信息量很少，通知作用）
+    - **消息队列**: 每个人的信箱里扔带标签的信，收件人按标签取信
+    - **共享内存**: 一块公共白板，谁都能写谁都能读
+    - **信号量**: 一个令牌，只有拿到令牌的人才能碰白板
+    - **套接字**: 电话 / 对讲机，可以来回说话，最灵活
+    - **mmap**: 大家共用一本笔记本，写的内容会自动存进档案柜
+
+
+- **进阶思考**
+    - **共享内存既然是性能最好的，为什么不是所有场景都用它？**
+        - 共享内存的维护成本高。一是必须自己处理同步（信号量/锁），容易出竞态条件；二是共享内存在进程崩溃时如果不清理会一直残留在内核中（ipcs -m 可以看到残留段），需要手动 ipcrm 或进程注册清理钩子。对于不需要极致性能的场景，Unix domain socket 和消息队列在易用性上更好
+
+    - **Unix domain socket 和 TCP loopback（127.0.0.1）哪个性能好？**
+        - Unix domain socket 性能更好。TCP loopback 即使是本地通信也要经过完整的 TCP 协议栈（三次握手、校验和、滑动窗口），而 Unix domain socket 在内核内部直接调用 socket 层的内存拷贝，不需要封装 IP 头、不需要计算校验和。对于高频的本地 IPC（如 Nginx 转发请求、Docker 客户端与 daemon 通信），差异很明显
+
+    - **pipe 和 FIFO 的读写原子性有什么实际影响？**
+        - write() 写入不超过 PIPE_BUF（4096 字节）的数据是原子的——即多个写者同时写管道时，不会出现内容交错。但如果一次写入超过 4096 字节，内核可能分多次写入，与其他写者的内容混在一起。因此管道常用于"一个写一个读"的模式，多个写者同时写入就需要考虑互斥或使 用消息队列
+
+
 ## Linux 服务器如何调优？  
+- **Linux 调优不存在一套放之四海皆准的参数，它一定是先明确瓶颈在哪，再针对性地调整对应子系统。按照 CPU → 内存 → 存储 → 网络 → 内核参数的顺序逐层排查和调整。**
+    - **CPU 层面**
+        - **进程/线程数与 CPU 核数的关系**：CPU 密集型的应用，线程数通常设为 CPU核数 + 1 即可；IO 密集型的可以适当增加，但过多的上下文切换反而会降低吞吐。通过 vmstat 1 看 cs（context switch）列，如果每秒几十万次以上且 sy 偏高，说明线程数太多了
+        - **CPU 调度策略**：服务器环境使用 `performance` 调速器，避免 `powersave` 导致频率频繁跳变。`cpupower frequency-set -g performance` 可临时设置，持久化需配置 `/etc/default/cpupower` 或 `tuned` (cpupower 属于 kernel-tools, RHEL 和 Ubuntu 均可用)
+        - **中断亲和性**：在多核系统上，将网卡、NVMe 的中断绑定到指定 CPU 核心，避免所有中断都打到 CPU 0 上。`cat /proc/interrupts` 看中断分布，`/proc/irq/<IRQ>/smp_affinity` 设置亲和性
+
+    - **内存层面**
+        - **swappiness**：控制内核使用交换的积极程度，范围 0 ~ 100，默认 60。数据库服务器通常设 1 ~ 10，普通服务保持默认即可。`sysctl vm.swappiness=10`(*`内存使用率` 达到 `100-vm.swappiness` 时,开始使用交换分区; 但不是设为 0，内核 3.x 之后 vm.swappiness=0 意味着仅在内存绝对不足时才 swap，RHEL 8+ 又调整了行为——0 表示不主动 swap，OOM 优先级更高*)
+        - **透明大页 / THP**：内核自动将连续的 4KB 内存页合并成 2MB 大页，目的是减少 TLB miss。但对数据库类应用（MongoDB、Cassandra 等），THP 的自动合并和拆分会触发内存 compaction，导致不可预测的短暂停顿。MongoDB 官方文档明确建议关闭。临时关闭：`echo never > /sys/kernel/mm/transparent_hugepage/enabled`；持久化可选两种方式之一：在 `/etc/rc.d/rc.local` 加入上行命令，或在 `/etc/default/grub` 的 `GRUB_CMDLINE_LINUX` 追加 `transparent_hugepage=never` 然后 `grub2-mkconfig -o /boot/grub2/grub.cfg`。注意 tuned 的某些 profile 会自动重开 THP，关闭后需 `cat /sys/kernel/mm/transparent_hugepage/enabled` 确认状态  
+        - **OOM 策略**：`/proc/<PID>/oom_adj` 或 `oom_score_adj` 调整进程被 `OOM Killer` 选中的权重。核心数据库可以设为 -1000（永远不被杀）
+
+    - **存储层面**
+        - **I/O 调度器**：机械盘用 `kyber` 或 `mq-deadline`，NVMe 固态盘建议用 none（不调度，直接走 blk-mq 的直通路径）。`cat /sys/block/sda/queue/scheduler` 查看当前调度器，`echo none > /sys/block/nvme0n1/queue/scheduler` 修改 -挂载参数：noatime 或 relatime 避免每次读文件都更新 access time（默认 relatime 已开启，但显式加上 noatime 可以减少一次元数据写入）。大文件场景加 nobarrier（但需要文件系统本身能保证一致性）
+
+        - **预读大小**：`blockdev --setra 4096 /dev/sda` 调整磁盘预读值。顺序读为主的场景增大预读能提升吞吐
+        
+        - **deadline 与瓶颈**：`iostat -xz 1` 看 `await` 如果持续超过磁盘标称 IO 延时（机械盘通常 5 ~ 15ms，NVMe 通常 <
+        1ms），说明有排队或磁盘达到上限
+
+    - **网络层面**
+        - **TCP 连接优化**
+            - **net.core.somaxconn**：监听队列长度，高并发 Web 服务建议从 128 加大到 65535
+            - **net.ipv4.tcp_tw_reuse**：允许将 TIME_WAIT 状态的连接用于新的出站连接，配合 tcp_timestamps 使用
+            - **net.ipv4.tcp_fin_timeout**：FIN_WAIT2 的超时时间，默认 60 秒，可适当降低
+            - **net.core.rmem_max / wmem_max**：增大 socket 缓冲区上限，配合 tcp_rmem / tcp_wmem 调大初始/最小/最大窗口
+
+        - **连接追踪 / conntrack**：`net.netfilter.nf_conntrack_max` 默认 65536，在高并发场景下容易打满导致丢包。可以加大到 1048576 或更高，同时相应调整 `net.netfilter.nf_conntrack_buckets`
+        
+        - **全连接队列溢出**：`ss -lnt` 看 Send-Q（实际 backlog）和 Recv-Q（排队情况），如果 Recv-Q 持续不为 0 说明有连接堆积。`netstat -s | grep overflowed` 看是否有溢出计数
+
+    - **内核参数整体应用**
+        - 新增 `/etc/sysctl.d/99-tuning.conf` 文件，避免直接编辑 `/etc/sysctl.conf`， `sysctl --system` 重新加载。典型的一组生产环境参数示例：
+                ```ini
+                # CPU
+                kernel.sched_migration_cost_ns = 5000000
+                kernel.sched_autogroup_enabled = 0
+                
+                # 内存
+                vm.swappiness = 10
+                vm.vfs_cache_pressure = 50
+                
+                # 网络
+                net.core.somaxconn = 65535
+                net.ipv4.tcp_tw_reuse = 1
+                net.ipv4.tcp_fin_timeout = 15
+                net.core.rmem_max = 16777216
+                net.core.wmem_max = 16777216
+                net.ipv4.tcp_rmem = 4096 87380 16777216
+                net.ipv4.tcp_wmem = 4096 65536 16777216
+                net.nf_conntrack_max = 1048576
+                
+                # 文件句柄
+                fs.file-max = 2097152
+                ```
+
+- **协助记忆**
+    - **调优思路**：先找瓶颈再调参，不是上来就改 sysctl
+    - **五层记忆**：CPU 绑核别打架 → 内存别急着 swap → 硬盘选对调度器 → 网络队列别溢出 → 参数统一一个文件
+
+- **进阶思考**
+    - **RHEL 8+ 默认已经用 tuned 了，还需要手动调这些参数吗？**
+        - tuned 提供了预设配置集（如 throughput-performance / latency-performance 等），覆盖了大多数常见场景。如果 tuned 的配置集能满足业务需求，优先使用 tuned，不需要手动改 sysctl。tuned-adm list 查看可用集，tuned-adm profile latency- performance 切换。但如果业务负载非常特殊（如极低延迟交易系统、高密度虚拟化），仍然需要 tuned 之上再覆盖自定义参数
+
+    - **net.ipv4.tcp_tw_reuse 和 net.ipv4.tcp_tw_recycle 有什么区别？为什么都推荐 reuse 而不推荐 recycle？**
+        - tcp_tw_reuse 用于出站连接（客户端角色），在内核分配新连接时允许重用 TIME_WAIT 状态的连接。tcp_tw_recycle 用于入站连接（服务端角色），会快过期 TIME_WAIT。但 tcp_tw_recycle 开启了 PAWS（Protection Against Wrapped Sequences）机制，会丢弃那些时间戳比上一个连接还旧的包，导致 NAT 后面的客户端频繁出现连接失败（时间戳不同步）。Linux 4.12 内核已经彻底移除了 tcp_tw_recycle，所以不管你设不设它都没用了
+
 ## 简述 Keepalived 工作原理？  
 ## LVM 解决了什么问题？有什么特点？  
 ## 有 500 台服务器，你该如何管理？  
