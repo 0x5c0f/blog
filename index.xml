@@ -2209,7 +2209,7 @@ $&amp;gt; git push --force origin main
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;方案一&lt;/strong&gt;：杀掉父进程（最常用、最有效）&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;僵尸进程的父进程如果被 kill 掉，僵尸进程会被 PID 1（systemd）继承。systemd 会自动调用 wait() 回收，僵尸消失&lt;/li&gt;
+&lt;li&gt;僵尸进程的父进程如果被 &lt;code&gt;kill&lt;/code&gt; 掉，僵尸进程会被 &lt;code&gt;PID 1&lt;/code&gt;（systemd）继承。&lt;code&gt;systemd&lt;/code&gt; 会自动调用 &lt;code&gt;wait()&lt;/code&gt; 回收，僵尸消失&lt;/li&gt;
 &lt;li&gt;先找到父进程：&lt;code&gt;ps -eo pid,ppid,stat,cmd | grep Z&lt;/code&gt; 查看僵尸进程的 ·（父进程 PID），然后 &lt;code&gt;kill -9 &amp;lt;父PID&amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;注意：如果父进程是重要的业务进程（如正在处理请求的 &lt;code&gt;Nginx worker&lt;/code&gt;），杀掉它会导致正在处理的请求中断。需要在业务低峰期操作，或者确认该进程可以被安全重启&lt;/li&gt;
 &lt;/ul&gt;
@@ -2223,7 +2223,7 @@ $&amp;gt; git push --force origin main
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;方案三&lt;/strong&gt;：如果父进程就是 &lt;code&gt;systemd（PID 1）&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;容器场景中会出现这种情况——容器内 PID 1 的进程不处理 &lt;code&gt;SIGCHLD&lt;/code&gt;，导致容器内的僵尸进程无法被回收。解决方案：在启动容器时加上 &lt;code&gt;--init&lt;/code&gt; 参数，使用 &lt;code&gt;tini&lt;/code&gt; 或 &lt;code&gt;dumb-init&lt;/code&gt; 作为容器内的 &lt;code&gt;init&lt;/code&gt; 进程，它会自动回收僵尸（或者重建容器）&lt;/li&gt;
+&lt;li&gt;容器场景中会出现这种情况——容器内 &lt;code&gt;PID 1&lt;/code&gt; 的进程不处理 &lt;code&gt;SIGCHLD&lt;/code&gt;，导致容器内的僵尸进程无法被回收。解决方案：在启动容器时加上 &lt;code&gt;--init&lt;/code&gt; 参数，使用 &lt;code&gt;tini&lt;/code&gt; 或 &lt;code&gt;dumb-init&lt;/code&gt; 作为容器内的 &lt;code&gt;init&lt;/code&gt; 进程，它会自动回收僵尸（或者重建容器）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2241,8 +2241,8 @@ $&amp;gt; git push --force origin main
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;协助记忆&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;人已经死了（进程退出），但户籍系统上还有他的记录（进程表条目），等着家属（父进程）去派出所办死亡注销（wait()）。家属不去办，人就一直挂在系统上——这就是僵尸状态&lt;/li&gt;
-&lt;li&gt;和 D 状态的区别：D 状态是卡在等 IO、还活着但叫不醒；Z 状态是已经死了，彻底叫不醒了。kill -9 对 Z 无效，对 D 也无效，但 D 状态如果能走完 IO 会自己活过来，Z 状态只能靠父进程收尸&lt;/li&gt;
+&lt;li&gt;人已经死了（进程退出），但户籍系统上还有他的记录（进程表条目），等着家属（父进程）去派出所办死亡注销（&lt;code&gt;wait()&lt;/code&gt;）。家属不去办，人就一直挂在系统上——这就是僵尸状态&lt;/li&gt;
+&lt;li&gt;和 &lt;code&gt;D&lt;/code&gt; 状态的区别：&lt;code&gt;D&lt;/code&gt; 状态是卡在等 &lt;code&gt;IO&lt;/code&gt;、还活着但叫不醒；&lt;code&gt;Z&lt;/code&gt; 状态是已经死了，彻底叫不醒了。&lt;code&gt;kill -9&lt;/code&gt; 对 &lt;code&gt;Z&lt;/code&gt; 无效，对 &lt;code&gt;D&lt;/code&gt; 也无效，但 &lt;code&gt;D&lt;/code&gt; 状态如果能走完 &lt;code&gt;IO&lt;/code&gt; 会自己活过来，&lt;code&gt;Z&lt;/code&gt; 状态只能靠父进程收尸&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
