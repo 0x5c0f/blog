@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/prometheus_%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87/"}};

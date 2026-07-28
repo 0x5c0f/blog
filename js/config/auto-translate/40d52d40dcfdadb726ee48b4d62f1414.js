@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/other/gb2312unicode%E5%AF%B9%E7%85%A7%E8%A1%A8/"}};

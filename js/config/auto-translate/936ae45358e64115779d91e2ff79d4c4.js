@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/python/%E5%85%A8%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%97%B6%E9%97%B4/"}};

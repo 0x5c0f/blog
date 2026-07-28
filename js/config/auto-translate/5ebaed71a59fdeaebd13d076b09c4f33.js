@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/osi%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/"}};

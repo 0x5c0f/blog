@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/linux%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E4%B9%8Bcpu%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2/"}};

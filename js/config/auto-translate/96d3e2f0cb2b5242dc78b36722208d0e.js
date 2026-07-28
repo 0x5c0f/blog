@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/"}};

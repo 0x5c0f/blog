@@ -1,6 +1,12 @@
 # FixIt主题接入Pagefind原生搜索
 
 
+{{< admonition type=warning title="注意" open=true >}}
+
+**本组件所提供能力已经合并至主题主分支，请升级至 [hugo-fixit/FixIt(v1.0.0+)](https://github.com/hugo-fixit/FixIt)以上版本进行体验**
+
+{{< /admonition >}}
+
 `FixIt` 在保持原有搜索能力的基础上，支持将 [`Pagefind`](https://pagefind.app/) 作为原生搜索引擎使用。该方案适用于静态部署场景，能够在不依赖第三方搜索服务的前提下提供较完整的全文检索能力。
 
 本文用于说明 `Pagefind` 原生搜索的配置方式、构建流程与当前能力边界。

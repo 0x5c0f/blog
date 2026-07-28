@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/other/fedora%E8%A7%86%E9%A2%91%E6%A1%8C%E9%9D%A2/"}};

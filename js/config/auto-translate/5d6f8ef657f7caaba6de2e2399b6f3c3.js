@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/graylog%E5%A4%9A%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/"}};

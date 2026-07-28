@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/mysql/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/"}};

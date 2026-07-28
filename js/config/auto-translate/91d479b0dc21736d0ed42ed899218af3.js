@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/linux/php%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/"}};
