@@ -4,9 +4,39 @@
 > 第一篇文章当然是`hello world`了 
 <!--more-->
 
-```bash
-    echo "hello world !"
+
+{{< tabs type="underline" defaultTab=2 >}}
+{{% tab title="Rust" %}}
+```rust
+fn main() {
+    println!("Hello, World!");
+}
 ```
+{{% /tab %}}
+
+{{% tab title="Python" %}}
+```python
+print("Hello, World!")
+```
+{{% /tab %}}
+
+{{% tab title="Bash" %}}
+```bash
+echo "Hello, World!"
+```
+{{% /tab %}}
+
+{{% tab title="Java" %}}
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+{{% /tab %}}
+{{< /tabs >}}
+
 
 ---
 
