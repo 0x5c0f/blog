@@ -25,7 +25,7 @@
         - 系统不算内存不足，通常也完全不需要手动去清理。`linux` 有自己的管理机制,我们更多需要关注的是 `available` 那一列
         - 如何释放? 
             - 通过修改 `/proc/sys/vm/drop_caches` 来进行：`drop_caches` 是非破坏性操作，只释放干净的可回收缓存，不会丢数据或损坏文件系统。先 `sync` 的目的是把脏页刷盘变成可释放的干净页，让清理效果更彻底；不 `sync` 的后果只是脏页无法释放。
-                1. `echo 1 > /proc/sys/vm/drop_caches` 仅释放页缓存（`Page Cache`）
+                1. `echo 1 > /proc/sys/vm/drop_caches` 仅释放干净的页缓存（`Page Cache`）
                 2. `echo 2 > /proc/sys/vm/drop_caches`: 仅释放可回收的对象（包括 `inode` 和 `dentry`）
                 3. `echo 3 > /proc/sys/vm/drop_caches`: 同时释放页缓存和可回收对象(完整清理，相当于执行了 `1 + 2`)
             - 如果执行了 `echo 3 > /proc/sys/vm/drop_caches` `buffer/cache` 变化仍然不明显，这是为什么？

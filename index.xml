@@ -2925,9 +2925,11 @@ opensnoop -h&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;如果报了 &amp;ldquo;&lt;code&g
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;执行 &lt;code&gt;xfs_repair&lt;/code&gt; 时发现超级块损坏，修复不了怎么办？&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;XFS&lt;/code&gt; 超级块会在每个分配组（&lt;code&gt;AG&lt;/code&gt;）头部保存备用副本。如果主超级块损坏，可先用 &lt;code&gt;mkfs.xfs -n /dev/sdX1&lt;/code&gt;（仅模拟执行，切勿去掉 &lt;code&gt;-n&lt;/code&gt;）查看 &lt;code&gt;agsize&lt;/code&gt; 等参数计算备用块位置，或尝试直接用 &lt;code&gt;xfs_repair -n /dev/sdX1&lt;/code&gt; 让工具自动扫描副本。&lt;/li&gt;
-&lt;li&gt;定位到备用超级块后，指定其块号进行修复：&lt;code&gt;xfs_repair -b &amp;lt;block_num&amp;gt; /dev/sdX1&lt;/code&gt;；若提示日志损坏，可配合强制清空日志参数：&lt;code&gt;xfs_repair -L -b &amp;lt;block_num&amp;gt; /dev/sdX1&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;如果所有备用超级块均已损坏且无法修复，说明元数据彻底崩溃，只能将分区作为 &lt;code&gt;RAW&lt;/code&gt; 设备使用 &lt;code&gt;testdisk&lt;/code&gt; 或 &lt;code&gt;photorec&lt;/code&gt; 尝试逐扇区扫描抢救文件，或直接从数据备份恢复。这也是建议对重要 &lt;code&gt;XFS&lt;/code&gt; 系统定期做元数据（&lt;code&gt;xfs_metadump&lt;/code&gt;）和数据备份的原因。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;先进行只读检查&lt;/strong&gt;：不要立即尝试修复，先执行 &lt;code&gt;xfs_repair -n /dev/sdX1&lt;/code&gt; 对文件系统进行只读检查，确认损坏范围；同时查看 &lt;code&gt;dmesg&lt;/code&gt; 是否存在 &lt;code&gt;I/O error&lt;/code&gt;、&lt;code&gt;metadata I/O error&lt;/code&gt; 等信息，排除磁盘、&lt;code&gt;RAID&lt;/code&gt;、&lt;code&gt;LVM&lt;/code&gt; 或硬件故障导致的元数据损坏。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;执行标准修复&lt;/strong&gt;：若硬件正常，可直接执行 &lt;code&gt;xfs_repair /dev/sdX1&lt;/code&gt;。&lt;code&gt;XFS&lt;/code&gt; 会自动扫描所有 &lt;code&gt;Allocation Group&lt;/code&gt;（&lt;code&gt;AG&lt;/code&gt;）中的元数据，尝试重建损坏的主超级块，无需也不能像 &lt;code&gt;ext4&lt;/code&gt; 那样手动指定备用超级块。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;日志损坏时强制修复&lt;/strong&gt;：如果 &lt;code&gt;xfs_repair&lt;/code&gt; 提示日志（Journal）损坏导致无法继续修复，可执行 &lt;code&gt;xfs_repair -L /dev/sdX1&lt;/code&gt; 清空日志后继续修复。该操作会丢失尚未提交到磁盘的事务，但通常不会影响已提交的数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;进一步分析元数据&lt;/strong&gt;：若需要确认某个 &lt;code&gt;AG&lt;/code&gt; 的超级块是否正常，可使用 &lt;code&gt;xfs_db -r -c &amp;quot;sb 1&amp;quot; -c &amp;quot;p&amp;quot; /dev/sdX1&lt;/code&gt; 查看 &lt;code&gt;AG 1&lt;/code&gt; 的 &lt;code&gt;Superblock&lt;/code&gt; 信息（&lt;code&gt;sb 2&lt;/code&gt;、&lt;code&gt;sb 3&lt;/code&gt;&amp;hellip; 可查看其他 AG）。该命令仅用于诊断分析，不能指定某个 AG 作为修复来源。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无法修复时的数据恢复&lt;/strong&gt;：如果 &lt;code&gt;xfs_repair&lt;/code&gt; 仍无法恢复，通常说明多个 &lt;code&gt;AG&lt;/code&gt; 的关键元数据已严重损坏。此时应立即使用 &lt;code&gt;ddrescue&lt;/code&gt; 等工具对磁盘制作镜像，并在镜像上进行恢复分析；如需文件级恢复，可使用 &lt;code&gt;photorec&lt;/code&gt; 等工具进行文件雕刻，但通常无法保留原有目录结构、文件名及权限。若存在备份，应优先从备份恢复。对于重要的 &lt;code&gt;XFS&lt;/code&gt; 文件系统，建议定期使用 &lt;code&gt;xfs_metadump&lt;/code&gt; 备份元数据，并配合完整的数据备份。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -4909,7 +4911,7 @@ WantedBy=multi-user.target
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;第三步&lt;/strong&gt;：定位具体进程&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;ps -eo pid,rss,vsz,cmd --sort=-rss | head -n -10&lt;/code&gt; 定位具体进程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ps -eo pid,rss,vsz,cmd --sort=-rss | head -10&lt;/code&gt; 定位具体进程&lt;/li&gt;
 &lt;li&gt;用 &lt;code&gt;pmap -x &amp;lt;PID&amp;gt;&lt;/code&gt; 查看进程内各内存段的占用细节——哪个地址段是堆、哪个是栈、哪个是 &lt;code&gt;mmap&lt;/code&gt; 映射文件&lt;/li&gt;
 &lt;li&gt;对 &lt;code&gt;Java&lt;/code&gt; 进程：&lt;code&gt;jstat -gc &amp;lt;PID&amp;gt; 1s 5&lt;/code&gt; 看堆内各分区使用情况，&lt;code&gt;jmap -heap &amp;lt;PID&amp;gt;&lt;/code&gt; 看堆配置和当前使用量&lt;/li&gt;
 &lt;li&gt;对可疑进程，持续观察：&lt;code&gt;top -p &amp;lt;PID&amp;gt;&lt;/code&gt; 看 &lt;code&gt;RES&lt;/code&gt; 是否持续增长。增长后不回落且整体趋势向上，说明内存泄漏&lt;/li&gt;
@@ -6345,7 +6347,7 @@ WantedBy=multi-user.target
 &lt;ul&gt;
 &lt;li&gt;通过修改 &lt;code&gt;/proc/sys/vm/drop_caches&lt;/code&gt; 来进行：&lt;code&gt;drop_caches&lt;/code&gt; 是非破坏性操作，只释放干净的可回收缓存，不会丢数据或损坏文件系统。先 &lt;code&gt;sync&lt;/code&gt; 的目的是把脏页刷盘变成可释放的干净页，让清理效果更彻底；不 &lt;code&gt;sync&lt;/code&gt; 的后果只是脏页无法释放。
 &lt;ol&gt;
-&lt;li&gt;&lt;code&gt;echo 1 &amp;gt; /proc/sys/vm/drop_caches&lt;/code&gt; 仅释放页缓存（&lt;code&gt;Page Cache&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;echo 1 &amp;gt; /proc/sys/vm/drop_caches&lt;/code&gt; 仅释放干净的页缓存（&lt;code&gt;Page Cache&lt;/code&gt;）&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;echo 2 &amp;gt; /proc/sys/vm/drop_caches&lt;/code&gt;: 仅释放可回收的对象（包括 &lt;code&gt;inode&lt;/code&gt; 和 &lt;code&gt;dentry&lt;/code&gt;）&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;echo 3 &amp;gt; /proc/sys/vm/drop_caches&lt;/code&gt;: 同时释放页缓存和可回收对象(完整清理，相当于执行了 &lt;code&gt;1 + 2&lt;/code&gt;)&lt;/li&gt;
 &lt;/ol&gt;

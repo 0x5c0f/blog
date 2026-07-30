@@ -19,7 +19,7 @@
         - 一个判断技巧：`free -h` 的 `available` 如果还很高（超过物理内存的 20%），即使 `used` 看起来高，系统实际上也不缺内存
 
     - **第三步**：定位具体进程
-        - `ps -eo pid,rss,vsz,cmd --sort=-rss | head -n -10` 定位具体进程
+        - `ps -eo pid,rss,vsz,cmd --sort=-rss | head -10` 定位具体进程
         - 用 `pmap -x <PID>` 查看进程内各内存段的占用细节——哪个地址段是堆、哪个是栈、哪个是 `mmap` 映射文件
         - 对 `Java` 进程：`jstat -gc <PID> 1s 5` 看堆内各分区使用情况，`jmap -heap <PID>` 看堆配置和当前使用量
         - 对可疑进程，持续观察：`top -p <PID>` 看 `RES` 是否持续增长。增长后不回落且整体趋势向上，说明内存泄漏
