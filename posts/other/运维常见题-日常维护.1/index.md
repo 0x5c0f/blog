@@ -24,7 +24,7 @@
     - 在 `Linux` 中，如果我们发现 `free` 内存很少，但是 `buff/cache` 很大，这时候系统算不算内存不足？我们需要手动去释放它吗?
         - 系统不算内存不足，通常也完全不需要手动去清理。`linux` 有自己的管理机制,我们更多需要关注的是 `available` 那一列
         - 如何释放? 
-            - 通过修改 `/proc/sys/vm/drop_caches` 来进行，修改前必须先执行 `sync` 来强制将内存中尚未写入磁盘的脏页（`Dirty Pages`）立即刷写到存储介质中, 否则可能会导致部分正在高速写入的数据丢失，或者引发文件系统损坏。 
+            - 通过修改 `/proc/sys/vm/drop_caches` 来进行：`drop_caches` 是非破坏性操作，只释放干净的可回收缓存，不会丢数据或损坏文件系统。先 `sync` 的目的是把脏页刷盘变成可释放的干净页，让清理效果更彻底；不 `sync` 的后果只是脏页无法释放。
                 1. `echo 1 > /proc/sys/vm/drop_caches` 仅释放页缓存（`Page Cache`）
                 2. `echo 2 > /proc/sys/vm/drop_caches`: 仅释放可回收的对象（包括 `inode` 和 `dentry`）
                 3. `echo 3 > /proc/sys/vm/drop_caches`: 同时释放页缓存和可回收对象(完整清理，相当于执行了 `1 + 2`)
@@ -38,7 +38,8 @@
     - `us`(`User`): 用户态, 如果这个指标过高，那么说明是应用程序(java/php/go/...)的代码在进行大量的计算  
     - `sy`(`System`): 内核态，如果这个指标过高，那么说明系统调用频繁，可能存在大量的磁盘I/O、网络I/O或者是锁竞争  
     - `wa`(`I/O Wait`)：等待 I/O, 如果是这个指标过高，那说明磁盘读写成了瓶颈，CPU 在空转等待。  
-- **定位到具体的PID后，使用 `top -H -p <PID>` ，获取到所有的线程ID, 找到 CPU 占用最高的线程ID(TID: 一般就是第一个，即PID)，如果是java等应用，线程ID通常为十六进制，需使用 `printf "%x\n" <TID>`将我们获取到的TID(十进制)转换为十六进制(假设转换后的结果为4e8)，然后使用 `jstack <PID> | grep -A 20 0x4e8` 就能直接精确捕获到该线程正在执行的具体代码行数（例如某段死循环、频繁的 GC 线程、或者序列化操作）， 如果是GO、C/C++等应用，可以使用 `pstack <PID>`**
+
+    - 定位到具体的 `PID` 后，使用 `top -H -p <PID>` ，获取到所有的线程`ID`, `CPU` 最高的线程通常是某个工作线程的 `TID`，不等于进程 `PID`（只有主线程 `TID`=`PID`）。`jstack`  定位到的是线程栈，能否精确到行号取决于编译时是否保留行号信息（例如某段死循环、频繁的 `GC` 线程、或者序列化操作）， 如果是 `GO`、`C/C++`等应用，可以使用 `pstack <PID>`
 
 - **协助记忆**
     1. 找进程 (`top` 看整体)
@@ -86,13 +87,13 @@
     2. 五链时机：进前（Pre）、入内（Input）、转发（Forward）、出本地（Output）、出网卡（Post）。
 
 - **进阶思考**
-请用具体的 `iptables` 命令分别写出如何实现 SNAT（源地址转换）和 DNAT（目的地址转换）？并在什么场景下使用？
-    - **SNAT（源地址转换）**
-        - 场景：公司内网有大量私网服务器（如 `10.0.2.0/24`），只有一台公网网关（外网 IP `172.15.31.10`）。需要让内网服务器能够访问外网。
-            - **核心命令（在 POSTROUTING 链）**：`iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -j SNAT --to-source 172.15.31.10`
-    - **DNAT（目的地址转换）**：
-        - 场景：公司的核心数据库在内网（10.0.2.10:3306），现在需要让公网上的出差员工通过访问公网网关的 3306 端口，直接连接到内网的数据库。
-            - **核心命令（在 PREROUTING 链）**： `iptables -t nat -A PREROUTING -d 202.100.1.1 -p tcp --dport 3306 -j DNAT --to-destination 192.168.1.10:3306`
+    - **请用具体的 `iptables` 命令分别写出如何实现 SNAT（源地址转换）和 DNAT（目的地址转换）？并在什么场景下使用？**
+        - **SNAT（源地址转换）**
+            - 场景：公司内网有大量私网服务器（如 `10.0.2.0/24`），只有一台公网网关（外网 IP `172.15.31.10`）。需要让内网服务器能够访问外网。
+                - **核心命令（在 POSTROUTING 链）**：`iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -j SNAT --to-source 172.15.31.10`
+        - **DNAT（目的地址转换）**：
+            - 场景：公司的核心数据库在内网（`10.0.2.10:3306`），现在需要让公网上的出差员工通过访问公网网关的 `3306` 端口，直接连接到内网的数据库。
+                - **核心命令（在 PREROUTING 链）**： `iptables -t nat -A PREROUTING -d 202.100.1.1 -p tcp --dport 3306 -j DNAT --to-destination 10.0.2.10:3306`
 
 ## 🤔 简述 RAID0、RAID1、RAID5 和 RAID10 的区别与适用场景？  
 - `RAID 0`(条带化/Stripping)
@@ -102,7 +103,7 @@
         - **优点**：读写性能在所有 RAID 中最高，因为多块盘可以并行读写。
         - **缺点**：没有任何冗余能力。任何一块盘损坏，整个阵列的数据全部崩溃。
     - **适用场景**：对安全性零要求，但对读写速度要求极高的临时数据或缓存场景，如视频剪辑的临时渲染盘、分布式计算的临时缓存区（Swap / Scratch Space）。
-    - **最少磁盘数**：1 块（通常 2 块及以上才能体现性能优势）。
+    - **最少磁盘数**：`2` 块（条带化至少两块盘；个别控制器的"`单盘 RAID0`"只是直通封装，不是标准 `RAID0`）。
 
 - `RAID 1`(镜像/Mirroring)
     - **工作原理**：将数据完全复制到所有磁盘中。
@@ -169,7 +170,7 @@
         - `Inode` 满了说明海量小文件撑爆了`inode`表。用 `find /path -type f | wc -l` 定位目录，然后 `find /path -type f -delete` 或 `xargs rm -f` 批量清理
         - `lsof | grep '(deleted)'` 查已删文件但进程还抓着句柄不放
         - `lsof` 用 (`deleted`) 标记未释放的句柄，找到对应 PID 后 `systemctl restart <service>` 或 `kill` 掉
-        - `du -h --max-depth=1 /var | sort -hr | head 10` 逐级往下找大目录
+        - `du -h --max-depth=1 /var | sort -hr | head -10` 逐级往下找大目录
         - `find / -type f -size +1G` 直接盘全盘的大文件
 
 - **协助记忆**
@@ -209,11 +210,12 @@
 
 - **进阶思考**：
     - `dig` 返回了结果但浏览器就是打不开，还可能是什么问题?
-        - ：可能是 `/etc/nsswitch.conf` 里 `hosts: dns files` 顺序颠倒了，或者 `systemd-resolved` 的缓存污染了，`resolvectl flush-caches` 清一下
+        - ：可能是 `/etc/nsswitch.conf` 里 `hosts: dns files` 顺序颠倒了，或者 `systemd-resolved` 的缓存污染了，`resolvectl flush-caches` 清一下, `dig` 直接查 `DNS`、绕过 `NSS` 和 `/etc/hosts`，两者结果本就可能不一致。还需排查：`/etc/hosts` 覆盖、浏览器自身  
+   DoH/代理、IPv6(AAAA) 问题、以及根本不是 DNS 而是 HTTP/TLS 层的问题
     - DNS 解析异常缓慢，怎么定位瓶颈?
         - `dig` + `trace` 看每级响应时间，如果根或 TLD 响应慢是运营商递归 DNS 的问题；如果权威 NS 慢是对方的服务问题。也可以对比 `dig @8.8.8.8` 和 `dig @114.114.114.114` 看谁的递归
     - 内网 DNS 解析公司内部域名怎么设计的？
-        - 通常自建 DNS 服务器（如 `dnsmasq` / `CoreDNS` / `Bind`），配置内部域名转发到内网权威 NS，外部域名转发到上游运营商或 `8.8.8.8`。核心要点是内外分离，避免内网域名泄漏到公
+        - 通常自建 DNS 服务器（如 `dnsmasq` / `CoreDNS` / `Bind`），配置内部域名转发到内网权威 NS，外部域名转发到上游运营商或 `8.8.8.8`。核心要点是内外分离，避免内网域名泄漏到公网
 
 ## 🤔 简述 Linux 系统启动过程？  
 - Linux 从按下电源到出现登录提示符，大体经过五个阶段：`固件自检` → `Boot Loader` → `内核加载` → `init 进程` → `服务启动`  
@@ -231,7 +233,7 @@
         - 内核解压后执行，检测 CPU、内存、总线等硬件
         - 挂载 `initramfs`（临时根文件系统），加载磁盘控制器、文件系统等必要驱动
         - 挂载真正的根文件系统（/），执行 `switch_root` 切换到真实根
-        - `initramfs` 通常在完成后会被回收，释放内
+        - `initramfs` 通常在完成后会被回收，释放内存
 
     - **第四阶段**：init 进程（systemd）
         - 内核找到 `/sbin/init`（软链接到 systemd）作为 PID 1
@@ -428,7 +430,7 @@
             - `xfs`：大容量（单文件系统支持到 EB 级）、海量文件并行读写（如文件服务器、大数据存储）。xfs 的分配组（AG）设计使它并发写入性能更好
             - 一句话：通用场景 ext4 足够，大容量高并发上 xfs
     - **ext4 的 Inline Data 是什么？**
-        - 极小的文件（默认 60 字节以内）直接存放在 inode 结构体内，不分配数据块。这对于保存大量小文件（如 Git 对象、邮件存储）能极大减少磁盘寻道和元数据开销。`tune2fs -l` 里看到 `inline_data` 特性就是开启了这个。
+        - `inline_data` 并非 `ext4` 默认开启（`mkfs` 时需显式启用）；可内联大小受 `inode` 大小和扩展属性占用影响（`256` 字节 `inode` 下典型约 `60` 字节）
 
 ## 🤔 Linux 进程有哪几种状态？  
 - **Linux 内核将进程状态定义在 `include/linux/sched.h` 中，`ps` 和 `top` 里看到的字母对应内核中的宏定义。总共分为`运行`、`睡眠`（两种）、`暂停`、`僵尸`、`退出`五种大类**
@@ -568,9 +570,9 @@
         - **中断亲和性**：在多核系统上，将网卡、NVMe 的中断绑定到指定 CPU 核心，避免所有中断都打到 CPU 0 上。`cat /proc/interrupts` 看中断分布，`/proc/irq/<IRQ>/smp_affinity` 设置亲和性
 
     - **内存层面**
-        - **swappiness**：控制内核使用交换的积极程度，范围 0 ~ 100，默认 60。数据库服务器通常设 1 ~ 10，普通服务保持默认即可。`sysctl vm.swappiness=10`(*`内存使用率` 达到 `100-vm.swappiness` 时,开始使用交换分区; 但不是设为 0，内核 3.x 之后 vm.swappiness=0 意味着仅在内存绝对不足时才 swap，RHEL 8+ 又调整了行为——0 表示不主动 swap，OOM 优先级更高*)
+        - **swappiness**：控制内核使用交换的积极程度，范围 0 ~ 100，默认 60。数据库服务器通常设 1 ~ 10，普通服务保持默认即可。`sysctl vm.swappiness=10`(*`swappiness` 不是内存使用率阈值，而是内核回收内存时"换出匿名页 vs 回收 `Page Cache`"的权重偏好; 但不是设为 0，内核 3.x 之后 vm.swappiness=0 意味着仅在内存绝对不足时才 swap，RHEL 8+ 又调整了行为——0 表示不主动 swap，OOM 优先级更高*)
         - **透明大页 / THP**：内核自动将连续的 4KB 内存页合并成 2MB 大页，目的是减少 TLB miss。但对数据库类应用（MongoDB、Cassandra 等），THP 的自动合并和拆分会触发内存 compaction，导致不可预测的短暂停顿。MongoDB 官方文档明确建议关闭。临时关闭：`echo never > /sys/kernel/mm/transparent_hugepage/enabled`；持久化可选两种方式之一：在 `/etc/rc.d/rc.local` 加入上行命令，或在 `/etc/default/grub` 的 `GRUB_CMDLINE_LINUX` 追加 `transparent_hugepage=never` 然后 `grub2-mkconfig -o /boot/grub2/grub.cfg`。注意 tuned 的某些 profile 会自动重开 THP，关闭后需 `cat /sys/kernel/mm/transparent_hugepage/enabled` 确认状态  
-        - **OOM 策略**：`/proc/<PID>/oom_adj` 或 `oom_score_adj` 调整进程被 `OOM Killer` 选中的权重。核心数据库可以设为 -1000（永远不被杀）
+        - **OOM 策略**：`/proc/<PID>/oom_adj` 或 `oom_score_adj` 调整进程被 `OOM Killer` 选中的权重。核心数据库可以设为 `-1000` ，使用 `oom_score_adj`（`-1000~1000`）；`oom_adj` 是 `-17~15` 的废弃接口，不接受 `-1000`。`-1000` 表示对 `OOM Killer` 不可选。
 
     - **存储层面**
         - **I/O 调度器**：机械盘用 `kyber` 或 `mq-deadline`，NVMe 固态盘建议用 none（不调度，直接走 blk-mq 的直通路径）。`cat /sys/block/sda/queue/scheduler` 查看当前调度器，`echo none > /sys/block/nvme0n1/queue/scheduler` 修改 -挂载参数：noatime 或 relatime 避免每次读文件都更新 access time（默认 relatime 已开启，但显式加上 noatime 可以减少一次元数据写入）。大文件场景加 nobarrier（但需要文件系统本身能保证一致性）
