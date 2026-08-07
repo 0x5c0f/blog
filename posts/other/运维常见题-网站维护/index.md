@@ -586,7 +586,7 @@
         - 一是 `Ghostcat` 漏洞（`CVE-2020-1938`）暴露了安全风险；二是现代前端架构变了 ——— `Nginx` 已成为主流反向代理，直接用 `proxy_pass` 走 `HTTP（8080）`就能完成转发，而且 `Nginx` 根本不支持 `AJP`；三是 `AJP` 对 `HTTP/2` 等现代特性支持不足。`AJP` 的优势（减少解析开销）在现代硬件上可忽略。所以 `AJP` 主要存在于 `Apache httpd` + `Tomcat` 的历史架构中
 
 ## 🤔 Tomcat 如何性能优化？	
-**`Tomcat` 性能优化要分层进行：`JVM` 参数 → 连接器（`Connector`）→ 应用层 → 操作系统层。核心原则是"先找准瓶颈再优化"，不要盲目调大参数。**
+- **`Tomcat` 性能优化要分层进行：`JVM` 参数 → 连接器（`Connector`）→ 应用层 → 操作系统层。核心原则是"先找准瓶颈再优化"，不要盲目调大参数。**
 
     - **第一层**：`JVM` 参数优化
         - **堆内存**：设置 `-Xms`（初始堆）和 `-Xmx`（最大堆）为相同值，避免运行时动态扩缩堆造成性能抖动。参考值：`-Xms2g` `-Xmx2g`（按实际内存调整；容器场景下 `JDK 10+` 默认启用 `UseContainerSupport`，`-Xmx` 受容器配额约束）
@@ -777,7 +777,7 @@
     - 钥匙在客户端，档案在服务端：客户端只有 `Session ID`（钥匙），真正的数据（档案）在服务端
     - 安全对比：档案（`Session` 数据）比便签（`Cookie`）安全，因为档案在服务器上，便签在用户手里随时可能被改
 
-- 进阶思考
+- **进阶思考**
     - **`Session` 数据都放服务端，为什么还需要 `Cookie`？不能不用 `Cookie` 吗？**
         - `HTTP` 是无状态协议，服务器不记得"你是谁"。`Session` 数据虽然存在服务端，但服务器要知道"这个请求对应哪份 `Session` 数据" ——— 这个对应关系（·）必须由客户端每次带来。· 是最自然的携带方式（自动发送）。如果不用 `Cookie`，只能靠 `URL` 重写传 `Session ID`，但 `URL` 易泄露（日志、历史记录、分享链接），所以实践中几乎都用 `Cookie`
 
@@ -837,13 +837,12 @@
     - **`Access-Control-Allow-Origin: *` 和 `withCredentials` 为什么冲突？**
         - 安全设计。如果服务器返回 `*` 允许所有来源，同时又允许携带凭证，任意站点就能代表用户跨域发带凭证请求并读取响应——比只写不读的 `CSRF` 更严重。所以浏览器规定：凭证请求下 `ACAO` 必须为具体来源（`*` 判失败），且要配合 `Access-Control-Allow-Credentials: true`。补充：现代浏览器 `Cookie` 默认 `SameSite=Lax`，跨站 `fetch/XHR`（非顶级导航）默认不携带 `Lax Cookie`，只有 `SameSite=None`; `Secure` 的 `Cookie` 会带上——实际攻击面比"任何恶意网站都能带上 `Cookie`"更小，但"带凭证 + 可读响应"的底线依然不能破
 
-- **扩展信息**
-    安全响应头是 `Nginx` 层可以统一配置的 `Web` 安全防护。核心是 `CSP`（`Content-Security-Policy`，内容安全策略）——— 它告诉浏览器"页面允许加载哪些来源的资源"，`CSP` 是浏览器侧缓解 `XSS` 最重要、最有效的防御机制之一，但不能替代输入校验（`Sanitization`）与输出编码（`Encoding`）等后端/开发层面的安全措施。
+- **扩展信息**  
+安全响应头是 `Nginx` 层可以统一配置的 `Web` 安全防护。核心是 `CSP`（`Content-Security-Policy`，内容安全策略）——— 它告诉浏览器"页面允许加载哪些来源的资源"，`CSP` 是浏览器侧缓解 `XSS` 最重要、最有效的防御机制之一，但不能替代输入校验（`Sanitization`）与输出编码（`Encoding`）等后端/开发层面的安全措施。
     - **`CSP` 是什么**
         - `CSP` 通过响应头声明"允许加载什么"，浏览器强制执行：不符合策略的资源（脚本、图片、样式、iframe）被阻止加载
         - 缓解 `XSS` 原理：即使攻击者注入 `<script>`，`CSP` 如果没允许内联脚本/不可信来源，浏览器会拒绝执行
         - `CSP` 的威胁模型：缓解内容注入（`XSS`）与页面被恶意嵌入（`clickjacking`——注意这是 `UI redress` 而非"内容注入"）
-
     - **`CSP` 常用指令**
         - **`default-src`**：大多数 `fetch` 类指令的兜底策略。但需注意：`frame-ancestors`、`base-uri`、`form-action`、`sandbox` 等指令不会继承 `default-src`（未指定即默认为无限制）。
         - **`script-src`**：脚本来源（最关键的指令）
@@ -856,17 +855,13 @@
         - **`upgrade-insecure-requests`**：页面内 `HTTP` 请求自动升级为 `HTTPS`
         - **`report-to`**：违规上报（`report-uri` 已废弃，用 `Reporting-Endpoints` + `report-to` 替代）
         - **源关键字**：`'self'`、`'none'`、`'unsafe-inline'`（不推荐）、`'unsafe-eval'`（不推荐）、`'strict-dynamic'`（注意：`strict-dynamic` 应与 `nonce` 或 `hash` 一起使用。在支持该特性的浏览器中，会忽略传统脚本白名单（如 `'self'`、主机白名单），改由受信任脚本继续加载其他脚本。）、`'nonce-xxx'`（每次响应随机生成）
-
     - **`CSP` 配置案例**
         - **基础案例（静态站）** ：`Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'`
         - **进阶案例（带 `CDN` 和 `API`）** ： `Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.example.com; img-src 'self' data: https://cdn.example.com; connect-src 'self' https://api.example.com; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'`
-
         - **上线前先开报告模式（只报告不拦截）**：`Content-Security-Policy-Report-Only: default-src 'self'; object-src 'none'; base-uri 'self' Reporting-Endpoints: csp-endpoint="https://example.com/csp-violations" Content-Security-Policy-Report-Only: ...; report-to csp-endpoint`； 注意两个坑：`Report-Only` 模式下 `frame-ancestors` 不生效（既不拦截也不产生报告）；若未配置 `report-to/report-uri`（或 `Reporting-Endpoints`），`Report-Only` 依然在浏览器端生效：它会在开发者工具控制台输出违规警告，并可被前端 `securitypolicyviolation` 事件捕获，只是不会向服务器发送 `HTTP` 违规上报包。
-
         - **`Nginx` 配置 `CSP`**: `add_header Content-Security-Policy "default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'" always;`
             - **`always` 必须加**：`add_header` 默认只对 `200/201/204/206/301/302/303/304/307/308` 生效，加 `always` 才对所有响应码生效（错误页也带 `CSP`）
             - **`add_header` 继承坑**：子 `location` 写了 `add_header` 会覆盖父级全部（`nginx 1.29.3+` 可用 `add_header_inherit merge`; 改为追加）
-
         - **`Nginx` 其他安全头（一起配，注意与 CSP 语义一致）**
             ```ini
             add_header X-Content-Type-Options "nosniff" always;
@@ -878,11 +873,9 @@
       - **策略一致性**：`CSP` 的 `frame-ancestors 'none'` 应配 `X-Frame-Options "DENY"`（或 `'self' + SAMEORIGIN`），两者语义要一致——不要出现"`CSP` 禁止嵌入、`XFO` 允许同源嵌入"的自相矛盾
       - **`HSTS` 的坑**：`includeSubDomains` 要求子域全部 `HTTPS`，否则误伤子域；`preload` 需去 `hstspreload.org` 提交后才生效
       - `X-Frame-Options` 有效值只有两档（`DENY/SAMEORIGIN`）——— `ALLOW-FROM` 已废弃且会导致整个头被浏览器忽略
-
     - **进阶思考**
       - **为什么 `'unsafe-inline'` 不推荐？`nonce` 和它什么关系？**
         - `'unsafe-inline'` 允许所有内联脚本执行——`XSS` 注入的正是内联脚本，等于开大后门。完全禁止内联脚本后，页面自带的 `<script>` 也会被拦截，需要移到外部 `.js` 或用 `nonce/hash` 白名单。在必须用内联脚本时，`nonce` 远比 `'unsafe-inline'` 安全、且比完全禁止更灵活 ——— `nonce` 每次响应随机生成，攻击者无法预知。实操坑：`nonce` 每次响应都变，页面被浏览器/`CDN` 缓存后 `nonce` 过期、脚本被误杀——这是高频事故，缓存页面慎用 `nonce`
-
       - **`CSP` 和 `X-Frame-Options` 都能防点击劫持，用哪个？**
         - `frame-ancestors（CSP）`是现代推荐、`X-Frame-Options` 是旧方案。`frame-ancestors` 更灵活（可精确指定多个来源），`X-Frame-Options` 只有 `DENY/SAMEORIGIN` 两档。两者同时存在时，`CSP` 优先（仅在 `enforce` 模式成立；`X-Frame-Options` 在响应含 `frame-ancestors` 时被忽略）。为兼容老浏览器可两者都配，但语义必须一致
 

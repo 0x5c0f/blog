@@ -11931,37 +11931,64 @@ RAID 设备识别为一个磁盘 → 在这个磁盘上创建 PV → 划 VG → 
 &lt;/ul&gt;
 &lt;h2 class="heading-element" id="-tomcat-如何性能优化"&gt;&lt;span&gt;🤔 Tomcat 如何性能优化？&lt;/span&gt;
  &lt;a href="#-tomcat-%e5%a6%82%e4%bd%95%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96" class="heading-mark"&gt;&lt;svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"&gt;&lt;path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;Tomcat&lt;/code&gt; 性能优化要分层进行：&lt;code&gt;JVM&lt;/code&gt; 参数 → 连接器（&lt;code&gt;Connector&lt;/code&gt;）→ 应用层 → 操作系统层。核心原则是&amp;quot;先找准瓶颈再优化&amp;rdquo;，不要盲目调大参数。&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;- **第一层**：`JVM` 参数优化
- - **堆内存**：设置 `-Xms`（初始堆）和 `-Xmx`（最大堆）为相同值，避免运行时动态扩缩堆造成性能抖动。参考值：`-Xms2g` `-Xmx2g`（按实际内存调整；容器场景下 `JDK 10+` 默认启用 `UseContainerSupport`，`-Xmx` 受容器配额约束）
- - **元空间**：`-XX:MaxMetaspaceSize` 设置上限，防止元空间无限增长
- - **`GC` 选择**：`JDK 9+` 默认 `G1`，适合大堆（`4GB+`）；超大堆（几十 `GB`）追求低延迟用 `ZGC`（`JDK 11` 实验、`15` 生产可用）
- - **`GC` 日志**：`-Xlog:gc*` 启用 `GC` 日志，用于排查 `GC` 停顿
- - **常见误区**：盲目调大 `-Xmx` 不一定提升性能，堆过大反而增加 `GC` 停顿
-
-- **第二层**：连接器（`Connector`）优化
- - **连接器模式**：`Tomcat 8.5/9` 默认 `NIO`（装了 `tomcat-native` 时自动用 `APR`）；`Tomcat 11` 起默认纯 `Java NIO`。`BIO` 在 `8.5` 已移除
- - **线程池参数（`Executor`）**：
- - **`maxThreads`**：最大工作线程数，默认 `200`。不是越大越好——线程过多导致上下文切换开销增大；建议结合压测确定，一般 `200~500`
- - **`minSpareThreads`**：保底存活线程数（`Connector` 属性默认 `10`，`Executor` 上默认 `25`）；注意是&amp;quot;保底水位&amp;quot;，线程按需增长到该水位，并非启动即全部创建
- - **`acceptCount`**：等待队列长度，默认 `100`。高并发时调大（如 `500~1000`）
- - **`maxConnections`**：最大连接数，`NIO` 默认 `8192`
-
- - **连接超时**：`connectionTimeout` 文档默认 `60000ms`，但随 `Tomcat` 发行的默认 `server.xml` 显式配置为 `20000ms` ——— 如果自定义 `server.xml` 未写该属性，实际生效的是 `60000ms`；`keepAliveTimeout` 控制长连接存活时间
- - **压缩**：`compression=&amp;quot;on&amp;quot;` 开启 `gzip` 压缩，减少传输量（对文本类资源效果明显）
- - **静态资源**：配置资源缓存或交给前端 `Nginx` 处理（推荐）
-
-- **第三层**：应用层优化
- - **数据库连接池**：配置合理的连接池参数（初始/最大连接数），避免频繁创建销毁连接
- - **缓存**：热点数据用 `Redis`/本地缓存，减少数据库压力
- - **异步处理**：长耗时操作用 `Servlet 3.1` 异步处理，释放线程
- - **避免阻塞**：`IO` 操作异步化，减少线程占用
-
-- **第四层**：操作系统层
- - **文件描述符**：调大 `ulimit -n`（默认 `1024` 太小，`Tomcat` 高并发会报 `too many open files`）
- - **内核参数**：`net.core.somaxconn`（配合 `acceptCount`）、`net.ipv4.tcp_*` 相关优化
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Tomcat&lt;/code&gt; 性能优化要分层进行：&lt;code&gt;JVM&lt;/code&gt; 参数 → 连接器（&lt;code&gt;Connector&lt;/code&gt;）→ 应用层 → 操作系统层。核心原则是&amp;quot;先找准瓶颈再优化&amp;rdquo;，不要盲目调大参数。&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;第一层&lt;/strong&gt;：&lt;code&gt;JVM&lt;/code&gt; 参数优化&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;堆内存&lt;/strong&gt;：设置 &lt;code&gt;-Xms&lt;/code&gt;（初始堆）和 &lt;code&gt;-Xmx&lt;/code&gt;（最大堆）为相同值，避免运行时动态扩缩堆造成性能抖动。参考值：&lt;code&gt;-Xms2g&lt;/code&gt; &lt;code&gt;-Xmx2g&lt;/code&gt;（按实际内存调整；容器场景下 &lt;code&gt;JDK 10+&lt;/code&gt; 默认启用 &lt;code&gt;UseContainerSupport&lt;/code&gt;，&lt;code&gt;-Xmx&lt;/code&gt; 受容器配额约束）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;元空间&lt;/strong&gt;：&lt;code&gt;-XX:MaxMetaspaceSize&lt;/code&gt; 设置上限，防止元空间无限增长&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;GC&lt;/code&gt; 选择&lt;/strong&gt;：&lt;code&gt;JDK 9+&lt;/code&gt; 默认 &lt;code&gt;G1&lt;/code&gt;，适合大堆（&lt;code&gt;4GB+&lt;/code&gt;）；超大堆（几十 &lt;code&gt;GB&lt;/code&gt;）追求低延迟用 &lt;code&gt;ZGC&lt;/code&gt;（&lt;code&gt;JDK 11&lt;/code&gt; 实验、&lt;code&gt;15&lt;/code&gt; 生产可用）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;GC&lt;/code&gt; 日志&lt;/strong&gt;：&lt;code&gt;-Xlog:gc*&lt;/code&gt; 启用 &lt;code&gt;GC&lt;/code&gt; 日志，用于排查 &lt;code&gt;GC&lt;/code&gt; 停顿&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;常见误区&lt;/strong&gt;：盲目调大 &lt;code&gt;-Xmx&lt;/code&gt; 不一定提升性能，堆过大反而增加 &lt;code&gt;GC&lt;/code&gt; 停顿&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;第二层&lt;/strong&gt;：连接器（&lt;code&gt;Connector&lt;/code&gt;）优化&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;连接器模式&lt;/strong&gt;：&lt;code&gt;Tomcat 8.5/9&lt;/code&gt; 默认 &lt;code&gt;NIO&lt;/code&gt;（装了 &lt;code&gt;tomcat-native&lt;/code&gt; 时自动用 &lt;code&gt;APR&lt;/code&gt;）；&lt;code&gt;Tomcat 11&lt;/code&gt; 起默认纯 &lt;code&gt;Java NIO&lt;/code&gt;。&lt;code&gt;BIO&lt;/code&gt; 在 &lt;code&gt;8.5&lt;/code&gt; 已移除&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;线程池参数（&lt;code&gt;Executor&lt;/code&gt;）&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;maxThreads&lt;/code&gt;&lt;/strong&gt;：最大工作线程数，默认 &lt;code&gt;200&lt;/code&gt;。不是越大越好——线程过多导致上下文切换开销增大；建议结合压测确定，一般 &lt;code&gt;200~500&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;minSpareThreads&lt;/code&gt;&lt;/strong&gt;：保底存活线程数（&lt;code&gt;Connector&lt;/code&gt; 属性默认 &lt;code&gt;10&lt;/code&gt;，&lt;code&gt;Executor&lt;/code&gt; 上默认 &lt;code&gt;25&lt;/code&gt;）；注意是&amp;quot;保底水位&amp;rdquo;，线程按需增长到该水位，并非启动即全部创建&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;acceptCount&lt;/code&gt;&lt;/strong&gt;：等待队列长度，默认 &lt;code&gt;100&lt;/code&gt;。高并发时调大（如 &lt;code&gt;500~1000&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;maxConnections&lt;/code&gt;&lt;/strong&gt;：最大连接数，&lt;code&gt;NIO&lt;/code&gt; 默认 &lt;code&gt;8192&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;连接超时&lt;/strong&gt;：&lt;code&gt;connectionTimeout&lt;/code&gt; 文档默认 &lt;code&gt;60000ms&lt;/code&gt;，但随 &lt;code&gt;Tomcat&lt;/code&gt; 发行的默认 &lt;code&gt;server.xml&lt;/code&gt; 显式配置为 &lt;code&gt;20000ms&lt;/code&gt; ——— 如果自定义 &lt;code&gt;server.xml&lt;/code&gt; 未写该属性，实际生效的是 &lt;code&gt;60000ms&lt;/code&gt;；&lt;code&gt;keepAliveTimeout&lt;/code&gt; 控制长连接存活时间&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;压缩&lt;/strong&gt;：&lt;code&gt;compression=&amp;quot;on&amp;quot;&lt;/code&gt; 开启 &lt;code&gt;gzip&lt;/code&gt; 压缩，减少传输量（对文本类资源效果明显）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;静态资源&lt;/strong&gt;：配置资源缓存或交给前端 &lt;code&gt;Nginx&lt;/code&gt; 处理（推荐）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;第三层&lt;/strong&gt;：应用层优化&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;数据库连接池&lt;/strong&gt;：配置合理的连接池参数（初始/最大连接数），避免频繁创建销毁连接&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缓存&lt;/strong&gt;：热点数据用 &lt;code&gt;Redis&lt;/code&gt;/本地缓存，减少数据库压力&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;异步处理&lt;/strong&gt;：长耗时操作用 &lt;code&gt;Servlet 3.1&lt;/code&gt; 异步处理，释放线程&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;避免阻塞&lt;/strong&gt;：&lt;code&gt;IO&lt;/code&gt; 操作异步化，减少线程占用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;第四层&lt;/strong&gt;：操作系统层&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;文件描述符&lt;/strong&gt;：调大 &lt;code&gt;ulimit -n&lt;/code&gt;（默认 &lt;code&gt;1024&lt;/code&gt; 太小，&lt;code&gt;Tomcat&lt;/code&gt; 高并发会报 &lt;code&gt;too many open files&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内核参数&lt;/strong&gt;：&lt;code&gt;net.core.somaxconn&lt;/code&gt;（配合 &lt;code&gt;acceptCount&lt;/code&gt;）、&lt;code&gt;net.ipv4.tcp_*&lt;/code&gt; 相关优化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;协助记忆&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -11976,7 +12003,7 @@ RAID 设备识别为一个磁盘 → 在这个磁盘上创建 PV → 划 VG → 
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;Tomcat&lt;/code&gt; 线程数（&lt;code&gt;maxThreads&lt;/code&gt;）是不是越大越好？&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;不是。线程是&amp;quot;资源&amp;quot;而非&amp;quot;能力&amp;rdquo;——每个线程占用栈内存，线程过多导致内存占用大、&lt;code&gt;CPU&lt;/code&gt; 上下文切换开销大（频繁切换反而降低吞吐）。正确做法：用压测工具（&lt;code&gt;JMeter&lt;/code&gt;/&lt;code&gt;k6&lt;/code&gt;）逐步加压，观察吞吐量拐点，在吞吐不再增长的点设置 &lt;code&gt;maxThreads&lt;/code&gt;。通常 &lt;code&gt;200~500&lt;/code&gt; 是常见范围，但具体要压测确定。还要配合 &lt;code&gt;maxConnections&lt;/code&gt; 和 &lt;code&gt;acceptCount&lt;/code&gt; 一起看——三者共同决定了并发处理能力&lt;/li&gt;
+&lt;li&gt;不是。线程是&amp;quot;资源&amp;quot;而非&amp;quot;能力&amp;quot;——每个线程占用栈内存，线程过多导致内存占用大、&lt;code&gt;CPU&lt;/code&gt; 上下文切换开销大（频繁切换反而降低吞吐）。正确做法：用压测工具（&lt;code&gt;JMeter&lt;/code&gt;/&lt;code&gt;k6&lt;/code&gt;）逐步加压，观察吞吐量拐点，在吞吐不再增长的点设置 &lt;code&gt;maxThreads&lt;/code&gt;。通常 &lt;code&gt;200~500&lt;/code&gt; 是常见范围，但具体要压测确定。还要配合 &lt;code&gt;maxConnections&lt;/code&gt; 和 &lt;code&gt;acceptCount&lt;/code&gt; 一起看——三者共同决定了并发处理能力&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -12244,7 +12271,7 @@ RAID 设备识别为一个磁盘 → 在这个磁盘上创建 PV → 划 VG → 
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;进阶思考&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;进阶思考&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;Session&lt;/code&gt; 数据都放服务端，为什么还需要 &lt;code&gt;Cookie&lt;/code&gt;？不能不用 &lt;code&gt;Cookie&lt;/code&gt; 吗？&lt;/strong&gt;&lt;/p&gt;
@@ -12356,19 +12383,17 @@ RAID 设备识别为一个磁盘 → 在这个磁盘上创建 PV → 划 VG → 
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;扩展信息&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;扩展信息&lt;/strong&gt;&lt;br&gt;
 安全响应头是 &lt;code&gt;Nginx&lt;/code&gt; 层可以统一配置的 &lt;code&gt;Web&lt;/code&gt; 安全防护。核心是 &lt;code&gt;CSP&lt;/code&gt;（&lt;code&gt;Content-Security-Policy&lt;/code&gt;，内容安全策略）——— 它告诉浏览器&amp;quot;页面允许加载哪些来源的资源&amp;rdquo;，&lt;code&gt;CSP&lt;/code&gt; 是浏览器侧缓解 &lt;code&gt;XSS&lt;/code&gt; 最重要、最有效的防御机制之一，但不能替代输入校验（&lt;code&gt;Sanitization&lt;/code&gt;）与输出编码（&lt;code&gt;Encoding&lt;/code&gt;）等后端/开发层面的安全措施。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;CSP&lt;/code&gt; 是什么&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;CSP&lt;/code&gt; 是什么&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;CSP&lt;/code&gt; 通过响应头声明&amp;quot;允许加载什么&amp;quot;，浏览器强制执行：不符合策略的资源（脚本、图片、样式、iframe）被阻止加载&lt;/li&gt;
 &lt;li&gt;缓解 &lt;code&gt;XSS&lt;/code&gt; 原理：即使攻击者注入 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;，&lt;code&gt;CSP&lt;/code&gt; 如果没允许内联脚本/不可信来源，浏览器会拒绝执行&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;CSP&lt;/code&gt; 的威胁模型：缓解内容注入（&lt;code&gt;XSS&lt;/code&gt;）与页面被恶意嵌入（&lt;code&gt;clickjacking&lt;/code&gt;——注意这是 &lt;code&gt;UI redress&lt;/code&gt; 而非&amp;quot;内容注入&amp;quot;）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;CSP&lt;/code&gt; 常用指令&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;CSP&lt;/code&gt; 常用指令&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;&lt;code&gt;default-src&lt;/code&gt;&lt;/strong&gt;：大多数 &lt;code&gt;fetch&lt;/code&gt; 类指令的兜底策略。但需注意：&lt;code&gt;frame-ancestors&lt;/code&gt;、&lt;code&gt;base-uri&lt;/code&gt;、&lt;code&gt;form-action&lt;/code&gt;、&lt;code&gt;sandbox&lt;/code&gt; 等指令不会继承 &lt;code&gt;default-src&lt;/code&gt;（未指定即默认为无限制）。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;&lt;code&gt;script-src&lt;/code&gt;&lt;/strong&gt;：脚本来源（最关键的指令）&lt;/li&gt;
@@ -12383,54 +12408,36 @@ RAID 设备识别为一个磁盘 → 在这个磁盘上创建 PV → 划 VG → 
 &lt;li&gt;&lt;strong&gt;源关键字&lt;/strong&gt;：&lt;code&gt;'self'&lt;/code&gt;、&lt;code&gt;'none'&lt;/code&gt;、&lt;code&gt;'unsafe-inline'&lt;/code&gt;（不推荐）、&lt;code&gt;'unsafe-eval'&lt;/code&gt;（不推荐）、&lt;code&gt;'strict-dynamic'&lt;/code&gt;（注意：&lt;code&gt;strict-dynamic&lt;/code&gt; 应与 &lt;code&gt;nonce&lt;/code&gt; 或 &lt;code&gt;hash&lt;/code&gt; 一起使用。在支持该特性的浏览器中，会忽略传统脚本白名单（如 &lt;code&gt;'self'&lt;/code&gt;、主机白名单），改由受信任脚本继续加载其他脚本。）、&lt;code&gt;'nonce-xxx'&lt;/code&gt;（每次响应随机生成）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;CSP&lt;/code&gt; 配置案例&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;CSP&lt;/code&gt; 配置案例&lt;/strong&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;基础案例（静态站）&lt;/strong&gt; ：&lt;code&gt;Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;进阶案例（带 &lt;code&gt;CDN&lt;/code&gt; 和 &lt;code&gt;API&lt;/code&gt;）&lt;/strong&gt; ： &lt;code&gt;Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.example.com; img-src 'self' data: https://cdn.example.com; connect-src 'self' https://api.example.com; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;上线前先开报告模式（只报告不拦截）&lt;/strong&gt;：&lt;code&gt;Content-Security-Policy-Report-Only: default-src 'self'; object-src 'none'; base-uri 'self' Reporting-Endpoints: csp-endpoint=&amp;quot;https://example.com/csp-violations&amp;quot; Content-Security-Policy-Report-Only: ...; report-to csp-endpoint&lt;/code&gt;； 注意两个坑：&lt;code&gt;Report-Only&lt;/code&gt; 模式下 &lt;code&gt;frame-ancestors&lt;/code&gt; 不生效（既不拦截也不产生报告）；若未配置 &lt;code&gt;report-to/report-uri&lt;/code&gt;（或 &lt;code&gt;Reporting-Endpoints&lt;/code&gt;），&lt;code&gt;Report-Only&lt;/code&gt; 依然在浏览器端生效：它会在开发者工具控制台输出违规警告，并可被前端 &lt;code&gt;securitypolicyviolation&lt;/code&gt; 事件捕获，只是不会向服务器发送 &lt;code&gt;HTTP&lt;/code&gt; 违规上报包。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;Nginx&lt;/code&gt; 配置 &lt;code&gt;CSP&lt;/code&gt;&lt;/strong&gt;: &lt;code&gt;add_header Content-Security-Policy &amp;quot;default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'&amp;quot; always;&lt;/code&gt;&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;基础案例（静态站）&lt;/strong&gt; ：&lt;code&gt;Content-Security-Policy: default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;进阶案例（带 &lt;code&gt;CDN&lt;/code&gt; 和 &lt;code&gt;API&lt;/code&gt;）&lt;/strong&gt; ： &lt;code&gt;Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.example.com; img-src 'self' data: https://cdn.example.com; connect-src 'self' https://api.example.com; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;上线前先开报告模式（只报告不拦截）&lt;/strong&gt;：&lt;code&gt;Content-Security-Policy-Report-Only: default-src 'self'; object-src 'none'; base-uri 'self' Reporting-Endpoints: csp-endpoint=&amp;quot;https://example.com/csp-violations&amp;quot; Content-Security-Policy-Report-Only: ...; report-to csp-endpoint&lt;/code&gt;； 注意两个坑：&lt;code&gt;Report-Only&lt;/code&gt; 模式下 &lt;code&gt;frame-ancestors&lt;/code&gt; 不生效（既不拦截也不产生报告）；若未配置 &lt;code&gt;report-to/report-uri&lt;/code&gt;（或 &lt;code&gt;Reporting-Endpoints&lt;/code&gt;），&lt;code&gt;Report-Only&lt;/code&gt; 依然在浏览器端生效：它会在开发者工具控制台输出违规警告，并可被前端 &lt;code&gt;securitypolicyviolation&lt;/code&gt; 事件捕获，只是不会向服务器发送 &lt;code&gt;HTTP&lt;/code&gt; 违规上报包。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Nginx&lt;/code&gt; 配置 &lt;code&gt;CSP&lt;/code&gt;&lt;/strong&gt;: &lt;code&gt;add_header Content-Security-Policy &amp;quot;default-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'&amp;quot; always;&lt;/code&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;&lt;code&gt;always&lt;/code&gt; 必须加&lt;/strong&gt;：&lt;code&gt;add_header&lt;/code&gt; 默认只对 &lt;code&gt;200/201/204/206/301/302/303/304/307/308&lt;/code&gt; 生效，加 &lt;code&gt;always&lt;/code&gt; 才对所有响应码生效（错误页也带 &lt;code&gt;CSP&lt;/code&gt;）&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;&lt;code&gt;add_header&lt;/code&gt; 继承坑&lt;/strong&gt;：子 &lt;code&gt;location&lt;/code&gt; 写了 &lt;code&gt;add_header&lt;/code&gt; 会覆盖父级全部（&lt;code&gt;nginx 1.29.3+&lt;/code&gt; 可用 &lt;code&gt;add_header_inherit merge&lt;/code&gt;; 改为追加）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;Nginx&lt;/code&gt; 其他安全头（一起配，注意与 CSP 语义一致）&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;Nginx&lt;/code&gt; 其他安全头（一起配，注意与 CSP 语义一致）&lt;/strong&gt;
 &lt;pre&gt;&lt;code&gt;add_header X-Content-Type-Options &amp;#34;nosniff&amp;#34; always;
 add_header X-Frame-Options &amp;#34;DENY&amp;#34; always; # 与 frame-ancestors &amp;#39;none&amp;#39; 配套
 add_header Referrer-Policy &amp;#34;strict-origin-when-cross-origin&amp;#34; always;
 add_header Permissions-Policy &amp;#34;geolocation=(), camera=(), microphone=()&amp;#34; always;
 add_header Strict-Transport-Security &amp;#34;max-age=31536000; includeSubDomains; preload&amp;#34; always; # 仅 HTTPS 站点&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;策略一致性&lt;/strong&gt;：&lt;code&gt;CSP&lt;/code&gt; 的 &lt;code&gt;frame-ancestors 'none'&lt;/code&gt; 应配 &lt;code&gt;X-Frame-Options &amp;quot;DENY&amp;quot;&lt;/code&gt;（或 &lt;code&gt;'self' + SAMEORIGIN&lt;/code&gt;），两者语义要一致——不要出现&amp;quot;&lt;code&gt;CSP&lt;/code&gt; 禁止嵌入、&lt;code&gt;XFO&lt;/code&gt; 允许同源嵌入&amp;quot;的自相矛盾&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;HSTS&lt;/code&gt; 的坑&lt;/strong&gt;：&lt;code&gt;includeSubDomains&lt;/code&gt; 要求子域全部 &lt;code&gt;HTTPS&lt;/code&gt;，否则误伤子域；&lt;code&gt;preload&lt;/code&gt; 需去 &lt;code&gt;hstspreload.org&lt;/code&gt; 提交后才生效&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;code&gt;X-Frame-Options&lt;/code&gt; 有效值只有两档（&lt;code&gt;DENY/SAMEORIGIN&lt;/code&gt;）——— &lt;code&gt;ALLOW-FROM&lt;/code&gt; 已废弃且会导致整个头被浏览器忽略&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;策略一致性&lt;/strong&gt;：&lt;code&gt;CSP&lt;/code&gt; 的 &lt;code&gt;frame-ancestors 'none'&lt;/code&gt; 应配 &lt;code&gt;X-Frame-Options &amp;quot;DENY&amp;quot;&lt;/code&gt;（或 &lt;code&gt;'self' + SAMEORIGIN&lt;/code&gt;），两者语义要一致——不要出现&amp;quot;&lt;code&gt;CSP&lt;/code&gt; 禁止嵌入、&lt;code&gt;XFO&lt;/code&gt; 允许同源嵌入&amp;quot;的自相矛盾&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;HSTS&lt;/code&gt; 的坑&lt;/strong&gt;：&lt;code&gt;includeSubDomains&lt;/code&gt; 要求子域全部 &lt;code&gt;HTTPS&lt;/code&gt;，否则误伤子域；&lt;code&gt;preload&lt;/code&gt; 需去 &lt;code&gt;hstspreload.org&lt;/code&gt; 提交后才生效&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;X-Frame-Options&lt;/code&gt; 有效值只有两档（&lt;code&gt;DENY/SAMEORIGIN&lt;/code&gt;）——— &lt;code&gt;ALLOW-FROM&lt;/code&gt; 已废弃且会导致整个头被浏览器忽略&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;进阶思考&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;进阶思考&lt;/strong&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;为什么 &lt;code&gt;'unsafe-inline'&lt;/code&gt; 不推荐？&lt;code&gt;nonce&lt;/code&gt; 和它什么关系？&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;为什么 &lt;code&gt;'unsafe-inline'&lt;/code&gt; 不推荐？&lt;code&gt;nonce&lt;/code&gt; 和它什么关系？&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;'unsafe-inline'&lt;/code&gt; 允许所有内联脚本执行——&lt;code&gt;XSS&lt;/code&gt; 注入的正是内联脚本，等于开大后门。完全禁止内联脚本后，页面自带的 &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; 也会被拦截，需要移到外部 &lt;code&gt;.js&lt;/code&gt; 或用 &lt;code&gt;nonce/hash&lt;/code&gt; 白名单。在必须用内联脚本时，&lt;code&gt;nonce&lt;/code&gt; 远比 &lt;code&gt;'unsafe-inline'&lt;/code&gt; 安全、且比完全禁止更灵活 ——— &lt;code&gt;nonce&lt;/code&gt; 每次响应随机生成，攻击者无法预知。实操坑：&lt;code&gt;nonce&lt;/code&gt; 每次响应都变，页面被浏览器/&lt;code&gt;CDN&lt;/code&gt; 缓存后 &lt;code&gt;nonce&lt;/code&gt; 过期、脚本被误杀——这是高频事故，缓存页面慎用 &lt;code&gt;nonce&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;CSP&lt;/code&gt; 和 &lt;code&gt;X-Frame-Options&lt;/code&gt; 都能防点击劫持，用哪个？&lt;/strong&gt;&lt;/p&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;CSP&lt;/code&gt; 和 &lt;code&gt;X-Frame-Options&lt;/code&gt; 都能防点击劫持，用哪个？&lt;/strong&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;frame-ancestors（CSP）&lt;/code&gt;是现代推荐、&lt;code&gt;X-Frame-Options&lt;/code&gt; 是旧方案。&lt;code&gt;frame-ancestors&lt;/code&gt; 更灵活（可精确指定多个来源），&lt;code&gt;X-Frame-Options&lt;/code&gt; 只有 &lt;code&gt;DENY/SAMEORIGIN&lt;/code&gt; 两档。两者同时存在时，&lt;code&gt;CSP&lt;/code&gt; 优先（仅在 &lt;code&gt;enforce&lt;/code&gt; 模式成立；&lt;code&gt;X-Frame-Options&lt;/code&gt; 在响应含 &lt;code&gt;frame-ancestors&lt;/code&gt; 时被忽略）。为兼容老浏览器可两者都配，但语义必须一致&lt;/li&gt;
 &lt;/ul&gt;
