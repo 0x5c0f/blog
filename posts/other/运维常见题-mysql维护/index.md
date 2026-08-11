@@ -88,7 +88,7 @@
             ```sql
             CREATE TABLE t1 (id INT PRIMARY KEY, name VARCHAR(20)) ENGINE=InnoDB;  -- 默认引擎，可省略
             CREATE TABLE t2 (id INT PRIMARY KEY, name VARCHAR(20)) ENGINE=MyISAM;  -- 显式指定
-            ``
+            ```
     - **第四层**：性能与选型场景
         - **`MyISAM` 适合**：读多写少、无事务要求、可接受手工修复风险的场景（如历史归档表、只读报表、经 `myisampack` 压缩的冷数据）；顺序读与无 WHERE 计数有优势
         - **`InnoDB` 适合**：高并发读写、事务、外键、需要崩溃安全的业务表——这也是它成为默认引擎的原因
@@ -180,7 +180,7 @@
     - **`Group Commit`**：多个事务按提交组批量写 `binlog` 并一次性 `fsync`，`sync_binlog=N` 的单位就是提交组，兼顾吞吐与持久性
     - **`binlog` 加密**：`8.0.14` 起 `binlog_encryption` 可加密 `binlog` 与 `relay log`；开启后 `mysqlbinlog` 无法直接读取 `binlog` 文件，需改用 `--read-from-remote-server` 从实例拉取，第三方解析工具同样受影响
     - **`binlog` 提取 `SQL` 的工具**：
-        - **`mysqlbinlog`（官方自带，可离线）** ：`mysqlbinlog --base64-output=DECODE-ROWS -v mysql-bin.000123` 把 `ROW` 事件解码为 `## 🤔#` 开头的伪 `SQL`（`UPDATE` 显示 `## 🤔# WHERE` 前映像 + `## 🤔# SET` 后映像），`-vv` 追加列类型注释；注意解码后列名显示为 `@N` 序号（原始列名丢失），且伪 `SQL` 仅供人读/审计、不可直接重放——真正可重放的是默认输出的 `base64 BINLOG '...'` 语句（管道交给 `mysql` 执行，需 `BINLOG_ADMIN/SUPER` 权限）
+        - **`mysqlbinlog`（官方自带，可离线）** ：`mysqlbinlog --base64-output=DECODE-ROWS -v mysql-bin.000123` 把 `ROW` 事件解码为 `###` 开头的伪 `SQL`（`UPDATE` 显示 `### WHERE` 前映像 + `### SET` 后映像），`-vv` 追加列类型注释；注意解码后列名显示为 `@N` 序号（原始列名丢失），且伪 `SQL` 仅供人读/审计、不可直接重放——真正可重放的是默认输出的 `base64 BINLOG '...'` 语句（管道交给 `mysql` 执行，需 `BINLOG_ADMIN/SUPER` 权限）
         - **`binlog2sql`（`Python` 开源）** ：把 `binlog` 逆向生成原始 `SQL`（`INSERT`/`UPDATE`/`DELETE`），`--flashback`（`-B`）生成回滚 `SQL` 实现闪回；兼容 `Python 2.7/3.4+`，原版已测试 `MySQL 5.6/5.7`（`8.0` 需依赖社区 `fork`）；必须连接在线 `MySQL`（经 `BINLOG_DUMP` 协议拉取并读 `information_schema` 元数据），需 `SELECT`, `REPLICATION SLAVE`, `REPLICATION CLIENT` 权限
         - **`my2sql`（`Go` 开源）** ：基于 `go-mysql` 解析库，`-work-type 2sql|rollback|stats` 分别提取 `SQL` / 生成回滚 `SQL` / 统计执行量，`-sql insert,update,delete` 过滤类型、`-file-per-table` 按表拆分、`-big-trx-row-limit` 定位大事务；`-mode file` 可离线解析 `binlog` 文件；`8.0` 可用但需 `mysql_native_password` 认证；回滚要求 `ROW+FULL`，无主键表需 `-full-columns`
         - **`CDC` 工具（`Canal` / `Maxwell` / `Debezium`）** ：伪装从库实时拉取 `binlog`，输出行级变更事件流（`Canal` 为自定义客户端协议、`Maxwell` 输出 `JSON`、`Debezium` 为跨库通用框架），不还原原始 `SQL` 文本，适合实时同步/异构数据管道
