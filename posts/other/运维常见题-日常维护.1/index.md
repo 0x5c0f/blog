@@ -210,8 +210,7 @@
 
 - **进阶思考**：
     - `dig` 返回了结果但浏览器就是打不开，还可能是什么问题?
-        - ：可能是 `/etc/nsswitch.conf` 里 `hosts: dns files` 顺序颠倒了，或者 `systemd-resolved` 的缓存污染了，`resolvectl flush-caches` 清一下, `dig` 直接查 `DNS`、绕过 `NSS` 和 `/etc/hosts`，两者结果本就可能不一致。还需排查：`/etc/hosts` 覆盖、浏览器自身  
-   DoH/代理、IPv6(AAAA) 问题、以及根本不是 DNS 而是 HTTP/TLS 层的问题
+        - ：可能是 `/etc/nsswitch.conf` 里 `hosts: dns files` 顺序颠倒了，或者 `systemd-resolved` 的缓存污染了，`resolvectl flush-caches` 清一下, `dig` 直接查 `DNS`、绕过 `NSS` 和 `/etc/hosts`，两者结果本就可能不一致。还需排查：`/etc/hosts` 覆盖、浏览器自身 DoH/代理、IPv6(AAAA) 问题、以及根本不是 DNS 而是 HTTP/TLS 层的问题
     - DNS 解析异常缓慢，怎么定位瓶颈?
         - `dig` + `trace` 看每级响应时间，如果根或 TLD 响应慢是运营商递归 DNS 的问题；如果权威 NS 慢是对方的服务问题。也可以对比 `dig @8.8.8.8` 和 `dig @114.114.114.114` 看谁的递归
     - 内网 DNS 解析公司内部域名怎么设计的？

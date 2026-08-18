@@ -14157,8 +14157,7 @@ WantedBy=multi-user.target
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;dig&lt;/code&gt; 返回了结果但浏览器就是打不开，还可能是什么问题?
 &lt;ul&gt;
-&lt;li&gt;：可能是 &lt;code&gt;/etc/nsswitch.conf&lt;/code&gt; 里 &lt;code&gt;hosts: dns files&lt;/code&gt; 顺序颠倒了，或者 &lt;code&gt;systemd-resolved&lt;/code&gt; 的缓存污染了，&lt;code&gt;resolvectl flush-caches&lt;/code&gt; 清一下, &lt;code&gt;dig&lt;/code&gt; 直接查 &lt;code&gt;DNS&lt;/code&gt;、绕过 &lt;code&gt;NSS&lt;/code&gt; 和 &lt;code&gt;/etc/hosts&lt;/code&gt;，两者结果本就可能不一致。还需排查：&lt;code&gt;/etc/hosts&lt;/code&gt; 覆盖、浏览器自身&lt;br&gt;
-DoH/代理、IPv6(AAAA) 问题、以及根本不是 DNS 而是 HTTP/TLS 层的问题&lt;/li&gt;
+&lt;li&gt;：可能是 &lt;code&gt;/etc/nsswitch.conf&lt;/code&gt; 里 &lt;code&gt;hosts: dns files&lt;/code&gt; 顺序颠倒了，或者 &lt;code&gt;systemd-resolved&lt;/code&gt; 的缓存污染了，&lt;code&gt;resolvectl flush-caches&lt;/code&gt; 清一下, &lt;code&gt;dig&lt;/code&gt; 直接查 &lt;code&gt;DNS&lt;/code&gt;、绕过 &lt;code&gt;NSS&lt;/code&gt; 和 &lt;code&gt;/etc/hosts&lt;/code&gt;，两者结果本就可能不一致。还需排查：&lt;code&gt;/etc/hosts&lt;/code&gt; 覆盖、浏览器自身 DoH/代理、IPv6(AAAA) 问题、以及根本不是 DNS 而是 HTTP/TLS 层的问题&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;DNS 解析异常缓慢，怎么定位瓶颈?
