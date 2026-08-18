@@ -848,26 +848,935 @@
 - **扩展信息**
     - **`ClusterSet（8.0.21+）`** ：`InnoDB Cluster` 的跨地域容灾方案，多个 `Cluster` 组成 `ClusterSet`，提供地域级故障转移
     - **`Clone` 插件（8.0.17+）** ：物理克隆加节点，替代传统备份恢复的 `provisioning` 方式，`InnoDB Cluster/MGR` 加节点更快
-    - **`MGR` 演进**：`8.0.32` 引入 `group write consensus`、`8.4` 引入 `Single Consensus Leader`，持续优化共识路径
+    - **`MGR` 演进**：`8.0.27` 引入 `group write consensus`、`8.4` 引入 `Single Consensus Leader`，持续优化共识路径
     - **生命周期提醒**：`5.7` 已 `EOL`、`8.0 Premier Support` 已结束（`Extended` 阶段），新项目考虑 `8.4 LTS`
 
 
 ## 🤔 简述 MySQL 主从复制工作原理？
+- **主从复制的本质，是单向异步的"数据搬运"——主库把每次变更写进 binlog（源头流水账），从库两个线程接力搬：I/O 线程把 binlog 搬到本地 relay log，SQL 线程再照着重放；主库默认不等从库确认（异步），半同步是加一道"签收确认"的保险。**
+    - **第一层**：三线程模型（搬运的"人"）
+        - **主库 `dump` 线程（`binlog dump thread`）** ：从库一连接，主库就为它建一个专用线程，读取 `binlog` 并发送
+        - **从库 `I/O` 线程**：连接主库、请求 `binlog`，把收到的事件写入本地 `relay log`
+        - **从库 `SQL` 线程**：顺序读取 `relay log` 并重放执行（多线程复制开启时是 `coordinator` + 多个 `worker` 并行）
+
+    - **第二层**：两个日志（搬运的"货"）
+        - **`binlog`（主库）** ：记录所有数据变更（`DML/DDL`），是复制的数据源
+        - **`relay log`（从库）** ：`I/O` 线程写入、`SQL` 线程读取，重放后自动清理（`relay_log_purge` 默认 `ON`）；事件格式与 `binlog` 一致，级联复制可无缝衔接
+        - 本质链路：主库 `binlog` → 网络 → 从库 `relay log` → 从库数据
+
+    - **第三层**：完整工作流程
+        - **前提**：主库开启 `log_bin`（`5.7` 默认不开，需显式开启）；各节点 `server_id` 唯一；复制账号需 `REPLICATION SLAVE` 权限
+        - **建立复制（5.7 语法）** ：
+            ```sql
+            CHANGE MASTER TO
+            MASTER_HOST='主库IP', MASTER_PORT=3306,
+            MASTER_USER='repl', MASTER_PASSWORD='密码',
+            MASTER_LOG_FILE='mysql-bin.000123', MASTER_LOG_POS=154;
+            START SLAVE;
+            SHOW SLAVE STATUS\G    -- 看 Slave_IO_Running / Slave_SQL_Running / Seconds_Behind_Master
+            ```
+
+        - **运行**：`I/O` 线程按指定位置（文件+偏移或 `GTID`）请求 → `dump` 线程发送 → 写入 `relay log` → `SQL` 线程重放 → 持续记录已执行位置，断点续传
+        - **`GTID` 复制（`5.6+`）** ：`gtid_mode` 默认 `OFF` 需显式开启，配 `MASTER_AUTO_POSITION=1`，按全局事务标识自动定位，比"文件+位置"可靠
+
+    - **第四层**：复制模式与延迟
+        - **默认异步**：主库提交不等从库确认——性能好，但主库崩溃时已提交未传到从库的事务会丢
+        - **半同步（5.5+ 官方插件，需安装）** ：主库阻塞等至少一个从库确认已把事件写入 `relay log` 并刷盘（默认 `AFTER_SYNC` 等待点），丢失窗口接近 `0`；超时自动回退异步
+        - **延迟指标**：`Seconds_Behind_Master`（`SQL` 线程落后秒数）；常见原因 ——— 大事务、无主键表、从库单线程重放（`8.0.27` 前默认）、硬件/网络差异；注意"`0 值陷阱`"（网络断开未被察觉时可能显示 0）
+
+- **协助记忆**
+    - **主库像报社**：新闻（变更）先写进"底稿库"（`binlog`）；从库像地方印刷厂，两个员工分工 ——— `I/O` 线程守在报社门口把传真件收回来存档（`relay log`），`SQL` 线程照着存档重新排版印刷（重放）。报社发报不等印刷厂回话（异步）；要求"印刷厂签收传真才定稿"就是半同步，新闻就不会丢在路上
+    - **口诀**：主库写 `binlog`，从库两线程 ——— `IO` 收、`SQL` 放，`relay log` 中转
+
+- **进阶思考**
+    - **异步复制为什么默认？半同步解决了什么？**
+        - 异步让主库提交不等待网络往返、性能最好；代价是主库崩溃瞬间可能有已提交事务没到从库。半同步要求至少一个从库确认收到 `relay log` 才提交，丢失窗口压到接近零，但提交延迟增加，且超时会自动退回异步
+
+    - **`Seconds_Behind_Master` 显示 `0` 就一定没延迟吗？**
+        - 不一定。它是 `SQL` 线程相对主库事件时间戳的差值估算；网络断开未被 `I/O` 线程察觉、或 `I/O` 线程排队新事件时可能瞬时为 `0` 或失真，要结合从库读取位置与主库 `binlog` 位置对比判断
+
+    - **从库能当下一级主库（级联复制）吗？**
+        - 可以，需开启 `log_slave_updates`（`5.7` 默认 `OFF`；`8.0` 开启 `binlog` 后默认记录），让从库把自己重放的事务写进自己的 `binlog` 再向下游传播
+
+    - **`relay log` 与 `binlog` 格式一致为什么重要？**
+        - 级联复制、以及 `MHA` 等切换工具"从各从库补齐 `relay log` 再提升新主"都依赖同一套事件格式，能无缝衔接
+
 ## 🤔 MySQL 主从同步延迟原因及解决方法？
+- **主从延迟的本质，是从库"重放"跟不上主库"写入"——主库并发写、从库默认串行放，差距就出来了；九成延迟源于大事务、无主键表、从库单线程这三件事，解法对应就是拆事务、加主键、开并行复制，外加别让从库又读又写。**
+
+    - **第一层**：先判断"真的延迟了吗"
+        - **`Seconds_Behind_Master`（5.7 术语）** ：`SQL` 线程落后秒数，但有失真陷阱——网络断开未被 `I/O` 线程察觉（`slave_net_timeout` 未到）时可能显示 `0`；`SQL` 线程刚追上 `I/O` 线程时瞬时大值；事件时间戳旧导致 `0` 与大值反复跳变
+        - 更准的对比法：比较主库 `binlog` 位置与从库执行位置——(`Master_Log_File`, `Read_Master_Log_Pos`) 与 (`Relay_Master_Log_File`, `Exec_Master_Log_Pos`)，两对坐标拉开差距才是真延迟
+        - **`pt-heartbeat（Percona Toolkit）`** ：基于实际复制数据测延迟，不依赖复制机制自身（其官方文档明示 SBM 不可靠），复制中断时也能准确报出持续落后——生产监控推荐
+
+    - **第二层**：延迟的主要原因
+        - **大事务（最典型）** ：一次更新大量行或大 `DDL`（如 `ALTER` 重建表），主库已提交、从库还在慢慢重放；且官方机制上大事务会排空并阻塞所有并行 `worker` 及后续事务（`slave_pending_jobs_size_max` 条目），影响被放大
+        - **从库单线程重放**：`5.7` 默认 `slave_parallel_workers=0` 单线程，主库并发写一多就跟不上
+        - **无主键/无唯一键表**：`ROW` 格式下从库重放无法索引点查，退化为哈希定位/全表扫描；官方明示无主键表对并行复制从库的负面影响更大
+        - **从库又读又写**：读写分离场景从库承担业务读，`CPU/IO` 与重放争抢（实践共识）
+        - **硬件/网络差距**：主从机器配置不一致（`SSD vs HDD`）、跨机房带宽小导致 `I/O` 线程拉取慢（实践共识）
+        - **大字段与日志体积**：`ROW` 格式 `binlog` 体积大、`BLOB/TEXT` 重放开销高（实践共识；`8.0.20+` 可用 `binlog` 事务压缩缓解）
+        - **从库自身锁等待**：从库的慢查询/死锁触发 `slave_transaction_retries` 自动重试（默认 `10` 次），期间复制阻塞（官方机制）
+
+    - **第三层**：解决方法
+        - **拆大事务**：分批 `DML`、控制单事务行数（同时降低锁持有与 `undo` 膨胀）；大 `DDL` 错峰或改用 `pt-osc` / `gh-ost` 在线改表。注意拆批失去单事务原子性，业务需接受部分提交
+        - **开启并行复制（MTS）**：
+            ```ini
+            # 5.7（5.7.6+ 才支持 LOGICAL_CLOCK；此前只有 DATABASE 级并行）
+            [mysqld]
+            slave_parallel_workers = 4        # 0=单线程（默认），>0 开启并行
+            slave_parallel_type = LOGICAL_CLOCK   # 按事务间并行安全度并行
+            slave_preserve_commit_order = ON  # 保持提交顺序（5.7 默认 OFF）
+            ```
+
+            - **启用前提（易踩坑）** ：`5.7` 及 `8.0.26` 之前，`slave_preserve_commit_order=ON` 要求从库开启 `log_bin` + `log_slave_updates` 且 `parallel_type` 为 `LOGICAL_CLOCK`；`8.0.19` 起不再要求从库开 `binlog`
+            - **并行度来源**：依赖主库 `binlog group commit`；`5.7.22+` 可配 `binlog_transaction_dependency_tracking=WRITESET` 提升并行度；级联复制并行度逐层递减
+            - **局限**：`DDL`、大事务、`LOAD DATA` 不并行且会排空 `worker`；`worker` 数不是越大越好（官方明示超过某点后并发争用反而降性能）
+
+        - **表加主键/唯一键**：`ROW` 重放从全表扫描变索引点查，收益最大且一劳永逸
+        - **从库专读分流**：读请求打到只读节点，别让主从库"既当爹又当妈"；硬件对齐（`SSD`、内存）
+        - **网络与部署**：同机房部署、提升带宽
+        - **监控告警**：`pt-heartbeat` 采集 + 延迟阈值告警，替代不可靠的 `Seconds_Behind_Master`
+
+- **协助记忆**
+    - 主库像高速印刷机（并发出报），从库像慢速人工装订线（单线程重放）——— 机器印 `1000` 份，人工只能装订 `100` 份，积压就是延迟。三个"元凶"对应三种堵法：一次送来一大摞（大事务）装订不动、稿件没编号（无主键）找起来费劲、只派一个工人（单线程）。解法就是：拆大摞、给稿件编号、多派工人（并行复制）
+    - 口诀：拆事务、加主键、开并行，从库别读写两肩挑
+
+- **进阶思考**
+    - `Seconds_Behind_Master` 是 `0`，就真的不延迟吗？
+        - 不一定。它是时间戳差值估算，网络断开未被察觉、`SQL` 线程刚追上 `I/O`、事件时间戳旧等场景都会失真；可靠做法是对比 `binlog` 位置或用 `pt-heartbeat` 基于实际数据测量
+
+    - **为什么开启并行复制后反而更慢？**
+        - `worker` 数不是越大越好——超过某点后线程争用（锁竞争、上下文切换）抵消并行收益；且 `DDL`/大事务/`LOAD DATA` 会排空所有 `worker`，若业务全是这类语句，并行形同虚设。另外级联从库并行度逐层递减
+
+    - **拆大事务的代价是什么？**
+        - 失去单事务原子性——拆成 `N` 批后中途失败会留下部分提交，需要业务侧有幂等/补偿机制；这是"延迟 vs 一致性"的权衡，不是无脑拆
+
+    - **`5.7` 的并行复制为什么默认不开？**
+        - 并行依赖事务间无冲突（`binlog group commit` 的并行安全判定），早于 `5.7.6` 的 `DATABASE` 级并行粒度太粗、收益有限，`LOGICAL_CLOCK` 引入后才有实用价值，但官方仍保持默认单线程以求稳妥——需要 `DBA` 按业务评估后开启
+
+
+- **扩展信息**
+    - **默认并行（8.0.27 起）** ：`replica_parallel_workers` 默认 `4`、`replica_preserve_commit_order` 默认 `ON`（此前默认 `0`/`OFF`），从库开箱即并行
+    - **术语变更（8.0.26）** ：`slave_parallel_*` 全部更名 `replica_parallel_*`（旧名弃用为别名）；`8.0.29` 起 `replica_parallel_type` 弃用（`DATABASE` 并行将移除）；`8.0.30` 起 `replica_parallel_workers=0` 弃用（用 `1` 表示单线程）
+    - **前提放宽（8.0.19）** ：`preserve_commit_order=ON` 不再要求从库开 `binlog`
+    - **binlog 事务压缩（8.0.20）** ：缓解 `ROW` 格式日志体积带来的传输与重放开销
+    - **注意**：`preserve_commit_order=ON` 不消除 `Exec_master_log_pos` 位置滞后；复制过滤（`binlog-do-db` 等）会破坏提交顺序保证
+
+
 ## 🤔 MySQL 主从复制，从库宕机 / 故障如何恢复？
+- **从库宕机恢复的核心原则是：先判断故障类型（可重启 / 数据损坏 / binlog 丢失），再选择对应恢复路径，GTID 模式比传统模式更简单可靠。**
+
+    - **第一层**：从库宕机后能正常重启（最常见）
+        - **场景**：从库进程崩溃、服务器重启、网络中断等，MySQL 可以正常启动
+        - **GTID 模式（推荐）** ：
+            ```bash
+            # 1. 启动从库
+            systemctl start mysqld
+
+            # 2. 检查复制状态
+            mysql -e "SHOW SLAVE STATUS\G"
+
+            # 3. 如果复制停止，自动跳过已执行的 GTID 事务
+            mysql -e "STOP SLAVE; RESET SLAVE; START SLAVE;"
+            # GTID 模式下 MySQL 会自动跳过已执行的事务，无需手动定位 binlog 位置
+            ```
+
+        - **传统模式（基于 binlog 位置）** ：
+            ```bash
+            # 1. 启动从库
+            systemctl start mysqld
+
+            # 2. 检查复制状态，查看 Executed_Gtid_Set 或 Relay_Master_Log_File + Exec_Master_Log_Pos
+            mysql -e "SHOW SLAVE STATUS\G"
+
+            # 3. 如果复制停止且报错（如 1062 主键冲突），跳过错误
+            mysql -e "STOP SLAVE; SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1; START SLAVE;"
+            # 注意：跳过错误可能导致主从不一致，仅用于临时应急
+
+            # 4. 如果需要重新定位 binlog 位置
+            mysql -e "STOP SLAVE; CHANGE MASTER TO MASTER_LOG_FILE='mysql-bin.000XXX', MASTER_LOG_POS=YYY; START SLAVE;"
+            ```
+
+        - **关键检查**：
+        - `Slave_IO_Running`: `Yes` — `IO` 线程正常
+        - `Slave_SQL_Running`: `Yes` — `SQL` 线程正常
+        - `Seconds_Behind_Master` — 复制延迟（`0` 表示同步完成）
+
+
+    - **第二层**：从库数据损坏，无法启动（需要重建）
+        - **场景**：磁盘故障、文件系统损坏、数据文件丢失等，MySQL 无法启动
+        - **使用 xtrabackup 重建（推荐，热备份）** ：
+            ```bash
+            # 1. 在主库备份（不停主库）
+            xtrabackup --backup --target-dir=/backup/full -u root -p
+
+            # 2. 准备备份（应用 redo log）
+            xtrabackup --prepare --target-dir=/backup/full
+
+            # 3. 停止从库，清理数据目录
+            systemctl stop mysqld
+            rm -rf /var/lib/mysql/*
+
+            # 4. 恢复备份到从库
+            xtrabackup --copy-back --target-dir=/backup/full
+
+            # 5. 修改权限
+            chown -R mysql:mysql /var/lib/mysql
+
+            # 6. 启动从库并配置复制
+            systemctl start mysqld
+
+            # GTID 模式：
+            mysql -e "CHANGE MASTER TO MASTER_HOST='主库IP', MASTER_USER='repl', MASTER_PASSWORD='密码', MASTER_AUTO_POSITION=1;"
+            mysql -e "START SLAVE;"
+
+            # 传统模式（需要从备份中获取 binlog 位置）：
+            # xtrabackup 备份完成后会生成 xtrabackup_binlog_info 文件，包含 binlog 文件和位置
+            mysql -e "CHANGE MASTER TO MASTER_HOST='主库IP', MASTER_USER='repl', MASTER_PASSWORD='密码', MASTER_LOG_FILE='mysql-bin.000XXX', MASTER_LOG_POS=YYY;"
+            mysql -e "START SLAVE;"
+            ```
+
+        - **使用 · 重建（逻辑备份，适合小数据量）** ：
+            ```bash
+            # 1. 在主库导出数据（包含 GTID 信息）
+            mysqldump --single-transaction --routines --triggers --all-databases --master-data=2 --set-gtid-purged=ON > /backup/full.sql
+
+            # 2. 停止从库，清理数据目录
+            systemctl stop mysqld
+            rm -rf /var/lib/mysql/*
+
+            # 3. 初始化从库（如果需要）
+            mysqld --initialize-insecure --user=mysql
+
+            # 4. 启动从库
+            systemctl start mysqld
+
+            # 5. 导入数据
+            mysql < /backup/full.sql
+
+            # 6. 配置复制（GTID 模式）
+            mysql -e "CHANGE MASTER TO MASTER_HOST='主库IP', MASTER_USER='repl', MASTER_PASSWORD='密码', MASTER_AUTO_POSITION=1;"
+            ```
+
+    - **第三层**：· 被清理，无法继续同步
+        - **场景**：主库 `binlog` 过期被清理（`expire_logs_days`），从库需要的 `binlog` 已不存在
+        - **诊断**： 在从库查看错误 `mysql -e "SHOW SLAVE STATUS\G"` ，常见错误：`1236` (`binlog not found`)
+        - **解决方案**：需要全量重建从库（参考第二层的 `xtrabackup` 或 `mysqldump` 方法）
+        - **预防措施**：
+            ```bash
+            # 在主库调整 binlog 保留时间（根据业务需求）
+            # MySQL 8.0+
+            mysql -e "SET GLOBAL binlog_expire_logs_seconds = 604800;"  # 7 天
+
+            # MySQL 5.7
+            mysql -e "SET GLOBAL expire_logs_days = 7;"
+
+            # 永久配置写入 my.cnf
+            # [mysqld]
+            # binlog_expire_logs_seconds = 604800
+            # 或
+            # expire_logs_days = 7
+            ```
+
+    - **第四层**：数据一致性检查
+        - **场景**：从库恢复后，需要验证主从数据是否一致
+        - **使用 `pt-table-checksum`（`Percona Toolkit`）** ： `pt-table-checksum --replicate=percona.checksums h=主库IP,u=root,p=密码` 在主库执行（会自动检查主从一致性）
+
+        - **使用 `pt-table-sync` 修复不一致（谨慎使用）** ：
+            - 仅在确认不一致后使用，先 `dry-run` 查看: `pt-table-sync --print --replicate=percona.checksums h=主库IP,u=root,p=密码`
+            - 确认无误后执行修复：`pt-table-sync --execute --replicate=percona.checksums h=主库IP,u=root,p=密码`
+
+- **协助记忆**
+    - 主库是总部发货中心，从库是各地分拣中心。分拣中心宕机就像分拣机器卡住了——如果只是卡住（可重启），重新启动后继续处理积压包裹；如果整个分拣中心烧毁（数据损坏），需要从总部重新调货（全量备份）；如果总部的发货记录被删了（binlog 被清理），分拣中心无法知道漏了哪些包裹，只能重新调全部货。
+    - 口诀：能重启就重启，不能重启就重建，`binlog` 丢了全量来。
+
+- **进阶思考**
+    - **`GTID` 模式和传统模式最大的区别是什么？**
+        - `GTID` 模式下，每个事务有全局唯一标识（`server_uuid:transaction_id`），从库自动跳过已执行的事务，无需手动定位 `binlog` 位置；传统模式需要手动指定 `MASTER_LOG_FILE` 和 `MASTER_LOG_POS`，容易出错。
+
+    - **从库宕机期间主库写入的数据会丢失吗？**
+        - 不会丢失。从库恢复后会从主库的 `binlog` 中读取宕机期间的事务并重放，直到追上主库。但如果主库 `binlog` 已被清理，则需要全量重建。
+
+    - **如何避免从库长时间延迟？**
+        1. 使用并行复制（`slave_parallel_workers`）；
+        2. 从库硬件配置不低于主库；
+        3. 监控 `Seconds_Behind_Master`，及时发现延迟；
+        4. 避免在从库执行大事务或复杂查询。
+
+    - **从库可以提升为主库吗？**
+        - 可以。在主库故障时，可以将从库提升为主库（需要应用层切换或使用 `MHA/Orchestrator` 等工具自动故障转移）。GTID 模式下切换更简单，因为不需要记录 `binlog` 位置。
+
 ## 🤔 MHA 集群实现原理？
+- **MHA 是一套"外挂式"的 MySQL 主从复制故障自愈方案——它不碰数据本身，只干三件事：盯住主库、选出数据最新的从库、把落后的从库补平，从而把主库宕机的切换时间从人工的分钟级压到官方口径的 10~30 秒。**
+
+    - **核心定位**
+        - **是什么**：`MHA`（`Master High Availability`）是 `Yoshinori Matsunobu`开发的开源主库高可用方案。
+        - **前提**：跑在 `MySQL` 传统主从复制（异步/半同步）之上，本身不存储、不转发、不改数据，只负责"监控 + 自动切换"。
+        - **定位边界**：它解决"主库挂了谁来接管"，不解决"复制本身的数据一致性"。
+        - **现状**：已停止维护（最后 `release v0.58` 之后无官方更新），但仍是 `5.x` 时代运维面试的高频考点。
+
+    - **架构组件（两件套）**
+        - **`MHA Manager`（管理节点）** ：独立部署在一台监控机上，负责故障检测、选主、协调切换、调用脚本。核心脚本如 `masterha_check_repl`（检查复制状态）、`masterha_manager`（常驻监控进程）、`masterha_master_switch`（切换命令）。
+        - **`MHA Node`（数据节点）** ：部署在每台 `MySQL` 服务器（主+从）上，提供四个关键脚本：
+            - **`apply_diff_relay_logs`**：把"数据最新的从库"`relay log` 中、落后从库缺失的事件，应用给落后从库（补平从库差异）。
+            - **`save_binary_logs`**：抢救崩溃主库的 `binlog`（若主库 `SSH` 可达），补回"已提交但尚未同步"的事务。
+            - **`filter_mysqlbinlog`**：配合 `mysqlbinlog` 过滤、提取差异 `binlog` 事件。
+            - **`purge_relay_logs`**：清理 `relay log`，防止无限增长。
+
+        - **通信方式**：`Manager` 通过 `SSH` 免密登录各 `MySQL` 服务器，远程执行 `Node` 脚本。
+
+    - **故障切换流程（核心四步）**
+        - **故障检测**：`Manager` 周期性探测主库（默认每 `3` 秒执行一次 `SELECT` 探测），连续失败判定主库宕机；可配置 `secondary_check_script` 做二次确认，避免网络抖动误判。
+        - **选新主**：比较各从库 `relay log` 的最新位置（`Read_Master_Log_Pos`，即最新收到的 `binlog` 位置），选出"数据最新"的从库作为新主；可用 `candidate_master=1` 指定优先候选、`no_master=1` 排除；`0.56` 起支持基于 `GTID` 的选主（更精确）。
+        - **数据补偿（双向，MHA 的核心价值）** ：
+            - **落后从库 ← 最新从库（新主）**：`apply_diff_relay_logs` 让所有从库数据对齐。
+            - **新主 ← 崩溃主库**：`save_binary_logs` 抢救主库 `binlog`，把异步复制下"已提交未同步"的事务补回新主，尽量少丢数据——这是它比"随便挑个从库切换"高明的地方。
+
+        - **切换**：其余从库 `CHANGE MASTER` 指向新主并 `START SLAVE`；触发 `master_ip_failover_script` 做 `VIP` 漂移/应用指向切换（`MHA` 只留扩展点，`VIP` 脚本需用户自写，通常配合 `keepalived`）。
+
+    - **关键机制与边界**
+        - **在线切换**：`masterha_master_switch --master_state=alive` 用于计划内主从切换，写阻塞仅 `0.5~2` 秒（`FLUSH TABLES WITH READ LOCK` → 等从库追平 → 切换），无数据丢失。
+        - **防脑裂**：切换前用 `shutdown_script` 强制隔离/关机旧主，避免出现双主。
+        - **拓扑边界**：单套集群是"一主多从"，不支持多主同时写入（但一个 Manager 可同时监控多套主从集群）。
+        - **一致性边界**：异步复制仍可能丢已提交事务，半同步复制可显著减少；MHA 保证的是"从库之间最终一致 + 尽量少丢"。
+
+- **协助记忆**
+    - `MHA` 像大楼的备用发电机 + 自动切换开关——平时只盯主电表（主库），主电一断（主库宕机），立刻选一台电量最满的备用机（数据最新的从库）顶上，再把其他备用机的电量补平。
+    - 口诀 ：盯主库、选新主、补差异、切 VIP。
+
+- **进阶思考**
+    - **为什么 MHA 能比普通"手动切换"少丢数据？**
+        - 靠 `save_binary_logs` 抢救崩溃主库 `binlog + apply_diff_relay_logs` 补平从库差异，把异步复制下"已提交但还没同步"的事务尽量找回来；手动切换往往直接放弃这些事务。
+
+    - **`MHA` 与 `MySQL 8.0` 的 `MGR` / `InnoDB Cluster` 本质区别？**
+        - `MHA` 是"外挂式"——数据复制仍靠传统 `binlog` 主从，`MHA` 只做监控与切换；`MGR` 是"内建式"——通过 `Paxos` 协议在存储层实现多节点数据一致性，不依赖外部脚本与 `SSH`。
+
+
+- **扩展信息**
+    - 8.x 演进方向：MHA 主要适配 5.5/5.6/5.7 时代；8.x 场景下官方与社区多转向 MySQL Group Replication（MGR）、InnoDB Cluster、Orchestrator、ProxySQL + keepalived 等，可作为面试的迁移延伸点。
+
 ## 🤔 MGR 集群工作原理？
+- **`MGR`（`MySQL Group Replication`）是 `MySQL` 官方的"多数派共识复制"——事务提交前把写集合广播给组，靠 `Paxos（XCom）`全局排序 + 多数派投票认证后才提交，用"少数服从多数"换来已提交数据零丢失（`RPO=0`），而代价是默认只保证最终一致、且对网络延迟敏感。**
+    - **定位与架构**
+        - **是什么**：官方提供的插件式高可用复制方案，底层核心是 `XCom`（`Paxos` 协议变体）实现的组通信引擎（`GCS`），对事务做全局排序和一致性决策。
+        - **版本脉络**：`5.7.17` 引入（`GA`），`8.0` 成为官方主线；`5.7` 已结束官方支持（`EOL`），生产新部署以 `8.0` 为主，但存量 `5.7` 面试仍高频。
+        - **组（Group）** ：一组互为成员的 `MySQL` 实例，上限 `9` 个成员；成员加入/退出、视图变更（`view change`）、组重配置全部自动完成。
+        - **与 `InnoDB Cluster` 的关系**：`MGR` 本身不含客户端故障切换能力，官方 `HA` 栈是 `InnoDB Cluster = MySQL Shell` 管理 `MGR + MySQL Router` 路由（`8.0` 起，`5.7` 无法组建）。
+
+    - **两种模式**
+        - **单主模式（`single-primary`，默认）** ：只有 `primary` 可写，其余为 `secondary` 只读；`primary` 故障自动选举新 `primary`（`group_replication_single_primary_mode` 默认 `ON`）。
+        - **多主模式（`multi-primary`）** ：所有成员均可写，靠认证（`certification`）做行级冲突检测，冲突事务回滚。
+
+    - **工作流程（三步）**
+        - **本地执行**：事务在发起成员上先本地执行，但不立即提交。
+        - **广播 + 全序**：到达"`ready to commit`"时，把写集合（`write set`，被更新行的主键哈希）+ 变更行原子广播给组；`XCom/Paxos` 对事务做全局总排序（`total order`） ，保证所有成员看到一致的顺序。
+        - **认证 + 提交**：认证（`certification`）在行级比较并发事务的写集合——单主模式天然无冲突；多主模式下后提交且写集冲突者回滚（"`distributed first commit wins`"）。认证通过后各成员按同一顺序应用并提交。
+
+    - **一致性与容错**
+        - **一致性级别（易错点）** ：`MGR` 默认是最终一致（`EVENTUAL`） ，不是强一致。强一致需显式配置 `group_replication_consistency`（`8.0.14` 起，取值 `BEFORE` / `AFTER` / `BEFORE_AND_AFTER`，由弱到强）。
+        - **多数派（`quorum`）** ：组容错公式 `n = 2f+1`，超过半数成员存活才能达成决策；已提交事务在多数派存活时零丢失（`RPO=0`） 。
+        - **防脑裂（易错点）** ：网络分区时少数派默认不会"自动退出"，而是无限等待 （`group_replication_unreachable_majority_timeout=0`）—— 它无法凑够多数、被阻塞无法推进，从而防脑裂；只有显式设置超时后少数派才进入 `ERROR`/退出。
+        - **故障检测与选主**：成员故障检测 → 视图变更 → 组重配置 → 单主模式自动选主，全自动；选主权重用 `group_replication_member_weight`（8.0.12 起）。
+        - **流控（flow control）** ：`group_replication_flow_control_mode=QUOTA`，按应用/认证队列阈值（各默认 `25000` 事务）限流，防止慢成员堆积拖垮全组。
+
+    - **关键参数（5.7 语义为主）**
+        - **`group_replication_group_name`**：组名，必须是有效 `UUID`。
+        - **`group_replication_local_address / group_replication_group_seeds`**：本成员地址 / 组内种子地址。
+        - **`group_replication_bootstrap_group=ON`**：首次引导组。
+        - **`group_replication_single_primary_mode`**：单主模式开关（默认 ON）。
+        - **`transaction_write_set_extraction`**：写集合提取算法（`XXHASH64`），注意它是 `replication` 变量而非 `group_replication_` 前缀，且 `8.0.26` 起弃用。
+        - **`group_replication_transaction_size_limit`**：事务大小上限（默认约 143MB，0 为不限）。
+
+    - **与异步/半同步复制的本质区别**
+        - **异步**：主库提交即算完成，从库异步追，可能丢已提交事务。
+        - **半同步**：主库等至少一个从库确认（确认的是"已接收"，而非"已应用"）。
+        - **MGR**：多数派共识，事务需经组内多数成员认证后才提交，`RPO=0`；但一致性是"多数成员一致"，并非单主库那种即时强一致。
+
+- **协助记忆**
+    - `MGR` 像议会表决——每条事务提交前都要发给组内成员"投票"，过半数同意才生效；谁先提交谁赢，冲突的提案被打回重来，少数派意见（数据）不生效。
+    - 口诀 ：提交前广播、全序排好队、多数派认证、冲突就回滚。
+
+- **进阶思考**
+    - **为什么说 MGR"零丢失"却又是"最终一致"，不矛盾吗？**
+        - 不矛盾。零丢失指 ·——已提交事务在多数派存活时不会丢；最终一致指各成员看到新数据的时间点可能不同（无实时读一致性），读强一致需配置 `group_replication_consistency=BEFORE/AFTER`。
+
+    - **MGR 与上一题 MHA 的根本区别？**
+        - `MHA` 是"外挂式"——数据仍靠 `binlog` 主从，`MHA` 只监控+切换，异步下可能丢数据；MGR 是"内建式"——数据一致性由 Paxos 共识在存储层保证，自动选主且`RPO=0`，但强绑定 `MySQL` 版本、需官方插件与组通信网络。
+
+- **扩展信息**
+    - **8.0 增强点**：`group_replication_consistency` 一致性级别（`8.0.14`）、选主权重 `group_replication_member_weight`（`8.0.12`）、在线切换单主/多主（`8.0.16`）、`group_replication_paxos_single_leader` 单共识领导者（`8.0.27`）、消息压缩与分片、`InnoDB Cluster` + `MySQL Router` 组成官方 `HA` 栈。
+
+
 ## 🤔 InnoDB Cluster 集群的工作原理？
+- `InnoDB Cluster` 是把「强一致复制 + 自动化管理 + 透明路由」三件事焊成的一个整体——对外像一台会自己切换的 `MySQL`，对内靠 `Group Replication` 的共识协议保证切换时已提交事务一条不丢。
+
+    - **第一层**：它是什么——三件套各司其职
+        - **`Group Replication`（数据面）** ：负责数据复制和自动故障转移，是集群的"心脏"
+        - **`MySQL Shell`（管理面）** ：通过 `AdminAPI`（`dba.createCluster()` 等）一键建集群、加节点、改配置、看状态，把繁琐的手工配置封装成几行命令
+        - **`MySQL Router`（接入面）** ：应用不直连后端节点，而是连 `Router`；`Router` 自动把读写路由到正确节点，节点切换对应用透明
+
+    - **第二层**：数据怎么保持一致 —— `Group Replication` 的共识原理
+        - **共识协议**：基于 `Paxos` 共识协议的变体，由 `XCom` 组通信引擎承载，保证事务在组内以全局一致顺序提交，所有节点最终落到同一份数据
+        - **写集合认证（`certification`）** ：事务执行后、提交前，其 `write-set` 广播到组内做冲突检测；单主模式下写都来自 `PRIMARY`、天然有序，多主模式靠它回滚并发写冲突
+        - **强约束**：强制开启 `GTID`（`gtid_mode=ON + enforce_gtid_consistency=ON`），这是共识复制能对齐事务身份的前提
+
+    - **第三层**：故障怎么自动切换
+        - **多数派（quorum）存活才继续服务**：节点宕机导致失去多数派时，组整体停止接受写——这是防脑裂的关键，保证任何时刻最多一个 `PRIMARY` 在写，杜绝"两边各自以为自己是主"
+        - **自动选主**：`PRIMARY` 失效后，组内基于共识协议自动选举新 `PRIMARY`，无需人工介入
+        - **`Router` 无感知路由**：`Router` 读元数据感知拓扑变化，把读写流量自动切到新 `PRIMARY`，应用侧连接串不变
+
+    - **第四层**：两种部署模式
+        - **单主（`single-primary`，默认推荐）** ：一个 `PRIMARY` 读写，其余 `SECONDARY` 只读，运维最简单
+        - **多主（`multi-primary`，可选）** ：所有节点均可写，靠冲突检测回滚冲突事务，需要应用层配合处理写冲突，仅适合少数场景
+
+- **协助记忆**
+    - `Router` 是总机，永远把电话转给当前值班的主接线员，主接线员倒下马上换人顶上；三个人记的是同一本账（共识协议），所以换人不丢账目、不记错账。
+    - 口诀 ：`Replication` 记账、`Shell` 排班、`Router` 转接。
+
+- **进阶思考**
+    - **为什么必须"多数派存活"才能切换？**
+        - 防脑裂。若少数派就能自行选主继续写，网络分区时会同时出现两个 `PRIMARY`、两边各写各的，数据分叉无法收敛；要求多数派才能形成 `quorum`，就从数学上保证同一时刻至多一个主。
+
+    - **它比"传统主从（异步/半同步）+ MHA"强在哪？**
+        - 异步主从切换存在丢已提交事务的窗口，`MHA` 要靠补齐 `relay log` 来缩小；而 `Group Replication` 下已提交事务在多数派节点上均已落盘，切换不丢数据，且 `Router` 让切换对应用完全透明，不用改连接、不用脚本漂 `VIP`。
+
+- **扩展信息**
+    - **版本要点**：`Group Replication` 自 `5.7.17 GA`，`InnoDB Cluster` 自此即可用——并非 `8.0` 专属，`5.7.17+` 配合 `MySQL Shell` 同样能组；`8.0` 的 `Clone` 插件（`8.0.17+`）让新节点从备份恢复改为物理克隆，加节点更快、更简单
+    - **`InnoDB ReplicaSet`**：基于异步复制的轻量单主方案，无自动故障转移（需手动/脚本切换），适合不想上共识复制、追求简单的场景
+    - **`InnoDB ClusterSet`**：多个 `InnoDB Cluster` 组成的跨地域容灾（`8.0.27` 引入），提供地域级故障转移，是"集群的集群"
+
+
 ## 🤔 MySQL 如何实现读写分离？
+- **读写分离的本质是"主从复制打底 + 一个分流器"——MySQL 本身不提供自动读写分离，必须靠外部组件（中间件/应用代码）把写路由到主库、读路由到从库，从而用一堆从库分摊读压力、实现读水平扩展。**
+    - **核心定位**
+        - **`MySQL` 不内置读写分离**：官方手册明确，写要发往主库（`source`）、读可发往主库或从库（`replica`），具体分流需在数据库访问层自行做抽象。
+        - **数据基础是主从复制**：主库写、从库异步/半同步追平，读写分离才成立；复制断了，分离就没有意义。
+        - **前提是"主写从读"拓扑**：经典一主多从，读多写少的业务才能明显受益。
+
+    - **三层实现方式**
+        - **应用代码层**：应用内维护多数据源，按 `SQL` 类型手写路由（写走主、读走从），或封装 `safe_writer_connect` / `reader` 包装器。灵活但侵入业务代码、维护成本高。
+        - **中间件/代理层（最常见）** ：在应用与数据库之间放一个代理，应用无感知——这是生产主流方案。
+        - **驱动/连接池层**：如 `ShardingSphere-JDBC` 以客户端库形式嵌入应用，配合连接池做多数据源切换。
+
+    - **主流中间件方案**
+        - **`ProxySQL`（`5.x` 时代首选，讲解主线）** ：高性能 `MySQL` 代理，核心是两层配置：
+            - `mysql_servers` 定义 `hostgroup`（后端逻辑分组，如 0=写组、1=读组），并靠 `monitor` 探测各节点 `read_only` 状态自动维护读写组归属。
+            - `mysql_query_rules` 按正则匹配 `SQL`（如 `^SELECT` → `读组`、`^SELECT ... FOR UPDATE`/写语句→写组），`destination_hostgroup` 指定去向；同时提供连接复用、查询结果缓存、读写一致性跟踪。
+        - **`Atlas`**：`360` 开源，基于 `MySQL-Proxy 0.8.2`，提供读写分离 + 分表，多年无更新（社区共识已停更，生产慎用）。
+        - **`Mycat / ShardingSphere`**：定位偏向"分库分表 + 读写分离"，读写分离是附带能力；`ShardingSphere` 有 `JDBC` 客户端与 `Proxy` 代理两种形态。
+        - **`MaxScale`**：`MariaDB` 的代理，`readwritesplit` 路由器可对接 `MySQL` 主从，但其高级一致性功能（`causal_reads`、`sync_transaction`）偏 `MariaDB`，对 `MySQL` 支持弱于 `MariaDB`。
+
+    - **关键机制（以 ProxySQL 为例）**
+        - **路由规则**：`mysql_query_rules` 按 `match_pattern` 正则 + `destination_hostgroup` 把 `SQL` 分到读写组。
+        - **自动故障感知**：`monitor` 模块持续探测主从状态，主库挂了能把读流量切到新主、剔除延迟过大的从库。
+        - **连接复用（`multiplexing`）** ：代理层复用后端连接，显著降低 MySQL 连接压力。
+
+    - **两大难题与应对**
+        - **复制延迟（主从数据不一致）** ：
+            - 写后立即读 → 强制走主库（`SELECT ... FOR UPDATE`、事务内、或写后的关键读）。
+            - 半同步复制减少延迟窗口。
+            - 延迟监控阈值剔除：5.7 用 `SHOW SLAVE STATUS\G` 的 `Seconds_Behind_Master` 字段判断，超过阈值把该从库踢出读池。
+
+        - **事务内读写一致性**：同一事务内所有语句必须落同一库（通常走主），否则"写后读"可能读到旧数据——中间件用规则把事务语句整体定向到写组。
+
+- **协助记忆**
+    - 主库像银行总行柜员（只能他记账），从库像一排自助查询机；大堂经理（中间件）把"取钱/存钱"（写）领到总行，把"查余额"（读）领到查询机。
+    - 口诀：主从打底、中间件分流、写走主读走从、延迟读主兜底。
+
+- **进阶思考**
+    - **为什么 `ProxySQL` 能识别哪个节点是主、哪个是从？**
+        - 靠 `monitor` 模块探测每个节点的 `read_only` 状态——`read_only=OFF` 判定为可写（主），`ON` 判定为只读（从），自动归入写组/读组，主从切换后无需手工改配置。
+
+    - **`MySQL Router` 和 `ProxySQL` 的读写分离有何本质不同？**
+        - `MySQL Router` 传统上做协议级/连接级路由——按服务器角色开 `rw`（写）/`ro`（读）两个端口，应用自己选端口，`Router` 不解析 `SQL`；`ProxySQL` 是解析 `SQL` 后按规则细粒度分流。注意 `MySQL Router 8.2` 起新增 `access_mode=auto` 的 `SQL` 级读写分离，传统"不解析 `SQL`"的说法仅适用 `≤8.1`。
+
+- **扩展信息**
+    - 8.x 官方方案：InnoDB Cluster（MGR）+ MySQL Router 提供官方读写分离与高可用；另有轻量的 InnoDB ReplicaSet（异步复制 + Router）。5.x 时代则以主从复制 + ProxySQL/Atlas/Mycat 等第三方中间件为主。
+    - 命令版本差异：8.0.22 起 SHOW SLAVE STATUS 弃用，改为 SHOW REPLICA STATUS，延迟字段由 Seconds_Behind_Master 改为 Seconds_Behind_Source。
+
 ## 🤔 MySQL 一般会监控哪些指标？
+- **监控指标无非来自三类查询——`SHOW GLOBAL STATUS`（看计数器）、`SHOW GLOBAL VARIABLES`（看配置阈值）、`SHOW SLAVE/REPLICA STATUS`（看从库复制），锁与死锁另查 `SHOW ENGINE INNODB STATUS`；把连接、吞吐、缓冲池、锁、复制五类指标查出来、算成曲线，异常就能先于用户感知。**
+
+    - **第一层**：连接与可用性（能不能连）
+        - **`Threads_connected`**：当前打开的连接数，逼近上限说明连接快打满 → `SHOW GLOBAL STATUS LIKE 'Threads_connected';`
+        - **`Threads_running`**：正在执行的非睡眠线程，持续偏高说明查询堆积 → `SHOW GLOBAL STATUS LIKE 'Threads_running'`;
+        - **`Threads_created`**：累计创建的连接线程数，暴涨说明连接被反复重建（创建线程有开销）→ `SHOW GLOBAL STATUS LIKE 'Threads_created'`;
+        - **`Max_used_connections`**：历史峰值连接数，评估要不要调上限 → `SHOW GLOBAL STATUS LIKE 'Max_used_connections'`;
+        - **`max_connections`**：连接上限（默认 151）→ `SHOW GLOBAL VARIABLES LIKE 'max_connections'`;
+        - **`Aborted_connects`**：连接失败次数，增长说明有连不上 → `SHOW GLOBAL STATUS LIKE 'Aborted_connects'`;
+        - **`Connection_errors_max_connections`**：因超限被拒的连接次数 → `SHOW GLOBAL STATUS LIKE 'Connection_errors_max_connections';`
+        - **一键看连接类全貌**：`SHOW GLOBAL STATUS LIKE 'Threads%'`; 与 `SHOW GLOBAL STATUS LIKE 'Connection%'`;
+
+    - **第二层**：吞吐与慢查询（快不快）
+        - **`Questions`**：客户端发来的语句数，算 `QPS` 的标准口径 → `SHOW GLOBAL STATUS LIKE 'Questions';`
+        - **`Com_select` / `Com_insert` / `Com_update` / `Com_delete`**：分类语句计数，算 `TPS` 与读写比 → `SHOW GLOBAL STATUS LIKE 'Com_%'`;
+        - **`Slow_queries`**：超过 `long_query_time` 的查询累计数，只要超时就会 `+1`、与日志开关无关 → `SHOW GLOBAL STATUS LIKE 'Slow_queries';`
+        - **`long_query_time`**：慢查询阈值（默认 10 秒）→ `SHOW GLOBAL VARIABLES LIKE 'long_query_time'`;
+        - **`slow_query_log`**：慢查询日志开关（默认 OFF）→ `SHOW GLOBAL VARIABLES LIKE 'slow_query_log';`
+        - **口径辨析**：`Questions` 只统计客户端语句、不含存储程序内部语句；`Queries` 则包含存储程序内语句——做 `QPS` 用 `Questions`
+
+    - **第三层**：`InnoDB` 缓冲池与磁盘 `I/O`（资源够不够）
+        - **缓冲池命中率**：(`Innodb_buffer_pool_read_requests` - `Innodb_buffer_pool_reads`) / `Innodb_buffer_pool_read_requests` × `100%`，低于 `95%` 左右要关注（经验值）→ 一条 SQL 直出：
+            ```sql
+            -- 5.7/8.0+
+            SELECT 
+            ROUND(
+                (
+                SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_read_requests', CAST(VARIABLE_VALUE AS UNSIGNED), 0)) 
+                - SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_reads', CAST(VARIABLE_VALUE AS UNSIGNED), 0))
+                ) 
+                / NULLIF(SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_read_requests', CAST(VARIABLE_VALUE AS UNSIGNED), 0)), 0) 
+                * 100, 
+                2
+            ) AS hit_rate_pct 
+            FROM performance_schema.global_status 
+            WHERE VARIABLE_NAME IN ('Innodb_buffer_pool_read_requests', 'Innodb_buffer_pool_reads');
+
+            -- 5.6 
+            SELECT 
+            ROUND(
+                (
+                SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_read_requests', CAST(VARIABLE_VALUE AS UNSIGNED), 0)) 
+                - SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_reads', CAST(VARIABLE_VALUE AS UNSIGNED), 0))
+                ) 
+                / NULLIF(SUM(IF(VARIABLE_NAME = 'Innodb_buffer_pool_read_requests', CAST(VARIABLE_VALUE AS UNSIGNED), 0)), 0) 
+                * 100, 
+                2
+            ) AS hit_rate_pct 
+            FROM information_schema.GLOBAL_STATUS 
+            WHERE VARIABLE_NAME IN ('Innodb_buffer_pool_read_requests', 'Innodb_buffer_pool_reads');
+            ```
+        - **`Innodb_buffer_pool_pages_free`**：空闲页数，持续为 0 说明缓冲池偏小 → `SHOW GLOBAL STATUS LIKE 'Innodb_buffer_pool_pages_free'`;
+        - **`Innodb_buffer_pool_pages_dity`**：脏页数，过多说明刷脏跟不上写压力 → `SHOW GLOBAL STATUS LIKE 'Innodb_buffer_pool_pages_dirty'`;
+        - **`Innodb_buffer_pool_wait_free`**：等待空闲页的次数，非 0 说明缓冲池严重不足 → `SHOW GLOBAL STATUS LIKE  'Innodb_buffer_pool_wait_free'`;
+        - **`Innodb_data_reads` / `Innodb_data_writes`**：数据文件读/写次数，看磁盘 I/O 压力 → `SHOW GLOBAL STATUS LIKE 'Innodb_data%';`
+        - **`Innodb_log_waits`**：redo log buffer 太小、需等待刷盘的次数，非 0 影响写性能 → `SHOW GLOBAL STATUS LIKE 'Innodb_log_waits';`
+
+    - **第四层**：锁与事务（稳不稳）
+        - **`Innodb_row_lock_current_waits`**：当前正在等待行锁的数量，瞬时锁竞争 → `SHOW GLOBAL STATUS LIKE 'Innodb_row_lock_current_waits';`
+        - **`Innodb_row_lock_waits` / `Innodb_row_lock_time`**：行锁等待次数 / 累计等待毫秒，看锁竞争烈度 → `SHOW GLOBAL STATUS LIKE 'Innodb_row_lock%';`
+        - **死锁现场**：`LATEST DETECTED DEADLOCK` 段给出最近一次死锁的两方与 SQL → `SHOW ENGINE INNODB STATUS\G;`
+        - **`Innodb_deadlocks`**：死锁累计计数 → `SHOW GLOBAL STATUS LIKE 'Innodb_deadlocks';`（官方状态变量文档未列出，需实测确认）
+        - **8.0 精确定位锁与等待**：`SELECT * FROM performance_schema.data_lock_waits;` 与 `SELECT * FROM performance_schema.data_locks;`
+
+    - **第五层**：复制与临时对象/表缓存（从库健康）
+        - **复制延迟与线程（5.7）** ：`Seconds_Behind_Master`（延迟秒数）、`Slave_IO_Running` / `Slave_SQL_Running`（两个复制线程是否正常）→ `SHOW SLAVE STATUS\G;`
+        - **复制延迟与线程（8.0.22+）** ：改用 `Seconds_Behind_Source`、`Replica_IO_Running`、`Replica_SQL_Running`（旧名保留但弃用）→ `SHOW REPLICA STATUS\G;`
+        - **`Created_tmp_disk_tables` / `Created_tmp_tables`**：落磁盘/全部临时表数，磁盘临时表越多说明查询吃内存 → `SHOW GLOBAL STATUS LIKE 'Created_tmp%';`
+        - **`Sort_merge_passes`**：排序归并趟数，非 0 说明排序吃内存 → `SHOW GLOBAL STATUS LIKE 'Sort_merge_passes';`
+        - **`Select_scan`**：全表扫描次数 → `SHOW GLOBAL STATUS LIKE 'Select_scan';`
+        - **`Opened_tables`**：累计打开表数，增长过快说明表缓存偏小 → `SHOW GLOBAL STATUS LIKE 'Opened_tables';`
+        - **`table_open_cache`**：表缓存大小 → `SHOW GLOBAL VARIABLES LIKE 'table_open_cache';`
+        - **表缓存命中情况**：`Table_open_cache_hits` / `misses` / `overflows` → `SHOW GLOBAL STATUS LIKE 'Table_open_cache%';`
+
+- **协助记忆**
+    - MySQL 是家餐厅，监控就是盯五件事——连接看门口：Threads_connected 是"现在坐了几桌客"、max_connections 是"一共几张桌"、Aborted_connects 是"客满没位子被拒"；吞吐/慢查询看出菜：Questions 是"一天接了多少单"、Slow_queries 是"超过阈值才端上桌的慢菜有几道"；缓冲池看冷藏柜：命中率高 = "要的食材冰箱里有货，不用现跑菜市场"，Innodb_buffer_pool_reads 是"跑市场补货的次数"；锁看后厨抢锅：Innodb_row_lock_waits 是"厨师排队等同一口锅的次数"；复制延迟看分店对账：Seconds_Behind_Source 是"分店账本落后总店多少秒"。
+    - 口诀（一句） ：连得上、查得快、池命中、锁不堵、复制不滞后
+
+- **进阶思考**
+    - **Q：`QPS` / `TPS` 怎么用这些计数器算出来？**
+        - **计算原理**：计数器是**累计值**，必须通过**两次采样差值 ÷ 间隔秒数**算出来。
+            - $\text{QPS} = \frac{\Delta\text{Questions}}{\Delta t}$
+            - $\text{TPS} = \frac{\Delta(\text{Com\_commit} + \text{Com\_rollback})}{\Delta t}$
+
+
+        - **做 法**： 隔 $N$ 秒执行两次 `SHOW GLOBAL STATUS LIKE ...` 获取 `Questions`、`Com_commit` 与 `Com_rollback`，相减再除以 $N$ 。  
+        - **实操落地**：
+            - **方式一：运维命令行（最方便，自带每秒增量）**
+                ```bash
+                mysqladmin -u root -p extended-status -i 5 | grep -E "Questions|Com_commit|Com_rollback"
+                ```
+
+            - **方式二**：单条 SQL 一键直出（嵌套子查询）
+                ```sql
+                SELECT 
+                ROUND((q2 - q1) / interval_sec, 2) AS calculated_qps,
+                ROUND(((c2 + r2) - (c1 + r1)) / interval_sec, 2) AS calculated_tps
+                FROM (
+                SELECT 
+                    t1.q1, t1.c1, t1.r1,
+                    5 AS interval_sec,
+                    SLEEP(5) AS s,
+                    MAX(IF(VARIABLE_NAME = 'Questions', CAST(VARIABLE_VALUE AS UNSIGNED), 0)) AS q2,
+                    MAX(IF(VARIABLE_NAME = 'Com_commit', CAST(VARIABLE_VALUE AS UNSIGNED), 0)) AS c2,
+                    MAX(IF(VARIABLE_NAME = 'Com_rollback', CAST(VARIABLE_VALUE AS UNSIGNED), 0)) AS r2
+                FROM performance_schema.global_status
+                CROSS JOIN (
+                    SELECT 
+                    MAX(IF(VARIABLE_NAME = 'Questions', CAST(VARIABLE_VALUE AS UNSIGNED), 0)) AS q1,
+                    MAX(IF(VARIABLE_NAME = 'Com_commit', CAST(VARIABLE_VALUE AS UNSIGNED), 0)) AS c1,
+                    MAX(IF(VARIABLE_NAME = 'Com_rollback', CAST(VARIABLE_VALUE AS UNSIGNED), 0)) AS r1
+                    FROM performance_schema.global_status
+                    WHERE VARIABLE_NAME IN ('Questions', 'Com_commit', 'Com_rollback')
+                ) t1
+                WHERE VARIABLE_NAME IN ('Questions', 'Com_commit', 'Com_rollback')
+                ) result;
+                ```
+
+    - **缓冲池命中率是不是低了就要扩容？**
+        - 不一定。冷数据首次访问必然 miss，命中率低不等于异常；看趋势比看绝对值更有意义——持续下滑才说明热数据装不下了，配合 wait_free 与磁盘 I/O 一起判断。
+
+- **扩展信息**
+    - 按 SQL 指纹看延迟：`SELECT DIGEST_TEXT, COUNT_STAR, ROUND(AVG_TIMER_WAIT/1e12,3) AS avg_sec FROM performance_schema.events_statements_summary_by_digest ORDER BY SUM_TIMER_WAIT DESC LIMIT 10`;
+    - 8.0 相比 5.7 的监控变化：Query cache 已移除（Qcache_* 变量消失）；SLAVE→REPLICA、MASTER→SOURCE 术语改名（8.0.22）；新增 Innodb_redo_log_* 等监控量；information_schema.INNODB_LOCKS/INNODB_LOCK_WAITS 由 performance_schema.data_locks/data_lock_waits 取代
+
+
 ## 🤔 MySQL 数据库与 NoSQL 数据库有什么区别与适用场景？
+- **MySQL（关系型）靠「固定表结构 + 强一致事务」换来数据的严谨可靠，NoSQL 靠「灵活结构 + 最终一致」换来海量数据下的水平扩展与高吞吐——选谁，取决于你的数据要「准」还是要「快和广」。**
+    - **第一层**：数据模型差异（结构固定 vs 结构灵活）
+        - **`MySQL`**：关系模型，建表时就要预先定义字段和类型（schema 固定），改表结构需 `ALTER`，有一定成本
+        - **`NoSQL`**：键值 / 文档 / 宽列 / 图等多种模型，`schema` 灵活——尤其文档型（`MongoDB`）可随时给文档加字段，不用预先规划
+        - **边界提醒**：`MySQL 8.0` 引入 `JSON` 类型与 `Document Store`，官方定位 `schema-less`, `schema-flexible`，有一定文档型能力，两者界限已部分模糊
+
+    - **第二层**：事务与一致性差异（ACID vs BASE）
+        - **`MySQL`**：靠 `InnoDB` 事务保证 `ACID`——原子性（Atomicity）、一致性（Consistency）、隔离性（Isolation）、持久性（Durability），是强一致：事务要么全做、要么全不做，读到的都是已提交的确定状态
+        - **`NoSQL`**：多数走 `BASE`——基本可用（Basically Available）、软状态（Soft state）、最终一致（Eventually consistent）：允许短暂不一致，过一段时间自动收敛，换取更高性能和可用性
+
+    - **第三层**：扩展方式差异（垂直 vs 水平）
+        - **`MySQL`**：传统以垂直扩展为主（给单机加 CPU / 内存 / 磁盘）；水平扩展要靠分库分表、读写分离、中间件，非原生内置，架构复杂度高
+        - **`NoSQL`**：天生为水平扩展 / 自动分片设计，数据自动分布到多节点，加节点就能扩容量和吞吐
+
+    - **第四层**：查询能力差异（SQL 强关联 vs 按 key 取）
+        - **`MySQL`**：标准 `SQL`，支持复杂 `JOIN`、聚合、子查询、外键约束、事务回滚——关联查询能力强
+        - **`NoSQL`**：查询能力因类型而异，键值型只能按 key 查；文档型有查询语言但 JOIN / 跨集合关联弱；多数不支持复杂事务
+
+    - **第五层**：CAP 视角（准确版）
+        - **`CAP` 三要素**：一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）
+        - 准确表述：网络分区（P）在分布式下无法回避、必须保证；分区发生时，系统只能在 C 和 A 之间取舍——MySQL 主从切换偏 C（宁可不服务也不返回不一致），`Cassandra` 类偏 A（宁可短暂不一致也要继续服务）
+        - 注意"`CAP` 只能三选二"是易误导的简化：无分区时，三者本可同时满足
+
+    - **适用场景**
+        - **选 `MySQL`**：需要强一致事务、复杂关联查询、数据关系明确的业务——金融交易、订单账户、库存扣减、ERP/CRM 等
+        - **选 `NoSQL`**：海量高并发读写、结构多变、低延迟——缓存（Redis）、日志/内容/文档（MongoDB）、宽表/时序（Cassandra、HBase）、社交关系图谱（Neo4j）
+
+- **协助记忆**
+    - `MySQL` 是银行账本——格式固定、每一笔都要核对（ACID）、能查复杂对账（JOIN），改格式得停业（DDL）；NoSQL 是便利贴墙——随手写、随便贴、想加哪贴哪（灵活 schema）、贴满一面墙再开一面（水平扩展），但别指望它做严谨的总账核对（弱一致、无复杂 JOIN）。
+    - 口诀：关系型求"准"，NoSQL 求"快和广"。
+
+- **进阶思考**
+    - **`CAP` 定理是不是"只能三选二"？**
+        - 不准确。P（分区容错）在分布式下必须保证，没有选择的余地；真正要权衡的是分区发生时在 C 和 A 之间二选一。无分区时三者可以同时满足，所以"三选二"是个容易误导的简化说法。
+
+- **扩展信息**
+    - NoSQL 四大类及代表：键值（Redis、Memcached）、文档（MongoDB）、宽列（Cassandra、HBase）、图（Neo4j）
+    - NewSQL——第三条路：既要关系型 ACID 强一致、又要分布式水平扩展的代表（CockroachDB、TiDB、Spanner、YugabyteDB、VoltDB），填补了"传统单机 MySQL 难水平扩展、NoSQL 又没强事务"的中间地带
+
 ## 🤔 TB 级数据库怎么在线迁移？
+- **在线迁移的本质是"全量打底 + 增量追平 + 一致性校验 + 短暂停写切换（反向兜底）"——把要跑数小时甚至数天的大库拷贝，压缩成秒级到分钟级的切换窗口，让业务近零停机。它的方法论对各类数据库通用，下面以生产主流的 MySQL（5.7 为主、8.0 为扩展）落地说明。**
+    - **第一层**：四步主线（迁移的骨架）
+        - **全量打底**：先把存量数据搬到新库，这是最耗时的一步。
+            - **物理热备（快，适合 TB 级）**：`XtraBackup`（`2.4.x` 支持 `MySQL 5.1~5.7`，`8.0.x` 支持 `8.0`，两者不可交叉混用）、`MySQL Clone Plugin`（仅 `8.0.17+` 内置，`5.7` 无此能力）。
+            - **逻辑导出（慢但跨版本/跨平台通用）**：`mysqldump --single-transaction`、`mydumper` 并行导出。
+            - **关键**：全量备份必须同时保留一致性位点，这是下一步增量追平的起点——`XtraBackup` 看备份目录里的 `xtrabackup_binlog_info，mysqldump` 加 `--master-data=2`（`8.0` 为 `--source-data=2`），`Clone` 自带复制坐标。
+
+        - **增量追平**：新库作为从库，从全量备份记录的那个位点起持续 `apply` 源库 `binlog`，追平迁移期间源源不断产生的新写入。
+            - 用 `GTID`（`5.6` 引入，默认关闭、需手动开启）可让位点追踪、主从切换、断点续传更可靠；不用 `GTID` 就靠 `file+pos` 二进制位点。
+
+        - **一致性校验**：用 `pt-table-checksum` 按 `chunk` 计算校验和、经复制链路下发到新库比对，发现差异后用 `pt-table-sync` 修复。注意它依赖复制拓扑（不直接连两库拉数据比对），所以适合放在"新库仍是源库从库"这个阶段做。
+        - **切换与回滚**：短暂停写 → 追平最后一段 `binlog` → 切应用流量 → 反向建立同步兜底。反向同步同样要用 GTID/位点锚定，否则回滚时新库新增的写入无法准确回灌源库。
+
+    - **第二层**：工具怎么选
+        - **物理迁移**（文件级拷贝，快，要求同大版本同平台）：`XtraBackup`、`Clone Plugin`——`TB` 级首选。
+        - **逻辑迁移**（经过 SQL 导出/导入，慢，但跨版本、跨平台通用）：`mysqldump`、`mydumper`。
+        - **在线表结构变更**（`gh-ost` / `pt-online-schema-change`）：两者同源点是"影子表 + 增量拷贝 + 变更捕获 + 原子切换"，但变更捕获机制不同——gh-ost 用 binlog 回放（无触发器），pt-osc 用触发器（triggers）。
+        - **一致性校验**：`pt-table-checksum`（校验）/ `pt-table-sync`（修复）。
+
+    - **第三层**：几个容易踩的坑（边界与前提）
+        - **为什么必须"追平再切"**：TB 级全量拷贝要数小时到数天，期间业务写入不能停，只能靠复制追增量，最后把停写窗口压到秒/分钟级。裸导出后再一次性导入，追不上期间的写入，就会丢数据。
+        - **`--single-transaction` 的边界**：它只对事务表（InnoDB 等） 保证一致性快照；MyISAM/MEMORY 等非事务表 dump 期间仍可能变化，且默认仍会被 --lock-tables 锁表。
+        - **版本前提**：`Clone Plugin` 仅 `8.0.17+`；`XtraBackup 2.4` 系列已停止维护（EOL），运维 `5.7` 时需要自行兜底。
+        - `binlog_format=ROW` 更友好：`ROW` 格式对 `gh-ost`、`pt-table-checksum` 等工具更可靠（5.7.7 起及 8.0 默认均为 ROW）。
+        - **切换前最终确认**：切流量前再做一次一致性校验，确认增量已追平、数据一致，再执行切换。
+
+- **协助记忆**
+    - 白天把大件家具（存量数据）慢慢搬进新家，期间新买的东西（增量写入）记在清单上；深夜清点完最后一批、确认件数一致，换掉门牌号（切流量）——住户几乎无感，搬错了还能照着清单搬回来。
+    - 口诀：全量打底、增量追平、校验切换、反向兜底。
+
+- **协助记忆**
+    - 把一本还在不停记账的旧账本誊抄成新账本 —— 先整本抄完存量；旧账本每多记一笔，就照着它的流水号补抄一笔（增量追平 ）；追到只差最后几笔时，让记账的人停几秒，抄完收尾并逐笔对账（校验）；然后大家改看新账本（切换）；发现抄错了，把流水续回旧账本就能回退（兜底）。
+    - **口诀（一句）**：全量打底、增量追平、校验切换、反向兜底。
+
+- **进阶思考**
+    - **TB 级库为什么不能 mysqldump 一把梭？**
+        - `mysqldump` 是逻辑导出+导入，数据要经过 `SQL` 解析再执行，单线程慢、易中断，`TB` 级可能跑几天，且非事务表有锁风险；物理工具是文件级拷贝，快一个数量级，才是大库首选。
+
+    - **5.7 和 8.0 迁移工具差在哪？**
+        - `5.7` 无 `Clone Plugin`，物理迁移主要靠 `XtraBackup 2.4`（已 EOL，需自行兜底）；`8.0.17+` 官方内置 `Clone Plugin` 可做本地/远程物理克隆且自带复制坐标。另外 `5.7` 默认 `log_bin` 关闭、迁移前要先开启 `binlog`，`8.0` 默认开启。
+
+
+- **扩展信息**
+    - **方法论通用性**：这套"全量 + 增量追平 + 校验 + 切换"的骨架对其他数据库同样成立，只是工具换成对应生态——如 `PostgreSQL` 用 `pg_basebackup`/`pg_dump` + 逻辑复制或物理复制、`pglogical` 做跨版本在线迁移。
+    - 同源异构/跨库：MySQL 迁到其他库（或反之）无法用物理/复制方案时，走逻辑导出 + 目标端并行导入 + 数据校验，必要时用消息队列做双写过渡
+
+
 ## 🤔 MySQL 数据库分库分表分区的作用？
+- **三者都是给"膨胀的数据"分块，但层级完全不同：分区是单表内部切、MySQL 原生、应用无感；分表是拆成多张物理表、分库是摊到多个实例，后两者靠应用/中间件按分片键路由，属于数据库之外的水平扩展。**
+    - **第一层**：三个概念先分清（层级与透明度不同）
+        - **分区（Partition）** ：`MySQL` 原生功能，逻辑上仍是一张表，物理上按分区键切成多个分区；对应用完全透明，`SQL` 不用改，`MySQL` 自动只扫相关分区
+        - **分表**：把一张大表拆成多张物理表（order_0、order_1…，同库或跨库），应用/中间件按分片键决定读写哪张表
+        - **分库**：把数据分布到多个数据库实例，突破单机容量、连接数、性能上限
+
+    - **第二层**：分区的作用与机制
+        - **分区裁剪（`partition pruning`）** ：查询带分区键时，`MySQL` 只扫匹配的分区、不扫无关分区，减少扫描量
+        - **快速归档清理**：`ALTER TABLE t DROP PARTITION p2022`; 或 `TRUNCATE PARTITION` 秒删整个分区，比 `DELETE` 大量行高效得多
+        - **关键限制**：分区表达式中用到的所有列，必须被包含在表的每一个唯一键（含主键）里；`InnoDB` 分区表不支持外键；`5.7` 与 `8.0` 单表分区数上限均为 `8192`（含子分区）
+        - **索引是本地索引**：每个分区各自维护自己的索引，不存在跨分区的全局索引（这点不同于 `Oracle` 等数据库）——所以分区裁剪后，仍要靠分区内索引快速定位行
+
+    - **第三层**：分表的作用
+        - 降低单表数据量 → B+ 树更矮、查询更快、行锁/表锁竞争更少、单表备份与 DDL 更快
+        - 代价：必须按分片键路由；不带分片键的查询要扫多张表；跨表统计、分页变复杂
+
+    - **第四层**：分库的作用
+        - 突破单实例的容量、连接数、CPU/内存/磁盘 IO 瓶颈，让吞吐随实例数水平扩展
+        - 代价：跨库 JOIN 困难（往往要字段冗余或应用层拼装）、分布式事务复杂（XA 或最终一致）、需要全局唯一 ID 生成、扩容时数据迁移复杂
+
+    - **第五层**：选型时机（先分区、再分表、最后分库）
+        - 单表大、查询总能带分区键 → 优先考虑分区（但要认清：分区是"减少扫描"的手段，不能替代索引）
+        - 单表大到影响查询/DDL/备份 → 分表（拆小表）
+        - 单实例整体到瓶颈（容量/连接/性能都扛不住）→ 分库分表（水平扩展）
+        - 边界说明：分库分表不是 MySQL 官方内置功能，MySQL 也没有官方的"单表多少行"硬阈值，拆不拆要结合业务与硬件实测
+
+- **协助记忆**
+    - 分区是把一个大仓库内部划成 A/B/C 区， 门牌还是同一个、货架编号直达对应区；分表是把大仓库拆成几个独立小仓库，各存一类货；分库是把几个仓库建到不同城市，各自独立运营。
+    - 口诀：分区表内切、分表拆表、分库拆库。
+
+- **进阶思考**
+    - **分区能替代索引吗？**
+        - 不能。分区裁剪解决的是"少扫几个分区"，索引解决的是"分区内快速定位行"。只分区不建索引，进到目标分区后仍要全分区扫描，所以两者是互补的两个机制。
+
+    - **分库分表后，事务和 JOIN 还能用吗？**
+        - 能，但变难。跨库 JOIN 要么字段冗余、要么应用层多次查询拼装；分布式事务要么用 XA（两阶段提交，性能代价大），要么改造成最终一致（本地消息表、事务消息等）。这正是分库分表的隐藏成本。
+
+
+- **扩展信息**
+    - **分库分表中间件**：`ShardingSphere`（Apache 项目，Sharding-JDBC / Sharding-Proxy）、Mycat、Vitess（YouTube 开源、云原生 MySQL 集群方案）；TDSQL 是腾讯云分布式数据库产品（并非"中间件"，而是数据库服务）
+    - 8.0 分区实现变化：MySQL 8.0 移除了 Server 层的通用分区，分区改由存储引擎的 native partitioning handler 原生实现，且仅 InnoDB 与 NDB 提供；5.7 与 8.0 分区数上限一致（8192）
+
 ## 🤔 国产数据库了解吗？（达梦 / OceanBase/MySQL 兼容类）
+- **国产库选型其实只看一个三维坐标系——内核来源（自研 vs 开源衍生）× SQL 兼容（Oracle / MySQL / PostgreSQL 方言）× 架构（集中式 vs 分布式） 。达梦是"自研 + 集中式 + Oracle 兼容为主"，OceanBase 是"自研 + 分布式 + MySQL/Oracle 双兼容"，而"MySQL 兼容类"是"说 MySQL 方言"的一族，内核来源各不相同、不能一概而论。**
+    - **第一层**：先把三个维度记住（分类的钥匙）
+        - **内核来源**：自研（达梦、OceanBase、TiDB）还是基于开源衍生（GreatSQL 基于 MySQL、openGauss/KingbaseES 基于 PostgreSQL）。这是最本质的区分，决定后续的技术可控性与迭代方式。
+        - **SQL 兼容**：说谁家的"方言"——Oracle、MySQL、PostgreSQL。兼容性决定应用改造成本，是信创迁移的第一道门槛。
+        - **架构**：集中式（单机/共享存储，运维像传统 Oracle/MySQL）还是分布式（多节点、数据分片、多副本，运维模型完全不同）。
+
+    - **第二层**：达梦 DM（自研集中式，Oracle 兼容为主）
+        - **定位**：武汉达梦，官方口径"内核自主原创"，非 PG/MySQL 派生；主力版本 DM8，集中式为主。
+        - **兼容**：以 Oracle 语法兼容为主线（主打"Oracle 无损迁移"），也具备 MySQL 兼容能力。
+        - **配套**：DMDSC 共享存储集群、DMDPC 分布式计算集群，以及数据复制/异构同步工具（DMDRS 等）。
+        - **场景**：党政、金融信创的主力选手，Oracle 存量系统迁移到它最顺。
+
+    - **第三层**：`OceanBase`（自研分布式，双兼容）
+        - **定位**：蚂蚁集团出品，原生分布式 Shared-Nothing，多副本一致性基于 Paxos 协议，存储引擎 LSM-Tree，已开源（Apache-2.0）。
+        - **兼容**：同时提供 MySQL 模式与 Oracle 模式，一套内核两种方言。
+        - **场景**：金融核心的典型代表——支付宝（蚂蚁金融）核心底层库，并曾登顶 TPC-C；适合对高可用、横向扩展、两地三中心有硬要求的业务。
+        - **注意**：它不是"淘宝的底层库"，淘宝核心系统仍是 MySQL 生态，OceanBase 只在支付宝/蚂蚁金融与部分银行核心落地。
+
+    - **第四层**：MySQL 兼容类（内核来源各异，别混为一谈）
+        - **`TiDB`（自研分布式）** ：PingCAP 出品，自研内核、仅兼容 MySQL 协议/语法（不是 MySQL 衍生）；TiDB 计算层 + TiKV 存储层 + PD 调度，TiKV 用 Raft 保一致性，HTAP 定位（TiFlash 列存做分析加速），兼容 MySQL 5.7 大部分语法（8.0 兼容持续推进）。
+        - **`GaussDB`（基于 PostgreSQL 衍生）** ：华为云出品，基于开源 PostgreSQL 衍生，兼容 MySQL/PostgreSQL 两种形态，共享存储存算分离，主打企业级特性。
+        - **`GreatSQL`（基于 MySQL 衍生）** ：由 MySQL 官方创始人姜承尧发起，基于 MySQL 8.0 衍生，主打增强 MGR（组复制）——地理标签、仲裁节点、智能选主等，GPL 开源，可作为 MySQL/Percona 的平替。
+        - **云上分布式 MySQL 兼容** ：PolarDB（阿里云，兼容 MySQL/PostgreSQL 两种形态，共享存储存算分离）、TDSQL（腾讯，分布式、MySQL 兼容为主，另有 PostgreSQL 版）。
+        - **偏 `PostgreSQL/Oracle` 路线的"近亲"（不是 MySQL 兼容，但常被一起问）**：openGauss（华为开源，基于 PostgreSQL 9.2.4 派生，MulanPSL-2.0；注意它只是开源内核，华为云 GaussDB 家族还含数仓 DWS、GaussDB(for MySQL) 等多种形态）、KingbaseES（电科金仓，基于 PostgreSQL 派生，兼容 Oracle 为主，兼兼容 MySQL/SQL Server）。
+
+- **进阶思考**
+    - **面试常怎么考国产库？**
+        - 常考"技术路线分类""某库的架构与兼容性""从 Oracle/MySQL 迁到国产库的方案与风险""OceanBase 与 TiDB 的异同"（都是自研分布式+MySQL 兼容，但一致性协议 Paxos vs Raft、存储 LSM-Tree vs Raft-KV、HTAP 能力不同）。
+
+- **扩展信息**
+    - **国产库全景**：除上文外还有 GaussDB（华为云，多形态家族）、openGauss、MogDB（云和恩墨，基于 openGauss）、GBase（南大通用）、GoldenDB（中兴，分布式 MySQL 兼容）、瀚高、AntDB 等；信创名录与行业案例是实际选型的重要参考。
+    - 信创迁移主线：党政、金融、电信、能源等关键行业做国产化替代时，核心工作就是把存量 Oracle/DB2 迁到国产库，兼容性评估 + 数据迁移 + 应用改造 + 双轨并行是最常见的落地节奏。
+
 ## 🤔 高并发场景，MySQL 如何优化？
+- **高并发优化的本质是"让 MySQL 少做无用功、把压力摊开"：先让 SQL 和索引少扫数据，再让连接与缓存复用结果，接着压榨引擎与 IO 参数，最后用读写分离、分库分表把流量分散出去——按"先 SQL 后参数、先单机后架构"的顺序推进，收益从大到小。**
+    - **第一层**：SQL 与索引（最优先，收益最大）
+        - **定位慢查询**：开 `slow_query_log`、设 `long_query_time`（默认 `10` 秒），再用 `EXPLAIN` 看执行计划有没有走索引、扫描行数多少
+        - **建对索引**：优先覆盖索引（查询列全在索引里，回表都省了）、遵守最左前缀匹配、复合索引顺序按区分度排
+        - **避免索引失效**：不在索引列上用函数、避免隐式类型转换（字符串列传数字）、避免前导模糊（`LIKE '%x'`）
+        - **改 `SQL` 本身**：不用 `SELECT *`、拆大事务为小批量、`LIMIT` 深分页改成"游标/延迟关联"
+
+    - **第二层**：连接层（复用与容纳）
+        - **连接池复用**：应用侧用连接池（避免每次请求都建连、释放连接的高开销）
+        - **`max_connections`**：连接上限（默认 151），按并发量合理上调，但别无脑放大
+        - **`thread_cache_size`**：线程缓存，避免连接频繁创建/销毁线程（默认较小，约 9，高并发可调大）
+        - **`skip_name_resolve`**：跳过 DNS 反向解析（默认 OFF，开启后连接建立更快，但权限表要用 IP 授权）
+
+    - **第三层**：缓存与内存（少碰磁盘）
+        - **`innodb_buffer_pool_size`**：缓冲池大小（默认 128MB），高并发下应设到物理内存的 50%–80%（实践共识），让热数据尽量留在内存
+        - **`应用层缓存`**：用 Redis 挡热点读、缓存查询结果，大幅削减打到 MySQL 的 QPS
+        - **不要用 `Query Cache`**：5.7.20 起默认关闭并标记弃用、8.0 已移除，且它粒度粗、写密集时反而拖慢，用 Redis 更可控
+
+    - **第四层**：引擎与 IO 参数（写性能权衡）
+        - `innodb_flush_log_at_trx_commit（默认 1）`：调成 2 改为每秒刷一次 redo，写性能显著提升，但宕机最多丢 1 秒已提交事务——高并发写可权衡，金融类必须保持 1
+        - **`sync_binlog`**：5.7 默认 0、8.0 默认 1；调小可提性能但同样增加丢事务风险，需与上一条一起权衡
+        - **`redo log` 大小**：5.7 的 `innodb_log_file_size`（默认 48MB）调大可减少 `checkpoint` 刷盘频率、缓解写抖动；8.0.30+ 改用 `innodb_redo_log_capacity`
+
+    - **第五层**：架构层（单机扛不住后的横向扩展）
+        - **读写分离**：主从复制 + 中间件（ProxySQL / MySQL Router），写走主库、读分摊到从库，是读多写少场景的第一道横向扩展
+        - **分库分表**：数据按分片键摊到多个实例，突破单机容量与吞吐上限（跨库 JOIN、分布式事务是代价）
+        - **削峰与异步**：消息队列把瞬时写请求削峰、异步化，缓存扛住热点读
+
+- **协助记忆**
+    - 索引是"ETC 车道"（不用每笔人工核对）、连接池是"固定开几个窗口别反复开关"、buffer pool 是"把常用找零放抽屉别老跑金库"、读写分离是"存取款分柜台"、分库分表是"多开几家分行"、消息队列是"错峰叫号"。
+    - 口诀：先 SQL 后参数、先单机后架构。
+
+- **进阶思考**
+    - **`innodb_flush_log_at_trx_commit=2` 为什么不安全？**
+        - 它改为每秒刷一次 `redo log`，两次刷新之间宕机，最近 1 秒内已提交的事务会丢。高并发写追求吞吐时可权衡使用；但对一致性要求高的业务（交易、账户）必须保持 1。
+
+    - **为什么高并发优化不推荐 Query Cache？**
+        - 它已弃用并被移除（5.7.20 弃用、8.0 移除），且本身有缺陷——任何一行数据变更都会失效相关缓存，写密集场景反而增加开销；用 Redis 做应用层缓存更可控、更细粒度。
+
+- **扩展信息**
+    - 5.7 与 8.0 高并发相关默认值差异：sync_binlog（5.7=0 → 8.0=1）；innodb_flush_neighbors（5.7=1 → 8.0=0，SSD 时代默认关闭邻页刷盘）；table_open_cache（5.7=2000 → 8.0=4000）；默认字符集（5.7=latin1 → 8.0=utf8mb4）；redo 参数（5.7 的 innodb_log_file_size → 8.0.30+ 的 innodb_redo_log_capacity）
+
 ## 🤔 简述 MySQL 索引及其作用？
+- **索引是一份排序目录——用额外的存储空间和写入维护成本，把"全表扫描"变成"按序定位"，本质是空间换时间。**
+
+    - **第一层**：索引是什么
+        - **本质**：一种有序的数据结构，帮助 MySQL 快速定位数据，避免逐行全表扫描。
+        - **结构**：`InnoDB` 官方称其为 B-tree（实现为 B+ 树变体——数据只存叶子节点、叶子之间用链表相连，故支持高效的范围查询）。此外还有哈希（Memory 引擎可建哈希索引）、全文（InnoDB 用倒排列表）、空间（R-Tree）索引。
+        - **注意**：InnoDB 的"自适应哈希索引"（adaptive hash index）是内部自动机制，按访问模式对热点索引页自动建哈希以加速等值点查，不可用 DDL 手动创建，与"可建的哈希索引"要区分开。
+
+    - **第二层**：索引的作用（为什么快）
+        - **加速查询**：减少扫描行数，从 O(N) 降到按树查找。
+        - **加速排序/分组**：B+ 树叶子有序，ORDER BY、GROUP BY 可顺着索引走，省去 filesort。
+        - **加速 JOIN**：被驱动表走索引，避免嵌套循环全扫。
+        - **保证唯一性**：唯一索引（含主键）在插入/更新时强制去重。
+        - **覆盖索引免回表**：查询需要的列全在索引里，直接从索引树取结果。
+
+    - **第三层**：索引分类
+        - **按物理存储**：
+            - **聚簇索引**：数据行直接存在叶子节点、按索引键物理排序。有主键时主键即聚簇索引；无主键则用第一个全列 NOT NULL 的唯一索引；都没有时 `InnoDB` 生成隐藏的 `GEN_CLUST_INDEX`（行 ID）兜底。
+            - **二级索引**：非主键索引，叶子节点存的是索引键 + 主键值，不是整行数据。
+
+        - **按逻辑/用途**：主键索引（·）、唯一索引（UNIQUE）、普通索引（INDEX）、联合索引（多列）、全文索引（FULLTEXT）、空间索引；前缀索引是对列取前缀的变体， 本质上仍属普通/唯一索引。
+        - **`8.0` 扩展点（5.7 均不支持）** ：不可见索引（invisible index，8.0）、倒序索引（descending index，8.0）、函数索引（`functional key parts`，`8.0.13`）。
+
+    - **第四层**：两个最常考的核心机制
+        - **最左前缀原则**：联合索引 (a,b,c) 相当于支持 (a)、(a,b)、(a,b,c) 三种前缀的查询；跳过最左列（如单独按 b 或 c 查）就无法利用该索引做等值/范围定位。
+        - **回表与覆盖索引**：二级索引先查到主键值，还要回到聚簇索引取整行，这叫回表；若查询列全部包含在索引中，则不用回表，即覆盖索引（EXP LAIN 的 Extra 会显示 Using index）。
+
+    - **第五层**：代价与建议
+        - **代价**：占用磁盘空间；INSERT/UPDATE/DELETE 需同步维护索引、写入变慢。所以索引不是越多越好。
+        - **主键建议自增**：聚簇索引按主键物理排序，自增主键插入总是在末尾，通常能避免页分裂和碎片；随机主键（如 UUID）插入位置随机，容易引发页分裂与碎片（此为合理推论，方向与官方"无逻辑唯一列时建议加自增列"的推荐一致）。
+        - 倒序索引注意：5.7 中 DESC 语法被解析但忽略、键值仍按升序存储；5.7 虽能反向扫描索引服务 ORDER BY ... DESC，但有一定性能代价，真正的倒序索引到 8.0 才支持。
+
+- **协助记忆**
+    - 索引像字典的拼音/部首目录——查一个字不用从头翻到尾，按目录直接翻到对应页（定位）；目录本身也占页数，而且每次新增字都要同步更新目录（空间与写入代价）。
+    - 口诀：B+ 树排序、聚簇存整行、最左前缀、覆盖免回表。
+
+- **进阶思考**
+    - **为什么用 B+ 树，不用红黑树或哈希？**
+        - B+ 树是多叉平衡树，矮胖、层数低，磁盘 IO 次数少，且叶子链表天然支持范围查询；哈希只支持等值、不支持范围与排序；红黑树是二叉、偏高，落盘后 IO 次数多。
+    - **索引失效（用不上）有哪些常见场景？**
+      - 对索引列做函数/运算、隐式类型转换、LIKE '%xx' 前导模糊、OR 两侧条件不一致、违反最左前缀、优化器认为全表扫更快（如小表或回表代价过高）等。
+    - **联合索引怎么设计顺序？**
+        - 把区分度高、经常被等值/范围查询、且常作为最左列的字段放前面；尽量让查询形成最左前缀，并优先设计成覆盖索引减少回表。
+
+- **扩展信息**
+    - **优化器视角**：建了索引不代表一定走索引，MySQL 优化器会估算成本（扫描行数、回表代价），覆盖索引、FORCE INDEX、统计信息（ANALYZE
+      TABLE）都会影响选择。
+    - **8.0 索引新特性的实用价值**：不可见索引用于"安全删索引"——先设 INVISIBLE 观察无性能影响再删；函数索引让 WHERE LOWER(col)=... 这类函数条件也能走索引。
+    - **先分清几类"树"**（数据结构的基础概念）
+        - **树（Tree）**：像公司组织架构图——一个根节点往下分叉，末端不再分叉的叫"叶子节点"。数据库索引、文件目录、JSON 都是树形结构。
+        - **二叉树 / 二叉查找树（BST）**：每个节点最多两个分叉；"查找树"指"左小右大"——比当前节点小的放左边、大的放右边，查找就像玩猜数字，每次对半砍。
+        - **红黑树**：一种自平衡二叉查找树，靠给节点标红/黑并旋转来保持左右大致等高，保证查找/插入/删除都是 O(log n)。它是内存里常用的有序结构（如 Java 的 TreeMap、C++ 的 std::map）。缺点是只有二叉、树比较高，放到磁盘上要读很多次，所以不适合做数据库索引。
+        - **B 树 / B+ 树**：多叉平衡树，一个节点能装很多键、分很多叉，所以"矮胖"——同样数据量层数更少。磁盘每次按"页"读取，节点做大一点一次能读更多，减少 IO 次数，天生适合磁盘。B+ 树是 B 树的变体：数据只放叶子节点，叶子之间再用链表串起来，既能快速定位、又能顺序扫范围——MySQL InnoDB 的索引就是它。
+
+    - **再分清"非树"的两类**
+        - **哈希（Hash）/ 哈希表**：把"键"用一个函数算成一个固定位置，直接跳过去取，等值查找 O(1) 极快；但位置是"算出来的"、不保序，所以不支持范围查询和排序——这就是索引为什么不用它做主结构。
+        - **倒排列表（Inverted List）**：全文索引用的结构，反着存——不是"某文档里有哪些词"，而是"每个词出现在哪些文档"，像书末的关键词索引页，搜词直接翻到对应行。
+        - **R-Tree**：空间索引，把二维/多维位置（经纬度、矩形范围）组织成树，用于 GEOMETRY 地理查询。
+
+        - **一句话串起来（选型的直觉）**
+            - 磁盘要"矮胖多叉"→ 用 B+ 树（省 IO、可范围扫） ；内存要"简单保序"→ 红黑树，只要"等值点查"→ 哈希；索引落在磁盘上，所以 InnoDB 选 B+ 树，而哈希因不支持范围/排序只能作辅助（如自适应哈希、Memory 引擎的哈希索引）
+
+    - B+ 树管磁盘范围、红黑树管内存保序、哈希管等值快查。
+
 ## 🤔 MySQL 有哪些索引类型？
+- **MySQL 索引底层几乎都是 B+ 树，但换个角度能分出三类：按实现有 B+ 树 / 哈希 / 全文 / 空间，按逻辑有主键 / 唯一 / 普通 / 复合 / 前缀，按 InnoDB 存储有聚簇 / 二级——8.0 又补了降序、不可见、函数、多值一批增强索引。**
+
+    - **第一层**：按底层实现分（引擎怎么存）
+        - **B+ 树索引**：`InnoDB` 默认且最常用的结构（官方文档称 `B-tree`），支持等值、范围、排序，绝大多数索引都基于它
+        - **哈希索引**：仅等值查询、O(1)，不支持范围与排序；由 `MEMORY` 引擎支持；`InnoDB` 的自适应哈希索引（AHI） 是自动维护的，不能手动创建
+        - **全文索引（FULLTEXT）** ：用于 `MATCH ... AGAINST` 文本搜索，底层是倒排索引（非 B+ 树）；`InnoDB` 自 5.6 起支持（此前仅 MyISAM）
+        - **空间索引（SPATIAL，R-Tree）** ：用于地理坐标等空间数据；`InnoDB` 自 5.7.5 起支持（此前仅 MyISAM）
+
+    - **第二层**：按逻辑/功能分（怎么建）
+        - **主键索引（PRIMARY KEY）** ：唯一、非空，一张表只能有一个；`InnoDB` 下它就是聚簇索引
+        - **唯一索引（UNIQUE）** ：值唯一但允许 `NULL`（多个 `NULL` 不算重复）
+        - **普通索引（INDEX）** ：非唯一，最常用
+        - **复合索引（联合索引）** ：多列组合，遵循最左前缀原则——查询条件要命中索引最左列才能用上
+        - **前缀索引**：对长字符串列只取前 N 个字符建索引，省空间，但牺牲精确性、可能增加回表
+        - **覆盖索引**：不是"建"出来的索引类型，而是查询概念——查询所需的列恰好都在索引里，就无需回表
+
+    - **第三层**：按 InnoDB 物理存储分（最要分清的一层）
+        - **聚簇索引（clustered index）** ：即主键索引，叶子节点直接存整行数据，数据物理上按主键有序
+        - **二级索引（secondary index）** ：主键之外的所有索引，叶子节点只存索引列 + 主键值；查非索引列时要拿主键回聚簇索引查整行，即回表
+
+- **协助记忆**
+    - 主键/聚簇索引是字典正文按拼音排序，字就印在这一页；二级索引是偏旁部首检字表，查到的是"页码"，还要翻回正文找字（回表）；覆盖索引是检字表里连读音释义都印全了，不用再翻正文。
+    - 口诀：主键聚簇存整行、二级只存主键要回表。
+
+- **进阶思考**
+    - **为什么二级索引要"回表"？**
+        - `InnoDB` 的数据物理上只存一份，就在聚簇索引（主键）的叶子节点里；二级索引叶子只存"索引列 + 主键"。查询要的非索引列不在二级索引里，就必须拿主键回到聚簇索引去取整行，这就是回表。覆盖索引正是为了省掉这一步。
+
+    - **哈希索引和 B+ 树索引的本质区别？**
+        - 哈希只支持等值、O(1)，不支持范围、排序、最左前缀；B+ 树支持范围与有序扫描、前缀匹配，所以是通用默认。`InnoDB` 的 `AHI` 是"自适应"的——引擎观察到频繁等值查询时自动在内存里建哈希加速，用户无法手动控制。
+
+- **扩展信息**
+    - 8.0 增强型索引（相对 5.7 的扩展） ：降序索引（descending index，8.0 起真正支持，5.7 声明 DESC 但被忽略）、不可见索引（invisible index，可用 use_invisible_indexes 临时启用）、函数索引（functional index，8.0.13，对表达式建索引）、多值索引（multi-valued index，8.0.17，索引 JSON 数组元素）
+    - 相关概念：前缀索引取舍——前缀越短越省空间但选择性越低；8.0 还引入 skip scan（8.0.13，让复合索引在未命中最左列时仍有机会被用上）
+
 ## 🤔 MySQL 主从模式，如何保证强一致性？
+- **MySQL 主从默认是异步复制，只能做到最终一致；要"强一致"必须付出性能/可用性代价，主流手段是半同步复制（让主库等从库确认，做到不丢数据）与组复制（多数派共识），而且一定要分清——"数据不丢"和"从库立刻读到最新"是两件独立的事。**
+    - **第一层**：先看清默认——异步复制（最终一致）
+        - **`MySQL` 复制默认 `asynchronous`**：主库提交事务后不等待从库确认就返回客户端，甚至官方表述比"最终一致"更弱——复制链路一旦中断，没有任何事件能保证到达从库。
+        - **后果**：主库宕机可能丢已提交数据；从库因复制延迟，读到的可能是旧值。
+        - **结论**：默认主从 ≠ 强一致，这是后面所有讨论的起点。
+
+    - **第二层**：半同步复制（semi-sync）——最常用的"强一致"折中
+        - **原理**：主库在提交事务时，等至少一个从库收到 binlog 事件并写入 relay log、落盘后返回 ACK，主库才把事务提交并返回客户端（5.7 默认时序是：先落 binlog → 等 ACK → 再提交）。
+        - **保证**：在满足条件时做到"无损"——主库宕机时，至少一个从库已持有完整 binlog，切换后不丢已提交事务。
+        - **关键参数（5.7）** ：
+            - `rpl_semi_sync_master_wait_point = AFTER_SYNC`（5.7 默认；5.6 无此参数、行为即 AFTER_COMMIT）——先同步 binlog 给从库、再提交，避免 `AFTER_COMMIT` 模式"已提交但从库未收到"时切换丢数据的问题。
+            - `rpl_semi_sync_master_timeout = 10000`（10s）——超时后静默降级为异步，这是"无损"被打破的最大风险点。
+            - `rpl_semi_sync_master_wait_for_slave_count = 1`——等待几个从库 ACK，默认 1。
+
+        - **边界（关键）** ：半同步保证的是"从库收到并落盘 `relay log`"，不是"从库已执行完事务"。所以它解决"不丢数据"，但不解决"从库立刻读到最新"——从库读仍可能读到旧值。
+        - **注意**：5.7 插件名为 `rpl_semi_sync_master / rpl_semi_sync_slave`；8.0.26 起新增 `rpl_semi_sync_source / rpl_semi_sync_replica` 命名（旧名 deprecated 但仍可用）。
+
+    - **第三层**：更严格——组复制 MGR（多数派共识，不是"全同步"）
+        - **`MGR（Group Replication）`** ：基于 Paxos 协议，事务需多数派对全局顺序达成一致 + 认证后，各节点各自决定提交/回滚。它于 5.7.17 已 GA，8.0 主要是增强（如事务一致性级别 `group_replication_consistency`），不是"8.0 才稳定"。
+        - **`Galera`（`Percona XtraDB Cluster` / `MariaDB`）** ：官方自称 `virtually synchronous`（准同步） 、基于写集合认证，也非绝对全同步——写集合广播给所有节点认证后才提交。
+        - **共同点**：强一致 + 高可用，但受网络延迟影响大、写性能下降，且 MGR 不等于"全同步"（全同步的定义是"所有副本先提交、源才返回"，MGR 只要求多数派）。
+
+    - **第四层**：要"从库读到最新"，还得显式等执行
+        - **半同步/组复制保证的是"数据不丢"，不是"读一致"。要让从库读到最新已提交数据，需显式等待从库执行到位**：
+            - `MASTER_POS_WAIT()`：等待从库把指定位点读取并应用完（5.x、8.0 均可用；8.0.26 起弃用，建议改用 `SOURCE_POS_WAIT()`）。
+            - `WAIT_FOR_EXECUTED_GTID_SET()`：8.0 新增，等待指定 GTID 集进入 `gtid_executed`。
+            - 5.7 另有 `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()`（8.0 已弃用）。
+        - 或者干脆把对一致性敏感的读强制走主库，绕开从库延迟。
+
+- **协助记忆**
+    - 默认异步像寄平信——投进邮筒（提交）就完事，不管对方收到没；半同步像寄挂号信——必须等对方签收（从库写 relay log 后 ACK）才算寄出成功，寄件人手里有凭据（不丢）；但"签收"≠"对方已读完信"（从库未必已执行完），想确认对方读完还得再打个电话问（显式等待）。
+    - 口诀 ：异步是平信、半同步是挂号、组复制是多数派投票。
+
+- **进阶思考**
+    - **半同步能保证从库读到最新数据吗？**
+        - 不能。它只保证从库收到并落盘 relay log，SQL 线程可能还没应用完，读从库仍可能读到旧值；要读最新必须显式等执行到位，或读主库。
+
+    - **AFTER_SYNC 和 AFTER_COMMIT 到底差在哪？**
+        - AFTER_COMMIT（5.6 行为）先提交、再等从库 ACK，存在窗口——主库已提交但从库还没收到，此时主库宕机切换会丢这批已提交事务；AFTER_SYNC（5.7 默认）先把 binlog 同步给从库、再提交，切换更"无损"。
+
+    - **强一致是不是一定更好？**
+        - 不是。等 ACK 增加写延迟，从库故障会拖住主库（靠 timeout 降级异步），强一致本质是拿性能和可用性换一致性；实际选型看业务对 RPO（丢多少）和 RTO（停多久）的容忍度。
+
+- **扩展信息**
+    - 为什么半同步"无损"也有前提：只有 AFTER_SYNC 下、从库成功 ACK、且切换目标就是那个已 ACK 的从库、原主库弃用，才真正做到不丢；一旦 timeout 触发，主库会静默退回异步，就又回到"可能丢数据"的状态——生产上要监控半同步是否被降级。
+    - MGR 的一致性级别：8.0 的 group_replication_consistency 提供从 EVENTUAL 到 AFTER（BEFORE）等档位，可在"多数派一致性"之外进一步约束读一致，是多主模式下控制读写一致性的关键参数。
 
 ---
 
