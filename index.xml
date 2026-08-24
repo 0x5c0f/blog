@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.164.0 &amp; FixIt v1.0.0-alpha</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Thu, 20 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一个曾经的小码农...</title><link>https://blog.0x5c0f.cc/</link><description>一个曾经的小码农...</description><generator>Hugo 0.164.0 &amp; FixIt v1.0.0-alpha</generator><language>zh-CN</language><managingEditor>mail@0x5c0f.cc (0x5c0f)</managingEditor><webMaster>mail@0x5c0f.cc (0x5c0f)</webMaster><lastBuildDate>Mon, 24 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://blog.0x5c0f.cc/index.xml" rel="self" type="application/rss+xml"/><item><title>Starting</title><link>https://blog.0x5c0f.cc/posts/starting/</link><pubDate>Wed, 22 Jun 2022 00:00:00 +0000</pubDate><author>mail@0x5c0f.cc (0x5c0f)</author><guid>https://blog.0x5c0f.cc/posts/starting/</guid><category domain="https://blog.0x5c0f.cc/categories/other/">Other</category><description>&lt;blockquote&gt;
 &lt;p&gt;第一篇文章当然是&lt;code&gt;hello world&lt;/code&gt;了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class="shortcode-tabs"&gt;
@@ -4457,9 +4457,10 @@ services:
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;日志是怎么被收集的（原理）&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;容器主进程的 stdout/stderr 由 &lt;code&gt;containerd-shim&lt;/code&gt; 捕获，按配置的日志驱动写入&lt;/li&gt;
+&lt;li&gt;容器主进程的 stdout/stderr 由 &lt;code&gt;containerd-shim&lt;/code&gt; 捕获/转发，真正按日志驱动写入宿主机文件的是 &lt;code&gt;dockerd&lt;/code&gt;（shim 只负责 IO 接管）&lt;/li&gt;
 &lt;li&gt;默认 &lt;code&gt;json-file&lt;/code&gt; 驱动：写到 &lt;code&gt;/var/lib/docker/containers/&amp;lt;id&amp;gt;/&amp;lt;id&amp;gt;-json.log&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;日志驱动可换：&lt;code&gt;journald&lt;/code&gt;、&lt;code&gt;syslog&lt;/code&gt;、&lt;code&gt;fluentd&lt;/code&gt;、&lt;code&gt;gelf&lt;/code&gt;、&lt;code&gt;awslogs&lt;/code&gt;、&lt;code&gt;loki&lt;/code&gt; 等&lt;/li&gt;
+&lt;li&gt;日志驱动可换：&lt;code&gt;journald&lt;/code&gt;、&lt;code&gt;syslog&lt;/code&gt;、&lt;code&gt;fluentd&lt;/code&gt;、&lt;code&gt;gelf&lt;/code&gt;、&lt;code&gt;awslogs&lt;/code&gt; 等（&lt;code&gt;loki&lt;/code&gt; 不是 Docker 内建驱动，需先 &lt;code&gt;docker plugin install grafana/loki-docker-driver&lt;/code&gt; 并启用才能用）&lt;/li&gt;
+&lt;li&gt;⚠️ &lt;code&gt;docker logs&lt;/code&gt; 只对 &lt;code&gt;json-file&lt;/code&gt;/&lt;code&gt;local&lt;/code&gt;/&lt;code&gt;journald&lt;/code&gt;/&lt;code&gt;gelf&lt;/code&gt;（以及保留内部 json 副本的 &lt;code&gt;loki&lt;/code&gt;）有效；换成 &lt;code&gt;syslog&lt;/code&gt;/&lt;code&gt;fluentd&lt;/code&gt;/&lt;code&gt;awslogs&lt;/code&gt; 后 &lt;code&gt;docker logs&lt;/code&gt; 无任何输出&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -4467,6 +4468,7 @@ services:
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;docker run --log-opt max-size=10m --log-opt max-file=3&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;或 &lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; 全局配置&lt;/li&gt;
+&lt;li&gt;⚠️ &lt;code&gt;max-size&lt;/code&gt;/&lt;code&gt;max-file&lt;/code&gt; 仅对 &lt;code&gt;json-file&lt;/code&gt;/&lt;code&gt;local&lt;/code&gt;/&lt;code&gt;loki&lt;/code&gt; 驱动生效，对 &lt;code&gt;fluentd&lt;/code&gt;/&lt;code&gt;gelf&lt;/code&gt;/&lt;code&gt;awslogs&lt;/code&gt; 无效（那些驱动依赖接收端或外部工具轮转）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -4502,16 +4504,20 @@ services:
 &lt;p&gt;&lt;strong&gt;Loki 采集容器日志配置模板（docker 驱动直连，完整可配置项）&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
+&lt;p&gt;⚠️ 前置：Loki 不是 Docker 内建驱动，需先安装插件并启用：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker plugin install grafana/loki-docker-driver --alias loki --grant-all-permissions
+systemctl restart docker&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;code&gt;/etc/docker/daemon.json&lt;/code&gt; 全局配置：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; {
  &amp;#34;log-driver&amp;#34;: &amp;#34;loki&amp;#34;,
  &amp;#34;log-opts&amp;#34;: {
  &amp;#34;loki-url&amp;#34;: &amp;#34;http://loki:3100/loki/api/v1/push&amp;#34;,
- &amp;#34;loki-batch-size&amp;#34;: &amp;#34;400&amp;#34;,
- &amp;#34;loki-retries&amp;#34;: &amp;#34;5&amp;#34;,
+ &amp;#34;loki-batch-size&amp;#34;: &amp;#34;1048576&amp;#34;,
+ &amp;#34;loki-retries&amp;#34;: &amp;#34;10&amp;#34;,
  &amp;#34;loki-timeout&amp;#34;: &amp;#34;10s&amp;#34;,
- &amp;#34;loki-min-backoff&amp;#34;: &amp;#34;1s&amp;#34;,
- &amp;#34;loki-max-backoff&amp;#34;: &amp;#34;5s&amp;#34;,
+ &amp;#34;loki-min-backoff&amp;#34;: &amp;#34;500ms&amp;#34;,
+ &amp;#34;loki-max-backoff&amp;#34;: &amp;#34;5m&amp;#34;,
  &amp;#34;loki-external-labels&amp;#34;: &amp;#34;host=prod-web-01,env=production,dc=shanghai&amp;#34;,
  &amp;#34;loki-tenant-id&amp;#34;: &amp;#34;&amp;#34;,
  &amp;#34;loki-tls-ca-file&amp;#34;: &amp;#34;&amp;#34;,
@@ -4556,12 +4562,12 @@ services:
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;loki-batch-size&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;常用&lt;/td&gt;
-					&lt;td&gt;每批推送的最大日志条数，默认 400，可根据网络调整&lt;/td&gt;
+					&lt;td&gt;单批推送的最大&lt;strong&gt;字节数&lt;/strong&gt;，默认 1048576（约 1MB），可根据网络调整&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;loki-retries&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;常用&lt;/td&gt;
-					&lt;td&gt;推送失败最大重试次数，默认 5&lt;/td&gt;
+					&lt;td&gt;推送失败最大重试次数，默认 10&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;loki-timeout&lt;/code&gt;&lt;/td&gt;
@@ -4576,7 +4582,7 @@ services:
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;labels&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;常用&lt;/td&gt;
-					&lt;td&gt;从容器元数据中抽取的标签，如 &lt;code&gt;container_id,image_name&lt;/code&gt;，会自动附加到每行日志&lt;/td&gt;
+					&lt;td&gt;从容器标签（&lt;code&gt;docker run -l&lt;/code&gt; 设置的键）中抽取作为标签，自动附加到每行日志&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;env&lt;/code&gt;&lt;/td&gt;
@@ -4586,12 +4592,12 @@ services:
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;loki-min-backoff&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;一般不常用&lt;/td&gt;
-					&lt;td&gt;重试最小退避间隔，默认 1s&lt;/td&gt;
+					&lt;td&gt;重试最小退避间隔，默认 500ms&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;loki-max-backoff&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;一般不常用&lt;/td&gt;
-					&lt;td&gt;重试最大退避间隔，默认 5s&lt;/td&gt;
+					&lt;td&gt;重试最大退避间隔，默认 5m&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;loki-tenant-id&lt;/code&gt;&lt;/td&gt;
@@ -4643,7 +4649,6 @@ services:
 &lt;pre&gt;&lt;code&gt;docker run --log-driver=loki \
 --log-opt loki-url=&amp;#34;http://loki:3100/loki/api/v1/push&amp;#34; \
 --log-opt loki-external-labels=&amp;#34;env=staging,app=myapp&amp;#34; \
---log-opt labels=&amp;#34;container_id,image_name&amp;#34; \
 --log-opt max-size=&amp;#34;20m&amp;#34; \
 --log-opt max-file=&amp;#34;3&amp;#34; \
 nginx:latest&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;⚠️ 注意：&lt;/strong&gt; &lt;code&gt;loki-external-labels&lt;/code&gt; 和 &lt;code&gt;labels&lt;/code&gt; 是两个不同的概念：&lt;/p&gt;
@@ -4658,18 +4663,19 @@ nginx:latest&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;⚠️ 注意：&lt;
 &lt;li&gt;Filebeat 配置文件 &lt;code&gt;filebeat.yml&lt;/code&gt;（容器内或宿主机部署）：
 &lt;pre&gt;&lt;code&gt;filebeat.inputs:
 - type: container
-paths:
+ paths:
  - /var/lib/docker/containers/*/*.log
-json.keys_under_root: true
-json.add_error_key: true
+ json.keys_under_root: true
+ json.add_error_key: true
 
 output.elasticsearch:
-hosts: [&amp;#34;elasticsearch:9200&amp;#34;]
-indices:
+ hosts: [&amp;#34;elasticsearch:9200&amp;#34;]
+ indices:
  - index: &amp;#34;container-logs-%{&amp;#43;yyyy.MM.dd}&amp;#34;
-setup.template.name: &amp;#34;container-logs&amp;#34;
-setup.template.pattern: &amp;#34;container-logs-*&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+ setup.template.name: &amp;#34;container-logs&amp;#34;
+ setup.template.pattern: &amp;#34;container-logs-*&amp;#34;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;说明：Filebeat 读取宿主机 &lt;code&gt;/var/lib/docker/containers/&lt;/code&gt; 下的 JSON 日志文件，解析后直接发往 Elasticsearch；按天建索引便于管理和清理。&lt;/li&gt;
+&lt;li&gt;⚠️ 版本注意：&lt;code&gt;log&lt;/code&gt;/&lt;code&gt;container&lt;/code&gt; input 自 7.16 起弃用、9.0 起禁用，新版推荐用 &lt;code&gt;filestream&lt;/code&gt; input + container parser 替代（配置格式：&lt;code&gt;- type: filestream&lt;/code&gt; + &lt;code&gt;parsers: [- container]&lt;/code&gt;）。&lt;/li&gt;
 &lt;li&gt;若容器日志写在文件里（如 &lt;code&gt;/var/log/app/*.log&lt;/code&gt;），将 &lt;code&gt;paths&lt;/code&gt; 改为挂载出来的宿主机目录即可。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;

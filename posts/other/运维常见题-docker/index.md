@@ -953,13 +953,15 @@
         - 注意：只有输出到 stdout/stderr 的才会被收集，写进文件（如 nginx 的 access.log）的不会出现在 docker logs
 
     - **日志是怎么被收集的（原理）**
-        - 容器主进程的 stdout/stderr 由 `containerd-shim` 捕获，按配置的日志驱动写入
+        - 容器主进程的 stdout/stderr 由 `containerd-shim` 捕获/转发，真正按日志驱动写入宿主机文件的是 `dockerd`（shim 只负责 IO 接管）
         - 默认 `json-file` 驱动：写到 `/var/lib/docker/containers/<id>/<id>-json.log`
-        - 日志驱动可换：`journald`、`syslog`、`fluentd`、`gelf`、`awslogs`、`loki` 等
+        - 日志驱动可换：`journald`、`syslog`、`fluentd`、`gelf`、`awslogs` 等（`loki` 不是 Docker 内建驱动，需先 `docker plugin install grafana/loki-docker-driver` 并启用才能用）
+        - ⚠️ `docker logs` 只对 `json-file`/`local`/`journald`/`gelf`（以及保留内部 json 副本的 `loki`）有效；换成 `syslog`/`fluentd`/`awslogs` 后 `docker logs` 无任何输出
 
     - **日志轮转（防膨胀）**
         - `docker run --log-opt max-size=10m --log-opt max-file=3`
         - 或 `/etc/docker/daemon.json` 全局配置
+        - ⚠️ `max-size`/`max-file` 仅对 `json-file`/`local`/`loki` 驱动生效，对 `fluentd`/`gelf`/`awslogs` 无效（那些驱动依赖接收端或外部工具轮转）
 
     - **生产环境日志收集方案**
         - 方案一：日志驱动直接对接（如 `fluentd`/`gelf`/`awslogs`），容器日志直接送到集中日志系统
@@ -975,17 +977,22 @@
 
 - **扩展信息**
     - **Loki 采集容器日志配置模板（docker 驱动直连，完整可配置项）**
+        - ⚠️ 前置：Loki 不是 Docker 内建驱动，需先安装插件并启用：
+            ```bash
+            docker plugin install grafana/loki-docker-driver --alias loki --grant-all-permissions
+            systemctl restart docker
+            ```
         - `/etc/docker/daemon.json` 全局配置：  
             ```json
                 {
                     "log-driver": "loki",
                     "log-opts": {
                         "loki-url": "http://loki:3100/loki/api/v1/push",
-                        "loki-batch-size": "400",
-                        "loki-retries": "5",
+                        "loki-batch-size": "1048576",
+                        "loki-retries": "10",
                         "loki-timeout": "10s",
-                        "loki-min-backoff": "1s",
-                        "loki-max-backoff": "5s",
+                        "loki-min-backoff": "500ms",
+                        "loki-max-backoff": "5m",
                         "loki-external-labels": "host=prod-web-01,env=production,dc=shanghai",
                         "loki-tenant-id": "",
                         "loki-tls-ca-file": "",
@@ -1009,14 +1016,14 @@
             | `loki-url` | ✅ 必填 | Loki 推送 API 地址，如 `http://loki:3100/loki/api/v1/push` |
             | `max-size` | ✅ 强烈推荐 | 单日志文件最大大小，超过后轮转，如 `50m` |
             | `max-file` | ✅ 强烈推荐 | 保留的日志文件数量，默认 1，建议 3~5 |
-            | `loki-batch-size` | 常用 | 每批推送的最大日志条数，默认 400，可根据网络调整 |
-            | `loki-retries` | 常用 | 推送失败最大重试次数，默认 5 |
+            | `loki-batch-size` | 常用 | 单批推送的最大**字节数**，默认 1048576（约 1MB），可根据网络调整 |
+            | `loki-retries` | 常用 | 推送失败最大重试次数，默认 10 |
             | `loki-timeout` | 常用 | 单次推送超时时间，默认 10s |
             | `loki-external-labels` | 常用 | 固定标签，所有容器共享，用于标识环境/主机/机房等，多组用逗号分隔（kv 用等号） |
-            | `labels` | 常用 | 从容器元数据中抽取的标签，如 `container_id,image_name`，会自动附加到每行日志 |
+            | `labels` | 常用 | 从容器标签（`docker run -l` 设置的键）中抽取作为标签，自动附加到每行日志 |
             | `env` | 常用 | 从容器环境变量中抽取作为标签，如 `env=HOSTNAME,USER` |
-            | `loki-min-backoff` | 一般不常用 | 重试最小退避间隔，默认 1s |
-            | `loki-max-backoff` | 一般不常用 | 重试最大退避间隔，默认 5s |
+            | `loki-min-backoff` | 一般不常用 | 重试最小退避间隔，默认 500ms |
+            | `loki-max-backoff` | 一般不常用 | 重试最大退避间隔，默认 5m |
             | `loki-tenant-id` | 一般不常用 | Loki 多租户模式下的租户 ID，默认空（单租户） |
             | `loki-tls-ca-file` | 一般不常用 | TLS CA 证书文件路径，Loki 开启 HTTPS 时使用 |
             | `loki-tls-cert-file` | 一般不常用 | TLS 客户端证书文件路径 |
@@ -1031,7 +1038,6 @@
         docker run --log-driver=loki \
         --log-opt loki-url="http://loki:3100/loki/api/v1/push" \
         --log-opt loki-external-labels="env=staging,app=myapp" \
-        --log-opt labels="container_id,image_name" \
         --log-opt max-size="20m" \
         --log-opt max-file="3" \
         nginx:latest
@@ -1046,19 +1052,20 @@
             ```yaml
             filebeat.inputs:
             - type: container
-            paths:
+              paths:
                 - /var/lib/docker/containers/*/*.log
-            json.keys_under_root: true
-            json.add_error_key: true
+              json.keys_under_root: true
+              json.add_error_key: true
 
             output.elasticsearch:
-            hosts: ["elasticsearch:9200"]
-            indices:
+              hosts: ["elasticsearch:9200"]
+              indices:
                 - index: "container-logs-%{+yyyy.MM.dd}"
-            setup.template.name: "container-logs"
-            setup.template.pattern: "container-logs-*"
+              setup.template.name: "container-logs"
+              setup.template.pattern: "container-logs-*"
             ```
         - 说明：Filebeat 读取宿主机 `/var/lib/docker/containers/` 下的 JSON 日志文件，解析后直接发往 Elasticsearch；按天建索引便于管理和清理。
+        - ⚠️ 版本注意：`log`/`container` input 自 7.16 起弃用、9.0 起禁用，新版推荐用 `filestream` input + container parser 替代（配置格式：`- type: filestream` + `parsers: [- container]`）。
         - 若容器日志写在文件里（如 `/var/log/app/*.log`），将 `paths` 改为挂载出来的宿主机目录即可。
 
     - **ELK（Logstash 驱动直连）配置模板**
