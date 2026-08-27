@@ -808,6 +808,80 @@
     - **attach 后按 Ctrl+C 为什么容器就停了？**
         - 因为 attach 连接的是容器主进程（PID 1）的终端，Ctrl+C 会向主进程发送 `SIGINT`。但注意：容器内的 PID 1 受内核特殊对待——未安装处理器的信号会被忽略、不执行默认退出，所以只有当主进程为 `SIGINT` 显式安装了处理器并选择退出时，容器才会停。这也是为什么实践中有时 Ctrl+C 停不掉容器。所以 attach 常用于"我要看主进程输出"，而不是"我要进去改东西"。
 
+- **扩展信息**  
+`nsenter` 一个容器调试神器, 本身只是一个“空间门禁开锁器”（宿主机工具），它只负责把你的终端放到容器的 `Namespace` 中；至于“进门后能干什么”，取决于你最后执行的命令是在宿主机找，还是在容器内找。  
+    - **`nsenter` 核心参数全解析**
+        | 参数选项 | 全称 | 作用描述 | 对应内核 `Namespace` |
+        | --- | --- | --- | --- |
+        | **`-t, --target <PID>`** | **Target** | 指定目标进程在宿主机上的 PID（**必选基础参数**） | - |
+        | **`-n, --net`** | **Network** | 进入容器的网络空间（共享网卡、IP、路由表、iptables） | Net Namespace |
+        | **`-m, --mount`** | **Mount** | 进入容器的挂载空间（看容器视角的文件系统） | Mount Namespace |
+        | **`-p, --pid`** | **PID** | 进入容器的进程空间（看容器内的进程列表） | PID Namespace |
+        | **`-i, --ipc`** | **IPC** | 进入容器的进程间通信空间（共享内存、信号量等） | IPC Namespace |
+        | **`-u, --uts`** | **UTS** | 进入容器的主机名空间（共享 hostname） | UTS Namespace |
+        | **`-U, --user`** | **User** | 进入容器的用户空间（共享 UID/GID 映射） | User Namespace |
+        | **`-F, --no-fork`** | **No Fork** | 不 fork 新进程，直接在当前进程空间执行 | - |
+        | **`--`** | **Separator** | 参数分隔符，`--` 后面的所有内容都被视为要在目标空间内执行的命令 | - |
+    - **哪些参数/执行方式依赖容器内部命令？**
+        - **这是使用 `nsenter` 最容易产生误解的地方。关键在于：***是否带 `-m` (Mount Namespace) 参数*****。
+            - **情景 A：带 `-m` 参数（全套进入容器视角）**
+                - **逻辑**：一旦加入了 `-m`，你的根目录 `/'` 会被切换为容器的根目录。
+                - **命令依赖**：**严格依赖容器内是否存在该命令！**
+                - **报错表现**：如果容器是 Scratch/Distroless，执行 `nsenter -t <PID> -m -u -i -n -p -- sh` 会直接报 `exec: "sh": executable file not found`，因为此时系统是在容器的文件系统里找 `sh`。
+            - **情景 B：不带 `-m` 参数（只借用容器网络/PID/IPC 空间）**
+                - **逻辑**：挂载空间仍然留在大本营（宿主机），你的根目录 `/'` 依然是宿主机的文件系统，但你的网络栈、进程视图已经变成了容器的。
+                - **命令依赖**：**完全依赖宿主机！容器内哪怕是一无所有的 Scratch 镜像也毫无影响。**
+                - **运行效果**：你可以直接调用宿主机的 `tcpdump`、`ss`、`ip`、`strace`、`gdb` 等工具，去诊断容器内部的网络或进程！
+    - **`nsenter` 常用实操场景与故障排查清单**
+        - **场景 1：排查极简容器 / 无 Shell 镜像的网络故障（最经典场景）**
+            - **适用故障**：容器基于 `scratch` / `distroless` 构建，没有 `sh`/`curl`/`ping`/`tcpdump`，且 `docker exec` 无法使用。
+            - **排查命令**：
+                ```bash
+                # 仅切入网络空间，使用宿主机的 tcpdump 进行抓包
+                ## docker inspect -f '{{.State.Pid}}' <容器>  获取容器主进程 PID
+                nsenter -t <PID> -n tcpdump -i eth0 -nn -w container.pcap
+
+                # 仅切入网络空间，使用宿主机的 ss 查看容器内端口监听与 TCP 连接状态
+                nsenter -t <PID> -n ss -tulpn
+                ```
+            - **解决的痛点**：无需临时修改 `Dockerfile` 重新打包安装工具，也不破坏生产环境容器的文件系统。
+        - **场景 2：Docker / Containerd 假死，容器无法响应 `exec`**
+            - **适用故障**：`Docker Daemon` 卡死、API 响应超时、`docker exec` 阻塞无结果，但容器内的业务进程还在运行。
+            - **排查命令**：
+                ```bash
+                # 绕过 Docker Engine，直接通过内核 PID 强行拉起一个 shell 查看容器环境
+                nsenter -t <PID> -m -n -p -- sh
+                ```
+
+            - **解决的痛点**：在不重启 `Docker` 服务（避免引发全机容器宕机）的前提下，实现紧急运维和现场保留。
+
+        - **场景 3：排查共享内存 (IPC) 或死锁 / 性能瓶颈问题**
+            - **适用故障**：多进程应用或 C/C++、Java 应用在容器内发生共享内存溢出、信号量死锁，或需要对容器内进程做性能追踪。
+            - **排查命令**：
+                ```bash
+                # 进入网络与 IPC 空间，查看共享内存占用
+                nsenter -t <PID> -n -i ipcs -m
+
+                # 不进入 Mount 空间，直接用宿主机的 strace 跟踪容器内 PID 为 1 的进程系统调用
+                nsenter -t <PID> -p strace -p 1 -f -e trace=file
+                ```
+            - **解决的痛点**：容器内通常不会安装 `strace` / `perf` / `gdb` 等大型调试分析工具，利用 `nsenter` 借用宿主机的分析利器。
+
+        - **场景 4：Kubernetes Pod 宿主机网络模式 (Host Network) 与 CNI 插件异常排查**
+
+            - **适用故障**：K8s Node 节点上的 CNI 网络插件（如 Calico/Flannel）报 veth pair 找不到、IP 冲突或路由缺失。
+            - **排查命令**：
+                ```bash
+                # 进入容器网络空间查看容器真实的路由表和 IP 配置
+                nsenter -t <PID> -n ip route show
+                nsenter -t <PID> -n ip addr show
+                ```
+
+            - **解决的痛点**：直观对比宿主机视角与容器网络空间的路由差异，快速定位 CNI 虚拟网线配置失误。
+
+    - **协助记忆**
+        - 带 `-m` 叫“肉身穿墙”**（连衣服鞋子都换成容器的，找不到 `sh` 会饿死）；不带 `-m` 叫**“神识入体”（借容器的网卡和视野，手里用的依然是宿主机的神兵利器）。
+
 ## 🤔 如何限制容器资源（--memory/--cpus/--cpuset-cpus）？  
 - **Docker 通过 `cgroup` 限制容器资源，常用参数有：`--memory`（内存上限）、`--cpus`（CPU 核数配额）、`--cpuset-cpus`（绑定具体 CPU 核）、`--cpu-shares`（CPU 相对权重，软限制）。这些参数在 `docker run` 时指定，底层都写到对应 cgroup。**  
     - **内存限制**
