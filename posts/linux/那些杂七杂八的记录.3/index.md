@@ -324,7 +324,26 @@ $> alembic merge ae1234567890 bc0987654321 -m "Merge branch A and B"
 $> alembic upgrade head
 ```
 
+## Windows开启远程应用支持
+- **第一条**：                                             
+    1. 展开到 `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server`
+    2. 如果下面没有 `TSAppAllowList` 子项 → 右键 `Terminal Server` → 新建 → 项 → 命名 `TSAppAllowList`
+    3. 选中 `TSAppAllowList`，右侧空白处右键 → 新建 → `DWORD（32位）`值 → 命名 `fDisabledAllowList`
+    4. 双击它 → 选择十进制 → 数值数据填 `1` → 确定
+    5. 核对 `reg query "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services" /v fAllowUnlistedRemotePrograms`, 返回 `0x1（REG_DWORD）`
 
+- **第二条**:
+    1. 展开到 `HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services`
+    2. 如果下面没有 `Terminal Services` 子项 → 新建 → 项 → 命名 `Terminal Services`
+    3. 选中它，右侧右键 → 新建 → `DWORD（32位）`值 → 命名 `fAllowUnlistedRemotePrograms`
+    4. 双击 → 十进制 → 1 → 确定
+    5. 核对 `reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Terminal Server\TSAppAllowList" /v fDisabledAllowList`, 返回 `0x1（REG_DWORD）`
+
+- **远程应用**
+    ```shell
+    # xfreerdprdp /v:<host>:<port> /u:<username> /app:'<程序绝对路径>'
+    $> xfreerdprdp /v:127.0.0.1:9859 /u:remote_user /app:'C:\Program Files\Sublime Text\sublime_text.exe'
+    ```
 
 ---
 
