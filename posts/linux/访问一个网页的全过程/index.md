@@ -230,6 +230,6 @@ DOM树和CSSOM树构建完毕后会融合成渲染树，然后浏览器会确认
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/%E8%AE%BF%E9%97%AE%E4%B8%80%E4%B8%AA%E7%BD%91%E9%A1%B5%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/  
 

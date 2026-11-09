@@ -87,6 +87,6 @@ with open("file1.md","r",encoding="utf-8") as f1,\
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/python/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/  
 

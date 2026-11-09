@@ -1071,6 +1071,6 @@ LIMIT 10;
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/clickhouse%E9%9B%86%E7%BE%A4%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/  
 

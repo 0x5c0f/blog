@@ -441,6 +441,6 @@ AssertionError: 1 + 1 不等于 3
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/python/%E5%87%BD%E6%95%B0%E4%BA%8C/  
 

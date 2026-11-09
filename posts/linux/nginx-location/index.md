@@ -259,6 +259,6 @@ location /api/ {
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/nginx-location/  
 

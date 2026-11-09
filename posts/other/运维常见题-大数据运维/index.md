@@ -978,6 +978,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/other/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%A2%98-%E5%A4%A7%E6%95%B0%E6%8D%AE%E8%BF%90%E7%BB%B4/  
 

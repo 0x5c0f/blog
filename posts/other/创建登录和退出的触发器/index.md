@@ -34,6 +34,6 @@ end;
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/other/%E5%88%9B%E5%BB%BA%E7%99%BB%E5%BD%95%E5%92%8C%E9%80%80%E5%87%BA%E7%9A%84%E8%A7%A6%E5%8F%91%E5%99%A8/  
 

@@ -188,6 +188,6 @@ bundlePath = "pagefind/"
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/hugo/fixit%E4%B8%BB%E9%A2%98%E6%8E%A5%E5%85%A5pagefind%E5%8E%9F%E7%94%9F%E6%90%9C%E7%B4%A2/  
 

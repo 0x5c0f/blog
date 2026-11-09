@@ -35,6 +35,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/mysql/mysql%E7%A8%8B%E5%BA%8F%E6%A8%A1%E5%9E%8B/  
 

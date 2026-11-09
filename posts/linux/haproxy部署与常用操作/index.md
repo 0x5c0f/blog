@@ -508,6 +508,6 @@ fi
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/haproxy%E9%83%A8%E7%BD%B2%E4%B8%8E%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/  
 

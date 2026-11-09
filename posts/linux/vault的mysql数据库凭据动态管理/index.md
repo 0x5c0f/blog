@@ -398,6 +398,6 @@ sudo tail -f /opt/vault/audit/vault-audit.log | jq .
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/vault%E7%9A%84mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%87%AD%E6%8D%AE%E5%8A%A8%E6%80%81%E7%AE%A1%E7%90%86/  
 

@@ -98,6 +98,6 @@ admin-address = 0.0.0.0:2345
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/mysql/atlas%E9%AB%98%E5%8F%AF%E7%94%A8%E8%BD%AF%E4%BB%B6/  
 

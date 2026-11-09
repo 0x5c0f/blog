@@ -144,6 +144,6 @@ $> gitlab-ctl restart
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/  
 

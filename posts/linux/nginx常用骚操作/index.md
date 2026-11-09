@@ -120,6 +120,6 @@ location /frps/ {
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/nginx%E5%B8%B8%E7%94%A8%E9%AA%9A%E6%93%8D%E4%BD%9C/  
 

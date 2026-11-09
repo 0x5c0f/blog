@@ -46,6 +46,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86jenkins/  
 

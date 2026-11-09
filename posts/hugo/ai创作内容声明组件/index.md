@@ -503,6 +503,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/hugo/ai%E5%88%9B%E4%BD%9C%E5%86%85%E5%AE%B9%E5%A3%B0%E6%98%8E%E7%BB%84%E4%BB%B6/  
 

@@ -25,6 +25,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/redis%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B8%B8%E8%A7%813%E5%A4%A7%E9%97%AE%E9%A2%98/  
 

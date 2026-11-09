@@ -132,6 +132,6 @@ mysql> purge binary logs to 'mysql-bin.000020';
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/mysql/%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86/  
 

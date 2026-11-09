@@ -732,6 +732,6 @@ $> sudo -u postgres psql -c "SELECT * FROM pg_stat_wal_receiver;"
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/pgsql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E5%8F%8Arepmgr%E9%AB%98%E5%8F%AF%E7%94%A8/  
 

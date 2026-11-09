@@ -122,6 +122,6 @@ innodb_data_file_path=ibdata1:512M;ibdata2:512M:autoextend
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/mysql/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/  
 

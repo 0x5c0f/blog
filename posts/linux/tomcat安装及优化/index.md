@@ -73,6 +73,6 @@ location / {
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/tomcat%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BC%98%E5%8C%96/  
 

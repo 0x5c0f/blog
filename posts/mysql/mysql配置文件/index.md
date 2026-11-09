@@ -169,6 +169,6 @@ max_allowed_packet = 128M
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/mysql/mysql%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/  
 

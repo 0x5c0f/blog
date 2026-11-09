@@ -38,6 +38,6 @@ reg add "HKEY_CURRENT_USER\Control Panel\International" /v sTimeFormat /t REG_SZ
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/scripts/bat/%E6%9C%AC%E5%9C%B0%E5%AE%89%E5%85%A8%E7%AD%96%E7%95%A5/  
 

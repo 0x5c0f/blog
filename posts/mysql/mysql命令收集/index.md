@@ -122,6 +122,6 @@ mysql -u root -ppwd -e 'SHOW /*!50000 GLOBAL */ STATUS LIKE "Innodb_log_waits'
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/mysql/mysql%E5%91%BD%E4%BB%A4%E6%94%B6%E9%9B%86/  
 

@@ -195,6 +195,6 @@ public class UnicodeConverter {
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/scripts/java/%E6%B1%89%E5%AD%97%E5%8F%8Aunicode%E4%BA%92%E8%BD%AC/  
 

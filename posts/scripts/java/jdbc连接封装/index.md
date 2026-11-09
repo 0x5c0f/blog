@@ -278,6 +278,6 @@ if (rs != null) {
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/scripts/java/jdbc%E8%BF%9E%E6%8E%A5%E5%B0%81%E8%A3%85/  
 

@@ -356,6 +356,6 @@ serverurl=unix:///tmp/supervisor.sock ; 这个是supervisorctl本地连接superv
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/supervisor%E6%89%B9%E9%87%8F%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/  
 

@@ -63,6 +63,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/nginx%E4%B8%AD%E5%8F%98%E9%87%8F%E8%AF%A6%E8%A7%A3/  
 > 转载 URL: http://www.hangdaowangluo.com/archives/754

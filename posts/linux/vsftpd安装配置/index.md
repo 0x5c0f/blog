@@ -507,6 +507,6 @@ CustomerProof yes
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/vsftpd%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/  
 

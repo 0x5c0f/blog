@@ -46,6 +46,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86/  
 

@@ -590,6 +590,6 @@ class ExtUtilsInitializer {
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/hugo/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84%E6%89%A9%E5%B1%95/  
 

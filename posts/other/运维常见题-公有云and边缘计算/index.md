@@ -1119,6 +1119,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/other/%E8%BF%90%E7%BB%B4%E5%B8%B8%E8%A7%81%E9%A2%98-%E5%85%AC%E6%9C%89%E4%BA%91and%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97/  
 

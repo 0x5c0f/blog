@@ -9,6 +9,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/%E6%97%A5%E5%BF%97%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7logrotate%E8%AF%A6%E8%A7%A3/  
 

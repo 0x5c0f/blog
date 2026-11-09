@@ -67,6 +67,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/prometheus_%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87/  
 > 转载 URL: https://mutoulazy.github.io/2020/02/12/kubernetes/prometheus/node-export%E4%B8%AD%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%9B%B8%E5%85%B3%E6%8C%87%E6%A0%87/#udp%E4%B8%8Eudp-lite%E7%9A%84%E5%8C%BA%E5%88%AB

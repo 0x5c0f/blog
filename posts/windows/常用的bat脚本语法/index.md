@@ -17,6 +17,6 @@
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/windows/%E5%B8%B8%E7%94%A8%E7%9A%84bat%E8%84%9A%E6%9C%AC%E8%AF%AD%E6%B3%95/  
 

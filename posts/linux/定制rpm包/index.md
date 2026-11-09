@@ -85,6 +85,6 @@ Created package {:path=>"nginx-1.14.2-1.x86_64.rpm"}
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/%E5%AE%9A%E5%88%B6rpm%E5%8C%85/  
 

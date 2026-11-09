@@ -107,6 +107,6 @@ tcp 0 0 0.0.0.0:80 0.0.0.0:* LISTEN 5181/nginx
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/nginx%E5%AE%89%E8%A3%85%E7%BB%B4%E6%8A%A4/  
 

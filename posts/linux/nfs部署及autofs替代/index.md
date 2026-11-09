@@ -73,6 +73,6 @@ $> systemctl enable --now  mnt-other.automount
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/nfs%E9%83%A8%E7%BD%B2%E5%8F%8Aautofs%E6%9B%BF%E4%BB%A3/  
 

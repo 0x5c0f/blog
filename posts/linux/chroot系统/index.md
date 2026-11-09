@@ -174,6 +174,6 @@ UserParameter=sshfs_status,/bin/systemctl is-active data-ltbstore.mount >& /dev/
 
 ---
 
-> 作者: [0x5c0f](https://blog.0x5c0f.cc)  
+> 作者: [0x5c0f](https://tools.0x5c0f.cc)  
 > URL: https://blog.0x5c0f.cc/posts/linux/chroot%E7%B3%BB%E7%BB%9F/  
 
