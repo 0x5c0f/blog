@@ -1,0 +1,1 @@
+window.ATConfig={"hugoLangCodes":["zh-CN"],"hugoLangMap":{"zh-CN":"/posts/other/%E5%B0%8F%E7%B1%B3ax3000t-rd03v2-%E9%AB%98%E9%80%9A%E7%89%88%E5%9B%BA%E4%BB%B6%E5%BC%80%E5%90%AFssh/"}};
