@@ -1,1 +1,1 @@
-{"Author": "0x5c0f","Title": "一个曾经的小码农...","UpdateTime": "261122233354","ThemesVersion": "v1.0.0-rc.3","HugoVersion": "v0.170.1-c8b03de9564cf846a3986e879727d638bb96ab33","PageFindVersion": "1.6.0","Description": "task: update https://blog.0x5c0f.cc at Github "}
+{"Author": "0x5c0f","Title": "一个曾经的小码农...","UpdateTime": "261123001048","ThemesVersion": "v1.0.0-rc.3","HugoVersion": "v0.170.1-c8b03de9564cf846a3986e879727d638bb96ab33","PageFindVersion": "1.6.0","Description": "task: update https://blog.0x5c0f.cc at Github fix: 子仓库自动归位主分支，杜绝 detached HEAD 丢提交"}
